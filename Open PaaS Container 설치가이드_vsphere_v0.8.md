@@ -625,7 +625,7 @@ cf push “application-name” -i “instance\_count” -m “memory\_size”
 
 ```
 
- Application 배포시 Disk 관련 옵션 (-k)을 지정하지 않은 경우에는 기본적으로 6G 크기의 디스크 사용량이 지정된다.
+ Application 배포시 Disk 관련 옵션 (-k)을 지정하지 않은 경우에는 기본적으로 1G 크기의 디스크 사용량이 지정된다.
  
   ![cf push](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-container/cf_push_vsphere1.png)
   ![cf push](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-container/cf_push_vsphere2.png)

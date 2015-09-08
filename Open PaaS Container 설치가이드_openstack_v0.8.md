@@ -1,28 +1,28 @@
 ## 개요
 ----
 
-		1. 문서 목적
+#### 문서 목적
 
-> 본 문서(설치가이드)는, 현 시점에서 지원되는 IaaS(Infrastructure as a Service) 중 하나인 Openstack 환경에서 개방형클라우드플랫폼(OpenPaas Container) 을 설치하기 위한 가이드를 제공하는데 그 목적이 있다.
+ 본 문서(설치가이드)는, 현 시점에서 지원되는 IaaS(Infrastructure as a Service) 중 하나인 Openstack 환경에서 개방형클라우드플랫폼(OpenPaas Container) 을 설치하기 위한 가이드를 제공하는데 그 목적이 있다.
 
-    2. 범위
+#### 범위
 
-> 본 문서의 범위는 개방형클라우드플랫폼을 Openstack 기반에 설치하기 위한 내용으로 한정되어 있다. VMWare/AWS와 같은 다른 IaaS 환경에서의 설치는 그에 맞는 가이드 문서를 참고해야 하며, Bosh/CF release 설치 또한 해당 가이드 문서를 별도로 참조해야 한다.
+ 본 문서의 범위는 개방형클라우드플랫폼을 Openstack 기반에 설치하기 위한 내용으로 한정되어 있다. VMWare/AWS와 같은 다른 IaaS 환경에서의 설치는 그에 맞는 가이드 문서를 참고해야 하며, Bosh/CF release 설치 또한 해당 가이드 문서를 별도로 참조해야 한다.
 
-    3. 참고 자료
+#### 참고 자료
 
-> [***https://github.com/cloudfoundry-incubator/diego-release***](https://github.com/cloudfoundry-incubator/diego-release)
->
-> [***http://docs.cloudfoundry.org/deploying/openstack/***](http://docs.cloudfoundry.org/deploying/openstack/)
+ [***https://github.com/cloudfoundry-incubator/diego-release***](https://github.com/cloudfoundry-incubator/diego-release)
+
+ [***http://docs.cloudfoundry.org/deploying/openstack/***](http://docs.cloudfoundry.org/deploying/openstack/)
 
 
 ## Prerequisites
 
 #### OpenPaas Controller 설치확인
 
-> 개방형클라우드플랫폼 (OpenPaas Container) 를 설치하기 위해서는 사전에 OpenPaas Controller가 설치되어 있어야 한다.
->
-> 확인하는 방법은 bosh deployments를 통해 배포된 리스트 목록으로 확인한다.
+ 개방형클라우드플랫폼 (OpenPaas Container) 를 설치하기 위해서는 사전에 OpenPaas Controller가 설치되어 있어야 한다.
+
+ 확인하는 방법은 bosh deployments를 통해 배포된 리스트 목록으로 확인한다.
 
 ## Open Paas Container 설치
 
@@ -60,6 +60,7 @@
 
 ```
  Deployment Name은 설치자가 임의로 부여하는데, IaaS와 Version을 표시할 것을 권장한다. Bosh Director UUID는 “bosh status” 명령을 실행하면 출력되는 UUID 값을 넣는다.
+ 
  ※ container & controller Release Name과 Version은 “bosh releases” 명령의 결과로 나오는 값들을 입력하도록 한다.
 
 #### Networks
@@ -507,8 +508,8 @@ properties:
 
   Diego module에 대한 bosh upload 과정이 끝났으면, deploy 과정을 통해 Diego 관련 VM을 생성한다.
 
-| $ bosh deploy |
-|---------------|
+| bosh deploy |
+|-------------|
 
  \[그림 : bosh deploy 실행 결과\]
 
@@ -518,7 +519,7 @@ properties:
  설치가 정상적으로 완료된 후 “bosh vms” 명령으로 설치된 Platform의 형상을 확인한다.
 
 | bosh vms |
-|----------|
+|-------------|
 
  아래 그림과 같이 Deployment Name, Virtual Machine, IP 주소 등의 정보를 확인할 수 있다.
 
@@ -576,6 +577,7 @@ cf push “application-name” –i “instance\_count” –m “memory\_size�
 #### Application Access
 
  Deploy한 Application URL을 Browser 또는 curl 명령어로 Access하여 정상 접근 되는지를 확인한다.
+ 
  사용법) 배포된 App URL이 spring-music.controller.open-paas.com 일 경우
 
 ```

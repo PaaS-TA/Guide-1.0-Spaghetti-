@@ -539,7 +539,7 @@ properties:
 #### CF Login
 
 ```
-cf target [***http://api.controller.open-paas.com***](http://api.controller.open-paas.com)
+cf target api.controller.open-paas.com
 
 …
 

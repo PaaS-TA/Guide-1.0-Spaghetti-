@@ -582,7 +582,7 @@ properties:
 #### CF Login
 
 ```
-cf target [***http://api.controller.open-paas.com***](http://api.controller.open-paas.com)
+cf target api.controller.open-paas.com
 
 …
 
@@ -621,7 +621,7 @@ cf target -o open-paas -s dev
 ```
 cd $PACKAGE\_ROOT/apps/hello-java
 
-cf push “application-name” ?i “instance\_count” ?m “memory\_size”
+cf push “application-name” -i “instance\_count” -m “memory\_size”
 
 ```
 
@@ -639,7 +639,7 @@ cf push “application-name” ?i “instance\_count” ?m “memory\_size”
  사용법) 배포된 App URL이 hello-spring-test.controller.open-paas.com 일 경우
 
 ```
-curl ?L http://hello-spring-test.controller.open-paas.com
+curl -L http://hello-spring-test.controller.open-paas.com
 
 ```
 

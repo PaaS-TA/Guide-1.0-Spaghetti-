@@ -582,8 +582,9 @@ cf push “application-name” –i “instance\_count” –m “memory\_size�
 
  Application 배포시 Disk 관련 옵션 (-k)을 지정하지 않은 경우에는 기본적으로 6G 크기의 디스크 사용량이 지정된다.
  
-  ![cf push](https://github.com/OpenPaaSRnD/Documents/tree/master/images/openpaas-container/cf_push_openstack.png)
-  ![cf apps](https://github.com/OpenPaaSRnD/Documents/tree/master/images/openpaas-container/cf_apps_openstack.png)
+  [![cf push](/tree/master/images/openpaas-container/cf_push_openstack.png)](https://github.com/OpenPaaSRnD/Documents/)
+  
+  [![cf apps](/tree/master/images/openpaas-container/cf_apps_openstack.png)](https://github.com/OpenPaaSRnD/Documents/)
 
 #### Application Access
 

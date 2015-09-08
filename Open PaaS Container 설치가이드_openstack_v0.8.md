@@ -23,6 +23,8 @@
  개방형클라우드플랫폼 (OpenPaas Container) 를 설치하기 위해서는 사전에 OpenPaas Controller가 설치되어 있어야 한다.
 
  확인하는 방법은 bosh deployments를 통해 배포된 리스트 목록으로 확인한다.
+ 
+ ![cf push](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-container/bosh_deployments_openstack.png)
 
 ## Open Paas Container 설치
 

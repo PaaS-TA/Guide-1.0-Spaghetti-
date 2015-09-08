@@ -1,4 +1,4 @@
-개요
+## 개요
 ----
 
 1.  문서 목적
@@ -16,17 +16,17 @@
 > [***http://docs.cloudfoundry.org/deploying/openstack/***](http://docs.cloudfoundry.org/deploying/openstack/)
 
 
-*** Prerequisites
+## Prerequisites
 
-**** OpenPaas Controller 설치확인
+#### OpenPaas Controller 설치확인
 
 > 개방형클라우드플랫폼 (OpenPaas Container) 를 설치하기 위해서는 사전에 OpenPaas Controller가 설치되어 있어야 한다.
 >
 > 확인하는 방법은 bosh deployments를 통해 배포된 리스트 목록으로 확인한다.
 
-*** Open Paas Container 설치
+## Open Paas Container 설치
 
-**** Release Upload
+#### Release Upload
 
 > 배포된 설치 패키지의 OpenPaaS-Controller 폴더에 있는 Open PaaS Container Bosh Release를 Bosh Server로 아래와 같은 명령으로 Beta-1.0 버전을 Upload 한다.
 
@@ -48,55 +48,40 @@ Deployment Manifest 파일 수정하기
 
 > 배포된 설치 패키지에 포함된 Sample Deployment Manifest File($INSTALL\_PACKAGE/OpenPaaS-Deployment/openpaas-container-openstack-beta-1.0.yml)을 아래의 순서대로 설치환경에 적합하게 수정한다.
 
-| name: openpaas-container-openstack **\# Deployment Name**
-
-director\_uuid: 6e0f7c41-2415-4319-98aa-38109597aff4 **\# Bosh Director UUID**
-
-releases:
-
--   name: openpaas-container **\# container Release Name**
-
-version: latest **\# container Release Version**
-
--   name: openpaas **\# controller Release Name**
-
-version: latest **\# controller Release Version** | |--------------------------------------------------------------------------------|
+> name: openpaas-container-openstack **\# Deployment Name**
+>
+> director\_uuid: 6e0f7c41-2415-4319-98aa-38109597aff4 **\# Bosh Director UUID**
+>
+> releases:
+>   - name: openpaas-container **\# container Release Name**
+>     version: latest **\# container Release Version**
+>   - name: openpaas **\# controller Release Name**
+>     version: latest **\# controller Release Version** 
+>
+|--------------------------------------------------------------------------------|
 
 > Deployment Name은 설치자가 임의로 부여하는데, IaaS와 Version을 표시할 것을 권장한다. Bosh Director UUID는 “bosh status” 명령을 실행하면 출력되는 UUID 값을 넣는다.
 >
 > ※ container & controller Release Name과 Version은 “bosh releases” 명령의 결과로 나오는 값들을 입력하도록 한다.
 
-| networks:
 
--   name: openpaas-container-network **\# Platform이 설치될 Network Name**
-
-subnets:
-
--   cloud\_properties:
-
-net\_id: 06c2b5f8-55a7-4893-9901-861ed2d03ad4 **\# 네트워크 ID**
-
-security\_groups:
-
--   bosh\_security **\# Security\_Group**
-
-dns:
-
--   10.10.5.108 **\# DNS Server**
-
--   8.8.8.8
-
-gateway: 10.10.9.1 **\# Gateway IP Address**
-
-range: 10.10.9.0/24 **\# Network CIDR**
-
-\#reserved:
-
-static:
-
--   10.10.9.10 - 10.10.9.30 **\# VM에 할당될 Static IP 주소 대역**
-
-type: manual | |--------------------------------------------------------------------------|
+> networks:
+>   - name: openpaas-container-network **\# Platform이 설치될 Network Name**
+>   subnets:
+>   - cloud_properties:
+>       net_id: 06c2b5f8-55a7-4893-9901-861ed2d03ad4 **\# 네트워크 ID**
+>       security_groups:
+>       - bosh_security     ** Security_Group**
+>   dns:
+>   - 10.10.5.108 **\# DNS Server**
+>   - 8.8.8.8
+>   gateway: 10.10.9.1 **\# Gateway IP Address**
+>   range: 10.10.9.0/24 **\# Network CIDR**
+>   static:
+>   - 10.10.9.10 - 10.10.9.30 **\# VM에 할당될 Static IP 주소 대역**
+>   type: manual 
+>
+|--------------------------------------------------------------------------|
 
 Network Name은 설치자가 임의로 부여 가능하다. Network ID, Security\_groups, Gateway, DNS Server, Network CIDR은 Openstack 구성을 직접 확인하거나 인프라 담당자에게 문의하여 정보를 얻도록 한다. Static IP 주소는 Platform을 설치할 때 개별 VM에 할당될 IP의 주소 대역으로 마찬가지로 인프라 담당자에게 할당을 받아야 한다.
 

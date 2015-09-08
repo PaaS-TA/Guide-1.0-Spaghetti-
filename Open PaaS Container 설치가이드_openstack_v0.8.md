@@ -82,7 +82,6 @@
    type: manual 
 
 ```
---------------------------------------------------------------------------
 
  Network Name은 설치자가 임의로 부여 가능하다. Network ID, Security\_groups, Gateway, DNS Server, Network CIDR은 Openstack 구성을 직접 확인하거나 인프라 담당자에게 문의하여 정보를 얻도록 한다. Static IP 주소는 Platform을 설치할 때 개별 VM에 할당될 IP의 주소 대역으로 마찬가지로 인프라 담당자에게 할당을 받아야 한다.
 
@@ -90,15 +89,11 @@
 
 ```
 compilation:
-cloud\_properties:
-
-instance\_type: m1.medium **\# Openstack에서 설정한 Flavor 정보**
-
-network: openpaas-container-network **\# 네트워크 설정에 사용된 것과 동일한 이름**
-
-reuse\_compilation\_vms: true **\# compilation VMs 재사용 여부**
-
-workers: 6 **\# 동시 동작하는 VM 수** | |------------------------------------------------------------------------------------|
+  cloud_properties:
+    instance_type: m1.medium              # Openstack에서 설정한 Flavor 정보
+  network: openpaas-container-network     # 네트워크 설정에 사용된 것과 동일한 이름 
+  reuse_compilation_vms: true             # compilation VMs 재사용 여부
+workers: 6                              
 
 ```
 
@@ -161,12 +156,10 @@ Resource pool 정보는 Jobs 영역에서 각 VM들이 사용하기 위한 Resou
 ```
 update:
   canaries: 1                              # Canary instance 개수
-canary_watch_time: 30000-600000        # Canary instance 의 healthy 여부 선언까지 
-대기하는 시간 
+canary_watch_time: 30000-600000            # Canary instance 의 healthy 여부 선언까지 대기하는 시간 
   max_in_flight: 1                         # update instance들의 최대 병렬처리 개수 
-  serial: true	# VM의 순차적 Update
-update_watch_time: 5000-600000         # canary instance 테스트 후 실제 instance update 
-하면서 healthy 여부 선언까지 대기하는 시간
+  serial: true	                           # VM의 순차적 Update
+update_watch_time: 5000-600000             # canary instance 테스트 후 실제 instance update 하면서 healthy 여부 선언까지 대기하는 시간
 
 ```
   Default 값들을 수정 없이 사용한다.
@@ -176,20 +169,20 @@ update_watch_time: 5000-600000         # canary instance 테스트 후 실제 in
 
 ```
 jobs:
-- instances: 1                     # VM Instance 개수
-  name: etcd                     # Job Name
+- instances: 1                                      # VM Instance 개수
+  name: etcd                                        # Job Name
   networks:
-  - name: openpaas-container-network      # Network Name
+  - name: openpaas-container-network                # Network Name
     static_ips:
-    - 10.10.9.12                  # Job(etcd) VM에 할당할 IP 주소
+    - 10.10.9.12                                    # Job(etcd) VM에 할당할 IP 주소
   persistent_disk: 1024
-  resource_pool: etcd             # Resource Name
+  resource_pool: etcd                               # Resource Name
   templates:
-  - name: etcd                    # etcd VM에 실행될 컴포넌트 (job template정보)
-    release: openpaas-container    # etcd job template이 존재하는 release 정보
+  - name: etcd                                      # etcd VM에 실행될 컴포넌트 (job template정보)
+    release: openpaas-container                     # etcd job template이 존재하는 release 정보
   update:
-    max_in_flight: 1              # update instance들의 최대 병렬처리 개수
-    serial: true                   # 순차적 실행여부
+    max_in_flight: 1                                # update instance들의 최대 병렬처리 개수
+    serial: true                                    # 순차적 실행여부
 - instances: 1
   name: brain
   networks:
@@ -198,7 +191,7 @@ jobs:
     - 10.10.9.16
   properties:
     metron_agent:
-      zone: z1                      # Zone 영역(설치되는 VM 그룹)
+      zone: z1                                      # Zone 영역(설치되는 VM 그룹)
   resource_pool: brain
   templates:
   - name: consul_agent
@@ -328,56 +321,56 @@ jobs:
 
 ```
 properties:
-  consul:                     # consul 속성 정의
+  consul:                                   # consul 속성 정의
     agent:
       log_level: null
       servers:
         lan:
-        - 10.10.3.50          # openpaas controller에 생성된 consul server IP
+        - 10.10.3.50                        # openpaas controller에 생성된 consul server IP
   diego:
-    auctioneer:               # auctioneer 속성 정의
+    auctioneer:                             # auctioneer 속성 정의
       etcd:
         machines:
-        - 10.10.9.12          # etcd 서버 정보
+        - 10.10.9.12                        # etcd 서버 정보
       log_level: null
-    converger:               # converger 속성 정의
+    converger:                              # converger 속성 정의
       etcd:
         machines:
         - 10.10.9.12         
       log_level: debug
-    etcd:                     # etcd 속성 정의
+    etcd:                                   # etcd 속성 정의
       machines:
       - 10.10.9.12
-    executor:                          # executor 속성 정의
-      allow_privileged: null              # privilege 속성
-      drain_timeout_in_seconds: 0        # deprecated property 
+    executor:                               # executor 속성 정의
+      allow_privileged: null                # privilege 속성
+      drain_timeout_in_seconds: 0           # deprecated property 
       garden:
-        address: 127.0.0.1:7777          # garden server 정보
+        address: 127.0.0.1:7777             # garden server 정보
         network: tcp
       log_level: debug
     file_server:
       cc:
         base_url: http://api.controller.open-paas.com      # cloud controller url 정보
-        basic_auth_password: admin                # cloud controller 접근 패스워드 
-        external_port: 9022                        # cloud controller 접근 포트 
-        staging_upload_password: admin            # staging upload 시 접근 패스워드
-        staging_upload_user: staging_upload_user    # staging upload 시 접근 계정
+        basic_auth_password: admin                         # cloud controller 접근 패스워드 
+        external_port: 9022                                # cloud controller 접근 포트 
+        staging_upload_password: admin                     # staging upload 시 접근 패스워드
+        staging_upload_user: staging_upload_user           # staging upload 시 접근 계정
       log_level: null
     garden-linux:
-      allow_networks: null                          # 접근 허용할 CIDR 목록
-      disk_quota_enabled: false                     # container에 대한 disk 한도 적용여부
-      insecure_docker_registry_list: null              # private docker registry url 정보
+      allow_networks: null                                 # 접근 허용할 CIDR 목록
+      disk_quota_enabled: false                            # container에 대한 disk 한도 적용여부
+      insecure_docker_registry_list: null                  # private docker registry url 정보
       kernel_network_tuning_enabled: false          
-      listen_address: 0.0.0.0:7777                    # garden 서버 정보
+      listen_address: 0.0.0.0:7777                         # garden 서버 정보
       listen_network: tcp
     nsync:
       cc:
-        base_url: http://api.controller.open-paas.com              # file_server 속성 참조
+        base_url: http://api.controller.open-paas.com      # file_server 속성 참조
         basic_auth_password: admin
         external_port: 9022
         staging_upload_password: admin
         staging_upload_user: staging_upload_user
-      diego_api_url: http://:@receptor.service.consul:8888   # receptor 서버 정보
+      diego_api_url: http://:@receptor.service.consul:8888 # receptor 서버 정보
       etcd:
         machines:
         - 10.10.9.12
@@ -385,20 +378,20 @@ properties:
     receptor:
       cors_enabled: null
       domain_names:
-      - receptor.cf.open-pass.com.xip.io                     # receptor 도메인 정보
+      - receptor.cf.open-pass.com.xip.io                   # receptor 도메인 정보
       etcd:
         machines:
         - 10.10.9.12                                       # etcd 서버 정보
       log_level: debug
       nats:
         machines:
-        - 10.10.3.11                              # openpaas controller에 생성된 nats vm ip
-        password: admin                                 # nats 서버 접근 패스워드
-        port: 4222                                       # nats 서버 접근 포트
-        username: nats                                   # nats 서버 접근 계정
-      password: ""                                       # receptor 서버 접근 패스워드
-      register_with_router: true                            # receptor 서버 router에 등록여부
-      username: ""                                       # receptor 서버 접근 계정
+        - 10.10.3.11                                       # openpaas controller에 생성된 nats vm ip
+        password: admin                                    # nats 서버 접근 패스워드
+        port: 4222                                         # nats 서버 접근 포트
+        username: nats                                     # nats 서버 접근 계정
+      password: ""                                         # receptor 서버 접근 패스워드
+      register_with_router: true                           # receptor 서버 router에 등록여부
+      username: ""                                         # receptor 서버 접근 계정
     rep:
       etcd:
         machines:
@@ -409,7 +402,7 @@ properties:
       log_level: debug
       nats:
         machines:
-        - 10.10.3.11                      # openpaas controller에 생성된 nats vm ip
+        - 10.10.3.11                                       # openpaas controller에 생성된 nats vm ip
         password: admin
         port: 4222
         username: nats
@@ -421,7 +414,7 @@ properties:
       log_level: null
       nats:
         machines:
-        - 10.10.3.11                       # openpaas controller에 생성된 nats vm ip
+        - 10.10.3.11                                       # openpaas controller에 생성된 nats vm ip
         password: admin
         port: 4222
         username: nats
@@ -429,9 +422,9 @@ properties:
       cc:
         external_port: 9022
       diego_api_url: http://:@receptor.service.consul:8888
-      enable_cf_auth: true             # openpaas controller application에 ssh 접근 허용 여부
-      enable_diego_auth: true          # openpaas container application에 ssh 접근 허용 여부
-      host_key: |+                     # ssh_proxy host key
+      enable_cf_auth: true                                 # openpaas controller application에 ssh 접근 허용 여부
+      enable_diego_auth: true                              # openpaas container application에 ssh 접근 허용 여부
+      host_key: |+                                         # ssh_proxy host key
         -----BEGIN RSA PRIVATE KEY-----
         MIIEhgIBAAKB/DMF5qOW+fh608KhX7qBLNHHmfzCfOONd176Oaf8rGht5KdnoNge
         TYSGqBFuYB1r1RbYEVhWAkH/8mW14XRVNmQ4C9eQDFqeWmmaOoSBG5GdP5GUfhI/
@@ -460,7 +453,7 @@ properties:
         1rHeshh0P/QfCQ==
         -----END RSA PRIVATE KEY-----
       servers:
-      - 10.10.9.14                         # ssh_proxy 서버 정보
+      - 10.10.9.14                                         # ssh_proxy 서버 정보
     ssl:
       skip_cert_verify: true                  
     stager:
@@ -485,14 +478,14 @@ properties:
       traffic_controller_url: wss://doppler.cf.open-paas.com:443
   etcd:
     machines:
-    - 10.10.3.24                               # openpaas controller에 생성된 etcd vm ip
+    - 10.10.3.24                                           # openpaas controller에 생성된 etcd vm ip
   loggregator_endpoint:
     shared_secret: admin
   metron_agent:
     deployment: openpaas-container-openstack
   nats:
     machines:
-    - 10.10.3.11                               # openpaas controller에 생성된 nats vm ip
+    - 10.10.3.11                                           # openpaas controller에 생성된 nats vm ip
     password: admin
     port: 4222
     user: nats
@@ -504,38 +497,35 @@ properties:
 
 ## Deployment Manifest 지정
 
-|-----------------------------------------------------------|
 | bosh deployment openpaas-container-openstack-beta-1.0.yml |
 |-----------------------------------------------------------|
 
-> “bosh deployment” 명령어로 생성한 Deployment Manifest File을 지정하고, 아래의 그림과 같이 동일한 명령어로 정상 지정 되었는지를 확인한다
+ “bosh deployment” 명령어로 생성한 Deployment Manifest File을 지정하고, 아래의 그림과 같이 동일한 명령어로 정상 지정 되었는지를 확인한다
 
 
 ## Bosh Deploy
 
   Diego module에 대한 bosh upload 과정이 끝났으면, deploy 과정을 통해 Diego 관련 VM을 생성한다.
 
-|---------------|
 | $ bosh deploy |
 |---------------|
 
-> \[그림 : bosh deploy 실행 결과\]
+ \[그림 : bosh deploy 실행 결과\]
 
 
 ## 설치형상 확인
 
-  설치가 정상적으로 완료된 후 “bosh vms” 명령으로 설치된 Platform의 형상을 확인한다.
+ 설치가 정상적으로 완료된 후 “bosh vms” 명령으로 설치된 Platform의 형상을 확인한다.
 
-|----------|
 | bosh vms |
 |----------|
 
-> 아래 그림과 같이 Deployment Name, Virtual Machine, IP 주소 등의 정보를 확인할 수 있다.
+ 아래 그림과 같이 Deployment Name, Virtual Machine, IP 주소 등의 정보를 확인할 수 있다.
 
 
 ##  설치 검증
 
-		1. CF Login
+#### CF Login
 
 ```
 cf target [***http://api.controller.open-paas.com***](http://api.cf-dev.open-paas.com)
@@ -565,14 +555,14 @@ cf target -o open-paas -s dev
 ```
 
 
-> CF Target을 지정하고, Login을 수행한다. 이 때 계정은 admin/admin을 사용한다.
-> Application을 Deploy할 ORG와 Space를 생성하고, 해당하는 ORG/Space로 Targetting 한다.
->
-> ※ admin 계정의 패스워드 설정을 바꾸고 싶다면, CF-Release deploy시 manifest 설정 파일에서 변경하야 한다.
+ CF Target을 지정하고, Login을 수행한다. 이 때 계정은 admin/admin을 사용한다.
+ Application을 Deploy할 ORG와 Space를 생성하고, 해당하는 ORG/Space로 Targetting 한다.
 
-		2. Application Deploy
+ ※ admin 계정의 패스워드 설정을 바꾸고 싶다면, CF-Release deploy시 manifest 설정 파일에서 변경하야 한다.
 
-> 개방형클라우드플랫폼 패키지와 함께 배포된 Sample Application이 위치하는 디렉토리로 이동하고 Application을 Deploy 한다.
+#### Application Deploy
+
+ 개방형클라우드플랫폼 패키지와 함께 배포된 Sample Application이 위치하는 디렉토리로 이동하고 Application을 Deploy 한다.
 
 ```
 cd $PACKAGE\_ROOT/apps/hello-java
@@ -581,16 +571,15 @@ cf push “application-name” –i “instance\_count” –m “memory\_size�
 
 ```
 
-> Application 배포시 Disk 관련 옵션 (-k)을 지정하지 않은 경우에는 기본적으로 6G 크기의 디스크 사용량이 지정된다.
+ Application 배포시 Disk 관련 옵션 (-k)을 지정하지 않은 경우에는 기본적으로 6G 크기의 디스크 사용량이 지정된다.
 
-		3. Application Access
+#### Application Access
 
-> Deploy한 Application URL을 Browser 또는 curl 명령어로 Access하여 정상 접근 되는지를 확인한다.
->
-> 사용법) 배포된 App URL이 spring-music.controller.open-paas.com 일 경우
->
+ Deploy한 Application URL을 Browser 또는 curl 명령어로 Access하여 정상 접근 되는지를 확인한다.
+ 사용법) 배포된 App URL이 spring-music.controller.open-paas.com 일 경우
+
 ```
 curl –L http://spring-music.controller.open-paas.com
 
 ```
-\[1\] 변경 내용: 변경이 발생되는 위치와 변경 내용을 자세히 기록(장/절과 변경 내용을 기술한다.)
+

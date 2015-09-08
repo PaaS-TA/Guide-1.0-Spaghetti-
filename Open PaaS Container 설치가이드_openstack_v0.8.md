@@ -34,6 +34,8 @@
 |-------------------------------------------------------------------------------------------|
 
  Release Upload는 상황에 따라 다소 차이는 있으나 보통 20-30분 정도 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.
+ 
+ ![OpenPaas Container Upload Release](https://github.com/OpenPaaSRnD/Documents/tree/master/images/openpaas-container/bosh_upload_release.png)
 
  \[주의\] Release Upload 과정에서 작업장비의 “/tmp” 폴더의 사이즈가 작을 경우 압축파일을 풀거나 묶을 때 에러가 발생할 수 있으므로, 10GB 이상 Free Size가 있는지를 확인해야 한다.
 
@@ -42,6 +44,8 @@
 
 | bosh releases |
 |---------------|
+
+ ![OpenPaas Container Releases](https://github.com/OpenPaaSRnD/Documents/tree/master/images/openpaas-container/bosh_releases.png)
 
 ## Deployment Manifest 파일 수정하기
 
@@ -502,7 +506,8 @@ properties:
 |-----------------------------------------------------------|
 
  “bosh deployment” 명령어로 생성한 Deployment Manifest File을 지정하고, 아래의 그림과 같이 동일한 명령어로 정상 지정 되었는지를 확인한다
-
+ 
+  ![OpenPaas Container deployment manifest file](https://github.com/OpenPaaSRnD/Documents/tree/master/images/openpaas-container/bosh_deployment_openstack.png)
 
 ## Bosh Deploy
 
@@ -510,6 +515,8 @@ properties:
 
 | bosh deploy |
 |-------------|
+
+ ![OpenPaas Container deploy](https://github.com/OpenPaaSRnD/Documents/tree/master/images/openpaas-container/bosh_deploy_openstack.png)
 
  \[그림 : bosh deploy 실행 결과\]
 
@@ -523,6 +530,7 @@ properties:
 
  아래 그림과 같이 Deployment Name, Virtual Machine, IP 주소 등의 정보를 확인할 수 있다.
 
+ ![OpenPaas Container vms](https://github.com/OpenPaaSRnD/Documents/tree/master/images/openpaas-container/bosh_vms_openstack.png)
 
 ##  설치 검증
 
@@ -573,6 +581,9 @@ cf push “application-name” –i “instance\_count” –m “memory\_size�
 ```
 
  Application 배포시 Disk 관련 옵션 (-k)을 지정하지 않은 경우에는 기본적으로 6G 크기의 디스크 사용량이 지정된다.
+ 
+  ![cf push](https://github.com/OpenPaaSRnD/Documents/tree/master/images/openpaas-container/cf_push_openstack.png)
+  ![cf apps](https://github.com/OpenPaaSRnD/Documents/tree/master/images/openpaas-container/cf_apps_openstack.png)
 
 #### Application Access
 

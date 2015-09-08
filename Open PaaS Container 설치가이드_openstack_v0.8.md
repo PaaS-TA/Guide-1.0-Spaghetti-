@@ -528,7 +528,7 @@ properties:
  설치가 정상적으로 완료된 후 “bosh vms” 명령으로 설치된 Platform의 형상을 확인한다.
 
 | bosh vms |
-|-------------|
+|----------|
 
  아래 그림과 같이 Deployment Name, Virtual Machine, IP 주소 등의 정보를 확인할 수 있다.
 
@@ -539,7 +539,7 @@ properties:
 #### CF Login
 
 ```
-cf target [***http://api.controller.open-paas.com***](http://api.cf-dev.open-paas.com)
+cf target [***http://api.controller.open-paas.com***](http://api.controller.open-paas.com)
 
 …
 

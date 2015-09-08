@@ -15,21 +15,18 @@
 >
 > [***http://docs.cloudfoundry.org/deploying/openstack/***](http://docs.cloudfoundry.org/deploying/openstack/)
 
-Prerequisites
-=============
 
-OpenPaas Controller 설치확인
-============================
+*** Prerequisites
+
+**** OpenPaas Controller 설치확인
 
 > 개방형클라우드플랫폼 (OpenPaas Container) 를 설치하기 위해서는 사전에 OpenPaas Controller가 설치되어 있어야 한다.
 >
 > 확인하는 방법은 bosh deployments를 통해 배포된 리스트 목록으로 확인한다.
 
-Open Paas Container 설치
-========================
+*** Open Paas Container 설치
 
-Release Upload
-==============
+**** Release Upload
 
 > 배포된 설치 패키지의 OpenPaaS-Controller 폴더에 있는 Open PaaS Container Bosh Release를 Bosh Server로 아래와 같은 명령으로 Beta-1.0 버전을 Upload 한다.
 
@@ -41,6 +38,7 @@ Release Upload
 > \[주의\] Release Upload 과정에서 작업장비의 “/tmp” 폴더의 사이즈가 작을 경우 압축파일을 풀거나 묶을 때 에러가 발생할 수 있으므로, 10GB 이상 Free Size가 있는지를 확인해야 한다.
 >
 > Bosh Sever에 Release가 정상적으로 Upload 되었는지는 “bosh releases” 명령으로 확인한다.
+
 
 | bosh releases |
 |---------------|

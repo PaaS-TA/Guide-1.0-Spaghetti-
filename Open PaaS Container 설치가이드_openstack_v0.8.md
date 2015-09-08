@@ -28,62 +28,60 @@
 
 #### Release Upload
 
-> 배포된 설치 패키지의 OpenPaaS-Controller 폴더에 있는 Open PaaS Container Bosh Release를 Bosh Server로 아래와 같은 명령으로 Beta-1.0 버전을 Upload 한다.
+ 배포된 설치 패키지의 OpenPaaS-Controller 폴더에 있는 Open PaaS Container Bosh Release를 Bosh Server로 아래와 같은 명령으로 Beta-1.0 버전을 Upload 한다.
 
 | bosh upload release $INSTALL\_PACKAGE/OpenPaaS-Container/ openpaas-container-beta-1.0.tgz |
 |-------------------------------------------------------------------------------------------|
 
-> Release Upload는 상황에 따라 다소 차이는 있으나 보통 20-30분 정도 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.
->
-> \[주의\] Release Upload 과정에서 작업장비의 “/tmp” 폴더의 사이즈가 작을 경우 압축파일을 풀거나 묶을 때 에러가 발생할 수 있으므로, 10GB 이상 Free Size가 있는지를 확인해야 한다.
->
-> Bosh Sever에 Release가 정상적으로 Upload 되었는지는 “bosh releases” 명령으로 확인한다.
+ Release Upload는 상황에 따라 다소 차이는 있으나 보통 20-30분 정도 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.
+
+ \[주의\] Release Upload 과정에서 작업장비의 “/tmp” 폴더의 사이즈가 작을 경우 압축파일을 풀거나 묶을 때 에러가 발생할 수 있으므로, 10GB 이상 Free Size가 있는지를 확인해야 한다.
+
+ Bosh Sever에 Release가 정상적으로 Upload 되었는지는 “bosh releases” 명령으로 확인한다.
 
 
 | bosh releases |
 |---------------|
 
-Deployment Manifest 파일 수정하기
-=================================
+## Deployment Manifest 파일 수정하기
 
-> 배포된 설치 패키지에 포함된 Sample Deployment Manifest File($INSTALL\_PACKAGE/OpenPaaS-Deployment/openpaas-container-openstack-beta-1.0.yml)을 아래의 순서대로 설치환경에 적합하게 수정한다.
+ 배포된 설치 패키지에 포함된 Sample Deployment Manifest File($INSTALL\_PACKAGE/OpenPaaS-Deployment/openpaas-container-openstack-beta-1.0.yml)을 아래의 순서대로 설치환경에 적합하게 수정한다.
 
-> name: openpaas-container-openstack **\# Deployment Name**
->
-> director\_uuid: 6e0f7c41-2415-4319-98aa-38109597aff4 **\# Bosh Director UUID**
->
-> releases:
->   - name: openpaas-container **\# container Release Name**
->     version: latest **\# container Release Version**
->   - name: openpaas **\# controller Release Name**
->     version: latest **\# controller Release Version** 
->
-|--------------------------------------------------------------------------------|
+```
+ name: openpaas-container-openstack                    ** Deployment Name**
+ director\_uuid: 6e0f7c41-2415-4319-98aa-38109597aff4  ** Bosh Director UUID**
+ releases:
+   - name: openpaas-container         ** container Release Name **
+     version: latest                  ** container Release Version **
+   - name: openpaas                   ** controller Release Name **
+     version: latest                  ** controller Release Version** 
 
-> Deployment Name은 설치자가 임의로 부여하는데, IaaS와 Version을 표시할 것을 권장한다. Bosh Director UUID는 “bosh status” 명령을 실행하면 출력되는 UUID 값을 넣는다.
->
-> ※ container & controller Release Name과 Version은 “bosh releases” 명령의 결과로 나오는 값들을 입력하도록 한다.
+```
+ Deployment Name은 설치자가 임의로 부여하는데, IaaS와 Version을 표시할 것을 권장한다. Bosh Director UUID는 “bosh status” 명령을 실행하면 출력되는 UUID 값을 넣는다.
+ ※ container & controller Release Name과 Version은 “bosh releases” 명령의 결과로 나오는 값들을 입력하도록 한다.
 
+```
+ networks:
+   - name: openpaas-container-network **\# Platform이 설치될 Network Name**
+   subnets:
+   - cloud_properties:
+       net_id: 06c2b5f8-55a7-4893-9901-861ed2d03ad4 **\# 네트워크 ID**
+       security_groups:
+       - bosh_security     ** Security_Group**
+   dns:
+   - 10.10.5.108 **\# DNS Server**
+   - 8.8.8.8
+   gateway: 10.10.9.1 **\# Gateway IP Address**
+   range: 10.10.9.0/24 **\# Network CIDR**
+   static:
+   - 10.10.9.10 - 10.10.9.30 **\# VM에 할당될 Static IP 주소 대역**
+   type: manual 
 
-> networks:
->   - name: openpaas-container-network **\# Platform이 설치될 Network Name**
->   subnets:
->   - cloud_properties:
->       net_id: 06c2b5f8-55a7-4893-9901-861ed2d03ad4 **\# 네트워크 ID**
->       security_groups:
->       - bosh_security     ** Security_Group**
->   dns:
->   - 10.10.5.108 **\# DNS Server**
->   - 8.8.8.8
->   gateway: 10.10.9.1 **\# Gateway IP Address**
->   range: 10.10.9.0/24 **\# Network CIDR**
->   static:
->   - 10.10.9.10 - 10.10.9.30 **\# VM에 할당될 Static IP 주소 대역**
->   type: manual 
->
-|--------------------------------------------------------------------------|
+```
+--------------------------------------------------------------------------
 
-Network Name은 설치자가 임의로 부여 가능하다. Network ID, Security\_groups, Gateway, DNS Server, Network CIDR은 Openstack 구성을 직접 확인하거나 인프라 담당자에게 문의하여 정보를 얻도록 한다. Static IP 주소는 Platform을 설치할 때 개별 VM에 할당될 IP의 주소 대역으로 마찬가지로 인프라 담당자에게 할당을 받아야 한다.
+ Network Name은 설치자가 임의로 부여 가능하다. Network ID, Security\_groups, Gateway, DNS Server, Network CIDR은 Openstack 구성을 직접 확인하거나 인프라 담당자에게 문의하여 정보를 얻도록 한다. Static IP 주소는 Platform을 설치할 때 개별 VM에 할당될 IP의 주소 대역으로 마찬가지로 인프라 담당자에게 할당을 받아야 한다.
+
 
 | compilation:
 

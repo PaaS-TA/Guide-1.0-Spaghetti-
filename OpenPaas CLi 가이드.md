@@ -326,7 +326,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 #### scale
 
-    - **기본 Syntax**
+  - **기본 Syntax**
 
 
     | $ cf scale <APP_NAME> [-i INSTANCES] [-k DISK] [-m MEMORY] [-f]  |
@@ -337,7 +337,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
     |---|-----------------------------------|
 
 
-    - **파라미터**
+  - **파라미터**
 
 
     | 파라미터명   |           설명                 | 필수(O/X) |
@@ -349,7 +349,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
     |-f           |App 강제 restart                |X        |
 
 
-    - **사용예시**
+  - **사용예시**
 
     ```
     $ cf scale spring-music -i 2 -m 512m

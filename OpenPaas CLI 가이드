@@ -1,0 +1,23 @@
+##1.개요
+----
+
+#### 문서 목적
+본 문서는 OpenPaas에 대한 설치 및 운영 관리를 위한 도구인 OpenPaas CLI에 대해 기본 사용법 및 실 사용 예시를 통해 OpenPaas를 이해하는데 목적이 있습니다. OpenPaas CLI명령어 사용법에 대해서 기술하였다습니다.
+
+#### 범위
+본 문서에서는 OpenPaaS CLI 분류 및 기본 사용법에 대해서 작성하였습니다.
+
+#### 참고 자료
+
+ [***https://docs.cloudfoundry.org/devguide/installcf/***](https://docs.cloudfoundry.org/devguide/installcf/)
+
+
+##2.OpenPaaS CLI 기본사용법
+----
+CLI는 OpenPaas배포와 Release를 관리하기 위해 도움을 주는 커맨드 라인 유틸리티로 아래와 같이 2가지 형태로 구분된다.
+
+ - OpenPaaS CLI : OpenPaas를 관리하기 위한 CLI 도구
+ 
+기본 Syntax
+| $cf [global options] command <arguments...> [command options]
+|-------------------------------------------------------------------------------------------|

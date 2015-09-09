@@ -108,8 +108,9 @@ Space:          development
 - **기본 Syntax**
 
 
-| $ cf logout|
-|-------------------------------------------------------------------------------------------|
+```
+    $ cf logout
+```
 
 
 - **설명**
@@ -136,8 +137,9 @@ $ cf logout
 - **기본 Syntax**
 
 
-| $ cf passwd|
-|-------------------------------------------------------------------------------------------|
+```
+    $ cf passwd
+```
 
 
 
@@ -173,9 +175,9 @@ Please log in again
 - **기본 Syntax**
 
 
-| $ cf target [-o ORG] [-s SPACE]|
-|-------------------------------------------------------------------------------------------|
-
+```
+    $ cf target [-o ORG] [-s SPACE]
+```
 
 - **설명**
 
@@ -215,8 +217,9 @@ Space:          development
 #### api
 - **기본 Syntax**
 
-| $ cf api <URL>|
-|-------------------------------------------------------------------------------------------|
+```
+    $ cf api <URL>
+```
 
 
 - **설명**
@@ -244,8 +247,10 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 #### auth
 - **기본 Syntax**
 
-| $ cf auth <USERNAME> <PASSWORD>|
-|-------------------------------------------------------------------------------------------|
+
+```
+    $ cf auth <USERNAME> <PASSWORD>
+```
 
 
 - **설명**
@@ -278,8 +283,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 - **기본 Syntax**
 
 
-| $cf apps |
-|-------------------------------------------------------------------------------------------|
+```
+    $cf apps
+```
 
 
 - **설명**
@@ -305,8 +311,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  | $cf app <APP_NAME> |
-  |-------------------------------------------------------------------------------------------|
+  ```
+      $cf app <APP_NAME>
+  ```
 
 
   - **설명**
@@ -336,8 +343,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  | $ cf push <APP_NAME> [-b BUILDPACK_NAME] [-c COMMAND] [-d DOMAIN] [-f MANIFEST_PATH] [-i NUM_INSTANCES] [-k DISK] [-m MEMORY] [-n HOST] [-p PATH] [-s STACK] [-t TIMEOUT] [--no-hostname] [--no-manifest] [--no-route] [--no-start]  |
-  |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  ```
+      $ cf push <APP_NAME> [-b BUILDPACK_NAME] [-c COMMAND] [-d DOMAIN] [-f MANIFEST_PATH] [-i NUM_INSTANCES] [-k DISK] [-m MEMORY] [-n HOST] [-p PATH] [-s STACK] [-t TIMEOUT] [--no-hostname] [--no-manifest] [--no-route] [--no-start]
+  ```
 
 
   - **설명**
@@ -382,8 +390,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  | $ cf scale <APP_NAME> [-i INSTANCES] [-k DISK] [-m MEMORY] [-f]  |
-  |---------------------------------------------------------------------------------------------------------------|
+  ```
+      $ cf scale <APP_NAME> [-i INSTANCES] [-k DISK] [-m MEMORY] [-f]
+  ```
 
 
   - **설명**
@@ -418,8 +427,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  | $ cf delete <APP_NAME> [--f] [--r]  |
-  |------------------------------------------------------------------|
+  ```
+      $ cf delete <APP_NAME> [--f] [--r]
+  ```
 
 
   - **설명**
@@ -452,8 +462,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  | $ cf rename <APP_NAME> <NEW_APP_NAME>  |
-  |------------------------------------------------------------------|
+  ```
+      $ cf rename <APP_NAME> <NEW_APP_NAME>
+  ```
 
 
   - **설명**
@@ -485,8 +496,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf start <APP_NAME>  |
-  |------------------------------------------------------------------|
+  ```
+      $ cf start <APP_NAME>
+  ```
 
 
   - **설명**
@@ -516,8 +528,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf stop <APP_NAME> |
-  |------------------------------------------------------------------|
+  ```
+      $ cf stop <APP_NAME>
+  ```
 
 
   - **설명**
@@ -548,8 +561,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf restart <APP_NAME> |
-  |------------------------------------------------------------------|
+  ```
+      $ cf restart <APP_NAME>
+  ```
 
 
   - **설명**
@@ -579,8 +593,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf restage <APP_NAME> |
-  |------------------------------------------------------------------|
+  ```
+      $ cf restage <APP_NAME>
+  ```
 
 
   - **설명**
@@ -610,8 +625,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf restart-app-instance <APP_NAME> <INDEX> |
-  |------------------------------------------------------------------|
+  ```
+      $ cf restart-app-instance <APP_NAME> <INDEX>
+  ```
 
 
   - **설명**
@@ -641,8 +657,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf events <APP_NAME>|
-  |------------------------------------------------------------------|
+  ```
+      $ cf events <APP_NAME>
+  ```
 
 
   - **설명**
@@ -672,8 +689,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf files <APP_NAME> [PATH] [-i INSTANCE]|
-  |------------------------------------------------------------------|
+  ```
+      $ cf files <APP_NAME> [PATH] [-i INSTANCE]
+  ```
 
 
   - **설명**
@@ -704,8 +722,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf logs <APP_NAME> [--recent]|
-  |------------------------------------------------------------------|
+  ```
+      $ cf logs <APP_NAME> [--recent]
+  ```
 
 
   - **설명**
@@ -736,8 +755,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf env  <APP_NAME>|
-  |------------------------------------------------------------------|
+  ```
+      $ cf env  <APP_NAME>
+  ```
 
 
   - **설명**
@@ -766,8 +786,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf unset-env <APP_NAME> <ENV_VAR_NAME>|
-  |------------------------------------------------------------------|
+  ```
+      $ cf unset-env <APP_NAME> <ENV_VAR_NAME>
+  ```
 
 
   - **설명**
@@ -798,8 +819,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf stacks|
-  |------------------------------------------------------------------|
+  ```
+      $ cf stacks
+  ```
 
 
   - **설명**
@@ -827,8 +849,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf stack <STACK_NAME> [--guid] |
-  |------------------------------------------------------------------|
+  ```
+      $ cf stack <STACK_NAME> [--guid]
+  ```
 
 
   - **설명**
@@ -859,8 +882,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf copy-source <SOURCE-APP> <TARGET-APP> [-o TARGET-ORG] [-s TARGET-SPACE] [--no-restart]|
-  |------------------------------------------------------------------|
+  ```
+      $ cf copy-source <SOURCE-APP> <TARGET-APP> [-o TARGET-ORG] [-s TARGET-SPACE] [--no-restart]
+  ```
 
 
   - **설명**
@@ -893,8 +917,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf create-app-manifest <APP_NAME> [-p /path/<app-name>-manifest.yml]|
-  |------------------------------------------------------------------|
+  ```
+      $ cf create-app-manifest <APP_NAME> [-p /path/<app-name>-manifest.yml]
+  ```
 
 
   - **설명**
@@ -928,8 +953,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf marketplace [-s SERVICE_NAME]|
-  |------------------------------------------------------------------|
+  ```
+      $ cf marketplace [-s SERVICE_NAME]
+  ```
 
 
   - **설명**
@@ -959,8 +985,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf services|
-  |------------------------------------------------------------------|
+  ```
+      $ cf services
+  ```
 
 
   - **설명**
@@ -990,8 +1017,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf service <SERVICE_INSTANCE> [--guid]|
-  |------------------------------------------------------------------|
+  ```
+      $ cf service <SERVICE_INSTANCE> [--guid]
+  ```
 
 
   - **설명**
@@ -1022,8 +1050,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf create-service <SERVICE> <PLAN> <SERVICE_INSTANCE> [-c PARAMETERS_AS_JSON] [-t TAGS]|
-  |------------------------------------------------------------------|
+  ```
+      $ cf create-service <SERVICE> <PLAN> <SERVICE_INSTANCE> [-c PARAMETERS_AS_JSON] [-t TAGS]
+  ```
 
 
   - **설명**
@@ -1056,8 +1085,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf update-service <SERVICE_INSTANCE> [-p NEW_PLAN] [-c PARAMETERS_AS_JSON] [-t TAGS]|
-  |------------------------------------------------------------------|
+  ```
+      $ cf update-service <SERVICE_INSTANCE> [-p NEW_PLAN] [-c PARAMETERS_AS_JSON] [-t TAGS]
+  ```
 
 
   - **설명**
@@ -1090,8 +1120,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf delete-service SERVICE_INSTANCE [-f]|
-  |------------------------------------------------------------------|
+  ```
+      $ cf delete-service SERVICE_INSTANCE [-f]
+  ```
 
 
   - **설명**
@@ -1121,8 +1152,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf rename-service <SERVICE_INSTANCE> <NEW_SERVICE_INSTANCE>|
-  |------------------------------------------------------------------|
+  ```
+      $ cf rename-service <SERVICE_INSTANCE> <NEW_SERVICE_INSTANCE>
+  ```
 
 
   - **설명**
@@ -1153,8 +1185,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf create-service-key <SERVICE_INSTANCE> <SERVICE_KEY> [-c PARAMETERS_AS_JSON]|
-  |------------------------------------------------------------------|
+  ```
+      $ cf create-service-key <SERVICE_INSTANCE> <SERVICE_KEY> [-c PARAMETERS_AS_JSON]
+  ```
 
 
   - **설명**
@@ -1186,8 +1219,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf service-keys <SERVICE_INSTANCE>|
-  |------------------------------------------------------------------|
+  ```
+      $ cf service-keys <SERVICE_INSTANCE>
+  ```
 
 
   - **설명**
@@ -1217,8 +1251,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf service-key <SERVICE_INSTANCE> <SERVICE_KEY> [--guid]|
-  |------------------------------------------------------------------|
+  ```
+      $ cf service-key <SERVICE_INSTANCE> <SERVICE_KEY> [--guid]
+  ```
 
 
   - **설명**
@@ -1252,8 +1287,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf delete-service-key <SERVICE_INSTANCE> <SERVICE_KEY> [-f]|
-  |------------------------------------------------------------------|
+  ```
+      $ cf delete-service-key <SERVICE_INSTANCE> <SERVICE_KEY> [-f]
+  ```
 
 
   - **설명**
@@ -1287,8 +1323,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf bind-service <APP_NAME> <SERVICE_INSTANCE> [-c PARAMETERS_AS_JSON]|
-  |------------------------------------------------------------------|
+  ```
+      $ cf bind-service <APP_NAME> <SERVICE_INSTANCE> [-c PARAMETERS_AS_JSON]
+  ```
 
 
   - **설명**
@@ -1324,8 +1361,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf unbind-service <APP_NAME> <SERVICE_INSTANCE>|
-  |------------------------------------------------------------------|
+  ```
+      $ cf unbind-service <APP_NAME> <SERVICE_INSTANCE>
+  ```
 
 
   - **설명**
@@ -1358,8 +1396,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf create-user-provided-service <SERVICE_INSTANCE> [-p CREDENTIALS] [-l SYSLOG-DRAIN-URL]|
-  |------------------------------------------------------------------|
+  ```
+      $ cf create-user-provided-service <SERVICE_INSTANCE> [-p CREDENTIALS] [-l SYSLOG-DRAIN-URL]
+  ```
 
 
   - **설명**
@@ -1393,8 +1432,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf create-org <ORG_NAME> [-q QUOTA_NAME]|
-  |------------------------------------------------------------------|
+  ```
+      $ cf create-org <ORG_NAME> [-q QUOTA_NAME]
+  ```
 
 
   - **설명**
@@ -1427,8 +1467,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf delete-org <ORG_NAME> [-f]|
-  |------------------------------------------------------------------|
+  ```
+      $ cf delete-org <ORG_NAME> [-f]
+  ```
 
 
   - **설명**
@@ -1460,8 +1501,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf rename-org <ORG_NAME> <NEW_ORG_NAME>|
-  |------------------------------------------------------------------|
+  ```
+      $ cf rename-org <ORG_NAME> <NEW_ORG_NAME>
+  ```
 
 
   - **설명**
@@ -1495,8 +1537,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf spaces|
-  |------------------------------------------------------------------|
+  ```
+      $ cf spaces
+  ```
 
 
   - **설명**
@@ -1524,8 +1567,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf space <SPACE_NAME>|
-  |------------------------------------------------------------------|
+  ```
+      $ cf space <SPACE_NAME>
+  ```
 
 
   - **설명**
@@ -1555,8 +1599,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf create-space <SPACE_NAME> [-o ORG_NAME] [-q SPACE-QUOTA-NAME]|
-  |------------------------------------------------------------------|
+  ```
+      $ cf create-space <SPACE_NAME> [-o ORG_NAME] [-q SPACE-QUOTA-NAME]
+  ```
 
 
   - **설명**
@@ -1587,8 +1632,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf delete-space <SPACE_NAME> [-f]|
-  |------------------------------------------------------------------|
+  ```
+      $ cf delete-space <SPACE_NAME> [-f]
+  ```
 
 
   - **설명**
@@ -1618,8 +1664,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf rename-space <SPACE_NAME> <NEW_SPACE_NAME>|
-  |------------------------------------------------------------------|
+  ```
+      $ cf rename-space <SPACE_NAME> <NEW_SPACE_NAME>
+  ```
 
 
   - **설명**
@@ -1651,8 +1698,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf domains|
-  |------------------------------------------------------------------|
+  ```
+      $ cf domains
+  ```
 
 
   - **설명**
@@ -1681,8 +1729,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf create-domain <ORG_NAME> <DOMAIN>|
-  |------------------------------------------------------------------|
+  ```
+      $ cf create-domain <ORG_NAME> <DOMAIN>
+  ```
 
 
   - **설명**
@@ -1714,8 +1763,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf delete-domain <DOMAIN> [-f]|
-  |------------------------------------------------------------------|
+  ```
+      $ cf delete-domain <DOMAIN> [-f]
+  ```
 
 
   - **설명**
@@ -1747,8 +1797,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf create-shared-domain <DOMAIN>|
-  |------------------------------------------------------------------|
+  ```
+      $ cf create-shared-domain <DOMAIN>
+  ```
 
 
   - **설명**
@@ -1778,8 +1829,9 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   - **기본 Syntax**
 
 
-  |$ cf create-shared-domain <DOMAIN>|
-  |------------------------------------------------------------------|
+  ```
+      $ cf delete-domain <DOMAIN> [-f]
+  ```
 
 
   - **설명**
@@ -1796,7 +1848,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
   |DOMAIN       |조직명                           |O         |
-
+  |-f           |삭제 확인메시지 없이 도메인을 삭제한다.    |X         |
 
   - **사용예시**
 

@@ -21,13 +21,15 @@ CLI는 OpenPaas배포와 Release를 관리하기 위해 도움을 주는 커맨�
 
  OpenPaaS CLI : OpenPaas를 관리하기 위한 CLI 도구
 
- 기본 Syntax
+- **기본 Syntax**
+
 
  | cf [global options] command <arguments...> [command options] |
- |-------------------------------------------------------------------------------------------------------------|
+ |--------------------------------------------------------------|
 
 
 cf 명령어에 대괄호로 묶인 인자인 <arguments>과 [command options]는 명령어에 따라 선택적으로 사용되고, command 인자는 필수 인자이다. CF 운영 및 관리하기 위한 도구인 CF CLI 아래와 같이 많은 명령어들을 제공하고 있다.
+
 
 ## GETTING STARTED
 
@@ -55,6 +57,7 @@ cf 명령어에 대괄호로 묶인 인자인 <arguments>과 [command options]�
 
 
 - **사용예시**
+
 
 ```
 # 파라미터 지정한 경우
@@ -181,6 +184,7 @@ Org:            cf
 Space:          development  
 ```
 
+
 #### api
 - **기본 Syntax**
 
@@ -197,7 +201,6 @@ Space:          development
 | 파라미터명   |           설명                 | 필수(O/X) |
 |-------------|-----------------------------|-----------|
 |URL         |Api Target URL                   |O        |
-
 
 
 - **사용예시**
@@ -233,6 +236,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 ```
 
 ## APPS
+
 
 #### apps
 - **기본 Syntax**

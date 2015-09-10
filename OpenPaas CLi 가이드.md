@@ -180,11 +180,11 @@
 
 #### 문서 목적
 
-본 문서는 OpenPaas에 대한 설치 및 운영 관리를 위한 도구인 OpenPaas CLI에 대해 기본 사용법 및 실 사용 예시를 통해 OpenPaas를 이해하는데 목적이 있습니다. OpenPaas CLI명령어 사용법에 대해서 기술하였다습니다.
+본 문서는 OpenPaaS에 대한 설치 및 운영 관리를 위한 도구인 OpenPaaS CLI에 대해 기본 사용법 및 사용 예시를 통해 OpenPaas를 이해하는데 목적이 있습니다.
 
 #### 범위
 
-본 문서에서는 OpenPaaS CLI 분류 및 기본 사용법에 대해서 작성하였습니다.
+본 문서는 OpenPaaS CLI 분류 및 기본 사용법에 대해서 작성하였습니다.
 
 #### 참고 자료
 
@@ -196,7 +196,7 @@
 ## OpenPaaS CLI기본 사용법
 
 
-CLI는 OpenPaas배포와 Release를 관리하기 위해 도움을 주는 커맨드 라인 유틸리티로 아래와 같이 2가지 형태로 구분된다.
+CLI는 OpenPaaS배포와 Release를 관리하기 위해 도움을 주는 커맨드 라인 유틸리티로 다음과 같다.
 
  OpenPaaS CLI : OpenPaas를 관리하기 위한 CLI 도구
 
@@ -208,7 +208,7 @@ cf [global options] command <arguments...> [command options]
  ```
 
 
-cf 명령어에 대괄호로 묶인 인자인 <arguments>과 [command options]는 명령어에 따라 선택적으로 사용되고, command 인자는 필수 인자이다. CF 운영 및 관리하기 위한 도구인 CF CLI 아래와 같이 많은 명령어들을 제공하고 있다.
+cf 명령어에 대괄호로 묶인 인자인 <arguments> [command options]은 명령어에 따라 선택적으로 사용되고, command  <arguments> 인자는 필수 인자이다. CF 운영 및 관리하기 위한 도구인 CF CLI 아래와 같은 명령어들을 제공하고 있다.
 
 
 <div id='ID-GETTING-STARTED'/>

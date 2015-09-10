@@ -2864,13 +2864,13 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
 
-#### space-quotas
+#### space-quota
 
   - **기본 Syntax**
 
 
   ```
-      $ cf space-quota <SPACE_QUOTA_NAME>
+      $ cf create-space-quota <QUOTA> [-i INSTANCE_MEMORY] [-m MEMORY] [-r ROUTES] [-s SERVICE_INSTANCES] [--allow-paid-service-plans]
   ```
 
 
@@ -2894,4 +2894,582 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
   ```
   $ cf space-quota cf-space-quota
+  ```
+
+
+#### create-space-quota
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf space-quota <SPACE_QUOTA_NAME>
+  ```
+
+
+  - **설명**
+
+
+  ```
+    스페이스 Quota정보를 생성한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |QUOTA                       |QUOTA명                                                       |O         |
+  |-m TOTAL_MEMORY             |메모리 할당량  <br> Ex) 1024M, 1G, 10G                         |X         |
+  |-i INSTANCE_MEMORY          |App instance가 가질수 있는 최대할당량 (-1은 무한대) <br>  Ex) 1024M, 1G, 10G                        |X         |
+  |-r ROUTES                   |최대 라우트 수                                                 |X         |
+  |-s SERVICE_INSTANCES        |최대 서비스 인스턴스 수                                         |X         |
+  |--allow-paid-service-plans  |과금 서비스 plan 사용가능                                       |X        |
+
+
+  - **사용예시**
+
+  ```
+  $ cf create-space-quota cf-space-quota -i 2G -m 10G -r 3000 -s 200
+  ```
+
+
+#### update-space-quota
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf update-space-quota <SPACE-QUOTA-NAME> [-i MAX-INSTANCE-MEMORY] [-m MEMORY] [-n NEW_NAME] [-r ROUTES] [-s SERVICES] [--allow-paid-service-plans | --disallow-paid-service-plans]
+  ```
+
+
+  - **설명**
+
+
+  ```
+    스페이스 Quota정보를 수정한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SPACE-QUOTA-NAME            |스페이스 QUOTA명                                               |O         |
+  |-i MAX-INSTANCE-MEMORY      |App instance가 가질수 있는 최대할당량 (-1은 무한대) <br>  Ex) 1024M, 1G, 10G                        |X         |
+  |-m MEMORY                   |스페이스가 가질수 있는 최대 메모리                               |X         |
+  |-n NEW_NAME                 |변경하려는 SPACE-QUOTA명                                       |X         |
+  |-r ROUTES                   |스페이스가 가지는 최대 route 갯수                               |X         |
+  |-s SERVICES                 |스페이스가 가지는 최대 서비스 인스턴스 갯수                       |X         |
+  |--allow-paid-service-plans  |과금 서비스 plan 사용가능                                       |X        |
+  |--disallow-paid-service-plans  |과금 서비스 plan 사용 불가                                   |X        |
+
+
+  - **사용예시**
+
+  ```
+  $ cf create-space-quota cf-space-quota -i 2G -m 10G -r 3000 -s 200
+  ```
+
+
+#### delete-space-quota
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf delete-space-quota <SPACE-QUOTA-NAME>
+  ```
+
+
+  - **설명**
+
+
+  ```
+    스페이스 Quota정보를 삭제한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SPACE-QUOTA-NAME     |스페이스 QUOTA명                                     |O         |
+  |-f           |삭제 확인메시지 없이 SPACE-QUOTA 정보를 삭제한다.               |X         |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf delete-space-quota cf-space-quota
+  ```
+
+
+#### set-space-quota
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf set-space-quota <SPACE-NAME> <SPACE-QUOTA-NAME>
+  ```
+
+
+  - **설명**
+
+
+  ```
+    스페이스에 quota를 할당한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SPACE-NAME            |스페이스명                    |O         |
+  |SPACE-QUOTA-NAME      |스페이스 Quota명              |O         |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf set-space-quota development cf-space-quota
+  ```
+
+
+#### unset-space-quota
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf unset-space-quota SPACE QUOTA
+  ```
+
+
+  - **설명**
+
+
+  ```
+    스페이스에 할당된 quota를 회수한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SPACE        |스페이스명                   |O         |
+  |QUOTA        |스페이스 Quota명             |O         |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf set-space-quota development cf-space-quota
+  ```
+
+
+## service admin
+
+
+#### service-auth-tokens
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf service-auth-tokens
+  ```
+
+
+  - **설명**
+
+
+  ```
+    서비스 인증 토큰 목록을 조회한다.
+  ```
+
+
+  - **파라미터**
+
+    - 없음
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf service-auth-token
+  ```
+
+
+#### create-service-auth-token
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf create-service-auth-token <LABEL> <PROVIDER> <TOKEN>
+  ```
+
+
+  - **설명**
+
+
+  ```
+    스페이스에 할당된 quota를 회수한다.
+  ```
+
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |LABEL        |서비스 토큰 라벨                 |O         |
+  |PROVIDER     |서비스 제공자                    |O         |
+  |TOKEN        |토큰명                          |O         |
+
+
+  - **사용예시**
+
+  ```
+  $ cf create-service-auth-token token-label mysql token
+  ```
+
+
+#### update-service-auth-token
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf update-service-auth-token <LABEL> <PROVIDER> <TOKEN>
+  ```
+
+
+  - **설명**
+
+
+  ```
+    Service auth token 정보를 수정한다.
+  ```
+
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |LABEL        |서비스 토큰 라벨                 |O         |
+  |PROVIDER     |서비스 제공자                    |O         |
+  |TOKEN        |토큰명                          |O         |
+
+
+  - **사용예시**
+
+  ```
+  $ cf update-service-auth-token token-label mysql token
+  ```
+
+
+#### delete-service-auth-token
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf delete-service-auth-token <LABEL> <PROVIDER> [-f]
+  ```
+
+
+  - **설명**
+
+
+  ```
+    Service auth token 정보를 삭제한다.
+  ```
+
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |LABEL        |서비스 토큰 라벨                 |O         |
+  |PROVIDER     |서비스 제공자                    |O         |
+  |-f           |삭제 확인메시지 없이 SERVICE TOKEN 정보를 삭제한다.      |X         |
+
+
+  - **사용예시**
+
+  ```
+  $ cf delete-service-auth-token token-label mysql
+  ```
+
+
+#### service-brokers
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf delete-service-auth-token <LABEL> <PROVIDER> [-f]
+  ```
+
+
+  - **설명**
+
+
+  ```
+    Service Broker정보 목록을 조회한다.
+  ```
+
+
+
+  - **파라미터**
+
+    - 없음
+
+
+  - **사용예시**
+
+  ```
+  $ cf service-brokers
+  ```
+
+
+#### create-service-broker
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf create-service-broker <SERVICE_BROKER> <USERNAME> <PASSWORD> <URL>
+  ```
+
+
+  - **설명**
+
+
+  ```
+    Service Broker정보를 등록한다.
+  ```
+
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SERVICE_BROKERABEL        |서비스 브로커명             |O         |
+  |USERNAME                   |사용자명                   |O         |
+  |PASSWORD                   |패스워드                   |O         |
+  |URL                        |서비스 브로커 URL           |O         |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf create-service-broker mysql-service-broker admin password http://p-mysql.10.244.0.34.xip.io
+  ```
+
+
+#### update-service-broker
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf update-service-broker <SERVICE_BROKER> <USERNAME> <PASSWORD> <URL>
+  ```
+
+
+  - **설명**
+
+
+  ```
+    Service Broker정보를 등록한다.
+  ```
+
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SERVICE_BROKERABEL        |서비스 브로커명             |O         |
+  |USERNAME                   |사용자명                   |O         |
+  |PASSWORD                   |패스워드                   |O         |
+  |URL                        |서비스 브로커 URL           |O         |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf update-service-broker mysql-service-broker admin password http://p-mysql.10.244.0.34.xip.io
+  ```
+
+
+#### delete-service-broker
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf delete-service-broker <SERVICE_BROKER> [-f]
+  ```
+
+
+  - **설명**
+
+
+  ```
+    Service Broker정보를 삭제한다.
+  ```
+
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SERVICE_BROKER    |서비스 브로커명                                          |O         |
+  |-f                |삭제 확인메시지 없이 SERVICE BROKER 정보를 삭제한다.       |X         |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf delete-service-broker mysql-service-broker
+  ```
+
+
+#### rename-service-broker
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf rename-service-broker <SERVICE_BROKER> <NEW_SERVICE_BROKER>
+  ```
+
+
+  - **설명**
+
+
+  ```
+    Service Broker명을 수정한다.
+  ```
+
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SERVICE_BROKER     |서비스 브로커명             |O         |
+  |NEW_SERVICE_BROKER |변경할 서비스 브로커명       |O         |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf rename-service-broker mysql-service-broker new_mysql-service-broker
+  ```
+
+
+#### migrate-service-broker
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf migrate-service-instances <v1_SERVICE> <v1_PROVIDER> <v1_PLAN> <v2_SERVICE> <v2_PLAN>
+  ```
+
+
+  - **설명**
+
+
+  ```
+    서비스 인스턴스에서 사용하는 서비스 및 플랜을 다른 플랜으로 변경한다. <br> - App이 사용하는 서비스를 다른 서비스로 변경하려 할때 사용한다.
+  ```
+
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |v1_SERVICE     |기존 서비스 명                         |O         |
+  |v1_PROVIDER    |기존 서비스를 제공하는 제공자            |O         |
+  |v1_PLAN        |기존 서비스 인스턴스에서 사용하는 플랜    |O         |
+  |v2_SERVICE     |신규 서비스 명                         |O         |
+  |v2_PLAN        |신규 서비스에서 사용하는 플랜            |O         |  
+
+
+  - **사용예시**
+
+  ```
+  $ cf migrate-service-instances p-mysql mysql-provider silver  postgres silver
+  ```
+
+#### purge-service-offering
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf purge-service-offering <SERVICE> [-p PROVIDER]
+  ```
+
+
+  - **설명**
+
+
+  ```
+    cf와 서비스 브로커간의 정보 불일치를 해결할때 사용 <br>   (migrate-service-instances 명령 이후 사용)
+  ```
+
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SERVICE      |서비스 명                                  |O         |
+  |-p PROVIDER  |서비스 제공자                               |O         |
+  |-f           |삭제 확인메시지 없이 서비스 정보를 삭제한다    |O         |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf purge-service-offering
   ```

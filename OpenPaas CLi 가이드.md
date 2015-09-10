@@ -3189,7 +3189,7 @@ $cf apps
 
 
   ```
-  $ cf create-space-quota <QUOTA> [-i INSTANCE_MEMORY] [-m MEMORY] [-r ROUTES] [-s SERVICE_INSTANCES] [--allow-paid-service-plans]
+  $ cf space-quota <SPACE_QUOTA_NAME>
   ```
 
 
@@ -3222,7 +3222,7 @@ $cf apps
 
 
   ```
-  $ cf space-quota <SPACE_QUOTA_NAME>
+  $ cf create-space-quota <QUOTA> [-i INSTANCE_MEMORY] [-m MEMORY] [-r ROUTES] [-s SERVICE_INSTANCES] [--allow-paid-service-plans]
   ```
 
 

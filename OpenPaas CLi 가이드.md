@@ -165,13 +165,13 @@
     * [config](#config)
     * [oauth-token](#oauth-token)
 
-1. [ADD/REMOVE PLUGIN REPOSITORY](#ID-ADD/REMOVE-PLUGIN-REPOSITORY)
+1. [ADD/REMOVE PLUGIN REPOSITORY](#ID-ADD-REMOVE-PLUGIN-REPOSITORY)
     * [add-plugin-repo](#add-plugin-repo)
     * [remove-plugin-repo](#remove-plugin-repo)
     * [list-plugin-repo](#list-plugin-repo)
     * [repo-plugins](#repo-plugins)
 
-1. [ADD/REMOVE PLUGIN](#ID-ADD/REMOVE-PLUGIN)
+1. [ADD/REMOVE PLUGIN](#ID-ADD-REMOVE-PLUGIN)
     * [plugins](#plugins)
     * [install-plugin](#install-plugin)
 
@@ -4651,7 +4651,7 @@ $cf apps
   $cf oauth-token
   ```
 
-<div id='ID-ADD/REMOVE-PLUGIN-REPOSITORY/>
+<div id='ID-ADD-REMOVE-PLUGIN-REPOSITORY'/>
 ## ADD/REMOVE PLUGIN REPOSITORY
 
 
@@ -4788,7 +4788,7 @@ $cf apps
   $ cf repo-plugins
   ```
 
-<div id='ID-ADD/REMOVE-PLUGIN/>
+<div id='ID-ADD-REMOVE-PLUGIN'/>
 ## ADD/REMOVE PLUGIN
 
 

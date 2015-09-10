@@ -6,7 +6,7 @@
 2. [OpenPaaS CLI기본 사용법](#OpenPaaS CLI기본-사용법)
 3. [GETTING STARTED](#GETTING-STARTED)
      * [login](#login)
-4. [APPS](#APPS)
+4. [APPS](#apps)
 
 
 ## 개요

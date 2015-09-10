@@ -176,14 +176,14 @@ Please log in again
 
 
 ```
-    $ cf target [-o ORG] [-s SPACE]
+$ cf target [-o ORG] [-s SPACE]
 ```
 
 - **설명**
 
 
 ```
-  로그인한 사용자가 사용할 Target 조직 및 스페이스 설정
+로그인한 사용자가 사용할 Target 조직 및 스페이스 설정
 ```
 
 
@@ -218,7 +218,7 @@ Space:          development
 - **기본 Syntax**
 
 ```
-    $ cf api <URL>
+$ cf api <URL>
 ```
 
 
@@ -226,7 +226,7 @@ Space:          development
 
 
 ```
-  Target api를 조회하거나 target api URL을 설정한다.
+Target api를 조회하거나 target api URL을 설정한다.
 ```
 
 
@@ -249,7 +249,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
 ```
-    $ cf auth <USERNAME> <PASSWORD>
+$ cf auth <USERNAME> <PASSWORD>
 ```
 
 
@@ -257,7 +257,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
 ```
-  OpenPaas login시 로그인만 되며 스페이스, 타겟은 지정되지 않는다.
+OpenPaas login시 로그인만 되며 스페이스, 타겟은 지정되지 않는다.
 ```
 
 
@@ -284,7 +284,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
 ```
-    $cf apps
+$cf apps
 ```
 
 
@@ -312,7 +312,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $cf app <APP_NAME>
+  $cf app <APP_NAME>
   ```
 
 
@@ -320,7 +320,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    App의 상태를 조회한다.
+  App의 상태를 조회한다.
   ```
 
 
@@ -344,7 +344,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf push <APP_NAME> [-b BUILDPACK_NAME] [-c COMMAND] [-d DOMAIN] [-f MANIFEST_PATH] [-i NUM_INSTANCES] [-k DISK] [-m MEMORY] [-n HOST] [-p PATH] [-s STACK] [-t TIMEOUT] [--no-hostname] [--no-manifest] [--no-route] [--no-start]
+  $ cf push <APP_NAME> [-b BUILDPACK_NAME] [-c COMMAND] [-d DOMAIN] [-f MANIFEST_PATH] [-i NUM_INSTANCES] [-k DISK] [-m MEMORY] [-n HOST] [-p PATH] [-s STACK] [-t TIMEOUT] [--no-hostname] [--no-manifest] [--no-route] [--no-start]
   ```
 
 
@@ -352,7 +352,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    App을 OpenPaas에 배포 하고 app을 Start한다.
+  App을 OpenPaas에 배포 하고 app을 Start한다.
   ```
 
 
@@ -391,7 +391,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf scale <APP_NAME> [-i INSTANCES] [-k DISK] [-m MEMORY] [-f]
+  $ cf scale <APP_NAME> [-i INSTANCES] [-k DISK] [-m MEMORY] [-f]
   ```
 
 
@@ -399,7 +399,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    App의 메모리,디스크 크기 및 인스턴스 갯수를 조정한다.
+  App의 메모리,디스크 크기 및 인스턴스 갯수를 조정한다.
   ```
 
 
@@ -428,7 +428,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf delete <APP_NAME> [--f] [--r]
+  $ cf delete <APP_NAME> [--f] [--r]
   ```
 
 
@@ -436,7 +436,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    App을 삭제한다.
+  App을 삭제한다.
   ```
 
 
@@ -463,7 +463,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf rename <APP_NAME> <NEW_APP_NAME>
+  $ cf rename <APP_NAME> <NEW_APP_NAME>
   ```
 
 
@@ -471,7 +471,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    App명을 변경한다.
+  App명을 변경한다.
   ```
 
 
@@ -497,7 +497,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf start <APP_NAME>
+  $ cf start <APP_NAME>
   ```
 
 
@@ -505,7 +505,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    App을 Start한다.
+  App을 Start한다.
   ```
 
 
@@ -529,7 +529,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf stop <APP_NAME>
+  $ cf stop <APP_NAME>
   ```
 
 
@@ -537,7 +537,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    App을 stop한다.
+  App을 stop한다.
   ```
 
 
@@ -562,7 +562,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf restart <APP_NAME>
+  $ cf restart <APP_NAME>
   ```
 
 
@@ -570,7 +570,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    App을 restart 한다.
+  App을 restart 한다.
   ```
 
 
@@ -594,7 +594,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf restage <APP_NAME>
+  $ cf restage <APP_NAME>
   ```
 
 
@@ -602,7 +602,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    App을 restage한다.(환경변수 설정 또는 서비스 바인딩시 사용)
+  App을 restage한다.(환경변수 설정 또는 서비스 바인딩시 사용)
   ```
 
 
@@ -626,7 +626,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf restart-app-instance <APP_NAME> <INDEX>
+  $ cf restart-app-instance <APP_NAME> <INDEX>
   ```
 
 
@@ -634,7 +634,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    App의 인스턴스중 특정 인스턴스를 restart한다.
+  App의 인스턴스중 특정 인스턴스를 restart한다.
   ```
 
 
@@ -690,7 +690,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf files <APP_NAME> [PATH] [-i INSTANCE]
+  $ cf files <APP_NAME> [PATH] [-i INSTANCE]
   ```
 
 
@@ -698,7 +698,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    App의 file및 디렉토리 목록을 조회한다.
+  App의 file및 디렉토리 목록을 조회한다.
   ```
 
 
@@ -723,7 +723,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf logs <APP_NAME> [--recent]
+  $ cf logs <APP_NAME> [--recent]
   ```
 
 
@@ -731,7 +731,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    App에서 발생한 로그를 조회한다.
+  App에서 발생한 로그를 조회한다.
   ```
 
 
@@ -756,7 +756,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf env  <APP_NAME>
+  $ cf env  <APP_NAME>
   ```
 
 
@@ -764,7 +764,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    App의 환경변수를 조회한다.
+  App의 환경변수를 조회한다.
   ```
 
 
@@ -787,7 +787,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf unset-env <APP_NAME> <ENV_VAR_NAME>
+  $ cf unset-env <APP_NAME> <ENV_VAR_NAME>
   ```
 
 
@@ -795,7 +795,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    App에 설정된 환경변수를 삭제한다.(적용시 restage필요)
+  App에 설정된 환경변수를 삭제한다.(적용시 restage필요)
   ```
 
 
@@ -820,7 +820,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf stacks
+  $ cf stacks
   ```
 
 
@@ -828,7 +828,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    OpenPaaS의 stack목록(운영체제 파일시스템) 목록을 조회한다.
+  OpenPaaS의 stack목록(운영체제 파일시스템) 목록을 조회한다.
   ```
 
 
@@ -850,7 +850,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf stack <STACK_NAME> [--guid]
+  $ cf stack <STACK_NAME> [--guid]
   ```
 
 
@@ -858,7 +858,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    OpenPaaS의 stack목록(운영체제 파일시스템) 목록을 조회한다.
+  OpenPaaS의 stack목록(운영체제 파일시스템) 목록을 조회한다.
   ```
 
 
@@ -883,7 +883,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf copy-source <SOURCE-APP> <TARGET-APP> [-o TARGET-ORG] [-s TARGET-SPACE] [--no-restart]
+  $ cf copy-source <SOURCE-APP> <TARGET-APP> [-o TARGET-ORG] [-s TARGET-SPACE] [--no-restart]
   ```
 
 
@@ -891,7 +891,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    App의 소스를 다른 App에 복사한다. 파일이 덥어 쓰이지 않으면 자동 restart한다.
+  App의 소스를 다른 App에 복사한다. 파일이 덥어 쓰이지 않으면 자동 restart한다.
   ```
 
 
@@ -918,7 +918,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf create-app-manifest <APP_NAME> [-p /path/<app-name>-manifest.yml]
+  $ cf create-app-manifest <APP_NAME> [-p /path/<app-name>-manifest.yml]
   ```
 
 
@@ -926,7 +926,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    App의 manifest파일을 생성한다.
+  App의 manifest파일을 생성한다.
   ```
 
 
@@ -954,7 +954,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf marketplace [-s SERVICE_NAME]
+  $ cf marketplace [-s SERVICE_NAME]
   ```
 
 
@@ -962,7 +962,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    cf 마켓플레이스에서 제공하는 서비스 목록을 조회한다.
+  cf 마켓플레이스에서 제공하는 서비스 목록을 조회한다.
   ```
 
 
@@ -986,7 +986,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf services
+  $ cf services
   ```
 
 
@@ -994,7 +994,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    타겟 스페이스에 서비스 인스턴스 목록을 조회한다.
+  타겟 스페이스에 서비스 인스턴스 목록을 조회한다.
   ```
 
 
@@ -1018,7 +1018,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf service <SERVICE_INSTANCE> [--guid]
+  $ cf service <SERVICE_INSTANCE> [--guid]
   ```
 
 
@@ -1026,7 +1026,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    서비스 인스턴스의 정보를 조회한다.
+  서비스 인스턴스의 정보를 조회한다.
   ```
 
 
@@ -1051,7 +1051,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf create-service <SERVICE> <PLAN> <SERVICE_INSTANCE> [-c PARAMETERS_AS_JSON] [-t TAGS]
+  $ cf create-service <SERVICE> <PLAN> <SERVICE_INSTANCE> [-c PARAMETERS_AS_JSON] [-t TAGS]
   ```
 
 
@@ -1059,7 +1059,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    마켓플레이스에서 제공하는 서비스로 서비스 인스턴스를 만든다.
+  마켓플레이스에서 제공하는 서비스로 서비스 인스턴스를 만든다.
   ```
 
   - **파라미터**
@@ -1086,7 +1086,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf update-service <SERVICE_INSTANCE> [-p NEW_PLAN] [-c PARAMETERS_AS_JSON] [-t TAGS]
+  $ cf update-service <SERVICE_INSTANCE> [-p NEW_PLAN] [-c PARAMETERS_AS_JSON] [-t TAGS]
   ```
 
 
@@ -1094,7 +1094,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    서비스 인스턴스를 수정한다.
+  서비스 인스턴스를 수정한다.
   ```
 
 
@@ -1121,7 +1121,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf delete-service SERVICE_INSTANCE [-f]
+  $ cf delete-service SERVICE_INSTANCE [-f]
   ```
 
 
@@ -1129,7 +1129,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    서비스 인스턴스를 삭제한다.
+  서비스 인스턴스를 삭제한다.
   ```
 
 
@@ -1153,7 +1153,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf rename-service <SERVICE_INSTANCE> <NEW_SERVICE_INSTANCE>
+  $ cf rename-service <SERVICE_INSTANCE> <NEW_SERVICE_INSTANCE>
   ```
 
 
@@ -1161,7 +1161,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    서비스 인스턴스명을 수정한다.
+  서비스 인스턴스명을 수정한다.
   ```
 
 
@@ -1186,7 +1186,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf create-service-key <SERVICE_INSTANCE> <SERVICE_KEY> [-c PARAMETERS_AS_JSON]
+  $ cf create-service-key <SERVICE_INSTANCE> <SERVICE_KEY> [-c PARAMETERS_AS_JSON]
   ```
 
 
@@ -1194,7 +1194,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    서비스 인스턴스의 key를 생성한다.
+  서비스 인스턴스의 key를 생성한다.
   ```
 
 
@@ -1220,7 +1220,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf service-keys <SERVICE_INSTANCE>
+  $ cf service-keys <SERVICE_INSTANCE>
   ```
 
 
@@ -1228,7 +1228,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    서비스 인스턴스의 key 목록을 조회한다.
+  서비스 인스턴스의 key 목록을 조회한다.
   ```
 
 
@@ -1252,7 +1252,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf service-key <SERVICE_INSTANCE> <SERVICE_KEY> [--guid]
+  $ cf service-key <SERVICE_INSTANCE> <SERVICE_KEY> [--guid]
   ```
 
 
@@ -1260,7 +1260,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    서비스 인스턴스의 key의 상세정보를 조회한다.
+  서비스 인스턴스의 key의 상세정보를 조회한다.
   ```
 
 
@@ -1288,7 +1288,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf delete-service-key <SERVICE_INSTANCE> <SERVICE_KEY> [-f]
+  $ cf delete-service-key <SERVICE_INSTANCE> <SERVICE_KEY> [-f]
   ```
 
 
@@ -1296,7 +1296,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    서비스 key를 삭제한다.
+  서비스 key를 삭제한다.
   ```
 
 
@@ -1324,7 +1324,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf bind-service <APP_NAME> <SERVICE_INSTANCE> [-c PARAMETERS_AS_JSON]
+  $ cf bind-service <APP_NAME> <SERVICE_INSTANCE> [-c PARAMETERS_AS_JSON]
   ```
 
 
@@ -1332,7 +1332,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    App과 서비스 인스턴스를 바인딩한다.<br> - 서비스 인스턴스와 APP을 바인딩해야 App에서 서비스 사용가능
+  App과 서비스 인스턴스를 바인딩한다.<br> - 서비스 인스턴스와 APP을 바인딩해야 App에서 서비스 사용가능
   ```
 
 
@@ -1362,7 +1362,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf unbind-service <APP_NAME> <SERVICE_INSTANCE>
+  $ cf unbind-service <APP_NAME> <SERVICE_INSTANCE>
   ```
 
 
@@ -1370,7 +1370,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    App과 서비스 인스턴스를 언바인딩한다.
+  App과 서비스 인스턴스를 언바인딩한다.
   ```
 
 
@@ -1397,7 +1397,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf create-user-provided-service <SERVICE_INSTANCE> [-p CREDENTIALS] [-l SYSLOG-DRAIN-URL]
+  $ cf create-user-provided-service <SERVICE_INSTANCE> [-p CREDENTIALS] [-l SYSLOG-DRAIN-URL]
   ```
 
 
@@ -1405,7 +1405,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    Market place에서 제공하는 서비스를 사용하지 않고 사용자가 별도의 서비스를 구성하여 APP과 바인딩한다.
+  Market place에서 제공하는 서비스를 사용하지 않고 사용자가 별도의 서비스를 구성하여 APP과 바인딩한다.
   ```
 
 
@@ -1433,7 +1433,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf create-org <ORG_NAME> [-q QUOTA_NAME]
+  $ cf create-org <ORG_NAME> [-q QUOTA_NAME]
   ```
 
 
@@ -1468,7 +1468,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf delete-org <ORG_NAME> [-f]
+  $ cf delete-org <ORG_NAME> [-f]
   ```
 
 
@@ -1476,7 +1476,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    조직정보 목록을 조회한다.
+  조직정보 목록을 조회한다.
   ```
 
 
@@ -1502,7 +1502,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf rename-org <ORG_NAME> <NEW_ORG_NAME>
+    $ cf rename-org <ORG_NAME> <NEW_ORG_NAME>
   ```
 
 
@@ -1510,7 +1510,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    조직명을 변경한다.
+  조직명을 변경한다.
   ```
 
 
@@ -1538,7 +1538,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf spaces
+  $ cf spaces
   ```
 
 
@@ -1546,7 +1546,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    스페이스 목록을 가져온다.
+  스페이스 목록을 가져온다.
   ```
 
 
@@ -1568,7 +1568,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf space <SPACE_NAME>
+  $ cf space <SPACE_NAME>
   ```
 
 
@@ -1576,7 +1576,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    스페이스 상세정보를 조회한다.
+  스페이스 상세정보를 조회한다.
   ```
 
 
@@ -1600,7 +1600,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf create-space <SPACE_NAME> [-o ORG_NAME] [-q SPACE-QUOTA-NAME]
+  $ cf create-space <SPACE_NAME> [-o ORG_NAME] [-q SPACE-QUOTA-NAME]
   ```
 
 
@@ -1608,7 +1608,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    스페이스 정보를 생성한다.
+  스페이스 정보를 생성한다.
   ```
 
 
@@ -1633,7 +1633,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf delete-space <SPACE_NAME> [-f]
+  $ cf delete-space <SPACE_NAME> [-f]
   ```
 
 
@@ -1641,7 +1641,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    스페이스정보를 삭제한다.
+  스페이스정보를 삭제한다.
   ```
 
 
@@ -1665,7 +1665,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf rename-space <SPACE_NAME> <NEW_SPACE_NAME>
+  $ cf rename-space <SPACE_NAME> <NEW_SPACE_NAME>
   ```
 
 
@@ -1673,7 +1673,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    스페이스 명을 변경한다.
+  스페이스 명을 변경한다.
   ```
 
 
@@ -1699,7 +1699,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf domains
+  $ cf domains
   ```
 
 
@@ -1707,7 +1707,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    도메인 정보 목록을 조회한다.
+  도메인 정보 목록을 조회한다.
   ```
 
 
@@ -1730,7 +1730,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf create-domain <ORG_NAME> <DOMAIN>
+  $ cf create-domain <ORG_NAME> <DOMAIN>
   ```
 
 
@@ -1738,7 +1738,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    도메인 정보 목록을 생성한다. 생성된 도메인은 설정된 조직에서 사용가능하다.
+  도메인 정보 목록을 생성한다. 생성된 도메인은 설정된 조직에서 사용가능하다.
   ```
 
 
@@ -1764,7 +1764,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf delete-domain <DOMAIN> [-f]
+  $ cf delete-domain <DOMAIN> [-f]
   ```
 
 
@@ -1772,7 +1772,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    도메인 정보를 삭제한다.
+  도메인 정보를 삭제한다.
   ```
 
 
@@ -1798,7 +1798,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf create-shared-domain <DOMAIN>
+  $ cf create-shared-domain <DOMAIN>
   ```
 
 
@@ -1806,7 +1806,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    공유 도메인정보를 생성한다
+  공유 도메인정보를 생성한다
   ```
 
 
@@ -1830,7 +1830,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf delete-domain <DOMAIN> [-f]
+  $ cf delete-domain <DOMAIN> [-f]
   ```
 
 
@@ -1838,7 +1838,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    공유 도메인정보를 삭제한다.
+  공유 도메인정보를 삭제한다.
   ```
 
 
@@ -1866,7 +1866,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf routes
+  $ cf routes
   ```
 
 
@@ -1874,7 +1874,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    현재 조직/스페이스에 존재하는 라우트 정보목롤을 조회한다.
+  현재 조직/스페이스에 존재하는 라우트 정보목롤을 조회한다.
   ```
 
 
@@ -1895,7 +1895,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf create-route <SPACE_NAME> <DOMAIN> [-n HOSTNAME]
+  $ cf create-route <SPACE_NAME> <DOMAIN> [-n HOSTNAME]
   ```
 
 
@@ -1903,7 +1903,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    공유 도메인정보를 삭제한다...
+  공유 도메인정보를 삭제한다...
   ```
 
 
@@ -1930,7 +1930,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf update-route <SPACE_NAME> <DOMAIN> [-n HOSTNAME]
+  $ cf update-route <SPACE_NAME> <DOMAIN> [-n HOSTNAME]
   ```
 
 
@@ -1938,7 +1938,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    공유 도메인정보를 삭제한다.
+  공유 도메인정보를 삭제한다.
   ```
 
 
@@ -1966,7 +1966,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf check-route <HOST> <DOMAIN>
+  $ cf check-route <HOST> <DOMAIN>
   ```
 
 
@@ -1974,7 +1974,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    라우트 정보가 존재하는지 체크한다.
+  라우트 정보가 존재하는지 체크한다.
   ```
 
 
@@ -2000,7 +2000,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf map-route <APP_NAME> <DOMAIN> [-n HOSTNAME]
+  $ cf map-route <APP_NAME> <DOMAIN> [-n HOSTNAME]
   ```
 
 
@@ -2008,7 +2008,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    App에게 URL route정보를 할당한다.
+  App에게 URL route정보를 할당한다.
   ```
 
 
@@ -2035,7 +2035,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf map-route <APP_NAME> <DOMAIN> [-n HOSTNAME]
+  $ cf map-route <APP_NAME> <DOMAIN> [-n HOSTNAME]
   ```
 
 
@@ -2043,7 +2043,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    App에게 URL route정보를 삭제한다.
+  App에게 URL route정보를 삭제한다.
   ```
 
 
@@ -2069,7 +2069,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf delete-route <DOMAIN> [-n HOSTNAME] [-f]
+  $ cf delete-route <DOMAIN> [-n HOSTNAME] [-f]
   ```
 
 
@@ -2077,7 +2077,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    App에게 URL route정보를 삭제한다.
+  App에게 URL route정보를 삭제한다.
   ```
 
 
@@ -2103,7 +2103,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf delete-orphaned-routes [-f]
+  $ cf delete-orphaned-routes [-f]
   ```
 
 
@@ -2111,7 +2111,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    App에 매핑되지 않은 라우트 정보를 모두 삭제한다
+  App에 매핑되지 않은 라우트 정보를 모두 삭제한다
   ```
 
 
@@ -2139,7 +2139,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf buildpacks
+  $ cf buildpacks
   ```
 
 
@@ -2147,7 +2147,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    빌드팩 목록을 조회한다.
+  빌드팩 목록을 조회한다.
   ```
 
 
@@ -2170,7 +2170,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf create-buildpack <BUILDPACK> <-p PATH> <-i POSITION> [--enable|--disable]
+  $ cf create-buildpack <BUILDPACK> <-p PATH> <-i POSITION> [--enable|--disable]
   ```
 
 
@@ -2178,7 +2178,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    빌드팩을 생성한다.
+  빌드팩을 생성한다.
   ```
 
 
@@ -2208,7 +2208,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf update-buildpack <BUILDPACK> [-p PATH] [-i POSITION] [--enable|--disable] [--lock|--unlock]
+  $ cf update-buildpack <BUILDPACK> [-p PATH] [-i POSITION] [--enable|--disable] [--lock|--unlock]
   ```
 
 
@@ -2216,7 +2216,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    빌드팩 정보를 수정한다.
+  빌드팩 정보를 수정한다.
   ```
 
 
@@ -2245,7 +2245,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf delete-buildpack <BUILDPACK_NAME> [-f]
+  $ cf delete-buildpack <BUILDPACK_NAME> [-f]
   ```
 
 
@@ -2253,7 +2253,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    빌드팩을 삭제한다.
+  빌드팩을 삭제한다.
   ```
 
 
@@ -2281,7 +2281,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf create-user <USERNAME> <PASSWORD>
+  $ cf create-user <USERNAME> <PASSWORD>
   ```
 
 
@@ -2289,7 +2289,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    새로운 사용자 계정을 생성한다.
+  새로운 사용자 계정을 생성한다.
   ```
 
 
@@ -2315,7 +2315,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf delete-user <USERNAME> [-f]
+  $ cf delete-user <USERNAME> [-f]
   ```
 
 
@@ -2349,7 +2349,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf org-users cforg
+  $ cf org-users cforg
   ```
 
 
@@ -2357,7 +2357,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    조직에 소속된 사용자를 조회한다.
+  조직에 소속된 사용자를 조회한다.
   ```
 
 
@@ -2381,7 +2381,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf set-org-role <USERNAME> <ORG> <ROLE>
+  $ cf set-org-role <USERNAME> <ORG> <ROLE>
   ```
 
 
@@ -2389,7 +2389,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    사용자에게 특정조직의 role을 설정한다.
+  사용자에게 특정조직의 role을 설정한다.
   ```
 
 
@@ -2417,7 +2417,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf unset-org-role <USERNAME> <ORG> <ROLE>
+  $ cf unset-org-role <USERNAME> <ORG> <ROLE>
   ```
 
 
@@ -2425,7 +2425,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    사용자에게 특정조직의 role을 설정을 해제한다..
+  사용자에게 특정조직의 role을 설정을 해제한다..
   ```
 
 
@@ -2453,7 +2453,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf space-users <ORG> <SPACE>
+  $ cf space-users <ORG> <SPACE>
   ```
 
 
@@ -2461,7 +2461,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    조직의 스페이스에 할당된 사용자 목록정보를 조회한다.
+  조직의 스페이스에 할당된 사용자 목록정보를 조회한다.
   ```
 
 
@@ -2487,7 +2487,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf set-space-role <USERNAME> <ORG> <SPACE> <ROLE>
+  $ cf set-space-role <USERNAME> <ORG> <SPACE> <ROLE>
   ```
 
 
@@ -2495,7 +2495,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    사용자에게 조직의 스페이스에 role을 할당한다.
+  사용자에게 조직의 스페이스에 role을 할당한다.
   ```
 
 
@@ -2522,7 +2522,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf unset-space-role <USERNAME> <ORG> <SPACE> <ROLE>
+  $ cf unset-space-role <USERNAME> <ORG> <SPACE> <ROLE>
   ```
 
 
@@ -2530,7 +2530,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    사용자에게 조직의 스페이스에 role을 회수한다.
+  사용자에게 조직의 스페이스에 role을 회수한다.
   ```
 
 
@@ -2560,7 +2560,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf quotas
+  $ cf quotas
   ```
 
 
@@ -2568,7 +2568,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    Quota 목록을 조회한다.
+  Quota 목록을 조회한다.
   ```
 
 
@@ -2589,7 +2589,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf quota <QUOTA>
+  $ cf quota <QUOTA>
   ```
 
 
@@ -2597,7 +2597,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    Quota의 상세정보를 조회한다.
+  Quota의 상세정보를 조회한다.
   ```
 
 
@@ -2622,7 +2622,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf set-quota <ORG> <QUOTA>
+  $ cf set-quota <ORG> <QUOTA>
   ```
 
 
@@ -2630,7 +2630,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    조직에게 QUOTA를 할당한다.
+  조직에게 QUOTA를 할당한다.
   ```
 
 
@@ -2656,7 +2656,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf create-quota <QUOTA> [-m TOTAL_MEMORY] [-i INSTANCE_MEMORY] [-r ROUTES] [-s SERVICE_INSTANCES] [--allow-paid-service-plans]
+  $ cf create-quota <QUOTA> [-m TOTAL_MEMORY] [-i INSTANCE_MEMORY] [-r ROUTES] [-s SERVICE_INSTANCES] [--allow-paid-service-plans]
   ```
 
 
@@ -2664,7 +2664,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    Quota정보를 생성한다.
+  Quota정보를 생성한다.
   ```
 
 
@@ -2694,7 +2694,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf delete-quota <QUOTA> [-f]
+  $ cf delete-quota <QUOTA> [-f]
   ```
 
 
@@ -2702,7 +2702,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    Quota정보를 삭제한다.
+  Quota정보를 삭제한다.
   ```
 
 
@@ -2728,7 +2728,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf update-quota <QUOTA> [-m TOTAL_MEMORY] [-i INSTANCE_MEMORY][-n NEW_NAME] [-r ROUTES] [-s SERVICE_INSTANCES] [--allow-paid-service-plans | --disallow-paid-service-plans]
+  $ cf update-quota <QUOTA> [-m TOTAL_MEMORY] [-i INSTANCE_MEMORY][-n NEW_NAME] [-r ROUTES] [-s SERVICE_INSTANCES] [--allow-paid-service-plans | --disallow-paid-service-plans]
   ```
 
 
@@ -2736,7 +2736,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    Quota정보를 수정한다.
+  Quota정보를 수정한다.
   ```
 
 
@@ -2767,7 +2767,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf share-private-domain <ORG> <DOMAIN>
+  $ cf share-private-domain <ORG> <DOMAIN>
   ```
 
 
@@ -2775,7 +2775,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    private도메인을 다른 조직과 공유한다.
+  private도메인을 다른 조직과 공유한다.
   ```
 
 
@@ -2801,7 +2801,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf unshare-private-domain <ORG> <DOMAIN>
+  $ cf unshare-private-domain <ORG> <DOMAIN>
   ```
 
 
@@ -2809,7 +2809,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    다른 조직과 share한 도메인 정보를 unshare한다.
+  다른 조직과 share한 도메인 정보를 unshare한다.
   ```
 
 
@@ -2838,7 +2838,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf space-quotas
+  $ cf space-quotas
   ```
 
 
@@ -2846,7 +2846,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    Space-quota정보 목록을 조회한다.
+  Space-quota정보 목록을 조회한다.
   ```
 
 
@@ -2870,7 +2870,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf create-space-quota <QUOTA> [-i INSTANCE_MEMORY] [-m MEMORY] [-r ROUTES] [-s SERVICE_INSTANCES] [--allow-paid-service-plans]
+  $ cf create-space-quota <QUOTA> [-i INSTANCE_MEMORY] [-m MEMORY] [-r ROUTES] [-s SERVICE_INSTANCES] [--allow-paid-service-plans]
   ```
 
 
@@ -2878,7 +2878,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    Space quota 상세정보를 조회한다.
+  Space quota 상세정보를 조회한다.
   ```
 
 
@@ -2903,7 +2903,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf space-quota <SPACE_QUOTA_NAME>
+  $ cf space-quota <SPACE_QUOTA_NAME>
   ```
 
 
@@ -2911,7 +2911,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    스페이스 Quota정보를 생성한다.
+  스페이스 Quota정보를 생성한다.
   ```
 
 
@@ -2949,7 +2949,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    스페이스 Quota정보를 수정한다.
+  스페이스 Quota정보를 수정한다.
   ```
 
 
@@ -2981,7 +2981,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf delete-space-quota <SPACE-QUOTA-NAME>
+  $ cf delete-space-quota <SPACE-QUOTA-NAME>
   ```
 
 
@@ -2989,7 +2989,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    스페이스 Quota정보를 삭제한다.
+  스페이스 Quota정보를 삭제한다.
   ```
 
 
@@ -3016,7 +3016,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf set-space-quota <SPACE-NAME> <SPACE-QUOTA-NAME>
+  $ cf set-space-quota <SPACE-NAME> <SPACE-QUOTA-NAME>
   ```
 
 
@@ -3024,7 +3024,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    스페이스에 quota를 할당한다.
+  스페이스에 quota를 할당한다.
   ```
 
 
@@ -3051,7 +3051,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf unset-space-quota SPACE QUOTA
+  $ cf unset-space-quota SPACE QUOTA
   ```
 
 
@@ -3059,7 +3059,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    스페이스에 할당된 quota를 회수한다.
+  스페이스에 할당된 quota를 회수한다.
   ```
 
 
@@ -3089,7 +3089,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf service-auth-tokens
+  $ cf service-auth-tokens
   ```
 
 
@@ -3097,7 +3097,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    서비스 인증 토큰 목록을 조회한다.
+  서비스 인증 토큰 목록을 조회한다.
   ```
 
 
@@ -3120,7 +3120,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf create-service-auth-token <LABEL> <PROVIDER> <TOKEN>
+  $ cf create-service-auth-token <LABEL> <PROVIDER> <TOKEN>
   ```
 
 
@@ -3128,7 +3128,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    스페이스에 할당된 quota를 회수한다.
+  스페이스에 할당된 quota를 회수한다.
   ```
 
 
@@ -3156,7 +3156,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf update-service-auth-token <LABEL> <PROVIDER> <TOKEN>
+  $ cf update-service-auth-token <LABEL> <PROVIDER> <TOKEN>
   ```
 
 
@@ -3164,7 +3164,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    Service auth token 정보를 수정한다.
+  Service auth token 정보를 수정한다.
   ```
 
 
@@ -3192,7 +3192,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf delete-service-auth-token <LABEL> <PROVIDER> [-f]
+  $ cf delete-service-auth-token <LABEL> <PROVIDER> [-f]
   ```
 
 
@@ -3200,7 +3200,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    Service auth token 정보를 삭제한다.
+  Service auth token 정보를 삭제한다.
   ```
 
 
@@ -3228,7 +3228,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf delete-service-auth-token <LABEL> <PROVIDER> [-f]
+  $ cf delete-service-auth-token <LABEL> <PROVIDER> [-f]
   ```
 
 
@@ -3236,7 +3236,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    Service Broker정보 목록을 조회한다.
+  Service Broker정보 목록을 조회한다.
   ```
 
 
@@ -3259,7 +3259,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf create-service-broker <SERVICE_BROKER> <USERNAME> <PASSWORD> <URL>
+  $ cf create-service-broker <SERVICE_BROKER> <USERNAME> <PASSWORD> <URL>
   ```
 
 
@@ -3267,7 +3267,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    Service Broker정보를 등록한다.
+  Service Broker정보를 등록한다.
   ```
 
 
@@ -3297,7 +3297,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf update-service-broker <SERVICE_BROKER> <USERNAME> <PASSWORD> <URL>
+  $ cf update-service-broker <SERVICE_BROKER> <USERNAME> <PASSWORD> <URL>
   ```
 
 
@@ -3305,7 +3305,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    Service Broker정보를 등록한다.
+  Service Broker정보를 등록한다.
   ```
 
 
@@ -3335,7 +3335,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf delete-service-broker <SERVICE_BROKER> [-f]
+  $ cf delete-service-broker <SERVICE_BROKER> [-f]
   ```
 
 
@@ -3343,7 +3343,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    Service Broker정보를 삭제한다.
+  Service Broker정보를 삭제한다.
   ```
 
 
@@ -3371,7 +3371,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf rename-service-broker <SERVICE_BROKER> <NEW_SERVICE_BROKER>
+  $ cf rename-service-broker <SERVICE_BROKER> <NEW_SERVICE_BROKER>
   ```
 
 
@@ -3379,7 +3379,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    Service Broker명을 수정한다.
+  Service Broker명을 수정한다.
   ```
 
 
@@ -3407,7 +3407,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-      $ cf migrate-service-instances <v1_SERVICE> <v1_PROVIDER> <v1_PLAN> <v2_SERVICE> <v2_PLAN>
+  $ cf migrate-service-instances <v1_SERVICE> <v1_PROVIDER> <v1_PLAN> <v2_SERVICE> <v2_PLAN>
   ```
 
 
@@ -3415,7 +3415,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    서비스 인스턴스에서 사용하는 서비스 및 플랜을 다른 플랜으로 변경한다. <br> - App이 사용하는 서비스를 다른 서비스로 변경하려 할때 사용한다.
+  서비스 인스턴스에서 사용하는 서비스 및 플랜을 다른 플랜으로 변경한다. <br> - App이 사용하는 서비스를 다른 서비스로 변경하려 할때 사용한다.
   ```
 
 
@@ -3452,7 +3452,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
   ```
-    cf와 서비스 브로커간의 정보 불일치를 해결할때 사용 <br>   (migrate-service-instances 명령 이후 사용)
+  cf와 서비스 브로커간의 정보 불일치를 해결할때 사용 <br>   (migrate-service-instances 명령 이후 사용)
   ```
 
 

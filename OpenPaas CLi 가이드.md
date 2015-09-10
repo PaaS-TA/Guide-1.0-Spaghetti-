@@ -293,7 +293,7 @@ $ cf logout
 
 
 ```
-cf에서 logout한다.
+cf에 logout한다.
 ```
 
 

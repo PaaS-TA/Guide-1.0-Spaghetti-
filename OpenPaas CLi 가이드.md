@@ -3,9 +3,22 @@
      * [문서 목적](#문서-목적)
      * [범위](#범위)
      * [참고 자료](#참고-자료)
-2. [OpenPaaS CLI기본 사용법](#OpenPaaS-CLI기본-사용법)
-3. [GETTING STARTED](#GETTING-STARTED)
+     
+2. [OpenPaaS CLI기본 사용법](#ID-OpenPaaS-CLI-USAGE)
+
+3. [GETTING STARTED](#ID-GETTING-STARTED)
      * [login](#login)
+     * [logout](#logout)
+     * [passwd](#passwd)
+     * [target](#target)
+     * [api](#api)
+     * [auth](#auth)
+
+4. [APPS](#APPS)
+     * [apps](#apps)
+     * [app](#app)
+     * [push,p](#push,p)
+
 4. [APPS](#apps)
 
 
@@ -26,7 +39,9 @@
 
  [***https://docs.cloudfoundry.org/devguide/installcf/***](https://docs.cloudfoundry.org/devguide/installcf/)
 
+<div id='ID-OpenPaaS-CLI-USAGE'/>
 ## OpenPaaS CLI기본 사용법
+
 
 CLI는 OpenPaas배포와 Release를 관리하기 위해 도움을 주는 커맨드 라인 유틸리티로 아래와 같이 2가지 형태로 구분된다.
 
@@ -43,7 +58,9 @@ cf [global options] command <arguments...> [command options]
 cf 명령어에 대괄호로 묶인 인자인 <arguments>과 [command options]는 명령어에 따라 선택적으로 사용되고, command 인자는 필수 인자이다. CF 운영 및 관리하기 위한 도구인 CF CLI 아래와 같이 많은 명령어들을 제공하고 있다.
 
 
+<div id='ID-GETTING-STARTED'/>
 ## GETTING STARTED
+
 
 #### login
 
@@ -4544,3 +4561,6 @@ $cf apps
   ```
   $cf install-plugin 'Usage Report' -r CF-Community
   ```
+
+
+----------

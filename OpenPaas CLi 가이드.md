@@ -1855,3 +1855,1043 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
   ```
   $ cf delete-shared-domain cf.or.kr
   ```
+
+
+## SPACES
+
+
+#### routes,r
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf routes
+  ```
+
+
+  - **설명**
+
+
+  ```
+    현재 조직/스페이스에 존재하는 라우트 정보목롤을 조회한다.
+  ```
+
+
+  - **파라미터**
+
+    - 없음
+
+  - **사용예시**
+
+  ```
+  $ cf delete-shared-domain cf.or.kr
+  ```
+
+
+#### create-route
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf create-route <SPACE_NAME> <DOMAIN> [-n HOSTNAME]
+  ```
+
+
+  - **설명**
+
+
+  ```
+    공유 도메인정보를 삭제한다...
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SPACE_NAME   |스페이스명                           |O         |
+  |DOMAIN       |삭제 확인메시지 없이 공유 도메인을 삭제한다. <br>   - 도메인 정보가 입력되어있어야 한다.   |O         |
+  |-n HOSTNAME  |호스트 명                          |X         |
+
+
+  - **사용예시**
+
+  ```
+  $ cf delete-shared-domain cf.or.kr
+  ```
+
+
+#### update-route
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf update-route <SPACE_NAME> <DOMAIN> [-n HOSTNAME]
+  ```
+
+
+  - **설명**
+
+
+  ```
+    공유 도메인정보를 삭제한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SPACE_NAME   |스페이스명                           |O         |
+  |DOMAIN       |삭제 확인메시지 없이 공유 도메인을 삭제한다. <br>   - 도메인 정보가 입력되어있어야 한다.   |O         |
+  |-n HOSTNAME  |호스트 명                          |X         |
+
+
+  - **사용예시**
+
+  ```
+  $ cf update-route development cf.or.kr
+  ```
+
+
+
+#### check-route
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf check-route <HOST> <DOMAIN>
+  ```
+
+
+  - **설명**
+
+
+  ```
+    라우트 정보가 존재하는지 체크한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |HOST         |호스트 명                                    |O         |
+  |DOMAIN       |삭제 확인메시지 없이 공유 도메인을 삭제한다.    |O         |
+
+
+  - **사용예시**
+
+  ```
+  $ cf check-route spring-music cf.or.kr
+  ```
+
+
+#### map-route
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf map-route <APP_NAME> <DOMAIN> [-n HOSTNAME]
+  ```
+
+
+  - **설명**
+
+
+  ```
+    App에게 URL route정보를 할당한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |APP_NAME     |App명                           |O         |
+  |DOMAIN       |App에게 할당할 도메인             |O         |
+  |-n HOSTNAME  |App에게 할당할 Host              |X         |
+
+
+  - **사용예시**
+
+  ```
+  $ cf map-route spring-music cf.or.kr -n test
+  ```
+
+
+#### unmap-route
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf map-route <APP_NAME> <DOMAIN> [-n HOSTNAME]
+  ```
+
+
+  - **설명**
+
+
+  ```
+    App에게 URL route정보를 삭제한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |APP_NAME     |App명                           |O         |
+  |DOMAIN       |App에게 할당할 도메인             |O         |
+  |-n HOSTNAME  |App에게 할당할 Host              |X         |
+
+
+  - **사용예시**
+
+  ```
+  $ cf unmap-route spring-music cf.or.kr -n spring-music
+  ```
+
+#### delete-route
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf delete-route <DOMAIN> [-n HOSTNAME] [-f]
+  ```
+
+
+  - **설명**
+
+
+  ```
+    App에게 URL route정보를 삭제한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |APP_NAME     |App명                           |O         |
+  |DOMAIN       |App에게 할당할 도메인             |O         |
+  |-n HOSTNAME  |App에게 할당할 Host              |X         |
+
+
+  - **사용예시**
+
+  ```
+  $ cf delete-route spring-music cf.or.kr -n spring-music
+  ```
+
+#### delete-orphaned-routes
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf delete-orphaned-routes [-f]
+  ```
+
+
+  - **설명**
+
+
+  ```
+    App에 매핑되지 않은 라우트 정보를 모두 삭제한다
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |-f           |삭제 확인메시지 없이 라우트 정보를 삭제한다.           |X         |
+
+
+  - **사용예시**
+
+  ```
+  $ cf delete-orphaned-routes
+  ```
+
+
+## BUILDPACKS
+
+
+#### buildpacks
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf buildpacks
+  ```
+
+
+  - **설명**
+
+
+  ```
+    빌드팩 목록을 조회한다.
+  ```
+
+
+  - **파라미터**
+
+
+    - 없음
+
+
+  - **사용예시**
+
+  ```
+  $ cf buildpacks
+  ```
+
+
+#### create-buildpack
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf create-buildpack <BUILDPACK> <-p PATH> <-i POSITION> [--enable|--disable]
+  ```
+
+
+  - **설명**
+
+
+  ```
+    빌드팩을 생성한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |BUILDPACK     |빌드팩명                           |O         |
+  |-p PATH       |빌드팩 경로                      |O         |
+  |-i POSITIONE  |빌드팩 auto-detection동안 빌드팩 체크 순서  <br> ex)1.2.3              |O         |
+  |--enable      |스테이징시 사용                  |X         |
+  |--disable     |스테이징시 미사용                |X         |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf create-buildpack egov-buildpack ~/workspace/buildpack/egov -i 1
+  ```
+
+
+#### update-buildpack
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf update-buildpack <BUILDPACK> [-p PATH] [-i POSITION] [--enable|--disable] [--lock|--unlock]
+  ```
+
+
+  - **설명**
+
+
+  ```
+    빌드팩 정보를 수정한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |BUILDPACK     |빌드팩명                           |O         |
+  |-p PATH       |빌드팩 경로                      |O         |
+  |-i POSITIONE  |빌드팩 auto-detection동안 빌드팩 체크 순서  <br> ex)1.2.3              |O         |
+  |--enable      |스테이징시 사용                  |X         |
+  |--disable     |스테이징시 미사용                |X         |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf create-buildpack egov-buildpack ~/workspace/buildpack/egov -i 1
+  ```
+
+#### delete-buildpack
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf delete-buildpack <BUILDPACK_NAME> [-f]
+  ```
+
+
+  - **설명**
+
+
+  ```
+    빌드팩을 삭제한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |BUILDPACK     |빌드팩명                           |O         |
+  |-f           |삭제 확인메시지 없이 빌드팩 정보를 삭제한다.       |X         |
+
+
+  - **사용예시**
+
+  ```
+  $ cf delete-buildpack egov-buildpack
+  ```
+
+## USER ADMIN
+
+
+#### create-user
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf create-user <USERNAME> <PASSWORD>
+  ```
+
+
+  - **설명**
+
+
+  ```
+    새로운 사용자 계정을 생성한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |USERNAME     |사용자 ID                        |O         |
+  |PASSWORD     |패스워드                         |O         |
+
+
+  - **사용예시**
+
+  ```
+  $ cf create-user cfuser userpassword
+  ```
+
+
+#### delete-user
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf delete-user <USERNAME> [-f]
+  ```
+
+
+  - **설명**
+
+
+  ```
+    새로운 사용자 계정을 삭제한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |USERNAME     |사용자 ID                       |O         |
+  |-f           |삭제 확인메시지 없이 사용자 정보를 삭제한다.                         |X         |
+
+
+  - **사용예시**
+
+  ```
+  $ cf delete-user cfuser
+  ```
+
+
+#### org-users
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf org-users cforg
+  ```
+
+
+  - **설명**
+
+
+  ```
+    조직에 소속된 사용자를 조회한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |ORG_NAME     |조직명                          |O         |
+
+
+  - **사용예시**
+
+  ```
+  $ cf org-users cforg
+  ```
+
+#### set-org-role
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf set-org-role <USERNAME> <ORG> <ROLE>
+  ```
+
+
+  - **설명**
+
+
+  ```
+    사용자에게 특정조직의 role을 설정한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |USERNAME     |사용자명                          |O         |
+  |ORG          |조직명                          |O         |
+  |ROLE        |역할명 <br>  - OrgManager : 사용자 관리 및 plan설정/변경 권한 <br> - BillingManager : 빌링계정 및 과금정보 생성 및 관리 <br>  - OrgAuditor : 조직 quota사용률 및 사용자 role을 조회한다.             |O         |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf set-org-role cfuser cforg OrgManager
+  ```
+
+
+#### unset-org-role
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf unset-org-role <USERNAME> <ORG> <ROLE>
+  ```
+
+
+  - **설명**
+
+
+  ```
+    사용자에게 특정조직의 role을 설정을 해제한다..
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |USERNAME     |사용자명                          |O         |
+  |ORG          |조직명                          |O         |
+  |ROLE        |역할명 <br>  - OrgManager : 사용자 관리 및 plan설정/변경 권한 <br> - BillingManager : 빌링계정 및 과금정보 생성 및 관리 <br>  - OrgAuditor : 조직 quota사용률 및 사용자 role을 조회한다.             |O         |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf unset-org-role cfuser cforg OrgManager
+  ```
+
+
+#### space-users
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf space-users <ORG> <SPACE>
+  ```
+
+
+  - **설명**
+
+
+  ```
+    조직의 스페이스에 할당된 사용자 목록정보를 조회한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |ORG          |조직명                          |O         |
+  |SPACE        |스페이스명                       |O         |
+
+
+  - **사용예시**
+
+  ```
+  $ cf space-users development
+  ```
+
+
+#### set-space-role
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf set-space-role <USERNAME> <ORG> <SPACE> <ROLE>
+  ```
+
+
+  - **설명**
+
+
+  ```
+    사용자에게 조직의 스페이스에 role을 할당한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |USERNAME     |사용자명                         |O         |
+  |ORG          |조직명                           |O         |
+  |SPACE        |스페이스명                       |O         |
+  |ROLE         |역할명  <br>  - SpaceManager: 스페이스의 관리자로 스페이스 내의 사용자 계정 관리 및 인스턴스 수, 서비스 바인딩 상태 및 스페이스 내의 리소스 상태를 조회 할 수 있다. <br> - SpaceDeveloper: 스페이스 내의 App 및 서비스 관리  <br> - SpaceAuditor: 스페이스 내의 서비스 바인딩, 인스턴스 수, app사용률등을 조회   |O         |
+
+  - **사용예시**
+
+  ```
+  $ cf set-space-role cfuser cforg development OrgManager
+  ```
+
+
+#### unset-space-role
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf unset-space-role <USERNAME> <ORG> <SPACE> <ROLE>
+  ```
+
+
+  - **설명**
+
+
+  ```
+    사용자에게 조직의 스페이스에 role을 회수한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |USERNAME     |사용자명                         |O         |
+  |ORG          |조직명                           |O         |
+  |SPACE        |스페이스명                       |O         |
+  |ROLE         |역할명  <br>  - SpaceManager: 스페이스의 관리자로 스페이스 내의 사용자 계정 관리 및 인스턴스 수, 서비스 바인딩 상태 및 스페이스 내의 리소스 상태를 조회 할 수 있다. <br> - SpaceDeveloper: 스페이스 내의 App 및 서비스 관리  <br> - SpaceAuditor: 스페이스 내의 서비스 바인딩, 인스턴스 수, app사용률등을 조회   |O         |
+
+  - **사용예시**
+
+  ```
+  $ cf unset-space-role cfuser cforg development OrgManager
+  ```
+
+
+## ORG ADMIN
+
+
+#### quotas
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf quotas
+  ```
+
+
+  - **설명**
+
+
+  ```
+    Quota 목록을 조회한다.
+  ```
+
+
+  - **파라미터**
+
+    - 없음
+
+  - **사용예시**
+
+  ```
+  $ cf quotas
+  ```
+
+
+#### quota
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf quota <QUOTA>
+  ```
+
+
+  - **설명**
+
+
+  ```
+    Quota의 상세정보를 조회한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |USERNAME     |QUOTA명                         |O         |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf quota cf-quota
+  ```
+
+#### set-quota
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf set-quota <ORG> <QUOTA>
+  ```
+
+
+  - **설명**
+
+
+  ```
+    조직에게 QUOTA를 할당한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |ORG          |직명                            |O         |
+  |QUOTA        |QUOTA명                         |O         |
+
+
+  - **사용예시**
+
+  ```
+  $ cf set-quota cf-quota
+  ```
+
+
+#### create-quota
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf create-quota <QUOTA> [-m TOTAL_MEMORY] [-i INSTANCE_MEMORY] [-r ROUTES] [-s SERVICE_INSTANCES] [--allow-paid-service-plans]
+  ```
+
+
+  - **설명**
+
+
+  ```
+    Quota정보를 생성한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |QUOTA                       |QUOTA명                                                       |O         |
+  |-m TOTAL_MEMORY             |메모리 할당량  <br> Ex) 1024M, 1G, 10G                         |X         |
+  |-i INSTANCE_MEMORY          |App instance가 가질수 있는 최대할당량 (-1은 무한대) <br>  Ex) 1024M, 1G, 10G                        |X         |
+  |-r ROUTES                   |최대 라우트 수                                                 |X         |
+  |-s SERVICE_INSTANCES        |최대 서비스 인스턴스 수                                         |X         |
+  |--allow-paid-service-plans  |과금 서비스 plan 사용가능                                       |X        |
+
+
+  - **사용예시**
+
+  ```
+  $ cf create-quota cf-quota -m 500m -i 256m -r 2000 -s 500
+  ```
+
+
+#### delete-quota
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf delete-quota <QUOTA> [-f]
+  ```
+
+
+  - **설명**
+
+
+  ```
+    Quota정보를 삭제한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |QUOTA        |QUOTA명                                                       |O         |
+  |-f           |삭제 확인메시지 없이 QUOTA 정보를 삭제한다.                       |X         |
+
+
+  - **사용예시**
+
+  ```
+  $ cf delete-quota cf-quota
+  ```
+
+
+#### update-quota
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf update-quota <QUOTA> [-m TOTAL_MEMORY] [-i INSTANCE_MEMORY][-n NEW_NAME] [-r ROUTES] [-s SERVICE_INSTANCES] [--allow-paid-service-plans | --disallow-paid-service-plans]
+  ```
+
+
+  - **설명**
+
+
+  ```
+    Quota정보를 수정한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |QUOTA                       |QUOTA명                                                       |O         |
+  |-m TOTAL_MEMORY             |메모리 할당량  <br> Ex) 1024M, 1G, 10G                         |X         |
+  |-i INSTANCE_MEMORY          |App instance가 가질수 있는 최대할당량 (-1은 무한대) <br>  Ex) 1024M, 1G, 10G                        |X         |
+  |-n NEW_NAME                 |QUOTA명 변경시 변경할 이름                                      |X         |
+  |-r ROUTES                   |최대 라우트 수                                                 |X         |
+  |-s SERVICE_INSTANCES        |최대 서비스 인스턴스 수                                         |X         |
+  |--allow-paid-service-plans  |과금 서비스 plan 사용가능                                       |X        |
+  |--disallow-paid-service-plans  |과금 서비스 plan 사용 불가                                       |X        |
+
+  - **사용예시**
+
+  ```
+  $ cf update-quota cf-quota -m 500m -i 256m -r 2000 -s 500
+  ```
+
+
+#### shared-private-domain
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf share-private-domain <ORG> <DOMAIN>
+  ```
+
+
+  - **설명**
+
+
+  ```
+    private도메인을 다른 조직과 공유한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |QUOTA                 |QUOTA명                        |O         |
+  |DOMAIN                |도메인명                        |O         |
+
+
+  - **사용예시**
+
+  ```
+  $ cf share-private-domain cf-org sharedomain.or.kr
+  ```
+
+
+#### unshared-private-domain
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf unshare-private-domain <ORG> <DOMAIN>
+  ```
+
+
+  - **설명**
+
+
+  ```
+    다른 조직과 share한 도메인 정보를 unshare한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |ORG                   |도메인명                        |O         |
+  |DOMAIN                |도메인명                        |O         |
+
+
+  - **사용예시**
+
+  ```
+  $ cf unshare-private-domain cf-org sharedomain.or.kr
+  ```
+
+
+## SPACE ADMIN
+
+
+#### space-quotas
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf space-quotas
+  ```
+
+
+  - **설명**
+
+
+  ```
+    Space-quota정보 목록을 조회한다.
+  ```
+
+
+  - **파라미터**
+
+
+    - 없음
+
+
+  - **사용예시**
+
+  ```
+  $ cf space-quotas
+  ```
+
+
+
+#### space-quotas
+
+  - **기본 Syntax**
+
+
+  ```
+      $ cf space-quota <SPACE_QUOTA_NAME>
+  ```
+
+
+  - **설명**
+
+
+  ```
+    Space quota 상세정보를 조회한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SPACE_QUOTA_NAME       |스페이스 QUOTA명       |O         |
+
+
+  - **사용예시**
+
+  ```
+  $ cf space-quota cf-space-quota
+  ```

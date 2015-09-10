@@ -168,7 +168,7 @@
 1. [ADD/REMOVE PLUGIN REPOSITORY](#ID-ADD-REMOVE-PLUGIN-REPOSITORY)
     * [add-plugin-repo](#add-plugin-repo)
     * [remove-plugin-repo](#remove-plugin-repo)
-    * [list-plugin-repo](#list-plugin-repo)
+    * [list-plugin-repos](#list-plugin-repos)
     * [repo-plugins](#repo-plugins)
 
 1. [ADD/REMOVE PLUGIN](#ID-ADD-REMOVE-PLUGIN)
@@ -4713,8 +4713,8 @@ $cf apps
 
   | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |REPO_NAME    |Repository 명                   |X          |
-  |URL          |Repository URL                 |X          |
+  |REPO_NAME    |Repository 명                   |O          |
+  |URL          |Repository URL                 |O         |
 
 
 
@@ -4725,7 +4725,7 @@ $cf apps
   ```
 
 
-#### remove-plugin-repo
+#### $ cf list-plugin-repos
 
   - **기본 Syntax**
 
@@ -4751,7 +4751,7 @@ $cf apps
   - **사용예시**
 
   ```
-  cf list-plugin-repos
+  $cf list-plugin-repos
   ```
 
 

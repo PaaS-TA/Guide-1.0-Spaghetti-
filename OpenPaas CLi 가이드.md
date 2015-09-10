@@ -538,7 +538,7 @@ $cf apps
   | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |push하는 App명(지정하지 않으면 디렉토리명)                         |O        |
-  |-b BUILDPACK |custom빌드팩 URL <br> ex) https://github.com/heroku/heroku-buildpack-play    |X        |
+  |-b BUILDPACK |custom빌드팩 URL <br> ex) https://github.com/OpenPaaSRnD/egov-java-buildpack   |X        |
   |-c COMMAND   |App start command              |X        |
   |-d DOMAIN    |App 도메인                      |X        |
   |-f MANIFEST_PATH    |Manifest 파일 경로       |X        |

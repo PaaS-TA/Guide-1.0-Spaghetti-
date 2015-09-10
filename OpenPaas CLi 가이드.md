@@ -196,7 +196,7 @@
 ## OpenPaaS CLI기본 사용법
 
 OpenPaaS CLI : OpenPaaS를 관리하기 위한 CLI 도구
- 
+
 CLI는 OpenPaaS배포와 Release를 관리하기 위해 도움을 주는 커맨드 라인 유틸리티로 사용법은 다음과 같다.
 
 
@@ -3290,7 +3290,7 @@ $cf apps
   - **사용예시**
 
   ```
-  $ cf create-space-quota cf-space-quota -i 2G -m 10G -r 3000 -s 200
+  $ cf update-space-quota cf-space-quota -i 2G -m 10G -r 3000 -s 200
   ```
 
 

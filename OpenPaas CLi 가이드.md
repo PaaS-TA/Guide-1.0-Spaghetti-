@@ -180,7 +180,7 @@
 
 #### 문서 목적
 
-본 문서는 OpenPaaS에 대한 설치 및 운영 관리를 위한 도구인 OpenPaaS CLI에 대해 기본 사용법 및 사용 예시를 통해 OpenPaas를 이해하는데 목적이 있습니다.
+본 문서는 OpenPaaS에 대한 설치 및 운영 관리를 위한 도구인 OpenPaaS CLI에 대해 기본 사용법 및 사용 예시를 통해 OpenPaaS를 이해하는데 목적이 있습니다.
 
 #### 범위
 
@@ -195,10 +195,11 @@
 <div id='ID-OpenPaaS-CLI-USAGE'/>
 ## OpenPaaS CLI기본 사용법
 
+OpenPaaS CLI : OpenPaaS를 관리하기 위한 CLI 도구
+ 
+CLI는 OpenPaaS배포와 Release를 관리하기 위해 도움을 주는 커맨드 라인 유틸리티로 사용법은 다음과 같다.
 
-CLI는 OpenPaaS배포와 Release를 관리하기 위해 도움을 주는 커맨드 라인 유틸리티로 다음과 같다.
 
- OpenPaaS CLI : OpenPaas를 관리하기 위한 CLI 도구
 
  - **기본 Syntax**
 
@@ -230,7 +231,7 @@ $ cf login [-a API_URL] [-u USERNAME] [-p PASSWORD] [-o ORG] [-s SPACE]
 
 
 ```
-OpenPaas에게 로그인 하기 위한 명령어
+OpenPaaS에게 로그인 하기 위한 명령어
 ```
 
 
@@ -238,11 +239,11 @@ OpenPaas에게 로그인 하기 위한 명령어
 
 | 파라미터명   |           설명                 | 필수(O/X) |
 |-------------|-----------------------------|-----------|
-|-a API_URL    |CLI가 접속 하려는 OpenPaas  URL<br>Ex) https://api.10.244.0.34.xip.io    |X        |
-|-u USERNAMEL  |OpenPaas에 접속하는 사용자 id               |X        |
-|-p PASSWORD   |OpenPaas에 접속하는 사용자 password         |X        |
-|-o ORG        |OpenPaas에 접속하는 사용자의 소속조직 명      |X        |
-|-s SPACE      |OpenPaas에 접속하는 사용자의 소속조직 스페이스직 명      |X        |
+|-a API_URL    |CLI가 접속 하려는 OpenPaaS  URL<br>Ex) https://api.10.244.0.34.xip.io    |X        |
+|-u USERNAMEL  |OpenPaaS에 접속하는 사용자 id               |X        |
+|-p PASSWORD   |OpenPaaS에 접속하는 사용자 password         |X        |
+|-o ORG        |OpenPaaS에 접속하는 사용자의 소속조직 명      |X        |
+|-s SPACE      |OpenPaaS에 접속하는 사용자의 소속조직 스페이스직 명      |X        |
 
 
 - **사용예시**
@@ -322,7 +323,7 @@ $ cf passwd
 
 
 ```
-OpenPaas 사용자계정의 패스워드를 변경한다.
+OpenPaaS 사용자계정의 패스워드를 변경한다.
 ```
 
 
@@ -432,7 +433,7 @@ $ cf auth <USERNAME> <PASSWORD>
 
 
 ```
-OpenPaas login시 로그인만 되며 스페이스, 타겟은 지정되지 않는다.
+OpenPaaS login시 로그인만 되며 스페이스, 타겟은 지정되지 않는다.
 ```
 
 
@@ -527,7 +528,7 @@ $cf apps
 
 
   ```
-  App을 OpenPaas에 배포 하고 app을 Start한다.
+  App을 OpenPaaS에 배포 하고 app을 Start한다.
   ```
 
 
@@ -4561,7 +4562,7 @@ $cf apps
 
 
   ```
-  OpenPaas CLI명령어가 아닌 OpenPaas API를 호출한다.
+  OpenPaaS CLI명령어가 아닌 OpenPaaS API를 호출한다.
   ```
 
 
@@ -4669,7 +4670,7 @@ $cf apps
 
 
   ```
-  OpenPaas CLI plugin repository(저장소)를 추가한다.
+  OpenPaaS CLI plugin repository(저장소)를 추가한다.
   ```
 
 

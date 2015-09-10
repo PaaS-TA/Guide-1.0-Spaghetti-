@@ -4725,7 +4725,7 @@ $cf apps
   ```
 
 
-#### $ cf list-plugin-repos
+#### list-plugin-repos
 
   - **기본 Syntax**
 

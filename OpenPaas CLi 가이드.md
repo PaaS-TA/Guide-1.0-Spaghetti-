@@ -3,6 +3,11 @@
      * [문서 목적](#문서-목적)
      * [범위](#범위)
      * [참고 자료](#참고-자료)
+2. [OpenPaaS CLI기본 사용법](#OpenPaaS CLI기본-사용법)
+3. [GETTING STARTED](#GETTING-STARTED)
+     * [login](#login)
+4. [APPS](#APPS)
+
 
 ## 개요
 ---

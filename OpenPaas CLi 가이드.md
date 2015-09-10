@@ -130,7 +130,7 @@
     * [delete-service-broker](#delete-service-broker)
     * [rename-service-broker](#rename-service-broker)
     * [migrate-service-broker](#migrate-service-broker)
-    * [purge-service-broker](#purge-service-broker)
+    * [purge-service-offering](#purge-service-offering)
     * [service-access](#service-access)
     * [enable-service-access](#enable-service-access)
     * [disable-service-access](#disable-service-access)
@@ -165,6 +165,15 @@
     * [config](#config)
     * [oauth-token](#oauth-token)
 
+1. [ADD/REMOVE PLUGIN REPOSITORY](#ID-ADD/REMOVE-PLUGIN-REPOSITORY)
+    * [add-plugin-repo](#add-plugin-repo)
+    * [remove-plugin-repo](#remove-plugin-repo)
+    * [list-plugin-repo](#list-plugin-repo)
+    * [repo-plugins](#repo-plugins)
+
+1. [ADD/REMOVE PLUGIN](#ID-ADD/REMOVE-PLUGIN)
+    * [plugins](#plugins)
+    * [install-plugin](#install-plugin)
 
 ## 개요
 ---
@@ -4642,7 +4651,7 @@ $cf apps
   $cf oauth-token
   ```
 
-
+<div id='ID-ADD/REMOVE-PLUGIN-REPOSITORY/>
 ## ADD/REMOVE PLUGIN REPOSITORY
 
 
@@ -4779,7 +4788,7 @@ $cf apps
   $ cf repo-plugins
   ```
 
-
+<div id='ID-ADD/REMOVE-PLUGIN/>
 ## ADD/REMOVE PLUGIN
 
 

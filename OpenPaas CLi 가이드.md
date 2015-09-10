@@ -2668,7 +2668,7 @@ $cf apps
 
 
   ```
-  $ cf org-users cforg
+  $ cf org-users <ORG_NAME>
   ```
 
 

@@ -209,7 +209,7 @@ cf [global options] command <arguments...> [command options]
  ```
 
 
-OpenPaaS 명령어에 대괄호로 묶인 인자인 <arguments> [command options]은 명령어에 따라 선택적으로 사용되고, command  <arguments> 인자는 필수 인자이다. OpenPaaS 운영 및 관리하기 위한 도구인 OpenPaaS CLI 아래와 같은 명령어들을 제공하고 있다.
+OpenPaaS 명령어에 대괄호로 묶인 인자인 `<arguments>` [command options]은 명령어에 따라 선택적으로 사용되고, command  <arguments> 인자는 필수 인자이다. OpenPaaS 운영 및 관리하기 위한 도구인 OpenPaaS CLI 아래와 같은 명령어들을 제공하고 있다.
 
 
 <div id='ID-GETTING-STARTED'/>

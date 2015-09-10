@@ -31,7 +31,7 @@ CLI는 OpenPaas배포와 Release를 관리하기 위해 도움을 주는 커맨�
 
 
  ```
-    cf [global options] command <arguments...> [command options]
+cf [global options] command <arguments...> [command options]
  ```
 
 
@@ -47,7 +47,7 @@ cf 명령어에 대괄호로 묶인 인자인 <arguments>과 [command options]�
 
 
 ```
-    $ cf login [-a API_URL] [-u USERNAME] [-p PASSWORD] [-o ORG] [-s SPACE]
+$ cf login [-a API_URL] [-u USERNAME] [-p PASSWORD] [-o ORG] [-s SPACE]
 ```
 
 
@@ -55,7 +55,7 @@ cf 명령어에 대괄호로 묶인 인자인 <arguments>과 [command options]�
 
 
 ```
-  OpenPaas에게 로그인 하기 위한 명령어
+OpenPaas에게 로그인 하기 위한 명령어
 ```
 
 
@@ -109,7 +109,7 @@ Space:          development
 
 
 ```
-    $ cf logout
+$ cf logout
 ```
 
 
@@ -117,7 +117,7 @@ Space:          development
 
 
 ```
-  cf에서 logout한다.
+cf에서 logout한다.
 ```
 
 
@@ -138,7 +138,7 @@ $ cf logout
 
 
 ```
-    $ cf passwd
+$ cf passwd
 ```
 
 
@@ -147,7 +147,7 @@ $ cf logout
 
 
 ```
-  OpenPaas 사용자계정의 패스워드를 변경한다.
+OpenPaas 사용자계정의 패스워드를 변경한다.
 ```
 
 
@@ -292,7 +292,7 @@ $cf apps
 
 
 ```
-  타겟 스페이스에 App 목록을 조회한다.
+타겟 스페이스에 App 목록을 조회한다.
 ```
 
 
@@ -3438,13 +3438,14 @@ $cf apps
   $ cf migrate-service-instances p-mysql mysql-provider silver  postgres silver
   ```
 
+
 #### purge-service-offering
 
   - **기본 Syntax**
 
 
   ```
-      $ cf purge-service-offering <SERVICE> [-p PROVIDER]
+  $ cf purge-service-offering <SERVICE> [-p PROVIDER]
   ```
 
 
@@ -3472,4 +3473,1069 @@ $cf apps
 
   ```
   $ cf purge-service-offering
+  ```
+
+
+#### service-access
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf service-access
+  ```
+
+
+  - **설명**
+
+
+  ```
+  서비스 access 될 서비스 목록 조회한다..
+  ```
+
+
+
+  - **파라미터**
+
+
+     - 없음
+
+
+  - **사용예시**
+
+  ```
+  $ cf service-access
+  ```
+
+
+#### enable-service-access
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf enable-service-access <SERVICE> [-p PLAN] [-o ORG]
+  ```
+
+
+  - **설명**
+
+
+  ```
+  조직 또는 서비스 plan을 서비스에 접근 가능하도록 설정한다.
+  ```
+
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SERVICE      |서비스 명                        |O          |
+  |-p PLAN      |PLAN명                          |O          |
+  |-o ORG       |조직명                           |O          |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf enable-service-access mysql -p silver -o cf-org
+  ```
+
+
+#### disable-service-access
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf disable-service-access <SERVICE> [-p PLAN] [-o ORG]
+  ```
+
+
+  - **설명**
+
+
+  ```
+  조직 또는 서비스 plan을 서비스에 접근 불가 하도록 설정한다.
+  ```
+
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SERVICE      |서비스 명                        |O          |
+  |-p PLAN      |PLAN명                          |O          |
+  |-o ORG       |조직명                           |O          |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf disable-service-access mysql -p silver -o cf-org
+  ```
+
+## SECURITY GROUP
+
+
+#### security-group
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf security-group <SECURITY_GROUP>
+  ```
+
+
+  - **설명**
+
+
+  ```
+  시큐리티 그룹 상세정보를 조회한다.
+  ```
+
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SECURITY_GROUP      |서큐리티 그룹명                        |O          |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf security-group cf-security-group
+  ```
+
+
+#### security-groups
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf security-groups
+  ```
+
+
+  - **설명**
+
+
+  ```
+  시큐리티 그룹 목록을 조회한다.
+  ```
+
+
+  - **파라미터**
+
+
+    - 없음
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf security-groups
+  ```
+
+
+#### create-security-group
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf create-security-group <SECURITY_GROUP> <PATH_TO_JSON_RULES_FILE>
+  ```
+
+
+  - **설명**
+
+
+  ```
+  시큐리티 그룹정보를 생성한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SECURITY_GROUP      |서큐리티 그룹명                                           |O          |
+  |PATH_TO_JSON_RULES_FILE      |시큐리티 룰을 명세한 JSON 파일의 경로 및 파일명     |O          |
+
+
+  - **사용예시**
+
+  ```
+  $ cf create-security-group cf-security-group ./rule.json
+  ```
+
+
+#### update-security-group
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf update-security-group <SECURITY_GROUP> <PATH_TO_JSON_RULES_FILE>
+  ```
+
+
+  - **설명**
+
+
+  ```
+  시큐리티 그룹정보를 수정한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SECURITY_GROUP      |서큐리티 그룹명                                           |O          |
+  |PATH_TO_JSON_RULES_FILE      |시큐리티 룰을 명세한 JSON 파일의 경로 및 파일명     |O          |
+
+
+  - **사용예시**
+
+  ```
+  $ cf update-security-group cf-security-group ./rule.json
+  ```
+
+
+#### delete-security-group
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf delete-security-group <SECURITY_GROUP> [-f]
+  ```
+
+
+  - **설명**
+
+
+  ```
+  시큐리티 그룹정보를 삭제한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SECURITY_GROUP  |서큐리티 그룹명                                    |O          |
+  |-f              |삭제 확인메시지 없이 시큐리지 그룹 정보를 삭제한다.    |X          |
+
+
+  - **사용예시**
+
+  ```
+  $ cf update-security-group cf-security-group ./rule.json
+  ```
+
+
+#### bind-security-group
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf bind-security-group <SECURITY_GROUP> <ORG> <SPACE>
+  ```
+
+
+  - **설명**
+
+
+  ```
+  시큐리티 그룹 정보와 스페이스를 바인드 한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SECURITY_GROUP  |서큐리티 그룹명                |O          |
+  |ORG             |조직명                        |O          |
+  |SPACE           |스페이스명                    |O         |
+
+
+  - **사용예시**
+
+  ```
+  $ cf update-security-group cf-security-group ./rule.json
+  ```
+
+
+#### unbind-security-group
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf unbind-security-group <SECURITY_GROUP> <ORG> <SPACE>
+  ```
+
+
+  - **설명**
+
+
+  ```
+  시큐리티 그룹 정보와 스페이스를 언바인드 한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SECURITY_GROUP  |서큐리티 그룹명                |O          |
+  |ORG             |조직명                        |O          |
+  |SPACE           |스페이스명                     |O          |
+
+
+  - **사용예시**
+
+  ```
+  $ cf unbind-security-group cf-security-group cf-group development
+  ```
+
+
+#### bind-staging-security-group
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf bind-staging-security-group <SECURITY_GROUP>
+  ```
+
+
+  - **설명**
+
+
+  ```
+  App staging처리를 하기 위해 시큐리티 그룹을 설정한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SECURITY_GROUP  |서큐리티 그룹명                |O          |
+
+
+  - **사용예시**
+
+  ```
+  $ cf bind-staging-security-group cf-security-group
+  ```
+
+
+#### staging-security-groups
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf staging-security-groups
+  ```
+
+
+  - **설명**
+
+
+  ```
+  Staging security group 정보 목록을 조회한다.
+  ```
+
+
+  - **파라미터**
+
+    - 없음
+
+
+  - **사용예시**
+
+  ```
+  $ cf staging-security-groups
+  ```
+
+
+#### unbind-staging-security-group
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf unbind-staging-security-group <SECURITY_GROUP>
+  ```
+
+
+  - **설명**
+
+
+  ```
+  App staging처리를 하기 위한 시큐리티 그룹을 설정을 해제 한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SECURITY_GROUP  |서큐리티 그룹명                |O          |
+
+
+  - **사용예시**
+
+  ```
+  $ cf unbind-staging-security-group cf-security-group
+  ```
+
+
+#### running-security-groups
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf unbind-staging-security-group <SECURITY_GROUP>
+  ```
+
+
+  - **설명**
+
+
+  ```
+  실행중인 시큐리트 그룹 목록을 조회한다.
+  ```
+
+
+  - **파라미터**
+
+    - 없음
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf unbind-staging-security-group cf-security-group
+  ```
+
+
+## NVIRONMENT VARIABLE GROUPS
+
+
+#### running-environment-variable-group,revg
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf running-environment-variable-group
+  ```
+
+
+  - **설명**
+
+
+  ```
+  실환경변수 내용을 조회한다.
+  ```
+
+
+  - **파라미터**
+
+    - 없음
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf running-environment-variable-group
+  ```
+
+
+#### staging-environment-variable-group,sevg
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf staging-environment-variable-group
+  ```
+
+
+  - **설명**
+
+
+  ```
+  스테이징시 사용되는 환경변수 내용을 조회한다.
+  ```
+
+
+  - **파라미터**
+
+    - 없음
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf staging-environment-variable-group
+  ```
+
+
+
+
+#### set-staging-environment-variable-group,ssevg
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf set-staging-environment-variable-group <ENV_VARIABLE>
+  ```
+
+
+  - **설명**
+
+
+  ```
+  스테이징시 사용되는 환경변수 내용을 설정한다
+  ```
+
+
+  - **파라미터**
+
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |ENV_VARIABLE  |환경변수 내용으로 KEY/VALUE로 구성된다.                |O          |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf set-staging-environment-variable-group '{"name":"value","name":"value"}'
+  ```
+
+
+#### set-running-environment-variable-group,ssevg
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf set-running-environment-variable-group <ENV_VARIABLE>
+  ```
+
+
+  - **설명**
+
+
+  ```
+  환경변수 내용을 설정 한다.
+  ```
+
+
+  - **파라미터**
+
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |ENV_VARIABLE  |환경변수 내용으로 KEY/VALUE로 구성된다.                |O          |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf set-running-environment-variable-group '{"name":"value","name":"value"}'
+  ```
+
+
+## FEATURE FLAGS
+
+#### feature-flags
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf feature-flags
+  ```
+
+
+  - **설명**
+
+
+  ```
+  feature flags 목록을 조회한다.
+  ```
+
+
+  - **파라미터**
+
+    - 없음
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf feature-flags
+  ```
+
+
+#### feature-flag
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf feature-flag <FEATURE_NAME>
+  ```
+
+
+  - **설명**
+
+
+  ```
+  특정 Feature flag의 상태를 조회한다.
+  ```
+
+
+  - **파라미터**
+
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |FEATURE_NAME  |Feature flag 명. <br> - feature flag에는 6가지가 있다. <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf feature-flag app_bits_upload
+  ```
+
+
+#### enable-feature-flag
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf enable-feature-flag <FEATURE_NAME>
+  ```
+
+
+  - **설명**
+
+
+  ```
+  특정 Feature flag의 상태를 enable로 변경한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |FEATURE_NAME  |Feature flag 명. <br> - feature flag에는 6가지가 있다. <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf enable-feature-flag app_bits_upload
+  ```
+
+
+#### disable-feature-flag
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf disable-feature-flag <FEATURE_NAME>
+  ```
+
+
+  - **설명**
+
+
+  ```
+  특정 Feature flag의 상태를 disable로 변경한다.
+  ```
+
+
+  - **파라미터**
+
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |FEATURE_NAME  |Feature flag 명. <br> - feature flag에는 6가지가 있다. <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf disable-feature-flag app_bits_upload
+  ```
+
+
+## ADVANCE
+
+
+#### curl
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf curl <PATH> [-i] [-v] [-X METHOD] [-H HEADER] [-d DATA] [--output FILE]
+  ```
+
+
+  - **설명**
+
+
+  ```
+  OpenPaas CLI명령어가 아닌 OpenPaas API를 호출한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |PATH         |Cf api path <br>  Ex) /v2/spaces/2d94e7ee-9805-408d-a1eb-ceac319e603b/summary             |O          |
+  |-i           |Response header포함한 결과                                                                  |X          |
+  |-v           |Request/response에 CF_TRACE enable된 내용 포함                                              |X          |
+  |-X METHOD    |HTTP method((GET,POST,PUT,DELETE,etc)                                                      |X          |
+  |-H HEADER    |Request에 Custom Header를 포함한다.                                                         |X          |
+  |-d DATA      |Request에 Http data를 포함한다.                                                             |X          |
+  |--output FILE |Response결과를 stdout대신 FILE로 결과 저장                                                  |X          |
+
+
+  - **사용예시**
+
+  ```
+  $ cf curl /v2/spaces/2d94e7ee-9805-408d-a1eb-ceac319e603b/summar
+  ```
+
+
+#### config
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf config [--async-timeout TIMEOUT_IN_MINUTES] [--trace true | false | path/to/file] [--color true | false] [--locale (LOCALE | CLEAR)]
+  ```
+
+
+  - **설명**
+
+
+  ```
+  CF CLI에 대한 설정.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |--async-timeout TIMEOUT_IN_MINUTES        |CLI 명령 전송시 async timeout 설정                     |X          |
+  |--trace (true / false / path/to/file   )    |CLI 명령 수행시 실행되는 cf api의 내용 출력 설정         |X          |
+  |--color true / false                      |CLI 명령 수행시 실행되는 cf api의 내용 color 설정        |X          |
+  |--locale (LOCALE / CLEAR)                 |CLI 명령 수행시 실행되는 cf api의 내용 locale 설정       |X          |
+
+
+  - **사용예시**
+
+  ```
+  $ cf curl /v2/spaces/2d94e7ee-9805-408d-a1eb-ceac319e603b/summar
+  ```
+
+#### oauth-token
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf oauth-token
+  ```
+
+
+  - **설명**
+
+
+  ```
+  사용자가 cf login후 CF에서 받은 token 값 조회한다.
+  ```
+
+
+  - **파라미터**
+
+    - 없음
+
+
+
+  - **사용예시**
+
+  ```
+  $cf oauth-token
+  ```
+
+
+## ADD/REMOVE PLUGIN REPOSITORY
+
+
+#### add-plugin-repo
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf add-plugin-repo <REPO_NAME> <URL>
+  ```
+
+
+  - **설명**
+
+
+  ```
+  OpenPaas CLI plugin repository(저장소)를 추가한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |REPO_NAME    |Repository 명                   |X          |
+  |URL          |Repository URL                 |X          |
+
+
+
+  - **사용예시**
+
+  ```
+  cf add-plugin-repo Diego-SSH http://plugins.cloudfoundry.org
+  ```
+
+
+#### remove-plugin-repo
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf remove-plugin-repo <REPO_NAME> <URL>
+  ```
+
+
+  - **설명**
+
+
+  ```
+  CLI plugin repository(저장소)를 삭제한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |REPO_NAME    |Repository 명                   |X          |
+  |URL          |Repository URL                 |X          |
+
+
+
+  - **사용예시**
+
+  ```
+  cf remove-plugin-repo Diego-SSH http://plugins.cloudfoundry.org
+  ```
+
+
+#### remove-plugin-repo
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf list-plugin-repos
+  ```
+
+
+  - **설명**
+
+
+  ```
+  CLI에 추가된 plugin repository(저장소)목록을 조회한다.
+  ```
+
+
+  - **파라미터**
+
+    - 없음
+
+
+  - **사용예시**
+
+  ```
+  cf list-plugin-repos
+  ```
+
+
+#### repo-plugins
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf repo-plugins [-r REPO_NAME]
+  ```
+
+
+  - **설명**
+
+
+  ```
+  Repository에 있는 플러그인 목록을 조회한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |REPO_NAME    |Repository 명                   |X          |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf repo-plugins
+  ```
+
+
+## ADD/REMOVE PLUGIN
+
+
+#### plugins
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf plugins
+  ```
+
+
+  - **설명**
+
+
+  ```
+  추가된 plugin의 사용가능한 명령어 목록을 조회한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |REPO_NAME    |Repository 명                   |X          |
+
+
+
+  - **사용예시**
+
+  ```
+  $ cf repo-plugins
+  ```
+
+
+
+#### install-plugin
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf install-plugin < URL or LOCAL-PATH/TO/PLUGIN> [-r REPO_NAME]
+  ```
+
+
+  - **설명**
+
+
+  ```
+  추가된 plugin의 사용가능한 명령어 목록을 조회한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |URL or LOCAL-PATH/TO/PLUGIN   |Plugin URL 또는 로컬경로 또는 repository에 있는 플러그인명                |X          |
+  |-r REPO_NAME                  |Plugin repository명                                                   |X          |
+
+
+  - **사용예시**
+
+  ```
+  $cf install-plugin 'Usage Report' -r CF-Community
   ```

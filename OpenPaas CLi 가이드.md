@@ -3086,7 +3086,7 @@ $cf apps
 
 
   ```
-  $ cf share-private-domain <ORG> <DOMAIN>
+  $ cf shared-private-domain <ORG> <DOMAIN>
   ```
 
 
@@ -3110,7 +3110,7 @@ $cf apps
   - **사용예시**
 
   ```
-  $ cf share-private-domain cf-org sharedomain.or.kr
+  $ cf shared-private-domain cf-org sharedomain.or.kr
   ```
 
 
@@ -3120,7 +3120,7 @@ $cf apps
 
 
   ```
-  $ cf unshare-private-domain <ORG> <DOMAIN>
+  $ cf unshared-private-domain <ORG> <DOMAIN>
   ```
 
 
@@ -3144,7 +3144,7 @@ $cf apps
   - **사용예시**
 
   ```
-  $ cf unshare-private-domain cf-org sharedomain.or.kr
+  $ cf unshared-private-domain cf-org sharedomain.or.kr
   ```
 
 <div id='ID-SPACE-ADMIN'/>
@@ -3395,7 +3395,7 @@ $cf apps
   - **사용예시**
 
   ```
-  $ cf set-space-quota development cf-space-quota
+  $ cf unset-space-quota development cf-space-quota
   ```
 
 <div id='ID-SERVICE-ADMIN'/>

@@ -3,10 +3,10 @@
      * [문서 목적](#문서-목적)
      * [범위](#범위)
      * [참고 자료](#참고-자료)
-     
-2. [OpenPaaS CLI기본 사용법](#ID-OpenPaaS-CLI-USAGE)
 
-3. [GETTING STARTED](#ID-GETTING-STARTED)
+1. [OpenPaaS CLI기본 사용법](#ID-OpenPaaS-CLI-USAGE)
+
+1. [GETTING STARTED](#ID-GETTING-STARTED)
      * [login](#login)
      * [logout](#logout)
      * [passwd](#passwd)
@@ -14,12 +14,49 @@
      * [api](#api)
      * [auth](#auth)
 
-4. [APPS](#APPS)
+1. [APPS](#ID-APPS)
      * [apps](#apps)
      * [app](#app)
      * [push,p](#push,p)
+     * [scale](#scale)
+     * [delete](#delete)
+     * [rename](#rename)
+     * [start,st](#start-st)
+     * [stop,sp](#stop-sp)
+     * [restart](#restart)
+     * [restage](#restage)
+     * [restart-app-instance](#restart-app-instance)
+     * [events](#events)
+     * [files](#files)
+     * [logs](#logs)
+     * [env,e](#env-e)
+     * [set-env,se](#set-env-se)
+     * [unset-env](#unset-env)
+     * [stacks](#stacks)
+     * [stack](#stack)
+     * [copy-source](#copy-source)
+     * [create-app-manifest](#create-app-manifest)
 
-4. [APPS](#apps)
+1. [SERVICES](#ID-SERVICES)
+    * [marketplace,m](#marketplace-m)
+    * [services,s](#services-s)
+    * [service](#service)
+    * [create-service](#create-service)
+    * [update-service](#update-service)
+    * [delete-service](#delete-service)
+    * [rename-service](#rename-service)
+    * [create-service-key,csk](#create-service-key-csk)
+    * [service-keys,sk](#service-keys-sk)
+    * [service-key](#service-key)
+    * [delete-service-key,dsk](#delete-service-key-dsk)
+    * [bind-service,bs](#bind-service-bs)
+    * [unbind-service,us](#unbind-service-us)
+    * [create-user-provided-service,cups](#create-user-provided-service-cups)
+    * [update-user-provided-service,cups](#update-user-provided-service-uups)
+
+
+
+
 
 
 ## 개요
@@ -297,7 +334,7 @@ OpenPaas login시 로그인만 되며 스페이스, 타겟은 지정되지 않�
 ```
 $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 ```
-
+<div id='ID-APPS'/>
 ## APPS
 
 
@@ -512,7 +549,7 @@ $cf apps
   $  cf rename spring-music new-spring-music
   ```
 
-
+<div id='start-st'/>
 #### start,st
 
   - **기본 Syntax**
@@ -544,7 +581,7 @@ $cf apps
   ```
   $  cf start spring-music
   ```
-
+<div id='stop-sp'/>
 #### stop,sp
 
   - **기본 Syntax**
@@ -771,7 +808,7 @@ $cf apps
   ```
   $  cf logs spring-music
   ```
-
+<div id='env-e'/>
 #### env,e
 
   - **기본 Syntax**
@@ -802,6 +839,43 @@ $cf apps
   ```
   $ cf env spring-music
   ```
+
+<div id='set-env-se'/>
+#### set-env,se
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf set-env <APP_NAME> <ENV_VAR_NAME> <ENV_VAR_VALUE>
+  ```
+
+
+  - **설명**
+
+
+  ```
+  App의 환경변수를 설정한다. (적용시 restage필요)
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |APP_NAME     |APP명                           |O        |
+  |ENV_VAR_NAME |App의 환경변수 Key               |O        |
+  |ENV_VAR_VALUE|App의 환경변수 Value               |O        |
+
+
+  - **사용예시**
+
+  ```
+  $ cf se spring-music author Jim
+  ```
+
+
 
 #### unset-env
 
@@ -966,11 +1040,11 @@ $cf apps
   $  cf create-app-manifest spring-music -p ./spring-music-manifest.yml
   ```
 
-
+<div id='ID-SERVICES'/>
 ## SERVICES
 
-
-#### marketplace,mt
+<div id='marketplace-m'/>
+#### marketplace,m
 
   - **기본 Syntax**
 
@@ -1001,7 +1075,7 @@ $cf apps
   ```
   $  cf create-app-manifest spring-music -p ./spring-music-manifest.yml
   ```
-
+<div id='services-s'/>
 #### services,s
 
   - **기본 Syntax**
@@ -1201,7 +1275,7 @@ $cf apps
   $ cf rename-service spring-music-db new_spring-music-db
   ```
 
-
+<div id='create-service-key-csk'/>
 #### create-service-key,csk
 
   - **기본 Syntax**
@@ -1236,6 +1310,7 @@ $cf apps
   $ cf create-service-key spring-music-db mykey -c '{"permissions":"read-only"}'
   ```
 
+<div id='service-keys-sk'/>
 #### service-keys,sk
 
   - **기본 Syntax**
@@ -1303,7 +1378,7 @@ $cf apps
   $ cf service-key spring-music-db mykey
   ```
 
-
+<div id='delete-service-key-dsk'/>
 #### delete-service-key,dsk
 
   - **기본 Syntax**
@@ -1339,7 +1414,7 @@ $cf apps
   $ cf delete-service-key spring-music-db mykey
   ```
 
-
+<div id='bind-service-bs'/>
 #### bind-service,bs
 
   - **기본 Syntax**
@@ -1377,7 +1452,7 @@ $cf apps
   $ cf bind-service spring-music spring-music-db -c ~/workspace/tmp/instance_config.json
   ```
 
-
+<div id='unbind-service-us'/>
 #### unbind-service,us
 
   - **기본 Syntax**
@@ -1412,8 +1487,8 @@ $cf apps
   $ cf unbind-service spring-music spring-music-db
   ```
 
-
-#### create-user-provided-service, cups
+<div id='create-user-provided-service-cups'/>
+#### create-user-provided-service,cups
 
   - **기본 Syntax**
 
@@ -1447,6 +1522,109 @@ $cf apps
   $ cf create-user-provided-service spring-music-db -p '{"username":"admin","password":"pa55woRD"}'
   ```
 
+<div id='update-user-provided-service-uups'/>
+#### update-user-provided-service,uups
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf update-user-provided-service <SERVICE_INSTANCE> [-p CREDENTIALS] [-l SYSLOG-DRAIN-URL]
+  ```
+
+
+  - **설명**
+
+
+  ```
+  user-provided service instance 정보를 수정한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |SERVICE_INSTANCE          |서비스 인스턴스명                            |O        |
+  |-p CREDENTIALS            |서비스 인스턴스 명                           |X        |
+  |-l SYSLOG-DRAIN-URL       |서비스 인스턴스 명                           |X        |
+
+
+  - **사용예시**
+
+  ```
+  $  cf update-user-provided-service spring-music-db -p '{"username":"admin","password":"pa55woRD"}'
+  ```
+
+## ORGS
+
+
+
+#### orgs,o
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf orgs
+  ```
+
+
+  - **설명**
+
+
+  ```
+  조직정보 목록을 조회한다...
+  ```
+
+
+  - **파라미터**
+
+   - 없음
+
+
+  - **사용예시**
+
+  ```
+  $ cf orgs
+  ```
+
+
+
+#### org
+
+  - **기본 Syntax**
+
+
+  ```
+  $ cf org <ORG_NAME>
+  ```
+
+
+  - **설명**
+
+
+  ```
+  조직 상세 정보를 조회한다.
+  ```
+
+
+  - **파라미터**
+
+
+  | 파라미터명   |           설명                 | 필수(O/X) |
+  |-------------|--------------------------------|-----------|
+  |ORG_NAME      |조직명                         |O        |
+  |--guid       |조직의 guid를 조회한다.           |X        |
+
+
+  - **사용예시**
+
+  ```
+  $ cf org cf
+  ```
+
 
 
 #### create-org,co
@@ -1463,7 +1641,7 @@ $cf apps
 
 
   ```
-    조직정보를 생성한다.
+  조직정보를 생성한다.
   ```
 
 

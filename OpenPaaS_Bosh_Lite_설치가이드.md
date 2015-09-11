@@ -4,19 +4,29 @@
      * [범위](#범위)
      * [참고자료](#참고자료)
 2. [BOSH Lite 설치](#bosh-lite-설치)
-     * [목적](#목적)
-     * [범위](#범위)
-     * [참고자료](#참고자료)
-3. [OpenPaaS Container 설치와 배포 및 설정](#OpenPaaS-Container-설치와-배포-및-설정)
-     * [목적](#목적)
-     * [범위](#범위)
-     * [참고자료](#참고자료)
+     * [설치전 준비사항](#설치전-준비사항)
+     * [OpenPaaS 설치패키지 다운로드](#openpaas-설치패키지-다운로드)
+     * [RUBY 설치](#ruby-설치)
+     * [BOSH CLI 설치](#bosh-cli-설치)
+     * [Virtualbox 및 Vagrant 설치](#virtualbox-및-vagrant-설치)
+     * [BOSH Lite 설치](#bosh-lite-설치)
+     * [로컬 가상머신의 IP 변경](#로컬-가상머신의-ip-변경)
+     * [BOSH Lite 설치 Troubleshooting](#bosh-lite-설치-troubleshooting)
+3. [OpenPaaS Container 설치와 배포 및 설정](#openpaas-container-설치와-배포-및-설정)
+     * [OpenPaaS Release 업로드](#openpaas-release-업로드)
+     * [OpenPaaS Container Release 업로드](#openpaas-container-release-업로드)
+     * [BOSH Stemcell 업로드](#bosh-stemcell-업로드)
+     * [OpenPaaS Release 배포](#openpaas-release-배포)
+     * [OpenPaaS Container Release 배포](#openpaas-container-release-배포)
+     * [OpenPaaS 로그인](#openpaas-로그인)
+     * [배포한 OpenPaaS Container 설정](#배포한-openpaas-container-설정)
+     * [OpenPaaS Container 설정 Troubleshooting](#openpaas-container-설정-troubleshooting)
 
 
 # 개요
 
 
-##	목적 
+###	목적 
         
 
 클라우드 환경에 서비스 시스템을 배포할 수 있는 BOSH는 릴리즈 엔지니어링, 개발, 소프트웨어 라이프사이클 관리를 통합한 오픈소스 프로젝트이다. 특히,
@@ -24,12 +34,12 @@ BOSH Lite는 사용자가 BOSH를 실제 환경에 도입하기 전에 로컬 �
 BOSH Lite를 설치하고, BOSH 기능을 테스트 할 수 있는 환경을 구축하는 것이 목표이다.
 
 
-## 범위 
+### 범위 
     
 가이드 범위는 BOSH Lite 설치하고, 설치한 BOSH Lite에 Warden OpenPaaS를 릴리즈하는 것까지 기술하였다.
 
 
-## 참고자료 
+### 참고자료 
     
 
 본 문서는 Cloud Foundry의 BOSH Document를 참고하여 작성하였다.
@@ -44,7 +54,7 @@ OpenPaaS Container 배포:
 # BOSH Lite 설치 
 
 
-##    1.  ***설치전 준비사항*** 
+### 설치전 준비사항 
         
 
 본 설치 가이드는 Linux(Ubuntu 14.04 64bit) 환경에서 설치하는 것을 기준으로 하였다. BOSH Lite는 Ruby언어로 되었기 때문에 BOSH Lite를
@@ -66,7 +76,7 @@ Virtualbox와 Vagrant를 설치해야 한다.
 -   위의 조건을 충족하는 Linux 또는 OSX 환경 (BOSH는 Window 환경을
     지원하지 않는다. 참조:[https://github.com/cloudfoundry-community/bosh-lite-demo](https://github.com/cloudfoundry-community/bosh-lite-demo))
 
-## 2.  ***OpenPaaS******설치패키지 다운로드*** 
+### OpenPaaS 설치패키지 다운로드 
 
 OpenPaaS 설치패키지를 다운받아 다운로드한 디렉토리에 압축해제 한다.
 
@@ -88,7 +98,7 @@ OpenPaaS 설치패키지를 다운받아 다운로드한 디렉토리에 압축�
   		$ unzip <다운로드 디렉토리>/<사이트에서 내려받은 OpenPaaS 설치패키지>.zip
 
 
-## 3.	***RUBY*** ***설치***
+### RUBY 설치
     
 Ruby 설치 절차는 다음과 같다.
 
@@ -188,7 +198,7 @@ Ruby 설치 절차는 다음과 같다.
   
 		$ ruby -v
 
-## 4.  ***BOSH CLI 설치*** 
+### BOSH CLI 설치 
   
 BOSH CLI의 설치 절차는 다음과 같다.
 
@@ -224,7 +234,7 @@ BOSH CLI의 설치 절차는 다음과 같다.
 		$ bosh
 
 
-## 5.  ***Virtualbox 및 Vagrant 설치***
+### Virtualbox 및 Vagrant 설치
    
 
 BOSH Lite는 가상 환경 구축을 위해 Vagrant를 사용한다. Vagrant는 완벽한 가상 개발 환경을 구축해 주는 오픈 소스이다. 또한 BOSH Lite는 가상 환경으로 Virtualbox를 사용한다.
@@ -274,7 +284,7 @@ BOSH Lite는 가상 환경 구축을 위해 Vagrant를 사용한다. Vagrant는 
 
 		$ vagrant --version
 
-## 6.  ***BOSH Lite 설치***
+### BOSH Lite 설치
 
 BOSH Lite를 설치하는 절차는 다음과 같다.
 
@@ -476,7 +486,7 @@ BOSH Lite를 설치하는 절차는 다음과 같다.
 		$ sudo chown -hR vcap:vcap /vagrant
 
 
-## 7.  ***로컬 가상머신의 IP 변경*** 
+### 로컬 가상머신의 IP 변경 
 
 설치한 가상머신는 IP가 192.168.50.4로 고정되어 있다. 만일 해당 IP를 변경하고 싶다면 vagrant up을 실행하기 전에 Vagrantfile을 수정해야 한다.
 수정할 곳은 붉은 표시가 된 곳의 주석을 삭제하고 바꾸고자 하는 IP주소로 변경하면 된다. 또한 route를 추가 할 때 필요한 add-route도 수정해야 한다.
@@ -530,7 +540,7 @@ BOSH Lite를 설치하는 절차는 다음과 같다.
 		fi
   
 
-## 8.  ***BOSH Lite 설치 Troubleshooting*** 
+### BOSH Lite 설치 Troubleshooting 
 
 1.  **Bosh login 또는 stemcell의 업로드가 잘 되지 않는 경우, 아래의 명령어로 bosh를 재기동 한다.**
 
@@ -582,7 +592,7 @@ BOSH Lite를 설치하는 절차는 다음과 같다.
 		$ cd ~/workspace/bosh-lite
 		$ vagrant up
 
-# 3.  ***OpenPaaS Container 설치와 배포 및 설정***
+# OpenPaaS Container 설치와 배포 및 설정
 
 
 본 절에서는 BOSH Lite에 OpenPaaS Container를 릴리즈하는 절차를 기술한다. Container는 OpenPaaS의 새로운 런타임 아키텍처로 이전 버전의 OpenPaaS의
@@ -602,7 +612,7 @@ DEAs와 Health Manager를 대체 한다. 자세한 내용은 다음 사이트를
     -   OpenPaaS-Env
 
 
-## 1.  ***OpenPaaS Release 업로드*** 
+### OpenPaaS Release 업로드 
 
 
 1.  **release를 bosh에 업로드**
@@ -616,7 +626,7 @@ DEAs와 Health Manager를 대체 한다. 자세한 내용은 다음 사이트를
 		$ bosh releases
 
 
-## 2.  ***OpenPaaS Container Release 업로드*** 
+### OpenPaaS Container Release 업로드 
 
 1.  **OpenPaaS Container Release 업로드**
 
@@ -629,7 +639,7 @@ DEAs와 Health Manager를 대체 한다. 자세한 내용은 다음 사이트를
 		$ bosh releases
 
 
-## 3.  ***BOSH Stemcell 업로드*** 
+### BOSH Stemcell 업로드 
 
 
 1.  **BOSH에 Warden Stemcell 업로드**
@@ -644,7 +654,7 @@ DEAs와 Health Manager를 대체 한다. 자세한 내용은 다음 사이트를
 		$ bosh stemcells
 
 
-## 4.  ***OpenPaaS Release 배포*** 
+### OpenPaaS Release 배포 
 
 OpenPaaS Release를 배포한다.
 
@@ -715,7 +725,7 @@ OpenPaaS Release를 배포한다.
 		$ bosh vms
 
 
-## 5.  ***OpenPaaS Container Release 배포*** 
+### OpenPaaS Container Release 배포
 
 OpenPaaS Container Release를 배포한다.
 
@@ -760,7 +770,7 @@ OpenPaaS Container Release를 배포한다.
 		$ bosh vms
 
 
-## 6.  ***OpenPaaS 로그인*** 
+### OpenPaaS 로그인 
 
 1.  **openpaas CLI 설치**
 
@@ -776,7 +786,7 @@ OpenPaaS Container Release를 배포한다.
 		$ cf login -a api.10.244.0.34.xip.io -u admin -p admin --skip-ssl-validation
 
 
-## 7.  ***배포한 OpenPaaS Container 설정*** 
+### 배포한 OpenPaaS Container 설정 
 
 
 1.  **조직 작성**
@@ -807,7 +817,7 @@ OpenPaaS Container Release를 배포한다.
 		$ cf target -s openpaas-space
 
 
-## 8.  ***OpenPaaS Container 설정 Troubleshooting*** 
+### OpenPaaS Container 설정 Troubleshooting 
 
 1.  **OpenPaaS Release 타겟 지정에서 오류가 발생하는 경우**
   

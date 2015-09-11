@@ -6,10 +6,11 @@
 2. [BOSH Lite 설치](#BOSH-Lite-설치)
      * [목적](#목적)
      * [범위](#범위)
+     * [참고자료](#참고자료)
 3. [OpenPaaS Container 설치와 배포 및 설정](#OpenPaaS-Container-설치와-배포-및-설정)
      * [목적](#목적)
-
-     
+     * [범위](#범위)
+     * [참고자료](#참고자료)
 
 
 # 1.  개요
@@ -40,7 +41,7 @@ OpenPaaS Container 배포:
 [**https://github.com/cloudfoundry-incubator/diego-release**](https://github.com/cloudfoundry-incubator/diego-release)
 
 
-# 2.  BOSH Lite 설치 
+# BOSH Lite 설치 
 
 
 ##    1.  ***설치전 준비사항*** 

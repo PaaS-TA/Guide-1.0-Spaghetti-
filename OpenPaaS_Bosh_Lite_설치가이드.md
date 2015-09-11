@@ -3,6 +3,15 @@
      * [목적](#목적)
      * [범위](#범위)
      * [참고자료](#참고자료)
+2. [BOSH Lite 설치](#BOSH-Lite-설치)
+     * [목적](#목적)
+     * [범위](#범위)
+     * [참고자료](#참고자료)
+3. [OpenPaaS Container 설치와 배포 및 설정](#OpenPaaS-Container-설치와-배포-및-설정)
+     * [목적](#목적)
+     * [범위](#범위)
+     * [참고자료](#참고자료)
+
 
 # 1.  개요
 
@@ -23,13 +32,13 @@ BOSH Lite를 설치하고, BOSH 기능을 테스트 할 수 있는 환경을 구
 ## 3.  ***참고자료*** 
     
 
-본 문서는 Cloud Foundry의 BOSH Document를 참고로 작성하였다.
+본 문서는 Cloud Foundry의 BOSH Document를 참고하여 작성하였다.
 
 Bosh Lite 설치:
-[https://github.com/cloudfoundry/bosh-lite](https://github.com/cloudfoundry/bosh-lite)
+[**https://github.com/cloudfoundry/bosh-lite**](https://github.com/cloudfoundry/bosh-lite)
 
 OpenPaaS Container 배포:
-[https://github.com/cloudfoundry-incubator/diego-release](https://github.com/cloudfoundry-incubator/diego-release)
+[**https://github.com/cloudfoundry-incubator/diego-release**](https://github.com/cloudfoundry-incubator/diego-release)
 
 
 # 2.  BOSH Lite 설치 
@@ -573,7 +582,7 @@ BOSH Lite를 설치하는 절차는 다음과 같다.
 		$ cd ~/workspace/bosh-lite
 		$ vagrant up
 
-# 3.  ***OpenPaaS Container 설치, 배포 및 설정***
+# 3.  ***OpenPaaS Container 설치와 배포 및 설정***
 
 
 본 절에서는 BOSH Lite에 OpenPaaS Container를 릴리즈하는 절차를 기술한다. Container는 OpenPaaS의 새로운 런타임 아키텍처로 이전 버전의 OpenPaaS의

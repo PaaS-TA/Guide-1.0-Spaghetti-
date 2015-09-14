@@ -201,11 +201,11 @@ CLI는 BOSH 배포와 Release를 관리하기 위해 도움을 주는 커맨드 
 - **파라미터**
 
 
-|**파라미터 명**|**설명**|**필수****(O/X)**|
-|----------|-------------------------|--------------------------------|
-|stemcell|Stemcell 파일|O|
-|--update|update existing instanceX|
-|--update-if-exists|create new or update existing instanceX|
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|stemcell|Stemcell 파일|O|
+	|--update|update existing instanceX|
+	|--update-if-exists|create new or update existing instanceX|
 
 <div id='micro-status'/>
 ### ***micro status*** 

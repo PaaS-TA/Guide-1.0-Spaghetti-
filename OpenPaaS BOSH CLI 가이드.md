@@ -1981,24 +1981,9 @@ O
 
 - **파라미터**
 
-|**파라미터 명**|**설명**|**필수****(O/X)**|
-
-job
-
-Job 이름
-
-X
-
-index
-
-Job 번호
-
-X
-
-new_state
-
-‘on’ or ‘off’, ‘yes’ or ‘no’, ‘enable’ or ‘disable’
-
-X
-
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|job|Job 이름|X|
+	|index|Job 번호|X|
+	|new_state|‘on’ or ‘off’, ‘yes’ or ‘no’, ‘enable’ or ‘disable’|X|
 

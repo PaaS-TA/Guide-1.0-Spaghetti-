@@ -79,7 +79,7 @@
 	* [scp] (#scp)
 
 1. [BOSH CLI - Blob] (#eeeee)
-	* [upload blob] (#upload-blob)
+	* [upload blob] (#upload-blobs)
 	* [add blob] (#add-blob)
 	* [sync blobs] (#sync-blobs)
 	* [blobs] (#blobs)
@@ -1099,8 +1099,8 @@ CLI는 BOSH 배포와 Release를 관리하기 위해 도움을 주는 커맨드 
 <div id='eeeee'/>
 ## BOSH CLI - Blob
 
-<div id='upload-blob'/>
-### ***upload blob***
+<div id='upload-blobs'/>
+### ***upload blobs***
 
 - **기본 Syntax**
 

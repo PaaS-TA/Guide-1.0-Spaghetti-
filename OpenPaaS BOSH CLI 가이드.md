@@ -7,7 +7,7 @@
 1. [BOSH CLI 기본 사용법] (#22222)
 
 1. [BOSH CLI - micro] (#33333)
-	* micro deployment
+	* micro deployment(#micro-deployment)
 	* micro deployments
 	* micro deploy
 	* micro status
@@ -156,6 +156,7 @@ CLI는 BOSH 배포와 Release를 관리하기 위해 도움을 주는 커맨드 
 <div id='33333'/>
 ##  BOSH CLI - micro
 
+<div id='micro-deployment'/>
 ### ***micro deployment***
 
 - **기본 Syntax**

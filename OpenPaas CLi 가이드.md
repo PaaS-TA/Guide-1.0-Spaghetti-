@@ -17,20 +17,20 @@
 1. [APPS](#ID-APPS)
      * [apps](#apps)
      * [app](#app)
-     * [push,p](#push-p)
+     * [push, p](#push-p)
      * [scale](#scale)
      * [delete](#delete)
      * [rename](#rename)
-     * [start,st](#start-st)
-     * [stop,sp](#stop-sp)
-     * [restart](#restart)
-     * [restage](#restage)
+     * [start, st](#start-st)
+     * [stop, sp](#stop-sp)
+     * [restart, rs](#restart-rs)
+     * [restage, rg](#restage-rg)
      * [restart-app-instance](#restart-app-instance)
      * [events](#events)
      * [files](#files)
      * [logs](#logs)
-     * [env,e](#env-e)
-     * [set-env,se](#set-env-se)
+     * [env, e](#env-e)
+     * [set-env, se](#set-env-se)
      * [unset-env](#unset-env)
      * [stacks](#stacks)
      * [stack](#stack)
@@ -38,24 +38,24 @@
      * [create-app-manifest](#create-app-manifest)
 
 1. [SERVICES](#ID-SERVICES)
-    * [marketplace,m](#marketplace-m)
-    * [services,s](#services-s)
+    * [marketplace, m](#marketplace-m)
+    * [services, s](#services-s)
     * [service](#service)
     * [create-service](#create-service)
     * [update-service](#update-service)
     * [delete-service](#delete-service)
     * [rename-service](#rename-service)
-    * [create-service-key,csk](#create-service-key-csk)
-    * [service-keys,sk](#service-keys-sk)
+    * [create-service-key, csk](#create-service-key-csk)
+    * [service-keys, sk](#service-keys-sk)
     * [service-key](#service-key)
-    * [delete-service-key,dsk](#delete-service-key-dsk)
-    * [bind-service,bs](#bind-service-bs)
+    * [delete-service-key, dsk](#delete-service-key-dsk)
+    * [bind-service, bs](#bind-service-bs)
     * [unbind-service,us](#unbind-service-us)
-    * [create-user-provided-service,cups](#create-user-provided-service-cups)
-    * [update-user-provided-service,cups](#update-user-provided-service-uups)
+    * [create-user-provided-service, cups](#create-user-provided-service-cups)
+    * [update-user-provided-service, cups](#update-user-provided-service-uups)
 
 1. [ORGS](#ID-ORGS)
-    * [orgs,o](#orgs-o)
+    * [orgs, o](#orgs-o)
     * [org](#org)
     * [create-org](#create-org-co)
     * [delete-org](#delete-org)
@@ -733,8 +733,8 @@ $cf apps
   $  cf stop spring-music
   ```
 
-
-#### restart
+<div id='restart-rs'/>
+#### restart, rs
 
   - **기본 Syntax**
 
@@ -765,8 +765,8 @@ $cf apps
   ```
   $cf restart spring-music
   ```
-
-#### restage
+<div id='restage-rg'/>
+#### restage, rg
 
   - **기본 Syntax**
 

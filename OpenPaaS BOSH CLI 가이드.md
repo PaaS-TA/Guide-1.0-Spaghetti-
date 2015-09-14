@@ -47,3 +47,23 @@ CLI는 BOSH 배포와 Release를 관리하기 위해 도움을 주는 커맨드 
 	|11         |-p, --password PASSWORD   |BOSH 사용자 비밀번호|
 	|12         |-d, --deployment FILE     |BOSH 배포파일 지정|
 	|13         |-h, --help                |Help 메시지 보기|
+
+
+##  BOSH CLI - micro
+
+
+### ***micro deployment***
+
+- **기본 Syntax**
+
+		$ bosh micro deployment [\<manifest-filename\>]
+
+- **설명**
+
+	bosh micro에 설정된 배포 파일을 확인하거나 또는 설정하기 위한 명령어
+
+- **파라미터**
+
+|**파라미터 명** |**설명**|**필수****(O/X)**|
+|----------|-------------------------|--------------------------------|
+|manifest-filename| MicroBOSH 배포 Manifest파일|X|

@@ -144,35 +144,33 @@ X
 
 - **파라미터**
 
-|**파라미터 명**|**설명**|**필수****(O/X)**|
-
-args
-
-메시지 유형
-
-. start : MicroBOSH 에 구동중인 모든 Job 시작
-
-. stop : MicroBOSH 에 구동중인 모든 Job 종료
-
-. ping : Agent 응답 여부 확인
-
-. drain TYPE SPEC
-
--   TYPE : ‘shutdown’, ‘update’, ‘status’ 중 하나
-
--   SPEC : 사용할 drain spec
-
-. state [full] : 시스템의 상태 출력
-
-. list_disk : MicroBOSH에 마운트된 디스크 CID목록 출력
-
-. migrate_disk OLD NEW : 디스크 Migrate
-
-. mount_disk CID : 마운트 디스크
-
-. unmount_disk CID : 언마운트 디스크
-
-O
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|args|
+	
+	메시지 유형
+	
+	. start : MicroBOSH 에 구동중인 모든 Job 시작
+	
+	. stop : MicroBOSH 에 구동중인 모든 Job 종료
+	
+	. ping : Agent 응답 여부 확인
+	
+	. drain TYPE SPEC
+	
+	-   TYPE : ‘shutdown’, ‘update’, ‘status’ 중 하나
+	
+	-   SPEC : 사용할 drain spec
+	
+	. state [full] : 시스템의 상태 출력
+	
+	. list_disk : MicroBOSH에 마운트된 디스크 CID목록 출력
+	
+	. migrate_disk OLD NEW : 디스크 Migrate
+	
+	. mount_disk CID : 마운트 디스크
+	
+	. unmount_disk CID : 언마운트 디스크|O|
 
 
 ### ***micro apply***

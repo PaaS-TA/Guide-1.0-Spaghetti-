@@ -1,14 +1,17 @@
 ## Table Contents
 
 
-#### 문서 목적
+
+## 문서 개요
+
+### 문서 목적
 본 문서는 MicroBOSH/BOSH에 대한 설치 및 운영 관리를 위한 도구인 BOSH CLI에 대해 기본 사용법 및 사용 예시를 통해 BOSH를 이해하는데 목적이 있다. 
 
-#### 범위
+### 범위
 
 본 문서에서는 BOSH CLI 사용법에 대해서 작성하였습니다.
 
-#### 참고 자료
+### 참고 자료
 
 본 문서는 Cloud Foundry의 BOSH Document([http://bosh.io](http://bosh.io))를 참고로 작성하였습니다.
 

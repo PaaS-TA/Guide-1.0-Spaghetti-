@@ -67,3 +67,14 @@ CLI는 BOSH 배포와 Release를 관리하기 위해 도움을 주는 커맨드 
 |**파라미터 명** |**설명**|**필수****(O/X)**|
 |----------|-------------------------|--------------------------------|
 |manifest-filename| MicroBOSH 배포 Manifest파일|X|
+
+- **사용 예시**
+
+		# 파라미터 지정한 경우
+		$ bosh micro deployment ./bosh-micro.yml
+		WARNING! Your target has been changed to `https://10.10.5.100:25555'!
+		Deployment set to '/home/ubuntu/workspace/deployment/bosh-micro.yml'
+		
+		# 파라미터 지정하지 않을 경우
+		$ bosh micro deployment
+		Current deployment is '/home/ubuntu/workspace/deployment/bosh-micro.yml'

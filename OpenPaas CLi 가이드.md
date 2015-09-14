@@ -76,7 +76,7 @@
     * [delete-shared-dommain](#delete-shared-domain)
 
 1. [ROUTES](#ID-ROUTES)
-    * [routes,r](#routes-r)
+    * [routes, r](#routes-r)
     * [create-route](#create-route)
     * [update-route](#update-route)
     * [check-route](#check-route)
@@ -149,10 +149,10 @@
     * [running-security-group](#running-security-group)
 
 1. [ENVIRONMENT VARIABLE GROUPS](#ID-ENVIRONMENT-VARIABLE-GROUPS)
-    * [running-environment-variable-group,revg](#running-environment-variable-group-revg)
-    * [staging-environment-variable-group,sevg](#staging-environment-variable-group-sevg)
-    * [set-staging-environment-variable-group,ssevg](#set-staging-environment-variable-group-ssevg)
-    * [set-running-environment-variable-group,ssevg](#set-running-environment-variable-group-ssevg)
+    * [running-environment-variable-group, revg](#running-environment-variable-group-revg)
+    * [staging-environment-variable-group, sevg](#staging-environment-variable-group-sevg)
+    * [set-staging-environment-variable-group, ssevg](#set-staging-environment-variable-group-ssevg)
+    * [set-running-environment-variable-group, ssevg](#set-running-environment-variable-group-ssevg)
 
 1. [FEATURE FLAGS](#ID-FEATURE-FLAGS)
     * [feature-flags](#feature-flags)
@@ -208,6 +208,16 @@ CLI는 OpenPaaS배포와 Release를 관리하기 위해 도움을 주는 커맨�
 cf [global options] command <arguments...> [command options]
  ```
 
+OpenPaaS command 명령어에 따라 약어를 제공해 줍니다. 예를 들어 App start CLI명령어는 start 이지만 st도 사용가능합니다.
+
+- **약어 사용예시**
+
+```
+$ cf start
+
+$ cf st
+
+```
 
 OpenPaaS 명령어에 대괄호로 묶인 인자인 [command options]은 명령어에 따라 선택적으로 사용되고, command  `<arguments>` 인자는 필수 인자입니다. OpenPaaS 운영 및 관리하기 위한 도구인 OpenPaaS CLI 아래와 같은 명령어들을 제공하고 있습니다.
 
@@ -2180,7 +2190,7 @@ $cf apps
 ## REOUTES
 
 <div id='routes-r'/>
-#### routes,r
+#### routes, r
 
   - **기본 Syntax**
 
@@ -4276,7 +4286,7 @@ $cf apps
 ## ENVIRONMENT VARIABLE GROUPS
 
 <div id='running-environment-variable-group-revg'/>
-#### running-environment-variable-group,revg
+#### running-environment-variable-group, revg
 
   - **기본 Syntax**
 
@@ -4307,7 +4317,7 @@ $cf apps
   ```
 
 <div id='staging-environment-variable-group-sevg'/>
-#### staging-environment-variable-group,sevg
+#### staging-environment-variable-group, sevg
 
   - **기본 Syntax**
 
@@ -4340,7 +4350,7 @@ $cf apps
 
 
 <div id='set-staging-environment-variable-group-ssevg'/>
-#### set-staging-environment-variable-group,ssevg
+#### set-staging-environment-variable-group, ssevg
 
   - **기본 Syntax**
 
@@ -4375,7 +4385,7 @@ $cf apps
   ```
 
 <div id='set-running-environment-variable-group-ssevg'/>
-#### set-running-environment-variable-group,ssevg
+#### set-running-environment-variable-group, ssevg
 
   - **기본 Syntax**
 

@@ -2150,7 +2150,7 @@ $cf apps
 
 
   ```
-  $ cf delete-domain <DOMAIN> [-f]
+  $ cf delete-shared-domain <DOMAIN> [-f]
   ```
 
 
@@ -2205,7 +2205,7 @@ $cf apps
   - **사용예시**
 
   ```
-  $ cf delete-shared-domain cf.or.kr
+  $ cf routes
   ```
 
 
@@ -2240,7 +2240,7 @@ $cf apps
   - **사용예시**
 
   ```
-  $ cf delete-shared-domain cf.or.kr
+  $ cf create-route development cf.or.kr
   ```
 
 
@@ -2355,7 +2355,7 @@ $cf apps
 
 
   ```
-  $ cf map-route <APP_NAME> <DOMAIN> [-n HOSTNAME]
+  $ cf unmap-route <APP_NAME> <DOMAIN> [-n HOSTNAME]
   ```
 
 
@@ -2406,9 +2406,9 @@ $cf apps
 
   | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |App명                           |O         |
   |DOMAIN       |App에게 할당할 도메인             |O         |
   |-n HOSTNAME  |App에게 할당할 Host              |X         |
+  |-f           |삭제 확인메시지 없이 라우트 정보를 삭제합니다.              |X         |
 
 
   - **사용예시**

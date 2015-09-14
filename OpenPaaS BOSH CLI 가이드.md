@@ -8,8 +8,8 @@
 
 1. [BOSH CLI - micro] (#33333)
 	* [micro deployment] (#micro-deployment)
-	* [micro deployments] (#micro-deployment)
-	* [micro deploy] (#micro-deployment)
+	* [micro deployments] (#micro-deployments)
+	* [micro deploy] (#micro-deploy)
 	* [micro status] (#micro-status)
 	* [micro agent] (#micro-agent)
 	* [micro apply] (#micro-apply)

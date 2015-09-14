@@ -563,7 +563,7 @@ CLI는 BOSH 배포와 Release를 관리하기 위해 도움을 주는 커맨드 
 
 		$ bosh generate package <name>
 
-**설명**
+- **설명**
 
 	Package 템플릿 생성
 

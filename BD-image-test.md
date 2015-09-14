@@ -30,12 +30,12 @@
 
 ###시스템 구성도
 본 문서의 설치된 시스템 구성도이다. MySQL Server, MySQL 서비스 브로커, Proxy로 최소사항을 구성하였다.
-![시스템-구성도](http://github.com/OpenPaaSRnD/Documents/blob/master/images/openpass-service/mysql/mysql_bosh_lite/mysql_bosh_lite_1.3.01.png)
+
+![시스템-구성도](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpass-service/mysql/mysql_bosh_lite/mysql_bosh_lite_1.3.01.png)
 
 ### 참고자료
 [**http://bosh.io/docs**](http://bosh.io/docs)
 [**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
-
 
 # 2.	MySQL 서비스팩 설치
 
@@ -47,16 +47,15 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 ### MySQL 서비스 릴리즈 업로드
 -   OpenPaaS-Services.zip파일 압축을 풀고 폴더안에 있는 MySQL 서비스 릴리즈 openpaas-mysql-release-beta-1.0.tgz 파일을복사한다.
-업로드할 openpaas-mysql-release-beta-1.0.tgz 파일을 확인한다.  
-
-	$ls –all	
-![mysql_bosh_lite_2.2.01](http://github.com/OpenPaaSRnD/Documents/blob/master/images/openpass-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.2.01.png)
-
+업로드할 openpaas-mysql-release-beta-1.0.tgz 파일을 확인한다.
+|---------------------------------------------------------------------------------------------------------------------------|
+$ls –all	
+![mysql_bosh_lite_2.2.01](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpass-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.2.01.png)
+|---------------------------------------------------------------------------------------------------------------------------|
 	
 -	업로드 되어 있는 릴리즈 목록을 확인한다.  
-
-	$bosh releases
-![mysql_bosh_lite_2.2.02](http://github.com/OpenPaaSRnD/Documents/blob/master/images/openpass-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.2.02.png)
+$bosh releases
+![mysql_bosh_lite_2.2.02](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpass-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.2.02.png)
 Mysql 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
 
 

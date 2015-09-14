@@ -7,7 +7,7 @@
 1. [BOSH CLI 기본 사용법] (#22222)
 
 1. [BOSH CLI - micro] (#33333)
-	* micro deployment(#micro-deployment)
+	* [micro deployment](#micro-deployment)
 	* micro deployments
 	* micro deploy
 	* micro status

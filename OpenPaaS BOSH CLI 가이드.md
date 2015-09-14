@@ -82,7 +82,7 @@ $ bosh micro deployments
 
 bosh micro에서 배포한 목록 출력
 
-**.****파라미터**
+- **파라미터**
 
 -   없음
 
@@ -91,7 +91,7 @@ bosh micro에서 배포한 목록 출력
 
 3.  ***micro deploy*** 
 
-**.****기본****Syntax**
+- **기본 Syntax**
 
 $ bosh micro deploy [<stemcell>] [--update] [--update-if-exists]
 
@@ -101,7 +101,7 @@ $ bosh micro deploy [<stemcell>] [--update] [--update-if-exists]
 
 MicroBOSH Instance 배포
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -131,7 +131,7 @@ X
 
 4.  ***micro status*** 
 
-**.****기본****Syntax**
+- **기본 Syntax**
 
 $ bosh micro status
 
@@ -141,7 +141,7 @@ $ bosh micro status
 
 MicroBOSH 등록 정보 출력
 
-**.****파라미터**
+- **파라미터**
 
 -   없음
 
@@ -149,7 +149,7 @@ MicroBOSH 등록 정보 출력
 
 5.  ***micro agent***
 
-**기본****Syntax**
+- **기본 Syntax**
 
 $ bosh micro agent <args>
 
@@ -159,7 +159,7 @@ $ bosh micro agent <args>
 
 MicroBOSH Agent에게 요청 Message 전달
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -198,7 +198,7 @@ O
 
 6.  ***micro apply***
 
-**기본****Syntax**
+- **기본 Syntax**
 
 $ bosh micro apply <spec>
 
@@ -208,7 +208,7 @@ $ bosh micro apply <spec>
 
 MicroBOSH Instance에 지정된 Spec정보 적용
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -226,7 +226,7 @@ O
 
 7.  ***micro delete*** 
 8.  
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh micro delete
 
@@ -236,7 +236,7 @@ $ bosh micro delete
 
 MicroBOSH Instance 삭제
 
-**.****파라미터**
+- **파라미터**
 
 -   없음
 
@@ -245,7 +245,7 @@ MicroBOSH Instance 삭제
 
 1.  ***deployment***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh deployment [<manifest-filename>]
 
@@ -255,7 +255,7 @@ $ bosh deployment [<manifest-filename>]
 
 bosh에 설정된 배포 파일을 확인하거나 또는 설정하기 위한 명령어
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -273,7 +273,7 @@ X
 
 2.  ***deployments***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh deployments
 
@@ -283,7 +283,7 @@ $ bosh deployments
 
 bosh에서 배포한 목록 출력
 
-**.****파라미터**
+- **파라미터**
 
 -   없음
 
@@ -292,7 +292,7 @@ bosh에서 배포한 목록 출력
 
 3.  ***edit deployment***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh edit deployment
 
@@ -302,14 +302,14 @@ $ bosh edit deployment
 
 현재 설정된 배포 Manifest 파일 편집기를 이용해서 수정
 
-**.****파라미터**
+- **파라미터**
 
 -   없음
 
 
 4.  ***deploy***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh deploy [--recreate] [--redact-diff]
 
@@ -319,7 +319,7 @@ $ bosh deploy [--recreate] [--redact-diff]
 
 배포 수행
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -344,7 +344,7 @@ X
 
 5.  ***download manifest***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh download manifest <deployment_name> [<save_as>]
 
@@ -354,7 +354,7 @@ $ bosh download manifest <deployment_name> [<save_as>]
 
 BOSH Manifest 파일 다운로드
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -378,7 +378,7 @@ X
 
 6.  ***diff***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh diff <template>
 
@@ -388,7 +388,7 @@ $ bosh diff <template>
 
 현재 Deployment 설정된 정보와 지정된 Manifest파일과의 비교하여 차이 출력
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -406,7 +406,7 @@ O
 
 7.  ***validate jobs***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh validate jobs
 
@@ -416,7 +416,7 @@ $ bosh validate jobs
 
 현재 배포 Manifest를 사용하여 Release에서 모든 Job의 유효 여부 확인
 
-**.****파라미터**
+- **파라미터**
 
 -   없음
 
@@ -432,7 +432,7 @@ $ bosh validate jobs
 
 1.  ***create release***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh create release [--force] [--final] [--with-tarball] [--dry-run]
 [--name NAME] [--version VERSION]
@@ -443,7 +443,7 @@ $ bosh create release [--force] [--final] [--with-tarball] [--dry-run]
 
 Release 생성
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -492,7 +492,7 @@ X
 
 2.  ***delete release***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh delete release <name> [<version>] [--force]
 
@@ -502,7 +502,7 @@ $ bosh delete release <name> [<version>] [--force]
 
 등록된 Release 삭제
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -533,7 +533,7 @@ X
 3.  ***verify release***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh verify release <tarball_path>
 
@@ -543,7 +543,7 @@ $ bosh verify release <tarball_path>
 
 Release 유효성 체크
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -561,7 +561,7 @@ O
 
 4.  ***upload release***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh upload release [<release_file>] [--rebase] [--skip-if-exists]
 
@@ -571,7 +571,7 @@ $ bosh upload release [<release_file>] [--rebase] [--skip-if-exists]
 
 Release 업로드
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -602,7 +602,7 @@ X
 5.  ***releases***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh releases
 
@@ -612,7 +612,7 @@ $ bosh releases
 
 Release 목록 출력
 
-**.****파라미터**
+- **파라미터**
 
 -   없음
 
@@ -621,7 +621,7 @@ Release 목록 출력
 
 6.  ***reset release***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh reset release
 
@@ -631,7 +631,7 @@ $ bosh reset release
 
 Reset Dev release
 
-**.****파라미터**
+- **파라미터**
 
 -   없음
 
@@ -640,7 +640,7 @@ Reset Dev release
 7.  ***init release***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh init release [<base>] [--git]
 
@@ -650,7 +650,7 @@ $ bosh init release [<base>] [--git]
 
 Release작성하기 위한 템플릿 디렉토리 및 파일 생성
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -676,7 +676,7 @@ X
 
 8.  ***generate job***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh generate job <name>
 
@@ -686,7 +686,7 @@ $ bosh generate job <name>
 
 Job Template 생성
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -704,7 +704,7 @@ O
 
 9.  ***generate package***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh generate package <name>
 
@@ -714,7 +714,7 @@ $ bosh generate package <name>
 
 Package 템플릿 생성
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -733,7 +733,7 @@ O
 1.  ***upload stemcell***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh upload stemcell <stemcell_location> [--skip-if-exists]
 
@@ -743,7 +743,7 @@ $ bosh upload stemcell <stemcell_location> [--skip-if-exists]
 
 BOSH stemcell 업로드
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -768,7 +768,7 @@ X
 
 2.  ***verify stemcell***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh verify stemcell <tarball_path>
 
@@ -778,7 +778,7 @@ $ bosh verify stemcell <tarball_path>
 
 BOSH stemcell 유효성 검사
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -796,7 +796,7 @@ O
 
 3.  ***stemcells***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh stemcells
 
@@ -806,7 +806,7 @@ $ bosh stemcells
 
 Director에 업로드한 Stemcell 목록 출력
 
-**.****파라미터**
+- **파라미터**
 
 -   없음
 
@@ -814,7 +814,7 @@ Director에 업로드한 Stemcell 목록 출력
 
 4.  ***delete stemcell***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh delete stemcell <name> <version> [--force]
 
@@ -824,7 +824,7 @@ $ bosh delete stemcell <name> <version> [--force]
 
 BOSH stemcell 삭제
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -855,7 +855,7 @@ X
 
 5.  ***public stemcells***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh public stemcells [--full] [--all]
 
@@ -865,7 +865,7 @@ $ bosh public stemcells [--full] [--all]
 
 public stemcell 목록 출력
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -891,7 +891,7 @@ X
 
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh download public stemcell <stemcell_filename>
 
@@ -901,7 +901,7 @@ $ bosh download public stemcell <stemcell_filename>
 
 public stemcell 다운로드
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -924,7 +924,7 @@ O
 
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh start <job> [<index>] [--force]
 
@@ -934,7 +934,7 @@ $ bosh start <job> [<index>] [--force]
 
 Job/Instance 시작
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -966,7 +966,7 @@ X
 2.  ***stop***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh stop <job> [<index>] [--soft] [--hard] [--force]
 
@@ -976,7 +976,7 @@ $ bosh stop <job> [<index>] [--soft] [--hard] [--force]
 
 Job/Instance 종료
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -1020,7 +1020,7 @@ X
 
 3.  ***restart***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh restart <job> [<index>] [--force]
 
@@ -1030,7 +1030,7 @@ $ bosh restart <job> [<index>] [--force]
 
 Job/Instance (Soft stop+start) 재시작
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -1061,7 +1061,7 @@ X
 
 4.  ***recreate***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh recreate <job> [<index>] [--force]
 
@@ -1071,7 +1071,7 @@ $ bosh recreate <job> [<index>] [--force]
 
 Job/Instance (Soft stop+start) 재생성
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -1107,7 +1107,7 @@ X
 1.  ***create user***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh create user [<username>] [<password>]
 
@@ -1117,7 +1117,7 @@ $ bosh create user [<username>] [<password>]
 
 BOSH 사용자 등록
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -1141,7 +1141,7 @@ X
 
 2.  ***delete user***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh delete user [<username>]
 
@@ -1151,7 +1151,7 @@ $ bosh delete user [<username>]
 
 BOSH 사용자 삭제
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -1171,7 +1171,7 @@ X
 
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh login [<username>] [<password>]
 
@@ -1181,7 +1181,7 @@ $ bosh login [<username>] [<password>]
 
 BOSH 사용자 등록
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -1206,7 +1206,7 @@ X
 4.  ***logout***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh logout
 
@@ -1216,7 +1216,7 @@ $ bosh logout
 
 BOSH logout
 
-**.****파라미터**
+- **파라미터**
 
 -   없음
 
@@ -1228,7 +1228,7 @@ BOSH logout
 
 1.  ***task***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh task [<task_id>] [--event] [--cpi] [--debug] [--result]
 [--raw] [--no-filter]
@@ -1239,7 +1239,7 @@ $ bosh task [<task_id>] [--event] [--cpi] [--debug] [--result]
 
 BOSH Task 수행 로그 출력
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -1294,7 +1294,7 @@ X
 2.  ***tasks***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh tasks [--no-filter]
 
@@ -1304,7 +1304,7 @@ $ bosh tasks [--no-filter]
 
 BOSH 수행중인 Task 목록 출력
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -1323,7 +1323,7 @@ X
 3.  ***tasks recent***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh tasks recent [<count>] [--no-filter]
 
@@ -1333,7 +1333,7 @@ $ bosh tasks recent [<count>] [--no-filter]
 
 수행 완료한 Task 목록 출력
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -1357,7 +1357,7 @@ X
 4.  ***cancel task***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh cancel task <task_id>
 
@@ -1367,7 +1367,7 @@ $ bosh cancel task <task_id>
 
 수행중인 Task 취소
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -1388,7 +1388,7 @@ O
 1.  ***set property***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh set property <name> <value>
 
@@ -1398,7 +1398,7 @@ $ bosh set property <name> <value>
 
 Deployment Property 설정
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -1424,7 +1424,7 @@ O
 
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh get property <name>
 
@@ -1434,7 +1434,7 @@ $ bosh get property <name>
 
 Deployment Property 확인
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -1454,7 +1454,7 @@ O
 3.  ***properties***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh properties [--terse]
 
@@ -1464,7 +1464,7 @@ $ bosh properties [--terse]
 
 Deployment Property 목록 출력
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -1483,7 +1483,7 @@ X
 4.  ***unset property***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh unset property <name>
 
@@ -1493,7 +1493,7 @@ $ bosh unset property <name>
 
 Deployment Property 설정 해제
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -1516,7 +1516,7 @@ O
 1.  ***logs***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh logs <job> [<index>] [--agent] [--job] [--only
 filter1,filter2,...] [--dir destination_directory] [--all]
@@ -1527,7 +1527,7 @@ filter1,filter2,...] [--dir destination_directory] [--all]
 
 BOSH에서 배포된 VM에서 Agent나 Job 수행 로그 다운로드
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -1584,7 +1584,7 @@ X
 1.  ***cleanup***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh cleanup [--all]
 
@@ -1594,7 +1594,7 @@ $ bosh cleanup [--all]
 
 사용되지 않은 오래된(2일) release와 stemcell 삭제
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -1613,7 +1613,7 @@ X
 2.  ***cloudcheck***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh cloudcheck [<deployment_name>] [--auto] [--report]
 
@@ -1623,7 +1623,7 @@ $ bosh cloudcheck [<deployment_name>] [--auto] [--report]
 
 배포 Manifest기준으로 차이가 있는 문제 검출 및 해결
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -1655,7 +1655,7 @@ X
 
 1.  ***ssh***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh ssh [--public_key FILE] [--gateway_host HOST] [--gateway_user
 USER] [--gateway_identity_file FILE] [--default_password PASSWORD]
@@ -1669,7 +1669,7 @@ USER] [--gateway_identity_file FILE] [--default_password PASSWORD]
 # ~/.ssh 디렉토리에서 Public Key(‘ssh-keygen -t rsa’) 생성 후 사용
 가능
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -1711,7 +1711,7 @@ X
 2.  ***scp***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh scp <job> [--index][--download] [--upload] [--public_key
 FILE] [--gateway_host HOST] [--gateway_user USER]
@@ -1726,7 +1726,7 @@ FILE] [--gateway_host HOST] [--gateway_user USER]
 # ~/.ssh 디렉토리에서 Public Key(‘ssh-keygen -t rsa’) 생성 후 사용
 가능
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -1787,7 +1787,7 @@ X
 
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh upload blobs
 
@@ -1797,7 +1797,7 @@ $ bosh upload blobs
 
 blobstore에 blob 업로드
 
-**.****파라미터**
+- **파라미터**
 
 -   없음
 
@@ -1805,7 +1805,7 @@ blobstore에 blob 업로드
 2.  ***add blob*** 
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh add blob <local_path> [<blob_dir>]
 
@@ -1815,7 +1815,7 @@ $ bosh add blob <local_path> [<blob_dir>]
 
 Blobstore에 로컬 blob 추가
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -1840,7 +1840,7 @@ X
 3.  ***sync blobs***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh sync blobs
 
@@ -1850,7 +1850,7 @@ $ bosh sync blobs
 
 blobstore의 blob 동기화
 
-**.****파라미터**
+- **파라미터**
 
 -   없음
 
@@ -1858,7 +1858,7 @@ blobstore의 blob 동기화
 
 4.  ***blobs***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh blobs
 
@@ -1868,7 +1868,7 @@ $ bosh blobs
 
 현재 blob 상태 출력
 
-**.****파라미터**
+- **파라미터**
 
 -   없음
 
@@ -1880,7 +1880,7 @@ $ bosh blobs
 1.  ***take snapshot***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh take snapshot [<job>] [<index>]
 
@@ -1890,7 +1890,7 @@ $ bosh take snapshot [<job>] [<index>]
 
 Snapshot 생성
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -1915,7 +1915,7 @@ O
 2.  ***delete snapshot***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh delete snapshot <snapshot_cid>
 
@@ -1925,7 +1925,7 @@ $ bosh delete snapshot <snapshot_cid>
 
 지정된 Snapshot CID의 Snapshot 삭제
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -1945,7 +1945,7 @@ O
 3.  ***delete snapshots***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh delete snapshots
 
@@ -1955,7 +1955,7 @@ $ bosh delete snapshots
 
 설정된 배포내의 모든 Snapshot 삭제
 
-**.****파라미터**
+- **파라미터**
 
 -   없음
 
@@ -1964,7 +1964,7 @@ $ bosh delete snapshots
 4.  ***snapshots***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh snapshots [<job>] [<index>]
 
@@ -1974,7 +1974,7 @@ $ bosh snapshots [<job>] [<index>]
 
 모든 Snapshot 목록 출력
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -2002,7 +2002,7 @@ X
 
 1.  ***status***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh status [--uuid]
 
@@ -2012,7 +2012,7 @@ $ bosh status [--uuid]
 
 BOSH 타겟 Director 설정
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -2031,7 +2031,7 @@ X
 2.  ***target***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh target [<director_url>] [<name>] [--ca-cert FILE]
 
@@ -2041,7 +2041,7 @@ $ bosh target [<director_url>] [<name>] [--ca-cert FILE]
 
 BOSH 타겟 Director 설정
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -2071,7 +2071,7 @@ X
 
 3.  ***targets***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh targets
 
@@ -2081,7 +2081,7 @@ $ bosh targets
 
 BOSH 타겟 Director 목록 출력
 
-**.****파라미터**
+- **파라미터**
 
 -   없음
 
@@ -2090,7 +2090,7 @@ BOSH 타겟 Director 목록 출력
 
 4.  ***vms***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh vms [<deployment_name>] [--details] [--dns] [--vitals]
 
@@ -2100,7 +2100,7 @@ $ bosh vms [<deployment_name>] [--details] [--dns] [--vitals]
 
 BOSH에서 배포된 VM 목록 출력
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -2136,7 +2136,7 @@ X
 
 5.  ***locks***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh locks
 
@@ -2146,7 +2146,7 @@ $ bosh locks
 
 Lock된 VM 목록 출력
 
-**.****파라미터**
+- **파라미터**
 
 -   없음
 
@@ -2155,7 +2155,7 @@ Lock된 VM 목록 출력
 6.  ***alias***
 
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh alias <name> <command>
 
@@ -2165,7 +2165,7 @@ $ bosh alias <name> <command>
 
 BOSH 커맨드 Alias 등록
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -2188,7 +2188,7 @@ O
 
 7.  ***aliases***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh aliases
 
@@ -2198,7 +2198,7 @@ $ bosh aliases
 
 등록된 Alias 목록 출력
 
-**.****파라미터**
+- **파라미터**
 
 -   없음
 
@@ -2207,7 +2207,7 @@ $ bosh aliases
 
 8.  ***export compiled package***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh export compiled_packages <release> <stemcell>
 <download_dir>
@@ -2218,7 +2218,7 @@ $ bosh export compiled_packages <release> <stemcell>
 
 compiled Package 내보내기
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 
@@ -2249,7 +2249,7 @@ O
 
 9.  ***vm resurrection***
 
-**.****기본****Syntax**
+**.**- **기본 Syntax**
 
 $ bosh vm resurrection [<job>] [<index>] <new_state>
 
@@ -2259,7 +2259,7 @@ $ bosh vm resurrection [<job>] [<index>] <new_state>
 
 배포된 VM의 재시작 여부 설정
 
-**.****파라미터**
+- **파라미터**
 
 **파라미터 명**
 

@@ -4006,7 +4006,7 @@ $cf apps
   | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
   |SECURITY_GROUP      |서큐리티 그룹명                                           |O          |
-  |PATH_TO_JSON_RULES_FILE      |시큐리티 룰을 명세한 JSON 파일의 경로 및 파일명<br> rule 파일 작성 예제 <br> [ <br> {   <br> "protocol": "tcp",     <br> "destination": "10.244.1.18", <br>     "ports": "3306" <br>   } <br> ]     |O          |
+  |PATH_TO_JSON_RULES_FILE      |시큐리티 룰을 명세한 JSON 파일의 경로 및 파일명<br> rule 파일 작성 예제 <br> [ <br> {   <br> &nbsp;&nbsp;"protocol": "tcp",     <br> "destination": "10.244.1.18", <br>     "ports": "3306" <br>   } <br> ]     |O          |
 
 
   - **사용예시**

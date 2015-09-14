@@ -121,10 +121,10 @@
 <div id='22222'/>
 ## BOSH CLI 기본 사용법
 
-CLI는 BOSH 배포와 Release를 관리하기 위해 도움을 주는 커맨드 라인 유틸리티로 아래와 같이 2가지 형태로 구분된다.
+CLI는 BOSH 배포와 Release를 관리하기 위해 도움을 주는 커맨드 라인 명령어로 아래와 같이 2가지 형태로 구분된다.
 
-- bosh : BOSH (Multi-VM BOSH)를 관리하기 위한 CLI 도구
-- bosh micro : MicroBOSH (Single-VM BOSH)를 관리하기 위한 CLI 도구
+- bosh : BOSH (Multi-VM BOSH)를 관리하기 위한 CLI
+- bosh micro : MicroBOSH (Single-VM BOSH)를 관리하기 위한 CLI
 
 
 - **기본 Syntax**

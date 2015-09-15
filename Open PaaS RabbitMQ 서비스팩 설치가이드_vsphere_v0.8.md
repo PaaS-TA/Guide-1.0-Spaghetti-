@@ -415,7 +415,7 @@ RabbitMQ 서비스팩 배포가 완료 되었으면 Application에서 서비스 
 -	서비스팩 이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.
 -	서비스팩 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID이다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
 -	서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.</div>
-$ cf create-service-broker rabbitmq-service-broker admin admin http://10.244.9.14:4567<br><br>
+$ cf create-service-broker rabbitmq-service-broker admin admin http://10.30.40.181:4567<br><br>
 ![rabbitmq_vsphere_(17)]
 
 -	등록된 RabbitMQ 서비스 브로커를 확인한다.

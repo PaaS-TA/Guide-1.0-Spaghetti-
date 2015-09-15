@@ -1,46 +1,3 @@
-[mysql_bosh_lite_1.3.01]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_1.3.01.png
-[mysql_bosh_lite_2.2.01]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.2.01.png
-[mysql_bosh_lite_2.2.02]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.2.02.png
-[mysql_bosh_lite_2.2.03]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.2.03.png
-[mysql_bosh_lite_2.2.04]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.2.04.png
-[mysql_bosh_lite_2.2.05]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.2.05.png
-[mysql_bosh_lite_2.2.06]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.2.06.png
-[mysql_bosh_lite_2.2.07]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.2.07.png
-[mysql_bosh_lite_2.2.08]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.2.08.png
-[mysql_bosh_lite_2.3.01]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.3.01.png
-[mysql_bosh_lite_2.3.02]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.3.02.png
-[mysql_bosh_lite_2.3.03]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.3.03.png
-[mysql_bosh_lite_3.1.01]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.1.01.png
-[mysql_bosh_lite_3.2.01]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.2.01.png
-[mysql_bosh_lite_3.2.02]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.2.02.png
-[mysql_bosh_lite_3.2.03]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.2.03.png
-[mysql_bosh_lite_3.3.01]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.3.01.png
-[mysql_bosh_lite_3.3.02]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.3.02.png
-[mysql_bosh_lite_3.3.03]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.3.03.png
-[mysql_bosh_lite_3.3.04]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.3.04.png
-[mysql_bosh_lite_3.3.05]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.3.05.png
-[mysql_bosh_lite_3.3.06]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.3.06.png
-[mysql_bosh_lite_3.3.07]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.3.07.png
-[mysql_bosh_lite_3.3.08]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.3.08.png
-[mysql_bosh_lite_3.3.09]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.3.09.png
-[mysql_bosh_lite_4.1.01]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.01.png
-[mysql_bosh_lite_4.1.02]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.02.png
-[mysql_bosh_lite_4.1.03]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.03.png
-[mysql_bosh_lite_4.1.04]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.04.png
-[mysql_bosh_lite_4.1.05]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.05.png
-[mysql_bosh_lite_4.1.06]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.06.png
-[mysql_bosh_lite_4.1.07]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.07.png
-[mysql_bosh_lite_4.1.08]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.08.png
-[mysql_bosh_lite_4.1.09]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.09.png
-[mysql_bosh_lite_4.1.10]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.10.png
-[mysql_bosh_lite_4.1.11]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.11.png
-[mysql_bosh_lite_4.1.12]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.12.png
-[mysql_bosh_lite_4.1.13]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.13.png
-[mysql_bosh_lite_4.1.14]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.14.png
-[mysql_bosh_lite_4.1.15]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.15.png
-[mysql_bosh_lite_4.1.16]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.16.png
-[mysql_bosh_lite_4.1.17]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.17.png
-
 ## Table of Contents
 1. [문서 개요](#문서-개요)
      * [1.1. 목적](#목적)
@@ -99,13 +56,13 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 -	업로드 되어 있는 릴리즈 목록을 확인한다.  
 
 ><div>$bosh releases</div>
-![mysql_bosh_lite_2.2.02]<br>
-Mysql 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
->
+>![mysql_bosh_lite_2.2.02]<br>
+>Mysql 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
+
 
 -	MySQL 서비스 릴리즈 파일을 업로드한다.
 >$ bosh upload release {서비스 릴리즈 파일 PATH}<br>
->$ bosh upload release openpaas-mysql-release-beta-1.0.tgz><br>
+>$ bosh upload release openpaas-mysql-release-beta-1.0.tgz<br>
 >![mysql_bosh_lite_2.2.03]<br>
 >![mysql_bosh_lite_2.2.04]<br>
 >![mysql_bosh_lite_2.2.05]<br>
@@ -2692,3 +2649,47 @@ update:
   max_in_flight: 1        # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
   update_watch_time: 30000-600000    # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
 </pre>
+
+
+[mysql_bosh_lite_1.3.01]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_1.3.01.png
+[mysql_bosh_lite_2.2.01]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.2.01.png
+[mysql_bosh_lite_2.2.02]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.2.02.png
+[mysql_bosh_lite_2.2.03]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.2.03.png
+[mysql_bosh_lite_2.2.04]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.2.04.png
+[mysql_bosh_lite_2.2.05]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.2.05.png
+[mysql_bosh_lite_2.2.06]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.2.06.png
+[mysql_bosh_lite_2.2.07]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.2.07.png
+[mysql_bosh_lite_2.2.08]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.2.08.png
+[mysql_bosh_lite_2.3.01]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.3.01.png
+[mysql_bosh_lite_2.3.02]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.3.02.png
+[mysql_bosh_lite_2.3.03]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_2.3.03.png
+[mysql_bosh_lite_3.1.01]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.1.01.png
+[mysql_bosh_lite_3.2.01]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.2.01.png
+[mysql_bosh_lite_3.2.02]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.2.02.png
+[mysql_bosh_lite_3.2.03]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.2.03.png
+[mysql_bosh_lite_3.3.01]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.3.01.png
+[mysql_bosh_lite_3.3.02]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.3.02.png
+[mysql_bosh_lite_3.3.03]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.3.03.png
+[mysql_bosh_lite_3.3.04]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.3.04.png
+[mysql_bosh_lite_3.3.05]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.3.05.png
+[mysql_bosh_lite_3.3.06]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.3.06.png
+[mysql_bosh_lite_3.3.07]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.3.07.png
+[mysql_bosh_lite_3.3.08]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.3.08.png
+[mysql_bosh_lite_3.3.09]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_3.3.09.png
+[mysql_bosh_lite_4.1.01]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.01.png
+[mysql_bosh_lite_4.1.02]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.02.png
+[mysql_bosh_lite_4.1.03]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.03.png
+[mysql_bosh_lite_4.1.04]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.04.png
+[mysql_bosh_lite_4.1.05]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.05.png
+[mysql_bosh_lite_4.1.06]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.06.png
+[mysql_bosh_lite_4.1.07]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.07.png
+[mysql_bosh_lite_4.1.08]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.08.png
+[mysql_bosh_lite_4.1.09]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.09.png
+[mysql_bosh_lite_4.1.10]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.10.png
+[mysql_bosh_lite_4.1.11]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.11.png
+[mysql_bosh_lite_4.1.12]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.12.png
+[mysql_bosh_lite_4.1.13]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.13.png
+[mysql_bosh_lite_4.1.14]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.14.png
+[mysql_bosh_lite_4.1.15]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.15.png
+[mysql_bosh_lite_4.1.16]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.16.png
+[mysql_bosh_lite_4.1.17]:/images/openpaas-service/mysql/mysql_bosh_lite/mysql_bosh_lite_4.1.17.png

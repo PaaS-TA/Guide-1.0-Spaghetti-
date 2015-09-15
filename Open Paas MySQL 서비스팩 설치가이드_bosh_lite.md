@@ -89,7 +89,7 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 B
 >![mysql_bosh_lite_2.3.03]<br>
 >Stemcell 목록이 존재 하지 않을 경우 BOSH-lite 설치 가이드 문서를 참고 하여 Stemcell 2776 버전을 업로드를 해야 한다.
 
--	openpaas-mysql-lite.yml Deployment 파일을 서버 환경에 맞게 수정한다.(빨간색으로 표시된 부분만 수정)<br>
+-	openpaas-mysql-lite.yml Deployment 파일을 서버 환경에 맞게 수정한다.(빨간색으로 표시된 부분만 수정)  
 <pre>$vi openpaas-mysql-lite.yml
 # openpaas-mysql-lite 설정 파일 내용
 compilation:           # 컴파일시 필요한 가상머신의 속성(필수)

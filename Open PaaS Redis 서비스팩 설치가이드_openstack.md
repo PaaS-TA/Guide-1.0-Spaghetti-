@@ -1,3 +1,22 @@
+## Table of Contents
+1. [문서 개요](#문서-개요)
+     * [1.1. 목적](#목적)
+     * [1.2. 범위](#범위)
+     * [1.3. 시스템 구성도](#시스템-구성도)
+     * [1.4. 참고자료](#참고자료)
+2. [Redis 서비스팩 설치](#Redis-서비스팩-설치)
+     * [2.1. 설치전 준비사항](#설치전-준비사항)
+     * [2.2. Redis 서비스 릴리즈 업로드](#Redis-서비스-릴리즈-업로드)
+     * [2.3. Redis 서비스 Deployment 파일 수정 및 배포](#Redis-서비스-Deployment-파일-수정-및-배포)
+     * [2.4. Redis 서비스 브로커 등록](#Redis-서비스-브로커-등록)
+3. [Redis 연동 Sample App 설명](#Redis-연동-Sample-App-설명)
+     * [3.1. Sample App 구조](#Sample-App-구조)
+     * [3.2. 개방형 클라우드 플랫폼에서 서비스 신청](#개방형-클라우드-플랫폼에서-서비스-신청)
+     * [3.3. Sample App에 서비스 바인드 신청 및 App 확인](#Sample-App에-서비스-바인드-신청-및-App-확인)
+4. [Redis Client 툴 접속](#Redis-Client-툴-접속)
+     * [4.1. Redis Desktop Manager 설치 & 연결](#Redis-Desktop-Manager-설치-&-연결)
+
+
 # 문서 개요
 
 ### 목적
@@ -48,7 +67,7 @@
 [**http://bosh.io/docs**](http://bosh.io/docs)
 [**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
 
-#   Redis서비스팩설치
+#   Redis 서비스팩 설치
 
 ### 설치전 준비사항
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.
@@ -57,7 +76,7 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Deployment.zip, OpenPaaS-Sample-Apps.zip, OpenPaaS-Services.zip)
 
 
-###   Redis 서비스 릴리즈업로드
+###   Redis 서비스 릴리즈 업로드
 
 - OpenPaaS-Services.zip 파일 압축을 풀고폴더안에 있는Redis 서비스 릴리즈openpaas-redis-release-beta-1.0.tgz 파일을복사한다.
 - 업로드할openpaas-redis-release-beta-1.0.tgz 파일을 확인한다.
@@ -525,7 +544,6 @@ Redis Desktop Manager 프로그램은 무료로 사용할 수 있는 오픈소�
 
 
 
-[redis_openstack_01]:/images/openpaas-service/redis/redis_openstack/redis_openstack_01.png
 [redis_openstack_02]:/images/openpaas-service/redis/redis_openstack/redis_openstack_02.png
 [redis_openstack_03]:/images/openpaas-service/redis/redis_openstack/redis_openstack_03.png
 [redis_openstack_04]:/images/openpaas-service/redis/redis_openstack/redis_openstack_04.png

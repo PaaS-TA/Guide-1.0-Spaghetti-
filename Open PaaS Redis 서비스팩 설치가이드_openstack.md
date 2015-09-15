@@ -10,11 +10,11 @@
      * [2.3. Redis 서비스 Deployment 파일 수정 및 배포](#redis-서비스-deployment-파일-수정-및-배포)
      * [2.4. Redis 서비스 브로커 등록](#redis-서비스-브로커-등록)
 3. [Redis 연동 Sample App 설명](#redis-연동-sample-app-설명)
-     * [3.1. Sample App 구조](#sample-App-구조)
+     * [3.1. Sample App 구조](#sample-app-구조)
      * [3.2. 개방형 클라우드 플랫폼에서 서비스 신청](#개방형-클라우드-플랫폼에서-서비스-신청)
      * [3.3. Sample App에 서비스 바인드 신청 및 App 확인](#sample-app에-서비스-바인드-신청-및-app-확인)
 4. [Redis Client 툴 접속](#redis-client-툴-접속)
-     * [4.1. Redis Desktop Manager 설치 & 연결](#redis-desktop-manager-설치-&-연결)
+     * [4.1. Redis Desktop Manager 설치 및 연결](#redis-desktop-manager-설치-및-연결)
 
 
 # 문서 개요
@@ -491,7 +491,7 @@ $ curl -X DELETE $APP/foo<br>
 # Redis Client 툴 접속
 Application에 바인딩된Redis 서비스 연결정보는 Private IP로 구성되어 있기 때문에 Redis Client 툴에서 직접 연결할수 없다. 따라서 Redis Client 툴에서 SSH 터널, Proxy 터널 등을 제공하는 툴을 사용해서 연결하여야 한다. 본 가이드는 SSH 터널을 이용하여 연결 하는 방법을 제공하며 Redis Client 툴로써는 오픈 소스인 Redis Desktop Manager로 가이드한다. Redis Desktop Manager 에서 접속하기 위해서 먼저 SSH 터널링할수 있는 VM 인스턴스를생성해야한다. 이 인스턴스는 SSH로 접속이 가능해야 하고 접속 후 Open PaaS 에 설치한 서비스팩에 Private IP 와 해당 포트로 접근이 가능하도록 시큐리티 그룹을 구성해야 한다. 이 부분은 OpenStack 관리자 및 OpenPaaS 운영자에게 문의하여 구성한다. OpenStack 에서 구성한 인스턴스는공개키(.pem) 로 접속을 해야 하므로 공개키는 운영 담당자에게 문의하여 제공받는다. 참고) 개인키(.ppk)로는 접속이 되지 않는다.
 
-### Redis Desktop Manager 설치 & 연결
+### Redis Desktop Manager 설치 및 연결
 Redis Desktop Manager 프로그램은 무료로 사용할 수 있는 오픈소스 소프트웨어이다.
 
 - Redis Desktop Manager를 다운로드 하기 위해 아래 URL로 이동하여 설치파일을 다운로드 한다.

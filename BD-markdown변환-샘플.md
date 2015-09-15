@@ -17,14 +17,14 @@
      * [4.1. HeidiSQL 설치&연결](#HeidiSQL-설치&연결)
 
 
-# 문서 개요
+#문서 개요
 
-### 목적
+###목적
       
 본 문서(MySQL 서비스팩 설치 가이드)는 전자정부표준프레임워크 기반의 Open PaaS에서 제공되는 서비스팩인 MySQL 서비스팩을 Bosh를 이용하여 설치 하는 방법과 Open PaaS의 SaaS 형태로 제공하는 Application 에서 MySQL 서비스를 사용하는 방법을 기술하였다.
 
 
-### 범위 
+###범위 
 
 설치 범위는 MySQL 서비스팩을 검증하기 위한 기본 설치를 기준으로 작성하였다. 
 
@@ -32,12 +32,12 @@
 본 문서의 설치된 시스템 구성도이다. MySQL Server, MySQL 서비스 브로커, Proxy로 최소사항을 구성하였다.
 ![시스템구성도][mysql_bosh_lite_1.3.01]
 
-### 참고자료
+###참고자료
 [**http://bosh.io/docs**](http://bosh.io/docs)  
 [**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
 
 
-# MySQL 서비스팩 설치
+#MySQL 서비스팩 설치
 
 ### 설치전 준비사항 
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.

@@ -14,7 +14,7 @@
      * [3.2. 개방형 클라우드 플랫폼에서 서비스 신청](#개방형-클라우드-플랫폼에서-서비스-신청)
      * [3.3. Sample Web App에 서비스 바인드 신청 및 App 확인](#sample-web-app에-서비스-바인드-신청-및-app-확인)
 4. [MySQL Client 툴 접속](#mysql-client-툴-접속)
-     * [4.1. HeidiSQL 설치 & 연결](#heidisql-설치-&-연결)
+     * [4.1. HeidiSQL 설치 및 연결](#heidisql-설치-및-연결)
 
 
 # 문서 개요
@@ -2800,7 +2800,7 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 #MySQL Client 툴 접속
 Application에 바인딩된 MySQL 서비스 연결정보는 Private IP로 구성되어 있기 때문에 MySQL Client 툴에서 직접 연결할수 없다. 따라서 MySQL Client 툴에서 SSH 터널, Proxy 터널 등을 제공하는 툴을 사용해서 연결하여야 한다. 본 가이드는 SSH 터널을 이용하여 연결 하는 방법을 제공하며 MySQL Client 툴로써는 오픈 소스인 HeidiSQL로 가이드한다. 또한 Bosh lite를 AWS 환경에서 구성 한 경우를 전제로 하였다. AWS에서 Bosh lite를 구성하면 Vagrant VM이 생성되는데 Vagrant VM 에서는 서비스팩의 Private IP 와 해당 포트로 접근이 가능하도록 구성되어 있다.
 
-###HeidiSQL 설치 & 연결
+###HeidiSQL 설치 및 연결
 HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트웨어이다.
 
 -	HeidiSQL을 다운로드 하기 위해 아래 URL로 이동하여 설치파일을 다운로드 한다.<br>

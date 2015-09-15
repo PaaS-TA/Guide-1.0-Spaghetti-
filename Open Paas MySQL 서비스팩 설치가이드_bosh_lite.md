@@ -47,41 +47,40 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 ### MySQL 서비스 릴리즈 업로드
 -   OpenPaaS-Services.zip파일 압축을 풀고 폴더안에 있는 MySQL 서비스 릴리즈 openpaas-mysql-release-beta-1.0.tgz 파일을복사한다.
-업로드할 openpaas-mysql-release-beta-1.0.tgz 파일을 확인한다.  
-
+업로드할 openpaas-mysql-release-beta-1.0.tgz 파일을 확인한다.<br>
 ><div>$ls –all</div>	
->![mysql_bosh_lite_2.2.01]
-	
--	업로드 되어 있는 릴리즈 목록을 확인한다.
+>![mysql_bosh_lite_2.2.01]<br><br>
+
+-	업로드 되어 있는 릴리즈 목록을 확인한다.<br>
 ><div>$bosh releases</div>
 >![mysql_bosh_lite_2.2.02]<br>
 >Mysql 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인  
 
--	MySQL 서비스 릴리즈 파일을 업로드한다.
+-	MySQL 서비스 릴리즈 파일을 업로드한다.<br>
 >$ bosh upload release {서비스 릴리즈 파일 PATH}<br>
 >$ bosh upload release openpaas-mysql-release-beta-1.0.tgz<br>
 >![mysql_bosh_lite_2.2.03]<br>
 >![mysql_bosh_lite_2.2.04]<br>
 >![mysql_bosh_lite_2.2.05]<br>
 >![mysql_bosh_lite_2.2.06]<br>
->![mysql_bosh_lite_2.2.07]  
+>![mysql_bosh_lite_2.2.07]<br><br>
 
--	업로드 된MySQL 릴리즈를 확인한다.
+-	업로드 된MySQL 릴리즈를 확인한다.<br>
 >$bosh releases<br>
 >![mysql_bosh_lite_2.2.08]<br>
-Mysql 서비스 릴리즈가 업로드 되어 있는 것을 확인  
+>Mysql 서비스 릴리즈가 업로드 되어 있는 것을 확인
 
 ### MySQL 서비스 Deployment 파일 수정 및 배포
-BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다.
+BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다.<br>
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
 
 -	OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더안에 있는 lite용 MySQL Deployment 화일인 openpaas-mysql-lite.yml를복사한다.
-다운로드 받은 Deployment Yml 파일을 확인한다. (openpaas-mysql-lite.yml)  
+다운로드 받은 Deployment Yml 파일을 확인한다. (openpaas-mysql-lite.yml)<br>
 ><div>$ls –all</div>
 >![mysql_bosh_lite_2.3.01]<br><br>
 
--	Director UUID를 확인한다.  
-BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 BOSH Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할 수 있다.  
+-	Director UUID를 확인한다.<br>
+BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 BOSH Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할 수 있다.<br>
 ><div>$bosh status</div>
 >![mysql_bosh_lite_2.3.02]<br><br>
 
@@ -90,7 +89,7 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 B
 >![mysql_bosh_lite_2.3.03]<br>
 >Stemcell 목록이 존재 하지 않을 경우 BOSH-lite 설치 가이드 문서를 참고 하여 Stemcell 2776 버전을 업로드를 해야 한다.
 
--	openpaas-mysql-lite.yml Deployment 파일을 서버 환경에 맞게 수정한다.(빨간색으로 표시된 부분만 수정)  
+-	openpaas-mysql-lite.yml Deployment 파일을 서버 환경에 맞게 수정한다.(빨간색으로 표시된 부분만 수정)<br>
 <pre>$vi openpaas-mysql-lite.yml
 # openpaas-mysql-lite 설정 파일 내용
 compilation:           # 컴파일시 필요한 가상머신의 속성(필수)
@@ -2643,31 +2642,31 @@ update:
   update_watch_time: 30000-600000    # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
 </pre>
 
--	Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.  
+-	Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.<br>
 ><div>$bosh deployment {Deployment manifest 파일 PATH}</div>
 ><div>$bosh deployment openpaas-mysql-lite.yml</div>
->![mysql_bosh_lite_2.3.04]
+>![mysql_bosh_lite_2.3.04]<br><br>
 
--	MySQL 서비스팩을 배포한다.  
+-	MySQL 서비스팩을 배포한다.<br>
 ><div>$bosh deploy</div>
 >![mysql_bosh_lite_2.3.05]
 >![mysql_bosh_lite_2.3.06]
->![mysql_bosh_lite_2.3.07]
+>![mysql_bosh_lite_2.3.07]<br><br>
 
--	배포된 MySQL 서비스팩을 확인한다.  
+-	배포된 MySQL 서비스팩을 확인한다.<br>
 ><div>$bosh vms</div>
 >![mysql_bosh_lite_2.3.08]
->![mysql_bosh_lite_2.3.09]
+>![mysql_bosh_lite_2.3.09]<br><br>
 
 ###MySQL 서비스 브로커 등록
 Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 MySQL 서비스 브로커를 등록해 주어야 한다.  
 서비스 브로커 등록시 개방형 클라우드 플랫폼에서 서비스브로커를 등록할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
--	서비스 브로커 목록을 확인한다.  
+-	서비스 브로커 목록을 확인한다.<br>
 ><div>$cf service-brokers</div>
->![mysql_bosh_lite_2.4.01]
+>![mysql_bosh_lite_2.4.01]<br><br>
 
--	MySQL 서비스 브로커를 등록한다.  
+-	MySQL 서비스 브로커를 등록한다.<br>
 ><div>$cf create-service-broker {서비스팩 이름}{서비스팩 사용자ID}{서비스팩 사용자비밀번호} http://{서비스팩 URL}</div>
 >-	서비스팩 이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.  
 >-	서비스팩 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID이다. 
@@ -2675,21 +2674,21 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 >-	서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.
 >
 >$ cf create-service-broker mysql-service-broker admin password http://p-mysql.10.244.0.34.xip.io
->![mysql_bosh_lite_2.4.02]
+>![mysql_bosh_lite_2.4.02]<br><br>
 
--	등록된 MySQL 서비스 브로커를 확인한다.  
+-	등록된 MySQL 서비스 브로커를 확인한다.<br>
 ><div>$cf service-brokers</div>
 >![mysql_bosh_lite_2.4.03]
 
--	접근 가능한 서비스 목록을 확인한다.  
+-	접근 가능한 서비스 목록을 확인한다.<br>
 ><div>$cf service-access</div>
 >![mysql_bosh_lite_2.4.04]<br>
->서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.
+>서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.<br><br>
 
--	특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)  
+-	특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)<br> 
 ><div>$cf enable-service-access p-mysql</div>
 ><div>$cf service-access</div>
->![mysql_bosh_lite_2.4.05]
+>![mysql_bosh_lite_2.4.05]<br><br>
 
 #MySQL 연동 Sample Web App 설명
 본 Sample Web App은 개발형 클라우드 플랫폼에 배포되며 MySQL의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
@@ -2708,37 +2707,37 @@ Sample Web App 구조는 다음과 같다.
 |target |메이블 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)|
 
 
--	OpenPaaS-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를복사한다.  
+-	OpenPaaS-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를복사한다.<br>
 ><div>$cf enable-service-access p-mysql</div>
->![mysql_bosh_lite_3.1.01]
+>![mysql_bosh_lite_3.1.01]<br><br>
 
 ###개방형 클라우드 플랫폼에서 서비스 신청
 Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.  
 *참고: 서비스 신청시 개방형 클라우드 플랫폼에서 서비스를신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
--	먼저 개방형 클라우드 플랫폼 Marketplace에서 서비스가 있는지 확인을 한다.  
+-	먼저 개방형 클라우드 플랫폼 Marketplace에서 서비스가 있는지 확인을 한다.<br>
 ><div>$cf marketplace</div>
->![mysql_bosh_lite_3.2.01]
+>![mysql_bosh_lite_3.2.01]<br><br>
 
--	Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.  
+-	Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.<br>
 ><div>$cf create-service {서비스명} {서비스플랜} {내서비스명}</div>
->-	서비스명 : p-mysql로 Marketplace에서 보여지는 서비스 명칭이다.  
+>-	서비스명 : p-mysql로 Marketplace에서 보여지는 서비스 명칭이다.
 >-	서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. MySQL 서비스는 100mb, 1gb를 지원한다.
->-	내 서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.  
+>-	내 서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.
 ><div>$cf create-service p-mysql 100mb mysql-service-instance</div>
->![mysql_bosh_lite_3.2.02]
+>![mysql_bosh_lite_3.2.02]<br><br>
 
--	생성된 MySQL 서비스 인스턴스를 확인한다.  
+-	생성된 MySQL 서비스 인스턴스를 확인한다.<br>
 ><div>$cf services</div>
->![mysql_bosh_lite_3.2.03]
+>![mysql_bosh_lite_3.2.03]<br><br>
 
 ###Sample Web App에 서비스 바인드 신청 및 App 확인
 서비스 신청이 완료되었으면 Sample Web App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 MySQL 서비스를 이용한다.  
 *참고: 서비스 Bind 신청시 개방형 클라우드 플랫폼에서 서비스 Bind신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
--	Sample Web App 디렉토리로 이동하여 manifest 파일을 확인한다.  
+-	Sample Web App 디렉토리로 이동하여 manifest 파일을 확인한다.<br>
 ><div>$cd hello-spring-mysql</div>  
-><div>$vi manifest.yml</div>  
+><div>$vi manifest.yml</div>
 >
 ><pre>
 applications:
@@ -2751,26 +2750,26 @@ path: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war <font color="red">#배�
 >참고: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war파일이 존재 하지 않을 경우 mvn 빌드를 수행 하면 파일이 생성된다.
 
 -	--no-start 옵션으로 App을 배포한다.  
-	--no-start: App 배포시 구동은 하지 않는다.
+	--no-start: App 배포시 구동은 하지 않는다.<br>
 ><div>$cf push --no-start</div>
 >![mysql_bosh_lite_3.3.01]
 
--	배포된 Sample App을 확인하고 로그를 수행한다.  
+-	배포된 Sample App을 확인하고 로그를 수행한다.<br>
 ><div>$cf apps</div>
 >![mysql_bosh_lite_3.3.02]<br><br>
 ><div>$ cf logs {배포된 App명}<br>
 >$ cf logs hello-tomcat-mysql</div>
 >![mysql_bosh_lite_3.3.03]<br><br>
 
--	Sample Web App에서 생성한 서비스 인스턴스 바인드 신청을 한다.  
+-	Sample Web App에서 생성한 서비스 인스턴스 바인드 신청을 한다.<br>
 ><div>$cf bind-service hello-tomcat-mysql mysql-service-instance</div>
 >![mysql_bosh_lite_3.3.04]
 
--	바인드가 적용되기 위해서 App을 재기동한다.  
+-	바인드가 적용되기 위해서 App을 재기동한다.<br>
 ><div>$cf restart hello-tomcat-mysql</div>
 >![mysql_bosh_lite_3.3.05]<br><br>
 
--	(참고) 바인드 후 App구동시 Mysql 서비스 접속 에러로 App 구동이 안될 경우 보안 그룹을 추가한다.  
+-	(참고) 바인드 후 App구동시 Mysql 서비스 접속 에러로 App 구동이 안될 경우 보안 그룹을 추가한다.<br>  
 >-	rule.json 화일을 만들고 아래와 같이 내용을 넣는다.
 ><div>
 >$ vi rule.json

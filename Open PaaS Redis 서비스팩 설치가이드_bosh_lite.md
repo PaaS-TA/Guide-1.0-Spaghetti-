@@ -375,7 +375,7 @@ Sample App 구조는 다음과 같다.
 	</tr>
 </table>
 
--	-	OpenPaaS-Sample-Apps.zip 파일 압축을 풀고 Service폴더안에 있는 RedisSample Web App인 redis-example-app을복사한다
+-	OpenPaaS-Sample-Apps.zip 파일 압축을 풀고 Service폴더안에 있는 RedisSample Web App인 redis-example-app을복사한다
 
 ><div>$ls -all</div>
 >![redis_bosh_lite_23]
@@ -422,7 +422,7 @@ path: .#배포시 구동되는 Path<br>
 -	--no-start 옵션으로 App을 배포한다. 
 --no-start: App 배포시 구동은 하지 않는다.
 
-><div>$cdredis-example-app<br></div>
+><div>$cf push --no-start<br></div>
 >![redis_bosh_lite_27]
 
 -	배포된 Sample App을 확인하고 로그를 수행한다.

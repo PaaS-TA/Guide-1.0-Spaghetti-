@@ -211,7 +211,7 @@ MicroBOSH를 배포하기 위해서는 아래와 같이 몇가지 준비 사항�
 MicroBOSH를 배포하기 위한 OpenStack 사전 준비사항 및 필요한 사항을
 아래의 가이드를 참조하여 설정한다.
 
--   사전 준비 및 확인 사항
+-   **사전 준비 및 확인 사항**
 
 	-   지원 가능한 OpenStack Release 버전 : Havana, **IceHouse(권장)**, Juno
 
@@ -230,34 +230,41 @@ MicroBOSH를 배포하기 위한 OpenStack 사전 준비사항 및 필요한 사
 	-   OpenStack 프로젝트 생성
 
 
--   Key Pair 생성
-	1. 오픈스택 horizon의 왼쪽 메뉴에서 Compute -> Access & Security 선택
+-   **Key Pair 생성**
+
+1. 오픈스택 horizon의 왼쪽 메뉴에서 Compute -> Access & Security 선택
+
 	![openstack 1](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/KeyPair1.png)
 
-	2.  “Key Pairs” Tab 선택
+2.  “Key Pairs” Tab 선택
 
-	3.  화면 상단의 “Create Key Pair” 선택
+3.  화면 상단의 “Create Key Pair” 선택
 
-	4.  Key pair 이름 입력 후 “Create Key Pair” 선택 및 저장
+4.  Key pair 이름 입력 후 “Create Key Pair” 선택 및 저장
+
 	![Create key pair](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/KeyPair2.png)
 
 
--   Security Group 생성 및 구성
+-   **Security Group 생성 및 구성**
 
-    1.  오픈스택 horizon의 왼쪽 메뉴에서 Compute -> Access & Security 선택
+1.  오픈스택 horizon의 왼쪽 메뉴에서 Compute -> Access & Security 선택
 
-    2.  Security Groups Tab 선택
+2.  Security Groups Tab 선택
 
-    3.  “Create Security Group” 선택
+3.  “Create Security Group” 선택
+
 	![Create security group1](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/CreateSecurityGroup1.png)
 
-    4.  생성할 Security Group의 Name, Description 입력 후 “Create Security Group” 선택
+4.  생성할 Security Group의 Name, Description 입력 후 “Create Security Group” 선택
+
 	![Create security group2](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/CreateSecurityGroup2.png)
 
-	5.  Security Group 목록에서 생성된 Security Group의 “Manage Rules” 선택
+5.  Security Group 목록에서 생성된 Security Group의 “Manage Rules” 선택
+    
 	![Manage Rules1](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/ManageRules1.png)
 
-	6.  다음 표와 같이 Bosh 관련Security Rule을 추가한다.
+6.  다음 표와 같이 Bosh 관련Security Rule을 추가한다.
+    
 	![Manage Rules2](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/ManageRules2.png)
 
 <div id='MicroBOSH-배포-Manifest-작성'/>
@@ -453,7 +460,7 @@ Stemcell 업로드는 MicroBOSH가 BOSH VM인스턴스를 생성하기 위한 �
 
 Stemcell 업로드가 성공하면 나면 bosh stemcells 명령어로 아래와 같이 확인 가능하다.
 
-![bosh stemcells](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/bosh-stemcells.png)
+	![bosh stemcells](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/bosh-stemcells.png)
 
 
 
@@ -505,7 +512,7 @@ Stemcell 업로드가 성공하면 나면 bosh stemcells 명령어로 아래와 
 BOSH Release 업로드가 성공하면 bosh releases 명령어로 등록된 Release
 정보를 아래와 같이 확인 가능하다.
 
-![bosh releases](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/bosh-releases.png)
+	![bosh releases](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/bosh-releases.png)
 
 <div id='BOSH-배포-Manifest-작성'/>
 ### 배포 Manifest 작성
@@ -815,11 +822,14 @@ MicroBOSH 배포 Manifest파일 작성과 유사하게 기준 디렉토리(“wo
 		Deployed `bosh-openstack' to `microbosh'
 
 
-3.  배포가 성공하면 배포된 VM정보를 확인한다.
+3. 배포가 성공하면 배포된 VM정보를 확인한다.
+
 	![bosh vms](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/bosh-vms.png)
 
-4.  배포한 BOSH의 Director로 Target 설정하고 기본 계정인 admin/admin으로 로그인한다.
-	![bosh target](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/bosh-target.png)
+4. 배포한 BOSH의 Director로 Target 설정하고 기본 계정인 admin/admin으로 로그인한다.
 
-5.  BOSH의 상태정보를 확인한다.
-	![bosh status](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/bosh-releases.png)
+	![bosh target](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/bosh-targets.png)
+
+5. BOSH의 상태정보를 확인한다.
+
+	![bosh status](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/bosh-status.png)

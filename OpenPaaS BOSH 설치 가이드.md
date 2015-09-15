@@ -816,10 +816,13 @@ MicroBOSH 배포 Manifest파일 작성과 유사하게 기준 디렉토리(“wo
 
 
 3.  배포가 성공하면 배포된 VM정보를 확인한다.
-	![bosh vms](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/bosh-vms.png)
+
+![bosh vms](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/bosh-vms.png)
 
 4.  배포한 BOSH의 Director로 Target 설정하고 기본 계정인 admin/admin으로 로그인한다.
-	![bosh target](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/bosh-target.png)
+
+![bosh target](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/bosh-targets.png)
 
 5.  BOSH의 상태정보를 확인한다.
-	![bosh status](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/bosh-releases.png)
+
+![bosh status](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/bosh-status.png)

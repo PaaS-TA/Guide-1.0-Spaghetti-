@@ -14,7 +14,7 @@
      * [3.2. 개방형 클라우드 플랫폼에서 서비스 신청](#개방형-클라우드-플랫폼에서-서비스-신청)
      * [3.3. Sample Web App에 서비스 바인드 신청 및 App 확인](#sample-web-app에-서비스-바인드-신청-및-app-확인)
 4. [MySQL Client 툴 접속](#mysql-client-툴-접속)
-     * [4.1. HeidiSQL 설치&연결](#heidisql-설치&연결)
+     * [4.1. HeidiSQL 설치 & 연결](#heidisql-설치-&-연결)
 
 
 # 문서 개요
@@ -30,7 +30,8 @@
 
 ###시스템 구성도
 본 문서의 설치된 시스템 구성도이다. MySQL Server, MySQL 서비스 브로커, Proxy로 최소사항을 구성하였다.
-![시스템구성도][mysql_vsphere_1.3.01]  
+![시스템구성도][mysql_vsphere_1.3.01]
+
 | 구분 | 스펙 |
 |--------|-------|
 | openpaas-mysql-broker |2vCPU / 2GB RAM / 20GB Disk |

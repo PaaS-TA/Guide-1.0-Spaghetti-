@@ -14,7 +14,7 @@
      * [3.2. 개방형 클라우드 플랫폼에서 서비스 신청](#개방형-클라우드-플랫폼에서-서비스-신청)
      * [3.3. Sample Web App에 서비스 바인드 신청 및 App 확인](#sample-web-app에-서비스-바인드-신청-및-app-확인)
 4. [MySQL Client 툴 접속](#mysql-client-툴-접속)
-     * [4.1. HeidiSQL 설치&연결](#heidisql-설치&연결)
+     * [4.1. HeidiSQL 설치 & 연결](#heidisql-설치-&-연결)
 
 
 # 문서 개요

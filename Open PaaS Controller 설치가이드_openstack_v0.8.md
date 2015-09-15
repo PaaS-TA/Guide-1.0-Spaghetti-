@@ -1,230 +1,265 @@
+## Table of Contents
+1. [개요](#1)
+     * [1.1. 문서 목적](#2)
+     * [1.2. 범위](#3)
+     * [1.3. 참고 자료](#4)
+2. [Prerequisites](#5)
+     * [2.1. 개요](#6)
+     * [2.2. OpenStack](#7)
+     * [2.3. Bosh Server 및 Bosh CLI](#8)
+     * [2.4. DNS Server](#9)
+     * [2.5. OP CLI](#10)
+3. [Open PaaS Controller 설치](#11)
+     * [3.1. Release Upload](#12])
+     * [3.2. Stemcell Upload](#13)
+     * [3.3. Deployment Manifest](#14)
+     * [3.4. Bosh Deploy](#15)
+     * [3.5. 설치형상 확인](#16)
+4. [설치 검증](#17)
+     * [4.1. CF Login](#18)
+     * [4.2. Application Deploy](#19)
+     * [4.3. Application Access](#20)
 
-
+<div id='1'/>
 #개요
-
-
+<div id='2'/>
 ###문서 목적
-본 문서(설치가이드)는, 현 시점에서 지원되는 IaaS(Infrastructure as a Service) 중 하나인 vSphere 환경에서 개방형클라우드플랫폼을 설치하기 위한 가이드를 제공하는데 그 목적이 있다.
+본 문서(설치가이드)는, 현 시점에서 지원되는 IaaS(Infrastructure as a Service) 중 하나인 OpenStack(Icehouse) 환경에서 Open PaaS Controller를 설치하기 위한 가이드를 제공하는데 그 목적이 있다.
 
+<div id='3'/>
 ###범위
+본 문서의 범위는 Open PaaS Controller를 OpenStack Icehouse에 설치하기 데 대한 내용으로 한정되어 있다. vSphere/AWS와 같은 다른 IaaS 환경에서의 설치는 그에 맞는 가이드 문서를 참고해야 하며, Bosh 설치 또한 해당 가이드 문서를 별도로 참조해야 한다.
 
-본 문서의 범위는 개방형클라우드플랫폼을 vSphere에 설치하기 데 대한 내용으로 한정되어 있다. OpenStack/AWS와 같은 다른 IaaS 환경에서의 설치는 그에 맞는 가이드 문서를 참고해야 하며, Inception/Bosh 설치 또한 해당 가이드 문서를 별도로 참조해야 한다.
-
+<div id='4'/>
 ###참고 자료
-[**http://docs.cloudfoundry.org/deploying/vsphere/**](http://docs.cloudfoundry.org/deploying/vsphere/)<br>
+[**http://docs.cloudfoundry.org/deploying/openstack/**](http://docs.cloudfoundry.org/deploying/openstack/)<br>
 [**https://github.com/cloudfoundry/cf-release**](https://github.com/cloudfoundry/cf-release)
-
+ 
+<div id='5'/>
 #Prerequisites
+<div id='6'/>
 ###개요
-개방형클라우드플랫폼을 설치하기 전에 IaaS(vSphere) 환경이 정상적으로 구성되어 있고, Bosh Server와 Bosh/CF CLI가 설치되어 있는지를 확인해야 한다.
+Open PaaS Controller를 설치하기 전에 IaaS(OpenStack) 환경이 정상적으로 구성되어 있고, Bosh Server와 Bosh/OP CLI가 설치되어 있는지를 확인해야 한다.
 
-##vSphere
-####데이터센터/클러스터/리소스풀
+<div id='7'/>
+###OpenStack
+####Dashboard(Horizon)
 ![controller_openstack_image002]<br>
 **[그림출처]: Open PaaS 사업단 개발환경**
 
-데이터센터 내에 vSphere Server들로 구성된 클러스터가 있어야 하며, 개방형클라우드플랫폼이 설치될 리소스풀이 만들어져 있어야 한다. 리소스풀의 경우는 필수적인 구성은 아니나, 관리의 용이성을 위해서 사용하는 것을 권장한다.
-####Bosh Server 및 Bosh CLI
-![controller_openstack_image002]<br>
+OpenStack Dashboard(Horizon)으로 정상 접속되어야 하고, Open PaaS Controller가 설치될 Subnet이 구성되어 있어야 한다. 별도 Subnet 은 필수적인 구성은 아니나, 관리의 용이성을 위해서 사용하는 것을 권장한다.
+
+####Security Group
+![controller_openstack_image003]<br>
+SSH, HTTP, HTTPS, DNS Protocol을 받을 수 있고, 모든 통신 Protocol을 엑세스 할 수 있도록 Security Group을 설정한다.(주의: 내부 네트워크 구간에서는 모든 Procotol이 사용 가능하도록 구성해야 한다.)
+
+<div id='8'/>
+###Bosh Server 및 Bosh CLI
+![controller_openstack_image004]<br>
 **[그림출처]: Open PaaS 사업단 개발환경**
 
 “bosh status” 명령을 실행하여 위와 같이 정상적으로 출력되는 지를 확인한다. 만약 문제 발생 시에는 Bosh 설치가이드를 참조하여 정상적으로 Bosh 환경을 구성한 후 이후 작업을 진행한다.
-####DNS Server
 
-개방형클라우드플랫폼은 독자적인 Zone을 DNS에 등록해야 한다. 사용 가능한 DNS Server가 존재하지 않는다면, VM 등에 별도로 구축하여야 한다. 예를 들어 Linux의 경우에는 bind9 Package를 설치하고 아래와 같이 Platform Zone을 등록한다.
+<div id='9'/>
+###DNS Server
+Open PaaS Controller는 독자적인 Zone을 DNS에 등록해야 한다. 사용 가능한 DNS Server가 존재하지 않는다면, VM 등에 별도로 구축하여야 한다. 예를 들어 Linux의 경우에는 bind9 Package를 설치하고 아래와 같이 Platform Zone을 등록한다.
 
-/etc/bind/named.conf.local\
+>/etc/bind/named.conf.local	
+><pre>
+zone "controller.open-paas.com" {
+        type master;
+        file "/etc/bind/db.controller.open-paas.com";
+};
+</pre>
 
-	zone "cf-dev.open-paas.com" {
-	type master;
-	file "/etc/bind/db.cf-dev.open-paas.com";
-	};
-
-/etc/bind/db.cf-dev.open-paas.com
-
-	;
-	; BIND data file for local loopback interface
-	;
-	$TTL    604800
-	@       IN      SOA     ns.cf-dev.open-paas.com. root.cf-dev.open-paas.com. (
+>/etc/bind/db.controller.open-paas.com
+><pre>
+;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     ns.controller.open-paas.com. root.controller.open-paas.com. (
                               2         ; Serial
                          604800         ; Refresh
                           86400         ; Retry
                         2419200         ; Expire
                          604800 )       ; Negative Cache TTL
-	;
-	@       IN      NS      ns.cf-dev.open-paas.com.
-	*       IN      A       10.30.40.113                  # HA Proxy VM IP 주소
-	@       IN      AAAA    ::1
+;
+@       IN      NS      ns.controller.open-paas.com.
+*       IN      A       10.10.3.13                  <font color="blue"># HA Proxy VM IP 주소</font>
+@       IN      AAAA    ::1
+</pre>
+>NSLOOKUP 등으로 DNS Server에 Platform Domain이 정상 등록 되었는지 확인한다.
+>![controller_openstack_image005]
 
-NSLOOKUP 등으로 DNS Server에 Platform Domain이 정상 등록 되었는지 확인한다.
-![controller_openstack_image004]<br>
-
-
+<div id='10'/>
 ###OP CLI
 Open PaaS 설치 패키지 내에 포함되어 있는 OP CLI 압축 파일을 풀고 명령어 Path Folder에 실행 파일을 복사한다.
-
 >sudo tar -xvzf $INSTALL_PACKAGE/OpenPaaS-Dev-Tools/op-CLI/cf-linux-amd64.tgz<br>
 >sudo cp cf /usr/bin
 
-“cf” 명령어를 입력하면 아래와 같은 Help 화면이 출력됨을 확인한다.
-![controller_openstack_image005]
- 
-
+>“cf” 명령어를 입력하면 아래와 같은 Help 화면이 출력됨을 확인한다.
+>![controller_openstack_image006]
+ 
+<div id='11'/>
 #Open PaaS Controller 설치
+<div id='12'/>
 ###Release Upload
-배포된 설치 패키지의 OpenPaaS-Controller 폴더에 있는 Open PaaS Controller Bosh Release를 Bosh Server로 아래와 같은 명령으로 212 버전을 Upload 한다.
-
+배포된 설치 패키지의 OpenPaaS-Controller 폴더에 있는 Open PaaS Controller Bosh Release를 Bosh Server로 아래와 같은 명령으로 Beta-1.0 버전을 Upload 한다.
 >bosh upload release $INSTALL_PACKAGE/OpenPaaS-Controller/openpaas-beta-1.0.tgz
 
-
-Release Upload는 상황에 따라 다소 차이는 있으나 보통 20-30분 정도 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.<br>
-![controller_openstack_image006]
+>Release Upload는 상황에 따라 다소 차이는 있으나 보통 20-30분 정도 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.<br>
+>![controller_openstack_image007]
 
 [주의] Release Upload 과정에서 작업장비의 “/tmp” 폴더의 사이즈가 작을 경우 압축파일을 풀거나 묶을 때 에러가 발생할 수 있으므로, 10GB 이상 Free Size가 있는지를 확인해야 한다.
 
 Bosh Sever에 Release가 정상적으로 Upload 되었는지는 “bosh releases” 명령으로 확인한다.
->bosh releases<br>
-![controller_openstack_image007]
+>bosh releases<br><br>
+>![controller_openstack_image008]
  
-
+<div id='13'/>
 ###Stemcell Upload
-배포된 설치 패키지의 OpenPaaS-Stemcells 폴더에 있는 Open PaaS vSphere용 Stemcell 을 Bosh Server로 아래와 같은 명령으로 3016 Version을 Upload 한다.
->bosh upload stemcell $INSALL_PACKAGE/OpenPaaS-Stemcells/bosh-stemcell-3016-vsphere-esxi-ubuntu-trusty-go_agent.tgz
+배포된 설치 패키지의 OpenPaaS-Stemcells 폴더에 있는 Open PaaS OpenStack용 Stemcell 을 Bosh Server로 아래와 같은 명령으로 3016 Version을 Upload 한다.
+>bosh upload stemcell $INSALL_PACKAGE/OpenPaaS-Stemcells/bosh-stemcell-3016-openstack-kvm-ubuntu-trusty-go_agent.tgz
 
-Stemcell Upload는 상황에 따라 다소 차이는 있으나 보통 5-10분 정도 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.
+>Stemcell Upload는 상황에 따라 다소 차이는 있으나 보통 5-10분 정도 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.<br>
+>![controller_openstack_image009]
     
-
 [주의] Stemcell Upload 과정에서 작업장비의 “/tmp” 폴더의 사이즈가 작을 경우 압축파일을 풀거나 묶을 때 에러가 발생할 수 있으므로, 10GB 이상 Free Size가 있는지를 확인해야 한다.
 
 Bosh Sever에 Stemcell이 정상적으로 Upload 되었는지는 “bosh stemcells” 명령으로 확인한다.
->bosh stemcells
-    
+>bosh stemcells<br><br>
+>![controller_openstack_image010]
 
+<div id='14'/>
 ###Deployment Manifest
-배포된 설치 패키지에 포함된 Sample Deployment Manifest File($INSTALL_PACKAGE/OpenPaaS-Deployment/openpaas-vsphere-beta-1.0.yml)을 아래의 순서대로 설치환경에 적합하게 수정한다.
-3.3.1 Name & Release
-name: openpaas-vsphere-beta-1.0   # Deployment Name
-director_uuid: 6e0f7c41-2415-4319-98aa-38109597aff4  # Bosh Director UUID
+배포된 설치 패키지에 포함된 Sample Deployment Manifest File($INSTALL_PACKAGE/OpenPaaS-Deployment/openpaas-openstack-beta-1.0.yml)을 아래의 순서대로 설치환경에 적합하게 수정한다.
+
+####Name & Release
+<pre>
+name: openpaas-openstack-beta-1.0   <font color="blue"># Deployment Name</font>
+director_uuid: 6e0f7c41-2415-4319-98aa-38109597aff4  <font color="blue"># Bosh Director UUID</font>
 releases:
-- name: openpaas        # Bosh Release Name
-  version: beta-1.0            # Bosh Release Version
+- name: openpaas        <font color="blue"># Bosh Release Name</font>
+  version: beta-1.0       <font color="blue"># Bosh Release Version</font>
+</pre>
 Deployment Name은 설치자가 임의로 부여하는데, IaaS와 Version을 표시할 것을 권장한다. Bosh Director UUID는 “bosh status” 명령을 실행하면 출력되는 UUID 값을 넣고, Release Name과 Version은 “bosh releases” 명령의 결과로 나오는 값들을 입력하도록 한다.
-3.3.2 Networks		
+
+<div id='networks'/>
+####Networks
+<pre>		
 networks:
-- name: op_network           # Open PaaS Controller가 설치될 Network Name
+- name: op_network           <font color="blue"># Open PaaS Controller가 설치될 Network Name</font>
   subnets:
   - cloud_properties:
-      name: Internal          # Open PaaS Controller가 설치될 Virtual Switch Name
+     net_id: 55248d09-809f-42db-b8a0-dec39903bcc1 <font color="blue"># Neutron Subnet ID</font>
+security_groups:
+     - cf-security
     dns:
-    - 10.30.20.24             # DNS Server
+    - 10.10.5.4             <font color="blue"># DNS Server</font>
     - 8.8.8.8
-    gateway: 10.30.20.23      # Gateway IP Address
+    gateway: 10.10.3.1      <font color="blue"># Gateway IP Address</font>
     name: default_unused
-    range: 10.30.0.0/16           # Network CIDR
+    range: 10.10.3.0/24          <font color="blue"># Network CIDR</font>
     #reserved:
 static:
-    - 10.30.40.10 - 10.30.40.100   # VM에 할당될 Static IP 주소 대역
+    - 10.10.3.11 - 10.10.3.70   <font color="blue"># VM에 할당될 Static IP 주소 대역</font>
   type: manual
-	Network Name은 설치자가 임의로 부여 가능하다. Virtual Switch, Gateway, DNS Server, Network CIDR은 vSphere 구성을 직접 확인하거나 인프라 담당자에게 문의하여 정보를 얻도록 한다. Static IP 주소는 Open PaaS Controller를 설치할 때 개별 VM에 할당될 IP의 주소 대역으로 마찬가지로 인프라 담당자에게 할당을 받아야 한다.
-3.3.3 Compilation	
+</pre>
+Network Name은 설치자가 임의로 부여 가능하다. Neutron Subnet ID, Gateway, DNS Server, Network CIDR은 OpenStack 구성을 직접 확인하거나 인프라 담당자에게 문의하여 정보를 얻도록 한다. Static IP 주소는 Open PaaS Controller를 설치할 때 개별 VM에 할당될 IP의 주소 대역으로 마찬가지로 인프라 담당자에게 할당을 받아야 한다.
+
+####Compilation	
+<pre>
 compilation:
-  cloud_properties:               # Compile용 VM의 사양
-    cpu: 2
-    disk: 8192
-    ram: 1024
-  network: op_network            # Network Name
+  cloud_properties:               <font color="blue"># Compile용 VM의 사양</font>
+    instance_type: m1.medium
+  network: op_network            <font color="blue"># Network Name</font>
   reuse_compilation_vms: true
-  workers: 6                     # 동시 동작하는 VM 수
-	Network Name은 3.3.2에서 정의한 것과 동일한 이름을 줘야 한다. Workers는 동시에 Compile을 수행하는 VM의 개수로 별다른 환경적 특성이 없다면 Default 값을 사용토록 한다.
-3.3.4 Resource Pools	
+  workers: 6                     <font color="blue"># 동시 동작하는 VM 수</font>
+</pre>
+Network Name은 [**Newworks**](#networks)에서 정의한 것과 동일한 이름을 줘야 한다. Workers는 동시에 Compile을 수행하는 VM의 개수로 별다른 환경적 특성이 없다면 Default 값을 사용토록 한다.
+
+####Resource Pools	
+<pre>
 resource_pools:
-- name: small                    # Resource Name
+- name: small                    <font color="blue"># Resource Name</font>
   cloud_properties:
-    cpu: 1
-    disk: 4096
-    ram: 1024
-  env:
+    instance_type: m1.small
+env:
     bosh:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
-  network: op_network           # Network Name
-  size: 3                        # Small을 사용하는 VM 개수
+  network: op_network           <font color="blue"># Network Name</font>
+  size: 3                        <font color="blue"># Small을 사용하는 VM 개수</font>
   stemcell:
-    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent    # Stemcell Name
-    version: 3016                                     # Stemcell Version
+    name: bosh-openstack-kvm-ubuntu-trusty-go_agent  <font color="blue"># Stemcell Name</font>
+    version: 3016                                     <font color="blue"># Stemcell Version</font>
 - name: medium
   cloud_properties:
-    cpu: 1
-    disk: 4096
-    ram: 1024
+    instance_type: m1.medium
   env:
     bosh:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
   network: op_network
   size: 10
   stemcell:
-    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent
+    name: bosh-openstack-kvm-ubuntu-trusty-go_agent
     version: 3016
-
 - name: large
   cloud_properties:
-    cpu: 1
-    disk: 10240
-    ram: 1024
+ instance_type: m1.large
   env:
     bosh:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
   network: op_network
   size: 1
   stemcell:
-    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent
+    name: bosh-openstack-kvm-ubuntu-trusty-go_agent
     version: 3016
-
 - name: runner
   cloud_properties:
-    cpu: 2
-    disk: 32768
-    ram: 16384
+ instance_type: m1.large
   env:
     bosh:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
   network: op_network
   size: 1
   stemcell:
-    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent
+    name: bosh-openstack-kvm-ubuntu-trusty-go_agent
     version: 3016
-
 - name: router
   cloud_properties:
-    cpu: 1
-    disk: 2048
-    ram: 1024
+ instance_type: m1.medium
   env:
     bosh:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
   network: op_network
   size: 2
   stemcell:
-    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent
+    name: bosh-openstack-kvm-ubuntu-trusty-go_agent
     version: 3016
+</pre>
+각 Resource의 Size는 Jobs에서 해당 Resource를 사용하는 VM 개수와 정확하게 일치해야 한다. Stemcell Name과 Version은 “bosh stemcells” 명령어 결과로 출력되는 값들을 입력하도록 한다.
 
-	각 Resource의 Size는 Jobs에서 해당 Resource를 사용하는 VM 개수와 정확하게 일치해야 한다. Stemcell Name과 Version은 “bosh stemcells” 명령어 결과로 출력되는 값들을 입력하도록 한다.
-3.3.5 Update
+####Update
+<pre>
 update:
   canaries: 1
   canary_watch_time: 30000-600000
   max_in_flight: 1
-  serial: true	# VM의 순차적 Update
+  serial: true	<font color="blue"># VM의 순차적 Update</font>
   update_watch_time: 5000-600000
-	Default 값들을 수정 없이 사용한다.
-3.3.6 Jobs
-	아래 Sample Jobs를 참고하여 설치 환경에 맞게 수정한다.
+</pre>
+Default 값들을 수정 없이 사용한다.
+
+####Jobs
+아래 Sample Jobs를 참고하여 설치 환경에 맞게 수정한다.
+<pre>
 jobs:
 - name: consul
-  instances: 1                  # VM Instance 개수
+  instances: 1                  <font color="blue"># VM Instance 개수</font>
   networks:
-  - name: op_network       # VM이 설치될 Network
-    static_ips: 10.30.40.150      # Consul에 할당된 IP 주소
+  - name: op_network       <font color="blue"># VM이 설치될 Network</font>
+    static_ips: 10.10.3.50    <font color="blue"># Consul에 할당된 IP 주소</font>
   persistent_disk: 1024
   properties:
     consul:
@@ -247,11 +282,11 @@ jobs:
   instances: 1
   networks:
   - name: op_network
-    static_ips: 10.30.40.113        # HAProxy IP 주소
+    static_ips: 10.10.3.13        <font color="blue"># HAProxy IP 주소</font>
   properties:
     ha_proxy:
       disable_http: false
-ssl_pem: |                  # SSL Key
+ssl_pem: |                  <font color="blue"># SSL Key</font>
         -----BEGIN CERTIFICATE-----
         MIICyTCCAjICCQD6oXQcZiA41jANBgkqhkiG9w0BAQsFADCBqDELMAkGA1UEBhMC
         S1IxDjAMBgNVBAgMBVNlb3VsMRUwEwYDVQQHDAxZZW9uZ2RldW5ncG8xEjAQBgNV
@@ -286,13 +321,13 @@ ssl_pem: |                  # SSL Key
         -----END RSA PRIVATE KEY-----
     metron_agent:
       zone: z1
-      deployment: openpaas- beta-1.0
+      deployment: openpaas-beta-1.0
     networks:
       apps: op_network
     router:
       servers:
         z1:
-        - 10.30.40.115               # Router IP 주소
+        - 10.10.3.15               <font color="blue"># Router IP 주소</font>
   resource_pool: router
   templates:
   - name: haproxy
@@ -307,11 +342,11 @@ ssl_pem: |                  # SSL Key
   instances: 1
   networks:
   - name: op_network
-    static_ips: 10.30.40.111             # NATS IP 주소
+    static_ips: 10.10.3.11             <font color="blue"># NATS IP 주소</font>
   properties:
     metron_agent:
       zone: z1
-      deployment: openpaas- beta-1.0
+      deployment: openpaas-beta-1.0
     networks:
       apps: op_network
   resource_pool: medium
@@ -329,12 +364,12 @@ ssl_pem: |                  # SSL Key
   networks:
   - name: op_network
     static_ips:
-    - 10.30.40.124                  # ETCD IP 주소
+    - 10.10.3.24                  <font color="blue"># ETCD IP 주소</font>
   persistent_disk: 10024
   properties:
     metron_agent:
       zone: z1
-      deployment: openpaas- beta-1.0
+      deployment: openpaas-beta-1.0
     networks:
       apps: op_network
   resource_pool: medium
@@ -352,11 +387,11 @@ ssl_pem: |                  # SSL Key
   networks:
   - name: op_network
     static_ips:
-    - 10.30.40.141                # Stats(Collector) IP 주소
+    - 10.10.3.40                <font color="blue"># Stats(Collector) IP 주소</font>
   properties:
     metron_agent:
       zone: z1
-      deployment: openpaas- beta-1.0
+      deployment: openpaas-beta-1.0
     networks:
       apps: op_network
   resource_pool: small
@@ -371,12 +406,12 @@ ssl_pem: |                  # SSL Key
   instances: 1
   networks:
   - name: op_network
-    static_ips: 10.30.40.112              # NFS Server IP 주소
+    static_ips: 10.10.3.12              <font color="blue"># NFS Server IP 주소</font>
   persistent_disk: 102400
   properties:
     metron_agent:
       zone: z1
-      deployment: openpaas- beta-1.0
+      deployment: openpaas-beta-1.0
     networks:
       apps: op_network
   resource_pool: medium
@@ -391,12 +426,12 @@ ssl_pem: |                  # SSL Key
   instances: 1
   networks:
   - name: op_network
-    static_ips: 10.30.40.122            # DB Server(PostgreSQL) IP 주소
+    static_ips: 10.10.3.22            <font color="blue"># DB Server(PostgreSQL) IP 주소</font>
   persistent_disk: 4096
   properties:
     metron_agent:
       zone: z1
-      deployment: openpaas- beta-1.0
+      deployment: openpaas-beta-1.0
     networks:
       apps: op_network
   resource_pool: medium
@@ -411,7 +446,7 @@ ssl_pem: |                  # SSL Key
   instances: 1
   networks:
   - name: op_network
-    static_ips: 10.30.40.142             # UAA IP 주소
+    static_ips: 10.10.3.41             <font color="blue"># UAA IP 주소</font>
   properties:
     consul:
       agent:
@@ -419,7 +454,7 @@ ssl_pem: |                  # SSL Key
         - uaa
     metron_agent:
       zone: z1
-      deployment: openpaas- beta-1.0
+      deployment: openpaas-beta-1.0
     networks:
       apps: op_network
   resource_pool: medium
@@ -436,11 +471,11 @@ ssl_pem: |                  # SSL Key
   instances: 1
   networks:
   - name: op_network
-    static_ips: 10.30.40.143            # Login Server IP 주소
+    static_ips: 10.10.3.37            <font color="blue"># Login Server IP 주소</font>
   properties:
     metron_agent:
       zone: z1
-      deployment: openpaas- beta-1.0
+      deployment: openpaas-beta-1.0
     networks:
       apps: op_network
   resource_pool: medium
@@ -454,7 +489,7 @@ ssl_pem: |                  # SSL Key
   instances: 1
   networks:
   - name: op_network
-    static_ips: 10.30.40.144               # Cloud Controller IP 주소
+    static_ips: 10.10.3.42               <font color="blue"># Cloud Controller IP 주소</font>
   persistent_disk: 0
   properties:
     consul:
@@ -464,13 +499,13 @@ ssl_pem: |                  # SSL Key
         - routing-api
     metron_agent:
       zone: z1
-      deployment: openpaas- beta-1.0
+      deployment: openpaas-beta-1.0
     networks:
       apps: op_network
     nfs_server:
-      address: 10.30.40.112             # NFS Server IP 주소
+      address: 10.10.3.12             <font color="blue"># NFS Server IP 주소</font>
       allow_from_entries:
-      - 10.30.0.0/16                    # 허용 Network CIDR 값
+      - 10.10.3.0/24                    <font color="blue"># 허용 Network CIDR 값</font>
       share: null
   resource_pool: large
   templates:
@@ -492,12 +527,12 @@ ssl_pem: |                  # SSL Key
   instances: 1
   networks:
   - name: op_network
-    static_ips: 10.30.40.145             # Cloud Controller Clock IP 주소
+    static_ips: 10.10.3.43             <font color="blue"># Cloud Controller Clock IP 주소</font>
   persistent_disk: 0
   properties:
     metron_agent:
       zone: z1
-      deployment: openpaas- beta-1.0
+      deployment: openpaas-beta-1.0
     networks:
       apps: op_network
   resource_pool: medium
@@ -512,18 +547,18 @@ ssl_pem: |                  # SSL Key
   instances: 1
   networks:
   - name: op_network
-    static_ips: 10.30.40.146             # CC Worker IP 주소
+    static_ips: 10.10.3.45             <font color="blue"># CC Worker IP 주소</font>
   persistent_disk: 0
   properties:
     metron_agent:
       zone: z1
-      deployment: openpaas- beta-1.0
+      deployment: openpaas-beta-1.0
     networks:
       apps: op_network
     nfs_server:
-      address: 10.30.40.112             # NFS Server IP 주소
+      address: 10.10.3.12             <font color="blue"># NFS Server IP 주소</font>
       allow_from_entries:
-      - 10.30.0.0/16                    # 허용 Network CIDR 값
+      - 10.10.3.0/24                    <font color="blue"># 허용 Network CIDR 값</font>
       share: null
   resource_pool: small
   templates:
@@ -541,11 +576,11 @@ ssl_pem: |                  # SSL Key
   instances: 1
   networks:
   - name: op_network
-    static_ips: 10.30.40.147            # Health Manager IP 주소
+    static_ips: 10.10.3.46            <font color="blue"># Health Manager IP 주소</font>
   properties:
     metron_agent:
       zone: z1
-      deployment: openpaas- beta-1.0
+      deployment: openpaas-beta-1.0
     networks:
       apps: op_network
   resource_pool: medium
@@ -560,13 +595,13 @@ ssl_pem: |                  # SSL Key
   instances: 1
   networks:
   - name: op_network
-    static_ips: 10.30.40.148              # DEA IP 주소
+    static_ips: 10.10.3.44              <font color="blue"># DEA IP 주소</font>
   properties:
     dea_next:
       zone: z1
     metron_agent:
       zone: z1
-      deployment: openpaas- beta-1.0
+      deployment: openpaas-beta-1.0
     networks:
       apps: op_network
   resource_pool: runner
@@ -584,7 +619,7 @@ ssl_pem: |                  # SSL Key
   instances: 1
   networks:
   - name: op_network
-    static_ips: 10.30.40.149            # Doppler IP 주소
+    static_ips: 10.10.3.47            <font color="blue"># Doppler IP 주소</font>
   properties:
     networks:
       apps: op_network
@@ -592,7 +627,7 @@ ssl_pem: |                  # SSL Key
       zone: z1
     metron_agent:
       zone: z1
-      deployment: openpaas- beta-1.0
+      deployment: openpaas-beta-1.0
   resource_pool: medium
   templates:
   - name: doppler
@@ -607,7 +642,7 @@ ssl_pem: |                  # SSL Key
   instances: 1
   networks:
   - name: op_network
-    static_ips: 10.30.40.151               # Loggregator Controller IP 주소
+    static_ips: 10.10.3.48               <font color="blue"># Loggregator Controller IP 주소</font>
   properties:
     networks:
       apps: op_network
@@ -615,7 +650,7 @@ ssl_pem: |                  # SSL Key
       zone: z1
     metron_agent:
       zone: z1
-      deployment: openpaas- beta-1.0
+      deployment: openpaas-beta-1.0
   resource_pool: small
   templates:
   - name: loggregator_trafficcontroller
@@ -628,7 +663,7 @@ ssl_pem: |                  # SSL Key
   instances: 1
   networks:
   - name: op_network
-    static_ips: 10.30.40.115              # Router IP 주소
+    static_ips: 10.10.3.15              <font color="blue"># Router IP 주소</font>
   properties:
     consul:
       agent:
@@ -636,7 +671,7 @@ ssl_pem: |                  # SSL Key
         - gorouter
     metron_agent:
       zone: z1
-      deployment: openpaas- beta-1.0
+      deployment: openpaas-beta-1.0
     networks:
       apps: op_network
   resource_pool: router
@@ -648,16 +683,17 @@ ssl_pem: |                  # SSL Key
   - name: consul_agent
     release: openpaas
   update: {}
+</pre>
 
-
-3.3.7 Properties
-	아래 Sample Manifest를 참조하여 설치 환경에 맞게 값을 수정한다.
+####Properties
+아래 Sample Manifest를 참조하여 설치 환경에 맞게 값을 수정한다.
+<pre>
 properties:
   acceptance_tests: null
   app_domains:
-  - controller.open-paas.com	# DNS Server에 등록된 Platform Domain Name
+  - controller.open-paas.com<font color="blue">	# DNS Server에 등록된 Platform Domain Name</font>
   app_ssh: null
-  cc:                                        # 여기서부터 Cloud Controller Properties
+  cc:                                        <font color="blue"># 여기서부터 Cloud Controller Properties</font>
     allow_app_ssh_access: true
     allowed_cors_domains: []
     app_events:
@@ -674,17 +710,17 @@ properties:
       buildpack_directory_key: controller-paas.com-cc-buildpacks
       cdn: null
       fog_connection: null
-    bulk_api_password: admin          # Bulk API Password 설정
+    bulk_api_password: admin          <font color="blue"># Bulk API Password 설정</font>
     client_max_body_size: 2048M
-    db_encryption_key: admin          # DB Encryprion Key 지정
+    db_encryption_key: admin          <font color="blue"># DB Encryprion Key 지정</font>
     db_logging_level: debug2
     default_app_disk_in_mb: 1024
     default_app_memory: 1024
     default_buildpacks:
-    - name: java_buildpack_offline
+- name: java_buildpack_offline
       package: buildpack_java_offline
     - name: java_buildpack
-package: buildpack_java
+      package: buildpack_java
     default_health_check_timeout: 60
     default_quota_definition: default
     default_running_security_groups:
@@ -703,13 +739,13 @@ droplets:
       droplet_directory_key: controller.open-paas.com-cc-droplets
       fog_connection: null
     external_host: api
-    external_protocol: https             # HTTP or HTTPS
+    external_protocol: https             <font color="blue"># HTTP or HTTPS</font>
     install_buildpacks:
 - name: java_buildpack_offline
       package: buildpack_java_offline
     - name: java_buildpack
       package: buildpack_java
-    internal_api_password: admin            # Internal API Password
+    internal_api_password: admin            <font color="blue"># Internal API Password</font>
     internal_api_user: internal_user
 jobs:
       app_bits_packer:
@@ -751,7 +787,7 @@ newrelic:
       cdn: null
       fog_connection: null
       max_package_size: 1073741824
-    quota_definitions:         # Application Instance Default Quota 값 지정
+    quota_definitions:         <font color="blue"># Application Instance Default Quota 값 지정</font>
       default:
         memory_limit: 10240
         non_basic_services_allowed: true
@@ -780,11 +816,11 @@ security_group_definitions:
       - destination: 0.0.0.0/0
         ports: "53"
         protocol: u에
-srv_api_uri: https://api.controller.open-paas.com     # Platform API Target URL
-    staging_upload_password: admin          # Staging Upload Password
+srv_api_uri: https://api.controller.open-paas.com     <font color="blue"># Platform API Target URL</font>
+    staging_upload_password: admin          <font color="blue"># Staging Upload Password</font>
     staging_upload_user: staging_upload_user
     system_buildpacks:
-    - name: java_buildpack_offline
+- name: java_buildpack_offline
       package: buildpack_java_offline
     - name: java_buildpack
       package: buildpack_java
@@ -799,8 +835,8 @@ srv_api_uri: https://api.controller.open-paas.com     # Platform API Target URL
         restart_if_consistently_above_mb: null
     user_buildpacks: []
     users_can_select_backend: true
-ccdb:                         # CCDB Properties
-    address: 10.30.40.122         # DB Server(PostgreSQL) VM IP 주소
+ccdb:                         <font color="blue"># CCDB Properties</font>
+    address: 10.10.3.22           <font color="blue"># DB Server(PostgreSQL) VM IP 주소</font>
     databases:
     - citext: true
       name: ccdb
@@ -809,17 +845,18 @@ ccdb:                         # CCDB Properties
     port: 5524
     roles:
     - name: ccadmin
-      password: admin          # ccadmin 계정 Password
+      password: admin          <font color="blue"># ccadmin 계정 Password</font>
       tag: admin
-  collector: null
+collector:
+deployment_name: openpaas-beta-1.0
   consul:
     agent:
       log_level: null
       servers:
         lan:
-        - 10.30.40.150          # Consul VM IP 주소
+        - 10.10.3.50           <font color="blue"># Consul VM IP 주소</font>
 databases:
-    address: 10.30.40.122	# DB Server VM IP 주소
+    address: 10.10.3.22	<font color="blue"># DB Server VM IP 주소</font>
     databases:
     - citext: true
       name: ccdb
@@ -865,21 +902,23 @@ dea_next:
     maxRetainedLogMessages: 100
     unmarshaller_count: 5
   doppler_endpoint:
-    shared_secret: admin            # Doppler Endpoint Password
+    shared_secret: admin            <font color="blue"># Doppler Endpoint Password</font>
   dropsonde:
     enabled: true
 etcd:
     machines:
-    - 10.30.40.124                  # etcd VM IP 주소
+    - 10.10.3.24                     <font color="blue"># etcd VM IP 주소</font>
   etcd_metrics_server:
     nats:
       machines:
-      - 10.30.40.111                # NATS Server VM IP 주소
+      - 10.10.3.11                  <font color="blue"># NATS Server VM IP 주소</font>
       password: admin
       username: nats
   hm9000:
-    url: http://hm9000.controller.open-paas.com       # HM9000 URL(DNS Name 확인)
-  logger_endpoint: null
+    url: http://hm9000.controller.open-paas.com       <font color="blue"># HM9000 URL(DNS Name 확인)</font>
+logger_endpoint: 
+use_ssl: false
+  port: 80
   loggregator:
     blacklisted_syslog_ranges: null
     debug: false
@@ -896,7 +935,7 @@ login:
     enabled: true
     invitations_enabled: null
     links:
-      home: http://console.controller.open-paas.com        # Web Console URL(DNS Name 확인)
+      home: http://console.controller.open-paas.com        <font color="blue"># Web Console URL(DNS Name 확인)</font>
       network: null
       passwd: http://console.controller.open-paas.com/password_resets/new
       signup: http://console.controller.open-paas.com/register
@@ -925,10 +964,10 @@ uaa_certificate: null
   metron_endpoint:
     shared_secret: admin
   nats:
-    address: 10.30.40.111             # NATS Server VM IP 주소
+    address: 10.10.3.11             <font color="blue"># NATS Server VM IP 주소</font>
     debug: false
     machines:
-    - 10.30.40.111                   # NATS Server VM IP 주소
+    - 10.10.3.11                   <font color="blue"># NATS Server VM IP 주소</font>
     monitor_port: 0
     password: admin
     port: 4222
@@ -936,9 +975,9 @@ uaa_certificate: null
     trace: false
     user: nats
   nfs_server:
-    address: 10.30.40.112            # NFS Server VM IP 주소
+    address: 10.10.3.12              <font color="blue"># NFS Server VM IP 주소</font>
     allow_from_entries:
-    - 10.30.0.0/16                   # NFS Mount 허용 Range 지정
+    - 10.10.3.0/24                  <font color="blue"># NFS Mount 허용 Range 지정</font>
     share: null
   request_timeout_in_seconds: 900
   router:
@@ -953,15 +992,15 @@ uaa_certificate: null
       password: admin
       user: router_status
 smoke_tests: null
-  ssl:
+  ssl:	
     skip_cert_verify: true
   support_address: http://support.ocp.com
   syslog_daemon_config: null
-  system_domain: controller.open-paas.com            # DNS Server에 등록한 Platform Domain Name
+  system_domain: controller.open-paas.com            <font color="blue"># DNS Server에 등록한 Platform Domain Name</font>
   system_domain_organization: OCP
   uaa:
     admin:
-      client_secret: admin                  # admin 계정 Password
+      client_secret: admin                  <font color="blue"># admin 계정 Password</font>
     authentication:
       policy:
         countFailuresWithinSeconds: null
@@ -1040,7 +1079,7 @@ ldap: null
     user: null
     zones: null
   uaadb:
-    address: 10.30.40.122          # DB Server VM IP 주소
+    address: 10.10.3.22              <font color="blue"># DB Server VM IP 주소</font>
     databases:
     - citext: true
       name: uaadb
@@ -1051,47 +1090,60 @@ ldap: null
     - name: uaaadmin
       password: admin
       tag: admin
-3.4	Bosh Deploy
-지금까지 설치를 위한 준비 과정이 정상적으로 수행되었으면, 지금부터 Open PaaS Controller를 IaaS 환경(vSphere)에 아래의 절차로 설치한다.
-3.4.1	Deployment Manifest 지정
-bosh deployment openpaas-vsphere-beta-1.0.yml
-	“bosh deployment” 명령어로 생성한 Deployment Manifest File을 지정하고, 아래의 그림과 같이 동일한 명령어로 정상 지정 되었는지를 확인한다.
- 
-3.4.2	Open PaaS Controller Deploy
+</pre>
+
+<div id='15'/>
+###Bosh Deploy
+지금까지 설치를 위한 준비 과정이 정상적으로 수행되었으면, 지금부터 Open PaaS Controller를 IaaS 환경(OpenStack)에 아래의 절차로 설치한다.
+
+####Deployment Manifest 지정
+>bosh deployment openpaas-openstack-beta-1.0.yml<br><br>
+>“bosh deployment” 명령어로 생성한 Deployment Manifest File을 지정하고, 아래의 그림과 같이 동일한 명령어로 정상 지정 되었는지를 확인한다.<br>
+>![controller_openstack_image011]
+
+####Open PaaS Controller Deploy
 “bosh deploy” 명령으로 Open PaaS Controller 설치를 수행한다.
-bosh deploy
-보통 설치 과정은 1-2시간 정도가 소요되며 정상적으로 설치가 완료되면 아래 그림과 같은 메세지를 출력하게 된다.
- 
-3.5	설치형상 확인
+>bosh deploy<br><br>
+>보통 설치 과정은 1-2시간 정도가 소요되며 정상적으로 설치가 완료되면 아래 그림과 같은 메세지를 출력하게 된다.
+>![controller_openstack_image012]
+
+<div id='16'/>
+###설치형상 확인
 설치가 정상적으로 완료된 후 “bosh vms” 명령으로 설치된 Open PaaS Controller의 형상을 확인한다.
-bosh vms
-아래 그림과 같이 Deployment Name, Virtual Machine, IP 주소 등의 정보를 확인할 수 있다.
- 
-4	설치 검증
-4.1	CF Login
-cf api https://api.controller.open-paas.com –skip-ssl-validation
-…
-cf login
-Email> admin
-Password> admin
-OK
-…
-cf create-space dev
-cf target -o OCP -s dev
-…
-	CF Target을 지정하고, Login을 수행한다. 이 때 계정은 admin/admin을 사용한다.
-	Application을 Deploy할 ORG(Default: OCP)와 Space를 생성하고, 해당하는 ORG/Space로 Targetting 한다.
-4.2	Application Deploy
+>bosh vms<br><br>
+>아래 그림과 같이 Deployment Name, Virtual Machine, IP 주소 등의 정보를 확인할 수 있다.
+>![controller_openstack_image013]
+
+<div id='17'/>
+#설치 검증
+<div id='18'/>
+###CF Login
+>cf api https://api.controller.open-paas.com –skip-ssl-validation     <font color="blue"># 사설키</font><br>
+>…<br>
+>cf login<br>
+>Email> admin<br>
+>Password> admin<br>
+>OK<br>
+>…<br>
+>cf create-space dev<br>
+>cf target -o OCP -s dev<br>
+>…<br>
+
+CF Target을 지정하고, Login을 수행한다. 이 때 계정은 admin/admin을 사용한다.
+Application을 Deploy할 ORG(Default: OCP)와 Space를 생성하고, 해당하는 ORG/Space로 Targetting 한다.
+
+<div id='19'/>
+###Application Deploy
 설치 패키지와 함께 배포된 Sample Application이 위치하는 디렉토리로 이동하고 Application을 Deploy 한다.
 cd $INSTALL_PACKAGE/OpenPaaS-Sample-Apps/Etc/hello-spring
-cf push
-Application이 정상 Deploy가 되면 아래와 같은 메시지가 출력된다.
- 
-4.3	Application Access
+>cf push<br><br>
+>Application이 정상 Deploy가 되면 아래와 같은 메시지가 출력된다.
+>![controller_openstack_image014]
+
+<div id='20'/>
+###Application Access
 Deploy한 Application URL을 Browser 또는 curl 명령어로 Access하여 정상 접근 되는지를 확인한다.
- 
-
-
+![controller_openstack_image015]
 
 [controller_openstack_image002]:/images/openpaas-controller/controller_openstack_image002.png
 [controller_openstack_image003]:/images/openpaas-controller/controller_openstack_image003.png
@@ -1107,18 +1159,3 @@ Deploy한 Application URL을 Browser 또는 curl 명령어로 Access하여 정�
 [controller_openstack_image013]:/images/openpaas-controller/controller_openstack_image013.png
 [controller_openstack_image014]:/images/openpaas-controller/controller_openstack_image014.png
 [controller_openstack_image015]:/images/openpaas-controller/controller_openstack_image015.png
-
-[controller_vsphere_image002]:/images/openpaas-controller/controller_vsphere_image002.png
-[controller_vsphere_image003]:/images/openpaas-controller/controller_vsphere_image003.png
-[controller_vsphere_image004]:/images/openpaas-controller/controller_vsphere_image004.png
-[controller_vsphere_image005]:/images/openpaas-controller/controller_vsphere_image005.png
-[controller_vsphere_image006]:/images/openpaas-controller/controller_vsphere_image006.png
-[controller_vsphere_image007]:/images/openpaas-controller/controller_vsphere_image007.png
-[controller_vsphere_image008]:/images/openpaas-controller/controller_vsphere_image008.png
-[controller_vsphere_image009]:/images/openpaas-controller/controller_vsphere_image009.png
-[controller_vsphere_image010]:/images/openpaas-controller/controller_vsphere_image010.png
-[controller_vsphere_image011]:/images/openpaas-controller/controller_vsphere_image011.png
-[controller_vsphere_image012]:/images/openpaas-controller/controller_vsphere_image012.png
-[controller_vsphere_image013]:/images/openpaas-controller/controller_vsphere_image013.png
-[controller_vsphere_image014]:/images/openpaas-controller/controller_vsphere_image014.png
-

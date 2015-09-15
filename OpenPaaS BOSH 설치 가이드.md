@@ -127,7 +127,7 @@ BOSH CLI가 지원하는 Ruby버전 중 2.2.2버전을 설치를 대상으로 �
 
 	\# Off-Line의 경우
 
-		#다운로드 받은 bosh-ruby-dependency-package 압축해제
+		# 다운로드 받은 bosh-ruby-dependency-package 압축해제
 		$ tar –xvzf bosh-ruby-dependency-packages.tar.gz
 		$ cd ruby-dependency-packages
 
@@ -168,7 +168,7 @@ BOSH CLI를 설치하는 절차는 다음과 같습니다.
 		# BOSH CLI 설치
 		$ sudo gem install bosh_cli bosh_cli_plugin_micro --no-ri --no-rdoc
 
-	\# Off-line의 경우
+	\# Off-Line의 경우
 
 		# bosh-cli.zip 압축해제
 		$ cd ~/workspace
@@ -555,10 +555,10 @@ MicroBOSH 배포 Manifest파일 작성과 유사하게 기준 디렉토리(“wo
 			type: manual 											# 네트워크 타입 설정(타입종류: manual, dynamic, vip)
 			subnets:
 			- range: 172.16.130.0/24 								# Subnet IP Range(CIDR) 설정
-			  gateway: 172.16.130.1 								# Subne Gateway IP 설정
+			  gateway: 172.16.130.1 								# Subnet Gateway IP 설정
 			  dns:
 			  - 8.8.8.8 # DNS IP 설정
-			  static: [172.16.130.101 – 172.16.130.107] 			# Static IP Range, Job VM 인스턴스가 사용할 IP
+			  static: [172.16.130.101 – 172.16.130.107] 			  # Static IP Range, Job VM 인스턴스가 사용할 IP
 			  cloud_properties: 									# OpenStack의 설정 정보
 				net_id: 2d478baa-69a6-4840-8e8e-1732a3f5a1c3 		# BOSH가 위치할 Subnet의 ID
 

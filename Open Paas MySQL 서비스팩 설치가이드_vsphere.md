@@ -425,10 +425,6 @@ Sample Web App 구조는 다음과 같다.
 ><div>$cf enable-service-access p-mysql</div>
 >![mysql_vsphere_3.1.01]<br>
 
--	먼저 개방형 클라우드 플랫폼 Marketplace에서 서비스가 있는지 확인을 한다.<br>
-><div>$cf marketplace</div>
->![mysql_vsphere_3.2.01]<br><br>
-
 ###개방형 클라우드 플랫폼에서 서비스 신청
 Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.  
 *참고: 서비스 신청시 개방형 클라우드 플랫폼에서 서비스를신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.

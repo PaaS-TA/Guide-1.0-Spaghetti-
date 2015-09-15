@@ -76,7 +76,7 @@
 ![시스템구성도][mysql_bosh_lite_1.3.01]
 
 ### 참고자료
-[**http://bosh.io/docs**](http://bosh.io/docs)
+[**http://bosh.io/docs**](http://bosh.io/docs)  
 [**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
 
 

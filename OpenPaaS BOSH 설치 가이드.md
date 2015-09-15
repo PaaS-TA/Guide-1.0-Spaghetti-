@@ -211,7 +211,7 @@ MicroBOSH를 배포하기 위해서는 아래와 같이 몇가지 준비 사항�
 MicroBOSH를 배포하기 위한 OpenStack 사전 준비사항 및 필요한 사항을
 아래의 가이드를 참조하여 설정한다.
 
--   사전 준비 및 확인 사항
+-   **사전 준비 및 확인 사항**
 
 	-   지원 가능한 OpenStack Release 버전 : Havana, **IceHouse(권장)**, Juno
 
@@ -230,7 +230,7 @@ MicroBOSH를 배포하기 위한 OpenStack 사전 준비사항 및 필요한 사
 	-   OpenStack 프로젝트 생성
 
 
--   Key Pair 생성
+-   **Key Pair 생성**
 1. 오픈스택 horizon의 왼쪽 메뉴에서 Compute -> Access & Security 선택
 	![openstack 1](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/KeyPair1.png)
 
@@ -242,17 +242,18 @@ MicroBOSH를 배포하기 위한 OpenStack 사전 준비사항 및 필요한 사
 	![Create key pair](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/KeyPair2.png)
 
 
--   Security Group 생성 및 구성
+-   **Security Group 생성 및 구성**
 
 1.  오픈스택 horizon의 왼쪽 메뉴에서 Compute -> Access & Security 선택
 
 2.  Security Groups Tab 선택
 
 3.  “Create Security Group” 선택
-    
+
 ![Create security group1](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/CreateSecurityGroup1.png)
 
 4.  생성할 Security Group의 Name, Description 입력 후 “Create Security Group” 선택
+
 ![Create security group2](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/CreateSecurityGroup2.png)
 
 5.  Security Group 목록에서 생성된 Security Group의 “Manage Rules” 선택

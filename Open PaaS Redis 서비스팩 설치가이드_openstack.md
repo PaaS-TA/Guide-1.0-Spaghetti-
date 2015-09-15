@@ -37,7 +37,7 @@
 </table>
 
 ### 참고자료
-[**http://bosh.io/docs**](http://bosh.io/docs)
+[**http://bosh.io/docs**](http://bosh.io/docs)<br>
 [**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
 
 #   Redis서비스팩설치

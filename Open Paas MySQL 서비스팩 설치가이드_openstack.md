@@ -30,12 +30,12 @@
 
 ###시스템 구성도
 본 문서의 설치된 시스템 구성도이다. MySQL Server, MySQL 서비스 브로커, Proxy로 최소사항을 구성하였다.
-![시스템구성도][mysql_openstack_1.3.01]
-|구분|스펙|
-|--------|:-------|
-|openpaas-mysql-broker|2vCPU / 2GB RAM / 20GB Disk|
-|proxy|2vCPU / 2GB RAM / 20GB Disk|
-|server|2vCPU / 2GB RAM / 20GB Disk+10GB(영구적 Disk)|
+![시스템구성도][mysql_openstack_1.3.01]  
+|구분|스펙|  
+|--------|:-------|  
+|openpaas-mysql-broker|2vCPU / 2GB RAM / 20GB Disk|  
+|proxy|2vCPU / 2GB RAM / 20GB Disk|  
+|server|2vCPU / 2GB RAM / 20GB Disk+10GB(영구적 Disk)|  
 
 
 ### 참고자료

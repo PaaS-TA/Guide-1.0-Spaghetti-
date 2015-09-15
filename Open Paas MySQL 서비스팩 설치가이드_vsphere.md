@@ -422,7 +422,7 @@ Sample Web App 구조는 다음과 같다.
 |target |메이블 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)|
 
 -	OpenPaaS-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를 복사한다.<br>
-><div>$cf enable-service-access p-mysql</div>
+>$cf enable-service-access p-mysql
 >![mysql_vsphere_3.1.01]<br><br>
 
 ###개방형 클라우드 플랫폼에서 서비스 신청

@@ -85,28 +85,17 @@ OpenPaaS에서 제공하는 설치 관련 패키지들을 다운로드 받습니
 다음 표는 MicroBOSH와 BOSH를 설치하기 위해 필요한 패키지 및 구성항목으로
 상기 주소에서 모두 다운로드 받습니다.
 
-
-|구성 항목|설명|
-|---------|----|
-|구분|디렉토리|파일명||
+|구분|디렉토리|파일명|설명|
 |------|-------|-----------|----|
-|공통  |OpenPaaS-Env/unzip  | unzip\_6.0-18\_amd64.deb  |Off-line에서 Ubuntu unzip Package  |
-|------|-------|-----------|----|
-||OpenPaaS-Env/ruby-dependency  |bosh-ruby-dependency-packages.tar.gz  |Off-Line에서 Ruby Dependency  |
-|------|-------|-----------|----|
-||OpenPaaS-Env/ruby  |ruby-2.2.2.tar.gz  |Ruby 2.2.2 버전  |
-|------|-------|-----------|----|
-||OpenPaaS-Env/gem-dependency  |bosh\_cli\_gem\_install\_package.tar  |Off-line에서 BOSH CLI Dependency  |
-|------|-------|-----------|----|
-||OpenPaaS-Dev-Tools  |bosh\_cli.zip  |BOSH CLI  |
-|------|-------|-----------|----|
-||OpenPaaS-IaaS-Controller  |bosh-187.tgz  |BOSH 187 릴리즈  |
-|------|-------|-----------|----|
-|OpenStack  |OpenPaaS-Stemcells  |bosh-stemcell-3016-openstack-kvm-ubuntu-trusty-go\_agent.tgz  |OpenStack 3016버전, 스템셀 이미지  |
-|------|-------|-----------|----|
-||OpenPaaS-Deployment  |openpaas-bosh-micro-openstack.yml  |OpenStack MicroBOSH 배포 Manifest Sample 파일  |
-|------|-------|-----------|----|
-|||openpaas-bosh-openstack.yml  |OpenStack BOSH 배포 Manifest Samle 파일|
+|공통|OpenPaaS-Env/unzip  | unzip\_6.0-18\_amd64.deb  |Off-line에서 Ubuntu unzip Package  |
+|공통|OpenPaaS-Env/ruby-dependency  |bosh-ruby-dependency-packages.tar.gz  |Off-Line에서 Ruby Dependency  |
+|공통|OpenPaaS-Env/ruby  |ruby-2.2.2.tar.gz  |Ruby 2.2.2 버전  |
+|공통|OpenPaaS-Env/gem-dependency  |bosh\_cli\_gem\_install\_package.tar  |Off-line에서 BOSH CLI Dependency  |
+|공통|OpenPaaS-Dev-Tools  |bosh\_cli.zip  |BOSH CLI  |
+|공통|OpenPaaS-IaaS-Controller  |bosh-187.tgz  |BOSH 187 릴리즈  |
+|OpenStack|OpenPaaS-Stemcells  |bosh-stemcell-3016-openstack-kvm-ubuntu-trusty-go\_agent.tgz  |OpenStack 3016버전, 스템셀 이미지  |
+|OpenStack|OpenPaaS-Deployment  |openpaas-bosh-micro-openstack.yml  |OpenStack MicroBOSH 배포 Manifest Sample 파일  |
+|OpenStack|openpaas-bosh-openstack.yml  |OpenStack BOSH 배포 Manifest Samle 파일|
 
 
 <div id='44444'/>

@@ -30,13 +30,13 @@
 
 ###시스템 구성도
 본 문서의 설치된 시스템 구성도이다. MySQL Server, MySQL 서비스 브로커, Proxy로 최소사항을 구성하였다.
-![시스템구성도][mysql_openstack_1.3.01]  
+![시스템구성도][mysql_openstack_1.3.01]
+
 | 구분 | 스펙 |
 |--------|-------|
 | openpaas-mysql-broker |2vCPU / 2GB RAM / 20GB Disk |
 | proxy | 2vCPU / 2GB RAM / 20GB Disk |
 | server | 2vCPU / 2GB RAM / 20GB Disk+10GB(영구적 Disk) |
-
 
 ### 참고자료
 [**http://bosh.io/docs**](http://bosh.io/docs)  
@@ -440,7 +440,7 @@ Sample Web App 구조는 다음과 같다.
 |  이름  |  설명  |
 |--------|:-------|
 |src |Sample 소스 디렉토리|
-|manifest |개방형 클라우드 플랫폼에 app /배포시 필요한 설정을 저장하는 파일|
+|manifest |개방형 클라우드 플랫폼에 app 배포시 필요한 설정을 저장하는 파일|
 |pom.xml |메이븐 project 설정 파일|
 |target |메이블 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)|
 

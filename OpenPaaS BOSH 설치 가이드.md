@@ -250,19 +250,19 @@ MicroBOSH를 배포하기 위한 OpenStack 사전 준비사항 및 필요한 사
 
 3.  “Create Security Group” 선택
 
-![Create security group1](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/CreateSecurityGroup1.png)
+	![Create security group1](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/CreateSecurityGroup1.png)
 
 4.  생성할 Security Group의 Name, Description 입력 후 “Create Security Group” 선택
 
-![Create security group2](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/CreateSecurityGroup2.png)
+	![Create security group2](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/CreateSecurityGroup2.png)
 
 5.  Security Group 목록에서 생성된 Security Group의 “Manage Rules” 선택
     
-![Manage Rules1](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/ManageRules1.png)
+	![Manage Rules1](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/ManageRules1.png)
 
 6.  다음 표와 같이 Bosh 관련Security Rule을 추가한다.
     
-![Manage Rules2](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/ManageRules2.png)
+	![Manage Rules2](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/ManageRules2.png)
 
 <div id='MicroBOSH-배포-Manifest-작성'/>
 ### 배포 Manifest 작성

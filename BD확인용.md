@@ -132,11 +132,11 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 BOSH Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할수 있다.
 
 ><div>$bosh status</div>
->![mysql_bosh_lite_2.2.08]
+>![mysql_bosh_lite_2.3.02]
 
 -	Deploy시 사용할 Stemcell을 확인한다. (Stemcell 2776 버전 사용)
 ><div>$bosh stemcells</div>
->![mysql_bosh_lite_2.2.08]<br>
+>![mysql_bosh_lite_2.3.03]<br>
 >Stemcell 목록이 존재 하지 않을 경우 BOSH-lite 설치 가이드 문서를 참고 하여 Stemcell 2776 버전을 업로드를 해야 한다.
 
 -	openpaas-mysql-lite.yml Deployment 파일을 서버 환경에 맞게 수정한다.(빨간색으로 표시된 부분만 수정)

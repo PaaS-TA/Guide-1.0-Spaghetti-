@@ -82,7 +82,7 @@ $TTL    604800
                          604800 )       ; Negative Cache TTL
 ;
 @       IN      NS      ns.controller.open-paas.com.
-*       IN      A       10.30.40.113                  <font color="blue"># HA Proxy VM IP 주소</font>
+*       IN      A       10.30.40.113                  <font color='blue'># HA Proxy VM IP 주소</font>
 @       IN      AAAA    ::1
 </pre>
 

@@ -395,7 +395,8 @@ Sample App에서 Redis 서비스를 사용하기 위해서는 서비스 신청(P
 -	서비스명 :redis-sb로 Marketplace에서 보여지는 서비스 명칭이다.<br>
 -	서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. Redis 서비스는 shared-vm 과 dedicated-vmplan을지원한다.<br>
 -	내서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.</div><br>
-><div> cf create-service redis-sbshared-vmredis-service-instance</div>
+
+><div>$ cf create-service redis-sbshared-vmredis-service-instance</div>
 >![redis_bosh_lite_25]
 
 -	생성된 Redis 서비스 인스턴스를 확인한다.

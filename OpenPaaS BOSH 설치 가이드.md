@@ -12,7 +12,7 @@
 
 1. [Install BOSH CLI](#44444)
 	* [Ruby 설치](#Ruby-설치)
-	* [BOSH CLI설치](#BOSH-CLI설치)
+	* [BOSH CLI설치](#BOSH-CLI-설치)
 
 1. [Install MicroBOSH](#55555)
 	* [설치 절차](#MicroBOSH-설치-절차)
@@ -156,7 +156,7 @@ BOSH CLI가 지원하는 Ruby버전 중 2.2.2버전을 설치를 대상으로 �
 
 BOSH CLI를 설치하는 절차는 다음과 같습니다.
 
-1.  기준 디렉토리(workspace)로 이동하여 아래와 같이 명령어를 수행합니다.
+1.  기준 디렉토리("workspace")로 이동하여 아래와 같이 명령어를 수행합니다.
 
 	\# On-Line의 경우
 
@@ -400,7 +400,7 @@ MicroBOSH를 배포하기 위한 OpenStack 사전 준비사항 및 필요한 사
 <div id='BOSH-설치-절차'/>
 ### 설치 절차
 
-BOSH 를 설치하는 절차는 다음과 같다.
+BOSH CLI를 MicroBOSH로 타겟 설정("bosh target https://MicroBOSH-IP:25555")한 이후 아래의 절차로 설치를 진행합니다.
 
 -   BOSH Stemcell 업로드
 

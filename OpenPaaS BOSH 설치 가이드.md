@@ -12,7 +12,7 @@
 
 1. [Install BOSH CLI](#44444)
 	* [Ruby 설치](#Ruby-설치)
-	* [BOSH CLI설치](#BOSH-CLI설치)
+	* [BOSH CLI설치](#BOSH-CLI-설치)
 
 1. [Install MicroBOSH](#55555)
 	* [설치 절차](#MicroBOSH-설치-절차)

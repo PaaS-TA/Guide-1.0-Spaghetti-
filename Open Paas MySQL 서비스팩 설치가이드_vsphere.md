@@ -421,6 +421,9 @@ Sample Web App 구조는 다음과 같다.
 |pom.xml |메이븐 project 설정 파일|
 |target |메이블 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)|
 
+-	먼저 개방형 클라우드 플랫폼 Marketplace에서 서비스가 있는지 확인을 한다.<br>
+><div>$cf marketplace</div>
+>![mysql_vsphere_3.2.01]<br>
 
 -	OpenPaaS-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를 복사한다.<br>
 ><div>$cf enable-service-access p-mysql</div>

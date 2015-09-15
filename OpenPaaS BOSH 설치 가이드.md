@@ -231,7 +231,9 @@ MicroBOSH를 배포하기 위한 OpenStack 사전 준비사항 및 필요한 사
 
 
 -   **Key Pair 생성**
+
 1. 오픈스택 horizon의 왼쪽 메뉴에서 Compute -> Access & Security 선택
+
 	![openstack 1](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/KeyPair1.png)
 
 2.  “Key Pairs” Tab 선택
@@ -239,6 +241,7 @@ MicroBOSH를 배포하기 위한 OpenStack 사전 준비사항 및 필요한 사
 3.  화면 상단의 “Create Key Pair” 선택
 
 4.  Key pair 이름 입력 후 “Create Key Pair” 선택 및 저장
+
 	![Create key pair](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-iaas-controller/KeyPair2.png)
 
 

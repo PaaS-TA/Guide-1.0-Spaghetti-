@@ -440,7 +440,7 @@ Sample Web App 구조는 다음과 같다.
 |  이름  |  설명  |
 |--------|:-------|
 |src |Sample 소스 디렉토리|
-|manifest |개방형 클라우드 플랫폼에 app 배포시 필요한 설정을 저장하는 파일|
+|manifest |개방형 클라우드 플랫폼에 app /배포시 필요한 설정을 저장하는 파일|
 |pom.xml |메이븐 project 설정 파일|
 |target |메이블 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)|
 

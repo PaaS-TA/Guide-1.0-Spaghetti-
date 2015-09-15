@@ -2738,18 +2738,13 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 *참고: 서비스 Bind 신청시 개방형 클라우드 플랫폼에서 서비스 Bind신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
 -	Sample Web App 디렉토리로 이동하여 manifest 파일을 확인한다.<br>
-><div>$cd hello-spring-mysql</div>  
+><div>$cd hello-spring-mysql</div>
 ><div>$vi manifest.yml</div>
->
-><pre>
-applications:
-- name: hello-tomcat-mysql <font color="red">#배포할 App 이름</font>
-  memory: 512M <font color="red"># 배포시 메모리 사이즈</font>
-  instances: 1 <font color="red"># 배포 인스턴스 수</font>
-path: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war <font color="red">#배포하는 App 파일 PATH</font>
-</pre>
-
->참고: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war파일이 존재 하지 않을 경우 mvn 빌드를 수행 하면 파일이 생성된다.
+	<pre>applications:
+		- name: hello-tomcat-mysql <font color="red">#배포할 App 이름</font>
+		  instances: 1 <font color="red"># 배포 인스턴스 수</font>
+		  path: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war <font color="red">#배포하는 App 파일 PATH</font></pre>
+>참고: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war파일이 존재 하지 않을 경우 mvn 빌드를 수행 하면 파일이 생성된다.<br><br>
 
 -	--no-start 옵션으로 App을 배포한다.  
 	--no-start: App 배포시 구동은 하지 않는다.<br>

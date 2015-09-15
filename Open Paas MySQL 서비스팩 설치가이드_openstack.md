@@ -31,11 +31,11 @@
 ###시스템 구성도
 본 문서의 설치된 시스템 구성도이다. MySQL Server, MySQL 서비스 브로커, Proxy로 최소사항을 구성하였다.
 ![시스템구성도][mysql_openstack_1.3.01]  
-|구분|스펙|  
-|--------|:-------|  
-|openpaas-mysql-broker|2vCPU / 2GB RAM / 20GB Disk|  
-|proxy|2vCPU / 2GB RAM / 20GB Disk|  
-|server|2vCPU / 2GB RAM / 20GB Disk+10GB(영구적 Disk)|  
+| 구분 | 스펙 |
+|--------|-------|
+| openpaas-mysql-broker |2vCPU / 2GB RAM / 20GB Disk |
+| proxy | 2vCPU / 2GB RAM / 20GB Disk |
+| server | 2vCPU / 2GB RAM / 20GB Disk+10GB(영구적 Disk) |
 
 
 ### 참고자료
@@ -47,9 +47,10 @@
 
 ### 설치전 준비사항 
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.
-서비스팩 설치를 위해서는 먼저 BOSH-lite 가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.  
-BOSH-lite 가 설치 되어 있지 않을 경우 먼저 BOSH-lite 설치 가이드 문서를 참고 하여BOSH-lite를 설치 해야 한다.  
+서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.  
+BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여BOSH CLI를 설치 해야 한다.
 OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Deployment.zip, OpenPaaS-Sample-Apps.zip, OpenPaaS-Services.zip)
+
 
 ### MySQL 서비스 릴리즈 업로드
 -   OpenPaaS-Services.zip파일 압축을 풀고 폴더안에 있는 MySQL 서비스 릴리즈 openpaas-mysql-release-beta-1.0.tgz 파일을복사한다.  
@@ -80,7 +81,7 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다.  
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.  
 
--	OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더안에 있는 lite용 MySQL Deployment 화일인 openpaas-mysql-lite.yml를 복사한다.  
+-	OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더안에 있는 OpenStack용 MySQL Deployment 화일인 openpaas-mysql-openstack.yml를 복사한다.  
 다운로드 받은 Deployment Yml 파일을 확인한다. (openpaas-mysql-openstack.yml)<br>
 ><div>$ls –all</div>
 >![mysql_openstack_2.3.01]<br><br>
@@ -93,9 +94,9 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 B
 -	Deploy시 사용할 Stemcell을 확인한다. (Stemcell 3016 버전 사용)  
 ><div>$bosh stemcells</div>
 >![mysql_openstack_2.3.03]<br>
->Stemcell 목록이 존재 하지 않을 경우 BOSH-lite 설치 가이드 문서를 참고 하여 Stemcell 3016 버전을 업로드를 해야 한다.
+>Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3016 버전을 업로드를 해야 한다.
 
--	openpaas-mysql-lite.yml Deployment 파일을 서버 환경에 맞게 수정한다.(빨간색으로 표시된 부분 특히 주의)
+-	openpaas-mysql-openstack.yml Deployment 파일을 서버 환경에 맞게 수정한다.(빨간색으로 표시된 부분 특히 주의)
 
 #####openpaas-mysql-openstack 설정 파일 내용
 <pre>$vi openpaas-mysql-openstack.yml

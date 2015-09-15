@@ -14,7 +14,7 @@
      * [3.2. 개방형 클라우드 플랫폼에서 서비스 신청](#개방형-클라우드-플랫폼에서-서비스-신청)
      * [3.3. Sample Web App에 서비스 바인드 신청 및 App 확인](#sample-web-app에-서비스-바인드-신청-및-app-확인)
 4. [MySQL Client 툴 접속](#mysql-client-툴-접속)
-     * [4.1. HeidiSQL 설치&연결](#heidisql-설치&연결)
+     * [4.1. HeidiSQL 설치 및 연결](#heidisql-설치-및-연결)
 
 
 # 문서 개요
@@ -536,7 +536,7 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 #MySQL Client 툴 접속
 Application에 바인딩된 MySQL 서비스 연결정보는 Private IP로 구성되어 있기 때문에 MySQL Client 툴에서 직접 연결할수 없다. 따라서 MySQL Client 툴에서 SSH 터널, Proxy 터널 등을 제공하는 툴을 사용해서 연결하여야 한다. 본 가이드는 SSH 터널을 이용하여 연결 하는 방법을 제공하며 MySQL Client 툴로써는 오픈 소스인 HeidiSQL로 가이드한다. HeidiSQL 에서 접속하기 위해서 먼저 SSH 터널링 할수 있는 VM 인스턴스를 생성해야한다. 이 인스턴스는 SSH로 접속이 가능해야 하고 접속 후 Open PaaS 에 설치한 서비스팩에 Private IP 와 해당 포트로 접근이 가능하도록 시큐리티 그룹을 구성해야 한다. 이 부분은 OpenStack 관리자 및 OpenPaaS 운영자에게 문의하여 구성한다. OpenStack 에서 구성한 인스턴스는 개인키(.ppk) 로 접속을 해야 하므로 개인키는 운영 담당자에게 문의하여 제공받는다.
 
-###HeidiSQL 설치 & 연결
+###HeidiSQL 설치 및 연결
 HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트웨어이다.
 
 -	HeidiSQL을 다운로드 하기 위해 아래 URL로 이동하여 설치파일을 다운로드 한다.<br>

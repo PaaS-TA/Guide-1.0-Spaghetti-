@@ -48,55 +48,54 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 ### MySQL 서비스 릴리즈 업로드
 -   OpenPaaS-Services.zip파일 압축을 풀고 폴더안에 있는 MySQL 서비스 릴리즈 openpaas-mysql-release-beta-1.0.tgz 파일을복사한다.<br>
 업로드할 openpaas-mysql-release-beta-1.0.tgz 파일을 확인한다.<br>
->$ls –all
+>$ls –all<br>
 >![mysql_bosh_lite_2.2.01]
 
 
--	업로드 되어 있는 릴리즈 목록을 확인한다.<br>
->$bosh releases
+-	업로드 되어 있는 릴리즈 목록을 확인한다.
+>$bosh releases<br>
 >![mysql_bosh_lite_2.2.02]<br>
 >Mysql 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
 
 
--	MySQL 서비스 릴리즈 파일을 업로드한다.<br>
->$ bosh upload release {서비스 릴리즈 파일 PATH}
->$ bosh upload release openpaas-mysql-release-beta-1.0.tgz
->![mysql_bosh_lite_2.2.03]
->![mysql_bosh_lite_2.2.04]
->![mysql_bosh_lite_2.2.05]
->![mysql_bosh_lite_2.2.06]
+-	MySQL 서비스 릴리즈 파일을 업로드한다.
+>$ bosh upload release {서비스 릴리즈 파일 PATH}<br>
+>$ bosh upload release openpaas-mysql-release-beta-1.0.tgz<br>
+>![mysql_bosh_lite_2.2.03]<br>
+>![mysql_bosh_lite_2.2.04]<br>
+>![mysql_bosh_lite_2.2.05]<br>
+>![mysql_bosh_lite_2.2.06]<br>
 >![mysql_bosh_lite_2.2.07]
 
 
--	업로드 된MySQL 릴리즈를 확인한다.<br>
->$bosh releases
->![mysql_bosh_lite_2.2.08]
+-	업로드 된MySQL 릴리즈를 확인한다.
+>$bosh releases<br>
+>![mysql_bosh_lite_2.2.08]<br>
 >Mysql 서비스 릴리즈가 업로드 되어 있는 것을 확인
 
 ### MySQL 서비스 Deployment 파일 수정 및 배포
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다.<br>
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
 
--	OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더안에 있는 lite용 MySQL Deployment 화일인 openpaas-mysql-lite.yml를복사한다.
-다운로드 받은 Deployment Yml 파일을 확인한다. (openpaas-mysql-lite.yml)<br>
->$ls –all
->![mysql_bosh_lite_2.3.01]<br><br>
+-	OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더안에 있는 lite용 MySQL Deployment 화일인 openpaas-mysql-lite.yml를복사한다.<br>
+다운로드 받은 Deployment Yml 파일을 확인한다. (openpaas-mysql-lite.yml)
+>$ls –all<br>
+>![mysql_bosh_lite_2.3.01]
 
 -	Director UUID를 확인한다.<br>
-BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 BOSH Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할 수 있다.<br>
->$bosh status
+BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 BOSH Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할 수 있다.
+>$bosh status<br>
 >![mysql_bosh_lite_2.3.02]
 
--	Deploy시 사용할 Stemcell을 확인한다. (Stemcell 2776 버전 사용)<br>
->$bosh stemcells
->![mysql_bosh_lite_2.3.03]
+-	Deploy시 사용할 Stemcell을 확인한다. (Stemcell 2776 버전 사용)
+>$bosh stemcells<br>
+>![mysql_bosh_lite_2.3.03]<br>
 >Stemcell 목록이 존재 하지 않을 경우 BOSH-lite 설치 가이드 문서를 참고 하여 Stemcell 2776 버전을 업로드를 해야 한다.
 
 -	openpaas-mysql-lite.yml Deployment 파일을 서버 환경에 맞게 수정한다.(굵은 글씨로 표시된 부분만 수정)
 
-#####openpaas-mysql-lite 설정 파일 내용
-<pre>$vi openpaas-mysql-lite.yml
- #openpaas-mysql-lite 설정 파일 내용
+>$vi openpaas-mysql-lite.yml
+><pre>#openpaas-mysql-lite 설정 파일 내용
 compilation:           # 컴파일시 필요한 가상머신의 속성(필수)
   cloud_properties:      # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone), 직접 cpu,disk,ram 사이즈를 넣어도 됨
     name: random

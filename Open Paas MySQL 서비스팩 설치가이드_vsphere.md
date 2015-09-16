@@ -59,7 +59,7 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 ###2.2. MySQL 서비스 릴리즈 업로드
 -   OpenPaaS-Services.zip파일 압축을 풀고 폴더안에 있는 MySQL 서비스 릴리즈 openpaas-mysql-release-beta-1.0.tgz 파일을복사한다.
 업로드할 openpaas-mysql-release-beta-1.0.tgz 파일을 확인한다.
->$ls –all	
+>$ls –all<br>
 >![mysql_vsphere_2.2.01]
 
 -	업로드 되어 있는 릴리즈 목록을 확인한다.
@@ -83,8 +83,8 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 <div id='2.3'/>
 ###2.3. MySQL 서비스 Deployment 파일 수정 및 배포
-BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다.  
-Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.  
+BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다.<br>
+Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
 
 -	OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더안에 있는 vSphere용 MySQL Deployment 화일인 openpaas-mysql_vsphere.yml를 복사한다.<br>
 다운로드 받은 Deployment Yml 파일을 확인한다. (openpaas-mysql_vsphere.yml)
@@ -97,7 +97,7 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 B
 >![mysql_vsphere_2.3.02]
 
 -	Deploy시 사용할 Stemcell을 확인한다. (Stemcell 3016 버전 사용)  
->$bosh stemcells
+>$bosh stemcells<br>
 >![mysql_vsphere_2.3.03]<br>
 >Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3016 버전을 업로드를 해야 한다.
 
@@ -426,9 +426,9 @@ Sample Web App 구조는 다음과 같다.
 |target |메이븐 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)|
 
 -	OpenPaaS-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를 복사한다.
-
->$ls -all<br>
-![mysql_vsphere_3.1.01]
+	
+	>$ls -all<br>
+	![mysql_vsphere_3.1.01]
 
 <div id='3.2'/>
 ###3.2. 개방형 클라우드 플랫폼에서 서비스 신청

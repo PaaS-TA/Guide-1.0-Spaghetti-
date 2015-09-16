@@ -103,7 +103,7 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 B
 <pre>$vi openpaas-mysql-vsphere.yml
  # openpaas-mysql-vsphere 설정 파일 내용
 name: openpaas-mysql-service              # 서비스 배포이름(필수)
-director_uuid: <font color="red">xxxxx#bosh status 에서 확인한 Director UUID을 입력(필수)</font>
+director_uuid: **xxxxx#bosh status 에서 확인한 Director UUID을 입력(필수)**
 
 releases:
 - name: openpaas-mysql            #서비스 릴리즈 이름(필수)
@@ -129,12 +129,12 @@ jobs:
   name: mysql                   #작업 이름(필수): MySQL 서버
   networks:                      # 네트워크 구성정보
   - name: openpaas_network                     # Networks block에서 선언한 network 이름(필수)
-    static_ips: <font color="red">10.30.40.162</font>                 # 사용할 IP addresses 정의(필수): MySQL 서버 IP
+    static_ips: **10.30.40.162**                 # 사용할 IP addresses 정의(필수): MySQL 서버 IP
   persistent_disk: 100000                   # 영구적 디스크 사이즈 정의(옵션): 100G
   properties:                             # job에 대한 속성을 지정(필수)
-    admin_password: <font color="red">admin</font>            # MySQL 어드민 패스워드
+    admin_password: **admin**            # MySQL 어드민 패스워드
     cluster_ips:                           # 클러스터 구성시 IPs(필수)
-    - <font color="red">10.30.40.162</font># MySQL 서버 IP
+    - **10.30.40.162**# MySQL 서버 IP
     network_name: openpaas_network        # Networks block에서 선언한 network 이름
     seeded_databases: null
     syslog_aggregator: null
@@ -146,21 +146,21 @@ jobs:
   name: proxy                          # 작업 이름(필수): proxy
   networks:
   - name: openpaas_network
-    static_ips: <font color="red">10.30.40.163</font># 사용할 IP addresses 정의(필수): Proxy IP
+    static_ips: **10.30.40.163**# 사용할 IP addresses 정의(필수): Proxy IP
   properties:
     cluster_ips:
-    - <font color="red">10.30.40.162</font># MySQL 서버 IP
-    external_host: <font color="red">controller.open-paas.com</font>    # CF 설치시 설정한 외부 호스트 정보(필수)
+    - **10.30.40.162**# MySQL 서버 IP
+    external_host: **controller.open-paas.com**    # CF 설치시 설정한 외부 호스트 정보(필수)
     nats:                           # CF 설치시 설치한 nats 정보 (필수)
       machines:
-      - <font color="red">10.30.40.111</font># nats 서버 IP
-      password: <font color="red">admin</font># nats 유저 비밀번호
-      port: <font color="red">4222</font># nats 서버 포트번호
-      user: <font color="red">nats</font># nats 서버 유저아이디
+      - **10.30.40.111**# nats 서버 IP
+      password: **admin**# nats 유저 비밀번호
+      port: **4222**# nats 서버 포트번호
+      user: **nats**# nats 서버 유저아이디
     network_name: openpaas_network
     proxy:                          # proxy 정보 (필수)
-      api_password: <font color="red">admin </font>       # proxy api 유저 비밀번호(필수)
-      api_username: <font color="red">api</font>                  # proxy api 유저아이디
+      api_password: **admin **       # proxy api 유저 비밀번호(필수)
+      api_username: **api**                  # proxy api 유저아이디
     syslog_aggregator: null
   release: openpaas-mysql
   resource_pool: services-small
@@ -170,25 +170,25 @@ jobs:
   name: openpaas-mysql-broker                # 작업 이름(필수): 서비스 브로커
   networks:
   - name: openpaas_network
-    static_ips: <font color="red">10.30.40.161</font># 사용할 IP addresses 정의(필수): 서비스 브로커 IP
+    static_ips: **10.30.40.161**# 사용할 IP addresses 정의(필수): 서비스 브로커 IP
   properties:
-    auth_password: <font color="red">admin</font>       # 브로커 접근 아이디 비밀번호(필수)
-    auth_username: <font color="red">admin</font>              # 브로커 접근 아이디(필수)
-    cc_api_uri: <font color="red">http://api.controller.open-paas.com</font># CF 설치시 설정한 api uri 정보(필수)
-    cookie_secret: <font color="red">admin</font> 
- # external_host: <font color="red">10.30.40.161</font> # 사용할 IP addresses 정의(필수): 서비스 브로커 IP
-external_host: <font color="red">p-mysql.controller.open-paas.com</font>   # 사용할 외부 호스트 정의(필수): 서비스 브로커
+    auth_password: **admin**       # 브로커 접근 아이디 비밀번호(필수)
+    auth_username: **admin**              # 브로커 접근 아이디(필수)
+    cc_api_uri: **http://api.controller.open-paas.com**# CF 설치시 설정한 api uri 정보(필수)
+    cookie_secret: **admin** 
+ # external_host: **10.30.40.161** # 사용할 IP addresses 정의(필수): 서비스 브로커 IP
+external_host: **p-mysql.controller.open-paas.com**   # 사용할 외부 호스트 정의(필수): 서비스 브로커
     max_user_connections_default: 40
     mysql_node:
       admin_password: admin
-      host: <font color="red">10.30.40.163</font> # proxy IP(필수)
+      host: **10.30.40.163** # proxy IP(필수)
       persistent_disk: 100000           # 영구적 디스크 사이즈 정의(옵션): 100G
     nats:                # CF 설치시 설정하는 Nats 정보 (필수): 위와 동일
       machines:
-      - <font color="red">10.30.40.111</font>
-      password: <font color="red">admin</font>
-      port: <font color="red">4222</font>
-      user: <font color="red">nats</font>
+      - **10.30.40.111**
+      password: **admin**
+      port: **4222**
+      user: **nats**
     network_name: openpaas_network
     networks:
       broker_network: openpaas_network
@@ -254,15 +254,15 @@ external_host: <font color="red">p-mysql.controller.open-paas.com</font>   # 사
   - name: openpaas_network
   properties:
     broker:# 서비스 브로커 설정 정보
-      host: <font color="red">10.30.40.161</font># 서비스 브로커 IP 
+      host: **10.30.40.161**# 서비스 브로커 IP 
       name: p-mysql
       password: admin
       username: admin
       protocol: http
       port: 80
     cf:
-      admin_password: <font color="red">admin</font>
-      admin_username: <font color="red">admin</font>
+      admin_password: **admin**
+      admin_username: **admin**
       api_url: http://api.controller.open-paas.com
   release: openpaas-mysql
   resource_pool: services-small
@@ -277,9 +277,9 @@ external_host: <font color="red">p-mysql.controller.open-paas.com</font>   # 사
     broker:
       name: p-mysql
     cf:
-      admin_password: <font color="red">admin</font>
-      admin_username: <font color="red">admin</font>
-      api_url: <font color="red">http://api.controller.open-paas.com</font>
+      admin_password: **admin**
+      admin_username: **admin**
+      api_url: **http://api.controller.open-paas.com**
   release: openpaas-mysql
   resource_pool: services-small
   template: broker-deregistrar
@@ -291,16 +291,16 @@ external_host: <font color="red">p-mysql.controller.open-paas.com</font>   # 사
   - name: openpaas_network
   properties:
     broker:
-      host: <font color="red">10.30.40.161</font># 서비스 브로커 IP
+      host: **10.30.40.161**# 서비스 브로커 IP
     cf:
-      admin_password: <font color="red">admin</font>
-      admin_username: <font color="red">admin</font>
-      api_url: <font color="red">http://api.controller.open-paas.com</font>
-      apps_domain: <font color="red">controller.open-paas.com</font>
+      admin_password: **admin**
+      admin_username: **admin**
+      api_url: **http://api.controller.open-paas.com**
+      apps_domain: **controller.open-paas.com**
     proxy:                            # proxy 정보
       api_password: admin
       api_username: api
-      external_host: <font color="red">controller.open-paas.com</font>
+      external_host: **controller.open-paas.com**
     service:
       max_user_connections_default: 40
       name: p-mysql
@@ -316,15 +316,15 @@ external_host: <font color="red">p-mysql.controller.open-paas.com</font>   # 사
   template: acceptance-tests
 
 meta:
-  apps_domain: <font color="red">controller.open-paas.com</font># CF 설치시 설정한 apps 도메인 정보
+  apps_domain: **controller.open-paas.com**# CF 설치시 설정한 apps 도메인 정보
   environment: null
-  external_domain: <font color="red">controller.open-paas.com</font># CF 설치시 설정한 외부 도메인 정보
+  external_domain: **controller.open-paas.com**# CF 설치시 설정한 외부 도메인 정보
   nats:# CF 설치시 설정한 nats 정보
     machines:
-    - <font color="red">10.30.40.111</font>
-    password: <font color="red">admin</font>
-    port: <font color="red">4222</font>
-    user: <font color="red">nats</font>
+    - **10.30.40.111**
+    password: **admin**
+    port: **4222**
+    user: **nats**
   syslog_aggregator: null
 networks:                   # 네트워크 블록에 나열된 각 서브 블록이 참조 할 수있는 작업이 네트워크 구성을 지정, 네트워크 구성은 네트워크 담당자에게 문의 하여 작성 요망
 - name: openpaas_network
@@ -332,17 +332,17 @@ networks:                   # 네트워크 블록에 나열된 각 서브 블록
   - cloud_properties:
       name: Internal#vsphere 에서 사용하는 network 이름(필수)
     dns:                  # DNS 정보
-    - <font color="red">10.30.20.24</font>
-    - <font color="red">8.8.8.8</font>
-    gateway: <font color="red">10.30.20.23</font>
+    - **10.30.20.24**
+    - **8.8.8.8**
+    gateway: **10.30.20.23**
     name: default_unused
-    range: <font color="red">10.30.0.0/16</font>
+    range: **10.30.0.0/16**
     #reserved:                        # 설치시 제외할 IP 설정
     #- 10.30.0.1 - 10.30.10.254
     #- 10.30.40.1 - 10.30.40.100
     #- 10.30.40.201 - 10.30.254.254
     static:
-    - <font color="red">10.30.40.110 - 10.30.40.200</font>#사용 가능한 IP 설정
+    - **10.30.40.110 - 10.30.40.200**#사용 가능한 IP 설정
   type: manual
 properties: {}
 resource_pools:     # 배포시 사용하는 resource pools를 명시하며 여러 개의 resource pools 을 사용할 경우 name 은 unique 해야함(필수)
@@ -354,8 +354,8 @@ resource_pools:     # 배포시 사용하는 resource pools를 명시하며 여�
   #size: 4# resource pool 안의 가상머신 개수, 주의) jobs 인스턴스 보다 작으면 에러가 남, size 정의하지 않으면 자동으로 가상머신 크기 설정
   network: openpaas_network
   stemcell:
-    name: <font color="red">bosh-vsphere-esxi-ubuntu-trusty-go_agent</font>#stemcell 이름(필수)
-    version: "<font color="red">3016</font>"                                         # stemcell 버전(필수)
+    name: **bosh-vsphere-esxi-ubuntu-trusty-go_agent**#stemcell 이름(필수)
+    version: "**3016**"                                         # stemcell 버전(필수)
 </pre>
 
 -	Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.<br>
@@ -456,9 +456,9 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 ><div>$cd hello-spring-mysql</div>
 ><div>$vi manifest.yml</div>
 	<pre>applications:
-		- name: hello-tomcat-mysql <font color="red">#배포할 App 이름</font>
-		  instances: 1 <font color="red"># 배포 인스턴스 수</font>
-		  path: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war <font color="red">#배포하는 App 파일 PATH</font></pre>
+		- name: hello-tomcat-mysql **#배포할 App 이름**
+		  instances: 1 **# 배포 인스턴스 수**
+		  path: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war **#배포하는 App 파일 PATH**</pre>
 >참고: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war파일이 존재 하지 않을 경우 mvn 빌드를 수행 하면 파일이 생성된다.<br><br>
 
 -	--no-start 옵션으로 App을 배포한다.  

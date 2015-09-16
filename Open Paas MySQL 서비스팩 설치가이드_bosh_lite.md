@@ -2771,11 +2771,11 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 >$ vi rule.json
 ><pre>
 [
-	{
-		"protocol": "tcp",
-		"destination": "10.244.7.6",
-		"ports": "3306"
-	}
+	   {
+		      "protocol": "tcp",
+		      "destination": "10.244.7.6",
+		      "ports": "3306"
+	   }
 ]
 </pre>
 >-	보안 그룹을 생성한다.<br>

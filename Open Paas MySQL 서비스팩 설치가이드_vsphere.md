@@ -270,7 +270,7 @@ external_host: <b>p-mysql.controller.open-paas.com</b>   # 사용할 외부 호�
   release: openpaas-mysql
   resource_pool: services-small
   template: broker-registrar
-
+>
 - instances: 1
   lifecycle: errand
   name: broker-deregistrar   # 작업 이름: 서비스 브로커 삭제
@@ -510,7 +510,7 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 -	App이 정상적으로 MySQL 서비스를 사용하는지 확인한다.
 >-	curl 로 확인<br>
 >$curl hello-tomcat-mysql.controller.open-paas.com<br>
->![mysql_vsphere_3.3.09
+>![mysql_vsphere_3.3.09]
 
 -	브라우져에서 확인
 >![mysql_vsphere_3.3.10]

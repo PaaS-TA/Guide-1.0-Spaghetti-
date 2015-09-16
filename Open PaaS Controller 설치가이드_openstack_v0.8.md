@@ -21,28 +21,28 @@
      * [4.3. Application Access](#20)
 
 <div id='1'/>
-#개요
+#1. 개요
 <div id='2'/>
-###문서 목적
+###1.1. 문서 목적
 본 문서(설치가이드)는, 현 시점에서 지원되는 IaaS(Infrastructure as a Service) 중 하나인 OpenStack(Icehouse) 환경에서 Open PaaS Controller를 설치하기 위한 가이드를 제공하는데 그 목적이 있다.
 
 <div id='3'/>
-###범위
+###1.2. 범위
 본 문서의 범위는 Open PaaS Controller를 OpenStack Icehouse에 설치하기 데 대한 내용으로 한정되어 있다. vSphere/AWS와 같은 다른 IaaS 환경에서의 설치는 그에 맞는 가이드 문서를 참고해야 하며, Bosh 설치 또한 해당 가이드 문서를 별도로 참조해야 한다.
 
 <div id='4'/>
-###참고 자료
+###1.3. 참고 자료
 [**http://docs.cloudfoundry.org/deploying/openstack/**](http://docs.cloudfoundry.org/deploying/openstack/)<br>
 [**https://github.com/cloudfoundry/cf-release**](https://github.com/cloudfoundry/cf-release)
  
 <div id='5'/>
-#Prerequisites
+#2. Prerequisites
 <div id='6'/>
-###개요
+###2.1. 개요
 Open PaaS Controller를 설치하기 전에 IaaS(OpenStack) 환경이 정상적으로 구성되어 있고, Bosh Server와 Bosh/OP CLI가 설치되어 있는지를 확인해야 한다.
 
 <div id='7'/>
-###OpenStack
+###2.2. OpenStack
 ####Dashboard(Horizon)
 ![controller_openstack_image002]<br>
 **[그림출처]: Open PaaS 사업단 개발환경**
@@ -54,14 +54,14 @@ OpenStack Dashboard(Horizon)으로 정상 접속되어야 하고, Open PaaS Cont
 SSH, HTTP, HTTPS, DNS Protocol을 받을 수 있고, 모든 통신 Protocol을 엑세스 할 수 있도록 Security Group을 설정한다.(주의: 내부 네트워크 구간에서는 모든 Procotol이 사용 가능하도록 구성해야 한다.)
 
 <div id='8'/>
-###Bosh Server 및 Bosh CLI
+###2.3. Bosh Server 및 Bosh CLI
 ![controller_openstack_image004]<br>
 **[그림출처]: Open PaaS 사업단 개발환경**
 
 “bosh status” 명령을 실행하여 위와 같이 정상적으로 출력되는 지를 확인한다. 만약 문제 발생 시에는 Bosh 설치가이드를 참조하여 정상적으로 Bosh 환경을 구성한 후 이후 작업을 진행한다.
 
 <div id='9'/>
-###DNS Server
+###2.4. DNS Server
 Open PaaS Controller는 독자적인 Zone을 DNS에 등록해야 한다. 사용 가능한 DNS Server가 존재하지 않는다면, VM 등에 별도로 구축하여야 한다. 예를 들어 Linux의 경우에는 bind9 Package를 설치하고 아래와 같이 Platform Zone을 등록한다.
 
 >/etc/bind/named.conf.local	
@@ -93,20 +93,20 @@ $TTL    604800
 >![controller_openstack_image005]
 
 <div id='10'/>
-###OP CLI
+###2.5. OP CLI
 Open PaaS 설치 패키지 내에 포함되어 있는 OP CLI 압축 파일을 풀고 명령어 Path Folder에 실행 파일을 복사한다.
->sudo tar -xvzf $INSTALL_PACKAGE/OpenPaaS-Dev-Tools/op-CLI/cf-linux-amd64.tgz<br>
->sudo cp cf /usr/bin
+>$ sudo tar -xvzf $INSTALL_PACKAGE/OpenPaaS-Dev-Tools/op-CLI/cf-linux-amd64.tgz<br>
+>$ sudo cp cf /usr/bin
 
 >“cf” 명령어를 입력하면 아래와 같은 Help 화면이 출력됨을 확인한다.
 >![controller_openstack_image006]
  
 <div id='11'/>
-#Open PaaS Controller 설치
+#3. Open PaaS Controller 설치
 <div id='12'/>
-###Release Upload
+###3.1. Release Upload
 배포된 설치 패키지의 OpenPaaS-Controller 폴더에 있는 Open PaaS Controller Bosh Release를 Bosh Server로 아래와 같은 명령으로 Beta-1.0 버전을 Upload 한다.
->bosh upload release $INSTALL_PACKAGE/OpenPaaS-Controller/openpaas-beta-1.0.tgz
+>$ bosh upload release $INSTALL_PACKAGE/OpenPaaS-Controller/openpaas-beta-1.0.tgz
 
 >Release Upload는 상황에 따라 다소 차이는 있으나 보통 20-30분 정도 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.<br>
 >![controller_openstack_image007]
@@ -114,13 +114,13 @@ Open PaaS 설치 패키지 내에 포함되어 있는 OP CLI 압축 파일을 �
 [주의] Release Upload 과정에서 작업장비의 “/tmp” 폴더의 사이즈가 작을 경우 압축파일을 풀거나 묶을 때 에러가 발생할 수 있으므로, 10GB 이상 Free Size가 있는지를 확인해야 한다.
 
 Bosh Sever에 Release가 정상적으로 Upload 되었는지는 “bosh releases” 명령으로 확인한다.
->bosh releases<br><br>
+>$ bosh releases<br><br>
 >![controller_openstack_image008]
  
 <div id='13'/>
-###Stemcell Upload
+###3.2. Stemcell Upload
 배포된 설치 패키지의 OpenPaaS-Stemcells 폴더에 있는 Open PaaS OpenStack용 Stemcell 을 Bosh Server로 아래와 같은 명령으로 3016 Version을 Upload 한다.
->bosh upload stemcell $INSALL_PACKAGE/OpenPaaS-Stemcells/bosh-stemcell-3016-openstack-kvm-ubuntu-trusty-go_agent.tgz
+>$ bosh upload stemcell $INSALL_PACKAGE/OpenPaaS-Stemcells/bosh-stemcell-3016-openstack-kvm-ubuntu-trusty-go_agent.tgz
 
 >Stemcell Upload는 상황에 따라 다소 차이는 있으나 보통 5-10분 정도 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.<br>
 >![controller_openstack_image009]
@@ -128,11 +128,11 @@ Bosh Sever에 Release가 정상적으로 Upload 되었는지는 “bosh releases
 [주의] Stemcell Upload 과정에서 작업장비의 “/tmp” 폴더의 사이즈가 작을 경우 압축파일을 풀거나 묶을 때 에러가 발생할 수 있으므로, 10GB 이상 Free Size가 있는지를 확인해야 한다.
 
 Bosh Sever에 Stemcell이 정상적으로 Upload 되었는지는 “bosh stemcells” 명령으로 확인한다.
->bosh stemcells<br><br>
+>$ bosh stemcells<br><br>
 >![controller_openstack_image010]
 
 <div id='14'/>
-###Deployment Manifest
+###3.3. Deployment Manifest
 배포된 설치 패키지에 포함된 Sample Deployment Manifest File($INSTALL_PACKAGE/OpenPaaS-Deployment/openpaas-openstack-beta-1.0.yml)을 아래의 순서대로 설치환경에 적합하게 수정한다.
 
 ####Name & Release
@@ -1093,55 +1093,55 @@ ldap: null
 </pre>
 
 <div id='15'/>
-###Bosh Deploy
+###3.4. Bosh Deploy
 지금까지 설치를 위한 준비 과정이 정상적으로 수행되었으면, 지금부터 Open PaaS Controller를 IaaS 환경(OpenStack)에 아래의 절차로 설치한다.
 
 ####Deployment Manifest 지정
->bosh deployment openpaas-openstack-beta-1.0.yml<br><br>
+>$ bosh deployment openpaas-openstack-beta-1.0.yml<br><br>
 >“bosh deployment” 명령어로 생성한 Deployment Manifest File을 지정하고, 아래의 그림과 같이 동일한 명령어로 정상 지정 되었는지를 확인한다.<br>
 >![controller_openstack_image011]
 
 ####Open PaaS Controller Deploy
 “bosh deploy” 명령으로 Open PaaS Controller 설치를 수행한다.
->bosh deploy<br><br>
+>$ bosh deploy<br><br>
 >보통 설치 과정은 1-2시간 정도가 소요되며 정상적으로 설치가 완료되면 아래 그림과 같은 메세지를 출력하게 된다.
 >![controller_openstack_image012]
 
 <div id='16'/>
-###설치형상 확인
+###3.5. 설치형상 확인
 설치가 정상적으로 완료된 후 “bosh vms” 명령으로 설치된 Open PaaS Controller의 형상을 확인한다.
->bosh vms<br><br>
+>$ bosh vms<br><br>
 >아래 그림과 같이 Deployment Name, Virtual Machine, IP 주소 등의 정보를 확인할 수 있다.
 >![controller_openstack_image013]
 
 <div id='17'/>
-#설치 검증
+#4. 설치 검증
 <div id='18'/>
-###CF Login
->cf api https://api.controller.open-paas.com –skip-ssl-validation     <font color="blue"># 사설키</font><br>
+###4.1. CF Login
+>$ cf api https://api.controller.open-paas.com –skip-ssl-validation     <font color="blue"># 사설키</font><br>
 >…<br>
->cf login<br>
+>$ cf login<br>
 >Email> admin<br>
 >Password> admin<br>
 >OK<br>
 >…<br>
->cf create-space dev<br>
->cf target -o OCP -s dev<br>
+>$ cf create-space dev<br>
+>$ cf target -o OCP -s dev<br>
 >…<br>
 
 CF Target을 지정하고, Login을 수행한다. 이 때 계정은 admin/admin을 사용한다.
 Application을 Deploy할 ORG(Default: OCP)와 Space를 생성하고, 해당하는 ORG/Space로 Targetting 한다.
 
 <div id='19'/>
-###Application Deploy
+###4.2. Application Deploy
 설치 패키지와 함께 배포된 Sample Application이 위치하는 디렉토리로 이동하고 Application을 Deploy 한다.
-cd $INSTALL_PACKAGE/OpenPaaS-Sample-Apps/Etc/hello-spring
->cf push<br><br>
+>$ cd $INSTALL_PACKAGE/OpenPaaS-Sample-Apps/Etc/hello-spring<br>
+>$ cf push<br><br>
 >Application이 정상 Deploy가 되면 아래와 같은 메시지가 출력된다.
 >![controller_openstack_image014]
 
 <div id='20'/>
-###Application Access
+###4.3. Application Access
 Deploy한 Application URL을 Browser 또는 curl 명령어로 Access하여 정상 접근 되는지를 확인한다.
 ![controller_openstack_image015]
 

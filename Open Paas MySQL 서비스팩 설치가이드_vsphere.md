@@ -373,8 +373,7 @@ resource_pools:     # 배포시 사용하는 resource pools를 명시하며 여�
 
 -	배포된 MySQL 서비스팩을 확인한다.
 >$bosh vms<br>
->>![mysql_vsphere_2.3.07]<br>
->![mysql_vsphere_2.3.08]
+>![mysql_vsphere_2.3.07]
 
 <div id='2.4'/>
 ###2.4. MySQL 서비스 브로커 등록
@@ -418,6 +417,7 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 Sample Web App은 개방형 클라우드 플랫폼에 App으로 배포가 된다. App을 배포하여 구동시 Bind 된 MySQL 서비스 연결정보로 접속하여 초기 데이터를 생성하게 된다. 배포 완료 후 정상적으로 App 이 구동되면 브라우져나 curl로 해당 App에 접속 하여 MySQL 환경정보(서비스 연결 정보)와 초기 적재된 데이터를 보여준다.
 
 Sample Web App 구조는 다음과 같다.
+
 | 이름 | 설명
 | ---- | ------------
 | src | Sample 소스 디렉토리
@@ -566,24 +566,24 @@ Next 버튼을 클릭하여 다음 과정을 진행한다.
 -	어떤 Server에 접속하기 위한 Connection 정보인지 별칭을 입력한다.  
 ![mysql_vsphere_4.1.11]<br><br>
 
--	네트워크 유형의 목록에서 MySQL(SSH tunel)을 선택한다.
+-	네트워크 유형의 목록에서 MySQL(SSH tunel)을 선택한다.  
 ![mysql_vsphere_4.1.12]<br><br>
 
 -	아래 붉은색 영역에 접속하려는 서버 정보를 모두 입력한다.  
 ![mysql_vsphere_4.1.13]<br>
-서버 정보는 Application에 바인드되어 있는 서버 정보를 입력한다. cf env <app_name> 명령어로 이용하여 확인한다.  
+서버 정보는 Application에 바인드되어 있는 서버 정보를 입력한다. cf env <app_name> 명령어로 이용하여 확인한다.<br>
 <b>예)</b> $cf env hello-tomcat-song
 ![mysql_vsphere_4.1.14]<br><br>
 
--	SSH 터널 탭을 클릭하고 OpenPaaS 운영 관리자에게 제공받은 SSH 터널링 가능한 서버 정보를 입력한다. plink.exe 위치 입력은 Putty에서 제공하는 plink.exe 실행 위치를 넣어주고 만일 해당 파일이 없을 경우 plink.exe 내려받기 링크를 클릭하여 다운받는다. 로컬 포트 정보는 임의로 넣고 열기 버튼을 클릭하면 Mysql 데이터베이스에 접속한다.  
-<br>(참고) 만일 개인 키로 접속이 가능한 경우에는 openstack용 Open PaaS Mysql 서비스팩 설치 가이드를 참고한다.
+-	SSH 터널 탭을 클릭하고 OpenPaaS 운영 관리자에게 제공받은 SSH 터널링 가능한 서버 정보를 입력한다. plink.exe 위치 입력은 Putty에서 제공하는 plink.exe 실행 위치를 넣어주고 만일 해당 파일이 없을 경우 plink.exe 내려받기 링크를 클릭하여 다운받는다. 로컬 포트 정보는 임의로 넣고 열기 버튼을 클릭하면 Mysql 데이터베이스에 접속한다.<br>
+(참고) 만일 개인 키로 접속이 가능한 경우에는 openstack용 Open PaaS Mysql 서비스팩 설치 가이드를 참고한다.  
 ![mysql_vsphere_4.1.15]<br><br>
 
 -	접속이 완료되면 좌측에 스키마 정보가 나타난다.하지만 초기설정은 테이블, 뷰, 프로시져, 함수, 트리거, 이벤트 등 모두 섞여 있어서 한눈에 구분하기가 힘들어서 접속한 DB 별칭에 마우스 오른쪽 클릭 후 "트리 방식 옵션" - "객체를 유형별로 묶기"를 클릭하면 아래 화면과 같이 각 유형별로 구분이된다.  
 ![mysql_vsphere_4.1.16]<br><br>
 
--	우측 화면에 쿼리 탭을 클릭하여 Query문을 작성한 후 실행 버튼(삼각형)을 클릭한다.
-쿼리문에 이상이 없다면 정상적으로 결과를 얻을 수 있을 것이다.
+-	우측 화면에 쿼리 탭을 클릭하여 Query문을 작성한 후 실행 버튼(삼각형)을 클릭한다.  
+쿼리문에 이상이 없다면 정상적으로 결과를 얻을 수 있을 것이다.  
 ![mysql_vsphere_4.1.17]<br><br>
 
 
@@ -603,7 +603,6 @@ Next 버튼을 클릭하여 다음 과정을 진행한다.
 [mysql_vsphere_2.3.05]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.3.05.png
 [mysql_vsphere_2.3.06]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.3.06.png
 [mysql_vsphere_2.3.07]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.3.07.png
-[mysql_vsphere_2.3.08]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.3.08.png
 
 [mysql_vsphere_2.4.01]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.4.01.png
 [mysql_vsphere_2.4.02]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.4.02.png

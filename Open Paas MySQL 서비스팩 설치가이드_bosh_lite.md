@@ -2710,16 +2710,17 @@ Sample Web App은 개방형 클라우드 플랫폼에 App으로 배포가 된다
 
 Sample Web App 구조는 다음과 같다.
 
-|  이름  |  설명  |
-|--------|:-------|
-|src |Sample 소스 디렉토리|
-|manifest |개방형 클라우드 플랫폼에 app 배포시 필요한 설정을 저장하는 파일|
-|pom.xml |메이븐 project 설정 파일|
-|target |메이븐 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)|
-	
--	OpenPaaS-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를 복사한다.<br>
-$ls -all<br>
-![mysql_bosh_lite_3.1.01]
+| 이름 | 설명
+| ---- | ------------
+| src | Sample 소스 디렉토리
+| manifest | 개방형 클라우드 플랫폼에 app 배포시 필요한 설정을 저장하는 파일
+| pom.xml | 메이븐 project 설정 파일
+| target | 메이븐 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)
+
+-	OpenPaaS-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를 복사한다.
+
+	>$ls -all<br>
+	![mysql_bosh_lite_3.1.01]
 
 <div id='3.2'/>
 ###3.2. 개방형 클라우드 플랫폼에서 서비스 신청
@@ -2829,7 +2830,7 @@ HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트�
 ![mysql_bosh_lite_4.1.04]<br><br>
 
 -	HeidiSQL을 설치할 경로를 설정 후 Next 버튼을 클릭한다.  
-별도의 경로 설정이 필요 없을 경우 default로 C드라이브 Program Files 폴더에 설치가 된다.
+별도의 경로 설정이 필요 없을 경우 default로 C드라이브 Program Files 폴더에 설치가 된다.  
 ![mysql_bosh_lite_4.1.05]<br><br>
 
 -	설치 완료 후 시작메뉴에 HeidiSQL 바로가기 아이콘의 이름을 설정하는 과정이다.  
@@ -2846,7 +2847,7 @@ Next 버튼을 클릭하여 다음 과정을 진행한다.
 	체크박스에 체크 설정/해제를 완료했다면 Next 버튼을 클릭한다.
 ![mysql_bosh_lite_4.1.07]<br><br>
 
--	설치를 위한 모든 설정이 한번에 출력된다.확인 후 Install 버튼을 클릭하여 설치를 진행한다.
+-	설치를 위한 모든 설정이 한번에 출력된다.확인 후 Install 버튼을 클릭하여 설치를 진행한다.  
 ![mysql_bosh_lite_4.1.08]<br><br>
 
 -	Finish 버튼 클릭으로 설치를 완료한다.  
@@ -2867,15 +2868,15 @@ Next 버튼을 클릭하여 다음 과정을 진행한다.
 **예)** $cf env hello-tomcat-mysql
 ![mysql_bosh_lite_4.1.14]<br><br>
 
--	SSH 터널 탭을 클릭하고 Vagrant VM 정보를 입력하고 개인 키 파일을 불러온다. 개인키는 AWS에서 인스턴스 접속을 위한 공개키(.pem 파일)를puttygen을 이용하여 개인키(.ppk)로 변환한다. plink.exe 위치 입력은 Putty에서 제공하는 plink.exe 실행 위치를 넣어주고 만일 해당 파일이 없을 경우 plink.exe 내려받기 링크를 클릭하여 다운받는다. 로컬 포트 정보는 임의로 넣고 열기 버튼을 클릭하면 Mysql 데이터베이스에 접속한다.  
-<br>(참고) 만일 개인 키 없이 ID/Password로 접속이 가능한 경우에는 개인키 대신 사용자 이름과 암호를 입력한다.
+-	SSH 터널 탭을 클릭하고 Vagrant VM 정보를 입력하고 개인 키 파일을 불러온다. 개인키는 AWS에서 인스턴스 접속을 위한 공개키(.pem 파일)를puttygen을 이용하여 개인키(.ppk)로 변환한다. plink.exe 위치 입력은 Putty에서 제공하는 plink.exe 실행 위치를 넣어주고 만일 해당 파일이 없을 경우 plink.exe 내려받기 링크를 클릭하여 다운받는다. 로컬 포트 정보는 임의로 넣고 열기 버튼을 클릭하면 Mysql 데이터베이스에 접속한다.<br>
+(참고) 만일 개인 키 없이 ID/Password로 접속이 가능한 경우에는 개인키 대신 사용자 이름과 암호를 입력한다.  
 ![mysql_bosh_lite_4.1.15]<br><br>
 
 -	접속이 완료되면 좌측에 스키마 정보가 나타난다.하지만 초기설정은 테이블, 뷰, 프로시져, 함수, 트리거, 이벤트 등 모두 섞여 있어서 한눈에 구분하기가 힘들어서 접속한 DB 별칭에 마우스 오른쪽 클릭 후 "트리 방식 옵션" - "객체를 유형별로 묶기"를 클릭하면 아래 화면과 같이 각 유형별로 구분이된다.  
 ![mysql_bosh_lite_4.1.16]<br><br>
 
--	우측 화면에 쿼리 탭을 클릭하여 Query문을 작성한 후 실행 버튼(삼각형)을 클릭한다.
-쿼리문에 이상이 없다면 정상적으로 결과를 얻을 수 있을 것이다.
+-	우측 화면에 쿼리 탭을 클릭하여 Query문을 작성한 후 실행 버튼(삼각형)을 클릭한다.  
+쿼리문에 이상이 없다면 정상적으로 결과를 얻을 수 있을 것이다.  
 ![mysql_bosh_lite_4.1.17]<br><br>
 
 

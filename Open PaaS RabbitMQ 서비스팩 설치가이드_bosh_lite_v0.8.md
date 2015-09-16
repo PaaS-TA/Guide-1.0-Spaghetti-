@@ -1,29 +1,29 @@
 ## Table of Contents
-1. [문서 개요](#문서-개요)
-     1.1 [목적](#목적)
-     1.2 [범위](#범위)
-     1.3 [시스템 구성도](#시스템-구성도)
-     1.4 [참고자료](#참고자료)
+ 1. [문서 개요](#문서-개요)
+   1.1 [목적](#목적)
+   1.2 [범위](#범위)
+   1.3 [시스템 구성도](#시스템-구성도)
+   1.4 [참고자료](#참고자료)
 2. [RabbitMQ 서비스팩 설치] (#rabbitmq-서비스팩-설치)
-     2.1 [설치전 준비사항](#설치전-준비사항)
-     2.2 [RabbitMQ 서비스 릴리즈 업로드](#rabbitmq-서비스-릴리즈-업로드)
-     2.3 [RabbitMQ 서비스 Deployment 파일 수정 및 배포](#rabbitmq-서비스-deployment-파일-수정-및-배포)
-     2.4 [RabbitMQ 서비스 브로커 등록](#rabbitmq-서비스-브로커-등록)
+     * [설치전 준비사항](#설치전-준비사항)
+     * [RabbitMQ 서비스 릴리즈 업로드](#rabbitmq-서비스-릴리즈-업로드)
+     * [RabbitMQ 서비스 Deployment 파일 수정 및 배포](#rabbitmq-서비스-deployment-파일-수정-및-배포)
+     * [RabbitMQ 서비스 브로커 등록](#rabbitmq-서비스-브로커-등록)
 3. [RabbitMQ 연동 Sample App 설명](#rabbitmq-연동-sample-app-설명)
-     3.1 [Sample App 구조](#sample-app-구조)
-     3.2 [개방형 클라우드 플랫폼에서 서비스 신청](#개방형-클라우드-플랫폼에서-서비스-신청)
-     3.3 [Sample App에 서비스 바인드 신청 및 App 확인](#sample-app에-서비스-바인드-신청-및-app-확인)
+     * [Sample App 구조](#sample-app-구조)
+     * [개방형 클라우드 플랫폼에서 서비스 신청](#개방형-클라우드-플랫폼에서-서비스-신청)
+     * [Sample App에 서비스 바인드 신청 및 App 확인](#sample-app에-서비스-바인드-신청-및-app-확인)
 
 
 
-##	1. 문서 개요
-####	1.1 목적
+##	문서 개요
+####	목적
 본 문서(RabbitMQ 서비스팩 설치 가이드)는 전자정부표준프레임워크 기반의 Open PaaS에서 제공되는 서비스팩인 RabbitMQ 서비스팩을 Bosh를 이용하여 설치 하는 방법과 Open PaaS의 SaaS 형태로 제공하는 Application 에서 RabbitMQ 서비스를 사용하는 방법을 기술하였다.
 
-####	1.2 범위
+####	범위
 설치 범위는 RabbitMQ 서비스팩을 검증하기 위한 기본 설치를 기준으로 작성하였다.
 
-####	1.3 시스템 구성도
+####	시스템 구성도
 본 문서의 설치된 시스템 구성도로써, RabbitMQ(2대), RabbitMQ 서비스 브로커, haproxy로 최소사항을 구성하였다.
 
 ![시스템 구성도][rabbitmq_bosh_lite_(1)]

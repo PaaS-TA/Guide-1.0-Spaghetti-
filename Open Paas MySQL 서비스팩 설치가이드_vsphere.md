@@ -427,7 +427,7 @@ Sample Web App 구조는 다음과 같다.
 
 -	OpenPaaS-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를 복사한다.
 
-><div>$ls -all</div>
+>$ls -all
 ![mysql_vsphere_3.1.01]
 
 <div id='3.2'/>

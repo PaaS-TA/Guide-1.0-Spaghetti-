@@ -2708,11 +2708,10 @@ Sample Web App 구조는 다음과 같다.
 |pom.xml |메이븐 project 설정 파일|
 |target |메이븐 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)|
 <br>
-<br>
 -	OpenPaaS-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를 복사한다.
 >$ls -all<br>
 >![mysql_bosh_lite_3.1.01]
->
+ 
 ###개방형 클라우드 플랫폼에서 서비스 신청
 Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.  
 *참고: 서비스 신청시 개방형 클라우드 플랫폼에서 서비스를신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.

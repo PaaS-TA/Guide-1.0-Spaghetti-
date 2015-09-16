@@ -2671,11 +2671,11 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 >![mysql_bosh_lite_2.4.01]
 
 -	MySQL 서비스 브로커를 등록한다.
-><div>$cf create-service-broker {서비스팩 이름}{서비스팩 사용자ID}{서비스팩 사용자비밀번호} http://{서비스팩 URL}<br>
+><div>$cf create-service-broker {서비스팩 이름}{서비스팩 사용자ID}{서비스팩 사용자비밀번호} http://{서비스팩 URL}</div>
 >-	서비스팩 이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.<br>
 >-	서비스팩 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID이다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.<br>
->-	서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.</div>
->$ cf create-service-broker mysql-service-broker admin password http://p-mysql.10.244.0.34.xip.io
+>-	서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.
+><div>$cf create-service-broker mysql-service-broker admin password http://p-mysql.10.244.0.34.xip.io</div>
 >![mysql_bosh_lite_2.4.02]
 
 -	등록된 MySQL 서비스 브로커를 확인한다.
@@ -2707,18 +2707,18 @@ Sample Web App 구조는 다음과 같다.
 |manifest |개방형 클라우드 플랫폼에 app 배포시 필요한 설정을 저장하는 파일|
 |pom.xml |메이븐 project 설정 파일|
 |target |메이븐 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)|
-  
+
 -	OpenPaaS-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를 복사한다.
 >$ls -all<br>
 >![mysql_bosh_lite_3.1.01]
-  
+
 ###개방형 클라우드 플랫폼에서 서비스 신청
 Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.  
 *참고: 서비스 신청시 개방형 클라우드 플랫폼에서 서비스를신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
 -	먼저 개방형 클라우드 플랫폼 Marketplace에서 서비스가 있는지 확인을 한다.<br>
 ><div>$cf marketplace</div>
->![mysql_bosh_lite_3.2.01]<br><br>
+>![mysql_bosh_lite_3.2.01]
 
 -	Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.<br>
 ><div>$cf create-service {서비스명} {서비스플랜} {내서비스명}</div>
@@ -2726,11 +2726,11 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 >-	서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. MySQL 서비스는 100mb, 1gb를 지원한다.
 >-	내 서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.<br>
 ><div>$cf create-service p-mysql 100mb mysql-service-instance</div>
->![mysql_bosh_lite_3.2.02]<br><br>
+>![mysql_bosh_lite_3.2.02]
 
 -	생성된 MySQL 서비스 인스턴스를 확인한다.<br>
 ><div>$cf services</div>
->![mysql_bosh_lite_3.2.03]<br><br>
+>![mysql_bosh_lite_3.2.03]
 
 ###Sample Web App에 서비스 바인드 신청 및 App 확인
 서비스 신청이 완료되었으면 Sample Web App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 MySQL 서비스를 이용한다.  
@@ -2767,7 +2767,6 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 
 -	(참고) 바인드 후 App구동시 Mysql 서비스 접속 에러로 App 구동이 안될 경우 보안 그룹을 추가한다.<br>  
 >-	rule.json 화일을 만들고 아래와 같이 내용을 넣는다.
-><div>
 >$ vi rule.json
 ><pre>
 [  
@@ -2777,24 +2776,23 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
       "ports": "3306"
     }
 ]
-></pre>
-></div>
+</pre>
 >-	보안 그룹을 생성한다.
 ><div>$cf create-security-group p-mysql rule.json</div>
->![mysql_bosh_lite_3.3.06]<br><br>
+>![mysql_bosh_lite_3.3.06]
 >
 >-	모든 App에 Mysql 서비스를 사용할수 있도록 생성한 보안 그룹을 적용한다.
 ><div>$cf bind-running-security-group p-mysql</div>
->![mysql_bosh_lite_3.3.07]<br><br>
+>![mysql_bosh_lite_3.3.07]
 >
 >-	App을 리부팅 한다.
 ><div>$cf restarthello-tomcat-mysql</div>
->![mysql_bosh_lite_3.3.08]<br><br>
+>![mysql_bosh_lite_3.3.08]
 
 -	App이 정상적으로 MySQL 서비스를 사용하는지 확인한다.
 >-	curl 로 확인 
 ><div>$curl hello-tomcat-mysql.10.244.0.34.xip.io</div>
->![mysql_bosh_lite_3.3.09]<br><br>
+>![mysql_bosh_lite_3.3.09]
 
 #MySQL Client 툴 접속
 Application에 바인딩된 MySQL 서비스 연결정보는 Private IP로 구성되어 있기 때문에 MySQL Client 툴에서 직접 연결할수 없다. 따라서 MySQL Client 툴에서 SSH 터널, Proxy 터널 등을 제공하는 툴을 사용해서 연결하여야 한다. 본 가이드는 SSH 터널을 이용하여 연결 하는 방법을 제공하며 MySQL Client 툴로써는 오픈 소스인 HeidiSQL로 가이드한다. 또한 Bosh lite를 AWS 환경에서 구성 한 경우를 전제로 하였다. AWS에서 Bosh lite를 구성하면 Vagrant VM이 생성되는데 Vagrant VM 에서는 서비스팩의 Private IP 와 해당 포트로 접근이 가능하도록 구성되어 있다.

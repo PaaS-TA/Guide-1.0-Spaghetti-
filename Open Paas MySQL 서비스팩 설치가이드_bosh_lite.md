@@ -2710,16 +2710,17 @@ Sample Web App은 개방형 클라우드 플랫폼에 App으로 배포가 된다
 
 Sample Web App 구조는 다음과 같다.
 
-|  이름  |  설명  |
-|--------|:-------|
-|src |Sample 소스 디렉토리|
-|manifest |개방형 클라우드 플랫폼에 app 배포시 필요한 설정을 저장하는 파일|
-|pom.xml |메이븐 project 설정 파일|
-|target |메이븐 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)|
-	
--	OpenPaaS-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를 복사한다.<br>
-$ls -all<br>
-![mysql_bosh_lite_3.1.01]
+| 이름 | 설명
+| ---- | ------------
+| src | Sample 소스 디렉토리
+| manifest | 개방형 클라우드 플랫폼에 app 배포시 필요한 설정을 저장하는 파일
+| pom.xml | 메이븐 project 설정 파일
+| target | 메이븐 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)
+
+-	OpenPaaS-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를 복사한다.
+
+	>$ls -all<br>
+	![mysql_bosh_lite_3.1.01]
 
 <div id='3.2'/>
 ###3.2. 개방형 클라우드 플랫폼에서 서비스 신청

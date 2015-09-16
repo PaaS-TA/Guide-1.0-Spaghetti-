@@ -95,30 +95,29 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 B
 >![mysql_openstack_2.3.03]<br>
 >Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3016 버전을 업로드를 해야 한다.
 
--	openpaas-mysql-openstack.yml Deployment 파일을 서버 환경에 맞게 수정한다.(빨간색으로 표시된 부분 특히 주의)
+-	openpaas-mysql-openstack.yml Deployment 파일을 서버 환경에 맞게 수정한다.(굵은 글씨로 표시된 부분 특히 주의)
 
 >$vi openpaas-mysql-openstack.yml
 ><pre>#openpaas-mysql-openstack 설정 파일 내용
 name: openpaas-mysql-service                                # 서비스 배포이름(필수)
 director_uuid: <b>xxxxx#bosh status 에서 확인한 Director UUID을 입력(필수)</b>
-
+>
 releases:
 - name: openpaas-mysql                   #서비스 릴리즈 이름(필수)
   version: beta-1.0          #서비스 릴리즈 버전(필수): latest 시 업로드된 서비스 릴리즈 최신버전
-
 update:
   canaries: 1                     # canary 인스턴스 수(필수)
 canary_watch_time: 30000-600000  # canary 인스턴스가 수행하기 위한 대기 시간(필수)
 max_in_flight: 1   # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
 update_watch_time: 30000-600000       # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
-
+>
 compilation:                           #컴파일시 필요한 가상머신의 속성(필수)
 cloud_properties: # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone)
 instance_type: m1.medium          # 인스턴스 타입: Flavors 타입 (필수)
   network: openpaas_network    # Networks block에서 선언한 network 이름(필수)
 reuse_compilation_vms: true     # 컴파일지 VM 재사용 여부(옵션)
   workers: 6              # 컴파일 하는 가상머신의 최대수(필수)
-
+>
 jobs:
 - instances: 1                    # job 인스턴스 수(필수)
   name: mysql                  # 작업 이름(필수): MySQL 서버
@@ -141,7 +140,7 @@ syslog_aggregator: null
   release: openpaas-mysql               # 서비스 릴리즈 이름(필수)
 resource_pool: services-small           # Resource Pools block에 정의한 resource pool 이름(필수)
   template: mysql                    # job template 이름(필수)
-
+>
 - instances: 1
   name: proxy                     # 작업 이름(필수): proxy
   networks:
@@ -167,7 +166,7 @@ syslog_aggregator: null
   release: openpaas-mysql
 resource_pool: services-small
   template: proxy                     # job template 이름(필수)
-
+>
 - instances: 1
   name: openpaas-mysql-broker         # 작업 이름(필수): 서비스 브로커
   networks:
@@ -250,7 +249,7 @@ syslog_aggregator: null
   release: openpaas-mysql
 resource_pool: services-small           # Resource Pools block에 정의한 resource pool 이름(필수)
   template: cf-mysql-broker            # job template 이름(필수)
-
+>
 - instances: 1
   lifecycle: errand                  # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로실행할때 설정, 주로 테스트 용도에 쓰임
   name: broker-registrar             # 작업 이름: 서비스 브로커 등록
@@ -271,7 +270,7 @@ api_url: <b>http://api.controller.open-paas.com</b>
   release: openpaas-mysql
 resource_pool: services-errand
   template: broker-registrar
-
+>
 - instances: 1
   lifecycle: errand
   name: broker-deregistrar                    # 작업 이름: 서비스 브로커 삭제
@@ -287,7 +286,7 @@ api_url: <b>http://api.controller.open-paas.com</b>
   release: openpaas-mysql
 resource_pool: services-errand
   template: broker-deregistrar
-
+>
 - instances: 1
   lifecycle: errand
   name: acceptance-tests                   # 작업이름: 서비스팩이 정상적으로 설치 되었는 테스트
@@ -318,7 +317,7 @@ plan_name: 1gb
   release: openpaas-mysql
 resource_pool: services-errand
   template: acceptance-tests
-
+>
 meta:
 apps_domain: <b>controller.open-paas.com</b># CF 설치시 설정한 apps 도메인 정보
   environment: null
@@ -330,7 +329,7 @@ nats:# CF 설치시 설정한 nats 정보
     port: <b>4222</b>
     user: <b>nats</b>
 syslog_aggregator: null
-
+>
 networks:                       # 네트워크 블록에 나열된 각 서브 블록이 참조 할 수있는 작업이 네트워크 구성을 지정, 네트워크 구성은 네트워크 담당자에게 문의 하여 작성 요망
 - name: openpaas_network
   subnets:
@@ -351,7 +350,7 @@ range: <b>10.10.7.0/24</b>
     - <b>10.10.7.61 - 10.10.7.70</b>#사용 가능한 IP 설정
   type: manual
 properties: {}
-
+>
 resource_pools:# 배포시 사용하는 resource pools를 명시하며 여러 개의 resource pools 을 사용할 경우 name 은 unique 해야함(필수)
 - cloud_properties:         # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성을 설명 (instance_type, availability_zone)
 instance_type: m1.medium           #인스턴스 타입: Flovers 타입(필수)
@@ -364,7 +363,7 @@ env:                          # 환경 정보(옵션)
 stemcell:
     name: <b>bosh-openstack-kvm-ubuntu-trusty-go_agent</b>#stemcell 이름(필수)
     version: <b>3016</b># stemcell 버전(필수)
-
+>
 - cloud_properties:
 instance_type: m1.small
   name: services-errand
@@ -376,7 +375,7 @@ env:
 stemcell:
     name: bosh-openstack-kvm-ubuntu-trusty-go_agent
     version: 3016                                         # stemcell 버전(필수)
-</pre>
+></pre>
 
 -	Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 >$bosh deployment {Deployment manifest 파일 PATH}<br>

@@ -2721,11 +2721,12 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 >$cf marketplace<br>
 >![mysql_bosh_lite_3.2.01]
 
--	Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.<br>
+-	Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.
 >$cf create-service {서비스명} {서비스플랜} {내서비스명}<br>
->-	서비스명 : p-mysql로 Marketplace에서 보여지는 서비스 명칭이다.<br>
->-	서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. MySQL 서비스는 100mb, 1gb를 지원한다.<br>
->-	내 서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.<br>
+>-	서비스명 : p-mysql로 Marketplace에서 보여지는 서비스 명칭이다.
+>-	서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. MySQL 서비스는 100mb, 1gb를 지원한다.
+>-	내 서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.
+>
 >$cf create-service p-mysql 100mb mysql-service-instance<br>
 >![mysql_bosh_lite_3.2.02]
 

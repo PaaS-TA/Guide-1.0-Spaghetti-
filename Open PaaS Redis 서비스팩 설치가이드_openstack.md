@@ -20,17 +20,17 @@
 # 1. 문서 개요
 
 <div id='2'></div>
-### 1.1 목적
+### 1.1. 목적
       
 본 문서(Redis서비스팩설치 가이드)는 전자정부표준프레임워크 기반의 Open PaaS에서 제공되는 서비스팩인Redis서비스팩을 Bosh를 이용하여 설치 하는 방법과 Open PaaS의 SaaS 형태로 제공하는 Application 에서Redis 서비스를 사용하는 방법을 기술하였다.
 
 <div id='3'></div>
-### 1.2 범위 
+### 1.2. 범위 
 
 설치 범위는 Redis서비스팩을 검증하기 위한 기본 설치를 기준으로 작성하였다. 
 
 <div id='4'></div>
-### 1.3 시스템 구성도
+### 1.3. 시스템 구성도
 본 문서의 설치된 시스템 구성도입니다. Redisdedicated-node(5대), Redis 서비스 브로커로 최소사항을 구성하였다.
 ![시스템 구성도][redis_openstack_02]
 
@@ -66,7 +66,7 @@
 </table>
 
 <div id='5'></div>
-### 1.4 참고자료
+### 1.4. 참고자료
 [**http://bosh.io/docs**](http://bosh.io/docs)
 [**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
 
@@ -81,7 +81,7 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Deployment.zip, OpenPaaS-Sample-Apps.zip, OpenPaaS-Services.zip)
 
 <div id='8'></div>
-###   2.2 Redis 서비스 릴리즈 업로드
+###   2.2. Redis 서비스 릴리즈 업로드
 
 - OpenPaaS-Services.zip 파일 압축을 풀고폴더안에 있는Redis 서비스 릴리즈openpaas-redis-release-beta-1.0.tgz 파일을복사한다.
 - 업로드할openpaas-redis-release-beta-1.0.tgz 파일을 확인한다.
@@ -116,7 +116,7 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 ><div>Redis 서비스 릴리즈가 업로드 되어 있는 것을 확인</div>
 
 <div id='9'></div>
-###   2.3 Redis 서비스 Deployment 파일 수정 및 배포
+###   2.3. Redis 서비스 Deployment 파일 수정 및 배포
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params등을 정의가 되어 있다.
 
@@ -345,7 +345,7 @@ stemcell:
 >![redis_openstack_17]
 
 <div id='10'></div>
-### 2.4 Redis 서비스 브로커 등록
+### 2.4. Redis 서비스 브로커 등록
 Redis서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 Redis 서비스 브로커를 등록해 주어야 한다.
 서비스 브로커 등록시개방형 클라우드 플랫폼에서서비스브로커를등록할수있는사용자로로그인이되어있어야한다.
 
@@ -385,7 +385,7 @@ Redis서비스팩 배포가 완료 되었으면 Application에서 서비스 팩�
 본 Sample App은 개발형클라우드 플랫폼에 배포되며 Redis의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
 
 <div id='12'></div>
-### 3.1 Sample App 구조
+### 3.1. Sample App 구조
 Sample App은 개방형 클라우드 플랫폼에 App으로 배포가 된다. 배포 완료 후 정상적으로 App 이 구동되면 curl 명령어로 배포된 도메인 정보를 이용하여 Redis에 특정 key 에 값을 저장/조회/삭제를 한다.
 
 Sample App 구조는 다음과 같다.
@@ -418,7 +418,7 @@ Sample App 구조는 다음과 같다.
 >![redis_openstack_23]
 
 <div id='13'></div>
-### 3.2 개방형 클라우드 플랫폼에서 서비스 신청
+### 3.2. 개방형 클라우드 플랫폼에서 서비스 신청
 Sample App에서 Redis 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.
 *참고: 서비스 신청시개방형 클라우드 플랫폼에서 서비스를신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
@@ -443,7 +443,7 @@ Sample App에서 Redis 서비스를 사용하기 위해서는 서비스 신청(P
 >![redis_openstack_26]
 
 <div id='14'></div>
-### 3.3 Sample App에 서비스 바인드신청 및 App 확인
+### 3.3. Sample App에 서비스 바인드신청 및 App 확인
 서비스 신청이 완료되었으면 Sample App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 Redis 서비스를 이용한다.
 *참고: 서비스 Bind 신청시개방형 클라우드 플랫폼에서 서비스 Bind신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
@@ -505,7 +505,7 @@ $ curl -X DELETE $APP/foo<br>
 Application에 바인딩된Redis 서비스 연결정보는 Private IP로 구성되어 있기 때문에 Redis Client 툴에서 직접 연결할수 없다. 따라서 Redis Client 툴에서 SSH 터널, Proxy 터널 등을 제공하는 툴을 사용해서 연결하여야 한다. 본 가이드는 SSH 터널을 이용하여 연결 하는 방법을 제공하며 Redis Client 툴로써는 오픈 소스인 Redis Desktop Manager로 가이드한다. Redis Desktop Manager 에서 접속하기 위해서 먼저 SSH 터널링할수 있는 VM 인스턴스를생성해야한다. 이 인스턴스는 SSH로 접속이 가능해야 하고 접속 후 Open PaaS 에 설치한 서비스팩에 Private IP 와 해당 포트로 접근이 가능하도록 시큐리티 그룹을 구성해야 한다. 이 부분은 OpenStack 관리자 및 OpenPaaS 운영자에게 문의하여 구성한다. OpenStack 에서 구성한 인스턴스는공개키(.pem) 로 접속을 해야 하므로 공개키는 운영 담당자에게 문의하여 제공받는다. 참고) 개인키(.ppk)로는 접속이 되지 않는다.
 
 <div id='16'></div>
-### 4.1 Redis Desktop Manager 설치 및 연결
+### 4.1. Redis Desktop Manager 설치 및 연결
 Redis Desktop Manager 프로그램은 무료로 사용할 수 있는 오픈소스 소프트웨어이다.
 
 - Redis Desktop Manager를 다운로드 하기 위해 아래 URL로 이동하여 설치파일을 다운로드 한다.

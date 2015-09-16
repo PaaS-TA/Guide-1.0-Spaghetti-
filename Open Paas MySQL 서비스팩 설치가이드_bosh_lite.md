@@ -2712,59 +2712,60 @@ Sample Web App 구조는 다음과 같다.
 -	OpenPaaS-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를 복사한다.<br>
 >$ls -all<br>
 >![mysql_bosh_lite_3.1.01]
-	
+
 ###개방형 클라우드 플랫폼에서 서비스 신청
-Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.  
+Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.<br>
 *참고: 서비스 신청시 개방형 클라우드 플랫폼에서 서비스를신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
--	먼저 개방형 클라우드 플랫폼 Marketplace에서 서비스가 있는지 확인을 한다.<br>
-><div>$cf marketplace</div>
+-	먼저 개방형 클라우드 플랫폼 Marketplace에서 서비스가 있는지 확인을 한다.
+>$cf marketplace<br>
 >![mysql_bosh_lite_3.2.01]
 
 -	Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.<br>
-><div>$cf create-service {서비스명} {서비스플랜} {내서비스명}</div>
->-	서비스명 : p-mysql로 Marketplace에서 보여지는 서비스 명칭이다.
->-	서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. MySQL 서비스는 100mb, 1gb를 지원한다.
+>$cf create-service {서비스명} {서비스플랜} {내서비스명}<br>
+>-	서비스명 : p-mysql로 Marketplace에서 보여지는 서비스 명칭이다.<br>
+>-	서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. MySQL 서비스는 100mb, 1gb를 지원한다.<br>
 >-	내 서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.<br>
-><div>$cf create-service p-mysql 100mb mysql-service-instance</div>
+>$cf create-service p-mysql 100mb mysql-service-instance<br>
 >![mysql_bosh_lite_3.2.02]
 
--	생성된 MySQL 서비스 인스턴스를 확인한다.<br>
-><div>$cf services</div>
+-	생성된 MySQL 서비스 인스턴스를 확인한다.
+>$cf services<br>
 >![mysql_bosh_lite_3.2.03]
 
 ###Sample Web App에 서비스 바인드 신청 및 App 확인
-서비스 신청이 완료되었으면 Sample Web App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 MySQL 서비스를 이용한다.  
+서비스 신청이 완료되었으면 Sample Web App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 MySQL 서비스를 이용한다.<br> 
 *참고: 서비스 Bind 신청시 개방형 클라우드 플랫폼에서 서비스 Bind신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
--	Sample Web App 디렉토리로 이동하여 manifest 파일을 확인한다.<br>
-><div>$cd hello-spring-mysql</div>
-><div>$vi manifest.yml</div>
+-	Sample Web App 디렉토리로 이동하여 manifest 파일을 확인한다.
+>$cd hello-spring-mysql<br>
+>$vi manifest.yml<br>
 	<pre>applications:
 		- name: hello-tomcat-mysql <b>#배포할 App 이름</b>
 		  instances: 1 <b># 배포 인스턴스 수</b>
 		  path: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war <b>#배포하는 App 파일 PATH</b></pre>
->참고: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war파일이 존재 하지 않을 경우 mvn 빌드를 수행 하면 파일이 생성된다.<br><br>
+>참고: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war파일이 존재 하지 않을 경우 mvn 빌드를 수행 하면 파일이 생성된다.
 
 -	--no-start 옵션으로 App을 배포한다.  
-	--no-start: App 배포시 구동은 하지 않는다.<br>
-><div>$cf push --no-start</div>
+	--no-start: App 배포시 구동은 하지 않는다.
+>$cf push --no-start<br>
 >![mysql_bosh_lite_3.3.01]
 
--	배포된 Sample App을 확인하고 로그를 수행한다.<br>
-><div>$cf apps</div>
->![mysql_bosh_lite_3.3.02]<br><br>
-><div>$ cf logs {배포된 App명}<br>
->$ cf logs hello-tomcat-mysql</div>
->![mysql_bosh_lite_3.3.03]<br><br>
+-	배포된 Sample App을 확인하고 로그를 수행한다.
+>$cf apps<br>
+>![mysql_bosh_lite_3.3.02]<br>
+>
+>$ cf logs {배포된 App명}<br>
+>$ cf logs hello-tomcat-mysql<br>
+>![mysql_bosh_lite_3.3.03]
 
--	Sample Web App에서 생성한 서비스 인스턴스 바인드 신청을 한다.<br>
-><div>$cf bind-service hello-tomcat-mysql mysql-service-instance</div>
+-	Sample Web App에서 생성한 서비스 인스턴스 바인드 신청을 한다.
+>$cf bind-service hello-tomcat-mysql mysql-service-instance<br>
 >![mysql_bosh_lite_3.3.04]
 
--	바인드가 적용되기 위해서 App을 재기동한다.<br>
-><div>$cf restart hello-tomcat-mysql</div>
->![mysql_bosh_lite_3.3.05]<br><br>
+-	바인드가 적용되기 위해서 App을 재기동한다.
+>$cf restart hello-tomcat-mysql<br>
+>![mysql_bosh_lite_3.3.05]
 
 -	(참고) 바인드 후 App구동시 Mysql 서비스 접속 에러로 App 구동이 안될 경우 보안 그룹을 추가한다.<br>  
 >-	rule.json 화일을 만들고 아래와 같이 내용을 넣는다.<br>
@@ -2791,8 +2792,8 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 >![mysql_bosh_lite_3.3.08]
 
 -	App이 정상적으로 MySQL 서비스를 사용하는지 확인한다.
->-	curl 로 확인 
-><div>$curl hello-tomcat-mysql.10.244.0.34.xip.io</div>
+>-	curl 로 확인<br>
+>$curl hello-tomcat-mysql.10.244.0.34.xip.io<br>
 >![mysql_bosh_lite_3.3.09]
 
 #MySQL Client 툴 접속

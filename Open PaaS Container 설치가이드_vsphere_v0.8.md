@@ -1,79 +1,79 @@
 ## Table of Contents
-1. [°³¿ä](#°³¿ä)
-     * [¹®¼­ ¸ñÀû](#¹®¼­-¸ñÀû)
-     * [¹üÀ§](#¹üÀ§)
-     * [Âü°í ÀÚ·á](#Âü°í-ÀÚ·á)
+1. [ê°œìš”](#ê°œìš”)
+     * [ë¬¸ì„œ ëª©ì ](#ë¬¸ì„œ-ëª©ì )
+     * [ë²”ìœ„](#ë²”ìœ„)
+     * [ì°¸ê³  ìë£Œ](#ì°¸ê³ -ìë£Œ)
 2. [Prerequisites](#prerequisites)
-    * [OpenPaas Controller ¼³Ä¡È®ÀÎ](#openpaas-controller-¼³Ä¡È®ÀÎ)
-3. [Open Paas Container ¼³Ä¡](#open-paas-container-¼³Ä¡)
+    * [OpenPaas Controller ì„¤ì¹˜í™•ì¸](#openpaas-controller-ì„¤ì¹˜í™•ì¸)
+3. [Open Paas Container ì„¤ì¹˜](#open-paas-container-ì„¤ì¹˜)
    * [Release Upload](#release-upload)
-4. [Deployment Manifest ÆÄÀÏ ¼öÁ¤ÇÏ±â](#deployment-manifest-ÆÄÀÏ-¼öÁ¤ÇÏ±â). 
+4. [Deployment Manifest íŒŒì¼ ìˆ˜ì •í•˜ê¸°](#deployment-manifest-íŒŒì¼-ìˆ˜ì •í•˜ê¸°). 
    * [Name & Release](#name-release)
    * [Compilation](#compilation)
    * [Resource Pools](#resource-pools)
    * [Update](#update)
    * [Jobs](#jobs)
    * [Properties](#properties)
-5. [Deployment Manifest ÁöÁ¤](#deployment-manifest-ÁöÁ¤)
+5. [Deployment Manifest ì§€ì •](#deployment-manifest-ì§€ì •)
 6. [Bosh Deploy](#bosh-deploy)
-7. [¼³Ä¡Çü»ó È®ÀÎ](#¼³Ä¡Çü»ó-È®ÀÎ)
-7. [¼³Ä¡ °ËÁõ](#¼³Ä¡-°ËÁõ)
+7. [ì„¤ì¹˜í˜•ìƒ í™•ì¸](#ì„¤ì¹˜í˜•ìƒ-í™•ì¸)
+7. [ì„¤ì¹˜ ê²€ì¦](#ì„¤ì¹˜-ê²€ì¦)
    * [CF Login](#cf-login)
    * [Application Deploy](#application-deploy)
    * [Application Access](#application-access)
    
-## °³¿ä
+## ê°œìš”
 ----
 
-#### ¹®¼­ ¸ñÀû
+#### ë¬¸ì„œ ëª©ì 
 
- º» ¹®¼­(¼³Ä¡°¡ÀÌµå)´Â, Çö ½ÃÁ¡¿¡¼­ Áö¿øµÇ´Â IaaS(Infrastructure as a Service) Áß ÇÏ³ªÀÎ VSphere È¯°æ¿¡¼­ °³¹æÇüÅ¬¶ó¿ìµåÇÃ·§Æû(OpenPaas Container) À» ¼³Ä¡ÇÏ±â À§ÇÑ °¡ÀÌµå¸¦ Á¦°øÇÏ´Âµ¥ ±× ¸ñÀûÀÌ ÀÖ´Ù.
+ ë³¸ ë¬¸ì„œ(ì„¤ì¹˜ê°€ì´ë“œ)ëŠ”, í˜„ ì‹œì ì—ì„œ ì§€ì›ë˜ëŠ” IaaS(Infrastructure as a Service) ì¤‘ í•˜ë‚˜ì¸ VSphere í™˜ê²½ì—ì„œ ê°œë°©í˜•í´ë¼ìš°ë“œí”Œë«í¼(OpenPaas Container) ì„ ì„¤ì¹˜í•˜ê¸° ìœ„í•œ ê°€ì´ë“œë¥¼ ì œê³µí•˜ëŠ”ë° ê·¸ ëª©ì ì´ ìˆë‹¤.
 
-#### ¹üÀ§
+#### ë²”ìœ„
 
- º» ¹®¼­ÀÇ ¹üÀ§´Â °³¹æÇüÅ¬¶ó¿ìµåÇÃ·§ÆûÀ» VSphere ±â¹İ¿¡ ¼³Ä¡ÇÏ±â À§ÇÑ ³»¿ëÀ¸·Î ÇÑÁ¤µÇ¾î ÀÖ´Ù. Openstack/AWS¿Í °°Àº ´Ù¸¥ IaaS È¯°æ¿¡¼­ÀÇ ¼³Ä¡´Â ±×¿¡ ¸Â´Â °¡ÀÌµå ¹®¼­¸¦ Âü°íÇØ¾ß ÇÏ¸ç, Bosh/CF release ¼³Ä¡ ¶ÇÇÑ ÇØ´ç °¡ÀÌµå ¹®¼­¸¦ º°µµ·Î ÂüÁ¶ÇØ¾ß ÇÑ´Ù.
+ ë³¸ ë¬¸ì„œì˜ ë²”ìœ„ëŠ” ê°œë°©í˜•í´ë¼ìš°ë“œí”Œë«í¼ì„ VSphere ê¸°ë°˜ì— ì„¤ì¹˜í•˜ê¸° ìœ„í•œ ë‚´ìš©ìœ¼ë¡œ í•œì •ë˜ì–´ ìˆë‹¤. Openstack/AWSì™€ ê°™ì€ ë‹¤ë¥¸ IaaS í™˜ê²½ì—ì„œì˜ ì„¤ì¹˜ëŠ” ê·¸ì— ë§ëŠ” ê°€ì´ë“œ ë¬¸ì„œë¥¼ ì°¸ê³ í•´ì•¼ í•˜ë©°, Bosh/CF release ì„¤ì¹˜ ë˜í•œ í•´ë‹¹ ê°€ì´ë“œ ë¬¸ì„œë¥¼ ë³„ë„ë¡œ ì°¸ì¡°í•´ì•¼ í•œë‹¤.
 
-#### Âü°í ÀÚ·á
+#### ì°¸ê³  ìë£Œ
 
  [***https://github.com/cloudfoundry-incubator/diego-release***](https://github.com/cloudfoundry-incubator/diego-release)
 
 
 ## Prerequisites
 
-#### OpenPaas Controller ¼³Ä¡È®ÀÎ
+#### OpenPaas Controller ì„¤ì¹˜í™•ì¸
 
- °³¹æÇüÅ¬¶ó¿ìµåÇÃ·§Æû (OpenPaas Container) ¸¦ ¼³Ä¡ÇÏ±â À§ÇØ¼­´Â »çÀü¿¡ OpenPaas Controller°¡ ¼³Ä¡µÇ¾î ÀÖ¾î¾ß ÇÑ´Ù.
+ ê°œë°©í˜•í´ë¼ìš°ë“œí”Œë«í¼ (OpenPaas Container) ë¥¼ ì„¤ì¹˜í•˜ê¸° ìœ„í•´ì„œëŠ” ì‚¬ì „ì— OpenPaas Controllerê°€ ì„¤ì¹˜ë˜ì–´ ìˆì–´ì•¼ í•œë‹¤.
 
- È®ÀÎÇÏ´Â ¹æ¹ıÀº bosh deployments¸¦ ÅëÇØ ¹èÆ÷µÈ ¸®½ºÆ® ¸ñ·ÏÀ¸·Î È®ÀÎÇÑ´Ù.
+ í™•ì¸í•˜ëŠ” ë°©ë²•ì€ bosh deploymentsë¥¼ í†µí•´ ë°°í¬ëœ ë¦¬ìŠ¤íŠ¸ ëª©ë¡ìœ¼ë¡œ í™•ì¸í•œë‹¤.
  
- ![cf push](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-container/bosh_deployments_vsphere.png)
+ ![cf push](/images/openpaas-container/bosh_deployments_vsphere.png)
 
-## Open Paas Container ¼³Ä¡
+## Open Paas Container ì„¤ì¹˜
 
 #### Release Upload
 
- ¹èÆ÷µÈ ¼³Ä¡ ÆĞÅ°ÁöÀÇ OpenPaaS-Controller Æú´õ¿¡ ÀÖ´Â Open PaaS Container Bosh Release¸¦ Bosh Server·Î ¾Æ·¡¿Í °°Àº ¸í·ÉÀ¸·Î Beta-1.0 ¹öÀüÀ» Upload ÇÑ´Ù.
+ ë°°í¬ëœ ì„¤ì¹˜ íŒ¨í‚¤ì§€ì˜ OpenPaaS-Controller í´ë”ì— ìˆëŠ” Open PaaS Container Bosh Releaseë¥¼ Bosh Serverë¡œ ì•„ë˜ì™€ ê°™ì€ ëª…ë ¹ìœ¼ë¡œ Beta-1.0 ë²„ì „ì„ Upload í•œë‹¤.
 
 | bosh upload release $INSTALL\_PACKAGE/OpenPaaS-Container/ openpaas-container-beta-1.0.tgz |
 |-------------------------------------------------------------------------------------------|
 
- Release Upload´Â »óÈ²¿¡ µû¶ó ´Ù¼Ò Â÷ÀÌ´Â ÀÖÀ¸³ª º¸Åë 20-30ºĞ Á¤µµ ¼Ò¿ä°¡ µÇ¸ç, Á¤»ó Upload°¡ µÇ¸é ¾Æ·¡ÀÇ ±×¸²°ú °°Àº ¸Ş½ÃÁö°¡ Ãâ·ÂµÈ´Ù.
+ Release UploadëŠ” ìƒí™©ì— ë”°ë¼ ë‹¤ì†Œ ì°¨ì´ëŠ” ìˆìœ¼ë‚˜ ë³´í†µ 20-30ë¶„ ì •ë„ ì†Œìš”ê°€ ë˜ë©°, ì •ìƒ Uploadê°€ ë˜ë©´ ì•„ë˜ì˜ ê·¸ë¦¼ê³¼ ê°™ì€ ë©”ì‹œì§€ê°€ ì¶œë ¥ëœë‹¤.
  
- ![OpenPaas Container Upload Release](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-container/bosh_upload_release.png)
+ ![OpenPaas Container Upload Release](/images/openpaas-container/bosh_upload_release.png)
 
- \[ÁÖÀÇ\] Release Upload °úÁ¤¿¡¼­ ÀÛ¾÷ÀåºñÀÇ ¡°/tmp¡± Æú´õÀÇ »çÀÌÁî°¡ ÀÛÀ» °æ¿ì ¾ĞÃàÆÄÀÏÀ» Ç®°Å³ª ¹­À» ¶§ ¿¡·¯°¡ ¹ß»ıÇÒ ¼ö ÀÖÀ¸¹Ç·Î, 10GB ÀÌ»ó Free Size°¡ ÀÖ´ÂÁö¸¦ È®ÀÎÇØ¾ß ÇÑ´Ù.
+ \[ì£¼ì˜\] Release Upload ê³¼ì •ì—ì„œ ì‘ì—…ì¥ë¹„ì˜ â€œ/tmpâ€ í´ë”ì˜ ì‚¬ì´ì¦ˆê°€ ì‘ì„ ê²½ìš° ì••ì¶•íŒŒì¼ì„ í’€ê±°ë‚˜ ë¬¶ì„ ë•Œ ì—ëŸ¬ê°€ ë°œìƒí•  ìˆ˜ ìˆìœ¼ë¯€ë¡œ, 10GB ì´ìƒ Free Sizeê°€ ìˆëŠ”ì§€ë¥¼ í™•ì¸í•´ì•¼ í•œë‹¤.
 
- Bosh Sever¿¡ Release°¡ Á¤»óÀûÀ¸·Î Upload µÇ¾ú´ÂÁö´Â ¡°bosh releases¡± ¸í·ÉÀ¸·Î È®ÀÎÇÑ´Ù.
+ Bosh Severì— Releaseê°€ ì •ìƒì ìœ¼ë¡œ Upload ë˜ì—ˆëŠ”ì§€ëŠ” â€œbosh releasesâ€ ëª…ë ¹ìœ¼ë¡œ í™•ì¸í•œë‹¤.
 
 
 | bosh releases |
 |---------------|
 
- ![OpenPaas Container Releases](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-container/bosh_releases.png)
+ ![OpenPaas Container Releases](/images/openpaas-container/bosh_releases.png)
 
-## Deployment Manifest ÆÄÀÏ ¼öÁ¤ÇÏ±â
+## Deployment Manifest íŒŒì¼ ìˆ˜ì •í•˜ê¸°
 
- ¹èÆ÷µÈ ¼³Ä¡ ÆĞÅ°Áö¿¡ Æ÷ÇÔµÈ Sample Deployment Manifest File($INSTALL\_PACKAGE/OpenPaaS-Deployment/openpaas-container-vsphere-beta-1.0.yml)À» ¾Æ·¡ÀÇ ¼ø¼­´ë·Î ¼³Ä¡È¯°æ¿¡ ÀûÇÕÇÏ°Ô ¼öÁ¤ÇÑ´Ù.
+ ë°°í¬ëœ ì„¤ì¹˜ íŒ¨í‚¤ì§€ì— í¬í•¨ëœ Sample Deployment Manifest File($INSTALL\_PACKAGE/OpenPaaS-Deployment/openpaas-container-vsphere-beta-1.0.yml)ì„ ì•„ë˜ì˜ ìˆœì„œëŒ€ë¡œ ì„¤ì¹˜í™˜ê²½ì— ì í•©í•˜ê²Œ ìˆ˜ì •í•œë‹¤.
 
 #### Name & Release
 
@@ -87,18 +87,18 @@
      version: latest                  # controller Release Version 
 
 ```
- Deployment NameÀº ¼³Ä¡ÀÚ°¡ ÀÓÀÇ·Î ºÎ¿©ÇÏ´Âµ¥, IaaS¿Í VersionÀ» Ç¥½ÃÇÒ °ÍÀ» ±ÇÀåÇÑ´Ù. Bosh Director UUID´Â ¡°bosh status¡± ¸í·ÉÀ» ½ÇÇàÇÏ¸é Ãâ·ÂµÇ´Â UUID °ªÀ» ³Ö´Â´Ù.
+ Deployment Nameì€ ì„¤ì¹˜ìê°€ ì„ì˜ë¡œ ë¶€ì—¬í•˜ëŠ”ë°, IaaSì™€ Versionì„ í‘œì‹œí•  ê²ƒì„ ê¶Œì¥í•œë‹¤. Bosh Director UUIDëŠ” â€œbosh statusâ€ ëª…ë ¹ì„ ì‹¤í–‰í•˜ë©´ ì¶œë ¥ë˜ëŠ” UUID ê°’ì„ ë„£ëŠ”ë‹¤.
  
- ¡Ø container & controller Release Name°ú VersionÀº ¡°bosh releases¡± ¸í·ÉÀÇ °á°ú·Î ³ª¿À´Â °ªµéÀ» ÀÔ·ÂÇÏµµ·Ï ÇÑ´Ù.
+ â€» container & controller Release Nameê³¼ Versionì€ â€œbosh releasesâ€ ëª…ë ¹ì˜ ê²°ê³¼ë¡œ ë‚˜ì˜¤ëŠ” ê°’ë“¤ì„ ì…ë ¥í•˜ë„ë¡ í•œë‹¤.
 
 #### Networks
 
 ```
 networks:
-- name: openpaas-container-network          # PlatformÀÌ ¼³Ä¡µÉ Network Name
+- name: openpaas-container-network          # Platformì´ ì„¤ì¹˜ë  Network Name
   subnets:
   - cloud_properties:
-      name: Internal                        # VSphere Network ÀÌ¸§
+      name: Internal                        # VSphere Network ì´ë¦„
     dns:
     - 10.30.20.24                           # DNS Server
     - 8.8.8.8
@@ -109,28 +109,28 @@ networks:
     - 10.30.40.1 - 10.30.40.9
     - 10.30.50.101 - 10.30.254.254
     static:
-    - 10.30.40.150 - 10.30.40.200           # VM¿¡ ÇÒ´çµÉ Static IP ÁÖ¼Ò ´ë¿ª
+    - 10.30.40.150 - 10.30.40.200           # VMì— í• ë‹¹ë  Static IP ì£¼ì†Œ ëŒ€ì—­
   type: manual
 
 ```
 
- Network NameÀº ¼³Ä¡ÀÚ°¡ ÀÓÀÇ·Î ºÎ¿© °¡´ÉÇÏ´Ù. Network ID, Security_groups, Gateway, DNS Server, Network CIDRÀº Vsphere ±¸¼ºÀ» Á÷Á¢ È®ÀÎÇÏ°Å³ª ÀÎÇÁ¶ó ´ã´çÀÚ¿¡°Ô ¹®ÀÇÇÏ¿© Á¤º¸¸¦ ¾òµµ·Ï ÇÑ´Ù. Static IP ÁÖ¼Ò´Â PlatformÀ» ¼³Ä¡ÇÒ ¶§ °³º° VM¿¡ ÇÒ´çµÉ IPÀÇ ÁÖ¼Ò ´ë¿ªÀ¸·Î ¸¶Âù°¡Áö·Î ÀÎÇÁ¶ó ´ã´çÀÚ¿¡°Ô ÇÒ´çÀ» ¹Ş¾Æ¾ß ÇÑ´Ù.
+ Network Nameì€ ì„¤ì¹˜ìê°€ ì„ì˜ë¡œ ë¶€ì—¬ ê°€ëŠ¥í•˜ë‹¤. Network ID, Security_groups, Gateway, DNS Server, Network CIDRì€ Vsphere êµ¬ì„±ì„ ì§ì ‘ í™•ì¸í•˜ê±°ë‚˜ ì¸í”„ë¼ ë‹´ë‹¹ìì—ê²Œ ë¬¸ì˜í•˜ì—¬ ì •ë³´ë¥¼ ì–»ë„ë¡ í•œë‹¤. Static IP ì£¼ì†ŒëŠ” Platformì„ ì„¤ì¹˜í•  ë•Œ ê°œë³„ VMì— í• ë‹¹ë  IPì˜ ì£¼ì†Œ ëŒ€ì—­ìœ¼ë¡œ ë§ˆì°¬ê°€ì§€ë¡œ ì¸í”„ë¼ ë‹´ë‹¹ìì—ê²Œ í• ë‹¹ì„ ë°›ì•„ì•¼ í•œë‹¤.
 
 #### compilation:
 
 ```
 compilation:
   cloud_properties:
-    cpu: 3                                 # Compile½Ã »ç¿ëÇÒ CPU °³¼ö
-    disk: 8192                             # Compile½Ã »ç¿ëÇÒ Disk Å©±â 
-    ram: 4096                              # Compile½Ã »ç¿ëÇÒ Memory Å©±â 
-  network: openpaas-container-network      # ³×Æ®¿öÅ© ¼³Á¤¿¡ »ç¿ëµÈ °Í°ú µ¿ÀÏÇÑ ÀÌ¸§ 
-  reuse_compilation_vms: true              # compilation VMs Àç»ç¿ë ¿©ºÎ
-  workers: 6                               # µ¿½Ã µ¿ÀÛÇÏ´Â VM ¼ö
+    cpu: 3                                 # Compileì‹œ ì‚¬ìš©í•  CPU ê°œìˆ˜
+    disk: 8192                             # Compileì‹œ ì‚¬ìš©í•  Disk í¬ê¸° 
+    ram: 4096                              # Compileì‹œ ì‚¬ìš©í•  Memory í¬ê¸° 
+  network: openpaas-container-network      # ë„¤íŠ¸ì›Œí¬ ì„¤ì •ì— ì‚¬ìš©ëœ ê²ƒê³¼ ë™ì¼í•œ ì´ë¦„ 
+  reuse_compilation_vms: true              # compilation VMs ì¬ì‚¬ìš© ì—¬ë¶€
+  workers: 6                               # ë™ì‹œ ë™ì‘í•˜ëŠ” VM ìˆ˜
 
 ```
 
-Network NameÀº 3.3.2¿¡¼­ Á¤ÀÇÇÑ °Í°ú µ¿ÀÏÇÑ ÀÌ¸§À» Áà¾ß ÇÑ´Ù. Workers´Â µ¿½Ã¿¡ CompileÀ» ¼öÇàÇÏ´Â VMÀÇ °³¼ö·Î º°´Ù¸¥ È¯°æÀû Æ¯¼ºÀÌ ¾ø´Ù¸é Default °ªÀ» »ç¿ëÅä·Ï ÇÑ´Ù.
+Network Nameì€ 3.3.2ì—ì„œ ì •ì˜í•œ ê²ƒê³¼ ë™ì¼í•œ ì´ë¦„ì„ ì¤˜ì•¼ í•œë‹¤. WorkersëŠ” ë™ì‹œì— Compileì„ ìˆ˜í–‰í•˜ëŠ” VMì˜ ê°œìˆ˜ë¡œ ë³„ë‹¤ë¥¸ í™˜ê²½ì  íŠ¹ì„±ì´ ì—†ë‹¤ë©´ Default ê°’ì„ ì‚¬ìš©í† ë¡ í•œë‹¤.
 
 #### resource_pools
 
@@ -138,9 +138,9 @@ Network NameÀº 3.3.2¿¡¼­ Á¤ÀÇÇÑ °Í°ú µ¿ÀÏÇÑ ÀÌ¸§À» Áà¾ß ÇÑ´Ù. Workers´Â µ¿½Ã¿¡ C
 resource_pools:
 - name: access                                            # Resource Name
   cloud_properties:
-    cpu: 1                                                # Resource Á¤º¸ Áß  CPU °³¼ö
-    disk: 1024                                            # Resource Á¤º¸ Áß  Disk Å©±â 
-    ram: 1024                                             # Resource Á¤º¸ Áß  Memory Å©±â 
+    cpu: 1                                                # Resource ì •ë³´ ì¤‘  CPU ê°œìˆ˜
+    disk: 1024                                            # Resource ì •ë³´ ì¤‘  Disk í¬ê¸° 
+    ram: 1024                                             # Resource ì •ë³´ ì¤‘  Memory í¬ê¸° 
   env:
     bosh:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
@@ -209,7 +209,7 @@ resource_pools:
 - name: cell
   cloud_properties:
     cpu: 2
-    disk: 20480                                # Cell ¿µ¿ªÀÇ VMÀº ±âº»ÀûÀ¸·Î 5G Disk ¸¦ ÇÊ¿ä·ÎÇÏ±â ¶§¹®¿¡ App ¹èÆ÷ ¿µ¿ªÀ» °í·ÁÇÏ¿© ÃÖ¼Ò 10G ÀÌ»óÀÇ Å©±â¸¦ ÁöÁ¤ÇÑ´Ù.
+    disk: 20480                                # Cell ì˜ì—­ì˜ VMì€ ê¸°ë³¸ì ìœ¼ë¡œ 5G Disk ë¥¼ í•„ìš”ë¡œí•˜ê¸° ë•Œë¬¸ì— App ë°°í¬ ì˜ì—­ì„ ê³ ë ¤í•˜ì—¬ ìµœì†Œ 10G ì´ìƒì˜ í¬ê¸°ë¥¼ ì§€ì •í•œë‹¤.
     ram: 4096
   env:
     bosh:
@@ -222,50 +222,50 @@ resource_pools:
 
 ```
 
-Resource pool Á¤º¸´Â Jobs ¿µ¿ª¿¡¼­ °¢ VMµéÀÌ »ç¿ëÇÏ±â À§ÇÑ Resource¸¦ »çÀü Á¤ÀÇÇÑ ¿µ¿ªÀ¸·Î, °¢ VM ¿µ¿ªÀÇ ÀÌ¸§À¸·Î ¸í¸íµÇ¾î ÀÖÀ¸¸ç, ÇÊ¿ä Å©±â¿¡ µû¶ó cpu, disk, ram Á¤º¸¸¦ ¼öÁ¤ÇÑ´Ù.. Stemcell Name°ú VersionÀº ¡°bosh stemcells¡± ¸í·É¾î °á°ú·Î Ãâ·ÂµÇ´Â °ªµéÀ» ÀÔ·ÂÇÏµµ·Ï ÇÑ´Ù.
+Resource pool ì •ë³´ëŠ” Jobs ì˜ì—­ì—ì„œ ê° VMë“¤ì´ ì‚¬ìš©í•˜ê¸° ìœ„í•œ Resourceë¥¼ ì‚¬ì „ ì •ì˜í•œ ì˜ì—­ìœ¼ë¡œ, ê° VM ì˜ì—­ì˜ ì´ë¦„ìœ¼ë¡œ ëª…ëª…ë˜ì–´ ìˆìœ¼ë©°, í•„ìš” í¬ê¸°ì— ë”°ë¼ cpu, disk, ram ì •ë³´ë¥¼ ìˆ˜ì •í•œë‹¤.. Stemcell Nameê³¼ Versionì€ â€œbosh stemcellsâ€ ëª…ë ¹ì–´ ê²°ê³¼ë¡œ ì¶œë ¥ë˜ëŠ” ê°’ë“¤ì„ ì…ë ¥í•˜ë„ë¡ í•œë‹¤.
 
 
 #### update
 
 ```
 update:
-  canaries: 1                              # Canary instance °³¼ö
-canary_watch_time: 30000-600000            # Canary instance ÀÇ healthy ¿©ºÎ ¼±¾ğ±îÁö ´ë±âÇÏ´Â ½Ã°£ 
-  max_in_flight: 1                         # update instanceµéÀÇ ÃÖ´ë º´·ÄÃ³¸® °³¼ö 
-  serial: true	                           # VMÀÇ ¼øÂ÷Àû Update
-update_watch_time: 5000-600000             # canary instance Å×½ºÆ® ÈÄ ½ÇÁ¦ instance update ÇÏ¸é¼­ healthy ¿©ºÎ ¼±¾ğ±îÁö ´ë±âÇÏ´Â ½Ã°£
+  canaries: 1                              # Canary instance ê°œìˆ˜
+canary_watch_time: 30000-600000            # Canary instance ì˜ healthy ì—¬ë¶€ ì„ ì–¸ê¹Œì§€ ëŒ€ê¸°í•˜ëŠ” ì‹œê°„ 
+  max_in_flight: 1                         # update instanceë“¤ì˜ ìµœëŒ€ ë³‘ë ¬ì²˜ë¦¬ ê°œìˆ˜ 
+  serial: true	                           # VMì˜ ìˆœì°¨ì  Update
+update_watch_time: 5000-600000             # canary instance í…ŒìŠ¤íŠ¸ í›„ ì‹¤ì œ instance update í•˜ë©´ì„œ healthy ì—¬ë¶€ ì„ ì–¸ê¹Œì§€ ëŒ€ê¸°í•˜ëŠ” ì‹œê°„
 
 ```
-  Default °ªµéÀ» ¼öÁ¤ ¾øÀÌ »ç¿ëÇÑ´Ù.
+  Default ê°’ë“¤ì„ ìˆ˜ì • ì—†ì´ ì‚¬ìš©í•œë‹¤.
 
 #### Jobs
-  ¾Æ·¡ Sample Jobs¸¦ Âü°íÇÏ¿© ¼³Ä¡ È¯°æ¿¡ ¸Â°Ô ¼öÁ¤ÇÑ´Ù.
+  ì•„ë˜ Sample Jobsë¥¼ ì°¸ê³ í•˜ì—¬ ì„¤ì¹˜ í™˜ê²½ì— ë§ê²Œ ìˆ˜ì •í•œë‹¤.
 
 ```
 jobs:
-- instances: 1                                      # VM Instance °³¼ö
+- instances: 1                                      # VM Instance ê°œìˆ˜
   name: etcd                                        # Job Name
   networks:
   - name: openpaas-container-network                # Network Name
     static_ips:
-    - 10.30.40.152                                  # Job(etcd) VM¿¡ ÇÒ´çÇÒ IP ÁÖ¼Ò
+    - 10.30.40.152                                  # Job(etcd) VMì— í• ë‹¹í•  IP ì£¼ì†Œ
   persistent_disk: 1024
   resource_pool: etcd                               # Resource Name
   templates:
-  - name: etcd                                      # etcd VM¿¡ ½ÇÇàµÉ ÄÄÆ÷³ÍÆ® (job templateÁ¤º¸)
-    release: openpaas-container                     # etcd job templateÀÌ Á¸ÀçÇÏ´Â release Á¤º¸
+  - name: etcd                                      # etcd VMì— ì‹¤í–‰ë  ì»´í¬ë„ŒíŠ¸ (job templateì •ë³´)
+    release: openpaas-container                     # etcd job templateì´ ì¡´ì¬í•˜ëŠ” release ì •ë³´
   update:
-    max_in_flight: 1                                # update instanceµéÀÇ ÃÖ´ë º´·ÄÃ³¸® °³¼ö
-    serial: true                                    # ¼øÂ÷Àû ½ÇÇà¿©ºÎ
+    max_in_flight: 1                                # update instanceë“¤ì˜ ìµœëŒ€ ë³‘ë ¬ì²˜ë¦¬ ê°œìˆ˜
+    serial: true                                    # ìˆœì°¨ì  ì‹¤í–‰ì—¬ë¶€
 - instances: 1
   name: brain
   networks:
   - name: openpaas-container-network
     static_ips:
-    - 10.30.40.153                                  # Job(brain) VM¿¡ ÇÒ´çÇÒ IP ÁÖ¼Ò
+    - 10.30.40.153                                  # Job(brain) VMì— í• ë‹¹í•  IP ì£¼ì†Œ
   properties:
     metron_agent:
-      zone: z1                                      # Zone ¿µ¿ª(¼³Ä¡µÇ´Â VM ±×·ì)
+      zone: z1                                      # Zone ì˜ì—­(ì„¤ì¹˜ë˜ëŠ” VM ê·¸ë£¹)
   resource_pool: brain
   templates:
   - name: consul_agent
@@ -286,7 +286,7 @@ jobs:
   networks:
   - name: openpaas-container-network
     static_ips:
-    - 10.30.40.154                                  # Job(cell) VM¿¡ ÇÒ´çÇÒ IP ÁÖ¼Ò
+    - 10.30.40.154                                  # Job(cell) VMì— í• ë‹¹í•  IP ì£¼ì†Œ
   properties:
     diego:
       rep:
@@ -311,7 +311,7 @@ jobs:
   networks:
   - name: openpaas-container-network
     static_ips:
-    - 10.30.40.155                                  # Job(cc_bridge) VM¿¡ ÇÒ´çÇÒ IP ÁÖ¼Ò
+    - 10.30.40.155                                  # Job(cc_bridge) VMì— í• ë‹¹í•  IP ì£¼ì†Œ
   properties:
     consul:
       agent:
@@ -344,7 +344,7 @@ jobs:
   networks:
   - name: openpaas-container-network
     static_ips:
-    - 10.30.40.156                                  # Job(route_emitter) VM¿¡ ÇÒ´çÇÒ IP ÁÖ¼Ò
+    - 10.30.40.156                                  # Job(route_emitter) VMì— í• ë‹¹í•  IP ì£¼ì†Œ
   properties:
     metron_agent:
       zone: z1
@@ -364,7 +364,7 @@ jobs:
   networks:
   - name: openpaas-container-network
     static_ips:
-    - 10.30.40.157                                  # Job(access) VM¿¡ ÇÒ´çÇÒ IP ÁÖ¼Ò
+    - 10.30.40.157                                  # Job(access) VMì— í• ë‹¹í•  IP ì£¼ì†Œ
   properties:
     consul:
       agent:
@@ -391,60 +391,60 @@ jobs:
 
 #### Properties
 
-¾Æ·¡ Sample Manifest¸¦ ÂüÁ¶ÇÏ¿© ¼³Ä¡ È¯°æ¿¡ ¸Â°Ô °ªÀ» ¼öÁ¤ÇÑ´Ù.
+ì•„ë˜ Sample Manifestë¥¼ ì°¸ì¡°í•˜ì—¬ ì„¤ì¹˜ í™˜ê²½ì— ë§ê²Œ ê°’ì„ ìˆ˜ì •í•œë‹¤.
 
 ```
 properties:
-  consul:                                   # consul ¼Ó¼º Á¤ÀÇ
+  consul:                                   # consul ì†ì„± ì •ì˜
     agent:
       log_level: null
       servers:
         lan:
-        - 10.30.40.150                      # openpaas controller¿¡ »ı¼ºµÈ consul server IP
+        - 10.30.40.150                      # openpaas controllerì— ìƒì„±ëœ consul server IP
   diego:
-    auctioneer:                             # auctioneer ¼Ó¼º Á¤ÀÇ
+    auctioneer:                             # auctioneer ì†ì„± ì •ì˜
       etcd:
         machines:
-        - 10.30.40.152                        # etcd ¼­¹ö Á¤º¸
+        - 10.30.40.152                        # etcd ì„œë²„ ì •ë³´
       log_level: null
-    converger:                              # converger ¼Ó¼º Á¤ÀÇ
+    converger:                              # converger ì†ì„± ì •ì˜
       etcd:
         machines:
         - 10.30.40.152         
       log_level: debug
-    etcd:                                   # etcd ¼Ó¼º Á¤ÀÇ
+    etcd:                                   # etcd ì†ì„± ì •ì˜
       machines:
       - 10.30.40.152
-    executor:                               # executor ¼Ó¼º Á¤ÀÇ
-      allow_privileged: null                # privilege ¼Ó¼º
+    executor:                               # executor ì†ì„± ì •ì˜
+      allow_privileged: null                # privilege ì†ì„±
       drain_timeout_in_seconds: 0           # deprecated property 
       garden:
-        address: 127.0.0.1:7777             # garden server Á¤º¸
+        address: 127.0.0.1:7777             # garden server ì •ë³´
         network: tcp
       log_level: debug
     file_server:
       cc:
-        base_url: http://api.controller.open-paas.com      # cloud controller url Á¤º¸
-        basic_auth_password: admin                         # cloud controller Á¢±Ù ÆĞ½º¿öµå 
-        external_port: 9022                                # cloud controller Á¢±Ù Æ÷Æ® 
-        staging_upload_password: admin                     # staging upload ½Ã Á¢±Ù ÆĞ½º¿öµå
-        staging_upload_user: staging_upload_user           # staging upload ½Ã Á¢±Ù °èÁ¤
+        base_url: http://api.controller.open-paas.com      # cloud controller url ì •ë³´
+        basic_auth_password: admin                         # cloud controller ì ‘ê·¼ íŒ¨ìŠ¤ì›Œë“œ 
+        external_port: 9022                                # cloud controller ì ‘ê·¼ í¬íŠ¸ 
+        staging_upload_password: admin                     # staging upload ì‹œ ì ‘ê·¼ íŒ¨ìŠ¤ì›Œë“œ
+        staging_upload_user: staging_upload_user           # staging upload ì‹œ ì ‘ê·¼ ê³„ì •
       log_level: null
     garden-linux:
-      allow_networks: null                                 # Á¢±Ù Çã¿ëÇÒ CIDR ¸ñ·Ï
-      disk_quota_enabled: false                            # container¿¡ ´ëÇÑ disk ÇÑµµ Àû¿ë¿©ºÎ
-      insecure_docker_registry_list: null                  # private docker registry url Á¤º¸
+      allow_networks: null                                 # ì ‘ê·¼ í—ˆìš©í•  CIDR ëª©ë¡
+      disk_quota_enabled: false                            # containerì— ëŒ€í•œ disk í•œë„ ì ìš©ì—¬ë¶€
+      insecure_docker_registry_list: null                  # private docker registry url ì •ë³´
       kernel_network_tuning_enabled: false          
-      listen_address: 0.0.0.0:7777                         # garden ¼­¹ö Á¤º¸
+      listen_address: 0.0.0.0:7777                         # garden ì„œë²„ ì •ë³´
       listen_network: tcp
     nsync:
       cc:
-        base_url: http://api.controller.open-paas.com      # file_server ¼Ó¼º ÂüÁ¶
+        base_url: http://api.controller.open-paas.com      # file_server ì†ì„± ì°¸ì¡°
         basic_auth_password: admin
         external_port: 9022
         staging_upload_password: admin
         staging_upload_user: staging_upload_user
-      diego_api_url: http://:@receptor.service.consul:8888 # receptor ¼­¹ö Á¤º¸
+      diego_api_url: http://:@receptor.service.consul:8888 # receptor ì„œë²„ ì •ë³´
       etcd:
         machines:
         - 10.30.40.152
@@ -452,20 +452,20 @@ properties:
     receptor:
       cors_enabled: null
       domain_names:
-      - receptor.cf.open-pass.com.xip.io                   # receptor µµ¸ŞÀÎ Á¤º¸
+      - receptor.cf.open-pass.com.xip.io                   # receptor ë„ë©”ì¸ ì •ë³´
       etcd:
         machines:
-        - 10.30.40.152                                       # etcd ¼­¹ö Á¤º¸
+        - 10.30.40.152                                       # etcd ì„œë²„ ì •ë³´
       log_level: debug
       nats:
         machines:
-        - 10.30.40.111                                     # openpaas controller¿¡ »ı¼ºµÈ nats vm ip
-        password: admin                                    # nats ¼­¹ö Á¢±Ù ÆĞ½º¿öµå
-        port: 4222                                         # nats ¼­¹ö Á¢±Ù Æ÷Æ®
-        username: nats                                     # nats ¼­¹ö Á¢±Ù °èÁ¤
-      password: ""                                         # receptor ¼­¹ö Á¢±Ù ÆĞ½º¿öµå
-      register_with_router: true                           # receptor ¼­¹ö router¿¡ µî·Ï¿©ºÎ
-      username: ""                                         # receptor ¼­¹ö Á¢±Ù °èÁ¤
+        - 10.30.40.111                                     # openpaas controllerì— ìƒì„±ëœ nats vm ip
+        password: admin                                    # nats ì„œë²„ ì ‘ê·¼ íŒ¨ìŠ¤ì›Œë“œ
+        port: 4222                                         # nats ì„œë²„ ì ‘ê·¼ í¬íŠ¸
+        username: nats                                     # nats ì„œë²„ ì ‘ê·¼ ê³„ì •
+      password: ""                                         # receptor ì„œë²„ ì ‘ê·¼ íŒ¨ìŠ¤ì›Œë“œ
+      register_with_router: true                           # receptor ì„œë²„ routerì— ë“±ë¡ì—¬ë¶€
+      username: ""                                         # receptor ì„œë²„ ì ‘ê·¼ ê³„ì •
     rep:
       etcd:
         machines:
@@ -476,7 +476,7 @@ properties:
       log_level: debug
       nats:
         machines:
-        - 10.30.40.111                                       # openpaas controller¿¡ »ı¼ºµÈ nats vm ip
+        - 10.30.40.111                                       # openpaas controllerì— ìƒì„±ëœ nats vm ip
         password: admin
         port: 4222
         username: nats
@@ -488,7 +488,7 @@ properties:
       log_level: null
       nats:
         machines:
-        - 10.30.40.111                                       # openpaas controller¿¡ »ı¼ºµÈ nats vm ip
+        - 10.30.40.111                                       # openpaas controllerì— ìƒì„±ëœ nats vm ip
         password: admin
         port: 4222
         username: nats
@@ -496,8 +496,8 @@ properties:
       cc:
         external_port: 9022
       diego_api_url: http://:@receptor.service.consul:8888
-      enable_cf_auth: true                                 # openpaas controller application¿¡ ssh Á¢±Ù Çã¿ë ¿©ºÎ
-      enable_diego_auth: true                              # openpaas container application¿¡ ssh Á¢±Ù Çã¿ë ¿©ºÎ
+      enable_cf_auth: true                                 # openpaas controller applicationì— ssh ì ‘ê·¼ í—ˆìš© ì—¬ë¶€
+      enable_diego_auth: true                              # openpaas container applicationì— ssh ì ‘ê·¼ í—ˆìš© ì—¬ë¶€
       host_key: |+                                         # ssh_proxy host key
         -----BEGIN RSA PRIVATE KEY-----
         MIIEhgIBAAKB/DMF5qOW+fh608KhX7qBLNHHmfzCfOONd176Oaf8rGht5KdnoNge
@@ -527,7 +527,7 @@ properties:
         1rHeshh0P/QfCQ==
         -----END RSA PRIVATE KEY-----
       servers:
-      - 10.30.40.157                                       # ssh_proxy ¼­¹ö Á¤º¸
+      - 10.30.40.157                                       # ssh_proxy ì„œë²„ ì •ë³´
     ssl:
       skip_cert_verify: true                  
     stager:
@@ -552,14 +552,14 @@ properties:
       traffic_controller_url: wss://doppler.cf.open-paas.com:443
   etcd:
     machines:
-    - 10.30.40.124                                           # openpaas controller¿¡ »ı¼ºµÈ etcd vm ip
+    - 10.30.40.124                                           # openpaas controllerì— ìƒì„±ëœ etcd vm ip
   loggregator_endpoint:
     shared_secret: admin
   metron_agent:
     deployment: openpaas-container-vsphere-beta-1.0
   nats:
     machines:
-    - 10.30.40.111                                           # openpaas controller¿¡ »ı¼ºµÈ nats vm ip
+    - 10.30.40.111                                           # openpaas controllerì— ìƒì„±ëœ nats vm ip
     password: admin
     port: 4222
     user: nats
@@ -569,46 +569,46 @@ properties:
 
 ```
 
-## Deployment Manifest ÁöÁ¤
+## Deployment Manifest ì§€ì •
 
 | bosh deployment openpaas-container-vsphere-beta-1.0.yml |
 |-----------------------------------------------------------|
 
- ¡°bosh deployment¡± ¸í·É¾î·Î »ı¼ºÇÑ Deployment Manifest FileÀ» ÁöÁ¤ÇÏ°í, ¾Æ·¡ÀÇ ±×¸²°ú °°ÀÌ µ¿ÀÏÇÑ ¸í·É¾î·Î Á¤»ó ÁöÁ¤ µÇ¾ú´ÂÁö¸¦ È®ÀÎÇÑ´Ù
+ â€œbosh deploymentâ€ ëª…ë ¹ì–´ë¡œ ìƒì„±í•œ Deployment Manifest Fileì„ ì§€ì •í•˜ê³ , ì•„ë˜ì˜ ê·¸ë¦¼ê³¼ ê°™ì´ ë™ì¼í•œ ëª…ë ¹ì–´ë¡œ ì •ìƒ ì§€ì • ë˜ì—ˆëŠ”ì§€ë¥¼ í™•ì¸í•œë‹¤
  
-  ![OpenPaas Container deployment manifest file](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-container//bosh_deployment_vsphere.png)
+  ![OpenPaas Container deployment manifest file](/images/openpaas-container//bosh_deployment_vsphere.png)
 
 ## Bosh Deploy
 
-  Diego module¿¡ ´ëÇÑ bosh upload °úÁ¤ÀÌ ³¡³µÀ¸¸é, deploy °úÁ¤À» ÅëÇØ Diego °ü·Ã VMÀ» »ı¼ºÇÑ´Ù.
+  Diego moduleì— ëŒ€í•œ bosh upload ê³¼ì •ì´ ëë‚¬ìœ¼ë©´, deploy ê³¼ì •ì„ í†µí•´ Diego ê´€ë ¨ VMì„ ìƒì„±í•œë‹¤.
 
 | bosh deploy |
 |-------------|
 
- ![OpenPaas Container deploy](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-container/bosh_deploy_vsphere.png)
+ ![OpenPaas Container deploy](/images/openpaas-container/bosh_deploy_vsphere.png)
 
- \[±×¸² : bosh deploy ½ÇÇà °á°ú\]
+ \[ê·¸ë¦¼ : bosh deploy ì‹¤í–‰ ê²°ê³¼\]
 
 
-## ¼³Ä¡Çü»ó È®ÀÎ
+## ì„¤ì¹˜í˜•ìƒ í™•ì¸
 
- ¼³Ä¡°¡ Á¤»óÀûÀ¸·Î ¿Ï·áµÈ ÈÄ ¡°bosh vms¡± ¸í·ÉÀ¸·Î ¼³Ä¡µÈ PlatformÀÇ Çü»óÀ» È®ÀÎÇÑ´Ù.
+ ì„¤ì¹˜ê°€ ì •ìƒì ìœ¼ë¡œ ì™„ë£Œëœ í›„ â€œbosh vmsâ€ ëª…ë ¹ìœ¼ë¡œ ì„¤ì¹˜ëœ Platformì˜ í˜•ìƒì„ í™•ì¸í•œë‹¤.
 
 | bosh vms |
 |----------|
 
- ¾Æ·¡ ±×¸²°ú °°ÀÌ Deployment Name, Virtual Machine, IP ÁÖ¼Ò µîÀÇ Á¤º¸¸¦ È®ÀÎÇÒ ¼ö ÀÖ´Ù.
+ ì•„ë˜ ê·¸ë¦¼ê³¼ ê°™ì´ Deployment Name, Virtual Machine, IP ì£¼ì†Œ ë“±ì˜ ì •ë³´ë¥¼ í™•ì¸í•  ìˆ˜ ìˆë‹¤.
 
- ![OpenPaas Container vms](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-container/bosh_vms_vsphere.png)
+ ![OpenPaas Container vms](/images/openpaas-container/bosh_vms_vsphere.png)
 
-##  ¼³Ä¡ °ËÁõ
+##  ì„¤ì¹˜ ê²€ì¦
 
 #### CF Login
 
 ```
 cf target api.controller.open-paas.com
 
-¡¦
+â€¦
 
 cf login
 
@@ -618,7 +618,7 @@ Password&gt; admin
 
 OK
 
-¡¦
+â€¦
 
 cf create-org open-paas
 
@@ -628,39 +628,39 @@ cf create-space dev
 
 cf target -o open-paas -s dev
 
-¡¦ 
+â€¦ 
 
 ```
 
 
- CF TargetÀ» ÁöÁ¤ÇÏ°í, LoginÀ» ¼öÇàÇÑ´Ù. ÀÌ ¶§ °èÁ¤Àº admin/adminÀ» »ç¿ëÇÑ´Ù.
- ApplicationÀ» DeployÇÒ ORG¿Í Space¸¦ »ı¼ºÇÏ°í, ÇØ´çÇÏ´Â ORG/Space·Î Targetting ÇÑ´Ù.
+ CF Targetì„ ì§€ì •í•˜ê³ , Loginì„ ìˆ˜í–‰í•œë‹¤. ì´ ë•Œ ê³„ì •ì€ admin/adminì„ ì‚¬ìš©í•œë‹¤.
+ Applicationì„ Deployí•  ORGì™€ Spaceë¥¼ ìƒì„±í•˜ê³ , í•´ë‹¹í•˜ëŠ” ORG/Spaceë¡œ Targetting í•œë‹¤.
 
- ¡Ø admin °èÁ¤ÀÇ ÆĞ½º¿öµå ¼³Á¤À» ¹Ù²Ù°í ½Í´Ù¸é, CF-Release deploy½Ã manifest ¼³Á¤ ÆÄÀÏ¿¡¼­ º¯°æÇÏ¾ß ÇÑ´Ù.
+ â€» admin ê³„ì •ì˜ íŒ¨ìŠ¤ì›Œë“œ ì„¤ì •ì„ ë°”ê¾¸ê³  ì‹¶ë‹¤ë©´, CF-Release deployì‹œ manifest ì„¤ì • íŒŒì¼ì—ì„œ ë³€ê²½í•˜ì•¼ í•œë‹¤.
 
 #### Application Deploy
 
- °³¹æÇüÅ¬¶ó¿ìµåÇÃ·§Æû ÆĞÅ°Áö¿Í ÇÔ²² ¹èÆ÷µÈ Sample ApplicationÀÌ À§Ä¡ÇÏ´Â µğ·ºÅä¸®·Î ÀÌµ¿ÇÏ°í ApplicationÀ» Deploy ÇÑ´Ù.
+ ê°œë°©í˜•í´ë¼ìš°ë“œí”Œë«í¼ íŒ¨í‚¤ì§€ì™€ í•¨ê»˜ ë°°í¬ëœ Sample Applicationì´ ìœ„ì¹˜í•˜ëŠ” ë””ë ‰í† ë¦¬ë¡œ ì´ë™í•˜ê³  Applicationì„ Deploy í•œë‹¤.
 
 ```
 cd $PACKAGE\_ROOT/apps/hello-java
 
-cf push ¡°application-name¡± -i ¡°instance\_count¡± -m ¡°memory\_size¡±
+cf push â€œapplication-nameâ€ -i â€œinstance\_countâ€ -m â€œmemory\_sizeâ€
 
 ```
 
- Application ¹èÆ÷½Ã Disk °ü·Ã ¿É¼Ç (-k)À» ÁöÁ¤ÇÏÁö ¾ÊÀº °æ¿ì¿¡´Â ±âº»ÀûÀ¸·Î 1G Å©±âÀÇ µğ½ºÅ© »ç¿ë·®ÀÌ ÁöÁ¤µÈ´Ù.
+ Application ë°°í¬ì‹œ Disk ê´€ë ¨ ì˜µì…˜ (-k)ì„ ì§€ì •í•˜ì§€ ì•Šì€ ê²½ìš°ì—ëŠ” ê¸°ë³¸ì ìœ¼ë¡œ 1G í¬ê¸°ì˜ ë””ìŠ¤í¬ ì‚¬ìš©ëŸ‰ì´ ì§€ì •ëœë‹¤.
  
-  ![cf push](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-container/cf_push_vsphere1.png)
-  ![cf push](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-container/cf_push_vsphere2.png)
+  ![cf push](/images/openpaas-container/cf_push_vsphere1.png)
+  ![cf push](/images/openpaas-container/cf_push_vsphere2.png)
   
-  ![cf apps](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-container/cf_apps_vsphere.png)
+  ![cf apps](/images/openpaas-container/cf_apps_vsphere.png)
 
 #### Application Access
 
- DeployÇÑ Application URLÀ» Browser ¶Ç´Â curl ¸í·É¾î·Î AccessÇÏ¿© Á¤»ó Á¢±Ù µÇ´ÂÁö¸¦ È®ÀÎÇÑ´Ù.
+ Deployí•œ Application URLì„ Browser ë˜ëŠ” curl ëª…ë ¹ì–´ë¡œ Accessí•˜ì—¬ ì •ìƒ ì ‘ê·¼ ë˜ëŠ”ì§€ë¥¼ í™•ì¸í•œë‹¤.
  
- »ç¿ë¹ı) ¹èÆ÷µÈ App URLÀÌ hello-spring-test.controller.open-paas.com ÀÏ °æ¿ì
+ ì‚¬ìš©ë²•) ë°°í¬ëœ App URLì´ hello-spring-test.controller.open-paas.com ì¼ ê²½ìš°
 
 ```
 curl -L http://hello-spring-test.controller.open-paas.com

@@ -1,121 +1,6 @@
-<span id="_Toc183532694" class="anchor"><span id="_Toc22051081"
-class="anchor"><span id="_Toc22051626" class="anchor"><span
-id="_Toc22051082" class="anchor"><span id="_Toc22051627"
-class="anchor"></span></span></span></span></span>![](media/image1.jpeg)
-
-전자정부표준프레임워크 기반의 Open PaaS 개발
-
-> Open PaaS 개발환경 사용 가이드
-
-  작성자   오도근 (인)   2015.8.05
-  -------- ------------- -----------
-  검토자   라신 (인)     2015.8.08
-  승인자   이준영 (인)   
-
-  -- -- --
-        
-        
-  -- -- --
-
-개 정 이 력
-
-  ------ ------------- -------------- -------- --------
-  버전   작성일        변경내용[^1]   작성자   승인자
-  0.1    2015.008.05   최초작성       오도근   
-                                               
-                                               
-                                               
-                                               
-                                               
-                                               
-                                               
-                                               
-                                               
-                                               
-                                               
-                                               
-                                               
-                                               
-                                               
-                                               
-                                               
-                                               
-  ------ ------------- -------------- -------- --------
-
-목차 {#목차 .Title1bis0}
-====
-
-[***1.*** ***문서 개요*** 5](#문서-개요)
-
-[****1.1.**** ****목적**** 5](#목적)
-
-[****1.2.**** ****범위**** 5](#범위)
-
-[****1.3.**** ****참고자료**** 5](#참고자료)
-
-[***2.*** ***Open PaaS 개발환경 설치 전 준비사항*** 6](#_Toc428894631)
-
-[****2.1.**** ****설치 전 준비사항**** 6](#설치-전-준비사항)
-
-[****2.2.**** ****자바 설치**** 6](#자바-개발-킷-설치)
-
-[****2.3.**** ****이클립스 설치****
-7](#이클립스-통합개발환경-케플러-버전-설치)
-
-[***3.*** ***Open PaaS 개발환경 설치*** 10](#_Toc428894635)
-
-[****3.1.**** ****Open PaaS 개발환경.zip 파일로 설치****
-10](#_Toc428894636)
-
-[****3.2.**** ****Open PaaS 개발환경이 포함된 전자정부 표준프레임워크
-개발환경에 사용****
-15](#이클립스-통합개발환경에-open-paas-개발환경-설치)
-
-[***4.*** ***개방형 플랫폼 서버 연결 관리*** 15](#_Toc428894638)
-
-[****4.1.**** ****서버 추가**** 15](#_Toc428894639)
-
-[****4.2.**** ****서버 복제**** 20](#서버-복제)
-
-[****4.3.**** ****서버 수정**** 23](#_Toc428894641)
-
-[***5.*** ***애플리케이션 및 서비스팩 관리*** 24](#_Toc428894642)
-
-[****5.1.**** ****애플리케이션 배포**** 25](#_Toc428894643)
-
-[****5.2.**** ****애플리케이션 목록 확인****
-33](#애플리케이션-목록-확인)
-
-[****5.3.**** ****애플리케이션 라우트 관리****
-34](#애플리케이션-라우트-관리)
-
-[****5.4.**** ****애플리케이션 인스턴스 관리**** 35](#_Toc428894646)
-
-[****5.5.**** ****애플리케이션 삭제**** 50](#애플리케이션-삭제)
-
-[****5.6.**** ****서비스팩 인스턴스 추가**** 51](#_Toc428894648)
-
-[****5.7.**** ****서비스팩 인스턴스 바인딩****
-54](#서비스팩-인스턴스-바인딩)
-
-[****5.8.**** ****서비스팩 인스턴스 바인댕 해제****
-55](#서비스팩-인스턴스-바인딩-해제)
-
-[****5.9.**** ****서비스팩 인스턴스 삭제****
-56](#서비스팩-인스턴스-삭제)
-
-[***6.*** ***매니페스트를 통한 설정*** 57](#매니페스트를-통한-설정)
-
-[****6.1.**** ****매니페스트 추가**** 57](#매니페스트-추가)
-
-[****6.2.**** ****매니페스트 저장**** 59](#매니페스트-저장)
-
-[***7.*** ***플러그인 설정(REST API 로그 추적 설정)***
-61](#플러그인-설정rest-api-로그-추적-설정)
-
 <span id="_Toc22051107" class="anchor"><span id="_Toc22051113"
-class="anchor"></span></span>\
-<span id="_Toc397320076" class="anchor"></span>Executive Summary
+class="anchor"><span id="_Toc397320076"
+class="anchor"></span></span></span>Executive Summary
 
 본 문서는 개발자들이 Open PaaS 개발환경을 전자정부 프레임워크 개발환경에
 설치하여 Open PaaS 기반의 애플리케이션을개발하기 위해 필요한 환경 구성
@@ -199,25 +84,25 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 2.  설치 파일을 실행하여 화면에 표시되는 절차에 따라 설치를 완료한다.
 
   ------------------------
-  ![](media/image2.jpeg)
+  ![](media/image1.jpeg)
   ------------------------
 
 1.  명령 프롬프트에서 자바 명령어 실행을 위해 시스템 속성의 환경
     변수를 설정한다.
 
   ------------------------
+  ![](media/image2.jpeg)
+
   ![](media/image3.jpeg)
 
   ![](media/image4.jpeg)
-
-  ![](media/image5.jpeg)
   ------------------------
 
 1.  명령 프롬프트에서 “java –version” 명령을 실행하여 설치된 자바 버전이
     정상적으로 출력되는지 확인한다.
 
   ------------------------
-  ![](media/image6.jpeg)
+  ![](media/image5.jpeg)
   ------------------------
 
 ***전자정부 표준프레임워크 설치***
@@ -238,7 +123,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     (**http://www.eclipse.org/downloads/**)에 접속한다..
 
   -----------------------
-  ![](media/image7.png)
+  ![](media/image6.png)
   -----------------------
 
 1.  이클립스 통합개발환경 케플러 버전을 설치하기 위해서는 다운로드
@@ -304,7 +189,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     “Cancel” 버튼을 클릭하면 진행되던 과정은 취소되고 화면이 종료된다.
 
   ------------------------
-  ![](media/image18.png)
+  ![](media/image16.png)
   ------------------------
 
 1.  “Install Details” 에서 Open PaaS 개발환경에 대한 정보를 확인할 수
@@ -312,7 +197,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     “Cancel” 버튼을 클릭하면 진행되던 과정은 취소되고 화면이 종료된다.
 
   ------------------------
-  ![](media/image19.png)
+  ![](media/image18.png)
   ------------------------
 
 1.  다음에서 Open PaaS 개발환경의 라이선스를 확인 할 수 있으며, 이에
@@ -321,7 +206,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     “Cancel” 버튼을 클릭하면 진행되던 과정은 취소되고 화면이 종료된다.
 
   ------------------------
-  ![](media/image20.png)
+  ![](media/image19.png)
   ------------------------
 
 1.  “Installing Software” 대화창과 함께 설치가 진행되며, “Security
@@ -339,7 +224,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 > PaaS 개발환경을 이용 할 수 없다.
 
   ------------------------
-  ![](media/image23.png)
+  ![](media/image21.png)
   ------------------------
 
 1.  재시작을 완료하면 설치가 완료된다.
@@ -359,7 +244,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     서버 연결관리부터 진행할 수 있다.
 
   ------------------------
-  ![](media/image26.png)
+  ![](media/image24.png)
   ------------------------
 
 <span id="_spiff_설정" class="anchor"><span id="_spiff_설치" class="anchor"><span id="_Toc428894638" class="anchor"></span></span></span>개방형 플랫폼 서버 연결 관리
@@ -410,17 +295,17 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
   1\. “플랫폼 서버 관리…” 버튼을 클릭하여, “플랫폼 서버 URL 관리” 대화창을
   실행한다.\
   플랫폼 서버 URL을 추가하기 위해 “추가” 버튼을 클릭한다.\
-  ![](media/image33.png)
+  ![](media/image31.png)
 
   2\. 추가 및 플랫폼 URL 유효성 검사 대화창이 표시된다.\
   해당 플랫폼 서버의 이름과 URL을 작성 후, “Finish” 버튼을 클릭한다.\
   “Cancel” 버튼을 클릭하면 플랫폼이 추가 되지 않고 화면이 종료된다.\
-  ![](media/image34.png)
+  ![](media/image33.png)
 
   3\. 현재 상태에서는 플랫폼 서버 URL 추가 사항이 반영되지 않았으므로
   “플랫폼 서버 URL 관리” 대화창에서 “Finish” 버튼을 눌러 최종 완료를 한다.
   만약 “Cancel” 버튼을 클릭하면 지금까지 진행한 모든 작업들이 취소된다.\
-  ![](media/image33.png)
+  ![](media/image31.png)
   --------------------------------------------------------------------------
 
 1.  “조직 및 스페이스” 목록 대화창이 표시된다.\
@@ -436,7 +321,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     “Cancel” 버튼을 클릭하면 진행되던 과정은 취소되고 화면이 종료된다.
 
   ------------------------
-  ![](media/image35.png)
+  ![](media/image34.png)
   ------------------------
 
 1.  “Add and Remove” 대화창이 표시된다.\
@@ -491,7 +376,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 1.  관리 서버 이름 수정을 원하는 “Servers” 탭에서 더블 클릭한다.
 
   ------------------------
-  ![](media/image44.png)
+  ![](media/image42.png)
   ------------------------
 
 1.  “개요”라는 대화창이 표시된다.\
@@ -620,7 +505,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     있는 애플리케이션 목록을 확인 할 수 있다.
 
   ------------------------
-  ![](media/image67.png)
+  ![](media/image65.png)
   ------------------------
 
 ***애플리케이션 라우트 관리***
@@ -650,7 +535,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 > 애플리케이션을 리스트에서 찾아 클릭한다.
 
   ------------------------
-  ![](media/image68.png)
+  ![](media/image67.png)
   ------------------------
 
 > 편집기의 오른쪽 화면에 애플리케이션 인스턴스에 대한 다양한 정보들이
@@ -909,7 +794,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     클릭하면 바인딩이 완료 된다.
 
   -------------------------
-  ![](media/image116.png)
+  ![](media/image114.png)
   -------------------------
 
 ***서비스팩 인스턴스 바인딩 해제***
@@ -930,7 +815,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 > 버튼을 클릭하면 바인딩 해제가 완료 된다.
 
   -------------------------
-  ![](media/image116.png)
+  ![](media/image114.png)
   -------------------------
 
 ***서비스팩 인스턴스 삭제***
@@ -963,19 +848,19 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
   -----------------------------
   \* manifest.yml 파일 예시 :
 
-  ![](media/image121.png)
+  ![](media/image119.png)
   -----------------------------
   -----------------------------
 
 1.  애플리케이션을 배포한다.\
     배포방법은 “5.1.1.C 애플리케이션 배포” 과정을 참고한다.\
-    ![](media/image122.png)
+    ![](media/image121.png)
 
 2.  애플리케이션 배포 위자드 실행시 설정값들이 매니페스트의 값과 동일한
     것을 확인할 수 있다.
 
   ---------------------------------------------------------------------------
-  ![](media/image121.png)
+  ![](media/image119.png)
 
   매니페스트 파일(manifest.yml)에 설정한 내용이 반영된 것을 확인할 수 있다.
   ---------------------------------------------------------------------------
@@ -990,7 +875,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 1.  애플리케이션과 서비스팩 탭에서 애플리케이션의 상세 화면 조회를 한다.
 
   -------------------------
-  ![](media/image125.png)
+  ![](media/image123.png)
   -------------------------
 
 1.  일반 섹션에서 매니페스트 항목의 우측 “저장” 버튼을 클릭한다
@@ -1025,8 +910,174 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
      “OK” 버튼을 클릭하여 설정을 완료한다.
 
   -------------------------
-  ![](media/image130.png)
+  ![](media/image128.png)
   -------------------------
 
-[^1]: 변경 내용: 변경이 발생되는 위치와 변경 내용을 자세히 기록(장/절과
-    변경 내용을 기술한다.)
+예제 프로젝트 설명
+==================
+
+해당 예제는 표준프레임워크 3.1 통합예제를 기준으로 작성하였다.
+
+서비스와 어플리케이션이 바인딩된 상태에서 서비스에 어떻게 접근하는지
+예제를 통해 설명한다.
+
+***의존성 추가***
+-----------------
+
+클라우드 플랫폼에서 서비스에 쉽게 접속할 수 있도록 해주는 Spring Cloud
+Connectors를 사용하기 위해 해당 의존성을 추가한다.
+
+  ----------------------------------------------------------------------------
+  &lt;!-- Spring Cloud Connector Start --&gt;
+
+  &lt;dependency&gt;
+
+  &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+
+  &lt;artifactId&gt;spring-cloud-spring-service-connector&lt;/artifactId&gt;
+
+  &lt;version&gt;1.2.0.RELEASE&lt;/version&gt;
+
+  &lt;/dependency&gt;
+
+  &lt;dependency&gt;
+
+  &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+
+  &lt;artifactId&gt;spring-cloud-cloudfoundry-connector&lt;/artifactId&gt;
+
+  &lt;version&gt;1.2.0.RELEASE&lt;/version&gt;
+
+  &lt;/dependency&gt;
+
+  &lt;!-- Spring Cloud Connector End --&gt;
+  ----------------------------------------------------------------------------
+
+***cloud 네임스페이스 추가.***
+------------------------------
+
+src/main/resources/egovframework/spring/context-datasource.xml 파일을
+열어 cloud 네임스페이스를 추가한다.
+
+  ------------------------------------------------------------------------------------------------------------------------------------
+  &lt;?xml version=*"1.0"* encoding=*"UTF-8"*?&gt;
+
+  &lt;beans xmlns=*"http://www.springframework.org/schema/beans"* xmlns:xsi=*"http://www.w3.org/2001/XMLSchema-instance"*
+
+  xmlns:cloud=*"http://www.springframework.org/schema/cloud"*
+
+  xsi:schemaLocation=*"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd*
+
+  *http://www.springframework.org/schema/cloud http://www.springframework.org/schema/cloud/spring-cloud.xsd"*&gt;
+  ------------------------------------------------------------------------------------------------------------------------------------
+
+***dataSource 설정 변경.***
+---------------------------
+
+기존의 dataSource 설정을 지우고 새로운 설정을 입력한다.
+
+  -----------------------------------------------------------------------------------------------------
+  &lt;cloud:data-source id=*"dataSource"* service-name=*"serviceInstanceName"*&gt;
+
+  &lt;cloud:connection properties=*"sessionVariables=sql\_mode='ANSI';characterEncoding=UTF-8"* /&gt;
+
+  &lt;cloud:pool pool-size=*"20"* max-wait-time=*"200"* /&gt;
+
+  &lt;/cloud:data-source&gt;
+  -----------------------------------------------------------------------------------------------------
+
+***dataSource 초기화 설정***
+----------------------------
+
+애플리케이션 구동시 미리 작성한 SQL 스크립트를 실행하여 DB를 자동으로
+초기화 하도록 설정한다.
+
+1.  스크립트 파일 이동
+
+> 스크립트 파일에 접근하기 위해 script 폴더를
+> src/main/resources/egovframework로 이동시킨다..
+
+1.  스크립트 파일 수정
+
+> script\_mysql.sql 파일을 수정한다.
+>
+> 기존 sql은 실행이 되지 않으므로 일부 수정한다. db생성 구문을 없애고
+> Drop Table 구문에 IF EXISTS를 추가한다.
+
+  -------------------------------------------
+  --CREATE DATABASE EASYCOMPANY;
+
+  DROP TABLE IF EXISTS \`IDS\`;
+
+  DROP TABLE IF EXISTS \`RTETNAUTH\`;
+
+  DROP TABLE IF EXISTS \`RTETNBBS\`;
+
+  DROP TABLE IF EXISTS \`RTETNCART\`;
+
+  DROP TABLE IF EXISTS \`RTETNPURCHSLIST\`;
+
+  DROP TABLE IF EXISTS \`RTETNDLVYINFO\`;
+
+  DROP TABLE IF EXISTS \`RTETNGOODS\`;
+
+  DROP TABLE IF EXISTS \`RTETNCTGRY\`;
+
+  DROP TABLE IF EXISTS \`RTETNGOODSIMAGE\`;
+
+  DROP TABLE IF EXISTS \`RTETNMBER\`;
+
+  DROP TABLE IF EXISTS \`RTETCCODE\`;
+  -------------------------------------------
+
+1.  jdbc 네임스페이스 추가
+
+> src/main/resources/egovframework/spring/context-datasource.xml 파일을
+> 열어 jdbc 네임스페이스를 추가한다.
+
+  ------------------------------------------------------------------------------------------------------------------------------------
+  &lt;?xml version=*"1.0"* encoding=*"UTF-8"*?&gt;
+
+  &lt;beans xmlns=*"http://www.springframework.org/schema/beans"*
+
+  xmlns:xsi=*"http://www.w3.org/2001/XMLSchema-instance"*
+
+  xmlns:cloud=*"http://www.springframework.org/schema/cloud"*
+
+  xmlns:jdbc=*"http://www.springframework.org/schema/jdbc"*
+
+  xsi:schemaLocation=*"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd*
+
+  *http://www.springframework.org/schema/cloud http://www.springframework.org/schema/cloud/spring-cloud.xsd*
+
+  *http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd"*&gt;
+  ------------------------------------------------------------------------------------------------------------------------------------
+
+1.  데이터베이스 초기화 스크립트 등록
+
+  ---------------------------------------------------------------------------------------
+  &lt;jdbc:initialize-database data-source=*"dataSource"*&gt;
+
+  > &lt;jdbc:script location=*"classpath:egovframework/script/script\_mysql.sql"* /&gt;
+  >
+  > &lt;jdbc:script location=*"classpath:egovframework/script/data\_mysql.sql"* /&gt;
+
+  &lt;/jdbc:initialize-database&gt;
+  ---------------------------------------------------------------------------------------
+
+***배포시 주의사항***
+---------------------
+
+애플리케이션을 배포한다. 배포 방법은 상단 5.1 애플리케이션 배포를
+참고한다.
+
+1.  예제 프로젝트는 메모리를 많이 차지하기 때문에 배포시 메모리 설정은
+    1024mb 이상으로 설정한다.
+
+2.  본 예제는 MySql 기반으로 작성하였다. MySql 서비스 인스턴스를
+    생성하여 바인딩을 한다.
+
+3.  cloud:data-source 의 service-name 설정과 바인딩시킬 서비스 인스턴스
+    이름을 일치시켜야 한다.
+
+

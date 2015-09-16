@@ -89,7 +89,7 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 B
 >![mysql_bosh_lite_2.3.03]<br>
 >Stemcell 목록이 존재 하지 않을 경우 BOSH-lite 설치 가이드 문서를 참고 하여 Stemcell 2776 버전을 업로드를 해야 한다.
 
--	openpaas-mysql-lite.yml Deployment 파일을 서버 환경에 맞게 수정한다.(빨간색으로 표시된 부분만 수정)
+-	openpaas-mysql-lite.yml Deployment 파일을 서버 환경에 맞게 수정한다.(굵은 글씨로 표시된 부분만 수정)
 
 #####openpaas-mysql-lite 설정 파일 내용
 <pre>$vi openpaas-mysql-lite.yml
@@ -100,7 +100,7 @@ compilation:           # 컴파일시 필요한 가상머신의 속성(필수)
   network: services1        # Networks block에서 선언한 network 이름(필수)
   reuse_compilation_vms: true        # 컴파일지 VM 재사용 여부(옵션)
   workers: 6         # 컴파일 하는 가상머신의 최대수(필수)
-director_uuid: <font color="red">xxxxx#bosh status 에서 확인한 Director UUID을 입력(필수)</font>
+director_uuid: ***xxxxx#bosh status 에서 확인한 Director UUID을 입력(필수)***
 disk_pools:
 - cloud_properties: {}
   disk_size: 100000               # 디스크 사이즈 100G
@@ -2740,9 +2740,9 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 ><div>$cd hello-spring-mysql</div>
 ><div>$vi manifest.yml</div>
 	<pre>applications:
-		- name: hello-tomcat-mysql <font color="red">#배포할 App 이름</font>
-		  instances: 1 <font color="red"># 배포 인스턴스 수</font>
-		  path: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war <font color="red">#배포하는 App 파일 PATH</font></pre>
+		- name: hello-tomcat-mysql ***#배포할 App 이름***
+		  instances: 1 ***# 배포 인스턴스 수***
+		  path: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war ***#배포하는 App 파일 PATH***</pre>
 >참고: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war파일이 존재 하지 않을 경우 mvn 빌드를 수행 하면 파일이 생성된다.<br><br>
 
 -	--no-start 옵션으로 App을 배포한다.  

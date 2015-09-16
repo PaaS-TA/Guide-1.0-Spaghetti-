@@ -2770,13 +2770,13 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 >-	rule.json 화일을 만들고 아래와 같이 내용을 넣는다.<br>
 >$ vi rule.json
 ><pre>
-[
-	   {
+		[
+		   {
 		      "protocol": "tcp",
 		      "destination": "10.244.7.6",
 		      "ports": "3306"
-	   }
-]
+		   }
+		]
 </pre>
 >-	보안 그룹을 생성한다.<br>
 >$cf create-security-group p-mysql rule.json<br>

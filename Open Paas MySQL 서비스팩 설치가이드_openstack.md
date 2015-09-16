@@ -385,13 +385,12 @@ stemcell:
 -	MySQL 서비스팩을 배포한다.
 >$bosh deploy<br>
 >![mysql_openstack_2.3.05]<br>
->![mysql_openstack_2.3.06]<br>
->![mysql_openstack_2.3.07]
+>![mysql_openstack_2.3.06]
 
 -	배포된 MySQL 서비스팩을 확인한다.
 >$bosh vms<br>
->![mysql_openstack_2.3.08]<br>
->![mysql_openstack_2.3.09]
+>![mysql_openstack_2.3.07]<br>
+>![mysql_openstack_2.3.08]
 
 ###MySQL 서비스 브로커 등록
 Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 MySQL 서비스 브로커를 등록해 주어야 한다.  

@@ -385,7 +385,7 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 >-	서비스팩 이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.  
 >-	서비스팩 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID이다. 
 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
->-	서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.<br>
+>-	서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.<br><br>
 >
 >$ cf create-service-broker mysql-service-broker admin password http://p-mysql.controller.open-paas.com
 >![mysql_vsphere_2.4.02]
@@ -437,7 +437,7 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 >$cf create-service {서비스명} {서비스플랜} {내서비스명}<br>
 >-	서비스명 : p-mysql로 Marketplace에서 보여지는 서비스 명칭이다.
 >-	서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. MySQL 서비스는 100mb, 1gb를 지원한다.
->-	내 서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.<br>
+>-	내 서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.<br><br>
 >
 >$cf create-service p-mysql 100mb mysql-service-instance<br>
 >![mysql_vsphere_3.2.02]

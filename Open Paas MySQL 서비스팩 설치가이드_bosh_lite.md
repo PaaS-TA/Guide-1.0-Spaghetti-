@@ -2699,6 +2699,10 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 ###Sample Web App 구조
 Sample Web App은 개방형 클라우드 플랫폼에 App으로 배포가 된다. App을 배포하여 구동시 Bind 된 MySQL 서비스 연결정보로 접속하여 초기 데이터를 생성하게 된다. 배포 완료 후 정상적으로 App 이 구동되면 브라우져나 curl로 해당 App에 접속 하여 MySQL 환경정보(서비스 연결 정보)와 초기 적재된 데이터를 보여준다.
 
+-	OpenPaaS-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를 복사한다.
+>$ls -all<br>
+>![mysql_bosh_lite_3.1.01]
+
 Sample Web App 구조는 다음과 같다.
 
 |  이름  |  설명  |
@@ -2706,10 +2710,10 @@ Sample Web App 구조는 다음과 같다.
 |src |Sample 소스 디렉토리|
 |manifest |개방형 클라우드 플랫폼에 app 배포시 필요한 설정을 저장하는 파일|
 |pom.xml |메이븐 project 설정 파일|
-|target |메이블 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)|
-
-
--	OpenPaaS-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를복사한다.
+|target |메이븐 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)|
+<br>
+<br>
+-	OpenPaaS-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를 복사한다.
 >$ls -all<br>
 >![mysql_bosh_lite_3.1.01]
 

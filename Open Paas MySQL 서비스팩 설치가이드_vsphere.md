@@ -270,7 +270,7 @@ external_host: <b>p-mysql.controller.open-paas.com</b>   # 사용할 외부 호�
   release: openpaas-mysql
   resource_pool: services-small
   template: broker-registrar
-
+>
 - instances: 1
   lifecycle: errand
   name: broker-deregistrar   # 작업 이름: 서비스 브로커 삭제

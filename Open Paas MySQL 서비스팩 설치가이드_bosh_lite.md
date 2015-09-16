@@ -2767,27 +2767,27 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 >![mysql_bosh_lite_3.3.05]<br><br>
 
 -	(참고) 바인드 후 App구동시 Mysql 서비스 접속 에러로 App 구동이 안될 경우 보안 그룹을 추가한다.<br>  
->-	rule.json 화일을 만들고 아래와 같이 내용을 넣는다.
+>-	rule.json 화일을 만들고 아래와 같이 내용을 넣는다.<br>
 >$ vi rule.json
 ><pre>
-[  
-    {
-      "protocol": "tcp",
-      "destination": "10.244.7.6",
-      "ports": "3306"
-    }
+[
+	{
+		"protocol": "tcp",
+		"destination": "10.244.7.6",
+		"ports": "3306"
+	}
 ]
 </pre>
->-	보안 그룹을 생성한다.
-><div>$cf create-security-group p-mysql rule.json</div>
+>-	보안 그룹을 생성한다.<br>
+>$cf create-security-group p-mysql rule.json<br>
 >![mysql_bosh_lite_3.3.06]
 >
->-	모든 App에 Mysql 서비스를 사용할수 있도록 생성한 보안 그룹을 적용한다.
-><div>$cf bind-running-security-group p-mysql</div>
+>-	모든 App에 Mysql 서비스를 사용할수 있도록 생성한 보안 그룹을 적용한다.<br>
+>$cf bind-running-security-group p-mysql<br>
 >![mysql_bosh_lite_3.3.07]
 >
->-	App을 리부팅 한다.
-><div>$cf restarthello-tomcat-mysql</div>
+>-	App을 리부팅 한다.<br>
+>$cf restarthello-tomcat-mysql<br>
 >![mysql_bosh_lite_3.3.08]
 
 -	App이 정상적으로 MySQL 서비스를 사용하는지 확인한다.

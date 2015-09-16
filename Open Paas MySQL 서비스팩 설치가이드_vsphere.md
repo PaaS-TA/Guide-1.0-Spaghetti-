@@ -392,17 +392,17 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
 >-	서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.<br><br>
 >
->$ cf create-service-broker mysql-service-broker admin password http://p-mysql.controller.open-paas.com
+>$ cf create-service-broker mysql-service-broker admin password http://p-mysql.controller.open-paas.com<br>
 >![mysql_vsphere_2.4.02]
 
--	등록된 MySQL 서비스 브로커를 확인한다.<br>
->$cf service-brokers
+-	등록된 MySQL 서비스 브로커를 확인한다.
+>$cf service-brokers<br>
 >![mysql_vsphere_2.4.03]
 
--	접근 가능한 서비스 목록을 확인한다.<br>
->$cf service-access
+-	접근 가능한 서비스 목록을 확인한다.
+>$cf service-access<br>
 >![mysql_vsphere_2.4.04]<br>
->서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.<br><br>
+>서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.
 
 -	특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
 >$cf enable-service-access p-mysql<br>

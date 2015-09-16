@@ -48,7 +48,7 @@
 
  확인하는 방법은 bosh deployments를 통해 배포된 리스트 목록으로 확인한다.
  
- ![cf push](https://github.com/OpenPaaSRnD/Documents/blob/master/images/openpaas-container/bosh_deployments_openstack.png)
+ ![bosh_deployments_openstack]
 
 ## Open Paas Container 설치
 

@@ -2708,9 +2708,10 @@ Sample Web App 구조는 다음과 같다.
 |pom.xml |메이븐 project 설정 파일|
 |target |메이블 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)|
 
--	OpenPaaS-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를복사한다.
+
+-	OpenPaaS-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를복사한다.<br>
 ><div>$ls -all</div>
->![mysql_bosh_lite_3.1.01]<br>
+>![mysql_bosh_lite_3.1.01]<br><br>
 
 ###개방형 클라우드 플랫폼에서 서비스 신청
 Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.  
@@ -2723,7 +2724,7 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 -	Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.<br>
 ><div>$cf create-service {서비스명} {서비스플랜} {내서비스명}</div>
 >-	서비스명 : p-mysql로 Marketplace에서 보여지는 서비스 명칭이다.
->-	서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. MySQL 서비스는 100mb, 1gb를 지원한다.
+>-	서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. MySQL 서비스는 100mb, 1gb를 지원한다.  
 >-	내 서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.
 ><div>$cf create-service p-mysql 100mb mysql-service-instance</div>
 >![mysql_bosh_lite_3.2.02]<br><br>

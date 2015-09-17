@@ -260,8 +260,8 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 
 #####  “Add and Remove”로 추가하기
 
-1. “Servers” 탭에서 애플리케이션 배포를 원하는 관리 서버를 선택 한 뒤, 오른쪽 버튼을 클릭하고, “Add and Remove”를 클릭한다.
-    ![](images/openpaas-eclipse/image46.png)
+1. “Servers” 탭에서 애플리케이션 배포를 원하는 관리 서버를 선택 한 뒤, 오른쪽 버튼을 클릭하고, “Add and Remove”를 클릭한다.  
+	![](images/openpaas-eclipse/image46.png)
 
 2. “Add and Remove” 대화창이 표시된다. 이 대화창은 Open PaaS 환경에 애플리케이션을 배포 및 삭제 할 수 있는 대화창이다.  
     "Available”은 배포 가능한 애플리케이션 목록이고, “Configured”는 배포 되어 있거나 배포 예정인 애플리케이션 목록이다.  
@@ -402,8 +402,8 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 3. “추가 또는 애플리케이션 URL 수정” 대화창이 표시된다. 이 대화창은 애플리케이션을 추가 할 수 있는 대화창이다.  
       원하는 서브도메인을 작성하고, 도메인을 선택하면 “배포된 URL”이 자동으로 작성된다.  
       작성이 완료 되었으면 “Finish” 버튼을 클릭한다.  
-      "Cancel” 버튼을 클릭하면 종료된다.
-    ![](images/openpaas-eclipse/image77.png)
+      "Cancel” 버튼을 클릭하면 종료된다.  
+	![](images/openpaas-eclipse/image77.png)
 
 4. 현재 상태에서는 “매핑된 URL” 추가 사항이 플랫폼 서버에 반영되지 않았으므로 “매핑된 URL” 설정 대화창에서 “Finish” 버튼을 눌러야 최종 완료가 된다. 만약 “Cancel” 버튼을 클릭하면 지금까지 진행한 모든 작업들이 취소된다.
     ![](images/openpaas-eclipse/image79.png)
@@ -412,7 +412,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
  
 1. [***“매핑된 URL 목록 조회”***](#매핑된-url-목록-조회) 과정을 진행한다.
 
-2. “매핑할 URL”을 수정하기 위해 목록에서 수정을 원하는 “매핑된 URL”을 선택한다. 그리고 오른쪽에 “수정” 버튼을 클릭한다.
+2. “매핑할 URL”을 수정하기 위해 목록에서 수정을 원하는 “매핑된 URL”을 선택한다. 그리고 오른쪽에 “수정” 버튼을 클릭한다.  
     ![](images/openpaas-eclipse/image80.png)
 
 3. “추가 또는 애플리케이션 URL 수정” 대화창이 표시된다. 이 대화창은 애플리케이션을 수정 할 수 있는 대화창이다.  
@@ -428,21 +428,21 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 1. [***“매핑된 URL 목록 조회”***](#매핑된-url-목록-조회) 과정을 진행한다.
 
 2. 매핑할 URL을 삭제하기 위해 목록에서 수정을 원하는 매핑된 URL을 선택한다. 그리고 오른쪽에 “삭제” 버튼을 클릭한다.  
-      그리고 “Finish” 버튼을 눌러야 최종 완료가 된다. 만약 “Cancel” 버튼을 클릭하면 지금까지 진행한 모든 작업들이 취소된다.
+	그리고 “Finish” 버튼을 눌러야 최종 완료가 된다. 만약 “Cancel” 버튼을 클릭하면 지금까지 진행한 모든 작업들이 취소된다.  
     ![](images/openpaas-eclipse/image84.png)
 
 ##### 인스턴스 수 변경
 
-1. 일반 섹션에서 인스턴스 수 항목을 찾는다.  
-      원하는 인스턴스 수만큼 변경 후 설정 버튼을 클릭한다.  
-      인스턴스 변경이 완료 된다.
+일반 섹션에서 인스턴스 수 항목을 찾는다.  
+원하는 인스턴스 수만큼 변경 후 설정 버튼을 클릭한다.  
+인스턴스 변경이 완료 된다.  
 ![](images/openpaas-eclipse/image85.png)
 
 ##### 메모리 제한
 
-1. 일반(애플리케이션 재시작 필요) 섹션에서 메모리 제한(MB) 항목을 찾는다.  
-      원하는 메모리 제한만큼 변경 후 설정 버튼을 클릭한다.  
-      메모리 제한 변경이 완료 된다.
+일반(애플리케이션 재시작 필요) 섹션에서 메모리 제한(MB) 항목을 찾는다.  
+원하는 메모리 제한만큼 변경 후 설정 버튼을 클릭한다.  
+메모리 제한 변경이 완료 된다.  
 ![](images/openpaas-eclipse/image87.png)
 
 ##### 환경 변수 목록 조회
@@ -463,7 +463,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 
 3. “변수 이름과 값을 입력해 주십시오.” 대화창이 표시된다.  
       이 대화창은 환경 변수 추가 할 수 있는 대화창이다.  
-      원하는 이름과 값을 작성 후, “OK” 버튼을 클릭한다.
+      원하는 이름과 값을 작성 후, “OK” 버튼을 클릭한다.  
     ![](images/openpaas-eclipse/image91.png)
 
 4. 현재 상태에서는 환경 변수가 플랫폼 서버에 반영되지 않았으므로, 환경 변수 대화창에서 “Finish” 버튼을 클릭하면 반영이 완료된다. “Cancel” 버튼을 클릭하면 변경 사항이 적용되지 않는다.
@@ -478,7 +478,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 
 3. 변수 이름과 값을 입력해 주십시오. 대화창이 표시된다. 이 대화창은 환경 변수 수정 할 수 있는 대화창이다.  
       원하는 이름과 값을 수정 후, “OK” 버튼을 클릭한다.  
-      “Cancel” 버튼을 클릭하면 변수의 이름과 값이 입력되지 않는다.
+      “Cancel” 버튼을 클릭하면 변수의 이름과 값이 입력되지 않는다.  
 	![](images/openpaas-eclipse/image91.png)
 
 4. 현재 상태에서는 환경 변수 수정 사항이 플랫폼 서버에 반영되지 않았으므로, 환경 변수 대화창에서 “Finish” 버튼을 클릭하면 반영이 완료된다. “Cancel” 버튼을 클릭하면 변경 사항이 적용되지 않는다.
@@ -496,13 +496,13 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 ##### 애플리케이션 재시작
 
 [***애플리케이션 인스턴스 관리***](#애플리케이션-인스턴스-관리) 화면에서 애플리케이션 동작 섹션을 찾는다.  
-      “재시작” 버튼을 클릭하면 재시작 작업을 수행한다.
+      “재시작” 버튼을 클릭하면 재시작 작업을 수행한다.  
 ![](images/openpaas-eclipse/image98.png)
 
 ##### 애플리케이션 정지
 
 [***애플리케이션 인스턴스 관리***](#애플리케이션-인스턴스-관리) 화면에서 애플리케이션 동작 섹션을 찾는다.  
-      “정지” 버튼을 클릭하면 정지 작업을 수행한다.
+      “정지” 버튼을 클릭하면 정지 작업을 수행한다.  
 ![](images/openpaas-eclipse/image99.png)
 
 ##### 애플리케이션 갱신 및 재시작
@@ -514,7 +514,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 ##### 애플리케이션 배포
 
 [***애플리케이션 인스턴스 관리***](#애플리케이션-인스턴스-관리)에서 애플리케이션 동작 섹션을 찾는다.  
-      “배포” 버튼을 클릭하면 배포작업을 수행한다.
+      “배포” 버튼을 클릭하면 배포작업을 수행한다.  
 ![](images/openpaas-eclipse/image101.png)
 
 ### 5.5 애플리케이션 삭제
@@ -541,7 +541,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 	![](images/openpaas-eclipse/image105.png)
 
 3. 애플리케이션 삭제 확인을 위한 대화상자에서 “OK” 버튼 또는 ”Cancel”
-    버튼을 클릭하여 애플리케이션 삭제를 완료하거나 취소한다.
+    버튼을 클릭하여 애플리케이션 삭제를 완료하거나 취소한다.  
 	![](images/openpaas-eclipse/image106.png)
 
 ### 5.6 서비스팩 인스턴스 추가
@@ -575,7 +575,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     마우스 오른쪽 버튼을 클릭하고, “서비스팩 바인딩 관리…” 메뉴를
     누른다.  
     만약 원하는 서비스팩 인스턴스가 없는 경우 서비스팩 인스턴스 추가
-    과정과 동일하게 진행하여 원하는 서비스팩을 추가한다.
+    과정과 동일하게 진행하여 원하는 서비스팩을 추가한다.  
 	![](images/openpaas-eclipse/image115.png)
 
 2. “서비스팩 바인딩 관리” 대화창이 표시된다.  
@@ -589,7 +589,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 
 1. 서버 편집기의 애플리케이션과 서비스팩 탭을 클릭한다.  
     애플리케이션 서비스팩 목록에서 바인딩을 해제할 서비스팩 인스턴스를
-    선택한 뒤, 마우스 우클릭, “서비스팩 바인딩 관리…” 버튼을 누른다.
+    선택한 뒤, 마우스 우클릭, “서비스팩 바인딩 관리…” 버튼을 누른다.  
 	![](images/openpaas-eclipse/image115.png)
 
 2. “서비스팩 바인딩 관리” 대화창이 표시된다. 이 대화창은 서비스팩 인스턴스에 바인딩 또는 바인딩 해제할 애플리케이션을 선택하는 대화창이다.  
@@ -612,9 +612,9 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 
 ### 6.1 매니페스트 추가
 
-1. 프로젝트의 루트에 매니페스트 파일(manifest.yml)을 추가한다.
+1. 프로젝트의 루트에 매니페스트 파일(manifest.yml)을 추가한다.  
 	![](images/openpaas-eclipse/image119.png)
-	\* manifest.yml 파일 예시 :
+	\* manifest.yml 파일 예시 :  
 	![](images/openpaas-eclipse/image121.png)
   
 2. 애플리케이션을 배포한다.  
@@ -636,7 +636,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 1. 애플리케이션과 서비스팩 탭에서 애플리케이션의 상세 화면 조회를 한다.
 	![](images/openpaas-eclipse/image125.png)
 
-2. 일반 섹션에서 매니페스트 항목의 우측 “저장” 버튼을 클릭한다
+2. 일반 섹션에서 매니페스트 항목의 우측 “저장” 버튼을 클릭한다  
 	![](images/openpaas-eclipse/image126.png)
 
 3. 프로젝트에 매니페스트 파일(manifest.yml)이 생성 되었음을 확인한다.  

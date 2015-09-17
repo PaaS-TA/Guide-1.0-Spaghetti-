@@ -55,9 +55,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 [***http://www.oracle.com/technetwork/java/javase/downloads/index.html***](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 2. 라이선스에 동의한 후 개발환경에 맞는 자바 개발 킷 설치 파일을 다운로드 받는다.
 3. 설치 파일을 실행하여 화면에 표시되는 절차에 따라 설치를 완료한다.
-    ```
-  ![java install](images/openpaas-eclipse/image2.jpeg)
-    ```
+  `![java install](images/openpaas-eclipse/image2.jpeg)`
 
 4. 명령 프롬프트에서 자바 명령어 실행을 위해 시스템 속성의 환경
     변수를 설정한다.

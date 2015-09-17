@@ -54,7 +54,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 1. 아래 링크에 접속하여 “JavaSE Download” 페이지가 표시되면 중앙의 “JDK Download” 링크를 클릭하여 라이선스 동의 페이지로 이동한다.
 [***http://www.oracle.com/technetwork/java/javase/downloads/index.html***](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 2. 라이선스에 동의한 후 개발환경에 맞는 자바 개발 킷 설치 파일을 다운로드 받는다.
-3. 설치 파일을 실행하여 화면에 표시되는 절차에 따라 설치를 완료한다.
+3. 설치 파일을 실행하여 화면에 표시되는 절차에 따라 설치를 완료한다.  
     ---
   ![java install](images/openpaas-eclipse/image2.jpeg)
     ---

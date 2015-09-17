@@ -1,4 +1,4 @@
-## Executive Summary
+# Executive Summary
 
 본 문서는 개발자들이 Open PaaS 개발환경을 전자정부 프레임워크 개발환경에
 설치하여 Open PaaS 기반의 애플리케이션을개발하기 위해 필요한 환경 구성
@@ -11,27 +11,27 @@
 * Open PaaS개발환경 사용법
 
 
-## 문서 개요
+# 1. 문서 개요
 
-#### 목적
+### 1.1 목적
 본 문서는 전자정부 표준프레임워크 개발환경 및 이클립스 통합개발환경에서
 Open PaaS 개발환경을 설치하고, Open PaaS 개발환경을 통해 자바 웹
 애플리케이션을 Open PaaS 환경에 배포, 관리 및 서비스팩 관리에 대한
 가이드를 제공한다.
 
-#### 범위
+### 1.2 범위
 본 문서에서 제공하는 가이드는) 전자정부 표준프레임워크 3.2.0 및 이클립스
 케플러 버전(Kepler, 4.3.x 버전을 기준으로 작성하였다.
 
-#### 참고자료
+### 1.3 참고자료
 본 문서는 클라우드 파운드리(Cloud Foundry)의 클라우드 파운드리 이클립스
 플러그인 문서를 참조하였다.
 클라우드 파운드리 이클립스 플러그인 문서 :
 http://docs.run.pivotal.io/buildpacks/java/sts.html
 
-## 개발환경 설치 전 준비사항
+# 2. 개발환경 설치 전 준비사항
 
-#### 설치 전 준비사항
+### 2.1 설치 전 준비사항
 
 본 문서는 전자정부 프레임워크 3.1.1 버전 개발환경에서 설치하는 것을
 기준으로 작성하였다. 전자정부 프레임워크 개발환경은 자바 언어로 작성되어
@@ -49,7 +49,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 * openpaas\_dev\_env.jar
 * eGovFrameDev-3.1.1
 
-#### 자바 개발 킷 설치
+### 2.2 자바 개발 킷 설치
 
 1. 아래 링크에 접속하여 “JavaSE Download” 페이지가 표시되면 중앙의 “JDK Download” 링크를 클릭하여 라이선스 동의 페이지로 이동한다.
 [***http://www.oracle.com/technetwork/java/javase/downloads/index.html***](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
@@ -67,12 +67,12 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     정상적으로 출력되는지 확인한다.
 	![java version](images/openpaas-eclipse/image6.jpeg)
 
-#### 전자정부 표준프레임워크 설치
+### 2.3 전자정부 표준프레임워크 설치
 
 전자정부 표준프레임워크 설치는 전자정부 표준프레임워크의 개발자 개발 환경 설치 가이드의 개발자 개발환경 설치(http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev2:clntinstall)를 참고한다.  
 > **버전은 3.1.1 버전을 사용한다**
 
-#### 이클립스 통합개발환경 케플러 버전 설치
+### 2.4 이클립스 통합개발환경 케플러 버전 설치
 
 이클립스 통합개발환경 케플러 버전의 설치 절차는 다음과 같다.
 
@@ -87,7 +87,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 
 4. 다운로드 받은 파일의 압축을 해제하고 “eclipse.exe” 파일을 실행하여 별도의 설치 없이 이클립스를 사용할 수 있다.
 
-## Open PaaS 개발환경 설치
+# 3. Open PaaS 개발환경 설치
 
 본 절에서는 전자정부 표준프레임워크과 이클립스 통합개발환경에 Open PaaS
 개발환경을 설치하는 절차를 기술한다. Open PaaS 개발환경이 포함되어 있는
@@ -95,7 +95,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 사용가능하며, 이클립스의 경우 “openpaas\_dev\_env.zip” 파일을 이용하여
 플러그인으로 제공되는 Open PaaS 개발환경을 설치하여 사용한다.
 
-#### 전자정부 표준프레임워크에 Open PaaS 개발환경 설치
+### 3.1 전자정부 표준프레임워크에 Open PaaS 개발환경 설치
 
 전자정부 표준프레임워크 개발환경에 Open PaaS 개발환경을 설치하는 절차는
 다음과 같다.
@@ -148,18 +148,18 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 
 9. 재시작을 완료하면 설치가 완료된다.
 
-#### 이클립스 통합개발환경에 Open PaaS 개발환경 설치
+### 3.2 이클립스 통합개발환경에 Open PaaS 개발환경 설치
 
 이클립스 통합개발환경에 Open PaaS 개발환경을 설치하는 절차는 “3.1 전자정부 표준프레임워크에 Open PaaS 개발환경을 설치”와 같으므로 참고한다.
 
-#### Open PaaS 개발환경이 포함된 전자정부 표준프레임워크 개발환경 사용
+### 3.3 Open PaaS 개발환경이 포함된 전자정부 표준프레임워크 개발환경 사용
 전자정부 표준프레임워크 개발환경에는 Open PaaS 개발환경이 설치되어 있으므로, 추가적으로 설치할 필요없이 본 가이드의 4.개방형 플랫폼 서버 연결관리부터 진행할 수 있다.
 
-## 개방형 플랫폼 서버 연결 관리
+# 4. 개방형 플랫폼 서버 연결 관리
 
 본 절에서는 개방형 플랫폼 서버를 연결하는 방법에 대해 기술한다.
 
-#### 서버 추가
+### 4.1 서버 추가
 
 1. 서버를 추가하기 위해 “Servers” 탭에서 “New” – “Server”을 클릭한다.
 	![](images/openpaas-eclipse/image28.png)
@@ -201,7 +201,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     “Cancel” 버튼을 클릭하면 진행되던 과정은 취소되고 화면이 종료된다.
     ![](images/openpaas-eclipse/image37.png)
 
-#### 플랫폼 서버 정보 등록
+### 4.2 플랫폼 서버 정보 등록
 
 1. “플랫폼 서버 관리…” 버튼을 클릭하여, “플랫폼 서버 URL 관리” 대화창을
   실행한다.  
@@ -219,7 +219,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 	![](images/openpaas-eclipse/image33_2.png)
 
 
-#### 서버 복제
+### 4.3서버 복제
 
 개방형 플랫폼 서버 연결 정보에서 목표 스페이스는 수정할 수 없으며,
 동일한 개방형 플랫폼 서버에서 다른 목표 스페이스로 변경하기 위해서는 기존
@@ -239,7 +239,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     리스트에 추가된다.
     ![](images/openpaas-eclipse/image42.png)
 
-#### 서버 수정
+### 4.4 서버 수정
 
 서버 수정은 관리 서버 이름만 수정 가능하다
 
@@ -251,14 +251,14 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     서버 이름을 클릭하여 수정을 한 뒤, 메뉴의 “File” – “Save”를 누른다.
 	![](images/openpaas-eclipse/image45.png)
 
-## 애플리케이션 및 서비스팩 관리
+# 5. 애플리케이션 및 서비스팩 관리
 
 본 절에서는 Open PaaS 개발환경에서 애플리케이션 및 서비스팩을 관리하는
 절차를 기술한다.
 
-#### 애플리케이션 배포
+### 5.1 애플리케이션 배포
 
-######  “Add and Remove”로 추가하기
+#####  “Add and Remove”로 추가하기
 
 1. “Servers” 탭에서 애플리케이션 배포를 원하는 관리 서버를 선택 한 뒤, 오른쪽 버튼을 클릭하고, “Add and Remove”를 클릭한다.
     ![](images/openpaas-eclipse/image46.png)
@@ -307,7 +307,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 7. 배포가 완료되면 서버 편집기의 “애플리케이션과 서비스팩” 탭에서 배포된 애플리케이션을 확인 할 수 있다.
     ![](images/openpaas-eclipse/image58.png)
 
-###### 드래그로 추가
+##### 드래그로 추가
 
 1. 애플리케이션 배포를 원하는 개방형 플랫폼 서버를 더블 클릭하여 서버 편집기를 실행한다.  
       배포를 원하는 프로젝트를 애플리케이션 섹션으로 드래그하면 배포가 완료 된다.  
@@ -316,7 +316,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 
 2. [***“Add and Remove”***](#애플리케이션-배포) 과정과 동일하므로 해당 내용의 2번부터 참고한다.
 
-###### 애플리케이션 추가/삭제 버튼으로 추가하기
+##### 애플리케이션 추가/삭제 버튼으로 추가하기
 
 1. 애플리케이션 배포를 원하는 개방형 플랫폼 서버를 더블 클릭하여 서버 편집기를 실행한다.  
       애플리케이션을 배포하기 위해 애플리케이션 추가/삭제 버튼을 클릭한다.
@@ -324,7 +324,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 
 2. [***“Add and Remove”***](#애플리케이션-배포) 과정과 동일하므로 참고한다.
 
-###### 프로젝트 컨텍스트 메뉴로 추가하기
+##### 프로젝트 컨텍스트 메뉴로 추가하기
 
 1. “Package Exlporer” 에서 배포를 원하는 프로젝트를 선택한 뒤, 마우스 오른쪽 버튼을 클릭 후. “Run As” – “Run on Server”를 선택한다.
     ![](images/openpaas-eclipse/image63.png)
@@ -337,20 +337,20 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 
 3. [***“Add and Remove”***](#애플리케이션-배포) 과정과 동일하므로 참고한다.
 
-###### 서버 추가시 추가하기
+##### 서버 추가시 추가하기
 
 [***“서버 추가”***](#서버-추가) 과정과 동일하므로 해당 내용 참고
 
 
 
 
-#### 애플리케이션 목록 확인
+### 5.2 애플리케이션 목록 확인
 
 애플리케이션 목록 조회를 원하는 개방형 플랫폼 서버를 더블 클릭하여 서버 편집기를 실행한다.  
 편집기에서 애플리케이션이라는 목록을 찾으면 아래에 리스트로 배포되어 있는 애플리케이션 목록을 확인 할 수 있다.
 ![](images/openpaas-eclipse/image67.png)
 
-#### 애플리케이션 라우트 관리
+### 5.3 애플리케이션 라우트 관리
 
 1. 애플리케이션 라우트 관리를 원하는 개방형 플랫폼 서버를 더블 클릭하여
     서버 편집기를 실행한다.  
@@ -365,7 +365,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     “Cancel” 버튼을 클릭하면 삭제될 라우트들이 복구된다.
     ![](images/openpaas-eclipse/image70.png)
 
-#### 애플리케이션 인스턴스 관리
+### 5.4 애플리케이션 인스턴스 관리
 
 애플리케이션 라우트 관리를 원하는 개방형 플랫폼 서버를 더블 클릭하여
 서버 편집기를 실행한다.  
@@ -382,7 +382,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 * 애플리케이션 서비스팩 목록 : 이름 ,벤더, 플랜, 버전
 * 인스턴스 목록 : 호스트, 포트, CPU, 메모리, 디스크, 가동 시간
 
-###### 매핑된 URL 목록 조회
+##### 매핑된 URL 목록 조회
 
 1. 일반 섹션에서 매핑된 URL 목록 항목을 찾는다.  
       “연필” 모양의 아이콘을 클릭한다.
@@ -392,7 +392,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
       이 대화창은 ”매핑된 URL”을 관리 할 수 있는 대화창이다.  
       이 대화창의 첫 페이지에서 “매핑된 URL” 목록을 확인 할 수 있다.
 
-###### 매핑된 URL 추가
+##### 매핑된 URL 추가
 
 1. [***“매핑된 URL 목록 조회”***](#매핑된-url-목록-조회) 과정을 진행한다.
 
@@ -408,7 +408,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 4. 현재 상태에서는 “매핑된 URL” 추가 사항이 플랫폼 서버에 반영되지 않았으므로 “매핑된 URL” 설정 대화창에서 “Finish” 버튼을 눌러야 최종 완료가 된다. 만약 “Cancel” 버튼을 클릭하면 지금까지 진행한 모든 작업들이 취소된다.
     ![](images/openpaas-eclipse/image79.png)
   
-###### 매핑된 URL 수정
+##### 매핑된 URL 수정
  
 1. [***“매핑된 URL 목록 조회”***](#매핑된-url-목록-조회) 과정을 진행한다.
 
@@ -423,7 +423,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 4. 현재 상태에서는 “매핑된 URL” 수정 사항이 플랫폼 서버에 반영되지 않았으므로 “매핑된 URL” 설정 대화창에서 “Finish” 버튼을 눌러야 최종 완료가 된다. 만약 “Cancel” 버튼을 클릭하면 지금까지 진행한 모든 작업들이 취소된다.
     ![](images/openpaas-eclipse/image83.png)
 
-###### 매핑된 URL 제거
+##### 매핑된 URL 제거
 
 1. [***“매핑된 URL 목록 조회”***](#매핑된-url-목록-조회) 과정을 진행한다.
 
@@ -431,21 +431,21 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
       그리고 “Finish” 버튼을 눌러야 최종 완료가 된다. 만약 “Cancel” 버튼을 클릭하면 지금까지 진행한 모든 작업들이 취소된다.
     ![](images/openpaas-eclipse/image84.png)
 
-###### 인스턴스 수 변경
+##### 인스턴스 수 변경
 
 1. 일반 섹션에서 인스턴스 수 항목을 찾는다.  
       원하는 인스턴스 수만큼 변경 후 설정 버튼을 클릭한다.  
       인스턴스 변경이 완료 된다.
 ![](images/openpaas-eclipse/image85.png)
 
-###### 메모리 제한
+##### 메모리 제한
 
 1. 일반(애플리케이션 재시작 필요) 섹션에서 메모리 제한(MB) 항목을 찾는다.  
       원하는 메모리 제한만큼 변경 후 설정 버튼을 클릭한다.  
       메모리 제한 변경이 완료 된다.
 ![](images/openpaas-eclipse/image87.png)
 
-###### 환경 변수 목록 조회
+##### 환경 변수 목록 조회
 
 1. 일반(애플리케이션 재시작 필요) 섹션에서 환경변수 항목을 찾아 옆의 “수정” 버튼을 클릭한다.
     ![](images/openpaas-eclipse/image86.png)
@@ -454,7 +454,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
       이 대화창의 첫 페이지는 환경 변수 목록을 보여준다.
     ![](images/openpaas-eclipse/image053.png)
 
-###### 환경 변수 추가
+##### 환경 변수 추가
 
 1. [***“환경 변수 목록 조회”***](#환경-변수-목록-조회) 과정을 진행한다
 
@@ -469,7 +469,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 4. 현재 상태에서는 환경 변수가 플랫폼 서버에 반영되지 않았으므로, 환경 변수 대화창에서 “Finish” 버튼을 클릭하면 반영이 완료된다. “Cancel” 버튼을 클릭하면 변경 사항이 적용되지 않는다.
     ![](images/openpaas-eclipse/image93.png)
 
-###### 환경 변수 수정
+##### 환경 변수 수정
 
 1. [***“환경 변수 목록 조회”***](#환경-변수-목록-조회) 과정을 진행한다.
 
@@ -484,7 +484,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 4. 현재 상태에서는 환경 변수 수정 사항이 플랫폼 서버에 반영되지 않았으므로, 환경 변수 대화창에서 “Finish” 버튼을 클릭하면 반영이 완료된다. “Cancel” 버튼을 클릭하면 변경 사항이 적용되지 않는다.
 	![](images/openpaas-eclipse/image97.png)
 
-###### 환경 변수 삭제
+##### 환경 변수 삭제
 
 1. [***“환경 변수 목록 조회”***](#환경-변수-목록-조회) 과정을 진행한다
 
@@ -493,31 +493,31 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
        현재 상태에서는 환경 변수 삭제 작업이 플랫폼 서버에 반영되지 않았으므로, 환경 변수 대화창에서 “Finish” 버튼을 클릭하면 반영이 완료된다. “Cancel” 버튼을 클릭하면 변경 사항이 적용되지 않는다.
 	![](images/openpaas-eclipse/image96.png)
 
-###### 애플리케이션 재시작
+##### 애플리케이션 재시작
 
 [***애플리케이션 인스턴스 관리***](#애플리케이션-인스턴스-관리) 화면에서 애플리케이션 동작 섹션을 찾는다.  
       “재시작” 버튼을 클릭하면 재시작 작업을 수행한다.
 ![](images/openpaas-eclipse/image98.png)
 
-###### 애플리케이션 정지
+##### 애플리케이션 정지
 
 [***애플리케이션 인스턴스 관리***](#애플리케이션-인스턴스-관리) 화면에서 애플리케이션 동작 섹션을 찾는다.  
       “정지” 버튼을 클릭하면 정지 작업을 수행한다.
 ![](images/openpaas-eclipse/image99.png)
 
-###### 애플리케이션 갱신 및 재시작
+##### 애플리케이션 갱신 및 재시작
 
 [***애플리케이션 인스턴스 관리***](#애플리케이션-인스턴스-관리) 화면에서 애플리케이션 동작 섹션을 찾는다.  
       “갱신 및 재시작” 버튼을 클릭하면 갱신 및 재시작 작업을 수행한다.
 ![](images/openpaas-eclipse/image100.png)
 
-###### 애플리케이션 배포
+##### 애플리케이션 배포
 
 [***애플리케이션 인스턴스 관리***](#애플리케이션-인스턴스-관리)에서 애플리케이션 동작 섹션을 찾는다.  
       “배포” 버튼을 클릭하면 배포작업을 수행한다.
 ![](images/openpaas-eclipse/image101.png)
 
-#### 애플리케이션 삭제
+### 5.5 애플리케이션 삭제
 
 1. 애플리케이션 삭제를 원하는 개방형 플랫폼 서버를 더블 클릭하여 서버
     편집기를 실행한다.  
@@ -544,7 +544,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     버튼을 클릭하여 애플리케이션 삭제를 완료하거나 취소한다.
 	![](images/openpaas-eclipse/image106.png)
 
-#### 서비스팩 인스턴스 추가
+### 5.6 서비스팩 인스턴스 추가
 
 1. 서버 편집기의 “애플리케이션과 서비스팩” 탭을 클릭한다.  
     서비스팩 섹션 타이틀 오른쪽의 “서비스팩 추가” 아이콘을 클릭한다.
@@ -568,7 +568,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 	![](images/openpaas-eclipse/image110.png)
 	![](images/openpaas-eclipse/image113.png)
 
-#### 서비스팩 인스턴스 바인딩
+### 5.7 서비스팩 인스턴스 바인딩
 
 1. 서버 편집기의 애플리케이션과 서비스팩 탭을 클릭한다.  
     서비스팩 목록에서 바인딩을 원하는 서비스팩 인스턴스를 선택한 뒤,
@@ -585,7 +585,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     클릭하면 바인딩이 완료 된다.
 	![](images/openpaas-eclipse/image116.png)
 
-#### 서비스팩 인스턴스 바인딩 해제
+### 5.8 서비스팩 인스턴스 바인딩 해제
 
 1. 서버 편집기의 애플리케이션과 서비스팩 탭을 클릭한다.  
     애플리케이션 서비스팩 목록에서 바인딩을 해제할 서비스팩 인스턴스를
@@ -596,7 +596,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 리스트에서 바인딩을 해제할 애플리케이션을 체크해제 한 후, “Finish” 버튼을 클릭하면 바인딩 해제가 완료 된다.
 	![](images/openpaas-eclipse/image116.png)
 
-#### 서비스팩 인스턴스 삭제
+### 5.9 서비스팩 인스턴스 삭제
 
 1. 서버 편집기의 애플리케이션과 서비스팩 탭을 클릭한다.  
     서비스팩 목록에서 삭제할 서비스팩 인스턴스를 선택한 뒤, 마우스
@@ -608,9 +608,9 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     “Cancel” 버튼을 클릭하면 서비스팩 인스턴스 삭제가 취소된다.
 	![](images/openpaas-eclipse/image117.png)
 
-## 매니페스트를 통한 설정
+# 6. 매니페스트를 통한 설정
 
-#### 매니페스트 추가
+### 6.1 매니페스트 추가
 
 1. 프로젝트의 루트에 매니페스트 파일(manifest.yml)을 추가한다.
 	![](images/openpaas-eclipse/image119.png)
@@ -628,7 +628,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 	![](images/openpaas-eclipse/image121.png)
 	![](images/openpaas-eclipse/image131.png)
 
-#### 매니페스트 저장
+### 6.2 매니페스트 저장
 
 배포한 애플리케이션의 배포 설정을 매니페스트 파일(manifest.yml)로 저장할
 수 있다.
@@ -643,7 +643,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     이미 매니페스트 파일(manifest.yml)이 있다면 내용이 변경되었는지 확인한다.
 	![](images/openpaas-eclipse/image119.png)
 
-## 플러그인 설정(REST API 로그 추적 설정)
+# 7. 플러그인 설정(REST API 로그 추적 설정)
 
 1. 플러그인의 설정을 위해 이클립스의 메뉴에서 “Window” – “Preferences”
     를 클릭한다.
@@ -660,13 +660,13 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 	![](images/openpaas-eclipse/image130.png)
 
 
-## 예제 프로젝트 설명
+# 8. 예제 프로젝트 설명
 
 해당 예제는 표준프레임워크 3.1 통합예제를 기준으로 작성하였다.  
 서비스와 어플리케이션이 바인딩된 상태에서 서비스에 어떻게 접근하는지
 예제를 통해 설명한다.
 
-#### 의존성 추가
+### 8.1 의존성 추가
 
 클라우드 플랫폼에서 서비스에 쉽게 접속할 수 있도록 해주는 Spring Cloud
 Connectors를 사용하기 위해 해당 의존성을 추가한다.
@@ -685,7 +685,7 @@ Connectors를 사용하기 위해 해당 의존성을 추가한다.
 <!-- Spring Cloud Connector End -->
 ```
 
-#### cloud 네임스페이스 추가
+### 8.2 cloud 네임스페이스 추가
 
 src/main/resources/egovframework/spring/context-datasource.xml 파일을
 열어 cloud 네임스페이스를 추가한다.
@@ -697,7 +697,7 @@ src/main/resources/egovframework/spring/context-datasource.xml 파일을
 		http://www.springframework.org/schema/cloud http://www.springframework.org/schema/cloud/spring-cloud.xsd">
 ```
   
-#### dataSource 설정 변경
+### 8.3 dataSource 설정 변경
 
 기존의 dataSource 설정을 지우고 새로운 설정을 입력한다.
 
@@ -708,7 +708,7 @@ src/main/resources/egovframework/spring/context-datasource.xml 파일을
 </cloud:data-source>
 ```
 
-#### dataSource 초기화 설정
+### 8.4 dataSource 초기화 설정
 
 애플리케이션 구동시 미리 작성한 SQL 스크립트를 실행하여 DB를 자동으로
 초기화 하도록 설정한다.
@@ -757,7 +757,7 @@ src/main/resources/egovframework/spring/context-datasource.xml 파일을 열어 
 	```
  
 
-#### 배포시 주의사항
+### 8.5 배포시 주의사항
 
 애플리케이션을 배포한다. 배포 방법은 [***애플리케이션 배포***](#애플리케이션-배포)를
 참고한다.

@@ -44,9 +44,9 @@ Java 애플리케이션 개발을 위해 다음과 같은 환경으로 개발환
 
 4. 명령 프롬프트에서 자바 명령어 실행을 위해 시스템 속성의 환경
     변수를 설정한다.
-  ![env var1](images/openpaas-sample-java-connector/image2.jpg)
-  ![env var2](images/openpaas-sample-java-connector/image3.jpg)
-  ![env var3](images/openpaas-sample-java-connector/image4.jpg)
+  ![env var1](images/openpaas-sample-java-connector/image2.jpg)\
+  ![env var2](images/openpaas-sample-java-connector/image3.jpg)\
+  ![env var3](images/openpaas-sample-java-connector/image4.jpg)\
 
 5. 명령 프롬프트에서 “java –version” 명령을 실행하여 설치된 자바 버전이
     정상적으로 출력되는지 확인한다.

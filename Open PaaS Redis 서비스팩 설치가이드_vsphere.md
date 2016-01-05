@@ -144,7 +144,8 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 B
 
 - openpaas-redis-vsphere.yml Deployment 파일을 서버 환경에 맞게 수정한다. (빨간색으로 표시된 부분 특히 주의)
 
-$vi openpaas-redis-vsphere.yml
+>$vi openpaas-redis-vsphere.yml
+
 ```yaml
 # openpaas-redis-vsphere 설정 파일 내용
 name: openpaas-redis-service                       # 서비스 배포이름(필수)

@@ -209,7 +209,7 @@ Network Name은 3.3.2에서 정의한 것과 동일한 이름을 줘야 한다. 
 
 
 ###### 3.3.4 Resource Pools	
-```
+```yml
 resource_pools:
 - name: small      # Resource Name
   cloud_properties:
@@ -277,7 +277,7 @@ Default 값들을 수정 없이 사용한다.
 ###### 3.3.6 Jobs
 
 아래 Sample Jobs를 참고하여 설치 환경에 맞게 수정한다.
-```
+```yml
 jobs:
 - instances: 1# VM Instance 개수
   name: consul
@@ -693,7 +693,7 @@ jobs:
 
 ##### 3.3.7 Properties
 아래 Sample Manifest를 참조하여 설치 환경에 맞게 값을 수정한다.
-```
+```yml
 properties:
   acceptance_tests: null
   app_domains:

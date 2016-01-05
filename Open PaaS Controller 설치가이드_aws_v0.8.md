@@ -1,10 +1,10 @@
 # Table of Contents
 
--	1. [개요](#1-개요)	
+1. [개요](#1-개요)	
 	-	1.1. [문서 목적](#11-문서-목적)	
 	-	1.2. [범위](#12-범위)	
 	-	1.3. [참고자료](#13-참고자료)	
--	2. [Prerequisites](#2-prerequisites)	
+2. [Prerequisites](#2-prerequisites)	
 	-	2.1. [개요](#21-개요)		
 	-	2.2. [AWS](#22-aws)		
 		-	2.2.1. [Dashboard(Console)](#221-dashboad(consol))	
@@ -12,7 +12,7 @@
 	-	2.3. [Bosh Server 및 Bosh CLI](#23-bosh-server-및-bosh-cli)	
 	-	2.4. [DNS Server](#24-dns-server)	
 	-	2.5. [OP CLI](#25-op-cli)	
--	3. [Open PaaS Controller 설치](#3-open-paas-controller-설치)	
+3. [Open PaaS Controller 설치](#3-open-paas-controller-설치)	
 	-	3.1. [Release Upload](#31-release-upload)	
 	-	3.2. [Stemcell Upload](#32-stemcell-upload)		
 	-	3.3. [Deployment Manifest](#33-depoyment-manifest)	

@@ -144,8 +144,8 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 B
 
 - openpaas-redis-vsphere.yml Deployment 파일을 서버 환경에 맞게 수정한다. (빨간색으로 표시된 부분 특히 주의)
 
-<pre>$vi openpaas-redis-vsphere.yml
-
+>$vi openpaas-redis-vsphere.yml
+```yaml
 # openpaas-redis-vsphere 설정 파일 내용
 name: openpaas-redis-service                       # 서비스 배포이름(필수)
 director_uuid: xxxxx#bosh status 에서 확인한 Director UUID을 입력(필수)
@@ -327,7 +327,7 @@ cpu: 2
 stemcell:
     name: bosh-vsphere-esxi-ubuntu-trusty-go_agent#stemcell 이름(필수)
     version: "3016"                                         # stemcell 버전(필수)
-</pre>
+```
 
 - Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 

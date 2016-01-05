@@ -1,7 +1,7 @@
 # Table of Contents
 
 -	1. [개요](#1-개요)	
-	-	1.1. [문서목적](#11-문서목적)	
+	-	1.1. [문서 목적](#11-문서-목적)	
 	-	1.2. [범위](#12-범위)	
 	-	1.3. [참고자료](#13-참고자료)	
 -	2. [Prerequisites](#2-prerequisites)	
@@ -39,7 +39,7 @@
 #### 1.2. 범위
 본 문서의 범위는 Open PaaS Controller를AWS에 설치하기 데 대한 내용으로 한정되어 있다.Sphere/OpenStack과 같은 다른 IaaS 환경에서의 설치는 그에 맞는 가이드 문서를 참고해야 하며, Bosh 설치 또한 해당 가이드 문서를 별도로 참조해야 한다.
 
-#### 1.3. 참고 자료
+#### 1.3. 참고자료
 http://docs.cloudfoundry.org/deploying/aws/  
 https://github.com/cloudfoundry/cf-release
 

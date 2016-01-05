@@ -32,27 +32,29 @@
 
 # 1. 개요
 
-
 ### 1.1. 문서 목적
 본 문서(설치가이드)는, 현 시점에서 지원되는 IaaS(Infrastructure as aService) 중 하나인 AWS 환경에서 Open PaaS Controller를 설치하기 위한 가이드를제공하는데 그 목적이 있다.
 
+
 ### 1.2. 범위
 본 문서의 범위는 Open PaaS Controller를AWS에 설치하기 데 대한 내용으로 한정되어 있다.Sphere/OpenStack과 같은 다른 IaaS 환경에서의 설치는 그에 맞는 가이드 문서를 참고해야 하며, Bosh 설치 또한 해당 가이드 문서를 별도로 참조해야 한다.
+
 
 ### 1.3. 참고자료
 http://docs.cloudfoundry.org/deploying/aws/  
 https://github.com/cloudfoundry/cf-release
 
- 
+
 # 2. Prerequisites
+
 ### 2.1. 개요
 Open PaaS Controller를 설치하기 전에 IaaS(AWS) 환경이 정상적으로 구성되어 있고, Bosh Server와 Bosh/OP CLI가 설치되어 있는지를 확인해야 한다.
 
 ### 2.2. AWS
+
 #### 2.2.1. Dashboard(Console)
 
 ### [그림1]
- 
 [그림출처]: Open PaaS 사업단 개발환경
 
 AWS Dashboard(Console)으로 정상 접속되어야 하고, Open PaaS Controller가 설치될 Subnet이 구성되어 있어야 한다. 별도 Subnet 은 필수적인 구성은 아니나, 관리의 용이성을 위해서 사용하는 것을 권장한다.
@@ -64,7 +66,6 @@ SSH, HTTP, HTTPS, DNS Protocol을 받을 수 있고, 모든 통신 Protocol을 �
 ### [그림3]
 ### [그림4]
 
-
 #### 2.3. Bosh Server 및 Bosh CLI
 
 ### [그림5]
@@ -74,7 +75,6 @@ SSH, HTTP, HTTPS, DNS Protocol을 받을 수 있고, 모든 통신 Protocol을 �
 
 ### 2.4. DNS Server
 Open PaaS Controller는 독자적인 Zone을 DNS에 등록해야 한다. 사용 가능한 DNS Server가 존재하지 않는다면, VM 등에 별도로 구축하여야 한다. 예를 들어 Linux의 경우에는 bind9 Package를 설치하고 아래와 같이 Platform Zone을 등록한다.
-
 
 /etc/bind/named.conf.local
 ```
@@ -166,99 +166,107 @@ Bosh Sever에 Stemcell이 정상적으로 Upload 되었는지는 “bosh stemcel
 배포된 설치 패키지에 포함된 Sample Deployment Manifest File($INSTALL_PACKAGE/OpenPaaS-Deployment/openpaas-controller-aws-1.0.yml)을 아래의 순서대로 설치환경에 적합하게 수정한다.
 
 #### 3.3.1 Name & Release
-```yml
-name: openpaas-controller-1.0 # Deployment Name
-director_uuid: 3d139c62-6669-4804-adb0-990b16446c37# Bosh Director UUID
-releases:
-- name: openpaas-controller # BoshRelease Name
-  version: latest# BoshRelease Version
+```yml 
+name: openpaas-controller   # Deployment Name
+director_uuid: 3d139c62-6669-4804-adb0-990b16446c37
+releases:               # BoshRelease Name
+- name: openpaas-controller
+  version: latest      # BoshRelease Version
 ```
 Deployment Name은 설치자가 임의로 부여하는데, IaaS와 Version을 표시할 것을 권장한다. Bosh Director UUID는 “bosh status” 명령을 실행하면 출력되는 UUID 값을 넣고, Release Name과 Version은 “bosh releases” 명령의 결과로 나오는 값들을 입력하도록 한다.
 
 #### 3.3.2 Networks		
-```yml
+```yml  
 networks:
-- name: op_network  # Open PaaS Controller가 설치될 Network Name
+- name: op_network     # Open PaaS Controller가 설치될 Network Name
   subnets:
   - cloud_properties:
-subnet: subnet-71ff185b  # AWS Subnet ID
-security_groups:
-- cf-security
-     - bosh
+      subnet: subnet-71ff185b    # AWS Subnet ID
+      security_groups:
+      - cf-security
+      - bosh-security
     dns:
-    - 10.0.0.6  # DNS Server
+    - 10.0.0.6           # DNS Server
     - 8.8.8.8
-    gateway: 10.0.16.1  # Gateway IP Address
-    name: default_unused
-    range: 10.0.16.0/24  # Network CIDR
+    gateway: 10.0.16.1        # Gateway IP Address
+    range: 10.0.16.0/24     # Network CIDR
     reserved:
-- 10.0.16.2 - 10.0.16.9
-static:
-    - 10.0.16.10 - 10.0.16.40  # VM에 할당될 Static IP 주소 대역
+    - 10.0.16.2 - 10.0.16.9
+    static:
+    - 10.0.16.10 - 10.0.16.40   # VM에 할당될 Static IP 주소 대역
   type: manual
+- name: op_public_network
+  type: vip
+  cloud_properties: {}
 ```
 Network Name은 설치자가 임의로 부여 가능하다. Neutron Subnet ID, Gateway, DNS Server, Network CIDR은 AWS 구성을 직접 확인하거나 인프라 담당자에게 문의하여 정보를 얻도록 한다. Static IP 주소는 Open PaaS Controller를 설치할 때 개별 VM에 할당될 IP의 주소 대역으로 마찬가지로 인프라 담당자에게 할당을 받아야 한다.
 
 #### 3.3.3 Compilation	
 ```yml
 compilation:
-  cloud_properties:    # Compile용 VM의 사양
-instance_type: m1.medium
-  network: op_network    # Network Name
+  cloud_properties:      # Compile용 VM의 사양
+    instance_type: m1.medium
+  network: op_network      # Network Name
   reuse_compilation_vms: true
-  workers: 6    # 동시 동작하는 VM 수
+  workers: 6         # 동시 동작하는 VM 수
 ```
 Network Name은 3.3.2에서 정의한 것과 동일한 이름을 줘야 한다. Workers는 동시에 Compile을 수행하는 VM의 개수로 별다른 환경적 특성이 없다면 Default 값을 사용토록 한다.
 
 
 #### 3.3.4 Resource Pools	
 ```yml
-resource_pools:
-- name: small      # Resource Name
-  cloud_properties:
-instance_type: m1.small
-env:
-    bosh:
-      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0 network: op_network        # Network Name
-  stemcell:
-    name: bosh-aws-xen-ubuntu-trusty-go_agent       # Stemcell Name
-    version: 3147       # Stemcell Version
-- name: medium
-  cloud_properties:
-instance_type: m1.medium
-  env:
+resource_pools:      # Resource Name
+- cloud_properties:
+    instance_type: m1.small
+  env: $6$mwZOg/kA$r64mds4/xoqhW2tR8ck7oxmhqGiCBsDS5SWW/j8vgahvpdHkKJrb25/Wc2..CT3ja02qLgh0JB60RTP2ndjAh0
     bosh:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
+  name: small
+  network: op_network             # Network Name
+  stemcell:
+    name: bosh-aws-xen-ubuntu-trusty-go_agent             # Stemcell Name
+    version: 3147           # Stemcell Version
+
+- cloud_properties:
+    instance_type: m1.small
+  env: $6$mwZOg/kA$r64mds4/xoqhW2tR8ck7oxmhqGiCBsDS5SWW/j8vgahvpdHkKJrb25/Wc2..CT3ja02qLgh0JB60RTP2ndjAh0
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
+  name: medium
   network: op_network
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: 3147
-- name: large
-  cloud_properties:
-instance_type: m1.large
-  env:
+
+- cloud_properties:
+    #instance_type: t2.large
+    instance_type: m1.small
+  env: $6$mwZOg/kA$r64mds4/xoqhW2tR8ck7oxmhqGiCBsDS5SWW/j8vgahvpdHkKJrb25/Wc2..CT3ja02qLgh0JB60RTP2ndjAh0
     bosh:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
+  name: large
   network: op_network
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: 3147
-- name: runner
-  cloud_properties:
-instance_type: m1.large
-  env:
+
+- cloud_properties:
+    instance_type: m1.medium
+  env: $6$mwZOg/kA$r64mds4/xoqhW2tR8ck7oxmhqGiCBsDS5SWW/j8vgahvpdHkKJrb25/Wc2..CT3ja02qLgh0JB60RTP2ndjAh0
     bosh:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
+  name: runner
   network: op_network
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: 3147
-- name: router
-  cloud_properties:
-instance_type: m1.medium
-  env:
+
+- cloud_properties:
+    instance_type: m1.small
+  env: $6$mwZOg/kA$r64mds4/xoqhW2tR8ck7oxmhqGiCBsDS5SWW/j8vgahvpdHkKJrb25/Wc2..CT3ja02qLgh0JB60RTP2ndjAh0
     bosh:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
+  name: router
   network: op_network
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
@@ -266,13 +274,14 @@ instance_type: m1.medium
 ```
 Stemcell Name과 Version은 “bosh stemcells” 명령어 결과로 출력되는 값들을 입력하도록 한다.
 
+
 #### 3.3.5 Update
 ```yml
 update:
   canaries: 1
   canary_watch_time: 30000-600000
   max_in_flight: 1
-  serial: true	    # VM의 순차적 Update
+  serial: true     # VM의 순차적 Update
   update_watch_time: 5000-600000
 ```
 Default 값들을 수정 없이 사용한다.
@@ -282,12 +291,12 @@ Default 값들을 수정 없이 사용한다.
 아래 Sample Jobs를 참고하여 설치 환경에 맞게 수정한다.
 ```yml
 jobs:
-- instances: 1             # VM Instance 개수
+- instances: 1       # VM Instance 개수
   name: consul
   networks:
   - name: op_network      # VM이 설치될 Network
     static_ips:
-    - 10.0.16.16          # Consul에 할당된 IP 주소
+    - 10.0.16.16         # Consul에 할당된 IP 주소
   persistent_disk: 1024
   properties:
     consul:
@@ -309,10 +318,14 @@ jobs:
   instances: 1
   networks:
   - name: op_network
-    static_ips: 10.0.16.13      # HAProxy IP 주소
+    default: [dns, gateway]
+    static_ips: 10.0.16.13     # HAProxy IP 주소
+  - name: op_public_network
+    static_ips: 52.71.64.39
   properties:
     ha_proxy:
-      ssl_pem: |                # SSL Key
+      # SSL Key
+      ssl_pem: |
         -----BEGIN CERTIFICATE-----
         MIICzTCCAjYCCQC4Lzsbx+krOjANBgkqhkiG9w0BAQsFADCBqjELMAkGA1UEBhMC
         S1IxDjAMBgNVBAgMBVNlb3VsMQ8wDQYDVQQHDAZKb25nUm8xEjAQBgNVBAoMCW9w
@@ -353,8 +366,8 @@ jobs:
       apps: op_network
     router:
       servers:
-        z1:
-        - 10.0.16.15            # Router IP 주소
+        z1: 
+        - 10.0.16.15    # Router IP 주소
   resource_pool: router
   templates:
   - name: haproxy
@@ -368,7 +381,7 @@ jobs:
   name: nats
   networks:
   - name: op_network
-    static_ips: 10.0.16.11       # NATS IP 주소
+    static_ips: 10.0.16.11      # NATS IP 주소
   properties:
     metron_agent:
       zone: z1
@@ -389,7 +402,7 @@ jobs:
   networks:
   - name: op_network
     static_ips:
-    - 10.0.16.24# ETCD IP 주소
+    - 10.0.16.24      # ETCD IP 주소
   persistent_disk: 10024
   properties:
     metron_agent:
@@ -413,7 +426,7 @@ jobs:
   networks:
   - name: op_network
     static_ips:
-    - 10.0.16.31                # Stats(Collector) IP 주소
+    - 10.0.16.31     # Stats(Collector) IP 주소
   properties:
     metron_agent:
       zone: z1
@@ -432,7 +445,7 @@ jobs:
   name: nfs
   networks:
   - name: op_network
-    static_ips: 10.0.16/24        # NFS Server IP 주소
+    static_ips: 10.0.16.12      # NFS Server IP 주소
   persistent_disk: 102400
   properties:
     metron_agent:
@@ -452,7 +465,7 @@ jobs:
   name: postgres
   networks:
   - name: op_network
-    static_ips: 10.0.16.22        # DB Server(PostgreSQL) IP 주소
+    static_ips: 10.0.16.22      # DB Server(PostgreSQL) IP 주소
   persistent_disk: 4096
   properties:
     metron_agent:
@@ -472,7 +485,7 @@ jobs:
   name: uaa
   networks:
   - name: op_network
-    static_ips: 10.0.16.32       # UAA IP 주소
+    static_ips: 10.0.16.32     # UAA IP 주소
   properties:
     consul:
       agent:
@@ -496,7 +509,7 @@ jobs:
         - '*.login.controller.open-paas.com'
     uaa:
       proxy:
-        servers:
+        servers: 
         - 10.0.16.15
   resource_pool: medium
   templates:
@@ -516,7 +529,7 @@ jobs:
   name: api
   networks:
   - name: op_network
-    static_ips: 10.0.16.33       # Cloud Controller IP 주소
+    static_ips: 10.0.16.33     # Cloud Controller IP 주소
   persistent_disk: 8192
   properties:
     consul:
@@ -530,9 +543,9 @@ jobs:
     networks:
       apps: op_network
     nfs_server:
-      address: 10.0.16.12        # NFS Server IP 주소
+      address: 10.0.16.12       # NFS Server IP 주소
       allow_from_entries:
-      - 10.0.16.0/24            # 허용 Network CIDR 값
+      - 10.0.16.0/24             # 허용 Network CIDR 값
       share: null
     route_registrar:
       routes:
@@ -567,7 +580,7 @@ jobs:
   name: clock_global
   networks:
   - name: op_network
-    static_ips: 10.0.16.34           # Cloud Controller Clock IP 주소
+    static_ips: 10.0.16.34       # Cloud Controller Clock IP 주소
   persistent_disk: 4096
   properties:
     metron_agent:
@@ -587,7 +600,7 @@ jobs:
   name: api_worker
   networks:
   - name: op_network
-    static_ips: 10.0.16.35         # CC Worker IP 주소
+    static_ips: 10.0.16.35          # CC Worker IP 주소
   persistent_disk: 0
   properties:
     metron_agent:
@@ -596,9 +609,9 @@ jobs:
     networks:
       apps: op_network
     nfs_server:
-      address: 10.0.16.12         # NFS Server IP 주소
+      address: 10.0.16.12          # NFS Server IP 주소
       allow_from_entries:
-      - 10.0.16.0/24            # 허용 Network CIDR 값
+      - 10.0.16.0/24              # 허용 Network CIDR 값
       share: null
   resource_pool: small
   templates:
@@ -612,11 +625,85 @@ jobs:
     release: openpaas-controller
   update: {}
 
+- instances: 0
+  name: hm9000
+  networks:
+  - name: op_network
+    #static_ips: 10.0.16.36     
+  properties:
+    metron_agent:
+      zone: z1
+      deployment: openpaas-controller
+    networks:
+      apps: op_network
+    route_registrar:
+      routes:
+      - name: hm9000
+        port: 5155
+        tags:
+          component: HM9K
+        uris:
+        - hm9000.controller.open-paas.com
+  resource_pool: medium
+  templates:
+  - name: hm9000
+    release: openpaas-controller
+  - name: metron_agent
+    release: openpaas-controller
+  - name: route_registrar
+    release: openpaas-controller
+  update: {}
+
+- instances: 0
+  name: runner
+  networks:
+  - name: op_network
+    #static_ips: 10.0.16.37
+  properties:
+    dea_next:
+      zone: z1
+    metron_agent:
+      zone: z1
+      deployment: openpaas-controller
+    networks:
+      apps: op_network
+  resource_pool: runner
+  templates:
+  - name: dea_next
+    release: openpaas-controller
+  - name: dea_logging_agent
+    release: openpaas-controller
+  - name: metron_agent
+    release: openpaas-controller
+  update:
+    max_in_flight: 1
+
+- instances: 0
+  name: loggregator
+  networks:
+  - name: op_network
+  properties:
+    doppler:
+      zone: z1
+    metron_agent:
+      zone: z1
+    doppler_endpoint:
+      shared_secret: admin
+  resource_pool: medium
+  templates:
+  - name: doppler
+    release: openpaas-controller
+  - name: syslog_drain_binder
+    release: openpaas-controller
+  - name: metron_agent
+    release: openpaas-controller
+  update: {}
+
 - instances: 1
   name: doppler
   networks:
   - name: op_network
-    static_ips: 10.0.16.38          # Doppler IP 주소
+    static_ips: 10.0.16.38        # Doppler IP 주소
   properties:
     doppler:
       zone: z1
@@ -639,7 +726,7 @@ jobs:
   name: loggregator_trafficcontroller
   networks:
   - name: op_network
-    static_ips: 10.0.16.39        # Loggregator Controller IP 주소
+    static_ips: 10.0.16.39         # Loggregator Controller IP 주소
   properties:
     metron_agent:
       zone: z1
@@ -672,7 +759,7 @@ jobs:
   name: router
   networks:
   - name: op_network
-    static_ips: 10.0.16.15        # Router IP 주소
+    static_ips: 10.0.16.15          # Router IP 주소
   properties:
     consul:
       agent:
@@ -692,6 +779,7 @@ jobs:
   - name: consul_agent
     release: openpaas-controller
   update: {}
+
 ```
 
 #### 3.3.7 Properties
@@ -700,11 +788,11 @@ jobs:
 properties:
   acceptance_tests: null
   app_domains:
-  - controller.open-paas.com     # DNS Server에 등록된 Platform Domain Name
-  app_ssh:# App에 ssh 로 접근하기 위한 정보
+  - controller.open-paas.com      # DNS Server에 등록된 Platform Domain Name
+  app_ssh:            # App에 ssh 로 접근하기 위한 정보  
    host_key_fingerprint: 89:d3:73:01:f3:10:c4:a7:87:53:54:31:63:ee:ef:51
    oauth_client_id: ssh-proxy
-  cc:         # 여기서부터 Cloud Controller Properties
+  cc:           # 여기서부터 Cloud Controller Properties
     allow_app_ssh_access: true
     allowed_cors_domains: []
     app_events:
@@ -722,9 +810,10 @@ properties:
       fog_connection:
         local_root: /var/vcap/store
         provider: Local
-    bulk_api_password: admin       # Bulk API Password 설정
+    bulk_api_password: admin        # Bulk API Password 설정
     client_max_body_size: 2048M
-    db_encryption_key: db-encryption-key       # DB Encryprion Key 지정
+    #db_encryption_key: admin
+    db_encryption_key: db-encryption-key      # DB Encryprion Key 지정
     db_logging_level: debug2
     default_app_disk_in_mb: 1024
     default_app_memory: 1024
@@ -875,11 +964,11 @@ properties:
       rules:
       - destination: 10.0.16.0/24
         protocol: all
-service_usage_events:
+    service_usage_events:
       cutoff_age_in_days: 31
-    srv_api_uri: https://api.controller.open-paas.com       # Platform API Target URL
+    srv_api_uri: https://api.controller.open-paas.com     # Platform API Target URL
     stacks: null
-    staging_upload_password: admin                      # Staging Upload Password
+    staging_upload_password: admin                     # Staging Upload Password
     staging_upload_user: staging_upload_user
     system_buildpacks:
     - name: java_buildpack_offline
@@ -914,7 +1003,7 @@ service_usage_events:
     user_buildpacks: []
     users_can_select_backend: false
   ccdb:
-    address: 10.0.16.22             # DB Server(PostgreSQL) VM IP 주소
+    address: 10.0.16.22         # DB Server(PostgreSQL) VM IP 주소
     databases:
     - citext: true
       name: ccdb
@@ -923,7 +1012,7 @@ service_usage_events:
     port: 5524
     roles:
     - name: ccadmin
-      password: admin              # ccadmin 계정 Password
+      password: admin       # ccadmin 계정 Password
       tag: admin
   collector: null
   consul:
@@ -931,8 +1020,9 @@ service_usage_events:
       log_level: null
       servers:
         lan:
-        - 10.0.16.16             # Consul VM IP 주소
-    agent_cert: |                # Consul agent cert 키 값
+        - 10.0.16.16         # Consul VM IP 주소
+    # Consul agent cert 키 값
+    agent_cert: |
      -----BEGIN CERTIFICATE-----
      MIIEIjCCAgygAwIBAgIRANVNoOk6A4WIpnRmprN6Ft4wCwYJKoZIhvcNAQELMBMx
      ETAPBgNVBAMTCGNvbnN1bENBMB4XDTE1MTIxNjA3MjcyN1oXDTE3MTIxNjA3Mjcy
@@ -958,7 +1048,8 @@ service_usage_events:
      mq6LVQrV5B7yxf4ul3MfOq/HV2eMzyH6uiKXIuwrFU7poUyn4EdXfUHB5Imjlx46
      ZGkvJ5oM
      -----END CERTIFICATE-----
-    agent_key: |                  # Consul agent 키 값
+    # Consul agent 키 값
+    agent_key: |
      -----BEGIN RSA PRIVATE KEY-----
      MIIEpQIBAAKCAQEAvJSw9vW2VCtTbMQ02SQ9H+XpJOA6Pm5B/qsWFFc7YePp2FRg
      CUFO48/SOhKJ99GxdC2io91jmicTMUyHpHjbreohpRlxBpXxlKevPQHY8jVZ1MQ2
@@ -986,7 +1077,8 @@ service_usage_events:
      CYFJNfdEv/K3AmZH/0hSVuYXhzvdotpWhHvdtmH/YT1bkeoYF5NULyB4VyKOnpyR
      MS/cy+MIiSuLeKK8dNRy62t5Ugo+mgaxuNt3nTlGW0pIathZ9BZJ4Kc=
      -----END RSA PRIVATE KEY-----
-    ca_cert: |                   # Consul ca cert 키 값
+    # Consul ca cert 키 값
+    ca_cert: |
      -----BEGIN CERTIFICATE-----
      MIIFAzCCAu2gAwIBAgIBATALBgkqhkiG9w0BAQswEzERMA8GA1UEAxMIY29uc3Vs
      Q0EwHhcNMTUxMjE2MDcyNzA2WhcNMjUxMjE2MDcyNzI1WjATMREwDwYDVQQDEwhj
@@ -1016,10 +1108,12 @@ service_usage_events:
      3LeZoWKxn2G0f9ZL0SasOyU+uLtGSQLpavW22CVwDPvWrxj5BpG3Ulddgh/ysIwN
      4PFVkjXsY1Ca5mC7mMu0+XSaALaNlXlJ7GuRmf+CU2sWCQOxGvp+
      -----END CERTIFICATE-----
-    encrypt_keys:                # Consul encrypt 키 값
+    # Consul encrypt 키 값
+    encrypt_keys: 
      - t66mLrBhJ5kpofLwoJpH5A==
-    require_ssl: true# Consul ssl 접속 여부
-    server_cert: |                # Consul server cert 키 값
+    require_ssl: true    # Consul ssl 접속 여부
+    # Consul server cert 키 값
+    server_cert: |
      -----BEGIN CERTIFICATE-----
      MIIEKzCCAhWgAwIBAgIQMkaGpfb7hSNQcutiGf4ERjALBgkqhkiG9w0BAQswEzER
      MA8GA1UEAxMIY29uc3VsQ0EwHhcNMTUxMjE2MDcyNzI2WhcNMTcxMjE2MDcyNzI3
@@ -1045,7 +1139,8 @@ service_usage_events:
      aMgvXar2LxBuM7JWCorYzztm5sv4NJSjxjDkkybwOImTxZkpLZb2j58TdXQiE1v+
      fns7uQ9yHVtyl941hRlf
      -----END CERTIFICATE-----
-    server_key: |                # Consul server 키 값
+    # Consul server 키 값
+    server_key: |
      -----BEGIN RSA PRIVATE KEY-----
      MIIEowIBAAKCAQEAqZvu3TU4dQeh4veVGti3hhYP/7YCbKI8y7q6Qyz7FCvQJSsD
      0bUXnG6+U7tNHOTRNdBTnQrmZFeWoXXGscqZLwSRnTlG6q28BfwcimMbnqM1xz/1
@@ -1075,7 +1170,7 @@ service_usage_events:
      -----END RSA PRIVATE KEY-----
   databases:
     additional_config: null
-    address: 10.0.16.22            # DB Server VM IP 주소
+    address: 10.0.16.22       # DB Server VM IP 주소
     collect_statement_statistics: null
     databases:
     - citext: true
@@ -1116,35 +1211,37 @@ service_usage_events:
     staging_disk_inode_limit: 200000
     staging_disk_limit_mb: 6144
     staging_memory_limit_mb: 1024
-  description: Open PaaS sponsored by OCP Team
+  description: Open PaaS sponsored by OCP Team 
   disk_quota_enabled: false
-  domain: controller.open-paas.com
+  domain: controller.open-paas.com 
   doppler:
     blacklisted_syslog_ranges: null
     debug: false
     enable_tls_transport: null
     maxRetainedLogMessages: 100
-    port: 4443              # Doppler port 번호
+    port: 4443          # Doppler port 번호
     tls_server:
       cert: null
       key: null
       port: null
     unmarshaller_count: 5
   doppler_endpoint:
-    shared_secret: admin# Doppler Endpoint Password
+    shared_secret: admin       # Doppler Endpoint Password
   dropsonde:
     enabled: true
   etcd:
     machines:
-    - 10.0.16.24             # etcd VM IP 주소
+    - 10.0.16.24              # etcd VM IP 주소
+    #- 10.30.40.25
     peer_require_ssl: false
     require_ssl: false
   etcd_metrics_server:
     nats:
-      machines:
-      - 10.0.16.11           # NATS Server VM IP 주소
+      machines: 
+      - 10.0.16.11             # NATS Server VM IP 주소
       password: admin
       username: nats
+  #ha_proxy: null
   hm9000:
     url: https://hm9000.controller.open-paas.com
   logger_endpoint:
@@ -1201,10 +1298,10 @@ service_usage_events:
   metron_endpoint:
     shared_secret: admin
   nats:
-    address: 10.0.16.11          # NATS Server VM IP 주소
+    address: 10.0.16.11           # NATS Server VM IP 주소
     debug: false
-    machines:
-    - 10.0.16.11                # NATS Server VM IP 주소
+    machines: 
+    - 10.0.16.11               # NATS Server VM IP 주소
     monitor_port: 4221
     password: admin
     port: 4222
@@ -1214,7 +1311,7 @@ service_usage_events:
   nfs_server:
     address: null
     allow_from_entries:
-    - 10.0.16.0/24             # NFS Mount 허용 Range 지정
+    - 10.0.16.0/24            # NFS Mount 허용 Range 지정
     share: null
   request_timeout_in_seconds: 900
   router:
@@ -1241,13 +1338,13 @@ service_usage_events:
     skip_cert_verify: true
   support_address: http://support.cloudfoundry.com
   syslog_daemon_config: null
-  system_domain: controller.open-paas.com       # DNS Server에 등록한 Platform Domain Name
+  system_domain: controller.open-paas.com    # DNS Server에 등록한 Platform Domain Name
   system_domain_organization: OCP
   traffic_controller:
     outgoing_port: 8080
   uaa:
     admin:
-      client_secret: admin                    # admin 계정 Password
+      client_secret: admin               # admin 계정 Password
     authentication:
       policy:
         countFailuresWithinSeconds: null
@@ -1339,14 +1436,13 @@ service_usage_events:
       groups: null
       userids_enabled: true
       users:
-                  #-admin|admin|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose,routing.router_groups.read,dashboard.user,console.admin,console.support
        - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose,routing.router_groups.read
     spring_profiles: null
     url: https://uaa.controller.open-paas.com
     user: null
     zones: null
   uaadb:
-    address: 10.0.16.22# DB Server VM IP 주소
+    address: 10.0.16.22           # DB Server VM IP 주소
     databases:
     - citext: true
       name: uaadb
@@ -1357,10 +1453,12 @@ service_usage_events:
     - name: uaaadmin
       password: admin
       tag: admin
+
 ```
 
 ### 3.4 Bosh Deploy
 지금까지 설치를 위한 준비 과정이 정상적으로 수행되었으면, 지금부터 Open PaaS Controller를 IaaS 환경(AWS)에 아래의 절차로 설치한다.
+
 #### 3.4.1 Deployment Manifest 지정
 `bosh deployment openpaas-controller-aws-1.0.yml`
 

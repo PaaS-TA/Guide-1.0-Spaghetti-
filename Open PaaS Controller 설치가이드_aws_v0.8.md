@@ -30,13 +30,8 @@
 
 
 
-
-
-
-
-
 ## 1.	개요
----
+
 
 #### 1.1.	문서 목적
 본 문서(설치가이드)는, 현 시점에서 지원되는 IaaS(Infrastructure as aService) 중 하나인 AWS 환경에서 Open PaaS Controller를 설치하기 위한 가이드를제공하는데 그 목적이 있다.
@@ -56,35 +51,44 @@ Open PaaS Controller를 설치하기 전에 IaaS(AWS) 환경이 정상적으로 
 #### 2.2.	AWS
 ##### 2.2.1.	Dashboard(Console)
  
-[그림출처]: Open PaaS 사업단 개발환경
+### [그림출처]: Open PaaS 사업단 개발환경
 
 AWS Dashboard(Console)으로 정상 접속되어야 하고, Open PaaS Controller가 설치될 Subnet이 구성되어 있어야 한다. 별도 Subnet 은 필수적인 구성은 아니나, 관리의 용이성을 위해서 사용하는 것을 권장한다.
-##### 2.2.2 Security Group
-   
 
+##### 2.2.2. Security Group
 SSH, HTTP, HTTPS, DNS Protocol을 받을 수 있고, 모든 통신 Protocol을 엑세스 할 수 있도록 Security Group을 설정한다.(주의: 내부 네트워크 구간에서는 모든 Procotol이 사용 가능하도록 구성해야 한다.)
+
+### [그림]
+### [그림]
+### [그림]
+
+
 #### 2.3.	Bosh Server 및 Bosh CLI
  
-[그림출처]: Open PaaS 사업단 개발환경
+### [그림출처]: Open PaaS 사업단 개발환경
 
 “bosh status” 명령을 실행하여 위와 같이 정상적으로 출력되는 지를 확인한다. 만약 문제 발생 시에는 Bosh 설치가이드를 참조하여 정상적으로 Bosh 환경을 구성한 후 이후 작업을 진행한다.
 
-#### 2.4 DNS Server
-	Open PaaS Controller는 독자적인 Zone을 DNS에 등록해야 한다. 사용 가능한 DNS Server가 존재하지 않는다면, VM 등에 별도로 구축하여야 한다. 예를 들어 Linux의 경우에는 bind9 Package를 설치하고 아래와 같이 Platform Zone을 등록한다.
+#### 2.4. DNS Server
+Open PaaS Controller는 독자적인 Zone을 DNS에 등록해야 한다. 사용 가능한 DNS Server가 존재하지 않는다면, VM 등에 별도로 구축하여야 한다. 예를 들어 Linux의 경우에는 bind9 Package를 설치하고 아래와 같이 Platform Zone을 등록한다.
 
-	/etc/bind/named.conf.local	
+
+/etc/bind/named.conf.local
+```
 zone "controller.open-paas.com" {
         type master;
         file "/etc/bind/db.controller.open-paas.com";
 };
+```
 
-
-/etc/resolv.conf  파일 수정 	
+/etc/resolv.conf  파일 수정
+```
 nameserver 10.0.0.6
 nameserver 8.8.8.8
+```
 
-
-	/etc/bind/db.controller.open-paas.com
+/etc/bind/db.controller.open-paas.com
+```
 ;
 ; BIND data file for local loopback interface
 ;
@@ -99,95 +103,123 @@ $TTL    604800
 @       IN      NS      ns.controller.open-paas.com.
 *       IN      A       10.0.16.13# HA Proxy VM IP 주소
 @       IN      AAAA    ::1
+```
 
-	NSLOOKUP 등으로 DNS Server에 Platform Domain이 정상 등록 되었는지 확인한다.
-	 
-#### 2.5 OP CLI
-	Open PaaS 설치 패키지 내에 포함되어 있는 OP CLI 압축 파일을 풀고 명령어 Path Folder에 실행 파일을 복사한다.
-sudo tar -xvzf$INSTALL_PACKAGE/OpenPaaS-Dev-Tools/op-CLI/cf-linux-amd64.tgz
-sudo cp cf /usr/bin
+NSLOOKUP 등으로 DNS Server에 Platform Domain이 정상 등록 되었는지 확인한다.
 
-	“cf” 명령어를 입력하면 아래와 같은 Help 화면이 출력됨을 확인한다.
+### [그림]
+
+#### 2.5. OP CLI
+
+Open PaaS 설치 패키지 내에 포함되어 있는 OP CLI 압축 파일을 풀고 명령어 Path Folder에 실행 파일을 복사한다.
+
+`sudo tar -xvzf$INSTALL_PACKAGE/OpenPaaS-Dev-Tools/op-CLI/cf-linux-amd64.tgz`
+
+`sudo cp cf /usr/bin`
+
+“cf” 명령어를 입력하면 아래와 같은 Help 화면이 출력됨을 확인한다.
+
+### [그림]
  
- 
+
 ## 3.	Open PaaS Controller 설치
 #### 3.1	Release Upload
 배포된 설치 패키지의 OpenPaaS-Controller 폴더에 있는 Open PaaS Controller Bosh Release를 Bosh Server로 아래와 같은 명령으로 1.0 버전을 Upload 한다.
-bosh upload release $INSTALL_PACKAGE/OpenPaaS-Controller/openpaas-controller-1.0.tgz
+`bosh upload release $INSTALL_PACKAGE/OpenPaaS-Controller/openpaas-controller-1.0.tgz`
+
 
 Release Upload는 상황에 따라 다소 차이는 있으나 보통 20-30분 정도 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.
- 
+
+### [그림]
 
 [주의] Release Upload 과정에서 작업장비의 “/tmp” 폴더의 사이즈가 작을 경우 압축파일을 풀거나 묶을 때 에러가 발생할 수 있으므로, 10GB 이상 Free Size가 있는지를 확인해야 한다.
 
 Bosh Sever에 Release가 정상적으로 Upload 되었는지는 “bosh releases” 명령으로 확인한다.
-bosh releases
 
- 
+`bosh releases`
+
+### [그림]
+
 
 #### 3.2	Stemcell Upload
 배포된 설치 패키지의 OpenPaaS-Stemcells 폴더에 있는 Open PaaS AWS용 Stemcell 을 Bosh Server로 아래와 같은 명령으로 3147 Version을 Upload 한다.
-bosh upload stemcell$INSALL_PACKAGE/OpenPaaS-Stemcells/bosh-stemcell-3147-aws-xen-ubuntu-trusty-go_agent.tgz
+
+`bosh upload stemcell$INSALL_PACKAGE/OpenPaaS-Stemcells/bosh-stemcell-3147-aws-xen-ubuntu-trusty-go_agent.tgz`
 
 Stemcell Upload는 상황에 따라 다소 차이는 있으나 보통 5-10분 정도 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.
- 
+
+### [그림]
 
 [주의] Stemcell Upload 과정에서 작업장비의 “/tmp” 폴더의 사이즈가 작을 경우 압축파일을 풀거나 묶을 때 에러가 발생할 수 있으므로, 10GB 이상 Free Size가 있는지를 확인해야 한다.
 
 Bosh Sever에 Stemcell이 정상적으로 Upload 되었는지는 “bosh stemcells” 명령으로 확인한다.
-bosh stemcells
 
+`bosh stemcells`
  
+### [그림]
+
 
 #### 3.3	Deployment Manifest
 배포된 설치 패키지에 포함된 Sample Deployment Manifest File($INSTALL_PACKAGE/OpenPaaS-Deployment/openpaas-controller-aws-1.0.yml)을 아래의 순서대로 설치환경에 적합하게 수정한다.
+
 ###### 3.3.1 Name & Release
-name: openpaas-controller-1.0# Deployment Name
+```yml
+name: openpaas-controller-1.0 # Deployment Name
 director_uuid: 3d139c62-6669-4804-adb0-990b16446c37# Bosh Director UUID
 releases:
-- name: openpaas-controller# BoshRelease Name
+- name: openpaas-controller # BoshRelease Name
   version: latest# BoshRelease Version
+```
 Deployment Name은 설치자가 임의로 부여하는데, IaaS와 Version을 표시할 것을 권장한다. Bosh Director UUID는 “bosh status” 명령을 실행하면 출력되는 UUID 값을 넣고, Release Name과 Version은 “bosh releases” 명령의 결과로 나오는 값들을 입력하도록 한다.
+
 ##### 3.3.2 Networks		
+```yml
 networks:
-- name: op_network# Open PaaS Controller가 설치될 Network Name
+- name: op_network  # Open PaaS Controller가 설치될 Network Name
   subnets:
   - cloud_properties:
-subnet: subnet-71ff185b# AWS Subnet ID
+subnet: subnet-71ff185b  # AWS Subnet ID
 security_groups:
 - cf-security
      - bosh
     dns:
-    - 10.0.0.6# DNS Server
+    - 10.0.0.6  # DNS Server
     - 8.8.8.8
-    gateway: 10.0.16.1# Gateway IP Address
+    gateway: 10.0.16.1  # Gateway IP Address
     name: default_unused
-    range: 10.0.16.0/24# Network CIDR
+    range: 10.0.16.0/24  # Network CIDR
     reserved:
 - 10.0.16.2 - 10.0.16.9
 static:
-    - 10.0.16.10 - 10.0.16.40# VM에 할당될 Static IP 주소 대역
+    - 10.0.16.10 - 10.0.16.40  # VM에 할당될 Static IP 주소 대역
   type: manual
-	Network Name은 설치자가 임의로 부여 가능하다. Neutron Subnet ID, Gateway, DNS Server, Network CIDR은 AWS 구성을 직접 확인하거나 인프라 담당자에게 문의하여 정보를 얻도록 한다. Static IP 주소는 Open PaaS Controller를 설치할 때 개별 VM에 할당될 IP의 주소 대역으로 마찬가지로 인프라 담당자에게 할당을 받아야 한다.
+```
+Network Name은 설치자가 임의로 부여 가능하다. Neutron Subnet ID, Gateway, DNS Server, Network CIDR은 AWS 구성을 직접 확인하거나 인프라 담당자에게 문의하여 정보를 얻도록 한다. Static IP 주소는 Open PaaS Controller를 설치할 때 개별 VM에 할당될 IP의 주소 대역으로 마찬가지로 인프라 담당자에게 할당을 받아야 한다.
+
 ##### 3.3.3 Compilation	
+```
 compilation:
-  cloud_properties:# Compile용 VM의 사양
+  cloud_properties:    # Compile용 VM의 사양
 instance_type: m1.medium
-  network: op_network# Network Name
+  network: op_network    # Network Name
   reuse_compilation_vms: true
-  workers: 6# 동시 동작하는 VM 수
-	Network Name은 3.3.2에서 정의한 것과 동일한 이름을 줘야 한다. Workers는 동시에 Compile을 수행하는 VM의 개수로 별다른 환경적 특성이 없다면 Default 값을 사용토록 한다.
+  workers: 6    # 동시 동작하는 VM 수
+```
+Network Name은 3.3.2에서 정의한 것과 동일한 이름을 줘야 한다. Workers는 동시에 Compile을 수행하는 VM의 개수로 별다른 환경적 특성이 없다면 Default 값을 사용토록 한다.
+
+
 ###### 3.3.4 Resource Pools	
+```
 resource_pools:
-- name: small# Resource Name
+- name: small      # Resource Name
   cloud_properties:
 instance_type: m1.small
 env:
     bosh:
-      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0 network: op_network# Network Name
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0 network: op_network      # Network Name
   stemcell:
-    name: bosh-aws-xen-ubuntu-trusty-go_agent# Stemcell Name
-    version: 3147# Stemcell Version
+    name: bosh-aws-xen-ubuntu-trusty-go_agent     # Stemcell Name
+    version: 3147       # Stemcell Version
 - name: medium
   cloud_properties:
 instance_type: m1.medium
@@ -228,18 +260,24 @@ instance_type: m1.medium
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: 3147
+```
+Stemcell Name과 Version은 “bosh stemcells” 명령어 결과로 출력되는 값들을 입력하도록 한다.
 
-	Stemcell Name과 Version은 “bosh stemcells” 명령어 결과로 출력되는 값들을 입력하도록 한다.
 ##### 3.3.5 Update
+```
 update:
   canaries: 1
   canary_watch_time: 30000-600000
   max_in_flight: 1
-  serial: true	# VM의 순차적 Update
+  serial: true	    # VM의 순차적 Update
   update_watch_time: 5000-600000
-	Default 값들을 수정 없이 사용한다.
+```
+Default 값들을 수정 없이 사용한다.
+
 ###### 3.3.6 Jobs
-	아래 Sample Jobs를 참고하여 설치 환경에 맞게 수정한다.
+
+아래 Sample Jobs를 참고하여 설치 환경에 맞게 수정한다.
+```
 jobs:
 - instances: 1# VM Instance 개수
   name: consul
@@ -651,9 +689,11 @@ jobs:
   - name: consul_agent
     release: openpaas-controller
   update: {}
+```
 
 ##### 3.3.7 Properties
-	아래 Sample Manifest를 참조하여 설치 환경에 맞게 값을 수정한다.
+아래 Sample Manifest를 참조하여 설치 환경에 맞게 값을 수정한다.
+```
 properties:
   acceptance_tests: null
   app_domains:
@@ -1314,19 +1354,34 @@ service_usage_events:
     - name: uaaadmin
       password: admin
       tag: admin
+```
+
 #### 3.4	Bosh Deploy
 지금까지 설치를 위한 준비 과정이 정상적으로 수행되었으면, 지금부터 Open PaaS Controller를 IaaS 환경(AWS)에 아래의 절차로 설치한다.
 ##### 3.4.1	Deployment Manifest 지정
-bosh deployment openpaas-controller-aws-1.0.yml
-	“bosh deployment” 명령어로 생성한 Deployment Manifest File을 지정하고, 아래의 그림과 같이 동일한 명령어로 정상 지정 되었는지를 확인한다.
+`bosh deployment openpaas-controller-aws-1.0.yml`
+
+“bosh deployment” 명령어로 생성한 Deployment Manifest File을 지정하고, 아래의 그림과 같이 동일한 명령어로 정상 지정 되었는지를 확인한다.
  
+### [그림]
+
+
 ##### 3.4.2	Open PaaS Controller Deploy
 “bosh deploy” 명령으로 Open PaaS Controller 설치를 수행한다.
-bosh deploy
+
+`bosh deploy`
+
 보통 설치 과정은 1-2시간 정도가 소요되며 정상적으로 설치가 완료되면 아래 그림과 같은 메세지를 출력하게 된다.
  
+### [그림]
+
+
 #### 3.5	설치형상 확인
 설치가 정상적으로 완료된 후 “bosh vms” 명령으로 설치된 Open PaaS Controller의 형상을 확인한다.
-bosh vms
+
+`bosh vms`
+
 아래 그림과 같이 Deployment Name, Virtual Machine, IP 주소 등의 정보를 확인할 수 있다.
+
+### [그림]
  

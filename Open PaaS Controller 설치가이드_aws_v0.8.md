@@ -30,26 +30,26 @@
 
 
 
-## 1.	개요
+## 1. 개요
 
 
-#### 1.1.	문서 목적
+#### 1.1. 문서 목적
 본 문서(설치가이드)는, 현 시점에서 지원되는 IaaS(Infrastructure as aService) 중 하나인 AWS 환경에서 Open PaaS Controller를 설치하기 위한 가이드를제공하는데 그 목적이 있다.
 
-#### 1.2.	범위
+#### 1.2. 범위
 본 문서의 범위는 Open PaaS Controller를AWS에 설치하기 데 대한 내용으로 한정되어 있다.Sphere/OpenStack과 같은 다른 IaaS 환경에서의 설치는 그에 맞는 가이드 문서를 참고해야 하며, Bosh 설치 또한 해당 가이드 문서를 별도로 참조해야 한다.
 
-#### 1.3.	참고 자료
+#### 1.3. 참고 자료
 http://docs.cloudfoundry.org/deploying/aws/  
 https://github.com/cloudfoundry/cf-release
 
  
 ## 2. Prerequisites
-#### 2.1.	개요
+#### 2.1. 개요
 Open PaaS Controller를 설치하기 전에 IaaS(AWS) 환경이 정상적으로 구성되어 있고, Bosh Server와 Bosh/OP CLI가 설치되어 있는지를 확인해야 한다.
 
-#### 2.2.	AWS
-##### 2.2.1.	Dashboard(Console)
+#### 2.2. AWS
+##### 2.2.1. Dashboard(Console)
  
 ### [그림출처]: Open PaaS 사업단 개발환경
 
@@ -63,7 +63,7 @@ SSH, HTTP, HTTPS, DNS Protocol을 받을 수 있고, 모든 통신 Protocol을 �
 ### [그림]
 
 
-#### 2.3.	Bosh Server 및 Bosh CLI
+#### 2.3. Bosh Server 및 Bosh CLI
  
 ### [그림출처]: Open PaaS 사업단 개발환경
 
@@ -122,8 +122,8 @@ Open PaaS 설치 패키지 내에 포함되어 있는 OP CLI 압축 파일을 �
 ### [그림]
  
 
-## 3.	Open PaaS Controller 설치
-#### 3.1	Release Upload
+## 3. Open PaaS Controller 설치
+#### 3.1 Release Upload
 배포된 설치 패키지의 OpenPaaS-Controller 폴더에 있는 Open PaaS Controller Bosh Release를 Bosh Server로 아래와 같은 명령으로 1.0 버전을 Upload 한다.
 `bosh upload release $INSTALL_PACKAGE/OpenPaaS-Controller/openpaas-controller-1.0.tgz`
 
@@ -141,7 +141,7 @@ Bosh Sever에 Release가 정상적으로 Upload 되었는지는 “bosh releases
 ### [그림]
 
 
-#### 3.2	Stemcell Upload
+#### 3.2 Stemcell Upload
 배포된 설치 패키지의 OpenPaaS-Stemcells 폴더에 있는 Open PaaS AWS용 Stemcell 을 Bosh Server로 아래와 같은 명령으로 3147 Version을 Upload 한다.
 
 `bosh upload stemcell$INSALL_PACKAGE/OpenPaaS-Stemcells/bosh-stemcell-3147-aws-xen-ubuntu-trusty-go_agent.tgz`
@@ -159,7 +159,7 @@ Bosh Sever에 Stemcell이 정상적으로 Upload 되었는지는 “bosh stemcel
 ### [그림]
 
 
-#### 3.3	Deployment Manifest
+#### 3.3. Deployment Manifest
 배포된 설치 패키지에 포함된 Sample Deployment Manifest File($INSTALL_PACKAGE/OpenPaaS-Deployment/openpaas-controller-aws-1.0.yml)을 아래의 순서대로 설치환경에 적합하게 수정한다.
 
 ###### 3.3.1 Name & Release
@@ -1356,9 +1356,9 @@ service_usage_events:
       tag: admin
 ```
 
-#### 3.4	Bosh Deploy
+#### 3.4 Bosh Deploy
 지금까지 설치를 위한 준비 과정이 정상적으로 수행되었으면, 지금부터 Open PaaS Controller를 IaaS 환경(AWS)에 아래의 절차로 설치한다.
-##### 3.4.1	Deployment Manifest 지정
+##### 3.4.1 Deployment Manifest 지정
 `bosh deployment openpaas-controller-aws-1.0.yml`
 
 “bosh deployment” 명령어로 생성한 Deployment Manifest File을 지정하고, 아래의 그림과 같이 동일한 명령어로 정상 지정 되었는지를 확인한다.
@@ -1366,7 +1366,7 @@ service_usage_events:
 ### [그림]
 
 
-##### 3.4.2	Open PaaS Controller Deploy
+##### 3.4.2 Open PaaS Controller Deploy
 “bosh deploy” 명령으로 Open PaaS Controller 설치를 수행한다.
 
 `bosh deploy`
@@ -1376,7 +1376,7 @@ service_usage_events:
 ### [그림]
 
 
-#### 3.5	설치형상 확인
+#### 3.5 설치형상 확인
 설치가 정상적으로 완료된 후 “bosh vms” 명령으로 설치된 Open PaaS Controller의 형상을 확인한다.
 
 `bosh vms`

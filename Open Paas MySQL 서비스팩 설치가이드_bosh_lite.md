@@ -41,12 +41,14 @@ BOSH-lite 가 설치 되어 있지 않을 경우 먼저 BOSH-lite 설치 가이�
 OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Deployment.zip, OpenPaaS-Sample-Apps.zip, OpenPaaS-Services.zip)
 
 ###2.2. MySQL 서비스 릴리즈 업로드
-OpenPaaS-Services.zip파일 압축을 풀고 폴더안에 있는 MySQL 서비스 릴리즈 openpaas-mysql-release-beta-1.0.tgz 파일을 복사한다.
-업로드할 openpaas-mysql-release-beta-1.0.tgz 파일을 확인한다.
 
-`$ ls –all`
+-	OpenPaaS-Services.zip파일 압축을 풀고 폴더안에 있는 MySQL 서비스 릴리즈 openpaas-mysql-release-beta-1.0.tgz 파일을 복사한다.
 
-![mysql_bosh_lite_2.2.01]
+-	업로드할 openpaas-mysql-release-beta-1.0.tgz 파일을 확인한다.
+
+>`$ ls –all`
+
+>![mysql_bosh_lite_2.2.01]
 
 -	업로드 되어 있는 릴리즈 목록을 확인한다.
 
@@ -111,7 +113,8 @@ Stemcell 목록이 존재 하지 않을 경우 BOSH-lite 설치 가이드 문서
 -	openpaas-mysql-lite.yml Deployment 파일을 서버 환경에 맞게 수정한다.(굵은 글씨로 표시된 부분만 수정)
 
 `$ vi openpaas-mysql-lite.yml`
-```
+
+```yml
 # openpaas-mysql-lite 설정 파일 내용
 compilation:           # 컴파일시 필요한 가상머신의 속성(필수)
   cloud_properties:      # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone), 직접 cpu,disk,ram 사이즈를 넣어도 됨
@@ -2941,8 +2944,10 @@ Next 버튼을 클릭하여 다음 과정을 진행한다.
 
 ![mysql_bosh_lite_4.1.13]
 
-서버 정보는 Application에 바인드되어 있는 서버 정보를 입력한다. cf env <app_name> 명령어로 이용하여 확인한다.  
+서버 정보는 Application에 바인드되어 있는 서버 정보를 입력한다. cf env <app_name> 명령어로 이용하여 확인한다.
+
 **예)** $cf env hello-tomcat-mysql
+
 ![mysql_bosh_lite_4.1.14]
 
 -	SSH 터널 탭을 클릭하고 Vagrant VM 정보를 입력하고 개인 키 파일을 불러온다. 개인키는 AWS에서 인스턴스 접속을 위한 공개키(.pem 파일)를puttygen을 이용하여 개인키(.ppk)로 변환한다. plink.exe 위치 입력은 Putty에서 제공하는 plink.exe 실행 위치를 넣어주고 만일 해당 파일이 없을 경우 plink.exe 내려받기 링크를 클릭하여 다운받는다. 로컬 포트 정보는 임의로 넣고 열기 버튼을 클릭하면 Mysql 데이터베이스에 접속한다.

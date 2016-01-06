@@ -452,16 +452,16 @@ Sample App에서 Redis 서비스를 사용하기 위해서는 서비스 신청(P
 - Sample App 디렉토리로 이동하여 manifest 파일을 확인한다
 
 ><div>$cd redis-example-app<br>
-$ vi manifest.yml<br><br>
+$ vi manifest.yml<br><br></div>
 ```yaml
 ---
-applications:<br>
-- name: redis-example-app#배포할 App 이름<br>
-  memory: 256M#배포시 메모리 크기<br>
-  instances: 1#배포시인스턴스 수<br>
-path: .#배포시 구동되는 Path<br>
+applications:
+- name: redis-example-app #배포할 App 이름
+  memory: 256M #배포시 메모리 크기
+  instances: 1 #배포시인스턴스 수
+path: . #배포시 구동되는 Path
 ```
- </div>
+ 
 
 - --no-start 옵션으로 App을 배포한다. 
 --no-start: App 배포시 구동은 하지 않는다.

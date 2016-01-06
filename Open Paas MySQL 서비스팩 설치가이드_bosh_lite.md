@@ -45,12 +45,14 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 -	OpenPaaS-Services.zip파일 압축을 풀고 폴더안에 있는 MySQL 서비스 릴리즈 openpaas-mysql-release-beta-1.0.tgz 파일을 복사한다.
 
 -	업로드할 openpaas-mysql-release-beta-1.0.tgz 파일을 확인한다.
+
 >`$ ls –all`
 
 >![mysql_bosh_lite_2.2.01]
 
 
 -	업로드 되어 있는 릴리즈 목록을 확인한다.
+
 >`$ bosh releases`
 
 >![mysql_bosh_lite_2.2.02]
@@ -59,6 +61,7 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 
 -	MySQL 서비스 릴리즈 파일을 업로드한다.
+
 >`$ bosh upload release {서비스 릴리즈 파일 PATH}`
 
 >`$ bosh upload release openpaas-mysql-release-beta-1.0.tgz`

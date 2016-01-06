@@ -55,7 +55,7 @@ Open PaaS Controller를 설치하기 전에 IaaS(AWS) 환경이 정상적으로 
 #### 2.2.1. Dashboard(Console)
 
 ### [그림1]
-[그림출처]: Open PaaS 사업단 개발환경
+**[그림출처]: Open PaaS 사업단 개발환경**
 
 AWS Dashboard(Console)으로 정상 접속되어야 하고, Open PaaS Controller가 설치될 Subnet이 구성되어 있어야 한다. 별도 Subnet 은 필수적인 구성은 아니나, 관리의 용이성을 위해서 사용하는 것을 권장한다.
 
@@ -104,7 +104,7 @@ $TTL    604800
                          604800 )       ; Negative Cache TTL
 ;
 @       IN      NS      ns.controller.open-paas.com.
-*       IN      A       10.0.16.13# HA Proxy VM IP 주소
+*       IN      A       10.0.16.13           # HA Proxy VM IP 주소
 @       IN      AAAA    ::1
 ```
 
@@ -165,7 +165,7 @@ Bosh Sever에 Stemcell이 정상적으로 Upload 되었는지는 “bosh stemcel
 ### 3.3. Deployment Manifest
 배포된 설치 패키지에 포함된 Sample Deployment Manifest File($INSTALL_PACKAGE/OpenPaaS-Deployment/openpaas-controller-aws-1.0.yml)을 아래의 순서대로 설치환경에 적합하게 수정한다.
 
-#### 3.3.1 Name & Release
+#### 3.3.1. Name & Release
 ```yml 
 name: openpaas-controller   # Deployment Name
 director_uuid: 3d139c62-6669-4804-adb0-990b16446c37
@@ -175,7 +175,7 @@ releases:               # BoshRelease Name
 ```
 Deployment Name은 설치자가 임의로 부여하는데, IaaS와 Version을 표시할 것을 권장한다. Bosh Director UUID는 “bosh status” 명령을 실행하면 출력되는 UUID 값을 넣고, Release Name과 Version은 “bosh releases” 명령의 결과로 나오는 값들을 입력하도록 한다.
 
-#### 3.3.2 Networks		
+#### 3.3.2. Networks		
 ```yml  
 networks:
 - name: op_network     # Open PaaS Controller가 설치될 Network Name
@@ -201,7 +201,7 @@ networks:
 ```
 Network Name은 설치자가 임의로 부여 가능하다. Neutron Subnet ID, Gateway, DNS Server, Network CIDR은 AWS 구성을 직접 확인하거나 인프라 담당자에게 문의하여 정보를 얻도록 한다. Static IP 주소는 Open PaaS Controller를 설치할 때 개별 VM에 할당될 IP의 주소 대역으로 마찬가지로 인프라 담당자에게 할당을 받아야 한다.
 
-#### 3.3.3 Compilation	
+#### 3.3.3. Compilation	
 ```yml
 compilation:
   cloud_properties:      # Compile용 VM의 사양
@@ -213,7 +213,7 @@ compilation:
 Network Name은 3.3.2에서 정의한 것과 동일한 이름을 줘야 한다. Workers는 동시에 Compile을 수행하는 VM의 개수로 별다른 환경적 특성이 없다면 Default 값을 사용토록 한다.
 
 
-#### 3.3.4 Resource Pools	
+#### 3.3.4. Resource Pools	
 ```yml
 resource_pools:      # Resource Name
 - cloud_properties:
@@ -286,7 +286,7 @@ update:
 ```
 Default 값들을 수정 없이 사용한다.
 
-#### 3.3.6 Jobs
+#### 3.3.6. Jobs
 
 아래 Sample Jobs를 참고하여 설치 환경에 맞게 수정한다.
 ```yml
@@ -782,7 +782,7 @@ jobs:
 
 ```
 
-#### 3.3.7 Properties
+#### 3.3.7. Properties
 아래 Sample Manifest를 참조하여 설치 환경에 맞게 값을 수정한다.
 ```yml
 properties:
@@ -1456,10 +1456,10 @@ properties:
 
 ```
 
-### 3.4 Bosh Deploy
+### 3.4. Bosh Deploy
 지금까지 설치를 위한 준비 과정이 정상적으로 수행되었으면, 지금부터 Open PaaS Controller를 IaaS 환경(AWS)에 아래의 절차로 설치한다.
 
-#### 3.4.1 Deployment Manifest 지정
+#### 3.4.1. Deployment Manifest 지정
 `bosh deployment openpaas-controller-aws-1.0.yml`
 
 “bosh deployment” 명령어로 생성한 Deployment Manifest File을 지정하고, 아래의 그림과 같이 동일한 명령어로 정상 지정 되었는지를 확인한다.
@@ -1467,7 +1467,7 @@ properties:
 ### [그림12]
 
 
-#### 3.4.2 Open PaaS Controller Deploy
+#### 3.4.2. Open PaaS Controller Deploy
 “bosh deploy” 명령으로 Open PaaS Controller 설치를 수행한다.
 
 `bosh deploy`
@@ -1477,7 +1477,7 @@ properties:
 ### [그림13]
 
 
-### 3.5 설치형상 확인
+### 3.5. 설치형상 확인
 설치가 정상적으로 완료된 후 “bosh vms” 명령으로 설치된 Open PaaS Controller의 형상을 확인한다.
 
 `bosh vms`

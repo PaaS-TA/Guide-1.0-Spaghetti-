@@ -453,12 +453,14 @@ Sample App에서 Redis 서비스를 사용하기 위해서는 서비스 신청(P
 
 ><div>$cd redis-example-app<br>
 $ vi manifest.yml<br><br>
----<br>
+```yaml
+---
 applications:<br>
 - name: redis-example-app#배포할 App 이름<br>
   memory: 256M#배포시 메모리 크기<br>
   instances: 1#배포시인스턴스 수<br>
 path: .#배포시 구동되는 Path<br>
+```
  </div>
 
 - --no-start 옵션으로 App을 배포한다. 

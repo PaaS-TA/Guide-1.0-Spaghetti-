@@ -33,7 +33,7 @@
 # 1. 개요
 
 ### 1.1. 문서 목적
-본 문서(설치가이드)는, 현 시점에서 지원되는 IaaS(Infrastructure as aService) 중 하나인 AWS 환경에서 Open PaaS Controller를 설치하기 위한 가이드를제공하는데 그 목적이 있다.
+본 문서(설치가이드)는, 현 시점에서 지원되는 IaaS(Infrastructure as aService) 중 하나인 AWS 환경에서 Open PaaS Controller를 설치하기 위한 가이드를 제공하는데 그 목적이 있다.
 
 
 ### 1.2. 범위

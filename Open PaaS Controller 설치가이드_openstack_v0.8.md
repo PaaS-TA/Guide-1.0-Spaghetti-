@@ -54,17 +54,23 @@ Open PaaS Controller를 설치하기 전에 IaaS(OpenStack) 환경이 정상적�
 ###2.2. OpenStack
 
 #### 2.2.1. Dashboard(Horizon)
+
 ![controller_openstack_image002]
+
 **[그림출처]: Open PaaS 사업단 개발환경**
 
 OpenStack Dashboard(Horizon)으로 정상 접속되어야 하고, Open PaaS Controller가 설치될 Subnet이 구성되어 있어야 한다. 별도 Subnet 은 필수적인 구성은 아니나, 관리의 용이성을 위해서 사용하는 것을 권장한다.
 
 #### 2.2.2. Security Group
+
 ![controller_openstack_image003]
+
 SSH, HTTP, HTTPS, DNS Protocol을 받을 수 있고, 모든 통신 Protocol을 엑세스 할 수 있도록 Security Group을 설정한다.(주의: 내부 네트워크 구간에서는 모든 Procotol이 사용 가능하도록 구성해야 한다.)
 
 ###2.3. Bosh Server 및 Bosh CLI
+
 ![controller_openstack_image004]
+
 **[그림출처]: Open PaaS 사업단 개발환경**
 
 “bosh status” 명령을 실행하여 위와 같이 정상적으로 출력되는 지를 확인한다. 만약 문제 발생 시에는 Bosh 설치가이드를 참조하여 정상적으로 Bosh 환경을 구성한 후 이후 작업을 진행한다.
@@ -105,6 +111,7 @@ $TTL    604800
 @       IN      AAAA    ::1
 ```
 NSLOOKUP 등으로 DNS Server에 Platform Domain이 정상 등록 되었는지 확인한다.
+
 ![controller_openstack_image005]
 
 
@@ -115,6 +122,7 @@ Open PaaS 설치 패키지 내에 포함되어 있는 OP CLI 압축 파일을 �
 `$ sudo cp cf /usr/bin`
 
 “cf” 명령어를 입력하면 아래와 같은 Help 화면이 출력됨을 확인한다.
+
 ![controller_openstack_image006]
  
 
@@ -125,12 +133,14 @@ Open PaaS 설치 패키지 내에 포함되어 있는 OP CLI 압축 파일을 �
 
 
 Release Upload는 상황에 따라 다소 차이는 있으나 보통 20-30분 정도 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.
+
 ![controller_openstack_image007]
 
 [주의] Release Upload 과정에서 작업장비의 “/tmp” 폴더의 사이즈가 작을 경우 압축파일을 풀거나 묶을 때 에러가 발생할 수 있으므로, 10GB 이상 Free Size가 있는지를 확인해야 한다.
 
 Bosh Sever에 Release가 정상적으로 Upload 되었는지는 “bosh releases” 명령으로 확인한다.
 `$ bosh releases`
+
 ![controller_openstack_image008]
  
 
@@ -139,12 +149,14 @@ Bosh Sever에 Release가 정상적으로 Upload 되었는지는 “bosh releases
 `$ bosh upload stemcell $INSALL_PACKAGE/OpenPaaS-Stemcells/bosh-stemcell-3016-openstack-kvm-ubuntu-trusty-go_agent.tgz`
 
 Stemcell Upload는 상황에 따라 다소 차이는 있으나 보통 5-10분 정도 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.
+
 ![controller_openstack_image009]
     
 [주의] Stemcell Upload 과정에서 작업장비의 “/tmp” 폴더의 사이즈가 작을 경우 압축파일을 풀거나 묶을 때 에러가 발생할 수 있으므로, 10GB 이상 Free Size가 있는지를 확인해야 한다.
 
 Bosh Sever에 Stemcell이 정상적으로 Upload 되었는지는 “bosh stemcells” 명령으로 확인한다.
-`$ bosh stemcells<br><br>`
+`$ bosh stemcells`
+
 ![controller_openstack_image010]
 
 
@@ -1415,7 +1427,6 @@ properties:
       groups: null
       userids_enabled: true
       users:
-      #- admin|admin|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose,routing.router_groups.read,dashboard.user,console.admin,console.support
        - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose,routing.router_groups.read
     spring_profiles: null
     url: https://uaa.controller.open-paas.com
@@ -1441,18 +1452,21 @@ properties:
 #### 3.4.1. Deployment Manifest 지정
 `$ bosh deployment openpaas-openstack-beta-1.0.yml`
 “bosh deployment” 명령어로 생성한 Deployment Manifest File을 지정하고, 아래의 그림과 같이 동일한 명령어로 정상 지정 되었는지를 확인한다.
+
 ![controller_openstack_image011]
 
 #### 3.4.2. Open PaaS Controller Deploy
 “bosh deploy” 명령으로 Open PaaS Controller 설치를 수행한다.
 `$ bosh deploy`
 보통 설치 과정은 1-2시간 정도가 소요되며 정상적으로 설치가 완료되면 아래 그림과 같은 메세지를 출력하게 된다.
+
 ![controller_openstack_image012]
 
 ### 3.5. 설치형상 확인
 설치가 정상적으로 완료된 후 “bosh vms” 명령으로 설치된 Open PaaS Controller의 형상을 확인한다.
 `$ bosh vms`
 아래 그림과 같이 Deployment Name, Virtual Machine, IP 주소 등의 정보를 확인할 수 있다.
+
 ![controller_openstack_image013]
 
 # 4. 설치 검증
@@ -1479,10 +1493,12 @@ Application을 Deploy할 ORG(Default: OCP)와 Space를 생성하고, 해당하�
 `$ cf push`
 
 Application이 정상 Deploy가 되면 아래와 같은 메시지가 출력된다.
+
 ![controller_openstack_image014]
 
 ### 4.3. Application Access
 Deploy한 Application URL을 Browser 또는 curl 명령어로 Access하여 정상 접근 되는지를 확인한다.
+
 ![controller_openstack_image015]
 
 

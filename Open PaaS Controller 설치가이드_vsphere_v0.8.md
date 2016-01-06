@@ -7,7 +7,7 @@
 2. [Prerequisites](#2-prerequisites)	
 	-	2.1. [개요](#21-개요)		
 	-	2.2. [vSphere](#22-vsphere)	
-	    -   2.2.1. [데이터센터/클러스터/리소스풀](#221-데이터센터/클러스터/리소스풀)
+	    -   2.2.1. [데이터센터/클러스터/리소스풀](#221-데이터센터클러스터리소스풀)
 	-	2.3. [Bosh Server 및 Bosh CLI](#23-bosh-server-및-bosh-cli)	
 	-	2.4. [DNS Server](#24-dns-server)	
 	-	2.5. [OP CLI](#25-op-cli)	

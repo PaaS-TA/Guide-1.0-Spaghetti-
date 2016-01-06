@@ -668,7 +668,6 @@ jobs:
   name: runner
   networks:
   - name: op_network
-    #static_ips: 10.30.40.37
   properties:
     dea_next:
       zone: z1

@@ -1435,7 +1435,6 @@ properties:
       groups: null
       userids_enabled: true
       users:
-      #- admin|admin|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose,routing.router_groups.read,dashboard.user,console.admin,console.support
        - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose,routing.router_groups.read
     spring_profiles: null
     url: https://uaa.controller.open-paas.com

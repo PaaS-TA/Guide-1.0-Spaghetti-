@@ -122,7 +122,8 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 >`$ vi openpaas-mysql-lite.yml`
 
->```yml
+>
+```yml
 # openpaas-mysql-lite 설정 파일 내용
 compilation:           # 컴파일시 필요한 가상머신의 속성(필수)
   cloud_properties:      # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone), 직접 cpu,disk,ram 사이즈를 넣어도 됨
@@ -130,7 +131,7 @@ compilation:           # 컴파일시 필요한 가상머신의 속성(필수)
   network: services1        # Networks block에서 선언한 network 이름(필수)
   reuse_compilation_vms: true        # 컴파일지 VM 재사용 여부(옵션)
   workers: 6         # 컴파일 하는 가상머신의 최대수(필수)
-director_uuid: <b>xxxxx</b>              #bosh status 에서 확인한 Director UUID을 입력(필수)</b>'
+director_uuid: xxxxx              # bosh status 에서 확인한 Director UUID을 입력(필수
 disk_pools:
 - cloud_properties: {}
   disk_size: 100000               # 디스크 사이즈 100G

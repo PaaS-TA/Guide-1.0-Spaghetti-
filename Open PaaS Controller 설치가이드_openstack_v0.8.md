@@ -212,7 +212,7 @@ compilation:                     # Compile용 VM의 사양
   reuse_compilation_vms: true
   workers: 6                      # 동시 동작하는 VM 수
 ```
-Network Name은 [**Newworks**](#networks)에서 정의한 것과 동일한 이름을 줘야 한다. Workers는 동시에 Compile을 수행하는 VM의 개수로 별다른 환경적 특성이 없다면 Default 값을 사용토록 한다.
+Network Name은 [**3.3.2 Networks**](#3.3.2-networks)에서 정의한 것과 동일한 이름을 줘야 한다. Workers는 동시에 Compile을 수행하는 VM의 개수로 별다른 환경적 특성이 없다면 Default 값을 사용토록 한다.
 
 #### 3.3.4. Resource Pools
 ```yml

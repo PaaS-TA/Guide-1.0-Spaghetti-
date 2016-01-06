@@ -27,7 +27,10 @@
 		-	3.4.1. [Deployment Manifest 지정](#341-deployment-manifest-지정)	
 		-	3.4.2. [Open PaaS Controller Deploy](#342-open-paas-controller-deploy)	
 	-	3.5. [설치형상 확인](#35-설치형상-확인)	
-
+4. [설치 검증](#4-설치-검증)
+	-	4.1. [CF Login](#41-cf-login)
+	-	4.2. [Application Deploy](#42-application-deploy)
+	-	4.3. [Application Access](#43-application-access)
 
 
 # 1. 개요
@@ -210,8 +213,7 @@ compilation:
   reuse_compilation_vms: true
   workers: 6         # 동시 동작하는 VM 수
 ```
-Network Name은 3.3.2에서 정의한 것과 동일한 이름을 줘야 한다. Workers는 동시에 Compile을 수행하는 VM의 개수로 별다른 환경적 특성이 없다면 Default 값을 사용토록 한다.
-
+Network Name은 [**3.3.2 Networks**](#332-networks)에서 정의한 것과 동일한 이름을 줘야 한다. Workers는 동시에 Compile을 수행하는 VM의 개수로 별다른 환경적 특성이 없다면 Default 값을 사용토록 한다.
 
 #### 3.3.4. Resource Pools	
 ```yml
@@ -658,7 +660,6 @@ jobs:
   name: runner
   networks:
   - name: op_network
-    #static_ips: 10.0.16.37
   properties:
     dea_next:
       zone: z1
@@ -779,7 +780,6 @@ jobs:
   - name: consul_agent
     release: openpaas-controller
   update: {}
-
 ```
 
 #### 3.3.7. Properties
@@ -812,7 +812,6 @@ properties:
         provider: Local
     bulk_api_password: admin        # Bulk API Password 설정
     client_max_body_size: 2048M
-    #db_encryption_key: admin
     db_encryption_key: db-encryption-key      # DB Encryprion Key 지정
     db_logging_level: debug2
     default_app_disk_in_mb: 1024
@@ -1232,7 +1231,6 @@ properties:
   etcd:
     machines:
     - 10.0.16.24              # etcd VM IP 주소
-    #- 10.30.40.25
     peer_require_ssl: false
     require_ssl: false
   etcd_metrics_server:
@@ -1241,7 +1239,6 @@ properties:
       - 10.0.16.11             # NATS Server VM IP 주소
       password: admin
       username: nats
-  #ha_proxy: null
   hm9000:
     url: https://hm9000.controller.open-paas.com
   logger_endpoint:
@@ -1486,3 +1483,40 @@ properties:
 
 ### [그림14]
  
+# 4. 설치 검증
+### 4.1. CF Login
+`$ cf api https://api.controller.open-paas.com –skip-ssl-validation`
+
+`$ cf login`
+```
+Email> admin
+Password> admin<br>
+OK
+```
+
+`$ cf create-space dev<br>`
+
+`$ cf target -o OCP -s dev`
+
+CF Target을 지정하고, Login을 수행한다. 이 때 계정은 admin/admin을 사용한다.
+Application을 Deploy할 ORG(Default: OCP)와 Space를 생성하고, 해당하는 ORG/Space로 Targetting 한다.
+
+### 4.2. Application Deploy
+설치 패키지와 함께 배포된 Sample Application이 위치하는 디렉토리로 이동하고 Application을 Deploy 한다.
+
+`$ cd $INSTALL_PACKAGE/OpenPaaS-Sample-Apps/Etc/hello-spring`
+
+`$ cf push`
+
+Application이 정상 Deploy가 되면 아래와 같은 메시지가 출력된다.
+
+![controller_aws_image015]
+
+### 4.3. Application Access
+Deploy한 Application URL을 Browser 또는 curl 명령어로 Access하여 정상 접근 되는지를 확인한다.
+
+![controller_aws_image016]
+
+
+[controller_aws_image015]:/images/openpaas-controller/controller_aws_image015.png
+[controller_aws_image016]:/images/openpaas-controller/controller_aws_image016.png

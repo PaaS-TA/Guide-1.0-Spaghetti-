@@ -245,7 +245,6 @@ resource_pools:
     version: 3147
 
 - cloud_properties:
-    #instance_type: m1.medium
     instance_type: m1.small
   env:
     bosh:
@@ -262,10 +261,10 @@ Stemcell Name과 Version은 “bosh stemcells” 명령어 결과로 출력되�
 ```yml
 update:
   canaries: 1
-canary_watch_time: 30000-600000
-max_in_flight: 1
-  serial: true	     # VM의 순차적 Update
-update_watch_time: 5000-600000
+  canary_watch_time: 30000-600000
+  max_in_flight: 1
+  serial: true	                # VM의 순차적 Update
+  update_watch_time: 5000-600000
 ````
 Default 값들을 수정 없이 사용한다.
 
@@ -273,38 +272,38 @@ Default 값들을 수정 없이 사용한다.
 아래 Sample Jobs를 참고하여 설치 환경에 맞게 수정한다.
 ```yml
 jobs:
-- instances: 1        # VM Instance 개수
+- instances: 1                     # VM Instance 개수
   name: consul
   networks:
-  - name: op_network      # VM이 설치될 Network
-static_ips:
-    - 10.20.0.16          # Consul에 할당된 IP 주소
-persistent_disk: 1024
+  - name: op_network               # VM이 설치될 Network
+    static_ips:
+    - 10.20.0.16                   # Consul에 할당된 IP 주소
+  persistent_disk: 1024
   properties:
     consul:
       agent:
         mode: server
-metron_agent:
+    metron_agent:
       zone: z1
       deployment: openpaas-controller
-resource_pool: medium
+  resource_pool: medium
   templates:
   - name: consul_agent
     release: openpaas-controller
   - name: metron_agent
     release: openpaas-controller
   update:
-max_in_flight: 1
+    max_in_flight: 1
     serial: true
 - name: ha_proxy
   instances: 1
   networks:
   - name: op_network
-static_ips: 10.20.0.13       # HAProxy IP 주소
+    static_ips: 10.20.0.13          # HAProxy IP 주소
   properties:
-ha_proxy:
-# SSL Key
-ssl_pem: |
+    ha_proxy:
+      # SSL Key
+      ssl_pem: |
         -----BEGIN CERTIFICATE-----
         MIICzTCCAjYCCQC4Lzsbx+krOjANBgkqhkiG9w0BAQsFADCBqjELMAkGA1UEBhMC
         S1IxDjAMBgNVBAgMBVNlb3VsMQ8wDQYDVQQHDAZKb25nUm8xEjAQBgNVBAoMCW9w
@@ -321,10 +320,10 @@ ssl_pem: |
         BgkqhkiG9w0BAQsFAAOBgQAKU8paqctRObRoI+e2I4G7FPev6GVm3otYi/SEs17q
         LmvMD63QPXEI7r+49FZzaXQtZKALb2NoMJKPO0mhzMJE5GR16f+E8ct1pA6L11t/
         fqce0/oPC+LcX0D36/J1Bw+PL/qJq5NeCOY1ba6JcBPBtckVfwu8Vm+pm+DKGX3i
-hw==
+        hw==
         -----END CERTIFICATE-----
         -----BEGIN RSA PRIVATE KEY-----
-MIICXAIBAAKBgQCzfIL/oXNWrZZKhlRYBgLA+sA4ndWk3skyknd+6WKbowjPNeOE
+        MIICXAIBAAKBgQCzfIL/oXNWrZZKhlRYBgLA+sA4ndWk3skyknd+6WKbowjPNeOE
         h6pmXYTXS4z2YPRYpZTBOZlyn9rez4RBljJ2BARjS5BDWiX+uqd6/z09Ea7R4A4E
         pnH8YRjEiQNEMc01x8ajWWPY5/axMQVHUW9M/Lpfvziqpbtp+oimj/zrIwIDAQAB
         AoGAfHDxakcH7qq/rr/frn/MXPv9VcOoonyMRnHiQ62QXpP0waV9Lx/YdsyUE6kf
@@ -335,19 +334,19 @@ MIICXAIBAAKBgQCzfIL/oXNWrZZKhlRYBgLA+sA4ndWk3skyknd+6WKbowjPNeOE
         Og1upgjyVBBYV2b4udbXS4R8B42xwcSmgQJAbHtMD/ozbRfmHVs/rpVjB6QQ4Z7A
         u5EkrePMI9B3G/vo0F/6hN+W9sVZdhXTipYFG7Od5A/3W6zXpNJqGeSRCwJAK/0V
         U3PLHB0hH/MBj97fBMWy2IRkOEAgaqmfcyXmafKOhpv747ENVJhX/rqQionl9EwK
-Eqc/pUjFeQpdnrlogQJBAMrDC4bQZ5igTPEXddDA8VN6qRLFDHFlTo2ulVyQ413Y
+        Eqc/pUjFeQpdnrlogQJBAMrDC4bQZ5igTPEXddDA8VN6qRLFDHFlTo2ulVyQ413Y
         HmFUIf4BNcRKD3GO24x63L8xK0ArzW4iLlrkwW8A2IE=
         -----END RSA PRIVATE KEY-----
-metron_agent:
+    metron_agent:
       zone: z1
       deployment: openpaas-controller
     networks:
       apps: op_network
     router:
       servers:
-        z1:
-        - 10.20.0.15        # Router IP 주소
-resource_pool: router
+        z1: 
+        - 10.20.0.15                   # Router IP 주소
+  resource_pool: router
   templates:
   - name: haproxy
     release: openpaas-controller
@@ -360,14 +359,14 @@ resource_pool: router
   name: nats
   networks:
   - name: op_network
-static_ips: 10.20.0.11             # NATS IP 주소
+    static_ips: 10.20.0.11             # NATS IP 주소
   properties:
-metron_agent:
+    metron_agent:
       zone: z1
       deployment: openpaas-controller
     networks:
        apps: op_network
-resource_pool: medium
+  resource_pool: medium
   templates:
   - name: nats
     release: openpaas-controller
@@ -380,16 +379,17 @@ resource_pool: medium
   name: etcd
   networks:
   - name: op_network
-static_ips:
-    - 10.20.0.24                 # ETCD IP 주소
-persistent_disk: 10024
+    static_ips:
+    - 10.20.0.24                         # ETCD IP 주소
+    #- 10.30.40.25
+  persistent_disk: 10024
   properties:
-metron_agent:
+    metron_agent:
       zone: z1
       deployment: openpaas-controller
     networks:
       apps: op_network
-resource_pool: medium
+  resource_pool: medium
   templates:
   - name: etcd
     release: openpaas-controller
@@ -398,21 +398,21 @@ resource_pool: medium
   - name: metron_agent
     release: openpaas-controller
   update:
-max_in_flight: 1
+    max_in_flight: 1
 
 - instances: 1
   name: stats
   networks:
   - name: op_network
-static_ips:
-    - 10.20.0.31                 # Stats(Collector) IP 주소
+    static_ips:
+    - 10.20.0.31                         # Stats(Collector) IP 주소
   properties:
-metron_agent:
+    metron_agent:
       zone: z1
       deployment: openpaas-controller
     networks:
       apps: op_network
-resource_pool: small
+  resource_pool: small
   templates:
   - name: collector
     release: openpaas-controller
@@ -424,15 +424,15 @@ resource_pool: small
   name: nfs
   networks:
   - name: op_network
-static_ips: 10.20.0/24                            # NFS Server IP 주소
-persistent_disk: 102400
+    static_ips: 10.20.0.12                     # NFS Server IP 주소
+  persistent_disk: 102400
   properties:
-metron_agent:
+    metron_agent:
       zone: z1
       deployment: openpaas-controller
     networks:
       apps: op_network
-resource_pool: medium
+  resource_pool: medium
   templates:
   - name: debian_nfs_server
     release: openpaas-controller
@@ -444,15 +444,15 @@ resource_pool: medium
   name: postgres
   networks:
   - name: op_network
-static_ips: 10.20.0.22                        # DB Server(PostgreSQL) IP 주소
-persistent_disk: 4096
+    static_ips: 10.20.0.22                     # DB Server(PostgreSQL) IP 주소
+  persistent_disk: 4096
   properties:
-metron_agent:
+    metron_agent:
       zone: z1
       deployment: openpaas-controller
     networks:
       apps: op_network
-resource_pool: medium
+  resource_pool: medium
   templates:
   - name: postgres
     release: openpaas-controller
@@ -464,33 +464,33 @@ resource_pool: medium
   name: uaa
   networks:
   - name: op_network
-static_ips: 10.20.0.32                          # UAA IP 주소
+    static_ips: 10.20.0.32                            # UAA IP 주소
   properties:
     consul:
       agent:
         services:
-uaa: {}
-metron_agent:
+          uaa: {}
+    metron_agent:
       zone: z1
       deployment: openpaas-controller
     networks:
       apps: op_network
-route_registrar:
+    route_registrar:
       routes:
       - name: uaa
         port: 8080
         tags:
           component: uaa
-uris:
+        uris:
         - uaa.controller.open-paas.com
         - '*.uaa.controller.open-paas.com'
         - login.controller.open-paas.com
         - '*.login.controller.open-paas.com'
-uaa:
+    uaa:
       proxy:
-        servers:
+        servers: 
         - 10.20.0.15
-resource_pool: medium
+  resource_pool: medium
   templates:
   - name: uaa
     release: openpaas-controller
@@ -508,33 +508,33 @@ resource_pool: medium
   name: api
   networks:
   - name: op_network
-static_ips: 10.20.0.33                     # Cloud Controller IP 주소
-persistent_disk: 8192
+    static_ips: 10.20.0.33                         # Cloud Controller IP 주소
+  persistent_disk: 8192
   properties:
     consul:
       agent:
         services:
-cloud_controller_ng: {}
+          cloud_controller_ng: {}
           routing-api: {}
-metron_agent:
+    metron_agent:
       zone: z1
       deployment: openpaas-controller
     networks:
       apps: op_network
-nfs_server:
-      address: 10.20.0.12                 # NFS Server IP 주소
-allow_from_entries:
-      - 10.20.0.0/24                     # 허용 Network CIDR 값
+    nfs_server:
+      address: 10.20.0.12                        # NFS Server IP 주소
+      allow_from_entries:
+      - 10.20.0.0/24                             # 허용 Network CIDR 값
       share: null
-route_registrar:
+    route_registrar:
       routes:
       - name: api
         port: 9022
         tags:
           component: CloudController
-uris:
+        uris:
         - api.controller.open-paas.com
-resource_pool: large
+  resource_pool: large
   templates:
   - name: cloud_controller_ng
     release: openpaas-controller
@@ -559,15 +559,15 @@ resource_pool: large
   name: clock_global
   networks:
   - name: op_network
-static_ips: 10.20.0.34                      # Cloud Controller Clock IP 주소
-persistent_disk: 4096
+    static_ips: 10.20.0.34                       # Cloud Controller Clock IP 주소
+  persistent_disk: 4096
   properties:
-metron_agent:
+    metron_agent:
       zone: z1
       deployment: openpaas-controller
     networks:
       apps: op_network
-resource_pool: medium
+  resource_pool: medium
   templates:
   - name: cloud_controller_clock
     release: openpaas-controller
@@ -579,20 +579,20 @@ resource_pool: medium
   name: api_worker
   networks:
   - name: op_network
-static_ips: 10.20.0.35                    # CC Worker IP 주소
-persistent_disk: 0
+    static_ips: 10.20.0.35                         # CC Worker IP 주소
+  persistent_disk: 0
   properties:
-metron_agent:
+    metron_agent:
       zone: z1
       deployment: openpaas-controller
     networks:
       apps: op_network
-nfs_server:
-      address: 10.20.0.12                  # NFS Server IP 주소
-allow_from_entries:
-      - 10.20.0.0/24                      # 허용 Network CIDR 값
+    nfs_server:
+      address: 10.20.0.12                         # NFS Server IP 주소
+      allow_from_entries:
+      - 10.20.0.0/24                              # 허용 Network CIDR 값
       share: null
-resource_pool: small
+  resource_pool: small
   templates:
   - name: cloud_controller_worker
     release: openpaas-controller
@@ -604,20 +604,94 @@ resource_pool: small
     release: openpaas-controller
   update: {}
 
-- instances: 1
-  name: doppler
+- instances: 0
+  name: hm9000
   networks:
   - name: op_network
-static_ips: 10.20.0.38                    # Doppler IP 주소
+    #static_ips: 10.20.0.36
   properties:
-doppler:
-      zone: z1
-metron_agent:
+    metron_agent:
       zone: z1
       deployment: openpaas-controller
     networks:
       apps: op_network
-resource_pool: medium
+    route_registrar:
+      routes:
+      - name: hm9000
+        port: 5155
+        tags:
+          component: HM9K
+        uris:
+        - hm9000.controller.open-paas.com
+  resource_pool: medium
+  templates:
+  - name: hm9000
+    release: openpaas-controller
+  - name: metron_agent
+    release: openpaas-controller
+  - name: route_registrar
+    release: openpaas-controller
+  update: {}
+
+- instances: 0
+  name: runner
+  networks:
+  - name: op_network
+    #static_ips: 10.20.0.37
+  properties:
+    dea_next:
+      zone: z1
+    metron_agent:
+      zone: z1
+      deployment: openpaas-controller
+    networks:
+      apps: op_network
+  resource_pool: runner
+  templates:
+  - name: dea_next
+    release: openpaas-controller
+  - name: dea_logging_agent
+    release: openpaas-controller
+  - name: metron_agent
+    release: openpaas-controller
+  update:
+    max_in_flight: 1
+
+- instances: 0
+  name: loggregator
+  networks:
+  - name: op_network
+  properties:
+    doppler:
+      zone: z1
+    metron_agent:
+      zone: z1
+    doppler_endpoint:
+      shared_secret: admin
+  resource_pool: medium
+  templates:
+  - name: doppler
+    release: openpaas-controller
+  - name: syslog_drain_binder
+    release: openpaas-controller
+  - name: metron_agent
+    release: openpaas-controller
+  update: {}
+
+- instances: 1
+  name: doppler
+  networks:
+  - name: op_network
+    static_ips: 10.20.0.38                      # Doppler IP 주소
+  properties:
+    doppler:
+      zone: z1
+    metron_agent:
+      zone: z1
+      deployment: openpaas-controller
+    networks:
+      apps: op_network
+  resource_pool: medium
   templates:
   - name: doppler
     release: openpaas-controller
@@ -631,26 +705,26 @@ resource_pool: medium
   name: loggregator_trafficcontroller
   networks:
   - name: op_network
-static_ips: 10.20.0.39                        # Loggregator Controller IP 주소
+    static_ips: 10.20.0.39                     # Loggregator Controller IP 주소
   properties:
-metron_agent:
+    metron_agent:
       zone: z1
       deployment: openpaas-controller
     networks:
       apps: op_network
-route_registrar:
+    route_registrar:
       routes:
       - name: doppler
         port: 8081
-uris:
+        uris:
         - doppler.controller.open-paas.com
       - name: loggregator
         port: 8080
-uris:
+        uris:
         - loggregator.controller.open-paas.com
-traffic_controller:
+    traffic_controller:
       zone: z1
-resource_pool: small
+  resource_pool: small
   templates:
   - name: loggregator_trafficcontroller
     release: openpaas-controller
@@ -664,18 +738,18 @@ resource_pool: small
   name: router
   networks:
   - name: op_network
-static_ips: 10.20.0.15                        # Router IP 주소
+    static_ips: 10.20.0.15                             # Router IP 주소
   properties:
     consul:
       agent:
         services:
-gorouter: {}
-metron_agent:
+          gorouter: {}
+    metron_agent:
       zone: z1
       deployment: openpaas-controller
     networks:
       apps: op_network
-resource_pool: router
+  resource_pool: router
   templates:
   - name: gorouter
     release: openpaas-controller
@@ -690,37 +764,37 @@ resource_pool: router
 아래 Sample Manifest를 참조하여 설치 환경에 맞게 값을 수정한다.
 ```yml
 properties:
-acceptance_tests: null
-app_domains:
-  - controller.open-paas.com            # DNS Server에 등록된 Platform Domain Name
-app_ssh:                               # App에 ssh로 접근하기 위한 정보
-host_key_fingerprint: 89:d3:73:01:f3:10:c4:a7:87:53:54:31:63:ee:ef:51
-oauth_client_id: ssh-proxy
-  cc:                                   # 여기서부터 Cloud Controller Properties
-allow_app_ssh_access: true
-allowed_cors_domains: []
-app_events:
-cutoff_age_in_days: 31
-app_usage_events:
-cutoff_age_in_days: 31
-audit_events:
-cutoff_age_in_days: 31
-broker_client_default_async_poll_interval_seconds: null
-broker_client_max_async_poll_duration_minutes: null
-broker_client_timeout_seconds: 70
-buildpacks:
-buildpack_directory_key: controller.open-paas.com-cc-buildpacks
-cdn: null
-fog_connection:
-local_root: /var/vcap/store
+  acceptance_tests: null
+  app_domains:
+  - controller.open-paas.com               # DNS Server에 등록된 Platform Domain Name
+  app_ssh:
+   host_key_fingerprint: 89:d3:73:01:f3:10:c4:a7:87:53:54:31:63:ee:ef:51         # App에 ssh로 접근하기 위한 정보
+   oauth_client_id: ssh-proxy
+  cc:                                    # 여기서부터 Cloud Controller Properties
+    allow_app_ssh_access: true
+    allowed_cors_domains: []
+    app_events:
+      cutoff_age_in_days: 31
+    app_usage_events:
+      cutoff_age_in_days: 31
+    audit_events:
+      cutoff_age_in_days: 31
+    broker_client_default_async_poll_interval_seconds: null
+    broker_client_max_async_poll_duration_minutes: null
+    broker_client_timeout_seconds: 70
+    buildpacks:
+      buildpack_directory_key: controller.open-paas.com-cc-buildpacks
+      cdn: null
+      fog_connection:
+        local_root: /var/vcap/store
         provider: Local
-bulk_api_password: admin                   # Bulk API Password 설정
-client_max_body_size: 2048M
-db_encryption_key: db-encryption-key         # DB Encryprion Key 지정
-db_logging_level: debug2
-default_app_disk_in_mb: 1024
-default_app_memory: 1024
-default_buildpacks:
+    bulk_api_password: admin                       # Bulk API Password 설정
+    client_max_body_size: 2048M
+    db_encryption_key: db-encryption-key           # DB Encryprion Key 지정
+    db_logging_level: debug2
+    default_app_disk_in_mb: 1024
+    default_app_memory: 1024
+    default_buildpacks:
     - name: java_buildpack_offline
       package: buildpack_java_offline
     - name: egov_buildpack
@@ -741,30 +815,30 @@ default_buildpacks:
       package: buildpack_php
     - name: binary_buildpack
       package: buildpack_binary
-default_health_check_timeout: 60
-default_quota_definition: default
-default_running_security_groups:
+    default_health_check_timeout: 60
+    default_quota_definition: default
+    default_running_security_groups:
     - public_networks
     - dns
     - services
-default_staging_security_groups:
+    default_staging_security_groups:
     - public_networks
     - dns
-default_to_diego_backend: true
-development_mode: false
+    default_to_diego_backend: true
+    development_mode: false
     directories: null
-disable_custom_buildpacks: false
+    disable_custom_buildpacks: false
     droplets:
-cdn: null
-droplet_directory_key: controller.open-paas.com-cc-droplets
-fog_connection:
-local_root: /var/vcap/store
+      cdn: null
+      droplet_directory_key: controller.open-paas.com-cc-droplets
+      fog_connection:
+        local_root: /var/vcap/store
         provider: Local
-max_staged_droplets_stored: null
-external_host: api
-external_port: 9022
-external_protocol: null
-install_buildpacks:
+      max_staged_droplets_stored: null
+    external_host: api
+    external_port: 9022
+    external_protocol: null
+    install_buildpacks:
     - name: java_buildpack_offline
       package: buildpack_java_offline
     - name: egov_buildpack
@@ -785,64 +859,64 @@ install_buildpacks:
       package: buildpack_php
     - name: binary_buildpack
       package: buildpack_binary
-internal_api_password: admin               # Internal API Password
-internal_api_user: internal_user
+    internal_api_password: admin                              # Internal API Password
+    internal_api_user: internal_user
     jobs:
-app_bits_packer:
-timeout_in_seconds: null
-app_events_cleanup:
-timeout_in_seconds: null
-app_usage_events_cleanup:
-timeout_in_seconds: null
-blobstore_delete:
-timeout_in_seconds: null
-blobstore_upload:
-timeout_in_seconds: null
-droplet_deletion:
-timeout_in_seconds: null
-droplet_upload:
-timeout_in_seconds: null
+      app_bits_packer:
+        timeout_in_seconds: null
+      app_events_cleanup:
+        timeout_in_seconds: null
+      app_usage_events_cleanup:
+        timeout_in_seconds: null
+      blobstore_delete:
+        timeout_in_seconds: null
+      blobstore_upload:
+        timeout_in_seconds: null
+      droplet_deletion:
+        timeout_in_seconds: null
+      droplet_upload:
+        timeout_in_seconds: null
       generic:
-number_of_workers: null
+        number_of_workers: null
       global:
-timeout_in_seconds: 14400
-model_deletion:
-timeout_in_seconds: null
-logging_level: debug2
-maximum_app_disk_in_mb: 2048
-maximum_health_check_timeout: 180
-min_cli_version: null
-min_recommended_cli_version: null
-newrelic:
-capture_params: false
-developer_mode: false
-environment_name: openpaas-controller
-license_key: null
-monitor_mode: false
-transaction_tracer:
+        timeout_in_seconds: 14400
+      model_deletion:
+        timeout_in_seconds: null
+    logging_level: debug2
+    maximum_app_disk_in_mb: 2048
+    maximum_health_check_timeout: 180
+    min_cli_version: null
+    min_recommended_cli_version: null
+    newrelic:
+      capture_params: false
+      developer_mode: false
+      environment_name: openpaas-controller
+      license_key: null
+      monitor_mode: false
+      transaction_tracer:
         enabled: true
-record_sql: obfuscated
+        record_sql: obfuscated
     packages:
-app_package_directory_key: controller.open-paas.com-cc-packages
-cdn: null
-fog_connection:
-local_root: /var/vcap/store
+      app_package_directory_key: controller.open-paas.com-cc-packages
+      cdn: null
+      fog_connection:
+        local_root: /var/vcap/store
         provider: Local
-max_package_size: 1073741824
-max_valid_packages_stored: null
-quota_definitions:                    # Application Instance Default Quota 값 지정
+      max_package_size: 1073741824
+      max_valid_packages_stored: null
+    quota_definitions:                                      # Application Instance Default Quota 값 지정
       default:
-memory_limit: 10240
-non_basic_services_allowed: true
-total_routes: 1000
-total_services: 100
-resource_pool:
-cdn: null
-fog_connection:
-local_root: /var/vcap/store
+        memory_limit: 10240
+        non_basic_services_allowed: true
+        total_routes: 1000
+        total_services: 100
+    resource_pool:
+      cdn: null
+      fog_connection:
+        local_root: /var/vcap/store
         provider: Local
-resource_directory_key: controller.open-paas.com-cc-resources
-security_group_definitions:
+      resource_directory_key: controller.open-paas.com-cc-resources
+    security_group_definitions:
     - name: public_networks
       rules:
       - destination: 0.0.0.0-9.255.255.255
@@ -867,13 +941,13 @@ security_group_definitions:
       rules:
       - destination: 10.20.0.0/24
         protocol: all
-service_usage_events:
-cutoff_age_in_days: 31
-srv_api_uri: https://api.controller.open-paas.com      # Platform API Target URL
+    service_usage_events:
+      cutoff_age_in_days: 31
+    srv_api_uri: https://api.controller.open-paas.com              # Platform API Target URL
     stacks: null
-staging_upload_password: admin                    # Staging Upload Password
-staging_upload_user: staging_upload_user
-system_buildpacks:
+    staging_upload_password: admin                                 # Staging Upload Password
+    staging_upload_user: staging_upload_user
+    system_buildpacks:
     - name: java_buildpack_offline
       package: buildpack_java_offline
     - name: egov_buildpack
@@ -895,36 +969,37 @@ system_buildpacks:
     - name: binary_buildpack
       package: buildpack_binary
     thresholds:
-api:
-alert_if_above_mb: null
-restart_if_above_mb: null
-restart_if_consistently_above_mb: null
+      api:
+        alert_if_above_mb: null
+        restart_if_above_mb: null
+        restart_if_consistently_above_mb: null
       worker:
-alert_if_above_mb: null
-restart_if_above_mb: null
-restart_if_consistently_above_mb: null
-user_buildpacks: []
-users_can_select_backend: false
-ccdb:
-    address: 10.20.0.22                    # DB Server(PostgreSQL) VM IP 주소
+        alert_if_above_mb: null
+        restart_if_above_mb: null
+        restart_if_consistently_above_mb: null
+    user_buildpacks: []
+    users_can_select_backend: false
+  ccdb:
+    address: 10.20.0.22                                  # DB Server(PostgreSQL) VM IP 주소
     databases:
     - citext: true
       name: ccdb
       tag: cc
-db_scheme: postgres
+    db_scheme: postgres
     port: 5524
     roles:
     - name: ccadmin
-      password: admin                      # ccadmin 계정 Password
+      password: admin                                   # ccadmin 계정 Password
       tag: admin
   collector: null
   consul:
     agent:
-log_level: null
+      log_level: null
       servers:
-lan:
-        - 10.20.0.16                        # Consul VM IP 주소
-agent_cert: |                               # Consul agent cert 키 값
+        lan:
+        - 10.20.0.16                                     # Consul VM IP 주소
+    # Consul agent cert 키 값
+    agent_cert: |
      -----BEGIN CERTIFICATE-----
      MIIEIjCCAgygAwIBAgIRANVNoOk6A4WIpnRmprN6Ft4wCwYJKoZIhvcNAQELMBMx
      ETAPBgNVBAMTCGNvbnN1bENBMB4XDTE1MTIxNjA3MjcyN1oXDTE3MTIxNjA3Mjcy
@@ -941,7 +1016,7 @@ agent_cert: |                               # Consul agent cert 키 값
      8eT7IIGv7bk4PMH8xR6y57IAq8VQP4iIe91jlyz5APqP86EhnDHemYimaR4V02R5
      BD5PzN0bDdqpGGAB4oU6OJD5XObEj4yC+0Miy3Mdz5sSmZZ1Tn0o710L4Y+ncjwD
      vEG3wFkCfe/SU8Fd5vVfM1d6CzFDo+szrcoXR56bGrDKAocH641Z4ofCSDs2pCri
-BvJ/OWbekktvqvsA2BX6d78k9FX3RIQZzGUciQtIyiWoJMFT7Gf5D+yK1m8F/Ad8
+     BvJ/OWbekktvqvsA2BX6d78k9FX3RIQZzGUciQtIyiWoJMFT7Gf5D+yK1m8F/Ad8
      ROWL1APXFb/IOjL6K+7E1YIhOpthOYZRtWBp9idhY3/Bzac/cYthOG/mu4YzDf4R
      eX25OO7C2G818xzVk9zxKKnlWJkpRWa1uYLTb/trW6GT/hFaA0BTX0hVzgdnYs/l
      NnhVlPk3wTXWhTBzuvWPVEIyblzt7GszMiYrX9Un1meQxDyVs89dLANAr1tocAo9
@@ -950,8 +1025,8 @@ BvJ/OWbekktvqvsA2BX6d78k9FX3RIQZzGUciQtIyiWoJMFT7Gf5D+yK1m8F/Ad8
      mq6LVQrV5B7yxf4ul3MfOq/HV2eMzyH6uiKXIuwrFU7poUyn4EdXfUHB5Imjlx46
      ZGkvJ5oM
      -----END CERTIFICATE-----
-# Consul agent 키 값
-agent_key: |
+    # Consul agent 키 값
+    agent_key: |
      -----BEGIN RSA PRIVATE KEY-----
      MIIEpQIBAAKCAQEAvJSw9vW2VCtTbMQ02SQ9H+XpJOA6Pm5B/qsWFFc7YePp2FRg
      CUFO48/SOhKJ99GxdC2io91jmicTMUyHpHjbreohpRlxBpXxlKevPQHY8jVZ1MQ2
@@ -976,11 +1051,11 @@ agent_key: |
      GCwgktrKFyso+tHKUzCtVIt1ETehE7Il1JiXUujP7s7uy0wdCutZ550U/pqgFvzF
      YTvLJfkGneIwkvHOEkBDQbE659HqH46vqBbtQxJfiZHlLK/niFNDGJRQcVAoyBd8
      AbpXKgECgYEApqgxW3C7CJStKRdvMQeg50PS5oyXSglU8JoACEYDOUoWQZTDUqci
-CYFJNfdEv/K3AmZH/0hSVuYXhzvdotpWhHvdtmH/YT1bkeoYF5NULyB4VyKOnpyR
+     CYFJNfdEv/K3AmZH/0hSVuYXhzvdotpWhHvdtmH/YT1bkeoYF5NULyB4VyKOnpyR
      MS/cy+MIiSuLeKK8dNRy62t5Ugo+mgaxuNt3nTlGW0pIathZ9BZJ4Kc=
      -----END RSA PRIVATE KEY-----
-|# Consul ca cert 키 값
-ca_cert: |
+    # Consul ca cert 키 값
+    ca_cert: |
      -----BEGIN CERTIFICATE-----
      MIIFAzCCAu2gAwIBAgIBATALBgkqhkiG9w0BAQswEzERMA8GA1UEAxMIY29uc3Vs
      Q0EwHhcNMTUxMjE2MDcyNzA2WhcNMjUxMjE2MDcyNzI1WjATMREwDwYDVQQDEwhj
@@ -993,7 +1068,7 @@ ca_cert: |
      wU+0ND2DIntcUbM+CgCrcua+0l1J5ob4JN3TS98mEvO8MeuXIRXVf9EprbGur0YY
      2rVVQ+DMIsOmbD7MzewBnjy0mrU9fuiTX29BoBTk0y+CZM5VpTUJXvnQ54sDfHSI
      Ch1DgvmNgYhPBOkzG8Ecm9oaNXdfl1ZTr0EHycI5aNLeZHOI55SkD2UtFEogmcDc
-wPitTmpVrBNnCnBkWmiqePausRQBJWDvGRKJqWKQmt/hj7X4PrBGE7inPQEFr63A
+     wPitTmpVrBNnCnBkWmiqePausRQBJWDvGRKJqWKQmt/hj7X4PrBGE7inPQEFr63A
      d9N7gceZPfPPYDUiKRtbXOaEK20jzyg5RDK6RPKuwO6tQPwhNKzwmgeVKI1TCfow
      OOIGl13s48m7JYul6LRaqpla26Y89siLAgMBAAGjZjBkMA4GA1UdDwEB/wQEAwIA
      BjASBgNVHRMBAf8ECDAGAQH/AgEAMB0GA1UdDgQWBBRoGRUwOPPgLrI5WCtaB3uj
@@ -1002,7 +1077,7 @@ wPitTmpVrBNnCnBkWmiqePausRQBJWDvGRKJqWKQmt/hj7X4PrBGE7inPQEFr63A
      N9VkeOWsP/f/q9ptRUBBB+qT1270fmCXiTYMdJAnLers32gomqQmv7H/eI0d3Mzr
      1PA8P8W5066hqywsBLd4D0lcrCaC5VkvvUIG6RE3sOh5wW1UZxUR52LPLPqiiS8d
      oU9NXb8BtxW+juj+VypnwisEMXtV4K7Wf0g+05w8PND3PQbzj665em+cCt7sG9Fd
-EOvxhmqFQhJKfiFZe/uNORrlZBVX8w0M+OLRi99feH93BLnklpH2QYVw9XDUu6gV
+     EOvxhmqFQhJKfiFZe/uNORrlZBVX8w0M+OLRi99feH93BLnklpH2QYVw9XDUu6gV
      zzcAMuOuwd75ngHbW5dRiP6hE8Qn10NQf+K6Hq5gXgnGI7r1yic63JeXYqU9N981
      9krNGikmRYoEAF5Mbind2u8c4ce7/b6TjvsgX2Ddj3nRuPTbg1+9Vl8v7/kQrPaP
      3jR+X+OJ4qOZH//lIAy99Ifs2EqQh2EdqJXLH3cddWhUtf7UdsMciyYNotswlZxs
@@ -1010,11 +1085,12 @@ EOvxhmqFQhJKfiFZe/uNORrlZBVX8w0M+OLRi99feH93BLnklpH2QYVw9XDUu6gV
      3LeZoWKxn2G0f9ZL0SasOyU+uLtGSQLpavW22CVwDPvWrxj5BpG3Ulddgh/ysIwN
      4PFVkjXsY1Ca5mC7mMu0+XSaALaNlXlJ7GuRmf+CU2sWCQOxGvp+
      -----END CERTIFICATE-----
-:# Consul encrypt 키 값
-encrypt_keys:
+    # Consul encrypt 키 값
+    encrypt_keys: 
      - t66mLrBhJ5kpofLwoJpH5A==
-require_ssl: true                                    # Consul ssl 접속 여부
-server_cert: |                                       # Consul server cert 키 값
+    require_ssl: true                     # Consul ssl 접속 여부
+    # Consul server cert 키 값
+    server_cert: |
      -----BEGIN CERTIFICATE-----
      MIIEKzCCAhWgAwIBAgIQMkaGpfb7hSNQcutiGf4ERjALBgkqhkiG9w0BAQswEzER
      MA8GA1UEAxMIY29uc3VsQ0EwHhcNMTUxMjE2MDcyNzI2WhcNMTcxMjE2MDcyNzI3
@@ -1040,8 +1116,8 @@ server_cert: |                                       # Consul server cert 키 �
      aMgvXar2LxBuM7JWCorYzztm5sv4NJSjxjDkkybwOImTxZkpLZb2j58TdXQiE1v+
      fns7uQ9yHVtyl941hRlf
      -----END CERTIFICATE-----
-# Consul server 키 값
-server_key: |
+    # Consul server 키 값
+    server_key: |
      -----BEGIN RSA PRIVATE KEY-----
      MIIEowIBAAKCAQEAqZvu3TU4dQeh4veVGti3hhYP/7YCbKI8y7q6Qyz7FCvQJSsD
      0bUXnG6+U7tNHOTRNdBTnQrmZFeWoXXGscqZLwSRnTlG6q28BfwcimMbnqM1xz/1
@@ -1054,15 +1130,15 @@ server_key: |
      unjrsbTfc+Vpsjy0kzq01quy9eZCLvClKjSNG4zc4P1Yxo6ptvkYq6zTv/+CA5dM
      AKfzB2NHcEu4lAnWS29ps2gDg4mIDs5tUaC5nE4KRXZHo/o7iHBR3KzyR4mFD/n+
      a5eyjkQFWLOVqBCfseLri8ESmkFZeZJ32td3mUIxokEVuwBdZ7Zb8KKI7QhweVv2
-WQzzUEECgYEAxkdvVE/sJAeDHs176QquLhCZJ83YFjgxU+FWO9JJuANm3j0CWEqK
+     WQzzUEECgYEAxkdvVE/sJAeDHs176QquLhCZJ83YFjgxU+FWO9JJuANm3j0CWEqK
      Rw6mlparltr8lzJhs/lVEhOmfNEMDw3RcF8TBxj9gsZn12To8yh8PzSz0DpjiDAO
      Osw7iNWy95PvgqQy11+OizUpS5zaVwjc2YByhec0OxzDAUO9D4SLuP0CgYEA2vvl
      2BLlVxkbz73s36JbXMtL7UvqakbFmbcdQSu07czGbdFtNxNhphKIVBCH4ny2yBxm
-qEEpuis/fkVzhD02V81dI63PIhRZuFEXnGWhMeY44VmWCmbaoUdZd9Ozna2AnVVN
+     qEEpuis/fkVzhD02V81dI63PIhRZuFEXnGWhMeY44VmWCmbaoUdZd9Ozna2AnVVN
      a5Qw1hWHcmfpcILaFgCb/j2XHqveTZ87pMjdyX0CgYA5cbq8V4dXjOGdC/VJN/Hs
      oJxunsFq9o67+X3NSQhYiovD+TLzt2zGV2VGHZLK2tjxSQRrauINoanLYZk3x04V
      W0Yc+U2BFNBC5BZlVCZi/XbW7gOmEh4dRMw+wYLfHXn3hHDCWwnmJNm48VGEg6nQ
-TdlgF/LW6WdJt4FPvJvqVQKBgFs3YFdwD44HTHltcJT7CTmPCVKQM9YPItJT32C9
+     TdlgF/LW6WdJt4FPvJvqVQKBgFs3YFdwD44HTHltcJT7CTmPCVKQM9YPItJT32C9
      NwFzMhieivLNJPjLcXQq6p9iObUDd5OQiTQePbV4cpTb9p3+UlTBWq2kcnb/eGlS
      QCIL9xePfJtamqlhkhgC3CfLFO70kGpGcU1L7H6wYCHYr8VIfbIar688Aj6tHGgY
      r6H1AoGBAK81Evrf729tMezOMoGQKGfZrP9pkh6Bh5ProZFqK5R9GItXdYU4ATvL
@@ -1070,9 +1146,9 @@ TdlgF/LW6WdJt4FPvJvqVQKBgFs3YFdwD44HTHltcJT7CTmPCVKQM9YPItJT32C9
      QsflMYJj0ytvop7ReDVV6+p6OymS2SBZrdO2AvwRNy6cVSuPjgLn
      -----END RSA PRIVATE KEY-----
   databases:
-additional_config: null
-    address: 10.20.0.22                             # DB Server VM IP 주소
-collect_statement_statistics: null
+    additional_config: null
+    address: 10.20.0.22                            # DB Server VM IP 주소
+    collect_statement_statistics: null
     databases:
     - citext: true
       name: ccdb
@@ -1080,7 +1156,7 @@ collect_statement_statistics: null
     - citext: true
       name: uaadb
       tag: uaa
-db_scheme: postgres
+    db_scheme: postgres
     port: 5524
     roles:
     - name: ccadmin
@@ -1089,191 +1165,194 @@ db_scheme: postgres
     - name: uaaadmin
       password: admin
       tag: admin
-dea_next:
-advertise_interval_in_seconds: 5
-allow_host_access: null
-allow_networks: []
-default_health_check_timeout: 60
-deny_networks: []
-directory_server_protocol: https
-disk_mb: 32768
-disk_overcommit_factor: 3
-evacuation_bail_out_time_in_seconds: 0
-heartbeat_interval_in_seconds: 10
-instance_bandwidth_limit: null
-instance_disk_inode_limit: 200000
-kernel_network_tuning_enabled: false
-logging_level: debug
-memory_mb: 8192
-memory_overcommit_factor: null
-mtu: null
-rlimit_core: 0
-staging_bandwidth_limit: null
-staging_disk_inode_limit: 200000
-staging_disk_limit_mb: 6144
-staging_memory_limit_mb: 1024
-  description: Open PaaS sponsored by OCP Team
-disk_quota_enabled: false
-  domain: controller.open-paas.com
-doppler:
-blacklisted_syslog_ranges: null
+  dea_next:
+    advertise_interval_in_seconds: 5
+    allow_host_access: null
+    allow_networks: []
+    default_health_check_timeout: 60
+    deny_networks: []
+    directory_server_protocol: https
+    disk_mb: 32768
+    disk_overcommit_factor: 3
+    evacuation_bail_out_time_in_seconds: 0
+    heartbeat_interval_in_seconds: 10
+    instance_bandwidth_limit: null
+    instance_disk_inode_limit: 200000
+    kernel_network_tuning_enabled: false
+    logging_level: debug
+    memory_mb: 8192
+    memory_overcommit_factor: null
+    mtu: null
+    rlimit_core: 0
+    staging_bandwidth_limit: null
+    staging_disk_inode_limit: 200000
+    staging_disk_limit_mb: 6144
+    staging_memory_limit_mb: 1024
+  description: Open PaaS sponsored by OCP Team 
+  disk_quota_enabled: false
+  domain: controller.open-paas.com 
+  doppler:
+    blacklisted_syslog_ranges: null
     debug: false
-enable_tls_transport: null
-maxRetainedLogMessages: 100
-    port: 4443                              # Doppler port 번호
-tls_server:
+    enable_tls_transport: null
+    maxRetainedLogMessages: 100
+    port: 4443                                  # Doppler port 번호
+     
+    tls_server:
       cert: null
       key: null
       port: null
-unmarshaller_count: 5
-doppler_endpoint:
-shared_secret: admin                   # Doppler Endpoint Password
-dropsonde:
+    unmarshaller_count: 5
+  doppler_endpoint:
+    shared_secret: admin                       # Doppler Endpoint Password
+  dropsonde:
     enabled: true
-etcd:
+  etcd:
     machines:
-    - 10.20.0.24                        # etcd VM IP 주소
-peer_require_ssl: false
-require_ssl: false
-etcd_metrics_server:
-nats:
-      machines:
-      - 10.20.0.11                      # NATS Server VM IP 주소
+    - 10.20.0.24                               # etcd VM IP 주소
+    #- 10.30.40.25
+    peer_require_ssl: false
+    require_ssl: false
+  etcd_metrics_server:
+    nats:
+      machines: 
+      - 10.20.0.11                            # NATS Server VM IP 주소
       password: admin
       username: nats
+  #ha_proxy: null
   hm9000:
     url: https://hm9000.controller.open-paas.com
-logger_endpoint:
+  logger_endpoint:
     port: 443
-use_ssl: true
-loggregator:
-blacklisted_syslog_ranges: null
+    use_ssl: true
+  loggregator:
+    blacklisted_syslog_ranges: null
     debug: false
-etcd:
+    etcd:
       machines:
       - 10.20.0.24
-maxRetainedLogMessages: 100
-outgoing_dropsonde_port: 8081
-tls:
+    maxRetainedLogMessages: 100
+    outgoing_dropsonde_port: 8081
+    tls:
       ca: null
-loggregator_endpoint:
-shared_secret: admin
+  loggregator_endpoint:
+    shared_secret: admin
   login:
     analytics:
       code: null
       domain: null
-asset_base_url: null
+    asset_base_url: null
     brand: oss
-catalina_opts: null
+    catalina_opts: null
     enabled: true
-invitations_enabled: null
+    invitations_enabled: null
     links:
-passwd: https://console.controller.open-paas.com/password_resets/new
+      passwd: https://console.controller.open-paas.com/password_resets/new
       signup: https://console.controller.open-paas.com/register
     logout: null
     messages: null
     notifications:
       url: null
     protocol: null
-restricted_ips_regex: null
-saml: null
-self_service_links_enabled: null
-signups_enabled: null
-smtp:
+    restricted_ips_regex: null
+    saml: null
+    self_service_links_enabled: null
+    signups_enabled: null
+    smtp:
       host: null
       password: null
       port: null
       user: null
-spring_profiles: null
+    spring_profiles: null
     tiles: null
-uaa_base: null
+    uaa_base: null
     url: null
-metron_agent:
+  metron_agent:
     deployment: openpaas-controller
-preferred_protocol: null
-tls_client:
+    preferred_protocol: null
+    tls_client:
       cert: null
       key: null
-metron_endpoint:
-shared_secret: admin
-nats:
-    address: 10.20.0.11                  # NATS Server VM IP 주소
+  metron_endpoint:
+    shared_secret: admin
+  nats:
+    address: 10.20.0.11                            # NATS Server VM IP 주소
     debug: false
-    machines:
-    - 10.20.0.11                         # NATS Server VM IP 주소
-monitor_port: 4221
+    machines: 
+    - 10.20.0.11                                    # NATS Server VM IP 주소
+    monitor_port: 4221
     password: admin
     port: 4222
-prof_port: 0
+    prof_port: 0
     trace: false
     user: nats
-nfs_server:
+  nfs_server:
     address: null
-allow_from_entries:
-    - 10.20.0.0/24                         # NFS Mount 허용 Range 지정
+    allow_from_entries:
+    - 10.20.0.0/24                                   # NFS Mount 허용 Range 지정
     share: null
-request_timeout_in_seconds: 900
+  request_timeout_in_seconds: 900
   router:
-cipher_suites: null
-debug_addr: null
-enable_ssl: null
-extra_headers_to_log: null
-logrotate: null
+    cipher_suites: null
+    debug_addr: null
+    enable_ssl: null
+    extra_headers_to_log: null
+    logrotate: null
     port: null
-requested_route_registration_interval_in_seconds: null
-route_service_timeout: null
-route_services_secret: admin
-route_services_secret_decrypt_only: null
-secure_cookies: null
-ssl_cert: null
-ssl_key: null
-ssl_skip_validation: true
+    requested_route_registration_interval_in_seconds: null
+    route_service_timeout: null
+    route_services_secret: admin
+    route_services_secret_decrypt_only: null
+    secure_cookies: null
+    ssl_cert: null
+    ssl_key: null
+    ssl_skip_validation: true
     status:
       password: admin
       port: null
       user: router
-smoke_tests: null
-ssl:
-skip_cert_verify: true
-support_address: http://support.cloudfoundry.com
-syslog_daemon_config: null
-system_domain: controller.open-paas.com         # DNS Server에 등록한 Platform Domain Name
-system_domain_organization: OCP
-traffic_controller:
-outgoing_port: 8080
-uaa:
+  smoke_tests: null
+  ssl:
+    skip_cert_verify: true
+  support_address: http://support.cloudfoundry.com
+  syslog_daemon_config: null
+  system_domain: controller.open-paas.com                  # DNS Server에 등록한 Platform Domain Name
+  system_domain_organization: OCP
+  traffic_controller:
+    outgoing_port: 8080
+  uaa:
     admin:
-client_secret: admin                              # admin 계정 Password
+      client_secret: admin                                 # admin 계정 Password
     authentication:
       policy:
-countFailuresWithinSeconds: null
-lockoutAfterFailures: null
-lockoutPeriodSeconds: null
+        countFailuresWithinSeconds: null
+        lockoutAfterFailures: null
+        lockoutPeriodSeconds: null
     batch:
       password: admin
       username: batchuser
-catalina_opts: -Xmx768m -XX:MaxPermSize=256m
+    catalina_opts: -Xmx768m -XX:MaxPermSize=256m
     cc:
-client_secret: admin
+      client_secret: admin
     clients:
       cc-service-dashboards:
         authorities: clients.read,clients.write,clients.admin
         authorized-grant-types: client_credentials
         scope: openid,cloud_controller_service_permissions.read
         secret: admin
-cc_routing:
+      cc_routing:
         authorities: routing.router_groups.read
         authorized-grant-types: client_credentials
         secret: admin
-cloud_controller_username_lookup:
+      cloud_controller_username_lookup:
         authorities: scim.userids
         authorized-grant-types: client_credentials
         secret: admin
-doppler:
+      doppler:
         authorities: uaa.resource
         override: true
         secret: admin
-gorouter:
+      gorouter:
         authorities: clients.read,clients.write,clients.admin,routing.routes.write,routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
         scope: openid,cloud_controller_service_permissions.read
@@ -1289,17 +1368,17 @@ gorouter:
         authorities: cloud_controller.admin,scim.read
         authorized-grant-types: client_credentials
         secret: admin
-ssh-proxy:
+      ssh-proxy:
         authorized-grant-types: authorization_code
-autoapprove: true
+        autoapprove: true
         override: true
         redirect-uri: /login
         scope: openid,cloud_controller.read,cloud_controller.write
         secret: admin
     database: null
     issuer: https://uaa.controller.open-paas.com
-jwt:
-signing_key: |
+    jwt:
+      signing_key: |
         -----BEGIN RSA PRIVATE KEY-----
         MIICXAIBAAKBgQDHFr+KICms+tuT1OXJwhCUmR2dKVy7psa8xzElSyzqx7oJyfJ1
         JZyOzToj9T5SfTIq396agbHJWVfYphNahvZ/7uMXqHxf+ZH9BL1gk9Y6kCnbM5R6
@@ -1315,7 +1394,7 @@ signing_key: |
         HH6Qlq/6UOV5wP8+GAcCQFgRCcB+hrje8hfEEefHcFpyKH+5g1Eu1k0mLrxK2zd+
         4SlotYRHgPCEubokb2S1zfZDWIXW3HmggnGgM949TlY=
         -----END RSA PRIVATE KEY-----
-verification_key: |
+      verification_key: |
         -----BEGIN PUBLIC KEY-----
         MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDHFr+KICms+tuT1OXJwhCUmR2d
         KVy7psa8xzElSyzqx7oJyfJ1JZyOzToj9T5SfTIq396agbHJWVfYphNahvZ/7uMX
@@ -1323,31 +1402,32 @@ verification_key: |
         spULZVNRxq7veq/fzwIDAQAB
         -----END PUBLIC KEY-----
 
-ldap: null
+    ldap: null
     login: null
-newrelic: null
-no_ssl: null
+    newrelic: null
+    #no_ssl: true
+    no_ssl: null
     port: 8080
-require_https: null
-restricted_ips_regex: 10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3}|169\.254\.\d{1,3}\.\d{1,3}|127\.\d{1,3}\.\d{1,3}\.\d{1,3}|172\.1[6-9]{1}\.\d{1,3}\.\d{1,3}|172\.2[0-9]{1}\.\d{1,3}\.\d{1,3}|172\.3[0-1]{1}\.\d{1,3}\.\d{1,3}
-scim:
-external_groups: null
+    require_https: null
+    restricted_ips_regex: 10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3}|169\.254\.\d{1,3}\.\d{1,3}|127\.\d{1,3}\.\d{1,3}\.\d{1,3}|172\.1[6-9]{1}\.\d{1,3}\.\d{1,3}|172\.2[0-9]{1}\.\d{1,3}\.\d{1,3}|172\.3[0-1]{1}\.\d{1,3}\.\d{1,3}
+    scim:
+      external_groups: null
       groups: null
-userids_enabled: true
+      userids_enabled: true
       users:
       #- admin|admin|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose,routing.router_groups.read,dashboard.user,console.admin,console.support
        - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose,routing.router_groups.read
-spring_profiles: null
+    spring_profiles: null
     url: https://uaa.controller.open-paas.com
     user: null
     zones: null
-uaadb:
-    address: 10.20.0.22                         # DB Server VM IP 주소
+  uaadb:
+    address: 10.20.0.22                                  # DB Server VM IP 주소
     databases:
     - citext: true
       name: uaadb
       tag: uaa
-db_scheme: postgresql
+    db_scheme: postgresql
     port: 5524
     roles:
     - name: uaaadmin

@@ -37,7 +37,7 @@
 
 
 ### 1.2. 범위
-본 문서의 범위는 Open PaaS Controller를AWS에 설치하기 데 대한 내용으로 한정되어 있다.Sphere/OpenStack과 같은 다른 IaaS 환경에서의 설치는 그에 맞는 가이드 문서를 참고해야 하며, Bosh 설치 또한 해당 가이드 문서를 별도로 참조해야 한다.
+본 문서의 범위는 Open PaaS Controller를 AWS에 설치하는 내용으로 한정되어 있다. vSphere/OpenStack과 같은 다른 IaaS 환경에서의 설치는 그에 맞는 가이드 문서를 참고해야 하며, Bosh 설치 또한 해당 가이드 문서를 별도로 참조해야 한다.
 
 
 ### 1.3. 참고자료

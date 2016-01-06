@@ -145,22 +145,21 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 B
 - openpaas-redis-vsphere.yml Deployment 파일을 서버 환경에 맞게 수정한다. (빨간색으로 표시된 부분 특히 주의)
 
 >$vi openpaas-redis-vsphere.yml
-
 ```yaml
 # openpaas-redis-vsphere 설정 파일 내용
 name: openpaas-redis-service                       # 서비스 배포이름(필수)
 director_uuid: xxxxx#bosh status 에서 확인한 Director UUID을 입력(필수)
-
+>
 releases:
 - name: openpaas-redis                        #서비스 릴리즈 이름(필수)
   version: beta-1.0            #서비스 릴리즈 버전(필수): latest 시 업로드된 서비스 릴리즈 최신버전
-
+>
 update:
   canaries: 1                       # canary 인스턴스 수(필수)
 canary_watch_time: 30000-600000   # canary 인스턴스가 수행하기 위한 대기 시간(필수)
 max_in_flight: 1               # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
 update_watch_time: 30000-600000    # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
-
+>
 compilation:#컴파일시 필요한 가상머신의 속성(필수)
 cloud_properties: # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone), 직접 cpu,disk,ram 사이즈를 넣어도 됨
 cpu: 4
@@ -169,7 +168,7 @@ cpu: 4
   network: openpaas_network               # Networks block에서 선언한 network 이름(필수)
 reuse_compilation_vms: true         # 컴파일지 VM 재사용 여부(옵션)
   workers: 3                         # 컴파일 하는 가상머신의 최대수(필수)
-
+>
 jobs:
 - instances: 1
   name: openpaas-redis-broker                     # 작업 이름(필수)

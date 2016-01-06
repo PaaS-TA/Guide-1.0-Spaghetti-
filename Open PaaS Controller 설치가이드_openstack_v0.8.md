@@ -7,7 +7,7 @@
 2. [Prerequisites](#2-prerequisites)	
 	-	2.1. [개요](#21-개요)		
 	-	2.2. [OpenStack](#22-openstack)		
-		-	2.2.1. [Dashboard(Horizon)](#221-dashboad(horizon))	
+		-	2.2.1. [Dashboard(Horizon)](#221-dashboard(horizon))	
 		-	2.2.2. [Security Group](#222-security-group)    
 	-	2.3. [Bosh Server 및 Bosh CLI](#23-bosh-server-및-bosh-cli)	
 	-	2.4. [DNS Server](#24-dns-server)	

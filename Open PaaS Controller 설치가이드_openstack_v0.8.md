@@ -27,7 +27,10 @@
 		-	3.4.1. [Deployment Manifest 지정](#341-deployment-manifest-지정)	
 		-	3.4.2. [Open PaaS Controller Deploy](#342-open-paas-controller-deploy)	
 	-	3.5. [설치형상확인](#35-설치형상확인)	
-
+4. [설치 검증](#4-설치-검증)
+	-	4.1. [CF Login](#41-cf-login)
+	-	4.2. [Application Deploy](#42-application-deploy)
+	-	4.3. [Application Access](#43-application-access)
 
 #1. 개요
 ###1.1. 문서 목적
@@ -1374,7 +1377,7 @@ db_scheme: postgresql
 
 # 4. 설치 검증
 ### 4.1. CF Login
-`$ cf api https://api.controller.open-paas.com –skip-ssl-validation`  # 사설키
+`$ cf api https://api.controller.open-paas.com –skip-ssl-validation`
 
 `$ cf login`
 ```
@@ -1401,6 +1404,7 @@ Application이 정상 Deploy가 되면 아래와 같은 메시지가 출력된�
 ### 4.3. Application Access
 Deploy한 Application URL을 Browser 또는 curl 명령어로 Access하여 정상 접근 되는지를 확인한다.
 ![controller_openstack_image015]
+
 
 [controller_openstack_image002]:/images/openpaas-controller/controller_openstack_image002.png
 [controller_openstack_image003]:/images/openpaas-controller/controller_openstack_image003.png

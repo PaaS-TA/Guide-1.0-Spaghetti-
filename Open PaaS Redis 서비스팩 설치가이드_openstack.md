@@ -111,7 +111,7 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 - 업로드 된 Redis릴리즈를 확인한다.
 
-><div>$bosh releases</div><br>
+><div>$bosh releases</div>
 >![redis_openstack_09]
 ><div>Redis 서비스 릴리즈가 업로드 되어 있는 것을 확인</div>
 

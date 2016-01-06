@@ -398,7 +398,6 @@ jobs:
   - name: op_network
     static_ips:
     - 10.20.0.24                         # ETCD IP 주소
-    #- 10.30.40.25
   persistent_disk: 10024
   properties:
     metron_agent:
@@ -625,7 +624,6 @@ jobs:
   name: hm9000
   networks:
   - name: op_network
-    #static_ips: 10.20.0.36
   properties:
     metron_agent:
       zone: z1
@@ -654,7 +652,6 @@ jobs:
   name: runner
   networks:
   - name: op_network
-    #static_ips: 10.20.0.37
   properties:
     dea_next:
       zone: z1
@@ -1227,7 +1224,6 @@ properties:
   etcd:
     machines:
     - 10.20.0.24                               # etcd VM IP 주소
-    #- 10.30.40.25
     peer_require_ssl: false
     require_ssl: false
   etcd_metrics_server:
@@ -1236,7 +1232,7 @@ properties:
       - 10.20.0.11                            # NATS Server VM IP 주소
       password: admin
       username: nats
-  #ha_proxy: null
+
   hm9000:
     url: https://hm9000.controller.open-paas.com
   logger_endpoint:
@@ -1422,7 +1418,6 @@ properties:
     ldap: null
     login: null
     newrelic: null
-    #no_ssl: true
     no_ssl: null
     port: 8080
     require_https: null

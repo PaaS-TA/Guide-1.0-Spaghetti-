@@ -19,6 +19,13 @@
 # 1. 문서 개요
 ### 1.1. 목적
 
+```
+function test() {
+  console.log("notice the blank line before this function?");
+}
+```
+
+
 본 문서(MySQL 서비스팩 설치 가이드)는 전자정부표준프레임워크 기반의 Open PaaS에서 제공되는 서비스팩인 MySQL 서비스팩을 Bosh를 이용하여 설치 하는 방법과 Open PaaS의 SaaS 형태로 제공하는 Application 에서 MySQL 서비스를 사용하는 방법을 기술하였다.
 
 ### 1.2. 범위

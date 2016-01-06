@@ -639,7 +639,6 @@ jobs:
   name: hm9000
   networks:
   - name: op_network
-    #static_ips: 10.30.40.36
   properties:
     metron_agent:
       zone: z1

@@ -1494,11 +1494,11 @@ properties:
 `$ cf login`
 ```
 Email> admin
-Password> admin<br>
+Password> admin
 OK
 ```
 
-`$ cf create-space dev<br>`
+`$ cf create-space dev`
 
 `$ cf target -o OCP -s dev`
 

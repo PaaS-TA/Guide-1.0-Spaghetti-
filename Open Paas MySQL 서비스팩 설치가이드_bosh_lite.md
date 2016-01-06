@@ -48,14 +48,14 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 >`$ ls –all`
 
-> ![mysql_bosh_lite_2.2.01]
+>![mysql_bosh_lite_2.2.01]
 
 
 -	업로드 되어 있는 릴리즈 목록을 확인한다.
 
 >`$ bosh releases`
 
-> ![mysql_bosh_lite_2.2.02]
+>![mysql_bosh_lite_2.2.02]
 
 >Mysql 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
 
@@ -66,7 +66,7 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 >`$ bosh upload release openpaas-mysql-release-beta-1.0.tgz`
 
-> ![mysql_bosh_lite_2.2.03]
+>![mysql_bosh_lite_2.2.03]
 
 >![mysql_bosh_lite_2.2.04]
 
@@ -2671,7 +2671,7 @@ update:
   canary_watch_time: 30000-600000     # canary 인스턴스가 수행하기 위한 대기 시간(필수)
   max_in_flight: 1        # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
   update_watch_time: 30000-600000    # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
-```
+>```
 
 -	Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 `$ bosh deployment {Deployment manifest 파일 PATH}`

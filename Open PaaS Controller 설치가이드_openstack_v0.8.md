@@ -26,7 +26,7 @@
 	-	3.4. [Bosh Deploy](#34-bosh-deploy)		
 		-	3.4.1. [Deployment Manifest 지정](#341-deployment-manifest-지정)	
 		-	3.4.2. [Open PaaS Controller Deploy](#342-open-paas-controller-deploy)	
-	-	3.5. [설치형상확인](#35-설치형상확인)	
+	-	3.5. [설치형상 확인](#35-설치형상-확인)	
 4. [설치 검증](#4-설치-검증)
 	-	4.1. [CF Login](#41-cf-login)
 	-	4.2. [Application Deploy](#42-application-deploy)

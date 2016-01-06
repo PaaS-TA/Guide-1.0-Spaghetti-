@@ -1,49 +1,53 @@
-## Table of Contents
-1. [개요](#1)
-     * [1.1. 문서 목적](#2)
-     * [1.2. 범위](#3)
-     * [1.3. 참고 자료](#4)
-2. [Prerequisites](#5)
-     * [2.1. 개요](#6)
-     * [2.2. vSphere](#7)
-     * [2.3. Bosh Server 및 Bosh CLI](#8)
-     * [2.4. DNS Server](#9)
-     * [2.5. OP CLI](#10)
-3. [Open PaaS Controller 설치](#11)
-     * [3.1. Release Upload](#12])
-     * [3.2. Stemcell Upload](#13)
-     * [3.3. Deployment Manifest](#14)
-     * [3.4. Bosh Deploy](#15)
-     * [3.5. 설치형상 확인](#16)
-4. [설치 검증](#17)
-     * [4.1. CF Login](#18)
-     * [4.2. Application Deploy](#19)
-     * [4.3. Application Access](#20)
+# Table of Contents
 
-<div id='1'/>
-#1. 개요
-<div id='2'/>
-###1.1. 문서 목적
+1. [개요](#1-개요)	
+	-	1.1. [문서 목적](#11-문서-목적)	
+	-	1.2. [범위](#12-범위)	
+	-	1.3. [참고자료](#13-참고자료)	
+2. [Prerequisites](#2-prerequisites)	
+	-	2.1. [개요](#21-개요)		
+	-	2.2. [vSphere](#22-vsphere)	
+	    -   2.2.1. [데이터센터/클러스터/리소스풀](#221-데이터센터-클러스터-리소스풀)
+	-	2.3. [Bosh Server 및 Bosh CLI](#23-bosh-server-및-bosh-cli)	
+	-	2.4. [DNS Server](#24-dns-server)	
+	-	2.5. [OP CLI](#25-op-cli)	
+3. [Open PaaS Controller 설치](#3-open-paas-controller-설치)	
+	-	3.1. [Release Upload](#31-release-upload)	
+	-	3.2. [Stemcell Upload](#32-stemcell-upload)		
+	-	3.3. [Deployment Manifest](#33-depoyment-manifest)	
+		-	3.3.1. [Name & Release](#331-name-&-release)		
+		-	3.3.2. [Networks](#332-networks)	
+		-	3.3.3. [Compilation](#333-compilation)	
+		-	3.3.4. [Resource Pools](#334-resource-pools)	
+		-	3.3.5. [Update](#335-update)	
+		-	3.3.6. [Jobs](#336-jobs)	
+		-	3.3.7. [Properties](#337-properties)	
+	-	3.4. [Bosh Deploy](#34-bosh-deploy)		
+		-	3.4.1. [Deployment Manifest 지정](#341-deployment-manifest-지정)	
+		-	3.4.2. [Open PaaS Controller Deploy](#342-open-paas-controller-deploy)	
+	-	3.5. [설치형상 확인](#35-설치형상-확인)	
+4. [설치 검증](#4-설치-검증)
+	-	4.1. [CF Login](#41-cf-login)
+	-	4.2. [Application Deploy](#42-application-deploy)
+	-	4.3. [Application Access](#43-application-access)
+
+# 1. 개요
+### 1.1. 문서 목적
 본 문서(설치가이드)는, 현 시점에서 지원되는 IaaS(Infrastructure as a Service) 중 하나인 vSphere 환경에서 개방형클라우드플랫폼을 설치하기 위한 가이드를 제공하는데 그 목적이 있다.
 
-<div id='3'/>
-###1.2. 범위
+### 1.2. 범위
 본 문서의 범위는 개방형클라우드플랫폼을 vSphere에 설치하기 데 대한 내용으로 한정되어 있다. OpenStack/AWS와 같은 다른 IaaS 환경에서의 설치는 그에 맞는 가이드 문서를 참고해야 하며, Inception/Bosh 설치 또한 해당 가이드 문서를 별도로 참조해야 한다.
 
-<div id='4'/>
-###1.3. 참고 자료
-[**http://docs.cloudfoundry.org/deploying/vsphere/**](http://docs.cloudfoundry.org/deploying/vsphere/)<br>
+### 1.3. 참고 자료
+[**http://docs.cloudfoundry.org/deploying/vsphere/**](http://docs.cloudfoundry.org/deploying/vsphere/)  
 [**https://github.com/cloudfoundry/cf-release**](https://github.com/cloudfoundry/cf-release)
 
-<div id='5'/>
-#2. Prerequisites
-<div id='6'/>
-###2.1. 개요
+# 2. Prerequisites
+### 2.1. 개요
 개방형클라우드플랫폼을 설치하기 전에 IaaS(vSphere) 환경이 정상적으로 구성되어 있고, Bosh Server와 Bosh/CF CLI가 설치되어 있는지를 확인해야 한다.
 
-<div id='7'/>
-###2.2. vSphere
-####데이터센터/클러스터/리소스풀
+### 2.2. vSphere
+#### 2.2.1. 데이터센터/클러스터/리소스풀
 ![controller_vsphere_image002]<br>
 **[그림출처]: Open PaaS 사업단 개발환경**
 

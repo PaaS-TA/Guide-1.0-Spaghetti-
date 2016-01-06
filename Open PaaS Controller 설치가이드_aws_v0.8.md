@@ -7,7 +7,7 @@
 2. [Prerequisites](#2-prerequisites)	
 	-	2.1. [개요](#21-개요)		
 	-	2.2. [AWS](#22-aws)		
-		-	2.2.1. [Dashboard(Console)](#221-dashboad(consol))	
+		-	2.2.1. [Dashboard(Console)](#221-dashboard(consol))	
 		-	2.2.2. [Security Group](#222-security-group)	
 	-	2.3. [Bosh Server 및 Bosh CLI](#23-bosh-server-및-bosh-cli)	
 	-	2.4. [DNS Server](#24-dns-server)	
@@ -26,7 +26,7 @@
 	-	3.4. [Bosh Deploy](#34-bosh-deploy)		
 		-	3.4.1. [Deployment Manifest 지정](#341-deployment-manifest-지정)	
 		-	3.4.2. [Open PaaS Controller Deploy](#342-open-paas-controller-deploy)	
-	-	3.5. [설치형상확인](#35-설치형상확인)	
+	-	3.5. [설치형상 확인](#35-설치형상-확인)	
 
 
 

@@ -821,7 +821,6 @@ properties:
         provider: Local
     bulk_api_password: admin                 # Bulk API Password 설정
     client_max_body_size: 2048M
-    #db_encryption_key: admin
     db_encryption_key: db-encryption-key     # DB Encryprion Key 지정
     db_logging_level: debug2
     default_app_disk_in_mb: 1024

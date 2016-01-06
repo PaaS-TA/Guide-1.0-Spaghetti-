@@ -1422,7 +1422,6 @@ properties:
     ldap: null
     login: null
     newrelic: null
-    #no_ssl: true
     no_ssl: null
     port: 8080
     require_https: null

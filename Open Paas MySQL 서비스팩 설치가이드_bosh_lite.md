@@ -338,7 +338,6 @@ resource_pools:            # 배포시 사용하는 resource pools를 명시하�
     name: bosh-warden-boshlite-ubuntu-trusty-go_agent       #stemcell 이름(필수)
     version: "389"                                         # stemcell 버전(필수)
 ```
->  
   
 -	Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 >`$ bosh deployment {Deployment manifest 파일 PATH}`

@@ -127,7 +127,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 -	openpaas-mysql-lite.yml Deployment 파일을 서버 환경에 맞게 수정한다.(굵은 글씨로 표시된 부분만 수정)
 
 >`$ vi openpaas-mysql-lite.yml`
-
+>
 ```yml
 # openpaas-mysql-lite 설정 파일 내용
 
@@ -338,7 +338,7 @@ resource_pools:            # 배포시 사용하는 resource pools를 명시하�
     name: bosh-warden-boshlite-ubuntu-trusty-go_agent       #stemcell 이름(필수)
     version: "389"                                         # stemcell 버전(필수)
 ```
-  
+>  
   
 -	Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 >`$ bosh deployment {Deployment manifest 파일 PATH}`

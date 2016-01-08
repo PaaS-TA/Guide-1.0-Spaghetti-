@@ -382,8 +382,6 @@ resource_pools:     # 배포시 사용하는 resource pools를 명시하며 여�
 
 >![mysql_openstack_2.3.08]
 
->![mysql_openstack_2.3.09]
-
 ### 2.4. MySQL 서비스 브로커 등록
 Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 MySQL 서비스 브로커를 등록해 주어야 한다.  
 서비스 브로커 등록시 개방형 클라우드 플랫폼에서 서비스브로커를 등록할 수 있는 사용자로 로그인이 되어 있어야 한다.

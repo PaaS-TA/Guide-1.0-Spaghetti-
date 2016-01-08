@@ -34,7 +34,8 @@
 
 #2. MySQL 서비스팩 설치
 
-###2.1. 설치전 준비사항 
+###2.1. 설치전 준비사항
+
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.
 서비스팩 설치를 위해서는 먼저 BOSH-lite 가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.
 BOSH-lite 가 설치 되어 있지 않을 경우 먼저 BOSH-lite 설치 가이드 문서를 참고 하여BOSH-lite를 설치 해야 한다.
@@ -42,15 +43,19 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 ###2.2. MySQL 서비스 릴리즈 업로드
 
--	OpenPaaS-Services.zip파일 압축을 풀고 폴더안에 있는 MySQL 서비스 릴리즈 openpaas-mysql-release-beta-1.0.tgz 파일을 복사한다.
-  
-  
+OpenPaaS-Services.zip 파일 압축을 풀고 폴더안에 있는 MySQL 서비스 릴리즈 openpaas-mysql-release-beta-1.0.tgz 파일을 복사한다.
+
+<br>
+
 업로드할 openpaas-mysql-release-beta-1.0.tgz 파일을 확인한다.
+
 >`$ ls –all`
+
 >![mysql_bosh_lite_2.2.01]
-  
-  
--	업로드 되어 있는 릴리즈 목록을 확인한다.
+
+<br>
+
+업로드 되어 있는 릴리즈 목록을 확인한다.
 
 >`$ bosh releases`
 
@@ -58,8 +63,9 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 >Mysql 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
 
+<br>
 
--	MySQL 서비스 릴리즈 파일을 업로드한다.
+MySQL 서비스 릴리즈 파일을 업로드한다.
 
 >`$ bosh upload release {서비스 릴리즈 파일 PATH}`
 
@@ -75,8 +81,9 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 >![mysql_bosh_lite_2.2.07]
 
+<br>
 
--	업로드 된MySQL 릴리즈를 확인한다.
+업로드 된MySQL 릴리즈를 확인한다.
 
 >`$ bosh releases`
 
@@ -84,6 +91,7 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 >Mysql 서비스 릴리즈가 업로드 되어 있는 것을 확인
 
+<br>
 
 ### 2.3. MySQL 서비스 Deployment 파일 수정 및 배포
 

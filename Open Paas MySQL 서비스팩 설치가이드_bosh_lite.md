@@ -173,7 +173,7 @@ jobs:
     - 10.244.21.2                   # MySQL 서버 IP
     - 10.244.21.3
     - 10.244.21.4  
-    network_name: openpaas_network  # Networks block에서 선언한 network 이름
+    network_name: openpaas_network    # Networks block에서 선언한 network 이름
     seeded_databases: null
     syslog_aggregator: null
     collation_server: utf8_unicode_ci    # Mysql CharSet
@@ -283,7 +283,7 @@ release: openpaas-mysql
     cf:
       admin_password: admin      # CF 사용자 암호
       admin_username: admin      # CF 사용자 아이디
-      api_url: https://api.controller.open-paas.com    # CF 주소
+      api_url: https://api.bosh-lite.com    # CF 주소
       skip_ssl_validation: true    # CF SSL 접속 여부
   release: openpaas-mysql
   resource_pool: services-small
@@ -300,16 +300,16 @@ release: openpaas-mysql
     cf:
       admin_password: admin
       admin_username: admin
-      api_url: https://api.controller.open-paas.com
+      api_url: https://api.bosh-lite.com
       skip_ssl_validation: true
   release: openpaas-mysql
   resource_pool: services-small
   template: broker-deregistrar
 
 meta:
-  apps_domain: controller.open-paas.com       # CF 설치시 설정한 apps 도메인 정보
+  apps_domain: bosh-lite.com       # CF 설치시 설정한 apps 도메인 정보
   environment: null
-  external_domain: controller.open-paas.com   # CF 설치시 설정한 외부 도메인 정보
+  external_domain: bosh-lite.com   # CF 설치시 설정한 외부 도메인 정보
   nats:                     # CF 설치시 설정한 nats 정보
     machines:
     - 10.30.40.11
@@ -339,7 +339,7 @@ resource_pools:            # 배포시 사용하는 resource pools를 명시하�
 #size: 4          # resource pool 안의 가상머신 개수, 주의) jobs 인스턴스 보다 작으면 에러가 남, size 정의하지 않으면 자동으로 가상머신 크기 설정
   network: openpaas_network
   stemcell:
-    name: bosh-warden-boshlite-ubuntu-trusty-go_agent       #stemcell 이름(필수)
+    name: bosh-warden-boshlite-ubuntu-trusty-go_agent      # stemcell 이름(필수)
     version: "389"                                         # stemcell 버전(필수)
 ```
 <br>

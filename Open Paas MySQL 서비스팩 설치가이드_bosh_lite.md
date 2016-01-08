@@ -274,7 +274,7 @@ release: openpaas-mysql
   - name: openpaas_network
   properties:
     broker:                      # 서비스 브로커 설정 정보
-      host: 10.244.21.5          # 서비스 브로커 IP 
+      host: 10.244.21.6          # 서비스 브로커 IP 
       name: mysql-service        # 서비스 명
       password: cloudfoundry     # 서비스 브로커 인증 패스워드
       username: admin            # 서비스 브러커 인증 아이디
@@ -390,11 +390,11 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 >`$cf create-service-broker {서비스팩 이름} {서비스팩 사용자ID} {서비스팩 사용자비밀번호} http://{서비스팩 URL}`
 
-	>서비스팩 이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.
-	>서비스팩 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID이다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
-	>서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.
+>서비스팩 이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.
+>서비스팩 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID이다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
+>서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.
 
->`$cf create-service-broker mysql-service-broker admin password http://p-mysql.10.244.0.34.xip.io`
+>`$cf create-service-broker mysql-service-broker admin cloudfoundry http://10.244.21.6:8080`
 
 >![mysql_bosh_lite_2.4.02]
 
@@ -420,7 +420,7 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 ##### 특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
 
->`$ cf enable-service-access p-mysql`
+>`$ cf enable-service-access mysql-service`
 
 >`$ cf service-access`
 
@@ -569,7 +569,7 @@ applications:
 
 ##### 보안 그룹을 생성한다.
 
->`$ cf create-security-group p-mysql rule.json`
+>`$ cf create-security-group mysql rule.json`
 
 >![mysql_bosh_lite_3.3.06]
 
@@ -577,7 +577,7 @@ applications:
 
 ##### 모든 App에 Mysql 서비스를 사용할수 있도록 생성한 보안 그룹을 적용한다.
 
->`$ cf bind-running-security-group p-mysql`
+>`$ cf bind-running-security-group mysql`
 
 >![mysql_bosh_lite_3.3.07]
 

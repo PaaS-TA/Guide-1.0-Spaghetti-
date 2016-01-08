@@ -128,7 +128,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 <br>
 
-##### openpaas-mysql-lite.yml Deployment 파일을 서버 환경에 맞게 수정한다.(굵은 글씨로 표시된 부분만 수정)
+##### openpaas-mysql-lite.yml Deployment 파일을 서버 환경에 맞게 수정한다.
 
 >`$ vi openpaas-mysql-lite.yml`
 

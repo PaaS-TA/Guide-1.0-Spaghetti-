@@ -237,7 +237,7 @@ template: mysql                          # job template 이름(필수)
     external_host: bosh-lite.com   # CF 설치시 설정한 외부 호스트 정보(필수)
     nats:               # CF 설치시 설치한 nats 정보 (필수)
       machines:
-      - 10.30.40.11     # nats 서버 IP
+      - 10.244.0.6     # nats 서버 IP
       password: nats    # nats 유저 비밀번호
       port: 4222        # nats 서버 포트번호
       user: nats        # nats 서버 유저아이디
@@ -255,7 +255,7 @@ template: mysql                          # job template 이름(필수)
   name: openpaas-mysql-java-broker   # 작업 이름(필수): 서비스 브로커
   networks:
   - name: openpaas_network
-    static_ips: 10.244.21.6          # 사용할 IP addresses 정의(필수): 서비스 브로커 IP
+    static_ips: 10.244.21.6          # 사용할 IP addresses 정의(필수): 서비스 브로커 주소
   properties:
     jdbc_ip: 10.244.21.5             # Mysql Url
     jdbc_pwd: admin                  # Mysql password
@@ -274,7 +274,7 @@ release: openpaas-mysql
   - name: openpaas_network
   properties:
     broker:                      # 서비스 브로커 설정 정보
-      host: 10.30.40.195         # 서비스 브로커 IP 
+      host: 10.244.21.5          # 서비스 브로커 IP 
       name: mysql-service        # 서비스 명
       password: cloudfoundry     # 서비스 브로커 인증 패스워드
       username: admin            # 서비스 브러커 인증 아이디
@@ -312,7 +312,7 @@ meta:
   external_domain: bosh-lite.com   # CF 설치시 설정한 외부 도메인 정보
   nats:                     # CF 설치시 설정한 nats 정보
     machines:
-    - 10.30.40.11
+    - 10.244.0.6
     password: nats
     port: 4222
     user: nats

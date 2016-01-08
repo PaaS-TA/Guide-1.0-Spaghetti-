@@ -343,6 +343,7 @@ resource_pools:            # 배포시 사용하는 resource pools를 명시하�
 ```
   
 ##### Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
+
 >`$ bosh deployment {Deployment manifest 파일 PATH}`
 
 >`$ bosh deployment openpaas-mysql-lite.yml`
@@ -351,21 +352,21 @@ resource_pools:            # 배포시 사용하는 resource pools를 명시하�
 
 ##### MySQL 서비스팩을 배포한다.
 
-`$ bosh deploy`
+>`$ bosh deploy`
 
-![mysql_bosh_lite_2.3.05]
+>![mysql_bosh_lite_2.3.05]
 
-![mysql_bosh_lite_2.3.06]
+>![mysql_bosh_lite_2.3.06]
 
-![mysql_bosh_lite_2.3.07]
+>![mysql_bosh_lite_2.3.07]
 
 ##### 배포된 MySQL 서비스팩을 확인한다.
 
-`$bosh vms`
+>`$bosh vms`
 
-![mysql_bosh_lite_2.3.08]
+>![mysql_bosh_lite_2.3.08]
 
-![mysql_bosh_lite_2.3.09]
+>![mysql_bosh_lite_2.3.09]
 
 ### 2.4. MySQL 서비스 브로커 등록
 Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 MySQL 서비스 브로커를 등록해 주어야 한다.  
@@ -373,42 +374,43 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 ##### 서비스 브로커 목록을 확인한다.
 
-`$ cf service-brokers`
+>`$ cf service-brokers`
 
-![mysql_bosh_lite_2.4.01]
+>![mysql_bosh_lite_2.4.01]
 
 ##### MySQL 서비스 브로커를 등록한다.
 
-`$cf create-service-broker {서비스팩 이름} {서비스팩 사용자ID} {서비스팩 사용자비밀번호} http://{서비스팩 URL}`
->서비스팩 이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.
->서비스팩 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID이다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
->서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.
+>`$cf create-service-broker {서비스팩 이름} {서비스팩 사용자ID} {서비스팩 사용자비밀번호} http://{서비스팩 URL}`
 
-`$cf create-service-broker mysql-service-broker admin password http://p-mysql.10.244.0.34.xip.io`
+	>서비스팩 이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.
+	>서비스팩 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID이다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
+	>서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.
 
-![mysql_bosh_lite_2.4.02]
+>`$cf create-service-broker mysql-service-broker admin password http://p-mysql.10.244.0.34.xip.io`
+
+>![mysql_bosh_lite_2.4.02]
 
 ##### 등록된 MySQL 서비스 브로커를 확인한다.
 
-`$ cf service-brokers`
+>`$ cf service-brokers`
 
-![mysql_bosh_lite_2.4.03]
+>![mysql_bosh_lite_2.4.03]
 
 ##### 접근 가능한 서비스 목록을 확인한다.
 
-`$ cf service-access`
+>`$ cf service-access`
 
-![mysql_bosh_lite_2.4.04]
+>![mysql_bosh_lite_2.4.04]
 
-서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.
+>서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.
 
 ##### 특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
 
-`$ cf enable-service-access p-mysql`
+>`$ cf enable-service-access p-mysql`
 
-`$ cf service-access`
+>`$ cf service-access`
 
-![mysql_bosh_lite_2.4.05]
+>![mysql_bosh_lite_2.4.05]
 
 # 3. MySQL 연동 Sample Web App 설명
 본 Sample Web App은 개발형 클라우드 플랫폼에 배포되며 MySQL의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
@@ -564,6 +566,7 @@ Application에 바인딩된 MySQL 서비스 연결정보는 Private IP로 구성
 HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트웨어이다.
 
 ##### HeidiSQL을 다운로드 하기 위해 아래 URL로 이동하여 설치파일을 다운로드 한다.
+
 >[http://www.heidisql.com/download.php](http://www.heidisql.com/download.php)
 
 >![mysql_bosh_lite_4.1.01]
@@ -593,10 +596,10 @@ Next 버튼을 클릭하여 다음 과정을 진행한다.
 
 ##### 체크박스가 4개가 있다. 아래의 경우를 고려하여 체크 및 해제를 한다.
 >	
-	>바탕화면에 바로가기 아이콘을 생성할 경우  
-	>sql확장자를 HeidiSQL 프로그램으로 실행할 경우  
-	>heidisql 공식 홈페이지를 통해 자동으로 update check를 할 경우  
-	>heidisql 공식 홈페이지로 자동으로 버전을 전송할 경우
+	바탕화면에 바로가기 아이콘을 생성할 경우  
+	sql확장자를 HeidiSQL 프로그램으로 실행할 경우  
+	heidisql 공식 홈페이지를 통해 자동으로 update check를 할 경우  
+	heidisql 공식 홈페이지로 자동으로 버전을 전송할 경우
 
 > 체크박스에 체크 설정/해제를 완료했다면 Next 버튼을 클릭한다.
 

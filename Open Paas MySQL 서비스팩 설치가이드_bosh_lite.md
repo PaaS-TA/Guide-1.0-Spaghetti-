@@ -45,8 +45,6 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 OpenPaaS-Services.zip 파일 압축을 풀고 폴더안에 있는 MySQL 서비스 릴리즈 openpaas-mysql-release-beta-1.0.tgz 파일을 복사한다.
 
-<br>
-
 ##### 업로드할 openpaas-mysql-release-beta-1.0.tgz 파일을 확인한다.
 
 >`$ ls –all`
@@ -286,7 +284,7 @@ release: openpaas-mysql
       admin_password: admin      # CF 사용자 암호
       admin_username: admin      # CF 사용자 아이디
       api_url: https://api.controller.open-paas.com    # CF 주소
-      skip_ssl_validation: true      # CF SSL 접속 여부
+      skip_ssl_validation: true    # CF SSL 접속 여부
   release: openpaas-mysql
   resource_pool: services-small
   template: broker-registrar
@@ -302,17 +300,17 @@ release: openpaas-mysql
     cf:
       admin_password: admin
       admin_username: admin
-      api_url: https://api.bosh-lite.com
+      api_url: https://api.controller.open-paas.com
       skip_ssl_validation: true
   release: openpaas-mysql
   resource_pool: services-small
   template: broker-deregistrar
 
 meta:
-  apps_domain: bosh-lite.com       # CF 설치시 설정한 apps 도메인 정보
+  apps_domain: controller.open-paas.com       # CF 설치시 설정한 apps 도메인 정보
   environment: null
-  external_domain: bosh-lite.com   # CF 설치시 설정한 외부 도메인 정보
-  nats:                            # CF 설치시 설정한 nats 정보
+  external_domain: controller.open-paas.com   # CF 설치시 설정한 외부 도메인 정보
+  nats:                     # CF 설치시 설정한 nats 정보
     machines:
     - 10.30.40.11
     password: nats
@@ -376,13 +374,9 @@ resource_pools:            # 배포시 사용하는 resource pools를 명시하�
 
 >![mysql_bosh_lite_2.3.09]
 
-<br>
-
 ### 2.4. MySQL 서비스 브로커 등록
 Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 MySQL 서비스 브로커를 등록해 주어야 한다.  
 서비스 브로커 등록시 개방형 클라우드 플랫폼에서 서비스브로커를 등록할 수 있는 사용자로 로그인이 되어 있어야 한다.
-
-<br>
 
 ##### 서비스 브로커 목록을 확인한다.
 
@@ -432,12 +426,8 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 >![mysql_bosh_lite_2.4.05]
 
-<br>
-
 # 3. MySQL 연동 Sample Web App 설명
 본 Sample Web App은 개발형 클라우드 플랫폼에 배포되며 MySQL의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
-
-<br>
 
 ### 3.1. Sample Web App 구조
 
@@ -451,8 +441,6 @@ Sample Web App 구조는 다음과 같다.
 | manifest | 개방형 클라우드 플랫폼에 app 배포시 필요한 설정을 저장하는 파일
 | pom.xml | 메이븐 project 설정 파일
 | target | 메이븐 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)
-
-<br>
 
 ##### OpenPaaS-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를 복사한다.
 
@@ -512,11 +500,14 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 >`$ vi manifest.yml`
 
 ```yml
+---
 applications:
-- name: hello-tomcat-mysql <b>#배포할 App 이름</b>
-  instances: 1 <b># 배포 인스턴스 수</b>
-  path: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war <b>#배포하는 App 파일 PAT</b>
+- name: hello-spring-mysql    # 배포할 App 이름
+  memory: 512M                # 배포시 메모리 사이즈
+  instances: 1                # 배포 인스턴스 수
+  path: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war    #배포하는 App 파일 PATH
 ```
+
 >참고: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war파일이 존재 하지 않을 경우 mvn 빌드를 수행 하면 파일이 생성된다.
 
 <br>
@@ -567,11 +558,11 @@ applications:
 
 ```json
 [
-   {
-      "protocol": "tcp",
-      "destination": "10.244.7.6",
-      "ports": "3306"
-   }
+  {
+    "protocol": "tcp",
+    "destination": "10.244.21.5",
+    "ports": "3306"
+  }
 ]
 ```
 <br>
@@ -604,23 +595,18 @@ applications:
 
 >curl 로 확인
 
->`$ curl hello-tomcat-mysql.10.244.0.34.xip.io`
+>`$ curl hello-tomcat-mysql.controller.open-paas.com`
 
 >![mysql_bosh_lite_3.3.09]
 
-<br>
 
 # 4. MySQL Client 툴 접속
 
 Application에 바인딩된 MySQL 서비스 연결정보는 Private IP로 구성되어 있기 때문에 MySQL Client 툴에서 직접 연결할수 없다. 따라서 MySQL Client 툴에서 SSH 터널, Proxy 터널 등을 제공하는 툴을 사용해서 연결하여야 한다. 본 가이드는 SSH 터널을 이용하여 연결 하는 방법을 제공하며 MySQL Client 툴로써는 오픈 소스인 HeidiSQL로 가이드한다. 또한 Bosh lite를 AWS 환경에서 구성 한 경우를 전제로 하였다. AWS에서 Bosh lite를 구성하면 Vagrant VM이 생성되는데 Vagrant VM 에서는 서비스팩의 Private IP 와 해당 포트로 접근이 가능하도록 구성되어 있다.
 
-<br>
-
 ### 4.1. HeidiSQL 설치 및 연결
 
 HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트웨어이다.
-
-<br>
 
 ##### HeidiSQL을 다운로드 하기 위해 아래 URL로 이동하여 설치파일을 다운로드 한다.
 
@@ -731,7 +717,8 @@ HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트�
 <br>
 
 ##### 우측 화면에 쿼리 탭을 클릭하여 Query문을 작성한 후 실행 버튼(삼각형)을 클릭한다.  
-쿼리문에 이상이 없다면 정상적으로 결과를 얻을 수 있을 것이다.
+
+>쿼리문에 이상이 없다면 정상적으로 결과를 얻을 수 있을 것이다.
 
 >![mysql_bosh_lite_4.1.17]
 

@@ -19,7 +19,6 @@
 # 1. 문서 개요
 ### 1.1. 목적
 
-
 본 문서(MySQL 서비스팩 설치 가이드)는 전자정부표준프레임워크 기반의 Open PaaS에서 제공되는 서비스팩인 MySQL 서비스팩을 Bosh를 이용하여 설치 하는 방법과 Open PaaS의 SaaS 형태로 제공하는 Application 에서 MySQL 서비스를 사용하는 방법을 기술하였다.
 
 ### 1.2. 범위
@@ -46,10 +45,8 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 -	OpenPaaS-Services.zip파일 압축을 풀고 폴더안에 있는 MySQL 서비스 릴리즈 openpaas-mysql-release-beta-1.0.tgz 파일을 복사한다.
   
   
--	업로드할 openpaas-mysql-release-beta-1.0.tgz 파일을 확인한다.
-  
-`$ ls –all`
-
+업로드할 openpaas-mysql-release-beta-1.0.tgz 파일을 확인한다.
+>`$ ls –all`
 >![mysql_bosh_lite_2.2.01]
   
   

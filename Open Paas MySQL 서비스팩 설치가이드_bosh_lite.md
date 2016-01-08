@@ -44,14 +44,15 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 ###2.2. MySQL 서비스 릴리즈 업로드
 
 -	OpenPaaS-Services.zip파일 압축을 풀고 폴더안에 있는 MySQL 서비스 릴리즈 openpaas-mysql-release-beta-1.0.tgz 파일을 복사한다.
-
+  
+  
 -	업로드할 openpaas-mysql-release-beta-1.0.tgz 파일을 확인한다.
-
->`$ ls –all`
+  
+`$ ls –all`
 
 >![mysql_bosh_lite_2.2.01]
-
-
+  
+  
 -	업로드 되어 있는 릴리즈 목록을 확인한다.
 
 >`$ bosh releases`
@@ -120,7 +121,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 -	openpaas-mysql-lite.yml Deployment 파일을 서버 환경에 맞게 수정한다.(굵은 글씨로 표시된 부분만 수정)
 
-`$ vi openpaas-mysql-lite.yml`
+>`$ vi openpaas-mysql-lite.yml`
 
 ```yml
 # openpaas-mysql-lite 설정 파일 내용
@@ -300,7 +301,7 @@ meta:
   apps_domain: bosh-lite.com       # CF 설치시 설정한 apps 도메인 정보
   environment: null
   external_domain: bosh-lite.com   # CF 설치시 설정한 외부 도메인 정보
-  nats:# CF 설치시 설정한 nats 정보
+  nats:                            # CF 설치시 설정한 nats 정보
     machines:
     - 10.30.40.11
     password: nats
@@ -331,17 +332,15 @@ resource_pools:            # 배포시 사용하는 resource pools를 명시하�
   stemcell:
     name: bosh-warden-boshlite-ubuntu-trusty-go_agent       #stemcell 이름(필수)
     version: "389"                                         # stemcell 버전(필수)
-
-
-
 ```
-
+  
+  
 -	Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
-`$ bosh deployment {Deployment manifest 파일 PATH}`
+>`$ bosh deployment {Deployment manifest 파일 PATH}`
 
-`$ bosh deployment openpaas-mysql-lite.yml`
+>`$ bosh deployment openpaas-mysql-lite.yml`
 
-![mysql_bosh_lite_2.3.04]
+>![mysql_bosh_lite_2.3.04]
 
 -	MySQL 서비스팩을 배포한다.
 

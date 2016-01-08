@@ -118,6 +118,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 >![mysql_bosh_lite_2.3.02]
 
+<br>
 
 ##### Deploy시 사용할 Stemcell을 확인한다. (Stemcell 2776 버전 사용)
 
@@ -126,6 +127,8 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 >![mysql_bosh_lite_2.3.03]
 
 >Stemcell 목록이 존재 하지 않을 경우 BOSH-lite 설치 가이드 문서를 참고 하여 Stemcell 2776 버전을 업로드를 해야 한다.
+
+<br>
 
 ##### openpaas-mysql-lite.yml Deployment 파일을 서버 환경에 맞게 수정한다.(굵은 글씨로 표시된 부분만 수정)
 
@@ -341,7 +344,8 @@ resource_pools:            # 배포시 사용하는 resource pools를 명시하�
     name: bosh-warden-boshlite-ubuntu-trusty-go_agent       #stemcell 이름(필수)
     version: "389"                                         # stemcell 버전(필수)
 ```
-  
+<br>
+
 ##### Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 
 >`$ bosh deployment {Deployment manifest 파일 PATH}`
@@ -349,6 +353,8 @@ resource_pools:            # 배포시 사용하는 resource pools를 명시하�
 >`$ bosh deployment openpaas-mysql-lite.yml`
 
 >![mysql_bosh_lite_2.3.04]
+
+<br>
 
 ##### MySQL 서비스팩을 배포한다.
 
@@ -360,6 +366,8 @@ resource_pools:            # 배포시 사용하는 resource pools를 명시하�
 
 >![mysql_bosh_lite_2.3.07]
 
+<br>
+
 ##### 배포된 MySQL 서비스팩을 확인한다.
 
 >`$bosh vms`
@@ -368,15 +376,21 @@ resource_pools:            # 배포시 사용하는 resource pools를 명시하�
 
 >![mysql_bosh_lite_2.3.09]
 
+<br>
+
 ### 2.4. MySQL 서비스 브로커 등록
 Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 MySQL 서비스 브로커를 등록해 주어야 한다.  
 서비스 브로커 등록시 개방형 클라우드 플랫폼에서 서비스브로커를 등록할 수 있는 사용자로 로그인이 되어 있어야 한다.
+
+<br>
 
 ##### 서비스 브로커 목록을 확인한다.
 
 >`$ cf service-brokers`
 
 >![mysql_bosh_lite_2.4.01]
+
+<br>
 
 ##### MySQL 서비스 브로커를 등록한다.
 
@@ -390,11 +404,15 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 >![mysql_bosh_lite_2.4.02]
 
+<br>
+
 ##### 등록된 MySQL 서비스 브로커를 확인한다.
 
 >`$ cf service-brokers`
 
 >![mysql_bosh_lite_2.4.03]
+
+<br>
 
 ##### 접근 가능한 서비스 목록을 확인한다.
 
@@ -404,6 +422,8 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 >서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.
 
+<br>
+
 ##### 특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
 
 >`$ cf enable-service-access p-mysql`
@@ -412,8 +432,12 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 >![mysql_bosh_lite_2.4.05]
 
+<br>
+
 # 3. MySQL 연동 Sample Web App 설명
 본 Sample Web App은 개발형 클라우드 플랫폼에 배포되며 MySQL의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
+
+<br>
 
 ### 3.1. Sample Web App 구조
 
@@ -428,23 +452,30 @@ Sample Web App 구조는 다음과 같다.
 | pom.xml | 메이븐 project 설정 파일
 | target | 메이븐 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)
 
+<br>
+
 ##### OpenPaaS-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를 복사한다.
 
 >`$ls -all`
 
 >![mysql_bosh_lite_3.1.01]
 
+<br>
+
 ### 3.2. 개방형 클라우드 플랫폼에서 서비스 신청
 Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.
 
 *참고: 서비스 신청시 개방형 클라우드 플랫폼에서 서비스를신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
+<br>
 
 ##### 먼저 개방형 클라우드 플랫폼 Marketplace에서 서비스가 있는지 확인을 한다.
 
 >`$cf marketplace`
 
 >![mysql_bosh_lite_3.2.01]
+
+<br>
 
 ##### Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.
 
@@ -458,15 +489,21 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 
 >![mysql_bosh_lite_3.2.02]
 
+<br>
+
 ##### 생성된 MySQL 서비스 인스턴스를 확인한다.
 
 >`$ cf services`
 
 >![mysql_bosh_lite_3.2.03]
 
+<br>
+
 ### 3.3. Sample Web App에 서비스 바인드 신청 및 App 확인
 서비스 신청이 완료되었으면 Sample Web App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 MySQL 서비스를 이용한다. 
 *참고: 서비스 Bind 신청시 개방형 클라우드 플랫폼에서 서비스 Bind신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
+
+<br>
 
 ##### Sample Web App 디렉토리로 이동하여 manifest 파일을 확인한다.
 
@@ -482,6 +519,8 @@ applications:
 ```
 >참고: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war파일이 존재 하지 않을 경우 mvn 빌드를 수행 하면 파일이 생성된다.
 
+<br>
+
 ##### --no-start 옵션으로 App을 배포한다.  
 
 >--no-start: App 배포시 구동은 하지 않는다.
@@ -490,6 +529,7 @@ applications:
 
 >![mysql_bosh_lite_3.3.01]
 
+<br>
 
 ##### 배포된 Sample App을 확인하고 로그를 수행한다.
 >`$ cf apps`
@@ -502,11 +542,15 @@ applications:
 
 >![mysql_bosh_lite_3.3.03]
 
+<br>
+
 ##### Sample Web App에서 생성한 서비스 인스턴스 바인드 신청을 한다.
 
 >`$ cf bind-service hello-tomcat-mysql mysql-service-instance`
 
 >![mysql_bosh_lite_3.3.04]
+
+<br>
 
 ##### 바인드가 적용되기 위해서 App을 재기동한다.
 
@@ -515,6 +559,8 @@ applications:
 >![mysql_bosh_lite_3.3.05]
 
 >(참고) 바인드 후 App구동시 Mysql 서비스 접속 에러로 App 구동이 안될 경우 보안 그룹을 추가한다.  
+
+<br>
 
 ##### rule.json 화일을 만들고 아래와 같이 내용을 넣는다.
 >`$ vi rule.json`
@@ -528,6 +574,7 @@ applications:
    }
 ]
 ```
+<br>
 
 ##### 보안 그룹을 생성한다.
 
@@ -535,17 +582,23 @@ applications:
 
 >![mysql_bosh_lite_3.3.06]
 
+<br>
+
 ##### 모든 App에 Mysql 서비스를 사용할수 있도록 생성한 보안 그룹을 적용한다.
 
 >`$ cf bind-running-security-group p-mysql`
 
 >![mysql_bosh_lite_3.3.07]
 
+<br>
+
 ##### App을 리부팅 한다.
 
 >`$ cf restarthello-tomcat-mysql`
 
 >![mysql_bosh_lite_3.3.08]
+
+<br>
 
 ##### App이 정상적으로 MySQL 서비스를 사용하는지 확인한다.
 
@@ -555,15 +608,19 @@ applications:
 
 >![mysql_bosh_lite_3.3.09]
 
+<br>
 
 # 4. MySQL Client 툴 접속
 
 Application에 바인딩된 MySQL 서비스 연결정보는 Private IP로 구성되어 있기 때문에 MySQL Client 툴에서 직접 연결할수 없다. 따라서 MySQL Client 툴에서 SSH 터널, Proxy 터널 등을 제공하는 툴을 사용해서 연결하여야 한다. 본 가이드는 SSH 터널을 이용하여 연결 하는 방법을 제공하며 MySQL Client 툴로써는 오픈 소스인 HeidiSQL로 가이드한다. 또한 Bosh lite를 AWS 환경에서 구성 한 경우를 전제로 하였다. AWS에서 Bosh lite를 구성하면 Vagrant VM이 생성되는데 Vagrant VM 에서는 서비스팩의 Private IP 와 해당 포트로 접근이 가능하도록 구성되어 있다.
 
+<br>
 
 ### 4.1. HeidiSQL 설치 및 연결
 
 HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트웨어이다.
+
+<br>
 
 ##### HeidiSQL을 다운로드 하기 위해 아래 URL로 이동하여 설치파일을 다운로드 한다.
 
@@ -571,17 +628,25 @@ HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트�
 
 >![mysql_bosh_lite_4.1.01]
 
+<br>
+
 ##### 다운로드한 설치파일을 실행한다.
 
 >![mysql_bosh_lite_4.1.02]
+
+<br>
 
 ##### HeidSQL 설치를 위한 안내사항이다. Next 버튼을 클릭한다.
 
 >![mysql_bosh_lite_4.1.03]
 
+<br>
+
 ##### 프로그램 라이선스에 관련된 내용이다. 동의(I accept the agreement)에 체크 후 Next 버튼을 클릭한다.
 
 >![mysql_bosh_lite_4.1.04]
+
+<br>
 
 ##### HeidiSQL을 설치할 경로를 설정 후 Next 버튼을 클릭한다.
 
@@ -589,10 +654,14 @@ HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트�
 
 >![mysql_bosh_lite_4.1.05]
 
+<br>
+
 ##### 설치 완료 후 시작메뉴에 HeidiSQL 바로가기 아이콘의 이름을 설정하는 과정이다.  
-Next 버튼을 클릭하여 다음 과정을 진행한다.
+>Next 버튼을 클릭하여 다음 과정을 진행한다.
 
 >![mysql_bosh_lite_4.1.06]
+
+<br>
 
 ##### 체크박스가 4개가 있다. 아래의 경우를 고려하여 체크 및 해제를 한다.
 >	
@@ -605,21 +674,31 @@ Next 버튼을 클릭하여 다음 과정을 진행한다.
 
 >![mysql_bosh_lite_4.1.07]
 
+<br>
+
 ##### 설치를 위한 모든 설정이 한번에 출력된다.확인 후 Install 버튼을 클릭하여 설치를 진행한다.
 
 >![mysql_bosh_lite_4.1.08]
+
+<br>
 
 ##### Finish 버튼 클릭으로 설치를 완료한다.
 
 >![mysql_bosh_lite_4.1.09]
 
+<br>
+
 ##### HeidiSQL을 실행했을 때 처음 뜨는 화면이다. 이 화면에서 Server에 접속하기 위한 profile을 설정/저장하여 접속할 수 있다. 신규 버튼을 클릭한다.
 
 >![mysql_bosh_lite_4.1.10]
 
+<br>
+
 ##### 어떤 Server에 접속하기 위한 Connection 정보인지 별칭을 입력한다.
 
 >![mysql_bosh_lite_4.1.11]
+
+<br>
 
 ##### 네트워크 유형의 목록에서 MySQL(SSH tunel)을 선택한다.
 
@@ -635,15 +714,21 @@ Next 버튼을 클릭하여 다음 과정을 진행한다.
 
 >![mysql_bosh_lite_4.1.14]
 
+<br>
+
 ##### SSH 터널 탭을 클릭하고 Vagrant VM 정보를 입력하고 개인 키 파일을 불러온다. 개인키는 AWS에서 인스턴스 접속을 위한 공개키(.pem 파일)를puttygen을 이용하여 개인키(.ppk)로 변환한다. plink.exe 위치 입력은 Putty에서 제공하는 plink.exe 실행 위치를 넣어주고 만일 해당 파일이 없을 경우 plink.exe 내려받기 링크를 클릭하여 다운받는다. 로컬 포트 정보는 임의로 넣고 열기 버튼을 클릭하면 Mysql 데이터베이스에 접속한다.
 
 >(참고) 만일 개인 키 없이 ID/Password로 접속이 가능한 경우에는 개인키 대신 사용자 이름과 암호를 입력한다.
 
 >![mysql_bosh_lite_4.1.15]
 
+<br>
+
 ##### 접속이 완료되면 좌측에 스키마 정보가 나타난다.하지만 초기설정은 테이블, 뷰, 프로시져, 함수, 트리거, 이벤트 등 모두 섞여 있어서 한눈에 구분하기가 힘들어서 접속한 DB 별칭에 마우스 오른쪽 클릭 후 "트리 방식 옵션" - "객체를 유형별로 묶기"를 클릭하면 아래 화면과 같이 각 유형별로 구분이된다.
 
 >![mysql_bosh_lite_4.1.16]
+
+<br>
 
 ##### 우측 화면에 쿼리 탭을 클릭하여 Query문을 작성한 후 실행 버튼(삼각형)을 클릭한다.  
 쿼리문에 이상이 없다면 정상적으로 결과를 얻을 수 있을 것이다.

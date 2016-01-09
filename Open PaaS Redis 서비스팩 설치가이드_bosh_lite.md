@@ -22,6 +22,8 @@
       
 본 문서(Redis서비스팩설치 가이드)는 전자정부표준프레임워크 기반의 Open PaaS에서 제공되는 서비스팩인Redis서비스팩을 Bosh를 이용하여 설치 하는 방법과 Open PaaS의 SaaS 형태로 제공하는 Application 에서Redis 서비스를 사용하는 방법을 기술하였다.
 
+<br>
+
 ### 1.2. 범위 
 
 설치 범위는 Redis서비스팩을 검증하기 위한 기본 설치를 기준으로 작성하였다. 
@@ -31,11 +33,15 @@
 
 ![시스템 구성도][redis_bosh_lite_02]
 
-### 1.4참고자료
+<br>
+
+### 1.4. 참고자료
 [**http://bosh.io/docs**](http://bosh.io/docs)
 [**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
 
-# 	2. Redis 서비스팩 설치
+<br>
+
+# 2. Redis 서비스팩 설치
 
 ###	2.1. 설치전 준비사항
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.
@@ -43,7 +49,9 @@
 BOSH-lite 가 설치 되어 있지 않을 경우 먼저 BOSH-lite 설치 가이드 문서를 참고 하여 BOSH-lite를 설치 해야 한다.
 OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Deployment.zip, OpenPaaS-Sample-Apps.zip, OpenPaaS-Services.zip)
 
-###		2.2. Redis 서비스 릴리즈 업로드
+###	2.2. Redis 서비스 릴리즈 업로드
+
+<br>
 
 ##### OpenPaaS-Services.zip 파일 압축을 풀고폴더안에 있는 Redis 서비스 릴리즈openpaas-redis-release-beta-1.0.tgz 파일을복사한다.
 
@@ -377,6 +385,8 @@ properties:
 Redis서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 Redis 서비스 브로커를 등록해 주어야 한다.
 서비스 브로커 등록시개방형 클라우드 플랫폼에서서비스브로커를등록할수있는사용자로로그인이되어있어야한다.
 
+<br>
+
 ##### 서비스 브로커 목록을 확인한다.
 
 >`$ cf service-brokers`
@@ -486,7 +496,9 @@ Sample App에서 Redis 서비스를 사용하기 위해서는 서비스 신청(P
 
 ###	3.3. Sample App에 서비스 바인드 신청 및 App 확인
 서비스 신청이 완료되었으면 Sample App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 Redis 서비스를 이용한다.
-*참고: 서비스 Bind 신청시개방형 클라우드 플랫폼에서 서비스 Bind신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
+* 참고: 서비스 Bind 신청시개방형 클라우드 플랫폼에서 서비스 Bind신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
+
+<br>
 
 ##### Sample App 디렉토리로 이동하여 manifest 파일을 확인한다
 
@@ -548,7 +560,7 @@ path: .#배포시 구동되는 Path
 
 ##### App이 정상적으로 Redis 서비스를 사용하는지 확인한다.
 
-###### curl 로 확인
+###### curl로 확인
 >- Redis Application 을 이용하여 Key 값으로 데이터 저장
 
 >`$ export APP=redis-example-app.bosh-lite.com`

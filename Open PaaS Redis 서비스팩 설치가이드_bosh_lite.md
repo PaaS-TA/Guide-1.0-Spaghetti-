@@ -126,15 +126,13 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 B
 
 <br>
 
-##### Deploy시 사용할 Stemcell을 확인한다. (Stemcell2776 버전 사용)
+##### Deploy시 사용할 Stemcell을 확인한다. (Stemcell 389 버전 사용)
  
 >`$ bosh stemcells`
 
 >![redis_bosh_lite_12]
 
-<br>
-
->Stemcell목록이 존재 하지 않을 경우 BOSH-lite 설치 가이드 문서를 참고 하셔서 Stemcell2776 버전을 업로드를 해야 한다.
+>Stemcell목록이 존재 하지 않을 경우 BOSH-lite 설치 가이드 문서를 참고 하셔서 Stemcell 389 버전을 업로드를 해야 한다.
 
 <br>
 

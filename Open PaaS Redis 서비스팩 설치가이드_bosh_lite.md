@@ -442,30 +442,6 @@ Sample App 구조는 다음과 같다.
 | Gemfile | Sample App 구동시 필요한 ruby gem 설정 파일 |
 | config.ru | Sample App 구동 파일 |
 
-
-<table>
-	<tr>
-		<td>이름</td>
-		<td>설명</td>
-	</tr>
-	<tr>
-		<td>lib</td>
-		<td>Sample 소스디렉토리</td>
-	</tr>
-	<tr>
-		<td>manifest.yml</td>
-		<td>개방형클라우드 플랫폼에 app 배포시 필요한 설정을 저장하는 파일</td>
-	</tr>
-	<tr>
-		<td>Gemfile</td>
-		<td>Sample App 구동시 필요한 ruby gem 설정 파일</td>
-	</tr>
-	<tr>
-		<td>config.ru</td>
-		<td>Sample App 구동 파일</td>
-	</tr>
-</table>
-
 <br>
 
 ##### OpenPaaS-Sample-Apps.zip 파일 압축을 풀고 Service폴더안에 있는 RedisSample Web App인 redis-example-app을복사한다
@@ -490,9 +466,9 @@ Sample App에서 Redis 서비스를 사용하기 위해서는 서비스 신청(P
 
 >`$ cf create-service {서비스명} {서비스플랜} {내서비스명}`
 
->서비스명 :redis-sb로 Marketplace에서 보여지는 서비스 명칭이다.
->서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. Redis 서비스는 shared-vm 과 dedicated-vmplan을지원한다.
->내서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.
+	서비스명 :redis-sb로 Marketplace에서 보여지는 서비스 명칭이다.
+	서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. Redis 서비스는 shared-vm 과 dedicated-vmplan을지원한다.
+	내서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.
 
 >`$ cf create-service redis-sbshared-vmredis-service-instance`
 

@@ -118,13 +118,13 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 <br>
 
-##### Deploy시 사용할 Stemcell을 확인한다. (Stemcell 2776 버전 사용)
+##### Deploy시 사용할 Stemcell을 확인한다. (Stemcell 389 버전 사용)
 
 >`$ bosh stemcells`
 
 >![mysql_bosh_lite_2.3.03]
 
->Stemcell 목록이 존재 하지 않을 경우 BOSH-lite 설치 가이드 문서를 참고 하여 Stemcell 2776 버전을 업로드를 해야 한다.
+>Stemcell 목록이 존재 하지 않을 경우 BOSH-lite 설치 가이드 문서를 참고 하여 Stemcell 389 버전을 업로드를 해야 한다.
 
 <br>
 
@@ -136,11 +136,11 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 # openpaas-mysql-lite 설정 파일 내용
 
 name: openpaas-mysql-service        # 서비스 배포이름(필수)
-director_uuid: xxxxx                #bosh status 에서 확인한 Director UUID을 입력(필수)
+director_uuid: xxxxx                # bosh status 에서 확인한 Director UUID을 입력(필수)
 
 releases:
-- name: openpaas-mysql              #서비스 릴리즈 이름(필수)
-  version: beta-1.0                 #서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
+- name: openpaas-mysql              # 서비스 릴리즈 이름(필수)
+  version: beta-1.0                 # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
 
 update:
   canaries: 1                       # canary 인스턴스 수(필수)
@@ -162,7 +162,7 @@ disk_pools:                         # 영구 디스크 정의
 
 jobs:
 - instances: 1                      # job 인스턴스 수(필수)
-  name: mysql_z1                    #작업 이름(필수): MySQL 서버
+  name: mysql_z1                    # 작업 이름(필수): MySQL 서버
   networks:                         # 네트워크 구성정보
   - name: openpaas_network          # Networks block에서 선언한 network 이름(필수)
     static_ips: 10.244.21.2         # 사용할 IP addresses 정의(필수): MySQL 서버 IP
@@ -183,7 +183,7 @@ jobs:
 template: mysql                          # job template 이름(필수)
 
 - instances: 1                # job 인스턴스 수(필수)
-  name: mysql_z2              #작업 이름(필수): MySQL 서버
+  name: mysql_z2              # 작업 이름(필수): MySQL 서버
   networks:                   # 네트워크 구성정보
   - name: openpaas_network    # Networks block에서 선언한 network 이름(필수)
     static_ips: 10.244.21.3   # 사용할 IP addresses 정의(필수): MySQL 서버 IP
@@ -204,7 +204,7 @@ template: mysql                          # job template 이름(필수)
   template: mysql                      # job template 이름(필수)
 
 - instances: 1                         # job 인스턴스 수(필수)
-  name: mysql_z3                #작업 이름(필수): MySQL 서버
+  name: mysql_z3                # 작업 이름(필수): MySQL 서버
   networks:                     # 네트워크 구성정보
   - name: openpaas_network      # Networks block에서 선언한 network 이름(필수)
     static_ips: 10.244.21.4     # 사용할 IP addresses 정의(필수): MySQL 서버 IP
@@ -327,7 +327,7 @@ networks:       # 네트워크 블록에 나열된 각 서브 블록이 참조 �
     reserved:                    # 설치시 제외할 IP 설정
     - 10.244.21.1
     static:
-    - 10.244.21.2 - 10.244.21.6  #사용 가능한 IP 설정
+    - 10.244.21.2 - 10.244.21.6  # 사용 가능한 IP 설정
 type: manual
 
 properties: {}
@@ -468,10 +468,10 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 ##### Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.
 
 >`$ cf create-service {서비스명} {서비스플랜} {내서비스명}`
-
->서비스명 : p-mysql로 Marketplace에서 보여지는 서비스 명칭이다.
->서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. MySQL 서비스는 100mb, 1gb를 지원한다.
->내 서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.
+	
+	서비스명 : p-mysql로 Marketplace에서 보여지는 서비스 명칭이다.
+	서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. MySQL 서비스는 100mb, 1gb를 지원한다.
+	내 서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.
 
 >`$ cf create-service p-mysql 100mb mysql-service-instance`
 

@@ -49,9 +49,9 @@
 BOSH-lite 가 설치 되어 있지 않을 경우 먼저 BOSH-lite 설치 가이드 문서를 참고 하여 BOSH-lite를 설치 해야 한다.
 OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Deployment.zip, OpenPaaS-Sample-Apps.zip, OpenPaaS-Services.zip)
 
-###	2.2. Redis 서비스 릴리즈 업로드
-
 <br>
+
+###	2.2. Redis 서비스 릴리즈 업로드
 
 ##### OpenPaaS-Services.zip 파일 압축을 풀고폴더안에 있는 Redis 서비스 릴리즈openpaas-redis-release-beta-1.0.tgz 파일을복사한다.
 
@@ -136,7 +136,7 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 B
 
 <br>
 
-##### openpaas-redis-lite.yml Deployment 파일을 서버 환경에 맞게 수정한다.(빨간색으로 표시된 부분만 수정)
+##### openpaas-redis-lite.yml Deployment 파일을 서버 환경에 맞게 수정한다.
 
 >`$vi openpaas-redis-lite.yml`
 
@@ -460,7 +460,7 @@ Sample App 구조는 다음과 같다.
 
 ###	3.2. 개방형 클라우드 플랫폼에서 서비스 신청
 Sample App에서 Redis 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.
-*참고: 서비스 신청시개방형 클라우드 플랫폼에서 서비스를신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
+*참고: 서비스 신청시개방형 클라우드 플랫폼에서 서비스를 신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
 ##### 먼저 개방형 클라우드 플랫폼 Marketplace에서 서비스가 있는지 확인을 한다.
 
@@ -507,10 +507,10 @@ Sample App에서 Redis 서비스를 사용하기 위해서는 서비스 신청(P
 ```yml
 ---
 applications:
-- name: redis-example-app#배포할 App 이름
-  memory: 256M#배포시 메모리 크기
-  instances: 1#배포시인스턴스 수
-path: .#배포시 구동되는 Path
+- name: redis-example-app    #배포할 App 이름
+  memory: 256M               #배포시 메모리 크기
+  instances: 1               #배포시인스턴스 수
+path: .                      #배포시 구동되는 Path
 ```
 
 <br>

@@ -78,6 +78,15 @@ Virtualbox와 Vagrant를 설치해야 한다.
 
 OpenPaaS 설치패키지를 다운받아 다운로드한 디렉토리에 압축해제 한다.
 
+## 2.2.  ***OpenPaaS 설치패키지 다운로드***
+
+다음의 OpenPaaS 설치패키지를 다운받는다.
+
+|**구분**|**디렉토리**|**파일명**|**설명**|
+|-------|------------|---------------|------------------------------|
+|warden|OpenPaaS-Env|bosh-init-0.0.81-linux-amd64|BOSH init 실행 파일|
+|      |            |bosh\_gem\_package.tar|BOSH CLI 설치 패키지|
+
 1.  **OpenPaaS 설치패키지를 다음 사이트에서 다운로드 한다.**
 
   

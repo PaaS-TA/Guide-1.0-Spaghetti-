@@ -12,7 +12,7 @@
      * [BOSH Lite 설치](#26--bosh-lite-설치)
      * [로컬 가상 머신의 IP 변경](#27--로컬-가상-머신의-ip-변경)
      * [BOSH Lite 설치 Troubleshooting](#28---bosh-lite-설치-troubleshooting)
-3. [OpenPaaS Container 설치, 배포 및 설정](#3--openpaas-container-설치,-배포-및-설정)
+3. [OpenPaaS Container 설치, 배포 및 설정](#3--openpaas-container-설치-배포-및-설정)
      * [Release 업로드](#31--release-업로드)
      * [BOSH Stemcell 업로드](#32--bosh-stemcell-업로드)
      * [OpenPaaS Controller 배포](#33--openpaas-controller-배포)
@@ -118,57 +118,57 @@ Ruby 설치 절차는 다음과 같다.
 
 	※ BOSH 설치 패키지의 구성은 다음과 같다.
 
-		|No   |패키지명                       |패키지 파일명 (Ubuntu trusty amd64)|
-		|---- |----------------------------- |--------------------------------------------------------|
-        |1    |libcomerr2                    |libcomerr2_1.42.9-3ubuntu1.3_amd64.deb|
-        |2    |libssl1.0.0                   |libssl1.0.0_1.0.1f-1ubuntu2.16_amd64.deb|
-        |3    |libkrb5support0               |libkrb5support0_1.12+dfsg-2ubuntu5.2_amd64.deb|
-        |4    |libk5crypto3                  |libk5crypto3_1.12+dfsg-2ubuntu5.2_amd64.deb|
-        |5    |libkrb5-3                     |libkrb5-3_1.12+dfsg-2ubuntu5.2_amd64.deb|
-        |6    |libgssapi-krb5-2              |libgssapi-krb5-2_1.12+dfsg-2ubuntu5.2_amd64.deb|
-        |7    |libxml2                       |libxml2_2.9.1+dfsg1-3ubuntu4.6_amd64.deb|
-        |8    |libgssrpc4                    |libgssrpc4_1.12+dfsg-2ubuntu5.2_amd64.deb|
-        |9    |libkadm5clnt-mit9             |libkadm5clnt-mit9_1.12+dfsg-2ubuntu5.2_amd64.deb|
-        |10   |libkdb5-7                     |libkdb5-7_1.12+dfsg-2ubuntu5.2_amd64.deb|
-        |11   |libkadm5srv-mit9              |libkadm5srv-mit9_1.12+dfsg-2ubuntu5.2_amd64.deb|
-        |12   |mysql-common                  |mysql-common_5.5.46-0ubuntu0.14.04.2_all.deb|
-        |13   |libmysqlclient18              |libmysqlclient18_5.5.46-0ubuntu0.14.04.2_amd64.deb|
-        |14   |libxslt1.1                    |libxslt1.1_1.1.28-2build1_amd64.deb|
-        |15   |libyaml-0                     |libyaml-0-2_0.1.4-3ubuntu3.1_amd64.deb|
-        |16   |openssl_1.0.1f-1ubuntu2.16    |openssl_1.0.1f-1ubuntu2.16_amd64.deb|
-        |17   |libstdc++-4.8-dev             |libstdc++-4.8-dev_4.8.4-2ubuntu1~14.04_amd64.deb|
-        |18   |g++-4.8                       |g++-4.8_4.8.4-2ubuntu1~14.04_amd64.deb|
-        |19   |g++                           |g++_4%3a4.8.2-1ubuntu6_amd64.deb|
-        |20   |libdpkg-perl                  |libdpkg-perl_1.17.5ubuntu5.5_all.deb|
-        |21   |dpkg-dev                      |dpkg-dev_1.17.5ubuntu5.5_all.deb|
-        |22   |build-essential               |build-essential_11.6ubuntu6_amd64.deb|
-        |23   |libfakeroot                   |libfakeroot_1.20-3ubuntu2_amd64.deb|
-        |24   |fakeroot                      |fakeroot_1.20-3ubuntu2_amd64.deb|
-        |25   |comerr-dev                    |comerr-dev_2.1-1.42.9-3ubuntu1.3_amd64.deb|
-        |26   |krb5-multidev                 |krb5-multidev_1.12+dfsg-2ubuntu5.2_amd64.deb|
-        |27   |libalgorithm-diff-perl        |libalgorithm-diff-perl_1.19.02-3_all.deb|
-        |28   |libalgorithm-diff-xs-perl     |libalgorithm-diff-xs-perl_0.04-2build4_amd64.deb|
-        |29   |libalgorithm-merge-perl       |libalgorithm-merge-perl_0.08-2_all.deb|
-        |30   ||libtinfo-dev                 | libtinfo-dev_5.9+20140118-1ubuntu1_amd64.deb|
-        |31   |libreadline6-dev              |libreadline6-dev_6.3-4ubuntu2_amd64.deb|
-        |32   |libfile-fcntllock-perl        |libfile-fcntllock-perl_0.14-2build1_amd64.deb|
-        |33   |zlib1g-dev                    |zlib1g-dev_1%3a1.2.8.dfsg-1ubuntu1_amd64.deb|
-        |34   |libmysqlclient-dev            |libmysqlclient-dev_5.5.46-0ubuntu0.14.04.2_amd64.deb|
-        |35   |libpq5                        |libpq5_9.3.10-0ubuntu0.14.04_amd64.deb|
-        |36   |libssl-dev                    |libssl-dev_1.0.1f-1ubuntu2.16_amd64.deb|
-        |37   |libpq-dev                     |libpq-dev_9.3.10-0ubuntu0.14.04_amd64.deb|
-        |38   |libsqlite3-dev                |libsqlite3-dev_3.8.2-1ubuntu2.1_amd64.deb|
-        |39   |libssl-doc                    |libssl-doc_1.0.1f-1ubuntu2.16_all.deb|
-        |40   |libxml2-dev                   |libxml2-dev_2.9.1+dfsg1-3ubuntu4.6_amd64.deb|
-        |41   |libxslt1-dev                  |libxslt1-dev_1.1.28-2build1_amd64.deb|
-        |42   |sqlite3                       |sqlite3_3.8.2-1ubuntu2.1_amd64.deb|
-        |43   |Zlibc                         |zlibc_0.9k-4.1_amd64.deb|
-        |44   |libyaml-dev                   |libyaml-dev_0.1.4-3ubuntu3.1_amd64.deb|
-        |45   |libruby1.9.1                  |libruby1.9.1_1.9.3.484-2ubuntu1.2_amd64.deb|
-        |46   |ruby1.9.1-dev                 |ruby1.9.1-dev_1.9.3.484-2ubuntu1.2_amd64.deb|
-        |47   |ruby-dev                      |ruby-dev_1%3a1.9.3.4_all.deb|
-        |48   |ruby                          |ruby_1%3a1.9.3.4_all.deb|
-        |49   |ruby1.9.1                     |ruby1.9.1_1.9.3.484-2ubuntu1.2_amd64.deb|
+	|No   |패키지명                       |패키지 파일명 (Ubuntu trusty amd64)|
+	|---- |----------------------------- |--------------------------------------------------------|
+	|1    |libcomerr2                    |libcomerr2_1.42.9-3ubuntu1.3_amd64.deb|
+	|2    |libssl1.0.0                   |libssl1.0.0_1.0.1f-1ubuntu2.16_amd64.deb|
+	|3    |libkrb5support0               |libkrb5support0_1.12+dfsg-2ubuntu5.2_amd64.deb|
+	|4    |libk5crypto3                  |libk5crypto3_1.12+dfsg-2ubuntu5.2_amd64.deb|
+	|5    |libkrb5-3                     |libkrb5-3_1.12+dfsg-2ubuntu5.2_amd64.deb|
+	|6    |libgssapi-krb5-2              |libgssapi-krb5-2_1.12+dfsg-2ubuntu5.2_amd64.deb|
+	|7    |libxml2                       |libxml2_2.9.1+dfsg1-3ubuntu4.6_amd64.deb|
+	|8    |libgssrpc4                    |libgssrpc4_1.12+dfsg-2ubuntu5.2_amd64.deb|
+	|9    |libkadm5clnt-mit9             |libkadm5clnt-mit9_1.12+dfsg-2ubuntu5.2_amd64.deb|
+	|10   |libkdb5-7                     |libkdb5-7_1.12+dfsg-2ubuntu5.2_amd64.deb|
+	|11   |libkadm5srv-mit9              |libkadm5srv-mit9_1.12+dfsg-2ubuntu5.2_amd64.deb|
+	|12   |mysql-common                  |mysql-common_5.5.46-0ubuntu0.14.04.2_all.deb|
+	|13   |libmysqlclient18              |libmysqlclient18_5.5.46-0ubuntu0.14.04.2_amd64.deb|
+	|14   |libxslt1.1                    |libxslt1.1_1.1.28-2build1_amd64.deb|
+	|15   |libyaml-0                     |libyaml-0-2_0.1.4-3ubuntu3.1_amd64.deb|
+	|16   |openssl_1.0.1f-1ubuntu2.16    |openssl_1.0.1f-1ubuntu2.16_amd64.deb|
+	|17   |libstdc++-4.8-dev             |libstdc++-4.8-dev_4.8.4-2ubuntu1~14.04_amd64.deb|
+	|18   |g++-4.8                       |g++-4.8_4.8.4-2ubuntu1~14.04_amd64.deb|
+	|19   |g++                           |g++_4%3a4.8.2-1ubuntu6_amd64.deb|
+	|20   |libdpkg-perl                  |libdpkg-perl_1.17.5ubuntu5.5_all.deb|
+	|21   |dpkg-dev                      |dpkg-dev_1.17.5ubuntu5.5_all.deb|
+	|22   |build-essential               |build-essential_11.6ubuntu6_amd64.deb|
+	|23   |libfakeroot                   |libfakeroot_1.20-3ubuntu2_amd64.deb|
+	|24   |fakeroot                      |fakeroot_1.20-3ubuntu2_amd64.deb|
+	|25   |comerr-dev                    |comerr-dev_2.1-1.42.9-3ubuntu1.3_amd64.deb|
+	|26   |krb5-multidev                 |krb5-multidev_1.12+dfsg-2ubuntu5.2_amd64.deb|
+	|27   |libalgorithm-diff-perl        |libalgorithm-diff-perl_1.19.02-3_all.deb|
+	|28   |libalgorithm-diff-xs-perl     |libalgorithm-diff-xs-perl_0.04-2build4_amd64.deb|
+	|29   |libalgorithm-merge-perl       |libalgorithm-merge-perl_0.08-2_all.deb|
+	|30   ||libtinfo-dev                 | libtinfo-dev_5.9+20140118-1ubuntu1_amd64.deb|
+	|31   |libreadline6-dev              |libreadline6-dev_6.3-4ubuntu2_amd64.deb|
+	|32   |libfile-fcntllock-perl        |libfile-fcntllock-perl_0.14-2build1_amd64.deb|
+	|33   |zlib1g-dev                    |zlib1g-dev_1%3a1.2.8.dfsg-1ubuntu1_amd64.deb|
+	|34   |libmysqlclient-dev            |libmysqlclient-dev_5.5.46-0ubuntu0.14.04.2_amd64.deb|
+	|35   |libpq5                        |libpq5_9.3.10-0ubuntu0.14.04_amd64.deb|
+	|36   |libssl-dev                    |libssl-dev_1.0.1f-1ubuntu2.16_amd64.deb|
+	|37   |libpq-dev                     |libpq-dev_9.3.10-0ubuntu0.14.04_amd64.deb|
+	|38   |libsqlite3-dev                |libsqlite3-dev_3.8.2-1ubuntu2.1_amd64.deb|
+	|39   |libssl-doc                    |libssl-doc_1.0.1f-1ubuntu2.16_all.deb|
+	|40   |libxml2-dev                   |libxml2-dev_2.9.1+dfsg1-3ubuntu4.6_amd64.deb|
+	|41   |libxslt1-dev                  |libxslt1-dev_1.1.28-2build1_amd64.deb|
+	|42   |sqlite3                       |sqlite3_3.8.2-1ubuntu2.1_amd64.deb|
+	|43   |Zlibc                         |zlibc_0.9k-4.1_amd64.deb|
+	|44   |libyaml-dev                   |libyaml-dev_0.1.4-3ubuntu3.1_amd64.deb|
+	|45   |libruby1.9.1                  |libruby1.9.1_1.9.3.484-2ubuntu1.2_amd64.deb|
+	|46   |ruby1.9.1-dev                 |ruby1.9.1-dev_1.9.3.484-2ubuntu1.2_amd64.deb|
+	|47   |ruby-dev                      |ruby-dev_1%3a1.9.3.4_all.deb|
+	|48   |ruby                          |ruby_1%3a1.9.3.4_all.deb|
+	|49   |ruby1.9.1                     |ruby1.9.1_1.9.3.484-2ubuntu1.2_amd64.deb|
 
 
 	※ CentOS, RHEL 또는 OSX의 경우는 표에 해당하는 패키지를 설치한다.

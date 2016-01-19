@@ -136,7 +136,7 @@ BOSH CLI가 지원하는 Ruby버전 중 2.1.6버전을 설치 대상으로 기�
 	|27   |libalgorithm-diff-perl        |libalgorithm-diff-perl_1.19.02-3_all.deb|
 	|28   |libalgorithm-diff-xs-perl     |libalgorithm-diff-xs-perl_0.04-2build4_amd64.deb|
 	|29   |libalgorithm-merge-perl       |libalgorithm-merge-perl_0.08-2_all.deb|
-	|30   ||libtinfo-dev                 |libtinfo-dev_5.9+20140118-1ubuntu1_amd64.deb|
+	|30   |libtinfo-dev                  |libtinfo-dev_5.9+20140118-1ubuntu1_amd64.deb|
 	|31   |libreadline6-dev              |libreadline6-dev_6.3-4ubuntu2_amd64.deb|
 	|32   |libfile-fcntllock-perl        |libfile-fcntllock-perl_0.14-2build1_amd64.deb|
 	|33   |zlib1g-dev                    |zlib1g-dev_1%3a1.2.8.dfsg-1ubuntu1_amd64.deb|

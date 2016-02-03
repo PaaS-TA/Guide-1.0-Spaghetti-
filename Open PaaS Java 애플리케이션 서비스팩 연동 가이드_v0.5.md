@@ -95,12 +95,10 @@ Suite)을 설치하는 것이다
 2. 다운로드 받은 파일의 압축을 해제하고 “STS.exe” 파일을 실행하여 별도의 설치 없이 STS를 사용할 수 있다.
 
 ### 2.3. 개발
-샘플 애플리케이션을 사용하기 위해서는 각각 서비스마다 설정을 해주어야
-한다.
+애플리케이션 개발시 서비스 연동을 위해 필요한 작업을 기술하였다.
 
-##### 2.3.1. 공통
-각 클라우드 서비스를 이용하기 위해 공통적으로 설정해야 하는 부분을
-기술한다.
+##### 2.3.1. 의존성 설정
+각 클라우드 서비스를 연동하기 위해 의존성을 설정한다.
 1)  pom.xml 수정
     -   Maven을 설정하는 pom.xml파일에서 Spring Cloud Connector
     의존성을 설정한다.
@@ -447,7 +445,7 @@ public class CloudRabbitConfig extends AbstractCloudConfig{
 ```
 
 ##### 2.3.9. GlusterFS 연동
-GlusterFS 서비스를 연동 및 설정을 한다..
+GlusterFS 서비스를 연동 및 설정을 한다.
 
 ###### pom.xml 수정
 - pom.xml파일에 Swift Connector joss 의존성을 설정한다.
@@ -505,31 +503,120 @@ public class CloudGlusterfsConfig {
 }
 ```
 
-##### 2.4. 배포
-애플리케이션을 배포하는 방법은 2가지 방법이 있다.
+##### 2.3.10. 서비스 인스턴스 아이디 설정
+각각 서비스는 서비스 인스턴스 아이디와 맵핑해 연동하므로 서비스 인스턴스 아이디를 아래와 같이 상수로 설정해준다. 편의에 따라 상수가 아닌 설정파일로 빼도 무방하다.
+```java
+package openpaas.sample.common.config.service;
 
-**권장 사항**
-> 메모리 제한(Memory Limit)를 1024(MB)이상으로 설정해준다.
+public interface ServiceConst {
+public interface ServiceId{
+public static final String MYSQL = "openpaas-sample-mysql";
+public static final String CUBRID = "openpaas-sample-cubrid";
+public static final String MONGODB = "openpaas-sample-mongodb";
+public static final String GLUSTERFS = "openpaas-sample-glusterfs";
+public static final String REDIS = "openpaas-sample-redis";
+  public static final String RABBITMQ = "openpaas-sample-rabbitmq";
+}
+```
 
-**주의 사항**
->서비스팩 바인딩 시에 아래와 같이 서비스팩 인스턴스의 이름과 샘플
-애플리케이션의 서비스 ID 이름과 일치 시켜 주어야한다. 서비스의
-이름으로 설정을 활성화 시키기 때문에 이름이 일치하지 않으면 설정이
-활성화 되지 않거나 오류가 발생한다.
-![](images/openpaas-sample-java-connector/image7.png)
-![](images/openpaas-sample-java-connector/image8.png)
+### 2.4. 배포
+개발 완료된 애플리케이션을 개방형 클라우드 플랫폼에 배포하는 방법을 기술한다.
 
 ##### 2.4.1. CLI에서 배포
-Openpaas 개발 환경에서 배포하는 과정은 “OpenPaaS 개발 환경 사용 가이드 - 5.1. 애플리케이션 배포”를 참고한다.
 
-**주의 사항**
->배포 시에 서비스팩 바인딩을 꼭 해주어야 한다.
+###### 로그인
+애플리케이션 배포과정을 진행하기 위해 개방형 클라우드 플랫폼의 사용자 계정으로 로그인한다.
+로그인을 하기 이전에 먼저 target을 지정한다. target 지정 명령어는 아래와 같다. 
+```
+# cf api [target URL]
+$ cf api --skip-ssl-validation https://api.controller.open-paas.com
+```
+
+타겟 지정이 완료되었다면, 로그인 명령어를 통해 로그인한다.
+```
+# cf login –u [user name] –o [org name] –s [space name]
+$ cf login -u testUser -o sample_test -s sample_space
+```
+
+###### 서비스 생성
+샘플 애플리케이션에서는 MySQL, Cubrid, MongoDB, Resdis, RabbitMQ, GlusterFS 서비스를 사용하므로 6개의 서비스를 생성한다. 서비스 생성 명령어는 다음과 같다.
+```
+# cf create-service SERVICE PLAN SERVICE_INSTANCE [-c PARAMETERS_AS_JSON] [-t TAGS]
+$ cf create-service Mysql-DB Mysql-Plan1-10con openpaas-sample-mysql
+$ cf create-service CubridDB utf8 openpaas-sample-cubrid
+$ cf create-service Mongo-DB default-plan openpaas-sample-mongodb
+$ cf create-service redis-sb shared-vm openpaas-sample-redis
+$ cf create-service glusterfs glusterfs-5Mb openpaas-sample-glusterfs
+$ cf create-service p-rabbitmq standard openpaas-sample-rabbitmq
+```
+
+###### 애플리케이션 배포
+```
+$ cf push --no-start
+```
+
+###### 서비스 바인드
+서비스 바인드를 통해서 애플리케이션은 서비스에 접근할 수 있는 VCAP_SERVICES 환경설정 정보를 얻을 수 있게 된다.
+```
+# cf bind-service APP_NAME SERVICE_INSTANCE [-c PARAMETERS_AS_JSON]
+$ cf bind-service java-sample-app openpaas-sample-mysql
+$ cf bind-service java-sample-app openpaas-sample-cubrid
+$ cf bind-service java-sample-app openpaas-sample-mongodb
+$ cf bind-service java-sample-app openpaas-sample-redis
+$ cf bind-service java-sample-app openpaas-sample-glusterfs
+$ cf bind-service java-sample-app openpaas-sample-rabbitmq
+```
+
+###### 애플리케이션 실행
+```
+$ cf start openpaas_sample
+```
 
 ##### 2.4.2. OpenPaas 개발 환경에서 배포
-Openpaas 개발 환경에서 배포하는 과정은 “OpenPaaS 개발 환경 사용 가이드 - 5.1. 애플리케이션 배포”를 참고한다.
+Openpaas 개발 환경에서 배포하는 과정을 기술한다. 
 
-**주의 사항**
-> 배포 시에 서비스팩 바인딩을 꼭 해주어야 한다.
+###### 서버추가
+서버를 추가하기 위해 “Servers” 탭에서 “New” – “Server”을 클릭한다.
+![](images/openpaas-sample-java-connector/image7.png)
+
+리스트에서 “Open PaaS” – “개방형 플랫폼”을 선택한 후, ”Server name”란을 작성한다.
+![](images/openpaas-sample-java-connector/image8.png)
+
+이메일과 비밀번호란을 작성하고 계정 확인 버튼을 클릭하여 계정의 유효성을 체크한다. 그리고 “Next” 버튼을 눌러서 다음 화면으로 이동한다.
+![](images/openpaas-sample-java-connector/image9.png)
+
+관리를 원하는 조직과 스페이스를 선택한다
+![](images/openpaas-sample-java-connector/image10.png)
+
+“Finish” 버튼을 누르면 서버 추가가 완료된다.
+![](images/openpaas-sample-java-connector/image11.png)
+
+###### 서비스팩 인스턴스 생성
+서비스팩 섹션 타이틀 오른쪽의 “서비스팩 추가” 아이콘을 클릭한다
+![](images/openpaas-sample-java-connector/image12.png)
+
+각각의 서비스를 더블클릭하여 서비스팩 인스턴스 정보 입력후 Finish 버튼 클릭
+![](images/openpaas-sample-java-connector/image13.png)
+
+서비스팩 인스턴스가 생성된 것을 확인
+![](images/openpaas-sample-java-connector/image14.png)
+
+###### 애플리케이션 배포와 서비스 바인딩
+“Servers” 탭에서 애플리케이션 배포를 원하는 서버를 선택 한 뒤, 오른쪽 버튼을 클릭하고, “Add and Remove”를 클릭한다.
+![](images/openpaas-sample-java-connector/image15.png)
+
+Java-sample-app을 선택하고 Add를 클릭한뒤 Finish를 클릭한다.
+![](images/openpaas-sample-java-connector/image16.png)
+
+애플리케이션 이름을 입력한뒤 Next를 클릭한다.
+![](images/openpaas-sample-java-connector/image17.png)
+
+도메인 정보와 메모리 정보를 입력한뒤 Next를 클릭
+![](images/openpaas-sample-java-connector/image18.png)
+
+바인딩할 서비스팩을 모두 체크 한뒤 Finish 클릭
+![](images/openpaas-sample-java-connector/image19.png)
+
 
 ### 2.5. 테스트
 테스트는 단위 테스트와 통합 테스트 2가지가 있으며 모두 Junit 으로

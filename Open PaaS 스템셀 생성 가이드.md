@@ -1,3 +1,31 @@
+## Table of Contents
+1. [문서 개요](#1--문서-개요)
+     * [목적](#11--목적)
+     * [범위](#12--범위)
+     * [참고자료](#13--참고자료)
+2. [환경 준비](#2--환경-준비)
+     * [설치전 준비사항](#21--설치전-준비사항)
+     * [AWS 환경 구성](#22--aws-환경-구성)
+     * [RUBY 설치](#23--ruby-설치)
+     * [BOSH 설치](#24--bosh-설치)
+     * [Vagrant 설치](#25--vagrant-설치)
+     * [스템셀 생성을 위한 VM 설치](#26--스템셀-생성을-위한-vm-설치)
+     * [BOSH Source 등을 수정하여 스템셀을 생성할 경우](#27--bosh-source-등을-수정하여-스템셀을-생성할-경우)
+3. [기본 OS 이미지 생성](#3--기본-os-이미지-생성)
+     * [Ubuntu OS 이미지 생성](#31--ubuntu-os-이미지-생성)
+     * [RHEL OS 이미지 생성](#32--rhel-os-이미지-생성)
+     * [PHOTON OS 이미지 생성](#33--photon-os-이미지-생성)
+     * [생성한 기본 OS 이미지의 보관장소](#34--생성한-기본-os-이미지의-보관장소)
+4. [BOSH 스템셀 생성](#4--BOSH-스템셀-생성)
+     * [원격지의 OS 이미지를 사용한 스템셀 생성](#41--원격지의-os-이미지를-사용한-스템셀-생성)
+     * [로컬의 OS 이미지를 사용한 스템셀 생성](#42--로컬의-os-이미지를-사용한-스템셀-생성)
+     * [생성한 스템셀의 보관장소](#43--생성한-스템셀의-보관장소)
+5. [BOSH Light 스템셀 생성](#5--bosh-light-스템셀-생성)
+     * [Bosh Light 스템셀 생성](#51--bosh-light-스템셀-생성)
+6. [스템셀 커스터마이징](#6--스템셀-커스터마이징)
+     * [스템셀 생성 소스 수정](#61--스템셀-생성-소스-수정)
+
+
 #1.  문서 개요
 
 ## 1.1.  목적 
@@ -45,12 +73,12 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
 	1.  AWS에 로그인: [https://console.aws.amazon.com/console/home](https://console.aws.amazon.com/console/home)
 
 
-		![account-dashboard](deploy-to-aws/account-dashboard.png "account-dashboard")
+		![account-dashboard](images/openpaas-iaas-controller/deploy-to-aws/account-dashboard.png "account-dashboard")
 
 
 	2.  화면 우측 상단의 계정을 선택하여 Security Credentials를 선택
 
-		![security-credentials-menu](deploy-to-aws/security-credentials-menu.png "security-credentials-menu")
+		![security-credentials-menu](images/openpaas-iaas-controller/deploy-to-aws/security-credentials-menu.png "security-credentials-menu")
 
 
 	3.  'AWS IAM' 확인 팝업이 나타나면 'Continue to Security Credentials' 버튼을 선택하여 Security Credentials 화면으로 이동
@@ -58,12 +86,12 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
 
 	4.  Access Keys를 선택하여 Create New Access Key 버튼을 눌러 Access Key를 생성한다.
     
-		![security-credentials-dashboard](deploy-to-aws/security-credentials-dashboard.png "security-credentials-dashboard")
+		![security-credentials-dashboard](images/openpaas-iaas-controller/deploy-to-aws/security-credentials-dashboard.png "security-credentials-dashboard")
 
 
 	5.  생성한 키 정보를 확인한다.
 
-		![access-keys-modal](deploy-to-aws/access-keys-modal.png "access-keys-modal")
+		![access-keys-modal](images/openpaas-iaas-controller/deploy-to-aws/access-keys-modal.png "access-keys-modal")
 
 		화면의 Access Key ID를 ***BOSH\_AWS\_ACCESS\_KEY\_ID***에 설정한다.
 
@@ -79,27 +107,27 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
 
 	1.  화면 우측 상단의 지역메뉴를 선택한다. (현재 N. Virginia 지역에서만 light stemcell을 사용할 수 있다.)
 
-		![account-dashboard-region-menu.png](deploy-to-aws/account-dashboard-region-menu.png "account-dashboard-region-menu")
+		![account-dashboard-region-menu.png](images/openpaas-iaas-controller/deploy-to-aws/account-dashboard-region-menu.png "account-dashboard-region-menu")
 
 	2.  AWS 콘솔 화면에서 VPC 메뉴를 선택한다.
 
-		![account-dashboard-vpc](deploy-to-aws/account-dashboard-vpc.png "account-dashboard-vpc")
+		![account-dashboard-vpc](images/openpaas-iaas-controller/deploy-to-aws/account-dashboard-vpc.png "account-dashboard-vpc")
 
 	3.  VPC 마법사를 선택한다.
 
-		![vpc-dashboard-start](deploy-to-aws/vpc-dashboard-start.png "vpc-dashboard-start")
+		![vpc-dashboard-start](images/openpaas-iaas-controller/deploy-to-aws/vpc-dashboard-start.png "vpc-dashboard-start")
 
 	4.  “VPC with a Single Public Subnet” 선택
 
-		![vpc-dashboard-wizard](deploy-to-aws/vpc-dashboard-wizard.png "vpc-dashboard-wizard")
+		![vpc-dashboard-wizard](images/openpaas-iaas-controller/deploy-to-aws/vpc-dashboard-wizard.png "vpc-dashboard-wizard")
 
 	5.  네트워크 정보를 입력하고 VPC 생성 버튼을 눌러 VPC를 생성한다.
 		
-		![create-vpc](deploy-to-aws/create-vpc.png "create-vpc")
+		![create-vpc](images/openpaas-iaas-controller/deploy-to-aws/create-vpc.png "create-vpc")
 
 	6.  아래와 같이 생성한 VPC의 목록이 출력된다.
 
-		![list-subnets](deploy-to-aws/list-subnets.png "list-subnets")
+		![list-subnets](images/openpaas-iaas-controller/deploy-to-aws/list-subnets.png "list-subnets")
 
 		Subnet ID를 ***BOSH\_AWS\_SUBNET\_ID***에 설정한다.
 
@@ -110,11 +138,11 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
 
 	2.  ‘Key Pairs’와 ‘Create Key Pair’ 버튼을 차례로 선택한다.
 
-		![list-key-pairs](deploy-to-aws/list-key-pairs.png "list-key-pairs")
+		![list-key-pairs](images/openpaas-iaas-controller/deploy-to-aws/list-key-pairs.png "list-key-pairs")
 
 	3.  Key Pair 생성 다이얼로그 화면에서 Key Pair명을 입력하여 Key Pair를 생성하고 다운로드 한다.
 
-		![create-key-pair](deploy-to-aws/create-key-pair.png "create-key-pair")
+		![create-key-pair](images/openpaas-iaas-controller/deploy-to-aws/create-key-pair.png "create-key-pair")
 
 	4.  다운로드한 Key(예: bosh.pem)를 키 보관 디렉토리에 옮기고 권한을 변경한다.
 
@@ -130,32 +158,30 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
 
 	1.  EC2 대시보드 화면에서 ‘Security Groups’과 ‘Create Security Group’ 버튼을 차례대로 누른다.
 
-		![list-security-groups](deploy-to-aws/list-security-groups.png "list-security-groups")
+		![list-security-groups](images/openpaas-iaas-controller/deploy-to-aws/list-security-groups.png "list-security-groups")
 
 	2.  시큐리티 그룹 생성 팝업화면에서 다음과 같이 값을 입력하여 시큐리티 그룹을 생성한다.
 
-		![create-security-group](deploy-to-aws/create-security-group.png "create-security-group")
+		![create-security-group](images/openpaas-iaas-controller/deploy-to-aws/create-security-group.png "create-security-group")
 
-			--------------------- ---------------------------------- ----------------------------
-			항목                  설정값                             설명
-			--------------------- ---------------------------------- ----------------------------
-			Security group name   임의 (예: bosh_stemcell)           시큐리티 그룹명
-			Description           임의 (예: BOSH builds Stemcells)   시큐리티 그룹에 대한 설명
-			VPC                   VPC 구성에서 생성한 VPC             시큐리티 그룹을 적용할 VPC
-			--------------------- ---------------------------------- ----------------------------
+			
+		|항목                  |설정값                             |설명|
+		|---------------------|----------------------------------|----------------------------
+		|Security group name   |임의 (예: bosh_stemcell)           |시큐리티 그룹명|
+		|Description           |임의 (예: BOSH builds Stemcells)   |시큐리티 그룹에 대한 설명|
+		|VPC                   |VPC 구성에서 생성한 VPC             |시큐리티 그룹을 적용할 VPC|
 
 
 	3.  생성한 시큐리티 그룹에 보안정책을 설정하기 위해 ‘Inbound’ 탭의 ‘Edit’을 선택한다.
 
-		![open-edit-security-group-modal](deploy-to-aws/open-edit-security-group-modal.png "open-edit-security-group-modal")
+		![open-edit-security-group-modal](images/openpaas-iaas-controller/deploy-to-aws/open-edit-security-group-modal.png "open-edit-security-group-modal")
 
 	4.  아래표와 같이 보안정책을 추가한다.
 
-			------ ---------- ------------ --------
-	  		Type   Protocol   Port Range   Source
-			------ ---------- ------------ --------
-			SSH    TCP        22           My IP
-			------ ---------- ------------ --------
+		|Type   |Protocol   |Port Range   |Source|
+		|------|----------|------------|--------|
+		|SSH    |TCP        |22           |My IP|
+
 
 		생성한 시큐리티 Group ID를 ***BOSH\_AWS\_SECURITY\_GROUP***에 설정한다.
 
@@ -301,7 +327,7 @@ Vagrant는 가상 환경을 구축해 주는 오픈 소스이다. 스템셀을 �
 		$ vagrant scp remote:<원격 파일 저장 경로> <로컬 파일>
  
 
-## 2.7.   BOSH Source 등을 수정하여 스템셀 생성할 경우
+## 2.7.  BOSH Source 등을 수정하여 스템셀을 생성할 경우
 
 1.  Source Code 수정 또는 업데이트한 gem 파일을 스템셀 생성 VM에 반영하는 경우
 
@@ -331,13 +357,12 @@ Ubuntu OS 이미지를 생성하는 절차를 기술한다.
 
 2.  입력 옵션 정보
 
-		-------------------------- ------ -------------------------------------------- ------------------------------
-		옵션명                      필수   설명                                          예시
-		-------------------------- ------ -------------------------------------------- ------------------------------
-		Operating system name      O      OS 타입                                      ubuntu
-		Operating system version   O      OS 버전                                      trusty
-		OS image path              O      기본 OS 이미지가 생성되는 디렉토리 및 이름       /tmp/ubuntu_base_image.tgz
-		-------------------------- ------ -------------------------------------------- ------------------------------
+	|옵션명                      |필수   |설명                                          |예시|
+	|--------------------------|------|--------------------------------------------|------------------------------|
+	|Operating system name      |O      |OS 타입                                      |ubuntu|
+	|Operating system version   |O      |OS 버전                                      |trusty|
+	|OS image path              |O      |기본 OS 이미지가 생성되는 디렉토리 및 이름       |/tmp/ubuntu_base_image.tgz|
+
 
 	※ 필수 항목이 아닌 곳에 대해서는 ‘’을 입력한다.
 
@@ -437,18 +462,17 @@ PHOTON OS 이미지를 생성하는 절차를 기술한다.
 
 2.  입력 옵션 정보
 
-		-------------------------- ------ ------------------------- ----------------------------
-		옵션명                      필수    설명                       예시
-		-------------------------- ------ ------------------------- ----------------------------
-		CANDIDATE_BUILD_NUMBER     O      현재 스템셀 버전            3147
-		Infrastructure             O      인프라 타입                 Vsphere
-		Hypervisor                 O      하이퍼 바이저 타입          Esxi
-		Operating system name      O      OS 타입                    Centos
-		Operating system version   O      OS 버전                    7
-		Agent type                 X      에이전트 타입               Go
-		OS image s3 bucket name    O      Bosh용 OS 이미지 버킷명     Bosh-os-image
-		OS image key               O      OS 이미지명                Bosh-centos-7-os-image.tgz
-		-------------------------- ------ ------------------------- ----------------------------
+	|옵션명                      |필수    |설명                       |예시|
+	|--------------------------|------|-----------------------------------------------|------|
+	|CANDIDATE_BUILD_NUMBER     |O      |현재 스템셀 버전            |3147|
+	|Infrastructure             |O      |인프라 타입                 |Vsphere|
+	|Hypervisor                 |O      |하이퍼 바이저 타입          |Esxi|
+	|Operating system name      |O      |OS 타입                    |Centos|
+	|Operating system version   |O      |OS 버전                    |7|
+	|Agent type                 |X      |에이전트 타입               |Go|
+	|OS image s3 bucket name    |O      |Bosh용 OS 이미지 버킷명     |Bosh-os-image|
+	|OS image key               |O      |OS 이미지명                |Bosh-centos-7-os-image.tgz|
+
 
 	※ 다른 OS image에 대해서는 다음을 참조한다. 
 [http://s3.amazonaws.com/bosh-os-images/](http://s3.amazonaws.com/bosh-os-images/)
@@ -458,20 +482,15 @@ PHOTON OS 이미지를 생성하는 절차를 기술한다.
 
 3.  설정 가능한 옵션 구성
 
-		-------------------------- ------------------------- ----------------------------
-		Infrastructure             Hypervisor                OS
-		-------------------------- ------------------------- ----------------------------
-		aws                        Xen                       ubuntu
-        													 centos
-		-------------------------- ------------------------- ----------------------------
-		openstack                  Kvm						 ubuntu                       
-															 centos
-		-------------------------- ------------------------- ----------------------------
-		vcloud					   Esxi						 ubuntu
-		-------------------------- ------------------------- ----------------------------
-		vsphere					   Esxi						 ubuntu
-															 centos
-		-------------------------- ------------------------- ----------------------------
+	|Infrastructure             |Hypervisor                |OS|
+	|--------------------------|-------------------------|----------------------------|
+	|aws                        |Xen                       |ubuntu|
+    |aws                        |Xen                       |centos|
+	|openstack                  |Kvm						|ubuntu|                       
+	|openstack                  |Kvm						|centos|		
+	|vcloud					   |Esxi						 |ubuntu|		
+	|vsphere					|Esxi						 |ubuntu|
+	|vsphere					|Esxi						 |centos|
 
 	※ 위와 다른 옵션을 지정하고 싶은 경우 Bosh source에서 필요한 부분을 수정하거나 개발 한다.
 
@@ -483,13 +502,12 @@ PHOTON OS 이미지를 생성하는 절차를 기술한다.
 
 1.  기본 OS 이미지를 생성 또는 다운로드 받는다.
 
-		---------------- ----------------------------------------------------------------------------
-		OS 명            URL
-		---------------- ----------------------------------------------------------------------------
-		ubuntu           https://s3.amazonaws.com/bosh-os-images/bosh-ubuntu-trusty-os-image.tgz
-		centos           https://s3.amazonaws.com/bosh-os-images/bosh-centos-7-os-image.tgz
-		사용자 생성 OS     3. 기본 OS 이미지 생성 참조
-		---------------- ----------------------------------------------------------------------------
+	|OS 명            |URL|
+	|----------------|----------------------------------------------------------------------------|
+	|ubuntu           |[https://s3.amazonaws.com/bosh-os-images/bosh-ubuntu-trusty-os-image.tgz](https://s3.amazonaws.com/bosh-os-images/bosh-ubuntu-trusty-os-image.tgz)|
+	|centos           |[https://s3.amazonaws.com/bosh-os-images/bosh-centos-7-os-image.tgz](https://s3.amazonaws.com/bosh-os-images/bosh-centos-7-os-image.tgz)|
+	|사용자 생성 OS     |[3. 기본 OS 이미지 생성 참조](#3--기본-os-이미지-생성)|
+
 
 
 2.  기본 OS 이미지를 다운 받은 경우, 스템셀 생성 VM에 업로드 한다.
@@ -508,36 +526,31 @@ PHOTON OS 이미지를 생성하는 절차를 기술한다.
 
 4.  입력 옵션 정보
 
-		-------------------------- ------ -------------------------------------- ------------------------------
-		옵션명                      필수    설명                                   예시
-		-------------------------- ------ -------------------------------------- ------------------------------
-		Infrastructure             O      인프라 타입                             Aws
-		Hypervisor                 O      하이퍼 바이저 타입                       Xen
-		Operating system name      O      OS 타입                                Ubuntu
-		Operating system version   O      OS 버전                                Trusty
-		Agent type                 X      에이전트 타입                           Go
-		Local os image path        O      스템셀 생성 VM에 있는 OS 이미지 경로      /tmp/ubuntu_base_image.tgz
-		-------------------------- ------ -------------------------------------- ------------------------------
+	|옵션명                      |필수    |설명                                   |예시|
+	|--------------------------|------|--------------------------------------|------------------------------|
+	|Infrastructure             |O      |인프라 타입                             |Aws|
+	|Hypervisor                 |O      |하이퍼 바이저 타입                       |Xen|
+	|Operating system name      |O      |OS 타입                                |Ubuntu|
+	|Operating system version   |O      |OS 버전                                |Trusty|
+	|Agent type                 |X      |에이전트 타입                           |Go|
+	|Local os image path        |O      |스템셀 생성 VM에 있는 OS 이미지 경로      |/tmp/ubuntu_base_image.tgz|
+
 
 	※ Agent type타입이 필수 항목은 아니지만 현재 go 타입 이외의 에이전트는 지원하지 않으므로 go를 입력한다
 
 
 5.  설정 가능한 옵션 구성
 
-		-------------------------- ------------------------- ----------------------------
-		Infrastructure             Hypervisor                OS
-		-------------------------- ------------------------- ----------------------------
-        aws                        Xen                       ubuntu
-        													 centos
-		-------------------------- ------------------------- ----------------------------
-		openstack                  Kvm						 ubuntu                       
-															 centos
-		-------------------------- ------------------------- ----------------------------
-		vcloud					   Esxi						 ubuntu
-		-------------------------- ------------------------- ----------------------------
-		vsphere					   Esxi						 ubuntu
-															 centos
-		-------------------------- ------------------------- ----------------------------
+	|Infrastructure             |Hypervisor                |OS|
+	|--------------------------|-------------------------|----------------------------|
+	|aws                        |Xen                       |ubuntu|
+    |aws                        |Xen                       |centos|
+	|openstack                  |Kvm						|ubuntu|                       
+	|openstack                  |Kvm						|centos|		
+	|vcloud					   |Esxi						 |ubuntu|		
+	|vsphere					|Esxi						 |ubuntu|
+	|vsphere					|Esxi						 |centos|
+
 
 ## 4.3.  생성한 스템셀의 보관장소 
 
@@ -579,12 +592,10 @@ Bosh light 스템셀은 AWS (N. Virgina region 한정)에서만 사용가능한 
 
 3.  입력 옵션 정보
 
-		--------------------- ------ ---------------------- ------------------------
-		옵션명                필수   설명                   예시
-		--------------------- ------ ---------------------- ------------------------
-		Local stemcell path   O      로컬의 stemcell 경로   /tmp/bosh-stemcell.tgz
-		Virtualization type   X      가상화 타입            Hvm
-		--------------------- ------ ---------------------- ------------------------
+	|옵션명                |필수   |설명                   |예시|
+	|---------------------|------|----------------------|------------------------|
+	|Local stemcell path   |O      |로컬의 stemcell 경로   |/tmp/bosh-stemcell.tgz|
+	|Virtualization type   |X      |가상화 타입            |Hvm|
 
 	※ 필수 항목이 아닌 곳에 대해서는 ‘’을 입력한다.
 

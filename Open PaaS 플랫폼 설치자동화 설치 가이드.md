@@ -299,12 +299,23 @@ spiff는 BOSH 배포 Manifest를 생성하기 위해 만들어진 커맨드 라�
 		$ cd ~/OPENPAAS-IEDA-WEB
 		$ mvn -Djava.security.egd=file:/dev/./urandom -Dspring.config.location=./application.properties package
 
+		# 테이블 속성 수정
+		$ mysql -u root -p
+		mysql> use idea;
+		mysql> alter table idea_diego_aws engine=innodb row_format=compressed key_block_size=8;
+		mysql> alter table idea_diego_openstack engine=innodb row_format=compressed key_block_size=8;
+		mysql> exit
+
+		# mysql 데이터베이스 재시작
+		$ sudo service mysql restart
+
 		# 플랫폼 설치 자동화 실행
 		$ java -jar -Djava.security.egd=file:/dev/./urandom -Dspring.config.location=./application.properties target/OPENPAAS-IEDA-WEB-1.0.0-SNAPSHOT.jar
 
 
 4.  플랫폼 설치 자동화가 실행중인 계정에서 아래와 같이 설정 디렉토리가 생성되었는지 확인한다.
 
+  
   |**설정 디렉토리**|                 **설명**|
 |---------------------------------|---------------------------------------------|
   |{HOME}/.bosh\_plugin|              플랫폼 설치 자동화가 사용하는 기준 디렉토리|

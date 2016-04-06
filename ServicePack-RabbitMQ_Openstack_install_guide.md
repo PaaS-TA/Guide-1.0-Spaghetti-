@@ -15,6 +15,7 @@
     * [3.3. Sample App에 서비스 바인드 신청 및 App 확인](#3.3)
 
 
+
 ## <a name="1"/>1. 문서 개요
 #### <a name="1.1"/>1.1 목적
 본 문서(RabbitMQ 서비스팩 설치 가이드)는 전자정부표준프레임워크 기반의 Open PaaS에서 제공되는 서비스팩인 RabbitMQ 서비스팩을 Bosh를 이용하여 설치 하는 방법과 Open PaaS의 SaaS 형태로 제공하는 Application 에서 RabbitMQ 서비스를 사용하는 방법을 기술하였다.

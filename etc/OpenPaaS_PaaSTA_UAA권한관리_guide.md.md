@@ -611,7 +611,7 @@ extra scopes for cloud controller
 - cloud_controller.write \*: 어플리케이션 배포와 서비스 생성 및 바인드
 할 수 있는 권한
 
-- cloud_controller\_service_permissions.read \*: 서비스 인스턴스를
+- cloud_controller_service_permissions.read \*: 서비스 인스턴스를
 관리할 수 있는 권한
 
 ‘**\*’****은 개방형 클라우드 플랫폼 사용자로 가입 시****,****기본으로
@@ -631,20 +631,20 @@ UAAC는 내부적으로 uaa-client-lib사용하여, UAA APIs를 호출한다. �
 
 ##6.1  클라이언트 등록
 
-클라이언트를 등록하는 UAAC 명령어는 \$ uaac client add [name]이다. 해당
+클라이언트를 등록하는 UAAC 명령어는 $ uaac client add [name]이다. 해당
 명령어의 파라미터로는다음과 같은 값들이 있다.
 
   
 |  **Command parameters**                  |**Descriptions**|
 |------------------------------------------|-------------------|
 |  --scope \<list\>                        | 자원 소유자 권한목록|
-|  --authorized\_grant\_types \<list\>     | 권한부여 방식|
+|  --authorized_grant_types \<list\>     | 권한부여 방식|
 |  --authorities \<list\>                  | 클라이언트 권한목록|
-|  --access\_token\_validity \<seconds\>   | 접근토큰 유효기간|
-|  --refresh\_token\_validity \<seconds\>  |갱신 토큰 유효기간|
-|  --redirect\_uri \<list\>                | 리다이렉트 URI|
+|  --access_token_validity \<seconds\>   | 접근토큰 유효기간|
+|  --refresh_token_validity \<seconds\>  |갱신 토큰 유효기간|
+|  --redirect_uri \<list\>                | 리다이렉트 URI|
 |  --autoapprove \<list\>                  | 자동승인|
-|  --signup\_redirect\_url \<url\>         | 가입 리다이렉트 URL|
+|  --signup_redirect_url \<url\>         | 가입 리다이렉트 URL|
 |  --clone \<other\>                       | 다른 클라이언트로부터 기본 설정값을 복제|
 |  -s \| --secret \<secret\>                | 클라이언트 패스워드|
 |  -i \| --[no-]interactive                 | interactively verify all values|
@@ -666,21 +666,21 @@ UAAC는 내부적으로 uaa-client-lib사용하여, UAA APIs를 호출한다. �
 || -a \| - -attributes \<names\>, output for each user
 |\$ uaac client update [name]|이름에 해당하는 클라이언트 정보 업데이트|
 ||- -scope \<list\>|
-||- -authorized_grant\_types \<list\>|
+||- -authorized_grant_types \<list\>|
 ||- -authorities \<list\>|
-||- -access\_token\_validity \<seconds\>|
-||- -refresh\_token\_validity \<seconds\>|
-||- -redirect\_uri \<list\>|
+||- -access_token_validity \<seconds\>|
+||- -refresh_token_validity \<seconds\>|
+||- -redirect_uri \<list\>|
 ||- -autoapprove \<list\>|
-||- -signup\_redirect\_url \<url\>|
-||- -del\_attrs \<attr\_names\>, list of attributes to delete|
+||- -signup_redirect_url \<url\>|
+||- -del_attrs \<attr_names\>, list of attributes to delete|
 ||-i \| --[no-]interactive, interactively verify all values|
 |\$ uaac client delete [name]|   이름에 해당하는 클라이언트 삭제|
 |\$ uaac secret set [name]   |   이름에 해당하는 클라이언트 secret 설정|
 ||-s \| --secret \<secret\>, client secret|
 | \$ uaac secret change      |   현재 인증된 클라이언트를 위한 secret변경|
-||--old\_secret \<secret\>, current secret|
-|-s \| --secret \<secret\>, client secret|
+||--old_secret \<secret\>, current secret|
+||-s \| --secret \<secret\>, client secret|
 
 
 #7.  권한관리 오류메시지 
@@ -735,7 +735,7 @@ temporarily_unavailable; 권한 서버가 일시적인 과부하나 유지보수
 
 https://github.com/cloudfoundry/uaa/blob/master/docs/UAA-Security.md\#user-tokens
 
-**별첨**2.**UAA**데이터 관계도****
+**별첨**2.**UAA데이터 관계도**
 
 Indentity Zone은 UAA의 multi-tenant를 보장하기 위해 사용된다. Identity
 Zone은 Identity Provider, OAuth 클라이언트, 사용자가 상호작용할 수 있는

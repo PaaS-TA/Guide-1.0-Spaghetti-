@@ -658,13 +658,13 @@ UAAC는 내부적으로 uaa-client-lib사용하여, UAA APIs를 호출한다. �
 
 |**Commands**				|**Descriptions**|
 |---------------------------|----------------|
-|\$ uaac clients 			|등록된 클라이언트 목록|
+|$ uaac clients 			|등록된 클라이언트 목록|
 || -a \| --attributes <names\>, output for each user\|
 || - -start <start>, show results starting at this index|
 || - -count <count>, number of results to show|
-|\$ uaac client get [name]	|이름에 해당하는 클라이언트 정보|
+|$ uaac client get [name]	|이름에 해당하는 클라이언트 정보|
 || -a \| - -attributes \<names\>, output for each user
-|\$ uaac client update [name]|이름에 해당하는 클라이언트 정보 업데이트|
+|$ uaac client update [name]|이름에 해당하는 클라이언트 정보 업데이트|
 ||- -scope \<list\>|
 ||- -authorized_grant_types \<list\>|
 ||- -authorities \<list\>|
@@ -675,10 +675,10 @@ UAAC는 내부적으로 uaa-client-lib사용하여, UAA APIs를 호출한다. �
 ||- -signup_redirect_url \<url\>|
 ||- -del_attrs \<attr_names\>, list of attributes to delete|
 ||-i \| --[no-]interactive, interactively verify all values|
-|\$ uaac client delete [name]|   이름에 해당하는 클라이언트 삭제|
-|\$ uaac secret set [name]   |   이름에 해당하는 클라이언트 secret 설정|
+|$ uaac client delete [name]|   이름에 해당하는 클라이언트 삭제|
+|$ uaac secret set [name]   |   이름에 해당하는 클라이언트 secret 설정|
 ||-s \| --secret \<secret\>, client secret|
-| \$ uaac secret change      |   현재 인증된 클라이언트를 위한 secret변경|
+|$ uaac secret change      |   현재 인증된 클라이언트를 위한 secret변경|
 ||--old_secret \<secret\>, current secret|
 ||-s \| --secret \<secret\>, client secret|
 
@@ -760,13 +760,13 @@ http://bosh.io/jobs/uaa?source=github.com/cloudfoundry/cf-release&version=212
 
 	uaa:
 		admin:
-			client\_secret: adminsecret
+			client_secret: adminsecret
 		cc:
-			client\_secret: ccsecret
+			client_secret: ccsecret
 		clients:
 			login:
 				authorities: oauth.login,scim.write,clients.read,scim.userids,password.write
-				authorized-grant-types: authorization\_code,client\_credentials
+				authorized-grant-types: authorization_code,client_credentials
 				override: true
 				redirect-uri: http://login.cf.open-paas.com
 				scope: openid,oauth.approvals
@@ -783,13 +783,13 @@ http://bosh.io/jobs/uaa?source=github.com/cloudfoundry/cf-release&version=212
 |----------------------------------------|----------------------|
 |client credentials 			 |curl -v -XPOST -H"Accept:application/json" -u "app:appclientsecret" -d "grant_type=client_credentials" **http://uaaapp-server.cfapps.io/oauth/token**|
 |password resource owner		 |curl -v -XPOST -H"Accept:application/json" -u "app:appclientsecret" -d "username=marissa&password=koala" \-d "grant_type=password" \-d "response_type=token" **http://uaaapp-server.cfapps.io/oauth/token**|
-|authorization code   \* cookie필요(로그인정보) | **\#로그인** curl -c cookies.txt -v --data "username=marissa&password=koala&X-Uaa-Csrf=csrf-cookie" --cookie "X-Uaa-Csrf=csrf-cookie" http://uaaapp-server.cfapps.io/login.do **\#authz code(토큰요청 시 사용될 값)요청** curl -c cookies.txt -b cookies.txt -v "http://uaaapp-server.cfapps.io/oauth/authorize?scope=openid&client_id=app&redirect_uri=http://uaaapp-server.cfapps.io/app/authcode&state=b13b&response_type=code" \- 필요에따라 ‘autoapprove=true’ 또는 ‘user_oauth_approval=true’ 값이 필요함 \- 응답값: code **\#응답받은 authz code를 사용하여, 토큰요청** curl \-v \-XPOST -H"Accept:application/json" -u "app:appclientsecret" -d "grant\_type=authorization\_code" -d "redirect\_uri=http://uaaapp-server.cfapps.io/app/authcode" -d "code=0tJw61&state=b13b" http://uaaapp-server.cfapps.io/oauth/token|
-|implicit  \* cookie필요(로그인정보)|**\#로그인** curl \-c cookies.txt -v --data "username=marissa&password=koala&X-Uaa-Csrf=csrf-cookie" --cookie "X-Uaa-Csrf=csrf-cookie" http://uaaapp-server.cfapps.io/login.do **\#redirect(토큰을 받을) url 전달** curl -c cookies.txt -b cookies.txt -v "http://uaaapp-server.cfapps.io/oauth/authorize?response\_type=token&client\_id=app&redirect\_uri=http://uaaapp-server.cfapps.io/callback" \-응답값: Redirect URL뒤에 Access Token|
+|authorization code   \* cookie필요(로그인정보) | **\#로그인** curl -c cookies.txt -v --data "username=marissa&password=koala&X-Uaa-Csrf=csrf-cookie" --cookie "X-Uaa-Csrf=csrf-cookie" http://uaaapp-server.cfapps.io/login.do **\#authz code(토큰요청 시 사용될 값)요청** curl -c cookies.txt -b cookies.txt -v "http://uaaapp-server.cfapps.io/oauth/authorize?scope=openid&client_id=app&redirect_uri=http://uaaapp-server.cfapps.io/app/authcode&state=b13b&response_type=code" \- 필요에따라 ‘autoapprove=true’ 또는 ‘user_oauth_approval=true’ 값이 필요함 \- 응답값: code **\#응답받은 authz code를 사용하여, 토큰요청** curl \-v \-XPOST -H"Accept:application/json" -u "app:appclientsecret" -d "grant_type=authorization_code" -d "redirect_uri=http://uaaapp-server.cfapps.io/app/authcode" -d "code=0tJw61&state=b13b" http://uaaapp-server.cfapps.io/oauth/token|
+|implicit  \* cookie필요(로그인정보)|**\#로그인** curl \-c cookies.txt -v --data "username=marissa&password=koala&X-Uaa-Csrf=csrf-cookie" --cookie "X-Uaa-Csrf=csrf-cookie" http://uaaapp-server.cfapps.io/login.do **\#redirect(토큰을 받을) url 전달** curl -c cookies.txt -b cookies.txt -v "http://uaaapp-server.cfapps.io/oauth/authorize?response_type=token&client_id=app&redirect_uri=http://uaaapp-server.cfapps.io/callback" \-응답값: Redirect URL뒤에 Access Token|
 
 \*\* token으로 Resource요청
 
 **curl -v -XGET
-http://\<****리소스서버****URL\>/\<API\>?access\_token="****실제 토큰값****"**
+http://\<****리소스서버****URL\>/\<API\>?access_token="****실제 토큰값****"**
 
 **예****\>\>**curl -v -XGET http://uaaapp-server.cfapps.io/Users?access_token="eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxNzdhOTZlMi1hZmM1LTRlZDAtYTEwOS05NzJhOTViNDNhNTEiLCJzdWIiOiJiYjM2MzRmNC0xNDQ3LTQ5ZDAtYjc1NC0yZGQ1NGE4MDRlOGYiLCJzY29wZSI6WyJzY2ltLnVzZXJpZHMiLCJwYXNzd29yZC53cml0ZSIsIm9wZW5pZCIsImNsb3VkX2NvbnRyb2xsZXIud3JpdGUiLCJjbG91ZF9jb250cm9sbGVyLnJlYWQiXSwiY2xpZW50X2lkIjoiYXBwIiwiY2lkIjoiYXBwIiwiYXpwIjoiYXBwIiwiZ3JhbnRfdHlwZSI6ImF1dGhvcml6YXRpb25fY29kZSIsInVzZXJfaWQiOiJiYjM2MzRmNC0xNDQ3LTQ5ZDAtYjc1NC0yZGQ1NGE4MDRlOGYiLCJ1c2VyX25hbWUiOiJtYXJpc3NhIiwiZW1haWwiOiJtYXJpc3NhQHRlc3Qub3JnIiwicmV2X3NpZyI6ImM1NDY0M2Y2IiwiaWF0IjoxNDQ3OTE4ODMyLCJleHAiOjE0NDc5NjIwMzIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC91YWEvb2F1dGgvdG9rZW4iLCJ6aWQiOiJ1YWEiLCJhdWQiOlsiYXBwIiwic2NpbSIsImNsb3VkX2NvbnRyb2xsZXIiLCJwYXNzd29yZCIsIm9wZW5pZCJdfQ.q2hNXSh7qPBtSLtN3rKFlfG9_ZxyOqsvzvYdz4B_b-Y"
 
@@ -808,5 +808,5 @@ OAuth2.0은 OAuth1.0과 호환되지 않으며, 사용되는 용어들도 차이
 |**API서버**|Service Provider|Resource Server|
 |**인증서버**|Service Provider|Authorization Server|
 |**HTTP헤더**|OAuth|Bearer|
-|**파라미터 명**|oauth\_token|access\_token|
+|**파라미터 명**|oauth_token|access_token|
 |**보안**|signature사용|HTTPs|

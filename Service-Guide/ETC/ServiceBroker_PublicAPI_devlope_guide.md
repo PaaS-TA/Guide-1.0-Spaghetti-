@@ -78,8 +78,8 @@
 
 <div id='4'></div>
 ### 1.3. 참고자료
-OpenPaaS_PaaSTA_ServicePack_develope_guide.docx
-CF document
-인천문화예술정보 공공 Open API 센터(**<http://iq.ifac.or.kr/openAPI/look/culture_guide.php>**)
-네이버 개발자 센터(**<http://developer.naver.com/wiki/pages/Tutorial_JavaScript>**)
+- OpenPaaS_PaaSTA_ServicePack_develope_guide.docx
+- CF document
+- 인천문화예술정보 공공 Open API 센터(**<http://iq.ifac.or.kr/openAPI/look/culture_guide.php>**)
+- 네이버 개발자 센터(**<http://developer.naver.com/wiki/pages/Tutorial_JavaScript>**)
 

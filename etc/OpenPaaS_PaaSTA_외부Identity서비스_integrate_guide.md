@@ -953,7 +953,7 @@ javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: 
 	<ds:X509Data>
 	<ds:X509Certificate>
 
-… 중략
+	… 중략
 
 	</ds:X509Certificate>
 	</ds:X509Data>

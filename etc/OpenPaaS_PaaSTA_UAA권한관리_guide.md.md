@@ -583,11 +583,11 @@ UAA자원서버는 모든 자원들에 대해 개별적인 아이디를 부여�
 |**clients**	|read			|클라이언트에 정보 읽기 scope|
 |**clients**	|secret			|클라이언트의 패스워드를 변경 scope 관리자로 간주되는 scope|
 |**groups**		|update			|group 업데이트 scope scim.write scope과 함께 수행될 수 있음|
-|**oauth**		|approval \*	|클라이언트의 인가 승인/거부(/approvals) scope uaa.yml에 정의되는 기본 scope |
+|**oauth**		|approval \*		|클라이언트의 인가 승인/거부(/approvals) scope uaa.yml에 정의되는 기본 scope |
 |**oauth**		|login			|login 어플리케이션 지칭하는 scope|
 |**idps**		|read			|/identity-providers 에서 검색되는 Identity Provider를 위한 읽기 scope|
 |**idps**		|write			|/identity-providers에서 검색되는 Identity Provider를 위한 쓰기 scope|
-|**password**	|write \*		|사용자의 패스워드를 변경(User\*/\*/password)과 관련된 scope|
+|**password**		|write \*		|사용자의 패스워드를 변경(User\*/\*/password)과 관련된 scope|
 |**openid**		|openid \*		|/userinfo endpoint 접근을 위해 필요한 scope, OpenID 클라이언트를 위한 scope 이메일 주소를 포함한 프로필 데이터에 접근하기위한 scope|
 |**tokens**		|read			|다른 어플리케이션에 부여한 승인 세부사항을 보기위해 필요한 scope|
 |**tokens**		|write			|계정에 어플리케이션을 배포하거나 서비스를 생성 및 바인드하기 위해 필요한 scope|
@@ -646,8 +646,8 @@ UAAC는 내부적으로 uaa-client-lib사용하여, UAA APIs를 호출한다. �
 |  --autoapprove \<list\>                  | 자동승인|
 |  --signup\_redirect\_url \<url\>         | 가입 리다이렉트 URL|
 |  --clone \<other\>                       | 다른 클라이언트로부터 기본 설정값을 복제|
-|  -s | --secret \<secret\>                | 클라이언트 패스워드|
-|  -i | --[no-]interactive                 | interactively verify all values|
+|  -s \| --secret \<secret\>                | 클라이언트 패스워드|
+|  -i \| --[no-]interactive                 | interactively verify all values|
 
 
 ##6.2  클라이언트 관리
@@ -660,26 +660,26 @@ UAAC는 내부적으로 uaa-client-lib사용하여, UAA APIs를 호출한다. �
 |---------------------------|----------------|
 |\$ uaac clients 			|등록된 클라이언트 목록|
 || -a \| --attributes <names\>, output for each user\|
-|| ##- -start <start>, show results starting at this index|
-|| ##- -count <count>, number of results to show|
+|| - -start <start>, show results starting at this index|
+|| - -count <count>, number of results to show|
 |\$ uaac client get [name]	|이름에 해당하는 클라이언트 정보|
 || -a \| - -attributes \<names\>, output for each user
 |\$ uaac client update [name]|이름에 해당하는 클라이언트 정보 업데이트|
-||##- -scope \<list\>|
-||##- -authorized\_grant\_types \<list\>|
-||##- -authorities \<list\>|
-||##- -access\_token\_validity \<seconds\>|
-||##- -refresh\_token\_validity \<seconds\>|
-||##- -redirect\_uri \<list\>|
-||##- -autoapprove \<list\>|
-||##- -signup\_redirect\_url \<url\>|
-||##- -del\_attrs \<attr\_names\>, list of attributes to delete|
+||- -scope \<list\>|
+||- -authorized\_grant\_types \<list\>|
+||- -authorities \<list\>|
+||- -access\_token\_validity \<seconds\>|
+||- -refresh\_token\_validity \<seconds\>|
+||- -redirect\_uri \<list\>|
+||- -autoapprove \<list\>|
+||- -signup\_redirect\_url \<url\>|
+||- -del\_attrs \<attr\_names\>, list of attributes to delete|
 ||-i | --[no-]interactive, interactively verify all values|
 |\$ uaac client delete [name]|   이름에 해당하는 클라이언트 삭제|
 |\$ uaac secret set [name]   |   이름에 해당하는 클라이언트 secret 설정|
 ||-s | --secret \<secret\>, client secret|
 | \$ uaac secret change      |   현재 인증된 클라이언트를 위한 secret변경|
-||##--old\_secret \<secret\>, current secret|
+||--old\_secret \<secret\>, current secret|
 |-s | --secret \<secret\>, client secret|
 
 
@@ -789,10 +789,10 @@ http://bosh.io/jobs/uaa?source=github.com/cloudfoundry/cf-release&version=212
 \*\* token으로 Resource요청
 
 **curl -v -XGET
-http://\<****리소스서버****URL\>/\<API\>?access\_token="****실제
-토큰값****"**
+http://\<****리소스서버****URL\>/\<API\>?access\_token="****실제 토큰값****"**
 
-**예****\>\>**curl -v -XGET http://uaaapp-server.cfapps.io/Users?access\_token="eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxNzdhOTZlMi1hZmM1LTRlZDAtYTEwOS05NzJhOTViNDNhNTEiLCJzdWIiOiJiYjM2MzRmNC0xNDQ3LTQ5ZDAtYjc1NC0yZGQ1NGE4MDRlOGYiLCJzY29wZSI6WyJzY2ltLnVzZXJpZHMiLCJwYXNzd29yZC53cml0ZSIsIm9wZW5pZCIsImNsb3VkX2NvbnRyb2xsZXIud3JpdGUiLCJjbG91ZF9jb250cm9sbGVyLnJlYWQiXSwiY2xpZW50X2lkIjoiYXBwIiwiY2lkIjoiYXBwIiwiYXpwIjoiYXBwIiwiZ3JhbnRfdHlwZSI6ImF1dGhvcml6YXRpb25fY29kZSIsInVzZXJfaWQiOiJiYjM2MzRmNC0xNDQ3LTQ5ZDAtYjc1NC0yZGQ1NGE4MDRlOGYiLCJ1c2VyX25hbWUiOiJtYXJpc3NhIiwiZW1haWwiOiJtYXJpc3NhQHRlc3Qub3JnIiwicmV2X3NpZyI6ImM1NDY0M2Y2IiwiaWF0IjoxNDQ3OTE4ODMyLCJleHAiOjE0NDc5NjIwMzIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC91YWEvb2F1dGgvdG9rZW4iLCJ6aWQiOiJ1YWEiLCJhdWQiOlsiYXBwIiwic2NpbSIsImNsb3VkX2NvbnRyb2xsZXIiLCJwYXNzd29yZCIsIm9wZW5pZCJdfQ.q2hNXSh7qPBtSLtN3rKFlfG9\_ZxyOqsvzvYdz4B\_b-Y"
+**예****\>\>**curl -v -XGET 
+http://uaaapp-server.cfapps.io/Users?access\_token="eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxNzdhOTZlMi1hZmM1LTRlZDAtYTEwOS05NzJhOTViNDNhNTEiLCJzdWIiOiJiYjM2MzRmNC0xNDQ3LTQ5ZDAtYjc1NC0yZGQ1NGE4MDRlOGYiLCJzY29wZSI6WyJzY2ltLnVzZXJpZHMiLCJwYXNzd29yZC53cml0ZSIsIm9wZW5pZCIsImNsb3VkX2NvbnRyb2xsZXIud3JpdGUiLCJjbG91ZF9jb250cm9sbGVyLnJlYWQiXSwiY2xpZW50X2lkIjoiYXBwIiwiY2lkIjoiYXBwIiwiYXpwIjoiYXBwIiwiZ3JhbnRfdHlwZSI6ImF1dGhvcml6YXRpb25fY29kZSIsInVzZXJfaWQiOiJiYjM2MzRmNC0xNDQ3LTQ5ZDAtYjc1NC0yZGQ1NGE4MDRlOGYiLCJ1c2VyX25hbWUiOiJtYXJpc3NhIiwiZW1haWwiOiJtYXJpc3NhQHRlc3Qub3JnIiwicmV2X3NpZyI6ImM1NDY0M2Y2IiwiaWF0IjoxNDQ3OTE4ODMyLCJleHAiOjE0NDc5NjIwMzIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC91YWEvb2F1dGgvdG9rZW4iLCJ6aWQiOiJ1YWEiLCJhdWQiOlsiYXBwIiwic2NpbSIsImNsb3VkX2NvbnRyb2xsZXIiLCJwYXNzd29yZCIsIm9wZW5pZCJdfQ.q2hNXSh7qPBtSLtN3rKFlfG9\_ZxyOqsvzvYdz4B\_b-Y"
 
 
 

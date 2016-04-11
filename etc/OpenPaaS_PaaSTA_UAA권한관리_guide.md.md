@@ -356,7 +356,7 @@ JWT(JSON Web Token)은 JSON기반의 토큰 표준으로써, UAA에서 클라이
 접근토큰은 HTTP header나 URI 쿼리파라미터로 전달하기 위해, 아래와 같이
 인코딩한다.
 
-**Encoded Token**예**;*
+**Encoded Token 예;*
 
 	eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiIwMjhiOWY4ZC0zODhmLTQzMTUtYjg2MC01NTk5MzE3ZGIyY2MiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbInBhc3N3b3JkLndyaXRlIiwic2NpbS53cml0ZSIsImNsaWVudHMud3JpdGUiLCJjbGllbnRzLnJlYWQiLCJzY2ltLnJlYWQiLCJ1YWEuYWRtaW4iLCJjbGllbnRzLnNlY3JldCJdLCJzY29wZSI6WyJzY2ltLnJlYWQiLCJ1YWEuYWRtaW4iLCJwYXNzd29yZC53cml0ZSIsInNjaW0ud3JpdGUiLCJjbGllbnRzLndyaXRlIiwiY2xpZW50cy5yZWFkIiwiY2xpZW50cy5zZWNyZXQiXSwiY2xpZW50X2lkIjoiYWRtaW4iLCJjaWQiOiJhZG1pbiIsImF6cCI6ImFkbWluIiwiZ3JhbnRfdHlwZSI6ImNsaWVudF9jcmVkZW50aWFscyIsInJldl9zaWciOiJhNWM0MDRiMCIsImlhdCI6MTQ0ODUyNTc5NSwiZXhwIjoxNDQ4NTY4OTk1LCJpc3MiOiJodHRwOi8vdWFhLmNmLm9wZW4tcGFhcy5jb20vb2F1dGgvdG9rZW4iLCJ6aWQiOiJ1YWEiLCJhdWQiOlsiYWRtaW4iLCJzY2ltIiwidWFhIiwicGFzc3dvcmQiLCJjbGllbnRzIl19.GWfKjK5sPNByAxzVkcpVRADZr-KhQSeHtPebXRbn1HtwqwG3GPpKn0cLjbY2vcSYAdsTwup\_YvV0IhTC-QdsR\_jgqFbInjWDg-zxN9PKhYUC1zIIg-VS-Kg1NAkx64d1DqX5dvlnS2b3dj1KCPdy5FL3cr9bYlazQYc\_7lWPU3I
 
@@ -365,7 +365,7 @@ JWT(JSON Web Token)은 JSON기반의 토큰 표준으로써, UAA에서 클라이
 파트를 구분하는 ‘.’이 있으며, 인코딩 방식은 base64url이다. 따라서, 위
 접근토큰을 디코드하면, 아래와 같은 형태를 가지고 있다.
 
-**Decoded Token예;*
+**Decoded Token 예;*
 
 **Header: Algorithm & Token Type**
 
@@ -779,24 +779,12 @@ http://bosh.io/jobs/uaa?source=github.com/cloudfoundry/cf-release&version=212
 각 Grant Type별로 Endpoint를 확인해야한다.
 
 
-  |**Grant type**         		 |**Curl** 		|
+ |**Grant type**         		 |**Curl** 		|
 |----------------------------|-----------------|
-|client credentials 		 |curl -v -XPOST -H"Accept:application/json" -u "app:appclientsecret" -d "grant\_type=client\_credentials" |
-||**http://uaaapp-server.cfapps.io/oauth/token**|
-|password resource owner 	 |curl -v -XPOST -H"Accept:application/json" -u "app:appclientsecret" -d "username=marissa&password=koala" -d "grant\_type=password" -d "response\_type=token" **http://uaaapp-server.cfapps.io/oauth/token**|
-|authorization code   \* cookie필요(로그인정보) |**\#로그인**
-||curl -c cookies.txt -v --data "username=marissa&password=koala&X-Uaa-Csrf=csrf-cookie" --cookie "X-Uaa-Csrf=csrf-cookie" http://uaaapp-server.cfapps.io/login.do|
-|| **\#authz code(토큰요청 시 사용될 값)요청** 
-|| curl -c cookies.txt -b cookies.txt -v "http://uaaapp-server.cfapps.io/oauth/authorize?scope=openid&client\_id=app&redirect\_uri=http://uaaapp-server.cfapps.io/app/authcode&state=b13b&response\_type=code" |
-|| \- 필요에따라 ‘autoapprove=true’ 또는 ‘user\_oauth\_approval=true’ 값이 필요함|
-|| \- 응답값: code |
-||**\#응답받은 authz code를 사용하여, 토큰요청**|
-||curl -v -XPOST -H"Accept:application/json" -u "app:appclientsecret" -d "grant\_type=authorization\_code" -d "redirect\_uri=http://uaaapp-server.cfapps.io/app/authcode" -d "code=0tJw61&state=b13b" http://uaaapp-server.cfapps.io/oauth/token|
-|implicit  \* cookie필요(로그인정보)|**\#로그인**
-||curl -c cookies.txt -v --data "username=marissa&password=koala&X-Uaa-Csrf=csrf-cookie" --cookie "X-Uaa-Csrf=csrf-cookie" http://uaaapp-server.cfapps.io/login.do|
-||**\#redirect(토큰을 받을) url 전달**|
-||curl -c cookies.txt -b cookies.txt -v "http://uaaapp-server.cfapps.io/oauth/authorize?response\_type=token&client\_id=app&redirect\_uri=http://uaaapp-server.cfapps.io/callback"|
-|| \-응답값: Redirect URL뒤에 Access Token|
+|client credentials |curl -v -XPOST -H"Accept:application/json" -u "app:appclientsecret" -d "grant\_type=client\_credentials" **http://uaaapp-server.cfapps.io/oauth/token**|
+|password resource owner |curl -v -XPOST -H"Accept:application/json" -u "app:appclientsecret" -d "username=marissa&password=koala" -d "grant\_type=password" -d "response\_type=token" **http://uaaapp-server.cfapps.io/oauth/token**|
+|authorization code   \* cookie필요(로그인정보) | **\#로그인** curl -c cookies.txt -v --data "username=marissa&password=koala&X-Uaa-Csrf=csrf-cookie" --cookie "X-Uaa-Csrf=csrf-cookie" http://uaaapp-server.cfapps.io/login.do **\#authz code(토큰요청 시 사용될 값)요청** curl -c cookies.txt -b cookies.txt -v "http://uaaapp-server.cfapps.io/oauth/authorize?scope=openid&client\_id=app&redirect\_uri=http://uaaapp-server.cfapps.io/app/authcode&state=b13b&response\_type=code" \- 필요에따라 ‘autoapprove=true’ 또는 ‘user\_oauth\_approval=true’ 값이 필요함 \- 응답값: code **\#응답받은 authz code를 사용하여, 토큰요청** curl -v -XPOST -H"Accept:application/json" -u "app:appclientsecret" -d "grant\_type=authorization\_code" -d "redirect\_uri=http://uaaapp-server.cfapps.io/app/authcode" -d "code=0tJw61&state=b13b" http://uaaapp-server.cfapps.io/oauth/token|
+|implicit  \* cookie필요(로그인정보)|**\#로그인** curl -c cookies.txt -v --data "username=marissa&password=koala&X-Uaa-Csrf=csrf-cookie" --cookie "X-Uaa-Csrf=csrf-cookie" http://uaaapp-server.cfapps.io/login.do **\#redirect(토큰을 받을) url 전달** curl -c cookies.txt -b cookies.txt -v "http://uaaapp-server.cfapps.io/oauth/authorize?response\_type=token&client\_id=app&redirect\_uri=http://uaaapp-server.cfapps.io/callback" \-응답값: Redirect URL뒤에 Access Token|
 
 \*\* token으로 Resource요청
 

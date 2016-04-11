@@ -112,10 +112,67 @@
 ![2-1-0-3]
 ![2-1-0-4]
 
+'공공데이터포털 이용약관'과 '개인정보 수집 및 이용에 대한 안내'가 소개된다. 내용에 동의한다면 각각의 약관에 동의함을 표시하고 [동의] 버튼을 누른다.
+
+![2-1-0-5]
+![2-1-0-6]
+
+가입자 기본정보와 가입자 연락정보를 입력한다. 
+(1) 가입자 연락정보에서 이메일 인증을 시도한다. [이메일 인증]버튼을 누르면 인증메일이 발송되고 (2)인증번호 입력 필드가 생긴다. 입력한 이메일로 도착한 인증메일의 인증번호를 입력하고 [확인]버튼을 눌러 인증을 마친다. (3) [완료] 버튼을 눌러 가입완료 화면으로 이동한다.
+
+![2-1-0-7]
+
+회원 가입이 완료되었다.
+
+![2-1-0-8]
+
+공공데이터 포털 메인 화면에서 상단의 [로그인]버튼을 눌러 로그인 한다.
+
+![2-1-0-9]
+
+아이디와 비밀번호를 입력하고 로그인 한다.
+
+<div id='7'></div>
+### 2.2. API 검색
+API 서비스를 검색하기 위해 데이터 포털에 접속한다. 데이터 포털의 Open API 서비스를 확인한다.
+
+![2-2-0-0]
+
+Open API 카테고리로 이동한다.
+
+![2-2-0-1]
+
+Oepn API 카테고리로 이동하면, ①API 서비스 명으로 검색하거나 ②각종 필터로 분류된 목록을 확인할 수 있다.
+
+![2-2-0-2]
+
+① 전국 단위의 문화행사 관련 정보를 얻기 위해 공연전시정보조회서비스를 검색한다
+② 검색 결과에서 API 서비스의 상세정보를 확인하기 위해 API 서비스 목록에서 해당 API를 클릭한다.
+
+![2-2-0-3]
+
+이동한 화면에서 상세정보버튼을 클릭한다.
+
+![2-2-0-4]
+
+창이 확장되면서 API 서비스에 대한 정보를 확인할 수 있다. 
+① 해당 API 서비스에 대한 가이드 문서를 다운로드 받을 수 있다.
+② 해당 API 서비스가 제공하는 오퍼레이션 별로 요청주소(Endpoint), 요청/응답 필드, 허용 트래픽 등의 정보를 확인할 수 있다. 여기서 제공하는 정보만으로도 API 서비스 브로커에 API 서비스를 추가하고 사용하는데 문제는 없지만, API 서비스에 따라서 가이드 문서를 확인하거나 연관 링크로 이동해야 하는 경우도 있다. 서비스 브로커에 API 서비스를 추가하기 위해 필요한 정보는 다음과 같다.
+
+
 
 [2-1-0-0]:/images/openpaas-service/publicapi/2-1-0-0.png
 [2-1-0-1]:/images/openpaas-service/publicapi/2-1-0-1.png
 [2-1-0-2]:/images/openpaas-service/publicapi/2-1-0-2.png
 [2-1-0-3]:/images/openpaas-service/publicapi/2-1-0-3.png
 [2-1-0-4]:/images/openpaas-service/publicapi/2-1-0-4.png
-
+[2-1-0-5]:/images/openpaas-service/publicapi/2-1-0-5.png
+[2-1-0-6]:/images/openpaas-service/publicapi/2-1-0-6.png
+[2-1-0-7]:/images/openpaas-service/publicapi/2-1-0-7.png
+[2-1-0-8]:/images/openpaas-service/publicapi/2-1-0-8.png
+[2-1-0-9]:/images/openpaas-service/publicapi/2-1-0-9.png
+[2-2-0-0]:/images/openpaas-service/publicapi/2-2-0-0.png
+[2-2-0-1]:/images/openpaas-service/publicapi/2-2-0-1.png
+[2-2-0-2]:/images/openpaas-service/publicapi/2-2-0-2.png
+[2-2-0-3]:/images/openpaas-service/publicapi/2-2-0-3.png
+[2-2-0-4]:/images/openpaas-service/publicapi/2-2-0-4.png

@@ -274,7 +274,7 @@ cf CLI는 개방형 클라우드 플랫폼에서 로그인, 어플리케이션 �
 어플리케이션으로써, Public 클라이언트에 속한다. 개방형 클라우드 플랫폼
 사용자 계정으로, 별도의 승인 프로세스 없이 접근토큰을 요청하도록
 Resource Owner Password Credentials 권한부여 방식을 사용한다. 사용자는
-\$ cf login 명령어 사용시 사용자이름 및 패스워드를 입력하고, cf CLI 는
+$ cf login 명령어 사용시 사용자이름 및 패스워드를 입력하고, cf CLI 는
 접근토큰 요청 시, client credentials 및 user credentials를 모두
 전달한다. Authorization Server는 클라이언트와 사용자를 모두 인증하고,
 클라이언트 와 사용자가 소유한 동일한 scopes를 포함한 접근토큰을 cf CLI에
@@ -321,7 +321,7 @@ URI등록에 의존한다. [그림 3-4]는 Implicit 권한부여 방식의 프�
 
 UAA CLI는 UAA권한관리를 위해 사용되는 Command Line기반의
 어플리케이션이다. UAA CLI는native 어플리케이션으로써, Public
-클라이언트에 속한다. 사용자는 \$ uaac token get 명령어를 사용하여,
+클라이언트에 속한다. 사용자는 $ uaac token get 명령어를 사용하여,
 접근토큰을 획득할 수 있다. 이 때 UAA CLI는 Implicit권한부여 방식을
 사용하여, 접근토큰을 요청한다. 따라서, UAA CLI는 사용자를 인증하고,
 사용자로부터 권한을 위임받아 Authorization Server에 접근토큰을 요청한다.
@@ -494,11 +494,11 @@ Endpoint, Indentity Zone관리 크게 7가지로 분류할 수 있다. 본 문�
 |**Methods**	|**APIs**                                     |**Descriptions** 				 |
 |---------------|---------------------------------------------|----------------------------------|
 |  GET          | /oauth/clients                              | 클라이언트 목록 조회				 |
-|  GET          | /oauth/clients/{client\_id}                 | 클라이언트 조회(검사)				 |
+|  GET          | /oauth/clients/{client_id}                 | 클라이언트 조회(검사)				 |
 |  POST         | /oauth/clients                              | 클라이언트 등록					 | 
-|  PUT          | /oauth/clients/{client\_id}                 | 클라이언트 업데이트				 |
-|  DELETE       | /oauth/clients/{client\_id}                 | 클라이언트 삭제					 |
-|  PUT          | /oauth/clients/{client\_id}/secret          | 클라이언트 패스워드 변경			 |
+|  PUT          | /oauth/clients/{client_id}                 | 클라이언트 업데이트				 |
+|  DELETE       | /oauth/clients/{client_id}                 | 클라이언트 삭제					 |
+|  PUT          | /oauth/clients/{client_id}/secret          | 클라이언트 패스워드 변경			 |
 |  POST         | /oauth/clients/tx                           | 다중 클라이언트 등록				 |
 |  PUT          | /oauth/clients/tx                           | 다중 클라이언트 업데이트			 |
 |  POST         | /oauth/clients/tx/modify                    | 다중 클라이언트 등록/업데이트/삭제 |
@@ -506,7 +506,7 @@ Endpoint, Indentity Zone관리 크게 7가지로 분류할 수 있다. 본 문�
 |  POST         | /oauth/clients/tx/delete                    | 다중 클라이언트 삭제				 |		
 |<del>GET</del> | <del>/oauth/clients/restricted</del>        | <del>제한된 스코프 목록 조회 List Restricted Scopes</del> | 
 |<del>POST</del>| <del>/oauth/clients/restricted</del>        | <del>제한된 클라이언트 생성</del>  |
-|<del>PUT</del> | <del>/oauth/clients/restricted/{client\_id}</del>| <del>제한된 클라이언트 업데이트</del> |
+|<del>PUT</del> | <del>/oauth/clients/restricted/{client_id}</del>| <del>제한된 클라이언트 업데이트</del> |
 
 
 \* 제한된 클라이언트의 정의는 UAA admin scope이 없는 클라이언트를
@@ -517,7 +517,7 @@ Endpoint, Indentity Zone관리 크게 7가지로 분류할 수 있다. 본 문�
 
 |**Methods**|**APIs**	|**Descriptions**		    |
 |-----------|-----------|---------------------------|
-|GET  		|/token\_key|토큰 서명을 위한 검증키 획득|
+|GET  		|/token_key|토큰 서명을 위한 검증키 획득|
 
 ##4.6  UI Endpoint APIs
 
@@ -527,8 +527,8 @@ Endpoint, Indentity Zone관리 크게 7가지로 분류할 수 있다. 본 문�
 |  GET          | /login                           |  로그인 폼 			 |	
 |  POST         | /login.do                        |  로그인				 |
 |  GET          | /logout.do                       |  로그아웃			 |
-|  GET          | /oauth/authorize/confirm\_access |  OAuth2 인가 확인	 |
-|  POST         | /oauth/authorize?\  user\_oauth\_approval=true |  OAuth2 인가		 |
+|  GET          | /oauth/authorize/confirm_access |  OAuth2 인가 확인	 |
+|  POST         | /oauth/authorize?\  user_oauth_approval=true |  OAuth2 인가		 |
                          
 
 ##4.7  Identity Zone 관리 APIs
@@ -554,7 +554,7 @@ Endpoint, Indentity Zone관리 크게 7가지로 분류할 수 있다. 본 문�
 authorities 또는 scopes라고 한다.
 
 **- Authorities**: 클라이언트가 자기 스스로 가지는 접근권한 목록을
-나타낸다. ‘client\_credentials’ 권한부여 프로세스인 경우에 사용한다.
+나타낸다. ‘client_credentials’ 권한부여 프로세스인 경우에 사용한다.
 
 **- Scopes**: 클라이언트가 사용자를 대신하여 동작 할 때 가질 수 있는
 접근권한 목록을 나타낸다. 클라이언트가 사용자 대신 리소스를 사용하기
@@ -569,10 +569,10 @@ UAA자원서버는 모든 자원들에 대해 개별적인 아이디를 부여�
 |**Resource ID**|**Rules name** |**Descriptions**|
 |---------------|---------------|----------------|
 |**uaa**		|user \*		|UAA사용자 권한	 |
-|**uaa**		|resource		|리소스 서버(check\_token endpoint를 위해 사용됨)|
+|**uaa**		|resource		|리소스 서버(check_token endpoint를 위해 사용됨)|
 |**uaa**		|admin			|Super(Admin)사용자 권한|
 |**uaa**		|none			|사용자를 대신하는 action을 수행하지 않는 클라이언트|
-|**scim**		|me \*			|reader/writer (group\_membership의 authorities) - reader: 그룹과 관련된 읽기 권한(멤버/그룹정보)- writer: 그룹과 관련된 수정 권한|
+|**scim**		|me \*			|reader/writer (group_membership의 authorities) - reader: 그룹과 관련된 읽기 권한(멤버/그룹정보)- writer: 그룹과 관련된 수정 권한|
 |**scim**		|write			|scim endpoints(/Users, /Groups)에 대한 admin 쓰기|
 |**scim**		|read			|scim endpoints(/Users, /Groups)에 대한 admin 읽기|
 |**scim**		|create			|사용자 생성(POST /Users) 및 자신 계정 확인(GET /Users/{id}/verify) 단, 수정, 읽기, 삭제 권한은 없음|
@@ -605,13 +605,13 @@ UAA자원서버는 모든 자원들에 대해 개별적인 아이디를 부여�
 ※ 아래 3개의 권한목록들은 UAA가 아닌 Cloud Conroller를 위해 UAA에서
 extra scopes for cloud controller
 
-- cloud\_controller.read \*: 자신의 어플리케이션과 서비스의 상세 정보를
+- cloud_controller.read \*: 자신의 어플리케이션과 서비스의 상세 정보를
 확인할 수 있는 권한
 
-- cloud\_controller.write \*: 어플리케이션 배포와 서비스 생성 및 바인드
+- cloud_controller.write \*: 어플리케이션 배포와 서비스 생성 및 바인드
 할 수 있는 권한
 
-- cloud\_controller\_service\_permissions.read \*: 서비스 인스턴스를
+- cloud_controller\_service_permissions.read \*: 서비스 인스턴스를
 관리할 수 있는 권한
 
 ‘**\*’****은 개방형 클라우드 플랫폼 사용자로 가입 시****,****기본으로
@@ -666,7 +666,7 @@ UAAC는 내부적으로 uaa-client-lib사용하여, UAA APIs를 호출한다. �
 || -a \| - -attributes \<names\>, output for each user
 |\$ uaac client update [name]|이름에 해당하는 클라이언트 정보 업데이트|
 ||- -scope \<list\>|
-||- -authorized\_grant\_types \<list\>|
+||- -authorized_grant\_types \<list\>|
 ||- -authorities \<list\>|
 ||- -access\_token\_validity \<seconds\>|
 ||- -refresh\_token\_validity \<seconds\>|
@@ -674,33 +674,33 @@ UAAC는 내부적으로 uaa-client-lib사용하여, UAA APIs를 호출한다. �
 ||- -autoapprove \<list\>|
 ||- -signup\_redirect\_url \<url\>|
 ||- -del\_attrs \<attr\_names\>, list of attributes to delete|
-||-i | --[no-]interactive, interactively verify all values|
+||-i \| --[no-]interactive, interactively verify all values|
 |\$ uaac client delete [name]|   이름에 해당하는 클라이언트 삭제|
 |\$ uaac secret set [name]   |   이름에 해당하는 클라이언트 secret 설정|
-||-s | --secret \<secret\>, client secret|
+||-s \| --secret \<secret\>, client secret|
 | \$ uaac secret change      |   현재 인증된 클라이언트를 위한 secret변경|
 ||--old\_secret \<secret\>, current secret|
-|-s | --secret \<secret\>, client secret|
+|-s \| --secret \<secret\>, client secret|
 
 
 #7.  권한관리 오류메시지 
 
-invalid\_request; 요청에 필수 파라미터가 빠져 있거나 지원하지 않는
+invalid_request; 요청에 필수 파라미터가 빠져 있거나 지원하지 않는
 파라미터가 들어있는 등 비정상적인 경우
 
-unauthorized\_client; 클라이언트가 권한 코드를 요청하기 위한 권한이 없는
+unauthorized_client; 클라이언트가 권한 코드를 요청하기 위한 권한이 없는
 경우
 
-unsupported\_response\_type; 권한 서버가 권한 코드를 얻는 걸 지원하지
+unsupported_response_type; 권한 서버가 권한 코드를 얻는 걸 지원하지
 않는 경우
 
-invalid\_scope; 요청 범위가 유효하지 않거나, 서버가 알 수 없거나,
+invalid_scope; 요청 범위가 유효하지 않거나, 서버가 알 수 없거나,
 비정상적인 경우
 
-server\_error; 권한 서버가 요청을 처리할 때 예상치 않은 상태를 만나는
+server_error; 권한 서버가 요청을 처리할 때 예상치 않은 상태를 만나는
 경우의 에러 타입
 
-temporarily\_unavailable; 권한 서버가 일시적인 과부하나 유지보수로 인해,
+temporarily_unavailable; 권한 서버가 일시적인 과부하나 유지보수로 인해,
 현재 요청을 다룰 수 없는 경우
 
 
@@ -779,20 +779,19 @@ http://bosh.io/jobs/uaa?source=github.com/cloudfoundry/cf-release&version=212
 각 Grant Type별로 Endpoint를 확인해야한다.
 
 
- |**Grant type**         		 |**Curl** 		|
-|----------------------------|-----------------|
-|client credentials |curl -v -XPOST -H"Accept:application/json" -u "app:appclientsecret" -d "grant\_type=client\_credentials" **http://uaaapp-server.cfapps.io/oauth/token**|
-|password resource owner |curl -v -XPOST -H"Accept:application/json" -u "app:appclientsecret" -d "username=marissa&password=koala" -d "grant\_type=password" -d "response\_type=token" **http://uaaapp-server.cfapps.io/oauth/token**|
-|authorization code   \* cookie필요(로그인정보) | **\#로그인** curl -c cookies.txt -v --data "username=marissa&password=koala&X-Uaa-Csrf=csrf-cookie" --cookie "X-Uaa-Csrf=csrf-cookie" http://uaaapp-server.cfapps.io/login.do **\#authz code(토큰요청 시 사용될 값)요청** curl -c cookies.txt -b cookies.txt -v "http://uaaapp-server.cfapps.io/oauth/authorize?scope=openid&client\_id=app&redirect\_uri=http://uaaapp-server.cfapps.io/app/authcode&state=b13b&response\_type=code" \- 필요에따라 ‘autoapprove=true’ 또는 ‘user\_oauth\_approval=true’ 값이 필요함 \- 응답값: code **\#응답받은 authz code를 사용하여, 토큰요청** curl -v -XPOST -H"Accept:application/json" -u "app:appclientsecret" -d "grant\_type=authorization\_code" -d "redirect\_uri=http://uaaapp-server.cfapps.io/app/authcode" -d "code=0tJw61&state=b13b" http://uaaapp-server.cfapps.io/oauth/token|
-|implicit  \* cookie필요(로그인정보)|**\#로그인** curl -c cookies.txt -v --data "username=marissa&password=koala&X-Uaa-Csrf=csrf-cookie" --cookie "X-Uaa-Csrf=csrf-cookie" http://uaaapp-server.cfapps.io/login.do **\#redirect(토큰을 받을) url 전달** curl -c cookies.txt -b cookies.txt -v "http://uaaapp-server.cfapps.io/oauth/authorize?response\_type=token&client\_id=app&redirect\_uri=http://uaaapp-server.cfapps.io/callback" \-응답값: Redirect URL뒤에 Access Token|
+|**Grant type**         		 |**Curl** 		|
+|----------------------------------------|----------------------|
+|client credentials 			 |curl -v -XPOST -H"Accept:application/json" -u "app:appclientsecret" -d "grant_type=client_credentials" **http://uaaapp-server.cfapps.io/oauth/token**|
+|password resource owner		 |curl -v -XPOST -H"Accept:application/json" -u "app:appclientsecret" -d "username=marissa&password=koala" \-d "grant_type=password" \-d "response_type=token" **http://uaaapp-server.cfapps.io/oauth/token**|
+|authorization code   \* cookie필요(로그인정보) | **\#로그인** curl -c cookies.txt -v --data "username=marissa&password=koala&X-Uaa-Csrf=csrf-cookie" --cookie "X-Uaa-Csrf=csrf-cookie" http://uaaapp-server.cfapps.io/login.do **\#authz code(토큰요청 시 사용될 값)요청** curl -c cookies.txt -b cookies.txt -v "http://uaaapp-server.cfapps.io/oauth/authorize?scope=openid&client_id=app&redirect_uri=http://uaaapp-server.cfapps.io/app/authcode&state=b13b&response_type=code" \- 필요에따라 ‘autoapprove=true’ 또는 ‘user_oauth_approval=true’ 값이 필요함 \- 응답값: code **\#응답받은 authz code를 사용하여, 토큰요청** curl \-v \-XPOST -H"Accept:application/json" -u "app:appclientsecret" -d "grant\_type=authorization\_code" -d "redirect\_uri=http://uaaapp-server.cfapps.io/app/authcode" -d "code=0tJw61&state=b13b" http://uaaapp-server.cfapps.io/oauth/token|
+|implicit  \* cookie필요(로그인정보)|**\#로그인** curl \-c cookies.txt -v --data "username=marissa&password=koala&X-Uaa-Csrf=csrf-cookie" --cookie "X-Uaa-Csrf=csrf-cookie" http://uaaapp-server.cfapps.io/login.do **\#redirect(토큰을 받을) url 전달** curl -c cookies.txt -b cookies.txt -v "http://uaaapp-server.cfapps.io/oauth/authorize?response\_type=token&client\_id=app&redirect\_uri=http://uaaapp-server.cfapps.io/callback" \-응답값: Redirect URL뒤에 Access Token|
 
 \*\* token으로 Resource요청
 
 **curl -v -XGET
 http://\<****리소스서버****URL\>/\<API\>?access\_token="****실제 토큰값****"**
 
-**예****\>\>**curl -v -XGET 
-http://uaaapp-server.cfapps.io/Users?access\_token="eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxNzdhOTZlMi1hZmM1LTRlZDAtYTEwOS05NzJhOTViNDNhNTEiLCJzdWIiOiJiYjM2MzRmNC0xNDQ3LTQ5ZDAtYjc1NC0yZGQ1NGE4MDRlOGYiLCJzY29wZSI6WyJzY2ltLnVzZXJpZHMiLCJwYXNzd29yZC53cml0ZSIsIm9wZW5pZCIsImNsb3VkX2NvbnRyb2xsZXIud3JpdGUiLCJjbG91ZF9jb250cm9sbGVyLnJlYWQiXSwiY2xpZW50X2lkIjoiYXBwIiwiY2lkIjoiYXBwIiwiYXpwIjoiYXBwIiwiZ3JhbnRfdHlwZSI6ImF1dGhvcml6YXRpb25fY29kZSIsInVzZXJfaWQiOiJiYjM2MzRmNC0xNDQ3LTQ5ZDAtYjc1NC0yZGQ1NGE4MDRlOGYiLCJ1c2VyX25hbWUiOiJtYXJpc3NhIiwiZW1haWwiOiJtYXJpc3NhQHRlc3Qub3JnIiwicmV2X3NpZyI6ImM1NDY0M2Y2IiwiaWF0IjoxNDQ3OTE4ODMyLCJleHAiOjE0NDc5NjIwMzIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC91YWEvb2F1dGgvdG9rZW4iLCJ6aWQiOiJ1YWEiLCJhdWQiOlsiYXBwIiwic2NpbSIsImNsb3VkX2NvbnRyb2xsZXIiLCJwYXNzd29yZCIsIm9wZW5pZCJdfQ.q2hNXSh7qPBtSLtN3rKFlfG9\_ZxyOqsvzvYdz4B\_b-Y"
+**예****\>\>**curl -v -XGET http://uaaapp-server.cfapps.io/Users?access_token="eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxNzdhOTZlMi1hZmM1LTRlZDAtYTEwOS05NzJhOTViNDNhNTEiLCJzdWIiOiJiYjM2MzRmNC0xNDQ3LTQ5ZDAtYjc1NC0yZGQ1NGE4MDRlOGYiLCJzY29wZSI6WyJzY2ltLnVzZXJpZHMiLCJwYXNzd29yZC53cml0ZSIsIm9wZW5pZCIsImNsb3VkX2NvbnRyb2xsZXIud3JpdGUiLCJjbG91ZF9jb250cm9sbGVyLnJlYWQiXSwiY2xpZW50X2lkIjoiYXBwIiwiY2lkIjoiYXBwIiwiYXpwIjoiYXBwIiwiZ3JhbnRfdHlwZSI6ImF1dGhvcml6YXRpb25fY29kZSIsInVzZXJfaWQiOiJiYjM2MzRmNC0xNDQ3LTQ5ZDAtYjc1NC0yZGQ1NGE4MDRlOGYiLCJ1c2VyX25hbWUiOiJtYXJpc3NhIiwiZW1haWwiOiJtYXJpc3NhQHRlc3Qub3JnIiwicmV2X3NpZyI6ImM1NDY0M2Y2IiwiaWF0IjoxNDQ3OTE4ODMyLCJleHAiOjE0NDc5NjIwMzIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC91YWEvb2F1dGgvdG9rZW4iLCJ6aWQiOiJ1YWEiLCJhdWQiOlsiYXBwIiwic2NpbSIsImNsb3VkX2NvbnRyb2xsZXIiLCJwYXNzd29yZCIsIm9wZW5pZCJdfQ.q2hNXSh7qPBtSLtN3rKFlfG9_ZxyOqsvzvYdz4B_b-Y"
 
 
 

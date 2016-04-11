@@ -222,14 +222,14 @@ Client type은 [표3-1]에서 설명한 바와 같이 클라이언트 패스워�
 것이다. 다음은 개방형 클라우드 플랫폼 설치 시 등록하는 3개의 클라이언트
 예를 나타낸다.
 	
-	client\_id: cf (public client - native app)
-	authorized\_grant\_type: implicit, password
+	client_id: cf (public client - native app)
+	authorized_grant_type: implicit, password
 
-	client\_id: cloud\_controller (confidential client - server)
-	authorized\_grant\_type: client\_credentials
+	client_id: cloud_controller (confidential client - server)
+	authorized_grant_type: client_credentials
 
-	client\_id: login (confidential client – WAS app)
-	authorized\_grant\_type: authorization\_code, client\_credentials
+	client_id: login (confidential client – WAS app)
+	authorized_grant_type: authorization_code, client_credentials
 
 위 클라이언트들은 하나 또는 두 개의 권한부여 방식으로 접근토큰을
 요청한다. 아래 각 항에서 해당 클라이언트들을 예로 들어 4개의 권한부여
@@ -238,7 +238,7 @@ Client type은 [표3-1]에서 설명한 바와 같이 클라이언트 패스워�
 **1) Client Credentials****권한부여**
 
 Client Credentials 권한부여 방식의 특징은 Client
-Credentials(client\_id와 client\_secret)만으로 접근토큰을 획득할 수
+Credentials(client_id와 client_secret)만으로 접근토큰을 획득할 수
 있다. 즉, Client자체가 Resource Owner이며, 아래 [그림 3-1]은 Client
 Credentials 권한부여 방식의 프로세스를 보여준다.
 
@@ -358,7 +358,7 @@ JWT(JSON Web Token)은 JSON기반의 토큰 표준으로써, UAA에서 클라이
 
 **Encoded Token 예;*
 
-	eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiIwMjhiOWY4ZC0zODhmLTQzMTUtYjg2MC01NTk5MzE3ZGIyY2MiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbInBhc3N3b3JkLndyaXRlIiwic2NpbS53cml0ZSIsImNsaWVudHMud3JpdGUiLCJjbGllbnRzLnJlYWQiLCJzY2ltLnJlYWQiLCJ1YWEuYWRtaW4iLCJjbGllbnRzLnNlY3JldCJdLCJzY29wZSI6WyJzY2ltLnJlYWQiLCJ1YWEuYWRtaW4iLCJwYXNzd29yZC53cml0ZSIsInNjaW0ud3JpdGUiLCJjbGllbnRzLndyaXRlIiwiY2xpZW50cy5yZWFkIiwiY2xpZW50cy5zZWNyZXQiXSwiY2xpZW50X2lkIjoiYWRtaW4iLCJjaWQiOiJhZG1pbiIsImF6cCI6ImFkbWluIiwiZ3JhbnRfdHlwZSI6ImNsaWVudF9jcmVkZW50aWFscyIsInJldl9zaWciOiJhNWM0MDRiMCIsImlhdCI6MTQ0ODUyNTc5NSwiZXhwIjoxNDQ4NTY4OTk1LCJpc3MiOiJodHRwOi8vdWFhLmNmLm9wZW4tcGFhcy5jb20vb2F1dGgvdG9rZW4iLCJ6aWQiOiJ1YWEiLCJhdWQiOlsiYWRtaW4iLCJzY2ltIiwidWFhIiwicGFzc3dvcmQiLCJjbGllbnRzIl19.GWfKjK5sPNByAxzVkcpVRADZr-KhQSeHtPebXRbn1HtwqwG3GPpKn0cLjbY2vcSYAdsTwup\_YvV0IhTC-QdsR\_jgqFbInjWDg-zxN9PKhYUC1zIIg-VS-Kg1NAkx64d1DqX5dvlnS2b3dj1KCPdy5FL3cr9bYlazQYc\_7lWPU3I
+	eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiIwMjhiOWY4ZC0zODhmLTQzMTUtYjg2MC01NTk5MzE3ZGIyY2MiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbInBhc3N3b3JkLndyaXRlIiwic2NpbS53cml0ZSIsImNsaWVudHMud3JpdGUiLCJjbGllbnRzLnJlYWQiLCJzY2ltLnJlYWQiLCJ1YWEuYWRtaW4iLCJjbGllbnRzLnNlY3JldCJdLCJzY29wZSI6WyJzY2ltLnJlYWQiLCJ1YWEuYWRtaW4iLCJwYXNzd29yZC53cml0ZSIsInNjaW0ud3JpdGUiLCJjbGllbnRzLndyaXRlIiwiY2xpZW50cy5yZWFkIiwiY2xpZW50cy5zZWNyZXQiXSwiY2xpZW50X2lkIjoiYWRtaW4iLCJjaWQiOiJhZG1pbiIsImF6cCI6ImFkbWluIiwiZ3JhbnRfdHlwZSI6ImNsaWVudF9jcmVkZW50aWFscyIsInJldl9zaWciOiJhNWM0MDRiMCIsImlhdCI6MTQ0ODUyNTc5NSwiZXhwIjoxNDQ4NTY4OTk1LCJpc3MiOiJodHRwOi8vdWFhLmNmLm9wZW4tcGFhcy5jb20vb2F1dGgvdG9rZW4iLCJ6aWQiOiJ1YWEiLCJhdWQiOlsiYWRtaW4iLCJzY2ltIiwidWFhIiwicGFzc3dvcmQiLCJjbGllbnRzIl19.GWfKjK5sPNByAxzVkcpVRADZr-KhQSeHtPebXRbn1HtwqwG3GPpKn0cLjbY2vcSYAdsTwup_YvV0IhTC-QdsR_jgqFbInjWDg-zxN9PKhYUC1zIIg-VS-Kg1NAkx64d1DqX5dvlnS2b3dj1KCPdy5FL3cr9bYlazQYc_7lWPU3I
 
 
 인코딩 된 JWT토큰 사이에는 Header, Payload, Verify Signature 3가지
@@ -393,14 +393,14 @@ JWT(JSON Web Token)은 JSON기반의 토큰 표준으로써, UAA에서 클라이
 		  "password.write",
 		  "scim.write",
 		  "clients.write",
-		  "clients.read",\`
+		  "clients.read",`
 		  "clients.secret"
 	  ],
-	 "client\_id": "admin",
+	 "client_id": "admin",
 	 "cid": "admin",
 	  "azp": "admin",
-	  "grant\_type": "client\_credentials",
-	  "rev\_sig": "a5c404b0",
+	  "grant_type": "client_credentials",
+	  "rev_sig": "a5c404b0",
 	  "iat": 1448525795,
 	  "exp": 1448568995,
 	  "iss": "http://uaa.cf.open-paas.com/oauth/token",
@@ -427,9 +427,9 @@ JWT(JSON Web Token)은 JSON기반의 토큰 표준으로써, UAA에서 클라이
 
 디코딩 된 정보 중 Payload부분의 Data의 일부 값들은 다음 내용을 나타낸다.
 
-- user\_id: 사용자를 위한 UUID
+- user_id: 사용자를 위한 UUID
 
-- cid/client\_id: 클라이언트를 위한 고유한 이름
+- cid/client_id: 클라이언트를 위한 고유한 이름
 
 - scope: 이 클라이언트가 사용자를 대신할 수 있는 허가 목록
 
@@ -443,7 +443,7 @@ UAA에서 관리하는 리소스들(UAA Service APIs)은 인증 및 권한위임
 계정 관리, 그룹관리, 클라이언트 등록 관리자, 접근토큰 관리자, UI
 Endpoint, Indentity Zone관리 크게 7가지로 분류할 수 있다. 본 문서에서는
 각 분류에 속하는 API종류와 정의만을 설명한다. API상세 스펙은 Open PaaS
-산출물 “설계\_인터페이스 정의서\_실행환경\_인증권한관리\_v1.0.docx”를
+산출물 “설계_인터페이스 정의서_실행환경_인증권한관리_v1.0.docx”를
 참고한다.
 
 ##4.1  인증 및 권한위임 APIs 
@@ -457,7 +457,7 @@ Endpoint, Indentity Zone관리 크게 7가지로 분류할 수 있다. 본 문�
 |||Implicit grant type;|
 |POST|/oauth/token|접근토큰요청|
 |||Client Credentilas, Password credentials|
-|POST|/check\_token|OAuth2 Token 검증(Validation) 리소스 서버에게 허가되는 endpoint (예 cloud controller)|
+|POST|/check_token|OAuth2 Token 검증(Validation) 리소스 서버에게 허가되는 endpoint (예 cloud controller)|
 |POST|/authenticate|사용자 인증 또는 생성|
 |GET|/userinfo|OpenID 사용자 정보|
 |GET|/login|로그인 정보|
@@ -476,7 +476,7 @@ Endpoint, Indentity Zone관리 크게 7가지로 분류할 수 있다. 본 문�
 |<del>GET</del>  | /Users/{id}/verify | 사용자 계정확인|
 |GET        | /ids/Users   |   Userids를 Names로 변환|
 |POST       | /password/score    |  패스워드 강도(strength) 쿼리(deprecated)|
-|POST       | /invite\_users    |            사용자 초대|
+|POST       | /invite_users    |            사용자 초대|
 
 
 ##4.3  그룹 관리 APIs

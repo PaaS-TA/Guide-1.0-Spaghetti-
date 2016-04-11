@@ -934,7 +934,7 @@ javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: 
 
 **A. 아래 Signature 부분을 삭제하고 저장한 후 , URL 대신 파일로 제공**
 
-\<ds:Signature xmlns:ds="http:\/\/www.w3.org/2000/09/xmldsig#">
+\<ds:Signature xmlns:ds=http://www.w3.org/2000/09/xmldsig#>
 \<ds:SignedInfo>
 \<ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
 \<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>

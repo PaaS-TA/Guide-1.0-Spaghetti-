@@ -365,7 +365,7 @@ JWT(JSON Web Token)은 JSON기반의 토큰 표준으로써, UAA에서 클라이
 파트를 구분하는 ‘.’이 있으며, 인코딩 방식은 base64url이다. 따라서, 위
 접근토큰을 디코드하면, 아래와 같은 형태를 가지고 있다.
 
-*\* Decoded Token예;*
+*Decoded Token예;*
 
 **Header: Algorithm & Token Type**
 

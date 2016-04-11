@@ -46,7 +46,7 @@ BOSH Document: [http://bosh.io](http://bosh.io)
 
 본 문서의 목적에서도 언급했듯이 BOSH는 클라우드 환경에 서비스를 배포 관리하는 소프트웨어로 BOSH자체도 클라우드에 배포되어야 하는 서비스로 설치 환경이 구성되어 있는 서버로부터 MicroBOSH만을 설치하여 운영하는 방법과 MiroBOSH 로부터 배포된 BOSH를 이용하는 방법 2가지 유형이 있으니 자신의 로컬 설치 환경에 따라 선택할 수 있다.
 
-![bosh-workflow](./images/deploy-bosh/bosh-workflow.png "bosh-workflow")
+![bosh-workflow](./../images/deploy-bosh/bosh-workflow.png "bosh-workflow")
 
 
 MicroBOSH (Single-VM BOSH)는 소프트웨어 배포 및 관리를 하나의 VM에서 수행하는 소프트웨어로 MicroBOSH를 배포하기 위해서는 Stemcell 이미지와 배포 Manifest파일이 필요하고 별도의 소프트웨어 Release는 필요로하지 않는다. (설치에 필요한 Release들은 Stemcell내부에 탑재되어 있다. )
@@ -228,7 +228,7 @@ Bosh-init은 MicroBOSH를 설치에 사용하는 도구이다. Bosh-init을 설�
 
 	[https://bosh.io/docs/install-bosh-init.html](https://bosh.io/docs/install-bosh-init.html)
 
-	![bosh-init-webpage](./images/deploy-bosh/bosh-init-webpage.png "bosh-init-webpage")
+	![bosh-init-webpage](./../images/deploy-bosh/bosh-init-webpage.png "bosh-init-webpage")
 
 
 	※ 다운로드 받은 bosh-init에 실행 권한을 부여하고 설치한다. (~/Download 디렉토리에 파일을 다운로드 받았다고 가정)
@@ -311,12 +311,12 @@ MicroBOSH를 배포하기 위한 AWS 사전 준비사항 및 필요한 사항을
 1.  AWS에 로그인: [https://console.aws.amazon.com/console/home](https://console.aws.amazon.com/console/home)
 
 
-	![account-dashboard](./images/iaas-setup/aws/account-dashboard.png "account-dashboard")
+	![account-dashboard](./../images/iaas-setup/aws/account-dashboard.png "account-dashboard")
 
 
 2.  화면 우측 상단의 계정을 선택하여 Security Credentials를 선택
 
-	![security-credentials-menu](./images/iaas-setup/aws/security-credentials-menu.png "security-credentials-menu")
+	![security-credentials-menu](./../images/iaas-setup/aws/security-credentials-menu.png "security-credentials-menu")
 
 
 3.  'AWS IAM' 확인 팝업이 나타나면 'Continue to Security Credentials' 버튼을 선택하여 Security Credentials 화면으로 이동
@@ -324,12 +324,12 @@ MicroBOSH를 배포하기 위한 AWS 사전 준비사항 및 필요한 사항을
 
 4.  Access Keys를 선택하여 Create New Access Key 버튼을 눌러 Access Key를 생성한다.
     
-	![security-credentials-dashboard](./images/iaas-setup/aws/security-credentials-dashboard.png "security-credentials-dashboard")
+	![security-credentials-dashboard](./../images/iaas-setup/aws/security-credentials-dashboard.png "security-credentials-dashboard")
 
 
 5.  생성한 키 정보를 확인한다.
 
-	![access-keys-modal](./images/iaas-setup/aws/access-keys-modal.png "access-keys-modal")
+	![access-keys-modal](./../images/iaas-setup/aws/access-keys-modal.png "access-keys-modal")
 
 	화면의 Access Key ID를 manifest의 **access\_key\_id**에 설정한다.
 
@@ -343,32 +343,32 @@ MicroBOSH를 배포하기 위한 AWS 사전 준비사항 및 필요한 사항을
 
 1.  화면 우측 상단의 지역메뉴를 선택한다. (현재 N. Virginia 지역에서만 light stemcell을 사용할 수 있다.)
 
-	![account-dashboard-region-menu.png](./images/iaas-setup/aws/account-dashboard-region-menu.png "account-dashboard-region-menu")
+	![account-dashboard-region-menu.png](./../images/iaas-setup/aws/account-dashboard-region-menu.png "account-dashboard-region-menu")
 
 
 2.  AWS 콘솔 화면에서 VPC 메뉴를 선택한다.
 
-	![account-dashboard-vpc](./images/iaas-setup/aws/account-dashboard-vpc.png "account-dashboard-vpc")
+	![account-dashboard-vpc](./../images/iaas-setup/aws/account-dashboard-vpc.png "account-dashboard-vpc")
 
 
 3.  VPC 마법사를 선택한다.
 
-	![vpc-dashboard-start](./images/iaas-setup/aws/vpc-dashboard-start.png "vpc-dashboard-start")
+	![vpc-dashboard-start](./../images/iaas-setup/aws/vpc-dashboard-start.png "vpc-dashboard-start")
 
 
 4.  “VPC with a Single Public Subnet” 선택
 
-	![vpc-dashboard-wizard](./images/iaas-setup/aws/vpc-dashboard-wizard.png "vpc-dashboard-wizard")
+	![vpc-dashboard-wizard](./../images/iaas-setup/aws/vpc-dashboard-wizard.png "vpc-dashboard-wizard")
 
 
 5.  네트워크 정보를 입력하고 VPC 생성 버튼을 눌러 VPC를 생성한다.
 		
-	![create-vpc](./images/iaas-setup/aws/create-vpc.png "create-vpc")
+	![create-vpc](./../images/iaas-setup/aws/create-vpc.png "create-vpc")
 
 
 6.  아래와 같이 생성한 VPC의 목록이 출력된다.
 
-	![list-subnets](./images/iaas-setup/aws/list-subnets.png "list-subnets")
+	![list-subnets](./../images/iaas-setup/aws/list-subnets.png "list-subnets")
 
 	**Subnet ID, CIDR, Availability Zone**을 manifest의 네트워크에 설정한다.
 
@@ -377,7 +377,7 @@ MicroBOSH를 배포하기 위한 AWS 사전 준비사항 및 필요한 사항을
 
 1.  VPC 대시보드에서 ‘Elastic IPs’ 버튼과 ‘Allocate New Address’ 버튼을 차례로 눌러 Elastic IP를 생성한다.
 
-	![create-elastic-ip](./images/iaas-setup/aws/create-elastic-ip.png "create-elastic-ip")
+	![create-elastic-ip](./../images/iaas-setup/aws/create-elastic-ip.png "create-elastic-ip")
 
 
 2.  팝업창에서 ‘Yes, Allocate’ 버튼을 눌러 Elastic IP를 생성한다.
@@ -385,7 +385,7 @@ MicroBOSH를 배포하기 위한 AWS 사전 준비사항 및 필요한 사항을
 
 3.  생성한 Elastic IP를 확인한다.
 
-	![list-elastic-ips](./images/iaas-setup/aws/list-elastic-ips.png "list-elastic-ips")
+	![list-elastic-ips](./../images/iaas-setup/aws/list-elastic-ips.png "list-elastic-ips")
 
 	Manifest 설정에서 Elastic IP를 사용한다.
 
@@ -397,12 +397,12 @@ MicroBOSH를 배포하기 위한 AWS 사전 준비사항 및 필요한 사항을
 
 2.  ‘Key Pairs’와 ‘Create Key Pair’ 버튼을 차례로 선택한다.
 
-	![list-key-pairs](./images/iaas-setup/aws/list-key-pairs.png "list-key-pairs")
+	![list-key-pairs](./../images/iaas-setup/aws/list-key-pairs.png "list-key-pairs")
 
 
 3.  Key Pair 생성 다이얼로그 화면에서 Key Pair명을 입력하여 Key Pair를 생성하고 다운로드 한다.
 
-	![create-key-pair](./images/iaas-setup/aws/create-key-pair.png "create-key-pair")
+	![create-key-pair](./../images/iaas-setup/aws/create-key-pair.png "create-key-pair")
 
 
 	Key pair name에 입력한 값을 manifest의 **default\_key\_name**에 설정한다.
@@ -424,12 +424,12 @@ MicroBOSH를 배포하기 위한 AWS 사전 준비사항 및 필요한 사항을
 
 1.  EC2 대시보드 화면에서 ‘Security Groups’과 ‘Create Security Group’ 버튼을 차례대로 누른다.
 
-	![list-security-groups](./images/iaas-setup/aws/list-security-groups.png "list-security-groups")
+	![list-security-groups](./../images/iaas-setup/aws/list-security-groups.png "list-security-groups")
 
 
 2.  시큐리티 그룹 생성 팝업화면에서 다음과 같이 값을 입력하여 시큐리티 그룹을 생성한다.
 
-	![create-security-group](./images/iaas-setup/aws/create-security-group.png "create-security-group")
+	![create-security-group](./../images/iaas-setup/aws/create-security-group.png "create-security-group")
 
 	|항목                  |설정값                             |설명|
 	|---------------------|----------------------------------|----------------------------|
@@ -440,12 +440,12 @@ MicroBOSH를 배포하기 위한 AWS 사전 준비사항 및 필요한 사항을
 
 3.  생성한 시큐리티 그룹에 보안정책을 설정하기 위해 ‘Inbound’ 탭의 ‘Edit’을 선택한다.
 
-	![open-edit-security-group-modal](./images/iaas-setup/aws/open-edit-security-group-modal.png "open-edit-security-group-modal")
+	![open-edit-security-group-modal](./../images/iaas-setup/aws/open-edit-security-group-modal.png "open-edit-security-group-modal")
 
 
 4.  아래표와 같이 보안정책을 설정한다.
 
-	![edit-security-group-rules](./images/iaas-setup/aws/edit-security-group-rules.png "edit-security-group-rules")
+	![edit-security-group-rules](./../images/iaas-setup/aws/edit-security-group-rules.png "edit-security-group-rules")
 
 	|Type              |Protocol   |Port Range   |Source|
 	|-----------------|----------|------------|-----------|

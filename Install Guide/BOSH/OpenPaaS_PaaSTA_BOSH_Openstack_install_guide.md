@@ -46,7 +46,7 @@ BOSH Document: [http://bosh.io](http://bosh.io)
 
 본 문서의 목적에서도 언급했듯이 BOSH는 클라우드 환경에 서비스를 배포 관리하는 소프트웨어로 BOSH자체도 클라우드에 배포되어야 하는 서비스로 설치 환경이 구성되어 있는 서버로부터 MicroBOSH만을 설치하여 운영하는 방법과 MiroBOSH 로부터 배포된 BOSH를 이용하는 방법 2가지 유형이 있으니 자신의 로컬 설치 환경에 따라 선택할 수 있다.
 
-![bosh-workflow](./images/deploy-bosh/bosh-workflow.png "bosh-workflow")
+![bosh-workflow](./../images/deploy-bosh/bosh-workflow.png "bosh-workflow")
 
 MicroBOSH (Single-VM BOSH)는 소프트웨어 배포 및 관리를 하나의 VM에서 수행하는 소프트웨어로 MicroBOSH를 배포하기 위해서는 Stemcell 이미지와 배포 Manifest파일이 필요하고 별도의 소프트웨어 Release는 필요로하지 않는다. (설치에 필요한 Release들은 Stemcell내부에 탑재되어 있다. )
 
@@ -223,7 +223,7 @@ Bosh-init은 MicroBOSH를 설치에 사용하는 도구이다. Bosh-init을 설�
 
 	[https://bosh.io/docs/install-bosh-init.html](https://bosh.io/docs/install-bosh-init.html)
 
-	![bosh-init-webpage](./images/deploy-bosh/bosh-init-webpage.png "bosh-init-webpage")
+	![bosh-init-webpage](./../images/deploy-bosh/bosh-init-webpage.png "bosh-init-webpage")
 
 
 	※ 다운로드 받은 bosh-init에 실행 권한을 부여하고 설치한다. (~/Download 디렉토리에 파일을 다운로드 받았다고 가정)
@@ -320,7 +320,7 @@ MicroBOSH를 배포하기 위한 OpenStack 사전 준비사항 및 필요한 사
 
 1.  오픈스택 horizon의 왼쪽 메뉴에서 Compute -> Access & Security 선택
 
-	![list-keypair](./images/iaas-setup/openstack/list-keypair.png "list-keypair")
+	![list-keypair](./../images/iaas-setup/openstack/list-keypair.png "list-keypair")
 
 2.  “Key Pairs” Tab 선택
 
@@ -328,7 +328,7 @@ MicroBOSH를 배포하기 위한 OpenStack 사전 준비사항 및 필요한 사
 
 4.  Key pair 이름 입력 후 “Create Key Pair” 선택 및
 
-	![create-keypair](./images/iaas-setup/openstack/create-keypair.png "create-keypair")
+	![create-keypair](./../images/iaas-setup/openstack/create-keypair.png "create-keypair")
 
 5.  Key를 생성하면 로컬에 다운로드 한다. (예제에서는 microbosh.pem 파일을 다운로드)
 
@@ -346,22 +346,22 @@ MicroBOSH를 배포하기 위한 OpenStack 사전 준비사항 및 필요한 사
 
 3.  “Create Security Group” 선택
 
-	![list-security-group](./images/iaas-setup/openstack/list-security-group.png "list-security-group")
+	![list-security-group](./../images/iaas-setup/openstack/list-security-group.png "list-security-group")
 
 
 4.  생성할 Security Group의 Name, Description 입력 후 “Create Security Group” 선택 (예제에서는 bosh-security 그룹을 생성)
 
-	![create-security-group](./images/iaas-setup/openstack/create-security-group.png "create-security-group")
+	![create-security-group](./../images/iaas-setup/openstack/create-security-group.png "create-security-group")
 
 
 5.  Security Group 목록에서 생성된 Security Group의 “Manage Rules”
 
-	![manage-rules](./images/iaas-setup/openstack/manage-rules.png "manage-rules")
+	![manage-rules](./../images/iaas-setup/openstack/manage-rules.png "manage-rules")
 
 
 6.  다음 표와 같이 Bosh 관련Security Rule을 추가한다.
 
-	![security-rules.png](./images/iaas-setup/openstack/security-rules.png "security-rules")
+	![security-rules.png](./../images/iaas-setup/openstack/security-rules.png "security-rules")
 
 
 	(예제에서는 모든 원격지에서 ssh접근을 허용하게 설정되어 있다. 설치 환경에 맞게 접근 할 수 있는 원격지를 제한 할 수 있다.)

@@ -62,7 +62,7 @@ UAA(User Account and Authentication Service)는 개방형 클라우드 플랫폼
 
 UAA는 자체 사용자 데이터베이스(DB)를 가지고 있으며, 인증은 해당 데이터베이스에 저장된 user-name, origin, password 3개의 변수를 사용하여 수행된다. [그림 2-1]은 UAA의 일반적인 인증 프로세스를 보여준다.
 
-![uaa_process](/images/uaa_process.png "uaa_auth_process")
+![uaa_process](./images/uaa_process.png "uaa_auth_process")
 **[ 그림 2-1] UAA 인증 프로세스**
 
 
@@ -107,7 +107,7 @@ LDAP(Lightweight Directory Access Protocol)은 디렉터리 서비스가 관리�
 
 - **DIT(Directory Information Tree)**: DIT는 디렉터리 트리(Tree) 구조를 말한다. 트리 구조에서 각 노드들을 엔트리(Entry)라고 부르고, 엔트리는 LDAP에서 하나의 데이터를 나타낸다. 모든 엔트리는 그 자신의 위치와 고유성을 나타내는 **DN(Distinguished Name)**으로 구분된다. 다음은 LDAP에서의 간단한 DIT 예를 보여준다.
 
-![di_tree](/images/dit.png "di_tree")
+![di_tree](./images/dit.png "di_tree")
 
 트리 구조의 최상위 DN은dc=test, dc=com 이고, 이 엔트리의 아래에 두개의 엔트리가 존재한다. 각각의 엔트리DN은 ou=Users, dc=test, dc=com 과 ou=scopes, dc=test, dc=com 이다. 해당 DIT에서 각각의 엔트리 위치에 전체 DN이 아니라 단지 ou=Users와 같은 앞부분만 써놓았는데, 이것을 RDN(Relative Distinguished Name)이라고 한다.
 
@@ -237,19 +237,19 @@ OpenLDAP은 LDAP을 구현한 오픈소스 소프트웨어이다. OpenLDAP은 sl
 UAA는 Ubuntu에서 OpenLDAP을 간단히 설치하고 검증할 수 있도록, 프로젝트 폴더 안에 3개의 파일을 제공한다. 아래 표는 각각의 파일명과 파일위치 및 설명을 나타낸다.
 
   
-  |파일명                |파일위치 및 설명|
-   |---------------------| ---------------------------------------------------------------------------------------------------------------|
-
-  |install-ldap.sh       |파일위치: scripts/ldap/install-ldap.sh                    
-						OpenLDAP 및 LDAP utils를 설치하고 설정하는 스크립트파일이다.
-						※ 해당 스크립트는 ubuntu를 기준으로 작성되었다.|
-
-  |ldap_db_init.ldif   |파일위치: uaa/src/main/resources/ldap_db_init.ldif
-						install-ldap.sh 실행 시 사용되는 파일로써, OpenLDAP에서 사용할 database와 관련된 설정, ACL등을 포함하고 있다.|
-
-  |ldap_init.ldif       |파일위치: uaa/src/main/resources/ldap_init.ldif
-						install-ldap.sh 실행 시 사용되는 파일로써, 초기 디렉터리 데이터를 생성한다.
-  
+	--------------------- ---------------------------------------------------------------------------------------------------------------
+	파일명					파일위치 및 설명
+	--------------------- ---------------------------------------------------------------------------------------------------------------
+	install-ldap.sh			파일위치: scripts/ldap/install-ldap.sh              
+							OpenLDAP 및 LDAP utils를 설치하고 설정하는 스크립트파일이다.
+							※ 해당 스크립트는 ubuntu를 기준으로 작성되었다.
+	--------------------- ---------------------------------------------------------------------------------------------------------------
+	ldap_db_init.ldif		파일위치: uaa/src/main/resources/ldap_db_init.ldif
+							install-ldap.sh 실행 시 사용되는 파일로써, OpenLDAP에서 사용할 database와 관련된 설정, ACL등을 포함하고 있다.
+	--------------------- ---------------------------------------------------------------------------------------------------------------
+	ldap_init.ldif			파일위치: uaa/src/main/resources/ldap_init.ldif
+							install-ldap.sh 실행 시 사용되는 파일로써, 초기 디렉터리 데이터를 생성한다.
+	--------------------- ---------------------------------------------------------------------------------------------------------------  
 
 아래는 제공되는 **‘install-ldap.sh’** 파일의 일부 내용을 보여준다.
 
@@ -934,15 +934,28 @@ javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: 
 
 **A. 아래 Signature 부분을 삭제하고 저장한 후 , URL 대신 파일로 제공**
 
-<ds:Signature
-xmlns:ds="http://www.w3.org/2000/09/xmldsig#"><ds:SignedInfo><ds:CanonicalizationMethod
-Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><ds:SignatureMethod
-Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><ds:Reference
-URI="#cloudfoundry-saml-login"><ds:Transforms><ds:Transform
-Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><ds:Transform
-Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></ds:Transforms><ds:DigestMethod
-Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>GO72q4XgctuLBKHLH5y9V0bz9Kw=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue>TA9/Qd0SqrpGVQgFy3H4+1SyKaQ9PHU2K2aythZHsHSvhj6TTGi76W0ur8cYu41eqRw+9yJoCCj3cRG6uK2KYdiaNEqErjXOvZybn8sJ3n3ssku0ZlOoamE0x08kGw7vsqPmD9u9c3uSvZelj9wHY4iKo1woZpTO6u/8ce9zPFs=</ds:SignatureValue><ds:KeyInfo><ds:X509Data><ds:X509Certificate>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<ds:Reference URI="#cloudfoundry-saml-login">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>GO72q4XgctuLBKHLH5y9V0bz9Kw=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>TA9/Qd0SqrpGVQgFy3H4+1SyKaQ9PHU2K2aythZHsHSvhj6TTGi76W0ur8cYu41eqRw+9yJoCCj3cRG6uK2KYdiaNEqErjXOvZybn8sJ3n3ssku0ZlOoamE0x08kGw7vsqPmD9u9c3uSvZelj9wHY4iKo1woZpTO6u/8ce9zPFs=
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
 
 … 중략
 
-</ds:X509Certificate></ds:X509Data></ds:KeyInfo></ds:Signature>
+</ds:X509Certificate>
+</ds:X509Data>
+</ds:KeyInfo>
+</ds:Signature>

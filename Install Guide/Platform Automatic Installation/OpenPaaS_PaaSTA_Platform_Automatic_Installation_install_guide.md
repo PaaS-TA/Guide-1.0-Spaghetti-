@@ -243,11 +243,15 @@ spiff는 BOSH 배포 Manifest를 생성하기 위해 만들어진 커맨드 라�
 
 1.  플랫폼 설치 자동화(OPENPAAS-IEDA-WEB) 모듈을 다운로드 받는다.
 
+		OPENPAAS-IEDA-WEB.tar
 
-		$ git clone https://github.com/OpenPaaSRnD/OPENPAAS-IEDA-WEB.git
+
+2.  다운로드 받는 OPENPAAS-IEDA-WEB.tar 파일을 Home 디렉토리에 압축을 푼다.
+
+		$ tar xvfx OPENPAAS-IEDA-WEB.tar -C ~/
 
 
-2.  플랫폼 설치 자동화 실행에 필요한 설정 파일을 생성하고, 다음과 같이 편집한다.
+3.  플랫폼 설치 자동화 실행에 필요한 설정 파일을 생성하고, 다음과 같이 편집한다.
 
 		$ cd OPENPAAS-IEDA-WEB
 
@@ -294,7 +298,7 @@ spiff는 BOSH 배포 Manifest를 생성하기 위해 만들어진 커맨드 라�
 		multipart.maxRequestSize: 5000KB
  
 
-3.  플랫폼 설치 자동화를 실행한다.
+4.  플랫폼 설치 자동화를 실행한다.
 
 		$ cd ~/OPENPAAS-IEDA-WEB
 		$ mvn -Djava.security.egd=file:/dev/./urandom -Dspring.config.location=./application.properties package
@@ -313,7 +317,7 @@ spiff는 BOSH 배포 Manifest를 생성하기 위해 만들어진 커맨드 라�
 		$ java -jar -Djava.security.egd=file:/dev/./urandom -Dspring.config.location=./application.properties target/OPENPAAS-IEDA-WEB-1.0.0-SNAPSHOT.jar
 
 
-4.  플랫폼 설치 자동화가 실행중인 계정에서 아래와 같이 설정 디렉토리가 생성되었는지 확인한다.
+5.  플랫폼 설치 자동화가 실행중인 계정에서 아래와 같이 설정 디렉토리가 생성되었는지 확인한다.
 
   
   |**설정 디렉토리**|                 **설명**|
@@ -325,6 +329,6 @@ spiff는 BOSH 배포 Manifest를 생성하기 위해 만들어진 커맨드 라�
   |{HOME}/.bosh\_plugin/temp|         임시 디렉토리|
 
 
-5.  웹 브라우저를 이용해서 플랫폼 설치 자동화(http://[IP]:8080) 화면이 출력되면 플랫폼 설치 자동화의 설치가 완료된다.
+6.  웹 브라우저를 이용해서 플랫폼 설치 자동화(http://[IP]:8080) 화면이 출력되면 플랫폼 설치 자동화의 설치가 완료된다.
 
 	![auto_deploy_webpage](./../images/automatic-installation/auto_deploy_webpage.png "auto_deploy_webpage")

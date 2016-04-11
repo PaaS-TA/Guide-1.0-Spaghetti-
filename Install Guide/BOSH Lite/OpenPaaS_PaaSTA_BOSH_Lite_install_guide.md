@@ -79,9 +79,9 @@ OpenPaaS Container 배포:
 |warden|OpenPaaS-Env/bosh\_env\_packages|디렉토리 전체|BOSH 실행 환경 설치 패키지|
 |warden|OpenPaaS-IaaS-Controller|bosh-233.tgz|BOSH v233 릴리즈|
 |warden|OpenPaaS-Controller|cf-release-226.tgz|Cf v226 릴리즈|
-|warden|OpenPaaS-Container|diego-release-0.1442.0.tgz|Diego v0.1442.0 릴리즈|
-|warden|OpenPaaS-Container|garden-linux-release-0.329.0.tgz|Garden-linux v0.329.0 릴리즈|
-|warden|OpenPaaS-Container|etcd-release-20.tgz|Etcd v20 릴리즈|
+|warden|OpenPaaS-Controller|diego-release-0.1442.0.tgz|Diego v0.1442.0 릴리즈|
+|warden|OpenPaaS-Controller|garden-linux-release-0.329.0.tgz|Garden-linux v0.329.0 릴리즈|
+|warden|OpenPaaS-Controller|etcd-release-20.tgz|Etcd v20 릴리즈|
 |warden|OpenPaaS-Stemcells|bosh-stemcell-3147-warden-boshlite-ubuntu-trusty-go\_agent.tgz|boshlite v3147 스템셀 이미지|
 |warden|OpenPaaS-Deployment|openpaas-cf-lite-1.0.yml|cf 배포 Manifest Sample 파일|
 |warden|OpenPaaS-Deployment|openpaas-diego-lite-1.0.yml|diego 배포 Manifest Samle 파일|
@@ -95,16 +95,16 @@ Ruby 설치 절차는 다음과 같다.
 
 	※ **온라인인 경우 (권장)**
 
-  -   **Ubuntu의 경우**
+	- **Ubuntu의 경우**
 
 			$ sudo apt-get update
 			$ sudo apt-get install -y build-essential zlibc zlib1g-dev ruby ruby-dev openssl libxslt-dev libxml2-dev libssl-dev libreadline6 libreadline6-dev libyaml-dev libsqlite3-dev sqlite3 libxslt1-dev libpq-dev libmysqlclient-dev
 
-  -   **CentOS의 경우**
+	- **CentOS의 경우**
 
 			$ sudo yum install gcc ruby ruby-devel mysql-devel postgresql-devel postgresql-libs sqlite-devel libxslt-devel libxml2-devel yajl-ruby
 
-  -   **OSX의 경우**
+	- **OSX의 경우**
 
 			$ xcode-select --install
 			xcode-select: note: install requested for command line developer tools

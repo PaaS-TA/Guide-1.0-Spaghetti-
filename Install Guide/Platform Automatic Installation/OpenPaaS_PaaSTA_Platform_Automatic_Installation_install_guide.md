@@ -101,7 +101,7 @@ BOSH CLI가 지원하는 Ruby버전 중 2.1.6버전을 설치 대상으로 기�
 
 	[https://bosh.io/docs/install-bosh-init.html](https://bosh.io/docs/install-bosh-init.html)
 
-	![bosh-init-webpage](images/openpaas-iaas-controller/deploy-bosh/bosh-init-webpage.png "bosh-init-webpage")
+	![bosh-init-webpage](./../images/deploy-bosh/bosh-init-webpage.png "bosh-init-webpage")
 
 
 2.  다운로드 받은 bosh-init에 실행 권한을 부여하고 설치한다.
@@ -139,7 +139,7 @@ spiff는 BOSH 배포 Manifest를 생성하기 위해 만들어진 커맨드 라�
   
 	**웹 사이트: [https://github.com/cloudfoundry-incubator/spiff/releases](https://github.com/cloudfoundry-incubator/spiff/releases)**
 
-	![spiff_webpage](images/openpaas-iaas-controller/auto_deploy_web/spiff_webpage.png "spiff_webpage")
+	![spiff_webpage](./../images/automatic-installation/spiff_webpage.png "spiff_webpage")
 
 
 2.  다운로드 받은 spiff를 설치한다.
@@ -327,4 +327,4 @@ spiff는 BOSH 배포 Manifest를 생성하기 위해 만들어진 커맨드 라�
 
 5.  웹 브라우저를 이용해서 플랫폼 설치 자동화(http://[IP]:8080) 화면이 출력되면 플랫폼 설치 자동화의 설치가 완료된다.
 
-	![auto_deploy_webpage](images/openpaas-iaas-controller/auto_deploy_web/auto_deploy_webpage.png "auto_deploy_webpage")
+	![auto_deploy_webpage](./../images/automatic-installation/auto_deploy_webpage.png "auto_deploy_webpage")

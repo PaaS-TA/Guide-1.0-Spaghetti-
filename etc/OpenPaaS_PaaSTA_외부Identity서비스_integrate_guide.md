@@ -72,7 +72,7 @@ origin은 사용자 계정이 존재하는 위치를 간접적으로 나타내�
 ## 2.2.  UAA 외부 Identity서비스 연동 아키텍처 
 
 UAA에 외부 Identity서비스를 통합하는 경우, 사용자 인증은 [그림 2-2]와 같이 동작한다.
-![uaa_ex_inferface](/images/uaa_ex_inferface.png "uaa_ex_inferface")
+![uaa_ex_inferface](./images/uaa_ex_inferface.png "uaa_ex_inferface")
 
 **[ 그림 2-2] UAA 외부 ID 서비스 연동 아키텍처**
 
@@ -193,7 +193,7 @@ LDAP은 클라이언트-서버 모델에 기초하여 동작한다. LDAP클라�
 
 UAA와 LDAP Identity서비스를 통합하면, UAA는 Uaa database에 존재하지 않은 사용자에 대한 인증을 LDAP Identity서비스에 위임한다. [그림 3-1]은 UAA와 LDAP Identity서비스의 연동 아키텍처를 나타낸다.
 
-![uaa_ldap_interface](/images/uaa_ldap_interface.png "uaa_ldap_interface")
+![uaa_ldap_interface](./images/uaa_ldap_interface.png "uaa_ldap_interface")
 
 **[ 그림 3-1] UAA 와 LDAP ID 서비스 연동 아키텍쳐**
 
@@ -222,7 +222,7 @@ UAA와 LDAP을 구현한 오픈소스 소프트웨어인 OpenLDAP의 통합 및 
 
 OpenLDAP은 LDAP을 구현한 오픈소스 소프트웨어이다. OpenLDAP은 slapd라는 데몬에 의해 동작한다. 아래 [그림3-2]는 OpenLDAP의 간단한 아키텍쳐를 보여준다.
 
-![openldap](/images/openldap.png "openldap")
+![openldap](./images/openldap.png "openldap")
 
 **[ 그림 3-2] OpenLDAP 아키텍쳐 ( 이미지 출처; (VoglmaierReinhard, 2003))**
 
@@ -414,7 +414,7 @@ UAA는 Ubuntu에서 OpenLDAP을 간단히 설치하고 검증할 수 있도록, 
 
 ‘install-ldap.sh’ 파일이 정상적으로 실행되면, OpenLDAP설치 및 설정이 완료된다. 설치된 OpenLDAP의 접속 및 디렉터리 구조는 Apache Directory Studio(LDAP Client) ([Apache Directory Studio](https://directory.apache.org/studio/downloads.html))툴을 이용하면 쉽게 확인할 수 있다. 아래 [그림 3-3]은 Apache Directory Studio로 설치한 OpenLDAP에 연결하였을 때 나타나는 구성된 디렉터리 구조를 보여준다.
 
-![active_directory](/images/active_directory.png "active_directory")
+![active_directory](./images/active_directory.png "active_directory")
 
 **[ 그림 3-3] Active Directory Studio 로 디렉터리 구조 확인**
 
@@ -590,7 +590,7 @@ assertion에 대한 명세는 oasis의 saml-core-2.0-os 문서에서 확인 할 
 
 SAML이 정상적으로 동작하기 위해서는 IDP와 SP사이의 연합과 Metadata 등록이 우선 필요하다. 아래 [그림 4-1]은 HTTP Redirect Binding을 사용하는 경우 SAML 인증 프로세스를 보여준다.
 
-![saml_http](/images/saml_http.png "saml_http")
+![saml_http](./images/saml_http.png "saml_http")
 
 **[ 그림 4-1] SAML HTTP Redirect Binding 프로세스 ( 이미지 출처 ; (Naidu.jitta, 2012))**
 
@@ -613,7 +613,7 @@ SAML이 정상적으로 동작하기 위해서는 IDP와 SP사이의 연합과 M
 
 UAA와 SAML Identity서비스를 통합하면, UAA는 Uaa database에 존재하지 않은 사용자에 대한 인증을 SAML Identity서비스에 위임한다. [그림 4-2]는 UAA와 SAML Identity서비스의 연동 아키텍처를 나타낸다.
 
-![uaa_saml_interface](/images/uaa_saml_interface.png "uaa_saml_interface")
+![uaa_saml_interface](./images/uaa_saml_interface.png "uaa_saml_interface")
 
 **[ 그림 4-2] UAA 와 SAML ID 서비스 연동 아키텍쳐**
 

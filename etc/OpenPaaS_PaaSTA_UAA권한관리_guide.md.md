@@ -356,7 +356,7 @@ JWT(JSON Web Token)은 JSON기반의 토큰 표준으로써, UAA에서 클라이
 접근토큰은 HTTP header나 URI 쿼리파라미터로 전달하기 위해, 아래와 같이
 인코딩한다.
 
-*\*Encoded Token**예**;*
+**Encoded Token**예**;*
 
 	eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiIwMjhiOWY4ZC0zODhmLTQzMTUtYjg2MC01NTk5MzE3ZGIyY2MiLCJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbInBhc3N3b3JkLndyaXRlIiwic2NpbS53cml0ZSIsImNsaWVudHMud3JpdGUiLCJjbGllbnRzLnJlYWQiLCJzY2ltLnJlYWQiLCJ1YWEuYWRtaW4iLCJjbGllbnRzLnNlY3JldCJdLCJzY29wZSI6WyJzY2ltLnJlYWQiLCJ1YWEuYWRtaW4iLCJwYXNzd29yZC53cml0ZSIsInNjaW0ud3JpdGUiLCJjbGllbnRzLndyaXRlIiwiY2xpZW50cy5yZWFkIiwiY2xpZW50cy5zZWNyZXQiXSwiY2xpZW50X2lkIjoiYWRtaW4iLCJjaWQiOiJhZG1pbiIsImF6cCI6ImFkbWluIiwiZ3JhbnRfdHlwZSI6ImNsaWVudF9jcmVkZW50aWFscyIsInJldl9zaWciOiJhNWM0MDRiMCIsImlhdCI6MTQ0ODUyNTc5NSwiZXhwIjoxNDQ4NTY4OTk1LCJpc3MiOiJodHRwOi8vdWFhLmNmLm9wZW4tcGFhcy5jb20vb2F1dGgvdG9rZW4iLCJ6aWQiOiJ1YWEiLCJhdWQiOlsiYWRtaW4iLCJzY2ltIiwidWFhIiwicGFzc3dvcmQiLCJjbGllbnRzIl19.GWfKjK5sPNByAxzVkcpVRADZr-KhQSeHtPebXRbn1HtwqwG3GPpKn0cLjbY2vcSYAdsTwup\_YvV0IhTC-QdsR\_jgqFbInjWDg-zxN9PKhYUC1zIIg-VS-Kg1NAkx64d1DqX5dvlnS2b3dj1KCPdy5FL3cr9bYlazQYc\_7lWPU3I
 
@@ -365,7 +365,7 @@ JWT(JSON Web Token)은 JSON기반의 토큰 표준으로써, UAA에서 클라이
 파트를 구분하는 ‘.’이 있으며, 인코딩 방식은 base64url이다. 따라서, 위
 접근토큰을 디코드하면, 아래와 같은 형태를 가지고 있다.
 
-*Decoded Token예;*
+**Decoded Token예;*
 
 **Header: Algorithm & Token Type**
 

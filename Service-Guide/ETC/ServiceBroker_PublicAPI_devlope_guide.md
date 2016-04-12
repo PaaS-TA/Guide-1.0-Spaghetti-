@@ -253,7 +253,7 @@ API 서비스 브로커를 통해 서비스되는 서비스들이 공통적으�
 <div id='19'></div>
 ##### 4.2.2 응답
 ※{1}은 코드 내에서 설정파일에 정의된 서비스와 플랜의 키(Key) 값을 순서대로 불러오기 위한 변수 값이다.
-※ Key값의[ ](대괄호)내의 문자는 설정파일에 정의된 서비스의 키(Key) 값을 의미한다.
+<br>※ Key값의[ ](대괄호)내의 문자는 설정파일에 정의된 서비스의 키(Key) 값을 의미한다.
 
 - body
 
@@ -275,7 +275,25 @@ API 서비스 브로커를 통해 서비스되는 서비스들이 공통적으�
   | &nbsp;&nbsp;&nbsp;&nbsp;metadata | 서비스의 플랜을 위한 메타 데이터의 목록. 상세 설명은 아래 '플랜 메타데이터' 참고 | |
   | &nbsp;&nbsp;&nbsp;&nbsp;free | 유/무료 과금 정책을 표시.boolean 타입. 기본값은 true. <br>지정값: true | true |
 
+- 서비스 메타데이터
 
+  | <b>응답필드</b>      | <b>설명</b> | <b>샘플데이터</b> |
+  |-------------|-----------------------------|-----------------------------|
+  | metadata.displayName | 그래픽 클라이언트에 표시되는 서비스명 <br>Key값: [Service1.Name] | PublicPerformance |
+  | metadata.imageUrl | 서비스에 대한 이미지 URL <br>지정값: "no image" | no image |
+  | metadata.longDescription | 서비스 상세 설명 <br>Key값: [Service1.Description] | Performances, exhibits information display |
+  | metadata.providerDisplayName | 실제 서비스를 제공하는 기관명 <br>Key값: [Service1.Provider] | Performances, exhibits information display |
+  | metadata.documentationUrl | 서비스 관련 문서 URL <br>Key값: [Service1.DocumentationUrl] | https://www.data.go.kr/subMain.jsp#/L3B1YnIvdXNlL3ByaS9Jcm9z...(생략) |
+  | metadata.supportUrl | 서비스 지원 URL <br>Key값: [SupportUrl] | http://www.openpaas.org |
+
+- 플랜 메타데이터
+
+  | <b>응답필드</b>      | <b>설명</b> | <b>샘플데이터</b> |
+  |-------------|-----------------------------|-----------------------------|
+  | metadata.bullets | 플랜의 과금 정보. API 서비스이기 때문에 최대 호출 수를 입력 <br>Key값: [Service1.Plan1.Bullet] | 1,000,000 calls |
+  | metadata.costs | 플랜의 비용 정보.Map타입의 amount와 String타입의 unit으로 구성. <br>amount 지정값: "KRW",0 <br>※KRW는 한국 통화단위 <br>unit Key값: [Service1.Plan1.Unit] | Json 구조 <br>"costs": [{"amount": {"KRW": 0} "unit": "total" }] |
+  | metadata.displayName | 그래픽 클라이언트에 표시되는 플랜명 <br>Key값: [Service1.Plan1.Name] | basic |
+  
 
 [2-1-0-0]:/images/openpaas-service/publicapi/2-1-0-0.png
 [2-1-0-1]:/images/openpaas-service/publicapi/2-1-0-1.png

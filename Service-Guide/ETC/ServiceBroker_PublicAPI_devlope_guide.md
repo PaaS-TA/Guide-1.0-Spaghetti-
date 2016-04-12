@@ -190,7 +190,7 @@ Oepn API 카테고리로 이동하면, ①API 서비스 명으로 검색하거�
 | 바인드(Bind)    | cf bind-service [어플리케이션명] [서비스 인스턴스명] <br>확인: cf env [어플리케이션명] |
 | 언바인드(Unbind)    | cf unbind-service [어플리케이션명] [서비스 인스턴스명] <br>확인: cf env |
 | 디프로비전(Deprovision)    | cf delete-service [서비스 인스턴스명] <br>확인: cf services |
-※ 서비스 브로커 APIs에 대한 상세 정보는 [설계_개발가이드_서비스팩_v1.0.docx]문서의 [2.5 개발가이드]를 참고한다.
+※ 서비스 브로커 APIs에 대한 상세 정보는 [OpenPaaS_PaaSTA_ServicePack_develope_guide]문서의 [2.5 개발가이드]를 참고한다.
 
 <div id='11'></div>
 ### 3.3. API 서비스 브로커 동작구조
@@ -211,6 +211,56 @@ API 서비스 브로커를 통해 서비스되는 서비스들이 공통적으�
 | DashboardUrl    | 대시보드 URL. 포털의 URL로 이해할 수 있으며, API를 제공하는 포털에 따라 서비스 브로커를 구분하기 때문에 하나의 서비스 브로커의 서비스들은 공통의 대시보드 URL을 갖는다. | http://www.data.go.kr |
 | SupportUrl | 개방형 클라우드 플랫폼의 공식 사이트 주소를 입력한다. | http://www.openpaas.org |
 
+<div id='15'></div>
+##### 4.1.2 서비스 설정 값
+각각의 서비스마다 별도로 가지는 값을 설정파일에 정의하였다. 키 값에 서비스 번호를 붙여 서로 다른 서비스들을 구분한다. 서비스를 추가함에 따라 서비스 번호를 늘려갈 수 있으며, 서비스 번호는 1번부터 순서대로 부여되어야 한다.
+
+| <b>키(Key) 값</b>      | <b>설명</b> | <b>Value 값 예시</b> |
+|-------------|-----------------------------|-----------------------------|
+| Service1.Name | 서비스명. 임의로 정할 수 있으나 반드시 고유의(Unique)값이어야 한다. 다른 서비스 브로커에서도 같은 서비스 명을 사용할 수 없다. | PublicPerformance |
+| Service1.Description | API 서비스에 대한 간략한 설명을 입력한다. 설정파일에 정의해 놓지 않은 경우에는 "no service description"이라고 입력된다. 개방형 클라우드 플랫폼의 서비스 마켓플레이스에서 사용자에게 노출된다. | Performances, exhibits information display |
+| Service1.Provider | API 서비스의 제공 기관의 이름 또는 URL이다. | http://www.culture.go.kr |
+| Service1.DocumentUrl | API 서비스에 대한 기술문서, 가이드문서 등을 확인할 수 있는 URL이다. | https://www.data.go.kr/subMain.jsp#/L3B1YnIvd....(생략) |
+| Service1.Endpoint | API 서비스의 서비스 URL/URI이다. | http://www.culture.go.kr/openapi/rest/publicperformancedisplays |
+
+<div id='16'></div>
+##### 4.1.3 플랜 설정 값
+각각의 서비스에 대해서 최소한 한 개 이상의 플랜을 설정파일에 정의해 주어야 한다. 플랜이 정의되어 있지 않으면 개방형 클라우드 플랫폼에서 해당 서비스를 사용할 수 없다. 플랜의 키 값은 서비스번호와 플랜번호를 포함하는데, 예를 들어 키 값이 [Service1.Plan1.Name]이라면 1번 서비스의 첫 번째 플랜의 명칭이라는 의미이다. 플랜번호는 1번부터 순서대로 부여되어야 한다.
+
+| <b>키(Key) 값</b>      | <b>설명</b> | <b>Value 값 예시</b> |
+|-------------|-----------------------------|-----------------------------|
+| Service1.Plan1.Name | 플랜명. 플랜명은 서비스만 다르다면 고유의(Unique)값일 필요가 없다. | Basic |
+| Service1.Plan1.Description | 플랜에 대한 간략한 설명을 입력한다. 설정파일에 정의해 놓지 않은 경우에는 "no plan description"이라고 입력된다. | total 1,000,000 calls |
+| Service1.Plan1.Bullet | 플랜의 과금 정보. API 서비스이기 때문에 최대 허용 호출 수를 입력한다. 복수 입력을 하려면 코드의 수정이 필요하다. | 1,000,000 callsr |
+| Service1.Plan1.Unit | 최대 허용 호출 수의 단위를 입력한다. 예를 들면, per month, per day, weekly, total등으로 입력할 수 있다. | Total |
+
+<div id='17'></div>
+### 4.2. 카탈로그
+※ 세부정보는 [OpenPaaS_PaaSTA_ServicePack_develope_guide]문서의 [2.5.1. Catalog API 가이드]를 참고한다.
+<div id='18'></div>
+##### 4.2.1 요청
+- Route
+  ```
+  GET /v2/catalog
+  ```
+  
+- cURL
+  ```
+  curl -H "X-Broker-API-Version: 2.5" http://username:password@broker-url/v2/catalog
+  ```
+  ※ 'username:password'는 서비스 브로커의 인증ID와 인증Password를 의미한다. 서비스 브로커 구현 시, 라이브러리에 정의된 값이다. 정의되어 있는 인증ID는 'admin', 인증Password는 'cluoudfoundry'이다.
+  
+<div id='19'></div>
+##### 4.2.2 응답
+※{1}은 코드 내에서 설정파일에 정의된 서비스와 플랜의 키(Key) 값을 순서대로 불러오기 위한 변수 값이다.
+※ Key값의[ ](대괄호)내의 문자는 설정파일에 정의된 서비스의 키(Key) 값을 의미한다.
+
+- body
+| <b>응답필드</b>      | <b>설명</b> | <b>샘플데이터</b> |
+|-------------|-----------------------------|-----------------------------|
+| services* | 각각의 서비스 객체를 담은 객체의 리스트 | a |
+|   id* | 서비스 ID. 고유(Unique)해야 하며, 설정파일에서 읽어 온 값과 지정된 텍스트의 조합으로 생성됨. <br>형태: "Service"+{1}+[Service1.Name]+"ServiceID"
+ |  |
 
 [2-1-0-0]:/images/openpaas-service/publicapi/2-1-0-0.png
 [2-1-0-1]:/images/openpaas-service/publicapi/2-1-0-1.png

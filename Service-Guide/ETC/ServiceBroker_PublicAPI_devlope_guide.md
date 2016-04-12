@@ -331,6 +331,84 @@ API 서비스 브로커를 통해 서비스되는 서비스들이 공통적으�
 |-------------|-----------------------------|-----------------------------|
 | dashboard_url | 공공데이터포털 URL을 사용 <br>Key값: [DashboardUrl] | http://www.data.go.kr |
 
+<div id='23'></div>
+### 4.4. 업데이트
+※ 세부정보는 [OpenPaaS_PaaSTA_ServicePack_develope_guide]문서의 [2.5.3  Update Instance API 가이드]를 참고한다.
+<div id='24'></div>
+##### 4.4.1 요청
+- Route
+  ```
+ PATCH /v2/service_instances/:instance_id
+  ```
+  ※ instance_id는 프로비전에서 생성된 서비스 인스턴스의 고유(Unique)ID
+  
+- cURL
+  ```
+  $ curl http://username:password@broker-url/v2/service_instances/:instance_id -d '{
+  "plan_id": "Service1 PublicPerformance Plan2 special PlanID"
+}' -X PATCH -H "X-Broker-API-Version: 2.4" -H "Content-Type: application/json"
+  ```
+  ※ 'username:password'는 서비스 브로커의 인증ID와 인증Password를 의미한다. 서비스 브로커 구현 시, 라이브러리에 정의된 값이다. 정의되어 있는 인증ID는 'admin', 인증Password는 'cluoudfoundry'이다.
+
+- body
+
+  | <b>요청필드</b>      | <b>설명</b> | <b>샘플데이터(공연전시정보 API)</b> |
+  |-------------|-----------------------------|-----------------------------|
+  | plan_id | 카탈로그에서 생성된, 변경할 플랜의 ID | Service1 PublicPerformance Plan2 special PlanID |
+  | service_id* | 카탈로그에서 생성된, 플랜을 변경하고자 하는 서비스의 ID | Service1 PublicPerformance ServiceID |
+
+<div id='25'></div>
+##### 4.4.2 응답
+| <b>응답필드</b>      | <b>설명</b> |
+|-------------|-----------------------------|
+| {} | 업데이트가 성공적으로 진행되었을 경우, "{}"의 형태로 응답된다. |
+
+<div id='26'></div>
+### 4.5. 바인드
+※ 세부정보는 [OpenPaaS_PaaSTA_ServicePack_develope_guide]문서의 [2.5.5  Bind API 가이드]를 참고한다.
+<div id='27'></div>
+##### 4.5.1 요청
+- Route
+  ```
+  PUT /v2/service_instances/:instance_id/service_bindings/:binding_id
+  ```
+  
+- cURL
+  ```
+  $ curl http://username:password@broker-url/v2/service_instances/
+:instance_id/service_bindings/:binding_id -d '{
+  "plan_id":       "Service1 PublicPerformance Plan1 basic PlanID",
+  "service_id":     "Service1 PublicPerformance ServiceID",
+  "app_guid":       "app-guid-here"
+}' -X PUT -H "X-Broker-API-Version: 2.5" -H "Content-Type: application/json"
+  ```
+  ※ 'username:password'는 서비스 브로커의 인증ID와 인증Password를 의미한다. 서비스 브로커 구현 시, 라이브러리에 정의된 값이다. 정의되어 있는 인증ID는 'admin', 인증Password는 'cluoudfoundry'이다.
+
+- body
+
+  | <b>요청필드</b>      | <b>설명</b> | <b>샘플데이터</b> |
+  |-------------|-----------------------------|-----------------------------|
+  | plan_id | 카탈로그에서 생성된, 바인드하는 서비스 인스턴스의 플랜ID | Service1 PublicPerformance Plan1 basic PlanID |
+  | service_id | 카탈로그에서 생성된, 바인드하는 서비스 인스턴스의 서비스ID | Service1 PublicPerformance ServiceID |
+  | app_guid | 바인드하는 어플리케이션의 GUID | 바인드하는 어플리케이션의 GUID |
+
+<div id='28'></div>
+##### 4.5.2 응답
+- body
+
+  | <b>응답필드</b>      | <b>설명</b> | <b>샘플데이터</b> |
+  |-------------|-----------------------------|-----------------------------|
+  | credentials | Application이 서비스에 접근할수 있는 credentials 정보. 해시 형태로 제공. 자세한 정보는 'Credentials'를 참고 | |
+  | syslog_drain_url | 개방형 클라우드 플랫폼에 bound 된 Application에 대한 로그 URL | |
+  
+- Credentials
+
+  | <b>Credential</b>      | <b>설명</b> | <b>샘플데이터</b> |
+  |-------------|-----------------------------|-----------------------------|
+  | url | 설정파일에 정의된 API 서비스의 엔드포인트 <br>Key값: [Service1.Endpoint] | http://www.culture.go.kr/openapi/rest/publicperformancedisplays |
+  | serviceKey | API 서비스를 사용하기 위해 서비스 제공자로부터 발급받은 인증키 <br>※ 서비스 바인드 시, 입력 | [사용자가 발급받은 키값] |
+  | documentUrl | API 서비스의 기술문서, 개발 가이드 등을 확인할 수 있는 URL <br>Key값: [Service1.DocumentationUrl] | https://www.data.go.kr/subMain.jsp#/L3B1YnIvdXNlL3ByaS... (생략) |
+  
 
 
 [2-1-0-0]:/images/openpaas-service/publicapi/2-1-0-0.png

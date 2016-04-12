@@ -260,8 +260,7 @@ API 서비스 브로커를 통해 서비스되는 서비스들이 공통적으�
   | <b>응답필드</b>      | <b>설명</b> | <b>샘플데이터</b> |
   |-------------|-----------------------------|-----------------------------|
   | services* | 각각의 서비스 객체를 담은 객체의 리스트 | |
-  |   id* | 서비스 ID. 고유(Unique)해야 하며, 설정파일에서 읽어 온 값과 지정된 텍스트의 조합으로 생성됨. <br>형태: "Service"+{1}+[Service1.Name]+"ServiceID"
- | |
+  | &nbsp;&nbsp;id* | 서비스 ID. 고유(Unique)해야 하며, 설정파일에서 읽어 온 값과 지정된 텍스트의 조합으로 생성됨. <br>형태: "Service"+{1}+[Service1.Name]+"ServiceID" | |
 
 [2-1-0-0]:/images/openpaas-service/publicapi/2-1-0-0.png
 [2-1-0-1]:/images/openpaas-service/publicapi/2-1-0-1.png

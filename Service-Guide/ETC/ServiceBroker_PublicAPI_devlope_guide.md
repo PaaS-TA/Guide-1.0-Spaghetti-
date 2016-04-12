@@ -261,6 +261,21 @@ API 서비스 브로커를 통해 서비스되는 서비스들이 공통적으�
   |-------------|-----------------------------|-----------------------------|
   | services* | 각각의 서비스 객체를 담은 객체의 리스트 | |
   | &nbsp;&nbsp;id* | 서비스 ID. 고유(Unique)해야 하며, 설정파일에서 읽어 온 값과 지정된 텍스트의 조합으로 생성됨. <br>형태: "Service"+{1}+[Service1.Name]+"ServiceID" | |
+  | &nbsp;&nbsp;name* | 서비스명. 설정파일에서 읽어 온 값. <br>Key값: [Service1.Name] | PublicPerformance |
+  | &nbsp;&nbsp;description* | 서비스 설명. 설정파일에서 읽어 온 값. <br>Key값: [Service1.Name] | Performances, exhibits information display |
+  | &nbsp;&nbsp;bindable* | 어플리케이션과 바인드 가능 여부. boolean 타입. <br>지정값: true | true |
+  | &nbsp;&nbsp;tags | 서비스의 분류, 속성, 또는 기반 기술을 노출 <br>지정값: "Public API Service" | Public API Service |
+  | &nbsp;&nbsp;metadata | 서비스 제공을 위한 메타 데이터의 목록. 상세 설명은 아래 '서비스 메타데이터' 참고 | |
+  | &nbsp;&nbsp;requires* | 사용자가 서비스를 제공 하는 권한 목록. 현재는 syslog_drain 권한만 지원함 <br>지정값: "syslog_drain" | syslog_drain |
+  | plan_updateable | 서비스의 플랜 변경 지원 여부. boolean 타입. <br>지정값: false | false |
+  | &nbsp;&nbsp;plans* | 서비스에 대한 각각의 플랜 객체를 담은 객체의 리스트 | |
+  | &nbsp;&nbsp;&nbsp;&nbsp;id* | 플랜 ID. 고유(Unique)해야 하며, 설정파일에서 읽어 온 값과 지정된 텍스트의 조합으로 생성됨. <br>형태: "Service"+{1}+[Service1.Name]+"Plan"+{1}+[Service1.Plan1.Name]+"PlanID" | Service1 PublicPerformance Plan1 basic PlanID |
+  | &nbsp;&nbsp;&nbsp;&nbsp;name* | 플랜명. 설정파일에서 읽어 온 값. <br>Key값: [Service1.Plan1.Name] | basic |
+  | &nbsp;&nbsp;&nbsp;&nbsp;description* | 플랜 설명. 설정파일에서 읽어 온 값. <br>Key값: [Service1.Plan1.Description] | total 1,000,000 calls |
+  | &nbsp;&nbsp;&nbsp;&nbsp;metadata | 서비스의 플랜을 위한 메타 데이터의 목록. 상세 설명은 아래 '플랜 메타데이터' 참고 | |
+  | &nbsp;&nbsp;&nbsp;&nbsp;free | 유/무료 과금 정책을 표시.boolean 타입. 기본값은 true. <br>지정값: true | true |
+
+
 
 [2-1-0-0]:/images/openpaas-service/publicapi/2-1-0-0.png
 [2-1-0-1]:/images/openpaas-service/publicapi/2-1-0-1.png

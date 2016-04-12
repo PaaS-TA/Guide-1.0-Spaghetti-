@@ -293,7 +293,45 @@ API 서비스 브로커를 통해 서비스되는 서비스들이 공통적으�
   | metadata.bullets | 플랜의 과금 정보. API 서비스이기 때문에 최대 호출 수를 입력 <br>Key값: [Service1.Plan1.Bullet] | 1,000,000 calls |
   | metadata.costs | 플랜의 비용 정보.Map타입의 amount와 String타입의 unit으로 구성. <br>amount 지정값: "KRW",0 <br>※KRW는 한국 통화단위 <br>unit Key값: [Service1.Plan1.Unit] | Json 구조 <br>"costs": [{"amount": {"KRW": 0} "unit": "total" }] |
   | metadata.displayName | 그래픽 클라이언트에 표시되는 플랜명 <br>Key값: [Service1.Plan1.Name] | basic |
+
+<div id='20'></div>
+### 4.3. 프로비전
+※ 세부정보는 [OpenPaaS_PaaSTA_ServicePack_develope_guide]문서의 [2.5.1  Provision 가이드]를 참고한다.
+<div id='21'></div>
+##### 4.3.1 요청
+- Route
+  ```
+  PUT /v2/service_instances/:instance_id
+  ```
+  ※ instance_id는 서비스 인스턴스 생성 명령어를 입력 했을 때, 클라우드 컨트롤러에서 생성하는 고유의(Unique) ID이다.
   
+- cURL
+  ```
+  $ curl http://username:password@broker-url/v2/service_instances/:instance_id -d '{
+  "service_id":        "Service1 PublicPerformance ServiceID",
+  "plan_id":           "Service1 PublicPerformance Plan1 basic PlanID",
+  "organization_guid": "[org-guid-here]",
+  "space_guid":        "[space-guid-here]"
+}' -X PUT -H "X-Broker-API-Version: 2.5" -H "Content-Type: application/json"
+  ```
+  ※ ''username:password'는 서비스 브로커의 인증ID와 인증Password를 의미한다. 서비스 브로커 구현 시, 라이브러리에 정의된 값이다. 정의되어 있는 인증ID는 'admin', 인증Password는 'cluoudfoundry'이다.
+
+- body
+
+  | <b>요청필드</b>      | <b>설명</b> | <b>샘플데이터</b> |
+  |-------------|-----------------------------|-----------------------------|
+  | service_id* | 카탈로그에서 생성한 서비스ID | Service1 PublicPerformance ServiceID |
+  | plan_id* | 카탈로그에서 생성한 플랜ID | 카탈로그에서 생성한 플랜ID |
+  | organization_guid* | 프로비전을 요청한 사용자 Org의 GUID 값 | [클라우드 컨트롤러에서 Org 식별을 위해 사용하는 GUID 값] |
+  | space_guid* | 프로비전을 요청한 사용자 Space의 GUID 값 | [클라우드 컨트롤러에서 Space 식별을 위해 사용하는 GUID 값] |
+  
+<div id='22'></div>
+##### 4.3.2 응답
+| <b>응답필드</b>      | <b>설명</b> | <b>샘플데이터</b> |
+|-------------|-----------------------------|-----------------------------|
+| dashboard_url | 공공데이터포털 URL을 사용 <br>Key값: [DashboardUrl] | http://www.data.go.kr |
+
+
 
 [2-1-0-0]:/images/openpaas-service/publicapi/2-1-0-0.png
 [2-1-0-1]:/images/openpaas-service/publicapi/2-1-0-1.png

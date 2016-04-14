@@ -127,7 +127,7 @@ Open 버튼을 클릭하여 해당 머신에 연결한다
 ###### 2. API 생성
 ① 로그인이 완료되면 다음과 같은 화면을 확인할 수 있다. 최초 배포가 완료되면 API가 생성되지 않은 상태이므로 ②번의 New API 버튼이 화면에 보여진다. New API 버튼을 클릭하여 API 생성화면으로 이동한다. 
 
-<div id=generalDetails></div>
+<div id=DefineGeneralDetails></div>
 ###### 3. General Details 정의
 ① API 생성 화면으로 이동하였다.<br>
 ② API 생성의 첫 단계인 Design 단계이다.<br>
@@ -137,8 +137,9 @@ Name: Phoneverification
 Context: /phoneverify
 Version: 1.0.0
 ```
-※	④번 Edit Swagger Definition 버튼을 클릭하여 다음의 [4. Resources 정의] 과정을 생략 할 수 있다. 이에 대한 설명은 [4. Resources 정의] 하단에 [Swagger 정의]로 첨부한다.
+※	④번 Edit Swagger Definition 버튼을 클릭하여 다음의 [4. Resources 정의](#DefineResources) 과정을 생략 할 수 있다. 이에 대한 설명은 [4. Resources 정의](#DefineResources) 하단에 [Swagger 정의](#DefineSwagger)로 첨부한다.
 
+<div id=DefineResources></div>
 ###### 4. Resources 정의
 ① General Details 하단에 Resources 입력란이 있다. URL Pattern에 대소문자 구분에 유의하여 CheckPhoneNumber 값을 입력하고 GET, POST, OPTIONS 메소드를 선택한다. Resource Name의 값은 URL Pattern을 입력하면 같은 값이 자동으로 입력되는데 사용자 필요에 따라 변경할 수 있다.<br>
 ② 입력이 완료되었다면, Add New Resource 버튼을 클릭하여 Resource를 추가한다.<br>
@@ -160,5 +161,64 @@ Version: 1.0.0
 
 ④ 하단의 버튼 중, 좌측의 Save버튼을 클릭하여 저장하고 가운데 Implement 버튼을 클릭하여 다음단계인 Implement 단계로 진행한다.<br>
 
+<div id=DefineSwagger></div>
 ※	Swagger 정의
-상단의 [3. General Details 정의](#generalDetails)에서 푸른색 ④번 박스로 표시된 Edit Swagger Definition 버튼을 클릭하면 Swagger 수정이 가능하다. 다음과 같이 수정하고 Save버튼을 클릭하여 Resources를 정의한다. 이 방법을 통해 상단에 기술된 [4. Resources 정의] 절차를 생략할 수 있다.
+상단의 [3. General Details 정의](#DefineGeneralDetails)에서 푸른색 ④번 박스로 표시된 Edit Swagger Definition 버튼을 클릭하면 Swagger 수정이 가능하다. 다음과 같이 수정하고 Save버튼을 클릭하여 Resources를 정의한다. 이 방법을 통해 상단에 기술된 [[4. Resources 정의]](#DefineResources) 절차를 생략할 수 있다.
+
+```swagger
+apiVersion: 1.0.0
+swaggerVersion: "1.2"
+apis:
+  - path: /checkphonenumber
+    description: ""
+    file:
+      apiVersion: 1.0.0
+      swaggerVersion: "1.2"
+      basePath: "http://localhost:8280/phoneverify/1.0.0"
+      resourcePath: /checkphonenumber
+      apis:
+        - path: /CheckPhoneNumber
+          operations:
+            - method: GET
+              parameters:
+                - description: Give the phone number to be validated
+                  name: PhoneNumber
+                  type: string
+                  required: "True"
+                  paramType: query
+                - description: "Give the license key. If you don't have any, enter 0"
+                  name: LicenseKey
+                  type: string
+                  required: "True"
+                  paramType: query
+              nickname: get_CheckPhoneNumber
+            - method: POST
+              parameters:
+                - name: body
+                  description: Request Body
+                  allowMultiple: false
+                  required: true
+                  paramType: body
+                  type: string
+              nickname: post_CheckPhoneNumber
+            - method: OPTIONS
+              parameters:
+                - name: body
+                  description: Request Body
+                  allowMultiple: false
+                  required: true
+                  paramType: body
+                  type: string
+              nickname: options_CheckPhoneNumber
+info:
+  title: PhoneVerification
+  description: ""
+  termsOfServiceUrl: ""
+  contact: ""
+  license: ""
+  licenseUrl: ""
+authorizations:
+  oauth2:
+    type: oauth2
+    scopes: []
+```

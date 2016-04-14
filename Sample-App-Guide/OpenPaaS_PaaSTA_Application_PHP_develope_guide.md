@@ -1,9 +1,10 @@
 ## Table of Contents
-1. [문서 개요](#1--문서-개요)
-     * [목적](#11--목적)
-     * [범위](#12--범위)
-     * [참고자료](#13--제약사항)
-     * [참고자료](#14--참고자료)
+1. [개요](#1--개요)(#1--개요)
+     * 1.1. [문서 개요](#11--문서-개요)
+        * 1.1.1. [목적](#111--목적)
+        * 1.1.2. [범위](#112--범위)
+        * 1.1.3. [참고자료](#113--제약사항)
+        * 1.1.4. [참고자료](#114--참고자료)
 2. [개발환경 구성](#2--개발환경-구성)
      * [PHP 샘플 소스 받기](#21--PHP-샘플-소스-받기)
      * [XAMP설치](#22--XAMP설치)
@@ -68,7 +69,6 @@ PHP로 REST/full 서버를 구현하였고 화면(HTML)은 Apache의 Web 서버�
         $ git clone 
 
 
-
 ## 2.2.  XAMP설치
 
 BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템셀을 생성하기 위해서는 AWS에 계정을 생성하고 스템셀을 생성하기 위한 환경을 구성해야 한다.
@@ -121,7 +121,7 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
     명령 프롬프트에서 PHP 버전 확인
 
 
-## 2.4.  2.2.4.	Composer 설치
+## 2.4. Composer 설치
 
   Composer는 개발시 필요한 라이브러리를 관리하는 툴입니다. 홈페이지는 다음과 같습니다. https://getcomposer.org/
   
@@ -374,9 +374,11 @@ Extenstion에 추가한 mongo 라이브러리를 이용합니다. 단 현재 mon
 Redis 연동은 추가로 Composer를 통해 설치가된 패키지를 사용합니다. 
 
 1.	Redis 사용을 위해서 Predis의 Class에서 register를 선언합니다.
+
         Predis\Autoloader::register();
 
 2.	Redis에  접속을 합니다. 환경설정에서 받은 Host, Port, Passworf를 이용하여 Redis에 접속을 합니다.
+
         $redis = new Predis\Client(
         array(
              "scheme" => "tcp",
@@ -386,6 +388,7 @@ Redis 연동은 추가로 Composer를 통해 설치가된 패키지를 사용합
         ));
 
 3.	Session key와 사용자 ID(username)을 Redis에 저장합니다.
+
         $redis->set($key, $username);
 
 
@@ -405,8 +408,11 @@ php-opencloud라는 패키지를 사용하며 composer를 통해서 설치가 �
 개방형 플랫폼에서는 Object Storage를 GlusterFS를 사용하는데 Object Storage를 API를 통해 사용하기 위해 Openstack의 Swift를 이용하여 서비스를 할 수 있게 구성되어 있습니다.
 php-opencloud는 swif를 만든 rackspace 회사에서 제공하는 SDK입니다. 
 Opencloud를 사용하기 위해 선언을 합니다.
+
         use OpenCloud\Rackspace;
+        
 2.	Openstack(Object Storage)에 접속을 하고 잘 접속이 되었는지 체크합니다.
+
         $client = new OpenCloud\OpenStack($this->host, array(
                "username" => $this->username,
                   "password" => $this->password,
@@ -415,6 +421,7 @@ Opencloud를 사용하기 위해 선언을 합니다.
         $client->authenticate();
 
 3.	파일을 올리기 위한 Container를 설정합니다. 만약에 해당 Container(directory)가 없으면 Container를 새로 생성을 합니다. 그리고 생성된 Container는 Public(읽기권한)으로 설정하여 인증없이 모든 사람이 읽을 수 있게 합니다.
+        
         $service = $client->objectStoreService($this->catalogName, 'RegionOne', 'publicURL');
         
         $container;
@@ -437,14 +444,17 @@ Opencloud를 사용하기 위해 선언을 합니다.
         }
 
 4.	파일을 해당 컨테이너에 Upload합니다. Container를 Public으로 설정하였기 때문에 이미지의 URL만 있으면 어디서든 읽어올 수 있습니다. 
+        
         $fileName = time().'_'.$fileName;
         // 파일 저장
         $result = $container->uploadObject($fileName, fopen($file, 'r+'), array('name'=> $fileName, 'Content-Type' => 'image/jpeg'));
 
 5.	저장된 결과를 URL 형태로 만듭니다. 이 URL로 직접 접속하여 해당 이미지에 접근이 가능합니다.
+        
         $result = array('thumb_img_path' => $container->getService()->getEndpoint()->getPublicUrl().'/'.$this->containerName.'/'.$fileName);
 
 6.	결과값을  Json으로컨버전하여 HTML에서 처리할 수 있도록 합니다.
+        
         echo json_encode($result);
 
 

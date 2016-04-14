@@ -113,8 +113,8 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기 위한 현재 대상 
 
 -	openpaas-apiplatform-aws-1.0.yml Deployment 파일을 서버 환경에 맞게 수정한다.
 
-openpaas-apiplatform-aws-1.0.yml
 ```yml
+# openpaas-apiplatform-aws 설정파일
 ---
 name: openpaas-apiplatform-service         # 서비스 배포이름(필수)
 director_uuid: f7f7e2a8-aae9-4be7-8e11-70d91e4fccc1        # bosh status 에서 확인한 Director UUID을 입력(필수)

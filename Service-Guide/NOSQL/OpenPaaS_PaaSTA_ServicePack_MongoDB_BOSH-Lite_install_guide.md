@@ -713,3 +713,4 @@ MongoChef 프로그램은 무료로 사용할 수 있는 소프트웨어이다.
 [2-2-6-0-1]:/images/openpaas-service/mongodb/mongodb_lite/2-2-6-0-1.png
 [2-2-6-1-1]:/images/openpaas-service/mongodb/mongodb_lite/2-2-6-1-1.png
 [2-2-7-0-1]:/images/openpaas-service/mongodb/mongodb_lite/2-2-7-0-1.png
+[2-3-2-0-1]:/images/openpaas-service/mongodb/mongodb_lite/2-3-2-0-1.png

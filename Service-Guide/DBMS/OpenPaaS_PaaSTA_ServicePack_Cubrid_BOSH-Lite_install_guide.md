@@ -623,3 +623,4 @@ Cubrid Manager 프로그램은 Cubrid에서 제공하는 무료로 사용할 수
 [2-2-4-0-1]:/images/openpaas-service/cubrid/cubrid_lite/2-2-4-0-1.png
 [2-2-6-0-1]:/images/openpaas-service/cubrid/cubrid_lite/2-2-6-0-1.png
 [2-2-7-0-1]:/images/openpaas-service/cubrid/cubrid_lite/2-2-7-0-1.png
+[2-3-2-0-1]:/images/openpaas-service/cubrid/cubrid_lite/2-3-2-0-1.png

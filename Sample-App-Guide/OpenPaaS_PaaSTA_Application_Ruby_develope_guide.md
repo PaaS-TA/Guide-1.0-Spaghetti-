@@ -1105,11 +1105,12 @@ $ cf start ruby-sample-app    # 애플리케이션 시작
 
 ※애플리케이션 배포절차를 윈도우 머신에서 수행하는 경우(cf cli를 윈도우 머신에 설치하여 사용하는 경우), 애플리케이션 시작('cf start')이 제대로 되지 않을 수 있습니다. 이 때는 bin 폴더내의 3개의 파일 bundle, rake, rails를 유닉스용으로 변환하여 'cf push' 부터 다시 진행합니다. 파일 변환 절차는 다음을 따릅니다.
 
-```
-1.	윈도우 커맨드 창을 열어 애플리케이션 폴더로 이동합니다.
-2.	(방법1.) 다음의 url에서 dos2unix를 다운로드 하고 압축을 해제하여 dos2unix.exe파일을 샘플 어플리케이션의 bin 폴더로 이동합니다. http://sourceforge.net/projects/dos2unix/files/latest/download
 
-(방법2.) 샘플 어플리케이션을 'git clone'한 사용자는 다음의 명령어를 이용하여 애플리케이션 폴더 내의 dos2unix 파일의 파일명을 변경합니다. 'rename' 명령어를 사용할 수 없다면, 'ren' 명령어를 대신 사용하거나 직접 파일명을 'dos2unix.exe'로 변경하여도 무방합니다.
+1.	윈도우 커맨드 창을 열어 애플리케이션 폴더로 이동합니다.
+2.	(방법1.) 다음의 url에서 dos2unix를 다운로드 하고 압축을 해제하여 dos2unix.exe파일을 샘플 어플리케이션의 bin 폴더로 이동합니다. 
+http://sourceforge.net/projects/dos2unix/files/latest/download
+
+	(방법2.) 샘플 어플리케이션을 'git clone'한 사용자는 다음의 명령어를 이용하여 애플리케이션 폴더 내의 dos2unix 파일의 파일명을 변경합니다. 'rename' 명령어를 사용할 수 없다면, 'ren' 명령어를 대신 사용하거나 직접 파일명을 'dos2unix.exe'로 변경하여도 무방합니다.
 rename dos2unix dos2unix.exe
 
 3.	다음 명령어를 이용하여 bin 폴더 내의 3개의 파일을 유닉스 파일로 변환합니다.
@@ -1119,7 +1120,7 @@ dos2unix bin/bundle bin/rake bin/rails
  
 ![ruby16]   
 4.	[4) 개방형 플랫폼 애플리케이션에 서비스 바인딩 및 애플리케이션 시작] 절차를 다시 수행합니다.
-```
+
 
 
 

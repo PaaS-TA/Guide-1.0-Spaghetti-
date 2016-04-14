@@ -69,13 +69,27 @@ $ git clone
 
 
 
-## 2.2.  AWS 환경 구성
+## 2.2.  XAMP설치
 
 BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템셀을 생성하기 위해서는 AWS에 계정을 생성하고 스템셀을 생성하기 위한 환경을 구성해야 한다.
-
--   AWS 계정
-
-	AWS 웹사이트: [https://aws.amazon.com/ko/](https://aws.amazon.com/ko/)
+  
+  ![./image/php/php_develope_guide2.png](./image/php/php_develope_guide2.png)
+  
+    1.	URL (https://www.apachefriends.org/index.html) 에 접속하면 바로 다운로드 화면이 나옵니다. 여기서 "Click here for other version"을 선택합니다. 
+     
+    XAMP 공식 홈페이지 첫화면
+    
+    다운로드는 Windows버전 PHP 5.5.30 (32bit)을 다운로드 받습니다.
+    
+    2.	다운로드 받은 파일을 실행하고 모두 Next를 하면됩니다. 하지만 아래와 같이 디렉토리를 물어보는데 이때 이 위치를 변경하거나 정확하게 기억하고 있어야 합니다. 설치 완료후php 실행 디렉토리를 환경변수(Path)에 넣어 줘야 하기 때문입니다.
+    
+     
+    XAMP 설치 디렉토리
+    
+    3.	설치가 정상적으로 이루어지고 있으면 아래와 같이 진행이 될겁니다. 처음 실행할 때 Antivirus 프로그램으로 느려질수 있다는 문구 등이 나올수도 있는데 "확인"을 누르시면 됩니다.
+    
+    
+  	AWS 웹사이트: [https://aws.amazon.com/ko/](https://aws.amazon.com/ko/)
 
 
 -   Access Key 설정
@@ -199,6 +213,7 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
 ## 2.3.  RUBY 설치
 
 Ruby 설치 절차는 다음과 같다.
+
 
 
 1.  의존 패키지 설치

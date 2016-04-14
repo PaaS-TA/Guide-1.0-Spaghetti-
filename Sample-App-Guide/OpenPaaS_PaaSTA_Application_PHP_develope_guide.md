@@ -199,7 +199,7 @@ Composer를 사용하여 Dependency를 관리합니다. Composer.json 파일의 
 |.cfiignore|	개방형 플랫폼에 배포시 배포 예외를 시키는 파일/디렉토리를 정의합니다.|
 |.htaccess|	REST/full 구현을 위해 url에 대한 패턴을 정의한 곳입니다.|
 |composer.json, composer.phar, composer.lock|	Composer파일로 패키지의 Dependency를 관리하는 파일입니다.|
-||Info.php|	PHP에 설치된 모듈을 확인하기 위한 phpinfo()를 포함한 웹페이지입니다.|
+|Info.php|	PHP에 설치된 모듈을 확인하기 위한 phpinfo()를 포함한 웹페이지입니다.|
 |login.html|	예제 실행을 위한 login 페이지입니다.|
 |main.html|	예제의 조직도를 보여주기 위한 main페이지입니다.|
 |manage..html|	예제의 데이터를 관리하기 위한 manage 페이지입니다. login이후에 보여지는 화면입니다.|
@@ -214,20 +214,20 @@ REST/full 서비스를 위한 환경설정과 PHP 빌드팩에서 사용할 Exte
 1.	REST/full 서비스를 위해 .htaccess 구성
 REST/full API 형식인 /api/변수 를 처리하기 위한 설정입니다. 루트디렉토리에 .htaccess를 추가하고 아래와 같이 넣어줍니다.
 
-\`#<IfModulemod_rewrite.c>
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule /(.*)$ /api/api.php?request=$1 [QSA,NC,L]
-#</IfModule>\`
+    #<IfModulemod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule /(.*)$ /api/api.php?request=$1 [QSA,NC,L]
+    #</IfModule>
 	
 	
 2.	PHP 빌드팩에 Extension 추가
 XAMP에서 mongo 드라이브를 추가하였듯이 개방형 플랫폼에도 사용항 Extension 라이브러리를 추가해야합니다. 사용가능한 라이브러리는 여기()에서 확인이 가능합니다.
 추가를 위해서는 .bp-config디렉토리에options.json 파일을 만들고 아래와 같이 추가해주면 됩니다.
-\`{
-    "PHP_EXTENSIONS": ["mysqli", "mongo", "amqp"]
-}\`
+    {
+        "PHP_EXTENSIONS": ["mysqli", "mongo", "amqp"]
+    }
  	mysqli :mysql과 연결을 위한 extension
  	mongo : mongo 연결을 위한 extension
  	amqp :rabbitmq와 연결을 위한 extension (현재 SSL연동이 안되서 사용을 못하고 있음)

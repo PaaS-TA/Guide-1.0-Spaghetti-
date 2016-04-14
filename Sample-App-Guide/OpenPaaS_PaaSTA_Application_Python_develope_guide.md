@@ -3,6 +3,9 @@
 
 1. [개요](#1)	
 	-	[1.1. 문서 개요](#1-1)  
+		-	[1.1.1.	목적](#1-1-1)  
+		-	[1.1.2.	범위](#1-1-2)  
+		-	[1.1.3.	참고 자료](#1-1-3)  
 
 2. [python 애플리케이션개발가이드](#2)  
 
@@ -25,10 +28,10 @@
 
 	-	[2.4. 배포](#2-4) 
 		-	[2.4.1.	개방형 클라우드 플랫폼 로그인](#2-4-1) 
-		-	[2.4.2.	서비스 생성(#2-4-2) 
-		-	[2.4.3.	애플리케이션 배포(#2-4-3) 
-		-	[2.4.4.	서비스 바인드(#2-4-4) 
-		-	[2.4.5.	애플리케이션 실행(#2-4-5) 
+		-	[2.4.2.	서비스 생성](#2-4-2) 
+		-	[2.4.3.	애플리케이션 배포](#2-4-3) 
+		-	[2.4.4.	서비스 바인드](#2-4-4) 
+		-	[2.4.5.	애플리케이션 실행](#2-4-5) 
 
 	-	[2.5. 테스트](#2-5)  
 	
@@ -42,38 +45,45 @@
 
 
 <div id='1'></div>
-1.	개요
+#1. 개요
 <div id='1-1'></div>
-1.1.	문서 개요  
-  
-.  	목적  
+##1.1. 문서 개요  
+
+<div id='1-1-1'></div>
+#####1.1.1 목적  
 본 문서(python 애플리케이션 개발 가이드)는 Open PaaS프로젝트의 서비스팩(Mysql, Cubrid, MongoDB, RabbitMQ, Radis, GlusterFS)을 python 애플리케이션과 연동하여서비스를 사용하고 애플리케이션을 배포하는 방법에 대해 제시하는 문서이다.
-  
-- 	범위  
+
+<div id='1-1-2'></div>  
+#####1.1.2 범위  
 본 문서의 범위는 Open PaaS 프로젝트의 python 애플리케이션 개발과 서비스팩 연동에 대한 내용으로 한정한다.
-  
-- 참고 자료  
-http://docs.run.pivotal.io/buildpacks/python/index.html
-http://www.cubrid.com/manual/93/api/python.html
-https://docs.djangoproject.com/en/1.9/intro/tutorial01
-http://pythontips.com/
+
+<div id='1-1-3'></div>  
+#####1.1.3 참고 자료  
+[http://docs.run.pivotal.io/buildpacks/python/index.html](http://docs.run.pivotal.io/buildpacks/python/index.html) 
+[http://www.cubrid.com/manual/93/api/python.html](http://www.cubrid.com/manual/93/api/python.html)
+[https://docs.djangoproject.com/en/1.9/intro/tutorial01](https://docs.djangoproject.com/en/1.9/intro/tutorial01)
+[http://pythontips.com/](http://pythontips.com/)
 
 <div id='2'></div>
-2.python 애플리케이션개발가이드  
+#2.python 애플리케이션개발가이드  
+
 <div id='2-1'></div>
-2.1.	개요
-Open PaaS에 등록된 다양한 서비스팩을 python 언어로 작성된 애플리케이션과 바인딩하고 해당 애플리케이션에 바인딩 된 환경정보(VCAP_SERVICES)에서 각 서비스별 접속정보를 획득하여 애플리케이션에 적용하여 이용 할 수 있도록 Windows 환경에서 python 애플리케이션을 작성할 수 있도록 한다.
+##2.1.	개요
+Open PaaS에 등록된 다양한 서비스팩을 python 언어로 작성된 애플리케이션과 바인딩하고 해당 애플리케이션에 바인딩 된 환경정보(VCAP_SERVICES)에서 각 서비스별 접속정보를 획득하여 애플리케이션에 적용하여 이용 할 수 있도록 Windows 환경에서 python 애플리케이션을 작성할 수 있도록 한다. 
+
 <div id='2-2'></div>  
-2.2.	개발환경 구성  
+##2.2.	개발환경 구성  
 python 샘플 애플리케이션 개발이 이루어진 환경은 다음과 같다..
 
 - OS : Windows 8 64bit
 - python : 2.7.10
-- Framwork : Django 1.8.6  
-- python 설치
-	python 2.7.10 다운로드
->|<div>https://www.python.org/downloads/release/python-2710/</div>
-![Alt text][python-2]  
+- Framwork : Django 1.8.6   
+
+<div id='2-2-1'></div>  
+#####2.2.1 python 설치
+	- python 2.7.10 다운로드
+`<div>https://www.python.org/downloads/release/python-2710/</div>`
+![python-2][python-2]  
 -	다운로드
   Windows x86-64 MSI installer
 ※	사용자 각각의 환경에 따라 설치 파일은 달라질 수 있다.
@@ -1083,7 +1093,7 @@ Status API Training Shop Blog About
 
 
 
-[python-2]:/images/python/images2.png
+[python-2]:/Documents/Sample-App-Guide/image/python/image2.png
 [python-2]:/images/python/images2.png
 [python-2]:/images/python/images2.png
 [python-2]:/images/python/images2.png

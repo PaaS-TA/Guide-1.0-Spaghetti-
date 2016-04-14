@@ -7,7 +7,7 @@
           * [1.1.3.	참고 자료](#5)
 2.	[Ruby 애플리케이션 개발가이드](#6)
      * [2.1.	개요](#7)
-2.2.	[개발환경 구성](#8)
+     * [2.2.	개발환경 구성](#8)
           * [2.2.1.	Ruby & Ruby On Rails설치](#9)
      * [2.3.	개발](#10)
           * [2.3.1.	애플리케이션 생성](#11)
@@ -43,6 +43,17 @@
 <div id='5'></div>
 ##### 1.1.3.	참고 자료
 
+-	http://rubyinstaller.org/
+-	https://docs.pivotal.io/pivotalcf/buildpacks/ruby/index.html
+-	http://rubykr.github.io/rails_guides/getting_started.html
+-	https://github.com/brianmario/mysql2
+-	http://www.cubrid.org/manual/93/ko/api/ruby.html
+-	https://docs.mongodb.org/ecosystem/drivers/ruby/
+-	http://rubybunny.info/articles/getting_started.html
+-	https://github.com/redis/redis-rb
+-	https://github.com/fog/fog
+
+
 <div id='6'></div>
 # 2.	Ruby 애플리케이션 개발가이드
 
@@ -50,9 +61,19 @@
 <div id='7'></div>
 ### 2.1.	개요
 
+개방형 플랫폼에 등록된 다양한 서비스팩을 Ruby언어로 작성된 애플리케이션과 바인딩하고 해당 애플리케이션에 바인딩된 서비스 환경정보(VCAP_SERVICES)를 이용하여 애플리케이션관 연동하고 각 서비스를 사용 할 수 있도록 Windows기반 환경에서 개방형 플랫폼에 배포할 Ruby 애플리케이션을 작성하는 방법을 설명한다.
 
 <div id='8'></div>
 ### 2.2.	개발환경 구성
+
+Ruby 애플리케이션 개발을 위해 다음과 같은 환경으로 개발환경을 구성 한다.
+
+-	OS : Windows 7 64bit
+-	Ruby : 1.9.3-p551
+-	Framwork : Ruby On Rails 4.1.8
+-	IDE : RubyMine 7.1.1
+※	CubridDB의 Ruby 드라이버 최신 지원 버전이 Ruby 1.9.3 까지 지원하여 해당 버전을 선택하였다. 각 서비스별 지원 되는 드라이버(또는 Gem)에 맞는 Ruby 버전을 사용하길 권장한다.
+※	Ruby IDE는 개별 선택하여 사용한다. 
 
 
 <div id='9'></div>

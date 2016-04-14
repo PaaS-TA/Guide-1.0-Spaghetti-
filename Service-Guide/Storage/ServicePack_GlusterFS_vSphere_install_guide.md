@@ -68,51 +68,37 @@
 서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.  
 BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여BOSH CLI를 설치 해야 한다.
 
-- OpenPaaS 에서 제공하는Github에서 git clone 명령을 통해 릴리즈 파일들을 다운로드 받는다.
->$ git clone https://github.com/OpenPaaSRnD/openpaas-service-release.git  
-![2-1-0-0]  
->
->$ ls –all  
-![2-1-1-0]
+- OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Services.zip, OpenPaaS-Deployment.zip, OpenPaaS-Sample-Apps.zip)
 
 <div id='8'></div>
 ###   2.2. GlusterFS 서비스 릴리즈 업로드
 
-- Github에서 다운로드 받은 openpaas-service-release/open-glusterfs-release 폴더로 이동하여 Glusterfs릴리즈 파일을 확인한다.
+- OpenPaaS-Services.zip 파일 압축을 풀고 폴더안에 있는 GlusterFS 서비스 릴리즈 openpaas-glusterfs- 1.0.tgz 파일을 확인한다.
 
->$ cd openpaas-service-release  
+>$ cd OpenPaaS-Services  
 >$ ls –all  
 ![2-2-0-0]  
->
->$ cd open-cubrid-release  
->$ ls –all  
-![2-2-1-0]  
 
 - 업로드 되어 있는 릴리즈 목록을 확인한다.
 
 >$ bosh releases  
 >
-![2-2-4-0]  
+![2-2-1-0]  
 >GlusterFS 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
 
-- GlusterFS 서비스 릴리즈를 생성한다. 
-
->$ bosh create release --version 1.0  
-![2-2-5-0]  
-
-- GlusterFS 서비스 릴리즈를 업로드한다.
+- GlusterFS 서비스 릴리즈 파일을 업로드한다.
 
 >$ bosh upload release {서비스 릴리즈 파일 PATH}
 >
->$ bosh upload release  
-![2-2-6-0]  
-![2-2-6-1]  
-![2-2-6-2]  
+>$ bosh upload release openpaas-glusterfs-1.0.tgz  
+![2-2-2-0]  
+![2-2-2-1]  
+![2-2-2-2]  
 
 - 업로드 된 GlusterFS 릴리즈를 확인한다. 
 
 >$ bosh releases  
-![2-2-7-0]  
+![2-2-3-0]  
 >GlusterFS 서비스 릴리즈가 업로드 되어 있는 것을 확인
 
 <div id='9'></div>
@@ -140,7 +126,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 - openpaas-glusterfs-vsphere-1.0.yml Deployment 파일을 서버 환경에 맞게 수정한다.   
 
->$ vi openpaas-cubrid-vsphere-1.0.yml 
+>$ vi openpaas-glusterfs-vsphere-1.0.yml 
 ```yaml
 # openpaas-glusterfs-vsphere-1.0 설정 파일 내용
 name: openpaas-glusterfs-service# 서비스 배포이름(필수)
@@ -221,7 +207,7 @@ skip_ssl_validation: true # CF SSL 설정
   release: openpaas-glusterfs
 resource_pool: services-small
   template: broker-registrar
-
+>
 # CF Service Broker Deregistrar Errand
 - instances: 1
   lifecycle: errand
@@ -268,8 +254,8 @@ cpu: 2
   #size: 5# resource pool 안의 가상머신 개수, 주의) jobs 인스턴스 보다 작으면 에러가 남, size 정의하지 않으면 자동으로 가상머신 크기 설정
   network: openpaas_network
 stemcell:
-    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent#stemcell 이름(필수)
-    version: "3012"  # stemcell 버전(필수)
+    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent #stemcell 이름(필수)
+    version: "3147"  # stemcell 버전(필수)
 ```
 
 - Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
@@ -357,7 +343,7 @@ Sample Web App 구조는 다음과 같다.
   </tr>
 </table>
 
-- OpenPaaS-Sample-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 GlusterFS Sample Web App인 hello-spring-cubrid를 복사한다.
+- OpenPaaS-Sample-Apps.zip 파일 압축을 풀고 Service폴더안에 있는 GlusterFSSample Web App인 hello-spring-glusterfs를복사한다.
 
 ><div>$ ls -all</div>
 >![3-1-0-0]
@@ -405,7 +391,7 @@ applications:
   instances: 1 # 배포 인스턴스 수
 path: target/hello-spring-glusterfs.war #배포하는 App 파일 PATH
 ```
->참고: ./build/libs/hello-spring-cubrid.war 파일이 존재 하지 않을 경우 gradle 빌드를 수행 하면 파일이 생성된다.
+>참고: ./build/libs/hello-spring-glusterfs.war 파일이 존재 하지 않을 경우 gradle 빌드를 수행 하면 파일이 생성된다.
 
 - --no-start 옵션으로 App을 배포한다.  
 --no-start: App 배포시 구동은 하지 않는다.
@@ -418,67 +404,59 @@ path: target/hello-spring-glusterfs.war #배포하는 App 파일 PATH
 ><div>$ cf apps<br></div>
 >![3-3-1-0]
 ><div>$ cf logs {배포된 App명}<br>
->$ cf logs hello-spring-cubrid</div>
->![3-3-2-0]
+>$ cf logs hello-spring-glusterfs</div>
+>![3-3-1-1]
 
 - Sample Web App에서 생성한 서비스 인스턴스 바인드 신청을 한다. 
 
 ><div>$ cf bind-service hello-spring-glusterfs glusterfs-service-instance</div>
->![3-3-3-0]
+>![3-3-2-0]
 
 - 바인드가 적용되기 위해서 App을 재기동한다.
 
 ><div>$ cf restart hello-spring-glusterfs</div>
->![3-3-4-0]  
+>![3-3-3-0]  
+>![3-3-3-1]  
 
 - App이 정상적으로 GlusterFS 서비스를 사용하는지 확인한다.
 
 ><div>- curl 로 확인 <br>
 $ curl --form attchFile=@../../../Desert.jpg --form press=OK hello-spring-glusterfs.115.68.46.30.xip.io/swifttest
 ></div>
->![3-3-8-0]
+>![3-3-4-0]
 ><div>- 브라우져에서 이미지 확인<br>
 ></div>
->![3-3-8-1]
+>![3-3-4-1]
 
 
-[1-3-0-0]:/images/openpaas-service/cubrid/cubrid_vsphere/1-3-0-0.png
-[2-1-0-0]:/images/openpaas-service/cubrid/cubrid_vsphere/2-1-0-0.png
-[2-1-1-0]:/images/openpaas-service/cubrid/cubrid_vsphere/2-1-1-0.png
-[2-2-0-0]:/images/openpaas-service/cubrid/cubrid_vsphere/2-2-0-0.png
-[2-2-1-0]:/images/openpaas-service/cubrid/cubrid_vsphere/2-2-1-0.png
-[2-2-2-0]:/images/openpaas-service/cubrid/cubrid_vsphere/2-2-2-0.png
-[2-2-3-0]:/images/openpaas-service/cubrid/cubrid_vsphere/2-2-3-0.png
-[2-2-4-0]:/images/openpaas-service/cubrid/cubrid_vsphere/2-2-4-0.png
-[2-2-5-0]:/images/openpaas-service/cubrid/cubrid_vsphere/2-2-5-0.png
-[2-2-5-1]:/images/openpaas-service/cubrid/cubrid_vsphere/2-2-5-1.png
-[2-2-6-0]:/images/openpaas-service/cubrid/cubrid_vsphere/2-2-6-0.png
-[2-2-7-0]:/images/openpaas-service/cubrid/cubrid_vsphere/2-2-7-0.png
-[2-3-0-0]:/images/openpaas-service/cubrid/cubrid_vsphere/2-3-0-0.png
-[2-3-1-0]:/images/openpaas-service/cubrid/cubrid_vsphere/2-3-1-0.png
-[2-3-2-0]:/images/openpaas-service/cubrid/cubrid_vsphere/2-3-2-0.png
-[2-3-3-0]:/images/openpaas-service/cubrid/cubrid_vsphere/2-3-3-0.png
-[2-3-4-0]:/images/openpaas-service/cubrid/cubrid_vsphere/2-3-4-0.png
-[2-3-4-1]:/images/openpaas-service/cubrid/cubrid_vsphere/2-3-4-1.png
-[2-3-5-0]:/images/openpaas-service/cubrid/cubrid_vsphere/2-3-5-0.png
-[2-3-5-1]:/images/openpaas-service/cubrid/cubrid_vsphere/2-3-5-1.png
-[2-4-0-0]:/images/openpaas-service/cubrid/cubrid_vsphere/2-4-0-0.png
-[2-4-1-0]:/images/openpaas-service/cubrid/cubrid_vsphere/2-4-1-0.png
-[2-4-2-0]:/images/openpaas-service/cubrid/cubrid_vsphere/2-4-2-0.png
-[2-4-3-0]:/images/openpaas-service/cubrid/cubrid_vsphere/2-4-3-0.png
-[2-4-4-0]:/images/openpaas-service/cubrid/cubrid_vsphere/2-4-4-0.png
-[3-1-0-0]:/images/openpaas-service/cubrid/cubrid_vsphere/3-1-0-0.png
-[3-2-0-0]:/images/openpaas-service/cubrid/cubrid_vsphere/3-2-0-0.png
-[3-2-1-0]:/images/openpaas-service/cubrid/cubrid_vsphere/3-2-1-0.png
-[3-2-2-0]:/images/openpaas-service/cubrid/cubrid_vsphere/3-2-2-0.png
-[3-3-0-0]:/images/openpaas-service/cubrid/cubrid_vsphere/3-3-0-0.png
-[3-3-1-0]:/images/openpaas-service/cubrid/cubrid_vsphere/3-3-1-0.png
-[3-3-2-0]:/images/openpaas-service/cubrid/cubrid_vsphere/3-3-2-0.png
-[3-3-3-0]:/images/openpaas-service/cubrid/cubrid_vsphere/3-3-3-0.png
-[3-3-4-0]:/images/openpaas-service/cubrid/cubrid_vsphere/3-3-4-0.png
-[3-3-4-1]:/images/openpaas-service/cubrid/cubrid_vsphere/3-3-4-1.png
-[3-3-5-0]:/images/openpaas-service/cubrid/cubrid_vsphere/3-3-5-0.png
-[3-3-6-0]:/images/openpaas-service/cubrid/cubrid_vsphere/3-3-6-0.png
-[3-3-7-0]:/images/openpaas-service/cubrid/cubrid_vsphere/3-3-7-0.png
-[3-3-8-0]:/images/openpaas-service/cubrid/cubrid_vsphere/3-3-8-0.png
-[3-3-8-1]:/images/openpaas-service/cubrid/cubrid_vsphere/3-3-8-1.png
+[1-3-0-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/1-3-0-0.png
+[2-2-0-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/2-2-0-0.png
+[2-2-1-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/2-2-1-0.png
+[2-2-2-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/2-2-2-0.png
+[2-2-2-1]:/images/openpaas-service/glusterfs/glusterfs_vsphere/2-2-2-1.png
+[2-2-2-2]:/images/openpaas-service/glusterfs/glusterfs_vsphere/2-2-2-2.png
+[2-2-3-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/2-2-3-0.png
+[2-3-0-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/2-3-0-0.png
+[2-3-1-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/2-3-1-0.png
+[2-3-2-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/2-3-2-0.png
+[2-3-3-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/2-3-3-0.png
+[2-3-4-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/2-3-4-0.png
+[2-3-4-1]:/images/openpaas-service/glusterfs/glusterfs_vsphere/2-3-4-1.png
+[2-3-5-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/2-3-5-0.png
+[2-4-0-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/2-4-0-0.png
+[2-4-1-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/2-4-1-0.png
+[2-4-2-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/2-4-2-0.png
+[2-4-3-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/2-4-3-0.png
+[2-4-4-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/2-4-4-0.png
+[3-1-0-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/3-1-0-0.png
+[3-2-0-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/3-2-0-0.png
+[3-2-1-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/3-2-1-0.png
+[3-2-2-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/3-2-2-0.png
+[3-3-0-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/3-3-0-0.png
+[3-3-1-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/3-3-1-0.png
+[3-3-1-1]:/images/openpaas-service/glusterfs/glusterfs_vsphere/3-3-1-1.png
+[3-3-2-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/3-3-2-0.png
+[3-3-3-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/3-3-3-0.png
+[3-3-3-1]:/images/openpaas-service/glusterfs/glusterfs_vsphere/3-3-3-1.png
+[3-3-4-0]:/images/openpaas-service/glusterfs/glusterfs_vsphere/3-3-4-0.png
+[3-3-4-1]:/images/openpaas-service/glusterfs/glusterfs_vsphere/3-3-4-1.png

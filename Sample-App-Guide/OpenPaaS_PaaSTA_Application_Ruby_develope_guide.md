@@ -1115,11 +1115,10 @@ http://sourceforge.net/projects/dos2unix/files/latest/download
 
 3.	다음 명령어를 이용하여 bin 폴더 내의 3개의 파일을 유닉스 파일로 변환합니다.
 >dos2unix bin/bundle bin/rake bin/rails   
-
-※	윈도우즈 Power Shell에서는 해당 명령어가 실행되지 않습니다. 명령 프롬프트를 이용하면 명령어를 실행시킬 수 있습니다.
+>※	윈도우즈 Power Shell에서는 해당 명령어가 실행되지 않습니다. 명령 프롬프트를 이용하면 명령어를 실행시킬 수 있습니다.
 변환이 정상적으로 완료되면 다음과 같은 화면을 확인할 수 있습니다.
- 
-![ruby16]   
+>![ruby16] 
+
 4.	[4) 개방형 플랫폼 애플리케이션에 서비스 바인딩 및 애플리케이션 시작] 절차를 다시 수행합니다.
 
 

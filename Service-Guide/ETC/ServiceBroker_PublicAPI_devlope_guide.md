@@ -582,6 +582,82 @@ Service1 PublicPerformance ServiceID plan_id=Service1 PublicPerformance Plan1 ba
 |-------------|-----------------------------|
 | 서비스 1 - 공연전시 정보 조회 서비스 |
 | Service1.Name | PublicPerformance |
+| Service1.Description | Performances, exhibits information display |
+| Service1.Provider | http://www.culture.go.kr |
+| Service1.DocumentUrl | https://www.data.go.kr/subMain.jsp#/L3B1YnIvdXNlL3ByaS9Jcm9zT3BlbkFwaURldGFpbC9vcGVuQXBpTGlzdFBhZ2UkQF4wMTJtMSRAXnB1YmxpY0RhdGFQaz0xNTAwMDEyMCRAXmJybUNkPU9DMDAwOCRAXnJlcXVlc3RDb3VudD0zNDQkQF5vcmdJbmRleD1PUEVOQVBJ |
+| Service1.EndPoint | http://www.culture.go.kr/openapi/rest/publicperformancedisplays |
+| Service1.Plan1.Name | Basic |
+| Service1.Plan1.Description | total 1,000,000 calls |
+| Service1.Plan1.Bullet | 1,000,000 calls |
+| Service1.Plan1.Unit | Total |
+| 서비스 2 - 인천광역시 문화행사 |
+| Service2.Name | IncheonCulture |
+| Service2.Description | Culture performances information held in Incheon City |
+| Service2.Provider | http://iq.ifac.or.kr/ |
+| Service2.DocumentUrl | http://iq.ifac.or.kr/openAPI/look/ |
+| Service2.EndPoint | http://iq.ifac.or.kr/openAPI/real/search.php |
+| Service2.Plan1.Name | Basic |
+| Service2.Plan1.Description | 5,000 calls per day |
+| Service2.Plan1.Bullet | 5,000 calls |
+| Service2.Plan1.Unit | per day |
+| 서비스 3 - 대전광역시 문화축제 |
+| Service3.Name | DaejeonFestival |
+| Service3.Description | Culture Festival information held in Daejeon City |
+| Service3.Provider | http://data.daejeon.go.kr/ |
+| Service3.DocumentUrl | https://www.data.go.kr/subMain.jsp#/L3B1YnIvcG90L215cC9Jcm9zTXlQYWdlL29wZW5EZXZHdWlkZVBhZ2UkQF4wMTJtMSRAXnB1YmxpY0RhdGFQaz0xNTAwNjk2OSRAXnB1YmxpY0RhdGFEZXRhaWxQaz11ZGRpOjJkZjQ4YzY3LWIxYjAtNGMyOS04YTc3LWQyMmQ2Mjc3MTJmZCRAXm9wcnRpblNlcU5vPTgyNTYkQF5tYWluRmxhZz10cnVl |
+| Service3.EndPoint | http://data.daejeon.go.kr/openapi-data/service/rest/festival/festivalDaejeonService/festivalDaejeon |
+| Service3.Plan1.Name | Basic |
+| Service3.Plan1.Description | 1,000 calls per day |
+| Service3.Plan1.Bullet |1,000 calls |
+| Service3.Plan1.Unit | per day |
+| 서비스 4 - 전시공연/테마파크 정보 |
+| Service4.Name | JeonnamPerformanceList |
+| Service4.Description | Performances, exhibits information held in Jeonnam |
+| Service4.Provider | http://api.namdokorea.com/ |
+| Service4.DocumentUrl | http://api.namdokorea.com/main |
+| Service4.EndPoint | http://api.namdokorea.com/openapi/performance/list |
+| Service4.Plan1.Name | Basic |
+| Service4.Plan1.Description | 5,000 calls per day |
+| Service4.Plan1.Bullet | 5,000 calls |
+| Service4.Plan1.Unit | per day |
+
+<div id='45'></div>
+### 6.2. 네이버 API 서비스 브로커 설정파일 정의
+제공되는 2개의 샘플 서비스 브로커 중, 네이버 API 서비스 브로커의 서비스 목록은 다음과 같이 정의 되어있다.
+
+| <b>설정 파일 키(key) 값</b>      | <b>Value 값</b> |
+|-------------|-----------------------------|
+| 서비스 1 - 네이버 지도 서비스 |
+| Service1.Name | NaverMap |
+| Service1.Description | Naver map API service |
+| Service1.Provider | http://www.naver.com |
+| Service1.DocumentUrl | http://developer.naver.com/wiki/pages/JavaScript |
+| Service1.EndPoint | http://openapi.map.naver.com/openapi/naverMap.naver |
+| Service1.Plan1.Name | basic |
+| Service1.Plan1.Description | 1,000,000 calls per day |
+| Service1.Plan1.Bullet | 1,000,000 calls |
+| Service1.Plan1.Unit | per day |
+| 서비스 2 - 네이버 주소-좌표 변환 서비스 |
+| Service2.Name | NaverAddressToGPS |
+| Service2.Description | Convert address into gps coordinate |
+| Service2.Provider | http://www.naver.com |
+| Service2.DocumentUrl | http://developer.naver.com/wiki/pages/JavaScript#section-JavaScript-_EC_9A_94_EC_B2_ADURLRequestUrl |
+| Service2.EndPoint | http://openapi.map.naver.com/api/geocode |
+| Service2.Plan1.Name | basic |
+| Service2.Plan1.Description | 1,000,000 calls |
+| Service2.Plan1.Bullet | 1,000,000 calls |
+| Service2.Plan1.Unit | per day |
+| 서비스 3 - 네이버 검색 서비스 |
+| Service3.Name | NaverSearch |
+| Service3.Description | Naver search API(Blog, News, Movie, Local, etc.) |
+| Service3.Provider | http://www.naver.com |
+| Service3.DocumentUrl | http://developer.naver.com/wiki/pages/SrchAPI |
+| Service3.EndPoint | http://openapi.naver.com/search |
+| Service3.Plan1.Name | basic |
+| Service3.Plan1.Description | 25,000 calls |
+| Service3.Plan1.Bullet | 25,000 calls |
+| Service3.Plan1.Unit | per day |
+
 
 
 [2-1-0-0]:/images/openpaas-service/publicapi/2-1-0-0.png

@@ -253,7 +253,7 @@ jobs:
 
 <br>
 
--	Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
+-	Deploy할 deployment manifest 파일을 BOSH에 지정한다.
 
 >`$ bosh deployment openpaas-apiplatform-aws-1.0.yml`
 
@@ -278,45 +278,75 @@ jobs:
 >![IMAGE 2.3.07]
 
 
-
 ### 2.4. API 매니저에서 API 생성 및 배포
+API 플랫폼 서비스팩에는 API 매니저(API 플랫폼) 서비스 브로커가 포함되어 있다. API 매니저에 등록된 API 서비스를 개방형 클라우드 플랫폼에서 사용하기 위해서는 서비스 브로커를 생성하여야 한다. 이때, API 매니저에 API 서비스가 존재하지 않으면, 개방형 클라우드 플랫폼에서 서비스 브로커를 생성할 수 없기 때문에 서비스 브로커를 생성하기 전에 API 매니저에서 API 서비스를 등록한다.
 
-
+>※ 본 문서에서 생성 및 배포하는 API 서비스는 WSO2 API Manager의 공식 문서에서 안내하는 샘플 API이다.
 
 ##### 2.4.1. 터널링 설정
 API 플랫폼 서비스팩으로 배포한 API 매니저에는 Public IP가 할당되지 않기 때문에 사용자가 웹 브라우저를 통해 API 매니저에 접속할 수 있도록 터널링 설정이 필요하다. 터널링은 다양한 방법을 사용할 수 있지만, 본 문서에서는 SSH 클라이언트인 Putty와 웹 브라우저 Firefox를 이용한 터널링 방법에 대해서 안내한다.
 
+>※ Putty 다운로드: http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
+
+>※ Firefox 다운로드: https://www.mozilla.org/ko/firefox/new/
+
+>※ 설치는 별도로 안내하지 않는다.
+
+
+
 ###### 1. Putty 설정
 (1)다운로드한 Putty를 실행하고 Connection 메뉴를 열어 SSH 메뉴에서 Tunnels를 메뉴를 연다.
 
+>![IMAGE 2.4.1.01]
+
+<br>
 
 (2) 터널링 정보를 입력한다.<br>
 ① Source port에 사용하지 않는 임의의 포트를 입력하고 ②번 Dynamic을 선택한 후, ③ Add 버튼을 눌러 추가한다. ④번 위치에서 D{입력한 포트}의 형태로 추가된 것을 확인한다.
 
+>![IMAGE 2.4.1.02]
+
+<br>
 
 (3) Putty 접속 정보를 입력한다.<br>
 ① Session 메뉴를 클릭하여 접속정보 설정 화면으로 이동하여 ② 배포한 API 매니저와 내부망으로 연결되어 있는 머신(설치 환경에 따라 상이함)의 Public IP를 입력한다.
 
+>![IMAGE 2.4.1.03]
+
+<br>
 
 (4) Putty 접속 및 로그인<br>
 Open 버튼을 클릭하여 해당 머신에 연결한다
 
+>![IMAGE 2.4.1.04]
+
+<br>
 
 로그인 화면에서 로그인을 완료한 채로 접속을 유지해둔다.
 
+>![IMAGE 2.4.1.05]
 
 
 ###### 2. Firefox 설정
 (1) Mozila Firefox 브라우저를 실행하여 첫 화면 하단의 옵션 버튼을 클릭한다.
 
+>![IMAGE 2.4.1.06]
+
+<br>
 
 (2) 설정 창을 연다.<br>
 ① 고급 탭-  ② 네트워크 탭- ③ 설정 버튼을 차례로 클릭하여 설정 창을 연다.
 
+>![IMAGE 2.4.1.07]
+
+<br>
 
 (3) 연결 설정 정보를 입력하고 저장한다.<br>
 ① 프록시 수동설정에 체크하고 ② 화면과 같이 설정을 입력한다. 포트는 Putty 터널링 설정에서 입력한 Source Port와 동일한 포트를 입력한다. ③ 설정을 완료하였으면 확인 버튼을 눌러 저장한다.
 
+>![IMAGE 2.4.1.08]
+
+<br>
 
 ###### 3. 터널링 설정 확인
 터널링 설정이 되어있는 Putty 접속을 유지한 채로, Mozila Firefox 브라우저를 이용하여 API 매니저 관리자 화면에 접속해본다. 하단의 화면이 확인된다면 API 매니저 배포 및 터널링 설정이 정상적으로 이루어진 것이다.
@@ -328,21 +358,32 @@ Open 버튼을 클릭하여 해당 머신에 연결한다
 {API매니저 URL}:9443/carbon
 예) https://10.0.0.201:9443/carbon
 ```
+
+>![IMAGE 2.4.1.07]
+
 ###### 1. API 매니저 접속 및 로그인
 ① API 플랫폼 서비스팩을 통해 배포된 API 매니저의 publisher 대시보드에 접속한다.
+
 ```
 {API매니저 URL}:{API매니저 포트}/publisher
 예) https://10.30.60.201:9443/publisher
 ```
-※	http가 아닌 https임에 주의한다.
+※ http가 아닌 https임에 주의한다.
 
 
 ② 관리자 계정으로 로그인한다. 관리자 계정의 Username과 Password는 admin/admin이다.
 ※	API 매니저 관리자 대시보드({API매니저 URL}:{API매니저 포트}/carbon)에서 계정을 추가하고 권한을 설정하여 사용할 수도 있지만, 그에 대한 설명은 본 문서에서는 기술하지 않는다.
 
+>![IMAGE 2.4.2.01]
+
+<br>
 
 ###### 2. API 생성
-① 로그인이 완료되면 다음과 같은 화면을 확인할 수 있다. 최초 배포가 완료되면 API가 생성되지 않은 상태이므로 ②번의 New API 버튼이 화면에 보여진다. New API 버튼을 클릭하여 API 생성화면으로 이동한다. 
+① 로그인이 완료되면 다음과 같은 화면을 확인할 수 있다. 최초 배포가 완료되면 API가 생성되지 않은 상태이므로 ②번의 New API 버튼이 화면에 보여진다. New API 버튼을 클릭하여 API 생성화면으로 이동한다.
+
+>![IMAGE 2.4.2.02]
+
+<br>
 
 <div id=DefineGeneralDetails></div>
 ###### 3. General Details 정의
@@ -360,15 +401,22 @@ Version: 1.0.0
 
 ※	④번 Edit Swagger Definition 버튼을 클릭하여 다음의 [[4. Resources 정의]](#DefineResources) 과정을 생략 할 수 있다. 이에 대한 설명은 [[4. Resources 정의]](#DefineResources) 하단에 [[Swagger 정의]](#DefineSwagger)로 첨부한다.
 
+>![IMAGE 2.4.2.03]
+
 <div id=DefineResources></div>
 ###### 4. Resources 정의
 ① General Details 하단에 Resources 입력란이 있다. URL Pattern에 대소문자 구분에 유의하여 CheckPhoneNumber 값을 입력하고 GET, POST, OPTIONS 메소드를 선택한다. Resource Name의 값은 URL Pattern을 입력하면 같은 값이 자동으로 입력되는데 사용자 필요에 따라 변경할 수 있다.<br>
 ② 입력이 완료되었다면, Add New Resource 버튼을 클릭하여 Resource를 추가한다.<br>
 
+>![IMAGE 2.4.2.04]
 
+<br>
 
 리소스를 추가하면 하단의 그림처럼 추가된 Resource가 화면에 나타난다. 그 중 GET 메소드의 리소스를 클릭하여 파라미터 세부사항을 정의한다.
 
+>![IMAGE 2.4.2.05]
+
+<br>
 
 리소스를 클릭하면 파라미터 세부사항 입력란이 노출된다.<br>
 ① 추가하고자 하는 파라미터 명을 입력한다.<br>
@@ -381,6 +429,10 @@ Version: 1.0.0
 | LicenseKey | Give the license key. If you don't have any, enter 0 | query | string | True |
 
 ④ 하단의 버튼 중, 좌측의 Save버튼을 클릭하여 저장하고 가운데 Implement 버튼을 클릭하여 다음단계인 Implement 단계로 진행한다.<br>
+
+>![IMAGE 2.4.2.06]
+
+<br>
 
 <div id=DefineSwagger></div>
 ※	Swagger 정의<br>
@@ -455,11 +507,16 @@ authorizations:
 ③ 추가된 사항을 저장한다.<br>
 ④ 다음 단계인 Manage 화면으로 이동한다.<br>
 
+>![IMAGE 2.4.2.07]
+
 ###### 6. Tier 선택
 ① API의 Tier 및 추가적인 설정을 입력하는 Manage화면이다.<br>
 ② Tier Availability는 해당 API 서비스의 호출 횟수를 제한하는 설정으로 개방형 클라우드 플랫폼에서는 플랜으로 표시된다. API 매니저에 설정된 4가지 기본 Tier 중, 사용자 필요에 맞게 선택할 수 있고 API 매니저 관리자 대시보드({API매니저 URL}:{API매니저 포트}/carbon)에서 Tier명과 호출 횟수 제한을 변경할 수 있다. 다만, 현재는 API 서비스 브로커 설계상 API Tier는 Unlimited Tier를 선택하여야 한다. 따라서 Unlimited Tier만을 선택한다. Unlimited Tier만 선택하여 API 서비스를 배포하더라도 개방형 클라우드 플랫폼에서는 Unlimited와 Bronze의 두 가지 플랜을 선택할 수 있다.<br>
 ③ Save & Publish 버튼을 클릭하여 저장하고 API를 배포한다.<br>
 
+>![IMAGE 2.4.2.08]
+
+<br>
 
 ###### 7. 배포 확인
 ① API 매니저의 Store 대시보드에 접속한다.
@@ -474,11 +531,29 @@ authorizations:
 
 ② 생성한 API가 배포되어 있음을 확인한다. 배포되지 않은 API는 Store 대시보드에 노출되지 않는다.
 
+>![IMAGE 2.4.2.09]
+
 
 ### 2.5. 플랫폼 서비스 브로커 등록
 API 매니저(API 플랫폼)에 API 서비스가 정상적으로 등록 및 배포가 완료되었다면, 등록된 API 서비스를 개방형 클라우드 플랫폼의 서비스 형태로 제공하기 위해 API 플랫폼 서비스 브로커를 등록해 주어야 한다. 서비스 브로커 등록 시, 개방형 클라우드 플랫폼에서 서비스 브로커를 등록할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
+-	서비스 브로커 목록을 확인한다.
 
+>`$ cf service-brokers`
+
+>![IMAGE 2.5.01]
+
+-	API 플랫폼 서비스 브로커를 등록한다.
+
+>`$cf create-service-broker {서비스 브로커 이름} {서비스 브로커 사용자ID} {서비스 브로커 사용자 비밀번호} {서비스 브로커 URL}`
+
+>서비스 브로커 이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.
+>서비스 브로커 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID입니다. 서비스 팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
+>서비스브로커 URL : 서비스 팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.
+
+>`$ cf create-service-broker apiplatform-service-broker admin cloudfoundry http://10.30.60.200:8080`
+
+>![IMAGE 2.5.02]
 
 # 3. API 플랫폼 연동
 [[2.4 API 매니저에서 API 생성 및 배포]](#APICreatePublish)에서 생성한 API 서비스를 샘플 App에 바인드하여, Vcap 환경설정 정보를 정상적으로 획득할 수 있는지를 확인함으로써 연동여부를 확인한다. 단순히 서비스 바인드만 진행하기 때문에 샘플 어플리케이션은 어떤 어플리케이션을 사용해도 무방하다.

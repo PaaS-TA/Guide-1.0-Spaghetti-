@@ -306,15 +306,18 @@ Extenstion에 추가한 mysqli를 사용합니다. XAMP에서는 기본으로 �
 
 
 1.	Mysql 에 접속하기
+2.	
         $conn = new mysqli($this->host, $this->username, $this->password, $this->dbname);
         
         if($conn->connect_error) {
             die("conncetion failed:".$conn->connect_error);            
         }
+
 mysqli를 이용하여 mysql 서비스에 접속합니다. 환경설정에서 가져온 host, username, password와 db명을 이용하여 접속을 합니다.
 
 2.	Query보내고 결과값 받기
 Query를 작성하고 Prepared Statement로 실행을 합니다. 실행된 결과값을 받아서 원하는 형태의 Array로 만들어 줍니다. 모든 처리가 완료되면 close로 connection과 statement를 종료합니다.
+
         $sql = "SELECT * FROM ORG_TBL";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -341,6 +344,7 @@ Query를 작성하고 Prepared Statement로 실행을 합니다. 실행된 결�
         $conn->close();
 
 3.	결과값을  Json으로컨버전하여 HTML에서 처리할 수 있도록 합니다.
+
         echo json_encode($result);
 
 <div id='2.3.6'></div>  
@@ -358,6 +362,7 @@ Extenstion에 추가한 mongo 라이브러리를 이용합니다. 단 현재 mon
         $mongo = new MongoClient($this->uri);
 
 2.	Collection을 설정하고 해당 Collection에서 정보를 요청합니다. Find 명령을 이용하여 필요한 정보를 요청합니다. 받아온 결과는 $cursor에 넣고 원하는 데이터 형태로 변경합니다.
+
         $collection = $mongo->selectCollection($this->dbname, 'ORG_TBL');
         $cursor = $collection->find(array('_id'=>new MongoId($org_id)));
         
@@ -473,6 +478,7 @@ Opencloud를 사용하기 위해 선언을 합니다.
 
 1)	./manifest.yml 생성
 -	cf push 명령시 현재 디렉토리의manifest.yml을 참조하여 배포가 진행된다.
+	
         ---
         applications:
         - name:php-sample-app# 애플리케이션 이름
@@ -480,9 +486,11 @@ Opencloud를 사용하기 위해 선언을 합니다.
           instances: 1# 애플리케이션 인스턴스 개수
         path: .
         buildpack: https://github.com/cloudfoundry/php-buildpack.git# 사용할 빌드팩을 선언
+
 ※애플리케이션 스테이징시할달 받은 포트가 환경변수로 등록되어있다. 이 포트는 애플리케이션의 상태 체크에도 사용되므로 위와 같이 포트를 지정할 것을 권장한다.
 
 2)	개방형 플랫폼 로그인
+
         $ cfapi https://api.cf.open-paas.com# 개방형 플랫폼 TARGET 지정
         #cfapi [target url]
         

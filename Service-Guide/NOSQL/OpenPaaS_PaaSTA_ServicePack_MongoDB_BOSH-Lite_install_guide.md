@@ -119,11 +119,11 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 B
 ><div>$ bosh status</div>
 >![2-3-1-0]
 
-- Deploy시 사용할 Stemcell을 확인한다. (Stemcell 389 버전 사용)
+- Deploy시 사용할 Stemcell을 확인한다. (Stemcell 3147 버전 사용)
  
 ><div>$ bosh stemcells</div>
->![2-3-2-0]
-><div>Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 389 버전을 업로드를 해야 한다.</div>
+>![2-3-2-0-1]
+><div>Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3147 버전을 업로드를 해야 한다.</div>
 
 - openpaas-mongodb-shard-lite-1.0.yml Deployment 파일을 서버 환경에 맞게 수정한다.
 
@@ -169,7 +169,7 @@ resource_pools:   # 배포시 사용하는 resource pools를 명시하며 여러
     network: default
     stemcell:
       name: bosh-warden-boshlite-ubuntu-trusty-go_agent  # stemcell 이름(필수)
-      version: 389   # stemcell 버전(필수)
+      version: 3147  # stemcell 버전(필수)
 #    cloud_properties: # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성을 설명 (instance_type, availability_zone), 직접 cpu, disk, 메모리 설정가능
 #      cpu: 2
 #      disk: 8192
@@ -713,3 +713,4 @@ MongoChef 프로그램은 무료로 사용할 수 있는 소프트웨어이다.
 [2-2-6-0-1]:/images/openpaas-service/mongodb/mongodb_lite/2-2-6-0-1.png
 [2-2-6-1-1]:/images/openpaas-service/mongodb/mongodb_lite/2-2-6-1-1.png
 [2-2-7-0-1]:/images/openpaas-service/mongodb/mongodb_lite/2-2-7-0-1.png
+[2-3-2-0-1]:/images/openpaas-service/mongodb/mongodb_lite/2-3-2-0-1.png

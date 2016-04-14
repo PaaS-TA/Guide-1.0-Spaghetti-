@@ -65,149 +65,45 @@ PHP로 REST/full 서버를 구현하였고 화면(HTML)은 Apache의 Web 서버�
 
 샘플의 위치는 변경될수있느나 개방형 플랙폼 홈페이지에서 찾아볼 수 있습니다. 해당 GIT 위치를 확인하시고 아래와 같은 명령문으로 소스를 다운로드 받습니다. 해당 명령을 위해서는 GIT Client가 설치되어 있어야 합니다.
 
-$ git clone 
-
+	$ git clone 
 
 
 ## 2.2.  XAMP설치
 
 BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템셀을 생성하기 위해서는 AWS에 계정을 생성하고 스템셀을 생성하기 위한 환경을 구성해야 한다.
   
-  ![./image/php/php_develope_guide2.png](./image/php/php_develope_guide2.png)
+
   
     1.	URL (https://www.apachefriends.org/index.html) 에 접속하면 바로 다운로드 화면이 나옵니다. 여기서 "Click here for other version"을 선택합니다. 
-     
+    
+    ![./image/php/php_develope_guide2.png](./image/php/php_develope_guide2.png)
     XAMP 공식 홈페이지 첫화면
     
     다운로드는 Windows버전 PHP 5.5.30 (32bit)을 다운로드 받습니다.
     
     2.	다운로드 받은 파일을 실행하고 모두 Next를 하면됩니다. 하지만 아래와 같이 디렉토리를 물어보는데 이때 이 위치를 변경하거나 정확하게 기억하고 있어야 합니다. 설치 완료후php 실행 디렉토리를 환경변수(Path)에 넣어 줘야 하기 때문입니다.
     
-     
+    ![./image/php/php_develope_guide3.png](./image/php/php_develope_guide3.png)
     XAMP 설치 디렉토리
     
     3.	설치가 정상적으로 이루어지고 있으면 아래와 같이 진행이 될겁니다. 처음 실행할 때 Antivirus 프로그램으로 느려질수 있다는 문구 등이 나올수도 있는데 "확인"을 누르시면 됩니다.
     
+    ![./image/php/php_develope_guide4.png](./image/php/php_develope_guide4.png)
+    XAMP 설치 진행중
     
-  	AWS 웹사이트: [https://aws.amazon.com/ko/](https://aws.amazon.com/ko/)
-
-
--   Access Key 설정
-
-	1.  AWS에 로그인: [https://console.aws.amazon.com/console/home](https://console.aws.amazon.com/console/home)
-
-
-		![account-dashboard](./images/iaas_setup/aws/account-dashboard.png "account-dashboard")
-
-
-	2.  화면 우측 상단의 계정을 선택하여 Security Credentials를 선택
-
-		![security-credentials-menu](./images/iaas_setup/aws/security-credentials-menu.png "security-credentials-menu")
-
-
-	3.  'AWS IAM' 확인 팝업이 나타나면 'Continue to Security Credentials' 버튼을 선택하여 Security Credentials 화면으로 이동
-
-
-	4.  Access Keys를 선택하여 Create New Access Key 버튼을 눌러 Access Key를 생성한다.
+    4.	설치가 완료되면 Control Panel을 띄우겠다는 메시지가 나옵니다. 선택이 Default로 되어 있어 완료를 선택하면 아래와 같은 Control Panel이 실행됩니다.
     
-		![security-credentials-dashboard](./images/iaas_setup/aws/security-credentials-dashboard.png "security-credentials-dashboard")
+    ![./image/php/php_develope_guide5.png](./image/php/php_develope_guide5.png)
+    XAMP 관리 패널 창
+    
+    사용방법은 간단합니다. 원하는 서비스(여기서는 Apache 만 사용할 예정)의 Start를 선택하면 해당 서비스가 실행이 됩니다. 단. 해당서비스가 사용하는 포트(Apache의 경우 80)는 사용하고 있지 않아야 합니다.
+    
+    5.	Apache의 Config를 선택하고 Apache (httpd.conf)를 선택하여 DocumentRootdhk Directory의 위치를 개발소스가 설치된 곳으로 바꾸면 브라우져에서http://localhost 로 호출시 개발하는 위치로 바로 연결됩니다. 개발소스의 위치는 2.2.1에서 설치한 위치를 지정해 넣습니다.
+    
+    
+    DocumentRoot C:\개발소스위치
 
-
-	5.  생성한 키 정보를 확인한다.
-
-		![access-keys-modal](./images/iaas_setup/aws/access-keys-modal.png "access-keys-modal")
-
-		화면의 Access Key ID를 ***BOSH\_AWS\_ACCESS\_KEY\_ID***에 설정한다.
-
-		화면의 Secret Access Key를 ***BOSH\_AWS\_SECRET\_ACCESS\_KEY***에 설정한다.
-
-
-	6.  다이얼로그 화면을 닫는다.
-
-
-
--   Virtual Private Cloud (VPC) 구성
-
-
-	1.  화면 우측 상단의 지역메뉴를 선택한다. (현재 N. Virginia 지역에서만 light stemcell을 사용할 수 있다.)
-
-		![account-dashboard-region-menu.png](./images/iaas_setup/aws/account-dashboard-region-menu.png "account-dashboard-region-menu")
-
-	2.  AWS 콘솔 화면에서 VPC 메뉴를 선택한다.
-
-		![account-dashboard-vpc](./images/iaas_setup/aws/account-dashboard-vpc.png "account-dashboard-vpc")
-
-	3.  VPC 마법사를 선택한다.
-
-		![vpc-dashboard-start](./images/iaas_setup/aws/vpc-dashboard-start.png "vpc-dashboard-start")
-
-	4.  “VPC with a Single Public Subnet” 선택
-
-		![vpc-dashboard-wizard](./images/iaas_setup/aws/vpc-dashboard-wizard.png "vpc-dashboard-wizard")
-
-	5.  네트워크 정보를 입력하고 VPC 생성 버튼을 눌러 VPC를 생성한다.
-		
-		![create-vpc](./images/iaas_setup/aws/create-vpc.png "create-vpc")
-
-	6.  아래와 같이 생성한 VPC의 목록이 출력된다.
-
-		![list-subnets](./images/iaas_setup/aws/list-subnets.png "list-subnets")
-
-		Subnet ID를 ***BOSH\_AWS\_SUBNET\_ID***에 설정한다.
-
-
--   Key Pair 생성
-
-	1.  AWS 콘솔 화면에서 ‘EC2’ 메뉴를 선택하여 EC2 대시보드 화면으로 이동한다.
-
-	2.  ‘Key Pairs’와 ‘Create Key Pair’ 버튼을 차례로 선택한다.
-
-		![list-key-pairs](./images/iaas_setup/aws/list-key-pairs.png "list-key-pairs")
-
-	3.  Key Pair 생성 다이얼로그 화면에서 Key Pair명을 입력하여 Key Pair를 생성하고 다운로드 한다.
-
-		![create-key-pair](./images/iaas_setup/aws/create-key-pair.png "create-key-pair")
-
-	4.  다운로드한 Key(예: bosh.pem)를 키 보관 디렉토리에 옮기고 권한을 변경한다.
-
-  
-			# Key pair name이 ‘bosh’인 키를 ‘~/Downloads’ 디렉토리에 다운로드 한 경우
-			$ mv ~/Downloads/bosh.pem ~/.ssh/
-			$ chmod 400 ~/.ssh/bosh.pem
-  
-
-		키 경로 및 키 이름을 ***BOSH\_VAGRANT\_KEY\_PATH***에 설정한다.
-
--   시큐리티 그룹 생성
-
-	1.  EC2 대시보드 화면에서 ‘Security Groups’과 ‘Create Security Group’ 버튼을 차례대로 누른다.
-
-		![list-security-groups](./images/iaas_setup/aws/list-security-groups.png "list-security-groups")
-
-	2.  시큐리티 그룹 생성 팝업화면에서 다음과 같이 값을 입력하여 시큐리티 그룹을 생성한다.
-
-		![create-security-group](./images/iaas_setup/aws/create-security-group.png "create-security-group")
-
-			
-		|항목                  |설정값                             |설명|
-		|---------------------|----------------------------------|----------------------------
-		|Security group name   |임의 (예: bosh_stemcell)           |시큐리티 그룹명|
-		|Description           |임의 (예: BOSH builds Stemcells)   |시큐리티 그룹에 대한 설명|
-		|VPC                   |VPC 구성에서 생성한 VPC             |시큐리티 그룹을 적용할 VPC|
-
-
-	3.  생성한 시큐리티 그룹에 보안정책을 설정하기 위해 ‘Inbound’ 탭의 ‘Edit’을 선택한다.
-
-		![open-edit-security-group-modal](./images/iaas_setup/aws/open-edit-security-group-modal.png "open-edit-security-group-modal")
-
-	4.  아래표와 같이 보안정책을 추가한다.
-
-		|Type   |Protocol   |Port Range   |Source|
-		|------|----------|------------|--------|
-		|SSH    |TCP        |22           |My IP|
-
-
-		생성한 시큐리티 Group ID를 ***BOSH\_AWS\_SECURITY\_GROUP***에 설정한다.
+    <DirectoryC:\개발소스위치>
 
 
 ## 2.3.  RUBY 설치

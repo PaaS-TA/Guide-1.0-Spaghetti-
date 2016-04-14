@@ -359,6 +359,7 @@ Extenstion에 추가한 mongo 라이브러리를 이용합니다. 단 현재 mon
 (위치 :api/mongodb_view.php)
 
 1.	Mongodbl 에 접속합니다. 환경설정에서 받아온 uri 정보를 이용합니다.
+2.	
         $mongo = new MongoClient($this->uri);
 
 2.	Collection을 설정하고 해당 Collection에서 정보를 요청합니다. Find 명령을 이용하여 필요한 정보를 요청합니다. 받아온 결과는 $cursor에 넣고 원하는 데이터 형태로 변경합니다.
@@ -379,6 +380,7 @@ Extenstion에 추가한 mongo 라이브러리를 이용합니다. 단 현재 mon
         }
 
 3.	결과값을  Json으로컨버전하여 HTML에서 처리할 수 있도록 합니다.
+	
         echo json_encode($result);
 
 <div id='2.3.8'></div>  

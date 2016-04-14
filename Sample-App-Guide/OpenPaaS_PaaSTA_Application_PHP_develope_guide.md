@@ -166,6 +166,7 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
 
 Composer를 사용하여 Dependency를 관리합니다. Composer.json 파일의 Package구성을 설명하면 아래의 표와 같습니다. 설정정보는 composer.json에 저장되어 있습니다.
 
+
   |패키지명                  |버전   |설명                                             |
 	|--------------------------|------|--------------------------------------------|
 	|slim/slim                 |2.*     |PHP의 REST/full Framewok를 위해 사용합니다.                                          |
@@ -174,6 +175,7 @@ Composer를 사용하여 Dependency를 관리합니다. Composer.json 파일의 
 	|rackspace/php-opencloud   |1.15.*  |Openstack 연결 SDK로 GlusterFS에 파일을 Upload할 때 사용합니다.      |
 	|guzzlehttp/guzzle         |6.*     |Http client로 GlusterFS의 Container 권한 변경시 사용합니다.   |
 	|phpunit/phpunit           |4.3.*   |PHP의 단위테스트를 위한 프로그램입니다. Vendor\bin\phpunit를 실행하면 test 디렉토리의 Test Case를 실행하고 결과를 화면에 표시합니다.   |
+
 
   Composer를 이용하여 라이브러리를 설치하려면 아래와 같이 install을 실행하면 됩니다. 이 명령은 개방형 플랫폼에 PHP 빌드팩과 같이 배포될 때 자동으로 수행이 됩니다. 
   phpcomposer.phar install

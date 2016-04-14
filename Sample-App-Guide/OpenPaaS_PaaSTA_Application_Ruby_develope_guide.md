@@ -1147,7 +1147,7 @@ Rspec을 이용한 Ruby 애플리케이션 테스트
 </table>
 
 2)	테스트 실행
->bundle exec rspec
+>bundle exec rspec   
       ※정상적인 테스트 진행을 위해서는 해당 서비스와 접속이 가능하여야 한다.(프록시, 터널링 등..)
       
 

@@ -29,11 +29,11 @@
 
 ![시스템구성도][mysql_vsphere_1.3.01]
 
-| 구분 | 스펙 |
-|--------|-------|
-| openpaas-mysql-broker |2vCPU / 4GB RAM / 10GB Disk |
-| proxy | 2vCPU / 4GB RAM / 10GB Disk |
-| server | 2vCPU / 4GB RAM / 10GB Disk+100GB(영구적 Disk)*3 |
+| 구분 | Resource Pool | 스펙 |
+|--------|-------|-------|
+| openpaas-mysql-broker | services-small | 1vCPU / 1GB RAM / 8GB Disk |
+| proxy | services-small | 1vCPU / 1GB RAM / 8GB Disk |
+| server | services-small | 1vCPU / 1GB RAM / 8GB Disk +8GB(영구적 Disk) |
 
 ### 1.4. 참고자료
 [**http://bosh.io/docs**](http://bosh.io/docs)  
@@ -46,35 +46,26 @@
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.
 서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.
 BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여BOSH CLI를 설치 해야 한다.
-OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Deployment.zip, OpenPaaS-Sample-Apps.zip, OpenPaaS-Services.zip)
+
+OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Services.zip, OpenPaaS-Deployment.zip, OpenPaaS-Sample-Apps.zip)
 
 ###2.2. MySQL 서비스 릴리즈 업로드
 
-OpenPaaS-Services.zip 파일 압축을 풀고 폴더안에 있는 MySQL 서비스 릴리즈 openpaas-mysql-release-beta-1.0.tgz 파일을 복사한다.
+##### OpenPaaS-Services.zip 파일 압축을 풀고 폴더안에 있는 MySQL 서비스 릴리즈 openpaas-mysql-1.0.tgz 파일을 확인한다.
 
-##### 업로드할 openpaas-mysql-release-beta-1.0.tgz 파일을 확인한다.
-
+>`$ cd openpaas-service-release`   
 >`$ ls –all`
 
 >![mysql_vsphere_2.2.01]
 
 <br>
 
-##### 업로드 되어 있는 릴리즈 목록을 확인한다.
-
->`$ bosh releases`
-
->![mysql_vsphere_2.2.02]
-
->Mysql 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
-
-<br>
-
 ##### MySQL 서비스 릴리즈 파일을 업로드한다.
 
->`$ bosh upload release {서비스 릴리즈 파일 PATH}`
+>`$ bosh upload release {서비스 릴리즈 파일 PATH}`   
+>`$ bosh upload release openpaas-mysql-1.0.tgz`
 
->`$ bosh upload release openpaas-mysql-release-beta-1.0.tgz`
+>※	하단의 화면은 릴리즈 파일을 tarball 형태로 압축하지 않고 릴리즈를 업로드하고 있다. 본 문서에서 안내하는 방법대로 tarball 형태로 릴리즈 파일 압축하여 업로드 할 경우에 출력되는 화면은 하단의 화면과 다소 차이가 있다.
 
 >![mysql_vsphere_2.2.03]
 
@@ -103,12 +94,11 @@ OpenPaaS-Services.zip 파일 압축을 풀고 폴더안에 있는 MySQL 서비�
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
 
-##### OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더안에 있는 vSphere 용 MySQL Deployment 화일인 openpaas-mysql-vsphere-1.0.yml을 복사한다.
+##### OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더안에 있는 vSphere용 MySQL Deployment 화일인 openpaas-mysql-vsphere.yml을 복사한다.
 
-<br>
+##### 다운로드 받은 Deployment Yml 파일을 확인한다. ((openpaas-mysql-vsphere.yml)
 
-##### 다운로드 받은 Deployment Yml 파일을 확인한다. (openpaas-mysql-vsphere-1.0.yml)
-
+>`$ cd Deployment`
 >`$ ls –all`
 
 >![mysql_vsphere_2.3.01]
@@ -135,13 +125,12 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 <br>
 
-##### -	openpaas-mysql-vsphere-1.0.yml Deployment 파일을 서버 환경에 맞게 수정한다.
+##### -	openpaas-mysql-vsphere.yml Deployment 파일을 서버 환경에 맞게 수정한다.
 
 >`$ vi openpaas-mysql-vsphere-1.0.yml`
 
 ```yml
 # openpaas-mysql-vsphere 설정 파일 내용
-
 name: openpaas-mysql-service              # 서비스 배포이름(필수)
 director_uuid: xxxxx                 # bosh status 에서 확인한 Director UUID을 입력(필수)
 
@@ -176,7 +165,7 @@ jobs:
     cluster_ips:                           # 클러스터 구성시 IPs(필수)
     - 10.30.40.191
     - 10.30.40.192
-    - 10.30.40.193  # MySQL 서버 IP
+    - 10.30.40.193                     # MySQL 서버 IP
     network_name: openpaas_network        # Networks block에서 선언한 network 이름
     seeded_databases: null
     syslog_aggregator: null
@@ -222,8 +211,8 @@ template: mysql                   # job template 이름(필수)
     network_name: openpaas_network        # Networks block에서 선언한 network 이름
     seeded_databases: null
     syslog_aggregator: null
-    collation_server: utf8_unicode_ci  # Mysql CharSet
-    character_set_server: utf8 # Mysql CharSet
+    collation_server: utf8_unicode_ci        # Mysql CharSet
+    character_set_server: utf8              # Mysql CharSet
   release: openpaas-mysql                  # 서비스 릴리즈 이름(필수)
   resource_pool: services-small       # Resource Pools block에 정의한 resource pool 이름(필수)
   template: mysql                   # job template 이름(필수)
@@ -232,13 +221,13 @@ template: mysql                   # job template 이름(필수)
   name: proxy                          # 작업 이름(필수): proxy
   networks:
   - name: openpaas_network
-    static_ips: 10.30.40.194  # 사용할 IP addresses 정의(필수): Proxy IP
+    static_ips: 10.30.40.194          # 사용할 IP addresses 정의(필수): Proxy IP
   properties:
     cluster_ips:
     - 10.30.40.191
     - 10.30.40.192
     - 10.30.40.193                        # MySQL 서버 IP
-    external_host: controller.open-paas.com    # CF 설치시 설정한 외부 호스트 정보(필수)
+    external_host: 115.68.46.30.xip.io    # CF 설치시 설정한 외부 호스트 정보(필수)
     nats:                           # CF 설치시 설치한 nats 정보 (필수)
       machines:
       - 10.30.40.11           # nats 서버 IP
@@ -249,7 +238,7 @@ template: mysql                   # job template 이름(필수)
     proxy:                          # proxy 정보 (필수)
       api_password: admin        # proxy api 유저 비밀번호(필수)
       api_username: api                  # proxy api 유저아이디
-      api_force_https: false  # proxy api ssl여부
+      api_force_https: false             # proxy api ssl여부
     syslog_aggregator: null
   release: openpaas-mysql
   resource_pool: services-small
@@ -259,7 +248,7 @@ template: mysql                   # job template 이름(필수)
   name: openpaas-mysql-java-broker   # 작업 이름(필수): 서비스 브로커
   networks:
   - name: openpaas_network
-    static_ips: 10.30.40.195 # 사용할 IP addresses 정의(필수): 서비스 브로커 IP
+    static_ips: 10.30.40.195          # 사용할 IP addresses 정의(필수): 서비스 브로커 IP
   properties:
     jdbc_ip: 10.30.40.194                  # Mysql Url
     jdbc_pwd: admin                     # Mysql password
@@ -287,7 +276,7 @@ release: openpaas-mysql
     cf:
       admin_password: admin
       admin_username: admin
-      api_url: https://api.controller.open-paas.com
+      api_url: https://api.115.68.46.30.xip.io
       skip_ssl_validation: true
   release: openpaas-mysql
   resource_pool: services-small
@@ -295,7 +284,7 @@ release: openpaas-mysql
 
 - instances: 1
   lifecycle: errand
-  name: broker-deregistrar   # 작업 이름: 서비스 브로커 삭제
+  name: broker-deregistrar             # 작업 이름: 서비스 브로커 삭제
   networks:
   - name: openpaas_network
   properties:
@@ -304,16 +293,16 @@ release: openpaas-mysql
     cf:
       admin_password: admin
       admin_username: admin
-      api_url: https://api.controller.open-paas.com
+      api_url: https://api.115.68.46.30.xip.io
       skip_ssl_validation: true
   release: openpaas-mysql
   resource_pool: services-small
   template: broker-deregistrar
 
 meta:
-  apps_domain: controller.open-paas.com         # CF 설치시 설정한 apps 도메인 정보
+  apps_domain: 115.68.46.30.xip.io         # CF 설치시 설정한 apps 도메인 정보
   environment: null 
-  external_domain: controller.open-paas.com      # CF 설치시 설정한 외부 도메인 정보
+  external_domain: 115.68.46.30.xip.io      # CF 설치시 설정한 외부 도메인 정보
   nats:# CF 설치시 설정한 nats 정보
     machines:
     - 10.30.40.11
@@ -335,10 +324,10 @@ networks:                  # 네트워크 블록에 나열된 각 서브 블록�
     reserved:                    # 설치시 제외할 IP 설정
     - 10.30.0.1 - 10.30.0.10
     static:
-    - 10.30.40.110 - 10.30.40.200    #사용 가능한 IP 설정
+    - 10.30.40.110 - 10.30.40.200        #사용 가능한 IP 설정
   type: manual
 properties: {}
-resource_pools:     # 배포시 사용하는 resource pools를 명시하며 여러 개의 resource pools 을 사용할 경우 name 은 unique 해야함(필수)
+resource_pools:       # 배포시 사용하는 resource pools를 명시하며 여러 개의 resource pools 을 사용할 경우 name 은 unique 해야함(필수)
 - cloud_properties:        # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성을 설명 (instance_type, availability_zone), 직접 cpu, disk, 메모리 설정가능
     cpu: 2
     disk: 10480
@@ -365,6 +354,7 @@ resource_pools:     # 배포시 사용하는 resource pools를 명시하며 여�
 ##### MySQL 서비스팩을 배포한다.
 
 >`$ bosh deploy`
+>※	40분 ~ 1시간 정도 소요된다.
 
 >![mysql_vsphere_2.3.05]
 
@@ -374,7 +364,7 @@ resource_pools:     # 배포시 사용하는 resource pools를 명시하며 여�
 
 ##### 배포된 MySQL 서비스팩을 확인한다.
 
->`$bosh vms`
+>`$bosh vms openpaas-mysql-service`
 
 >![mysql_vsphere_2.3.07]
 
@@ -392,13 +382,13 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 ##### MySQL 서비스 브로커를 등록한다.
 
->`$ cf create-service-broker {서비스 브로커 이름} {서비스 브로커 사용자ID} {서비스 브로커 사용자 비밀번호}  http://{서비스 브로커 URL}`
+>`$ cf create-service-broker {서비스팩 이름}{서비스팩 사용자ID}{서비스팩 사용자비밀번호} http://{서비스팩 URL(IP)}`
 	
-	서비스 브로커 이름: 서비스 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스  브로커의의 명칭이다.
-	서비스 브로커  사용자ID / 비밀번호: 서비스 브로커에 접근할 수 있는 사용자 ID이다. 서비스 브로커도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
-	서비스 브로커 URL: 서비스 브로커가 제공하는 API를 사용할 수 있는 URL을 입력한다.
+	서비스팩 이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.
+	서비스팩 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID입니다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
+	서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.
 
->`$cf create-service-broker mysql-service-broker admin cloudfoundry http://10.20.0.94:8080`
+>`$cf create-service-broker mysql-service-broker admin cloudfoundry http://10.0.0.95:8080`
 
 >![mysql_vsphere_2.4.02]
 
@@ -424,7 +414,7 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 ##### 특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
 
->`$ cf enable-service-access mysql-service`
+>`$ cf enable-service-access Mysql-DB`
 
 >`$ cf service-access`
 
@@ -446,7 +436,7 @@ Sample Web App 구조는 다음과 같다.
 | pom.xml | 메이븐 project 설정 파일
 | target | 메이븐 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)
 
-##### OpenPaaS-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를 복사한다.
+##### OpenPaaS-Sample-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를복사한다.
 
 >`$ls -all`
 
@@ -474,10 +464,10 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 >`$ cf create-service {서비스명} {서비스플랜} {내서비스명}`
 
 >서비스명 : p-mysql로 Marketplace에서 보여지는 서비스 명칭이다.
->서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. MySQL 서비스는 100mb, 1gb를 지원한다.
+>서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. MySQL 서비스는 10 connection, 100 connection 를 지원한다.
 >내 서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.
 
->`$ cf create-service mysql-service 100mb mysql-service-instance`
+>`$ cf create-service 'Mysql-DB' Mysql-Plan2-100con mysql-service-instance
 
 >![mysql_vsphere_3.2.02]
 
@@ -506,10 +496,10 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 ```yml
 ---
 applications:
-- name: hello-spring-mysql    # 배포할 App 이름
+- name: hello-spring-mysql       #배포할 App 이름
   memory: 512M                # 배포시 메모리 사이즈
-  instances: 1                # 배포 인스턴스 수
-  path: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war    #배포하는 App 파일 PATH
+  instances: 1                    # 배포 인스턴스 수
+path: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war      #배포하는 App 파일 PATH
 ```
 
 >참고: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war파일이 존재 하지 않을 경우 mvn 빌드를 수행 하면 파일이 생성된다.
@@ -533,7 +523,7 @@ applications:
 
 >`$ cf logs {배포된 App명}`
 
->`$ cf logs hello-tomcat-mysql`
+>`$ cf logs hello-spring-mysql`
 
 >![mysql_vsphere_3.3.03]
 
@@ -541,7 +531,7 @@ applications:
 
 ##### Sample Web App에서 생성한 서비스 인스턴스 바인드 신청을 한다.
 
->`$ cf bind-service hello-tomcat-mysql mysql-service-instance`
+>`$ cf bind-service hello-spring-mysql mysql-service-instance`
 
 >![mysql_vsphere_3.3.04]
 
@@ -549,7 +539,7 @@ applications:
 
 ##### 바인드가 적용되기 위해서 App을 재기동한다.
 
->`$ cf restart hello-tomcat-mysql`
+>`$ cf restart hello-spring-mysql`
 
 >![mysql_vsphere_3.3.05]
 
@@ -564,7 +554,7 @@ applications:
 [
   {
     "protocol": "tcp",
-    "destination": "10.30.40.163",
+    "destination": "10.0.0.63",
     "ports": "3306"
   }
 ]
@@ -573,7 +563,7 @@ applications:
 
 ##### 보안 그룹을 생성한다.
 
->`$ cf create-security-group mysql rule.json`
+>`$ cf create-security-group p-mysql rule.json`
 
 >![mysql_vsphere_3.3.06]
 
@@ -581,7 +571,7 @@ applications:
 
 ##### 모든 App에 Mysql 서비스를 사용할수 있도록 생성한 보안 그룹을 적용한다.
 
->`$ cf bind-running-security-group mysql`
+>`$ cf bind-running-security-group p-mysql`
 
 >![mysql_vsphere_3.3.07]
 
@@ -589,7 +579,7 @@ applications:
 
 ##### App을 리부팅 한다.
 
->`$ cf restarthello-tomcat-mysql`
+>`$ cf restart hello-spring-mysql`
 
 >![mysql_vsphere_3.3.08]
 
@@ -599,10 +589,12 @@ applications:
 
 >curl 로 확인
 
->`$ curl hello-tomcat-mysql.controller.open-paas.com`
+>`$ curl hello-spring-mysql.52.71.64.39.xip.io`
 
 >![mysql_vsphere_3.3.09]
 
+> 브라우져에서 확인
+> ADD IMAGE
 
 # 4. MySQL Client 툴 접속
 
@@ -666,7 +658,7 @@ HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트�
 
 <br>
 
-##### 설치를 위한 모든 설정이 한번에 출력된다.확인 후 Install 버튼을 클릭하여 설치를 진행한다.
+##### 설치를 위한 모든 설정이 한번에 출력된다. 확인 후 Install 버튼을 클릭하여 설치를 진행한다.
 
 >![mysql_vsphere_4.1.08]
 
@@ -702,21 +694,21 @@ HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트�
 
 >서버 정보는 Application에 바인드되어 있는 서버 정보를 입력한다. cf env <app_name> 명령어로 이용하여 확인한다.
 
->**예)** $cf env hello-tomcat-mysql
+>**예)** $cf env hello-spring-mysql
 
 >![mysql_vsphere_4.1.14]
 
 <br>
 
-##### SSH 터널 탭을 클릭하고 Vagrant VM 정보를 입력하고 개인 키 파일을 불러온다. 개인키는 AWS에서 인스턴스 접속을 위한 공개키(.pem 파일)를puttygen을 이용하여 개인키(.ppk)로 변환한다. plink.exe 위치 입력은 Putty에서 제공하는 plink.exe 실행 위치를 넣어주고 만일 해당 파일이 없을 경우 plink.exe 내려받기 링크를 클릭하여 다운받는다. 로컬 포트 정보는 임의로 넣고 열기 버튼을 클릭하면 Mysql 데이터베이스에 접속한다.
+##### -	SSH 터널 탭을 클릭하고 OpenPaaS 운영 관리자에게 제공받은 SSH 터널링 가능한 서버 정보를 입력한다. plink.exe 위치 입력은 Putty에서 제공하는 plink.exe 실행 위치를 넣어주고 만일 해당 파일이 없을 경우 plink.exe 내려받기 링크를 클릭하여 다운받는다. 로컬 포트 정보는 임의로 넣고 열기 버튼을 클릭하면 Mysql 데이터베이스에 접속한다.
 
->(참고) 만일 개인 키 없이 ID/Password로 접속이 가능한 경우에는 vsphere 용 Open PaaS Mysql 서비스팩 설치 가이드를 참고한다.
+>(참고) 만일 개인 키로 접속이 가능한 경우에는 openstack용 Open PaaS Mysql 서비스팩 설치 가이드를 참고한다.
 
 >![mysql_vsphere_4.1.15]
 
 <br>
 
-##### 접속이 완료되면 좌측에 스키마 정보가 나타난다.하지만 초기설정은 테이블, 뷰, 프로시져, 함수, 트리거, 이벤트 등 모두 섞여 있어서 한눈에 구분하기가 힘들어서 접속한 DB 별칭에 마우스 오른쪽 클릭 후 "트리 방식 옵션" - "객체를 유형별로 묶기"를 클릭하면 아래 화면과 같이 각 유형별로 구분이된다.
+##### 접속이 완료되면 좌측에 스키마 정보가 나타난다. 하지만 초기설정은 테이블, 뷰, 프로시져, 함수, 트리거, 이벤트 등 모두 섞여 있어서 한눈에 구분하기가 힘들어서 접속한 DB 별칭에 마우스 오른쪽 클릭 후 "트리 방식 옵션" - "객체를 유형별로 묶기"를 클릭하면 아래 화면과 같이 각 유형별로 구분이된다.
 
 >![mysql_vsphere_4.1.16]
 

@@ -214,38 +214,81 @@ REST/full 서비스를 위한 환경설정과 PHP 빌드팩에서 사용할 Exte
 1.	REST/full 서비스를 위해 .htaccess 구성
 REST/full API 형식인 /api/변수 를 처리하기 위한 설정입니다. 루트디렉토리에 .htaccess를 추가하고 아래와 같이 넣어줍니다.
 
-    #<IfModulemod_rewrite.c>
+    <IfModulemod_rewrite.c>
     RewriteEngine On
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule /(.*)$ /api/api.php?request=$1 [QSA,NC,L]
-    #</IfModule>
+    </IfModule>
 	
 	
 2.	PHP 빌드팩에 Extension 추가
 XAMP에서 mongo 드라이브를 추가하였듯이 개방형 플랫폼에도 사용항 Extension 라이브러리를 추가해야합니다. 사용가능한 라이브러리는 여기()에서 확인이 가능합니다.
 추가를 위해서는 .bp-config디렉토리에options.json 파일을 만들고 아래와 같이 추가해주면 됩니다.
+
     {
         "PHP_EXTENSIONS": ["mysqli", "mongo", "amqp"]
     }
+    
  	mysqli :mysql과 연결을 위한 extension
  	mongo : mongo 연결을 위한 extension
  	amqp :rabbitmq와 연결을 위한 extension (현재 SSL연동이 안되서 사용을 못하고 있음)
 
 
-## 3.4.  생성한 기본 OS 이미지의 보관장소 
+## 3.4.  VCAP_SERVICES 환경설정 정보 
 
-1.  생성한 기본 OS 이미지 확인
+개방형 플랫폼에서는 서비스를 사용하기 위해 서비스 생성/바인딩을 합니다. 그리고 연결된 서비스를 사용하기 위해 VCAP_SERVICES 환경설정 정보를 가져와야 합니다. 이 정보는 연결할 Host 주소/포트, 사용자명, 비밀번호 등 서비스 접속에 필요한 모든 정보를 포함하고 있습니다. 
 
-		$ cd ~/workspace/bosh/bosh-stemcell
-		$ vagrant ssh remote
-		$ ll /tmp
+1.	연결된 서비스 정보 확인하기
+CF cli를 통해서 서비스와 연결된 정보를 확인합니다. 이 정보를 직접소스에 넣는 것이 아니라 소스에서 VCAP 정보를 가져와서 초기에 설정정보를 셋팅해야합니다.
+
+    $ cfenvphp-sample
+    
+    {
+     "VCAP_SERVICES": {
+     "p-mysql": [
+       {
+        "credentials": {
+         "hostname": "10.30.40.63",
+         "jdbcUrl": "jdbc:mysql://10.30.40.63:3306/cf_ea68784e_3de6_439d_afc1_d51b4e95627b?user=ZwCFnQRiT3KANqHZ\u0026password=qs7oqi4nSvWq6UQa",
+    "name": "cf_ea68784e_3de6_439d_afc1_d51b4e95627b",
+    "password": "qs7oqi4nSvWq6UQa",
+         "port": 3306,
+         "uri": "mysql://ZwCFnQRiT3KANqHZ:qs7oqi4nSvWq6UQa@10.30.40.63:3306/cf_ea68784e_3de6_439d_afc1_d51b4e95627b?reconnect=true",
+         "username": "ZwCFnQRiT3KANqHZ"
+        },
+        "label": "p-mysql",
+        "name": "sample-mysql-instance",
+        "plan": "100mb",
+        "tags": [
+         "mysql"
+        ]
+       }
+      ],
+    …..(이하 생략)…..
 
 
-2.  생성한 기본 OS 다운로드
- 
-		$ cd ~/workspace/bosh/bosh-stemcell
-		$ vagrant scp remote:/tmp/<생성한 기본 OS 이미지명> <다운받을 로컬 경로>
+2.	PHP에서 환경설정 정보 가져오기
+PHP에서 VCAP 환경정보를 가져오는 방법은 간단합니다. System의 env 정보를 가져오는 루틴을 사용하면 됩니다. 아래의 예시는 mysql 서비스의 Conncetion 정보를 가져오는 부분입니다. (위치 :api/mysql_view.php)
+
+    if (array_key_exists("VCAP_SERVICES", $_ENV)) {
+    // $_ENV (시스템 환경설정) 정보에서 VCAP Services가 있는지를 체크합니다.
+    
+           $env = json_decode($_ENV["VCAP_SERVICES"], $assoc=true);
+           //VCAP_SERVICES의 내용을 JSON 객체로 컨버젼합니다.
+    
+           $this->host = $env["p-mysql"][0]["credentials"]["hostname"].':'$env["p-mysql"][0]["credenti
+    alls"]["port"];
+           // host위치정보와 port정보를 가져옵니다.
+           $this->username = $env["p-mysql"][0]["credentials"]["username"];
+           // 사용자정보를 가져옵니다.
+           $this->password = $env["p-mysql"][0]["credentials"]["password"];
+           // 사용자 비밀번호 정보를 가져옵니다.
+           $this->dbname = $env["p-mysql"][0]["credentials"]["name"];
+           // 사용자의 DB 명을 가져옵니다.
+
+환경설정정보는 서비스마다 위치/명칭이 다릅니다. cfenv 명령으로 정확한 위치를 파악하거나 서비스 제공자의 매뉴얼을 참조하여야 합니다.
+
 
 
 #4.  BOSH 스템셀 생성 

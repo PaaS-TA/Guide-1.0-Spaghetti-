@@ -1,17 +1,17 @@
 ## Table of Contents
 1. [문서 개요](#1-문서-개요)
-	-	1.1. [목적](#11-목적)
-	-	1.2. [범위](#12-범위)
-	-	1.3. [시스템 구성도](#13-시스템-구성도)
-	-	1.4. [참고자료](#14-참고자료)
+  - 1.1. [목적](#11-목적)
+  - 1.2. [범위](#12-범위)
+  - 1.3. [시스템 구성도](#13-시스템-구성도)
+  - 1.4. [참고자료](#14-참고자료)
 2. [API 플랫폼 서비스팩 설치](#2-API-플랫폼-서비스팩-설치)
-	-	2.1. [설치전 준비사항](#21-설치전-준비사항)
-	-	2.2. [API 플랫폼 서비스 릴리즈 업로드](#22-API-플랫폼-서비스-릴리즈-업로드)
-	-	2.3. [API 플랫폼 서비스 Deployment 파일 수정 및 배포](#23-API-플랫폼-서비스-deployment-파일-수정-및-배포)
-	-	2.4. [API 매니저에서 API 생성 및 배포](#24-API-매니저에서-API-생성-및-베포)
-	-   2.5. [API 플랫폼 서비스 브로커 등록](#25-API-플랫폼-서비스-브로커-등록)
+  - 2.1. [설치전 준비사항](#21-설치전-준비사항)
+  - 2.2. [API 플랫폼 서비스 릴리즈 업로드](#22-API-플랫폼-서비스-릴리즈-업로드)
+  - 2.3. [API 플랫폼 서비스 Deployment 파일 수정 및 배포](#23-API-플랫폼-서비스-deployment-파일-수정-및-배포)
+  - 2.4. [API 매니저에서 API 생성 및 배포](#24-API-매니저에서-API-생성-및-베포)
+  -   2.5. [API 플랫폼 서비스 브로커 등록](#25-API-플랫폼-서비스-브로커-등록)
 3. [API 플랫폼 연동 Sample Web App 설명](#3-API-플랫폼-연동-sample-web-app-설명)
-	-	3.1. [Sample Web App에 서비스 바인드 신청 및 App 확인](#31-sample-web-app에-서비스-바인드-신청-및-app-확인)
+  - 3.1. [Sample Web App에 서비스 바인드 신청 및 App 확인](#31-sample-web-app에-서비스-바인드-신청-및-app-확인)
 
 
 # 1. 문서 개요
@@ -26,7 +26,7 @@
 ### 1.3. 시스템 구성도
 본 문서의 설치된 시스템 구성도입니다. API 플랫폼(apimanager), API 플랫폼 서비스 브로커(apiplatform-broker), Business Activity Monitor(bam), MariaDB(mariadb)로 최소사항을 구성하였다.
 
-![IMAGE 1.3.01]
+![apiplatform_aws_1.3.01]
 
 | 구분 | Resource Pool | Instance type/스펙 |
 |--------|-------|-------|
@@ -44,39 +44,39 @@
 ### 2.1. 설치전 준비사항
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다. 서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다. BOSH CLI가 설치되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고하여 BOSH CLI를 설치 해야 한다.
 
--	OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Services.zip, OpenPaaS-Deployment.zip, OpenPaaS-Sample-Apps.zip)
+- OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Services.zip, OpenPaaS-Deployment.zip, OpenPaaS-Sample-Apps.zip)
 
 ### 2.2. API 플랫폼 서비스 릴리즈 업로드
 
--	OpenPaaS-Services.zip 파일 압축을 풀고 폴더 안에 있는 API Platform 서비스 릴리즈 파일 openpaas-apiplatform-1.0.tgz 을 확인한다.
+- OpenPaaS-Services.zip 파일 압축을 풀고 폴더 안에 있는 API Platform 서비스 릴리즈 파일 openpaas-apiplatform-1.0.tgz 을 확인한다.
 
 >`$ cd openpaas-service-release`
 
 >`$ ls –all`
 
->![IMAGE 2.2.01]
+>![apiplatform_aws_2.2.01]
 
 <br>
 
--	API 플랫폼 서비스 릴리즈 파일을 업로드한다.
+- API 플랫폼 서비스 릴리즈 파일을 업로드한다.
 
 >`$ bosh upload release {서비스 릴리즈 파일 PATH}`
 
 >`$ bosh upload release openpaas-apiplatform-1.0.tgz`
 
-> ※	하단의 화면은 릴리즈 파일을 tarball 형태로 압축하지 않고 릴리즈를 업로드하고 있다. 본 문서에서 안내하는 방법대로 tarball 형태로 릴리즈 파일 압축하여 업로드 할 경우에 출력되는 화면은 하단의 화면과 다소 차이가 있다.
+> ※ 하단의 화면은 릴리즈 파일을 tarball 형태로 압축하지 않고 릴리즈를 업로드하고 있다. 본 문서에서 안내하는 방법대로 tarball 형태로 릴리즈 파일 압축하여 업로드 할 경우에 출력되는 화면은 하단의 화면과 다소 차이가 있다.
 
->![IMAGE 2.2.02]
+>![apiplatform_aws_2.2.02]
 
->![IMAGE 2.2.03]
+>![apiplatform_aws_2.2.03]
 
 <br>
 
--	업로드 된API 플랫폼 릴리즈를 확인한다.
+- 업로드 된API 플랫폼 릴리즈를 확인한다.
 
 >`$ bosh releases`
 
->![IMAGE 2.2.04]
+>![apiplatform_aws_2.2.04]
 
 >API 플랫폼 릴리즈가 업로드 되어 있는 것을 확인
 
@@ -84,34 +84,34 @@
 ### 2.3. API 플랫폼 서비스 릴리즈 Deployment 파일 수정 및 배포
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다. Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할 것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
 
--	OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더 안에 있는 aws용 API 플랫폼 Deployment 화일인 openpaas-apiplatform-aws-1.0.yml을 확인한다.
+- OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더 안에 있는 aws용 API 플랫폼 Deployment 화일인 openpaas-apiplatform-aws-1.0.yml을 확인한다.
 
 >`$ ls -all`
 
->![IMAGE 2.3.01]
+>![apiplatform_aws_2.3.01]
 
 <br>
 
--	Director UUID를 확인한다.
+- Director UUID를 확인한다.
 BOSH CLI가 배포에 대한 모든 작업을 허용하기 위한 현재 대상 BOSH Director의 UUID와 일치해야 한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할 수 있다.
 
 >`$ bosh status`
 
->![IMAGE 2.3.02]
+>![apiplatform_aws_2.3.02]
 
 <br>
 
--	Deploy시 사용할 Stemcell을 확인한다. (Stemcell 3147 버전 사용)
+- Deploy시 사용할 Stemcell을 확인한다. (Stemcell 3147 버전 사용)
 
 >`$ bosh stemcells`
 
->![IMAGE 2.3.03]
+>![apiplatform_aws_2.3.03]
 
 >Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3147 버전을 업로드를 해야 한다.
 
 <br>
 
--	openpaas-apiplatform-aws-1.0.yml Deployment 파일을 서버 환경에 맞게 수정한다.
+- openpaas-apiplatform-aws-1.0.yml Deployment 파일을 서버 환경에 맞게 수정한다.
 
 ```yml
 # openpaas-apiplatform-aws 설정파일
@@ -253,29 +253,29 @@ jobs:
 
 <br>
 
--	Deploy할 deployment manifest 파일을 BOSH에 지정한다.
+- Deploy할 deployment manifest 파일을 BOSH에 지정한다.
 
 >`$ bosh deployment openpaas-apiplatform-aws-1.0.yml`
 
->![IMAGE 2.3.04]
+>![apiplatform_aws_2.3.04]
 
 <br>
 
--	API 플랫폼 서비스팩을 배포한다. 환경에 따라 다르지만 API 플랫폼 서비스팩 배포는 일반적으로 30분에서 50분 가량이 소요된다. 하단의 푸른색 박스에서 보듯이 리소스 사용상황에 따라 2시간 가량이 소요될 수도 있다.
+- API 플랫폼 서비스팩을 배포한다. 환경에 따라 다르지만 API 플랫폼 서비스팩 배포는 일반적으로 30분에서 50분 가량이 소요된다. 하단의 푸른색 박스에서 보듯이 리소스 사용상황에 따라 2시간 가량이 소요될 수도 있다.
 
 >`$ bosh deploy`
 
->![IMAGE 2.3.05]
+>![apiplatform_aws_2.3.05]
 
->![IMAGE 2.3.06]
+>![apiplatform_aws_2.3.06]
 
 <br>
 
--	배포된 API 플랫폼 서비스팩을 확인한다.
+- 배포된 API 플랫폼 서비스팩을 확인한다.
 
 >`$ bosh vms`
 
->![IMAGE 2.3.07]
+>![apiplatform_aws_2.3.07]
 
 
 ### 2.4. API 매니저에서 API 생성 및 배포
@@ -297,54 +297,54 @@ API 플랫폼 서비스팩으로 배포한 API 매니저에는 Public IP가 할�
 ###### 1. Putty 설정
 (1)다운로드한 Putty를 실행하고 Connection 메뉴를 열어 SSH 메뉴에서 Tunnels를 메뉴를 연다.
 
->![IMAGE 2.4.1.01]
+>![apiplatform_aws_2.4.1.01]
 
 <br>
 
 (2) 터널링 정보를 입력한다.<br>
 ① Source port에 사용하지 않는 임의의 포트를 입력하고 ②번 Dynamic을 선택한 후, ③ Add 버튼을 눌러 추가한다. ④번 위치에서 D{입력한 포트}의 형태로 추가된 것을 확인한다.
 
->![IMAGE 2.4.1.02]
+>![apiplatform_aws_2.4.1.02]
 
 <br>
 
 (3) Putty 접속 정보를 입력한다.<br>
 ① Session 메뉴를 클릭하여 접속정보 설정 화면으로 이동하여 ② 배포한 API 매니저와 내부망으로 연결되어 있는 머신(설치 환경에 따라 상이함)의 Public IP를 입력한다.
 
->![IMAGE 2.4.1.03]
+>![apiplatform_aws_2.4.1.03]
 
 <br>
 
 (4) Putty 접속 및 로그인<br>
 Open 버튼을 클릭하여 해당 머신에 연결한다
 
->![IMAGE 2.4.1.04]
+>![apiplatform_aws_2.4.1.04]
 
 <br>
 
 로그인 화면에서 로그인을 완료한 채로 접속을 유지해둔다.
 
->![IMAGE 2.4.1.05]
+>![apiplatform_aws_2.4.1.05]
 
 
 ###### 2. Firefox 설정
 (1) Mozila Firefox 브라우저를 실행하여 첫 화면 하단의 옵션 버튼을 클릭한다.
 
->![IMAGE 2.4.1.06]
+>![apiplatform_aws_2.4.1.06]
 
 <br>
 
 (2) 설정 창을 연다.<br>
 ① 고급 탭-  ② 네트워크 탭- ③ 설정 버튼을 차례로 클릭하여 설정 창을 연다.
 
->![IMAGE 2.4.1.07]
+>![apiplatform_aws_2.4.1.07]
 
 <br>
 
 (3) 연결 설정 정보를 입력하고 저장한다.<br>
 ① 프록시 수동설정에 체크하고 ② 화면과 같이 설정을 입력한다. 포트는 Putty 터널링 설정에서 입력한 Source Port와 동일한 포트를 입력한다. ③ 설정을 완료하였으면 확인 버튼을 눌러 저장한다.
 
->![IMAGE 2.4.1.08]
+>![apiplatform_aws_2.4.1.08]
 
 <br>
 
@@ -359,7 +359,7 @@ Open 버튼을 클릭하여 해당 머신에 연결한다
 예) https://10.0.0.201:9443/carbon
 ```
 
->![IMAGE 2.4.1.07]
+>![apiplatform_aws_2.4.2.01]
 
 ###### 1. API 매니저 접속 및 로그인
 ① API 플랫폼 서비스팩을 통해 배포된 API 매니저의 publisher 대시보드에 접속한다.
@@ -372,16 +372,16 @@ Open 버튼을 클릭하여 해당 머신에 연결한다
 
 
 ② 관리자 계정으로 로그인한다. 관리자 계정의 Username과 Password는 admin/admin이다.
-※	API 매니저 관리자 대시보드({API매니저 URL}:{API매니저 포트}/carbon)에서 계정을 추가하고 권한을 설정하여 사용할 수도 있지만, 그에 대한 설명은 본 문서에서는 기술하지 않는다.
+※ API 매니저 관리자 대시보드({API매니저 URL}:{API매니저 포트}/carbon)에서 계정을 추가하고 권한을 설정하여 사용할 수도 있지만, 그에 대한 설명은 본 문서에서는 기술하지 않는다.
 
->![IMAGE 2.4.2.01]
+>![apiplatform_aws_2.4.2.02]
 
 <br>
 
 ###### 2. API 생성
 ① 로그인이 완료되면 다음과 같은 화면을 확인할 수 있다. 최초 배포가 완료되면 API가 생성되지 않은 상태이므로 ②번의 New API 버튼이 화면에 보여진다. New API 버튼을 클릭하여 API 생성화면으로 이동한다.
 
->![IMAGE 2.4.2.02]
+>![apiplatform_aws_2.4.2.03]
 
 <br>
 
@@ -399,22 +399,22 @@ Version: 1.0.0
 ```
 >
 
-※	④번 Edit Swagger Definition 버튼을 클릭하여 다음의 [[4. Resources 정의]](#DefineResources) 과정을 생략 할 수 있다. 이에 대한 설명은 [[4. Resources 정의]](#DefineResources) 하단에 [[Swagger 정의]](#DefineSwagger)로 첨부한다.
+※ ④번 Edit Swagger Definition 버튼을 클릭하여 다음의 [[4. Resources 정의]](#DefineResources) 과정을 생략 할 수 있다. 이에 대한 설명은 [[4. Resources 정의]](#DefineResources) 하단에 [[Swagger 정의]](#DefineSwagger)로 첨부한다.
 
->![IMAGE 2.4.2.03]
+>![apiplatform_aws_2.4.2.04]
 
 <div id=DefineResources></div>
 ###### 4. Resources 정의
 ① General Details 하단에 Resources 입력란이 있다. URL Pattern에 대소문자 구분에 유의하여 CheckPhoneNumber 값을 입력하고 GET, POST, OPTIONS 메소드를 선택한다. Resource Name의 값은 URL Pattern을 입력하면 같은 값이 자동으로 입력되는데 사용자 필요에 따라 변경할 수 있다.<br>
 ② 입력이 완료되었다면, Add New Resource 버튼을 클릭하여 Resource를 추가한다.<br>
 
->![IMAGE 2.4.2.04]
+>![apiplatform_aws_2.4.2.05]
 
 <br>
 
 리소스를 추가하면 하단의 그림처럼 추가된 Resource가 화면에 나타난다. 그 중 GET 메소드의 리소스를 클릭하여 파라미터 세부사항을 정의한다.
 
->![IMAGE 2.4.2.05]
+>![apiplatform_aws_2.4.2.06]
 
 <br>
 
@@ -430,12 +430,12 @@ Version: 1.0.0
 
 ④ 하단의 버튼 중, 좌측의 Save버튼을 클릭하여 저장하고 가운데 Implement 버튼을 클릭하여 다음단계인 Implement 단계로 진행한다.<br>
 
->![IMAGE 2.4.2.06]
+>![apiplatform_aws_2.4.2.07]
 
 <br>
 
 <div id=DefineSwagger></div>
-※	Swagger 정의<br>
+※ Swagger 정의<br>
 상단의 [[3. General Details 정의]](#DefineGeneralDetails)에서 푸른색 ④번 박스로 표시된 Edit Swagger Definition 버튼을 클릭하면 Swagger 수정이 가능하다. 다음과 같이 수정하고 Save버튼을 클릭하여 Resources를 정의한다. 이 방법을 통해 상단에 기술된 [[4. Resources 정의]](#DefineResources) 절차를 생략할 수 있다.
 
 >
@@ -507,14 +507,15 @@ authorizations:
 ③ 추가된 사항을 저장한다.<br>
 ④ 다음 단계인 Manage 화면으로 이동한다.<br>
 
->![IMAGE 2.4.2.07]
+>![apiplatform_aws_2.4.2.08]
 
+<div id=TierChoose></div>
 ###### 6. Tier 선택
 ① API의 Tier 및 추가적인 설정을 입력하는 Manage화면이다.<br>
 ② Tier Availability는 해당 API 서비스의 호출 횟수를 제한하는 설정으로 개방형 클라우드 플랫폼에서는 플랜으로 표시된다. API 매니저에 설정된 4가지 기본 Tier 중, 사용자 필요에 맞게 선택할 수 있고 API 매니저 관리자 대시보드({API매니저 URL}:{API매니저 포트}/carbon)에서 Tier명과 호출 횟수 제한을 변경할 수 있다. 다만, 현재는 API 서비스 브로커 설계상 API Tier는 Unlimited Tier를 선택하여야 한다. 따라서 Unlimited Tier만을 선택한다. Unlimited Tier만 선택하여 API 서비스를 배포하더라도 개방형 클라우드 플랫폼에서는 Unlimited와 Bronze의 두 가지 플랜을 선택할 수 있다.<br>
 ③ Save & Publish 버튼을 클릭하여 저장하고 API를 배포한다.<br>
 
->![IMAGE 2.4.2.08]
+>![apiplatform_aws_2.4.2.09]
 
 <br>
 
@@ -526,26 +527,26 @@ authorizations:
 {API매니저 URL}:{API매니저 포트}/store
 예) https://10.30.60.201:9443/store
 ```
-※	http가 아닌 https임에 주의한다.
+※ http가 아닌 https임에 주의한다.
 >
 
 ② 생성한 API가 배포되어 있음을 확인한다. 배포되지 않은 API는 Store 대시보드에 노출되지 않는다.
 
->![IMAGE 2.4.2.09]
+>![apiplatform_aws_2.4.2.10]
 
 
 ### 2.5. 플랫폼 서비스 브로커 등록
 API 매니저(API 플랫폼)에 API 서비스가 정상적으로 등록 및 배포가 완료되었다면, 등록된 API 서비스를 개방형 클라우드 플랫폼의 서비스 형태로 제공하기 위해 API 플랫폼 서비스 브로커를 등록해 주어야 한다. 서비스 브로커 등록 시, 개방형 클라우드 플랫폼에서 서비스 브로커를 등록할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
--	서비스 브로커 목록을 확인한다.
+- 서비스 브로커 목록을 확인한다.
 
 >`$ cf service-brokers`
 
->![IMAGE 2.5.01]
+>![apiplatform_aws_2.5.01]
 
--	API 플랫폼 서비스 브로커를 등록한다.
+- API 플랫폼 서비스 브로커를 등록한다.
 
->`$cf create-service-broker {서비스 브로커 이름} {서비스 브로커 사용자ID} {서비스 브로커 사용자 비밀번호} {서비스 브로커 URL}`
+>`$ cf create-service-broker {서비스 브로커 이름} {서비스 브로커 사용자ID} {서비스 브로커 사용자 비밀번호} {서비스 브로커 URL}`
 
 >서비스 브로커 이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.
 >서비스 브로커 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID입니다. 서비스 팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
@@ -553,7 +554,47 @@ API 매니저(API 플랫폼)에 API 서비스가 정상적으로 등록 및 배�
 
 >`$ cf create-service-broker apiplatform-service-broker admin cloudfoundry http://10.30.60.200:8080`
 
->![IMAGE 2.5.02]
+>![apiplatform_aws_2.5.02]
+
+<br>
+
+- 등록된 API 플랫폼 서비스 브로커를 확인한다.
+
+>`$ cf service-brokers`
+
+>![apiplatform_aws_2.5.03]
+
+<br>
+
+- 접근 가능한 서비스 목록을 확인한다.
+
+>`$ cf service-access`
+
+>![apiplatform_aws_2.5.04]
+
+>서비스 브로커 생성시 기본적으로 접근을 허용하지 않는다. access가 none인 것을 확인할 수 있다.
+
+※ [[2.4 API 매니저에서 API 생성 및 배포]](#APICreatePublish) 장의 [[6. Tier 선택]](#TierChoose)을 보면 tier는 Unlimited 한 가지만 선택하도록 되어있다. 그럼에도 서비스 목록에 Unlimited와 Bronze 두 개의 플랜으로 서비스가 생기는 것은 서비스 브로커가 두 개의 플랜으로 서비스를 생성하도록 설계되어 있기 때문이다. 두개의 플랜 중 선택에 따라 API 호출 횟수가 제한된다.
+
+<br>
+
+- 특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
+
+>`$ cf enable-service-access Phoneverification`
+
+>`$ cf service-access`
+
+>![apiplatform_aws_2.5.05]
+
+<br>
+
+- 서비스가 Marketplace에 등록된 것을 확인한다.
+
+>`$ cf marketplace`
+
+>![apiplatform_aws_2.5.06]
+
+<br>
 
 # 3. API 플랫폼 연동
 [[2.4 API 매니저에서 API 생성 및 배포]](#APICreatePublish)에서 생성한 API 서비스를 샘플 App에 바인드하여, Vcap 환경설정 정보를 정상적으로 획득할 수 있는지를 확인함으로써 연동여부를 확인한다. 단순히 서비스 바인드만 진행하기 때문에 샘플 어플리케이션은 어떤 어플리케이션을 사용해도 무방하다.
@@ -562,12 +603,120 @@ API 매니저(API 플랫폼)에 API 서비스가 정상적으로 등록 및 배�
 샘플 App을 배포하고 API 서비스와 바인드 신청을 한다. 먼저 샘플 App을 배포한다.
 >※ 참고: 서비스 Bind 신청시 개방형 클라우드 플랫폼에서 서비스 Bind를 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
+- Sample Web App 디렉토리로 이동하여 manifest 파일을 확인한다.
 
+>`$ cd {샘플앱 경로}`
 
+>`$ vi manifest.yml`
 
+>
+```yml
+# manifest.yml
+---
+applications:
+- name: hello-servlet-tomcat      # 배포할 App 이름
+  memory: 512M                 # 배포시 메모리 사이즈
+  instances: 1                     # 배포 인스턴스 수
+path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
+```
+>
 
+<br>
 
+- '--no-start' 옵션으로 App을 배포한다. '--no-start'는 App 배포시 구동을 하지 않도록 하는 옵션이다.
+
+>`$ cf push --no-start`
+
+>![apiplatform_aws_3.1.01]
+
+<br>
+
+- 배포된 Sample App을 확인하고 로그를 수행한다.
+
+>`$ cf apps`
+
+>`$ cf logs hello-servlet-tomcat`
+
+>![apiplatform_aws_3.1.02]
+
+<br>
+
+- 바인드할 서비스의 서비스 인스턴스를 생성한다.
+
+>`$ cf create-service {서비스명} {서비스플랜} {내서비스명}`
+
+>서비스명 : p-mysql로 Marketplace에서 보여지는 서비스 명칭이다.
+>서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. MySQL 서비스는 100mb, 1gb를 지원한다.
+>내 서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.
+
+>`$ cf create-service PhoneVerification Unlimited phoneverification-instance-unlimited`
+
+>![apiplatform_aws_3.1.03]
+
+<br>
+
+- 생성된 API 플랫폼 서비스 인스턴스를 확인한다.
+
+>`$ cf services`
+
+>![apiplatform_aws_3.1.04]
+
+<br>
+
+- 샘플앱과 생성한 서비스 인스턴스를 바인드 한다.
+
+>`$ cf bind-service hello-servlet-tomcat phoneverification-instance-unlimited`
+
+>![apiplatform_aws_3.1.05]
 
 
 ### 3.2. 서비스 바인드 확인
-샘플 앱에 대한 VCAP_SERVICES 정보를 확인하여 샘플 앱과 서비스의 정상적인 바인드 여부를 판단한다. VCAP_SERVICES 정보를 확인하는 명령어는 다음과 같다. VCAP_SERVICES에서 앱에서 API를 사용하는데 필요한 정보를 확인할 수 있고 따라서 앱은 이 값을 읽을 수 있도록 작성되어야 한다. 
+샘플 앱에 대한 VCAP_SERVICES 정보를 확인하여 샘플 앱과 서비스의 정상적인 바인드 여부를 판단한다. VCAP_SERVICES 정보를 확인하는 명령어는 다음과 같다. VCAP_SERVICES에서 앱에서 API를 사용하는데 필요한 정보를 확인할 수 있고 따라서 앱은 이 값을 읽을 수 있도록 작성되어야 한다.
+
+>`$ cf env hello-servlet-tomcat`
+
+>![apiplatform_aws_3.2.01]
+
+
+[apiplatform_aws_1.3.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image3.png
+[apiplatform_aws_2.2.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image4.png
+[apiplatform_aws_2.2.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image5.png
+[apiplatform_aws_2.2.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image6.png
+[apiplatform_aws_2.2.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image7.png
+[apiplatform_aws_2.3.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image8.png
+[apiplatform_aws_2.3.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image9.png
+[apiplatform_aws_2.3.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image10.png
+[apiplatform_aws_2.3.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image11.png
+[apiplatform_aws_2.3.05]:/images/openpaas-service/apiplatform/apiplatform_aws/image12.png
+[apiplatform_aws_2.3.06]:/images/openpaas-service/apiplatform/apiplatform_aws/image13.png
+[apiplatform_aws_2.3.07]:/images/openpaas-service/apiplatform/apiplatform_aws/image14.png
+[apiplatform_aws_2.4.1.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image15.png
+[apiplatform_aws_2.4.1.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image16.png
+[apiplatform_aws_2.4.1.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image17.png
+[apiplatform_aws_2.4.1.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image18.png
+[apiplatform_aws_2.4.1.05]:/images/openpaas-service/apiplatform/apiplatform_aws/image19.png
+[apiplatform_aws_2.4.1.06]:/images/openpaas-service/apiplatform/apiplatform_aws/image20.jpeg
+[apiplatform_aws_2.4.1.07]:/images/openpaas-service/apiplatform/apiplatform_aws/image21.png
+[apiplatform_aws_2.4.1.08]:/images/openpaas-service/apiplatform/apiplatform_aws/image22.png
+[apiplatform_aws_2.4.2.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image23.png
+[apiplatform_aws_2.4.2.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image24.png
+[apiplatform_aws_2.4.2.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image25.png
+[apiplatform_aws_2.4.2.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image26.png
+[apiplatform_aws_2.4.2.05]:/images/openpaas-service/apiplatform/apiplatform_aws/image27.png
+[apiplatform_aws_2.4.2.06]:/images/openpaas-service/apiplatform/apiplatform_aws/image28.png
+[apiplatform_aws_2.4.2.07]:/images/openpaas-service/apiplatform/apiplatform_aws/image29.png
+[apiplatform_aws_2.4.2.08]:/images/openpaas-service/apiplatform/apiplatform_aws/image30.png
+[apiplatform_aws_2.4.2.09]:/images/openpaas-service/apiplatform/apiplatform_aws/image31.png
+[apiplatform_aws_2.4.2.10]:/images/openpaas-service/apiplatform/apiplatform_aws/image32.png
+[apiplatform_aws_2.5.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image33.png
+[apiplatform_aws_2.5.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image34.png
+[apiplatform_aws_2.5.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image35.png
+[apiplatform_aws_2.5.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image36.png
+[apiplatform_aws_2.5.05]:/images/openpaas-service/apiplatform/apiplatform_aws/image37.png
+[apiplatform_aws_2.5.06]:/images/openpaas-service/apiplatform/apiplatform_aws/image38.png
+[apiplatform_aws_3.1.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image39.png
+[apiplatform_aws_3.1.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image40.png
+[apiplatform_aws_3.1.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image41.png
+[apiplatform_aws_3.1.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image42.png
+[apiplatform_aws_3.1.05]:/images/openpaas-service/apiplatform/apiplatform_aws/image43.png
+[apiplatform_aws_3.2.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image44.png

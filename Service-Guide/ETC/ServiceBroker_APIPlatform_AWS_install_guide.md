@@ -14,20 +14,17 @@
 	-	3.1. [Sample Web App에 서비스 바인드 신청 및 App 확인](#31-sample-web-app에-서비스-바인드-신청-및-app-확인)
 
 
-
-
 # 1. 문서 개요
 ### 1.1. 목적
-
-
+본 문서(API 플랫폼 서비스팩 설치 가이드)는 전자정부표준프레임워크 기반의 Open PaaS에서 제공되는 서비스팩인 API 플랫폼 서비스팩을 Bosh를 이용하여 설치하는 방법과 Open PaaS의 SaaS 형태로 제공하는 Application 에서 API 플랫폼 서비스를 사용하는 방법을 기술하였다.
 
 
 ### 1.2. 범위
-
-
+설치 범위는 API 플랫폼 서비스팩을 검증하기 위한 기본 설치를 기준으로 작성하였다. 
 
 
 ### 1.3. 시스템 구성도
+본 문서의 설치된 시스템 구성도입니다. API 플랫폼(apimanager), API 플랫폼 서비스 브로커(apiplatform-broker), Business Activity Monitor(bam), MariaDB(mariadb)로 최소사항을 구성하였다.
 
 ![IMAGE 1.3.01]
 
@@ -43,22 +40,243 @@
 [**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
 [**https://docs.wso2.com/display/AM180/Quick+Start+Guide**](https://docs.wso2.com/display/AM180/Quick+Start+Guide/)
 
-
-
-
-
 # 2. API 플랫폼 서비스팩 설치
 ### 2.1. 설치전 준비사항
+본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다. 서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다. BOSH CLI가 설치되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고하여 BOSH CLI를 설치 해야 한다.
 
-
+-	OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Services.zip, OpenPaaS-Deployment.zip, OpenPaaS-Sample-Apps.zip)
 
 ### 2.2. API 플랫폼 서비스 릴리즈 업로드
 
+-	OpenPaaS-Services.zip 파일 압축을 풀고 폴더 안에 있는 API Platform 서비스 릴리즈 파일 openpaas-apiplatform-1.0.tgz 을 확인한다.
 
+>`$ cd openpaas-service-release`
+
+>`$ ls –all`
+
+>![IMAGE 2.2.01]
+
+<br>
+
+-	API 플랫폼 서비스 릴리즈 파일을 업로드한다.
+
+>`$ bosh upload release {서비스 릴리즈 파일 PATH}`
+
+>`$ bosh upload release openpaas-apiplatform-1.0.tgz`
+
+> ※	하단의 화면은 릴리즈 파일을 tarball 형태로 압축하지 않고 릴리즈를 업로드하고 있다. 본 문서에서 안내하는 방법대로 tarball 형태로 릴리즈 파일 압축하여 업로드 할 경우에 출력되는 화면은 하단의 화면과 다소 차이가 있다.
+
+>![IMAGE 2.2.02]
+
+>![IMAGE 2.2.03]
+
+<br>
+
+-	업로드 된API 플랫폼 릴리즈를 확인한다.
+
+>`$ bosh releases`
+
+>![IMAGE 2.2.04]
+
+>API 플랫폼 릴리즈가 업로드 되어 있는 것을 확인
 
 
 ### 2.3. API 플랫폼 서비스 릴리즈 Deployment 파일 수정 및 배포
+BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다. Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할 것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
 
+-	OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더 안에 있는 aws용 API 플랫폼 Deployment 화일인 openpaas-apiplatform-aws-1.0.yml을 확인한다.
+
+>`$ ls -all`
+
+>![IMAGE 2.3.01]
+
+<br>
+
+-	Director UUID를 확인한다.
+BOSH CLI가 배포에 대한 모든 작업을 허용하기 위한 현재 대상 BOSH Director의 UUID와 일치해야 한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할 수 있다.
+
+>`$ bosh status`
+
+>![IMAGE 2.3.02]
+
+<br>
+
+-	Deploy시 사용할 Stemcell을 확인한다. (Stemcell 3147 버전 사용)
+
+>`$ bosh stemcells`
+
+>![IMAGE 2.3.03]
+
+>Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3147 버전을 업로드를 해야 한다.
+
+<br>
+
+-	openpaas-apiplatform-aws-1.0.yml Deployment 파일을 서버 환경에 맞게 수정한다.
+
+>
+```yml
+---
+name: openpaas-apiplatform-service         # 서비스 배포이름(필수)
+director_uuid: f7f7e2a8-aae9-4be7-8e11-70d91e4fccc1        # bosh status 에서 확인한 Director UUID을 입력(필수)
+
+releases:
+- {name: openpaas-apiplatform, version: 1.0}      # 서비스 릴리즈 이름(필수), 서비스 릴리즈 버전(필수): latest 시 업로드 된 서비스 릴리즈 최신버전
+
+update:
+  canaries: 1                          # canary 인스턴스 수(필수)
+  canary_watch_time: 30000-600000     # canary 인스턴스가 수행하기 위한 대기 시간(필수)
+  max_in_flight: 1                      # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
+  update_watch_time: 30000-600000    # 컴파일 시 필요한 가상머신의 속성(필수)
+
+networks:
+- name: default            # network 이름(필수)
+  subnets:
+  - cloud_properties:
+      security_groups:                            # AWS 에서 사용하는 접근 시큐리티 이름 이름(필수)
+      - op-cf
+      - op-bosh
+    dns:                   # DNS 정보
+    - 8.8.8.8
+    gateway: 10.0.0.1
+    range: 10.0.0.0/24
+    reserved:                     # 설치 시 제외할 IP 설정
+    - 10.0.0.2 - 10.0.0.200
+    static:
+    - 10.0.0.201 - 10.0.0.210      #사용 가능한 IP 설정
+  type: manual
+
+resource_pools:    # 배포시 사용하는 resource pools를 명시하며 여러 개의 resource pools 을 사용할 경우 name 은 unique 해야함(필수)
+- cloud_properties:
+    instance_type: m1.small
+  name: small
+  network: default             # Networks block에서 선언한 network 이름(필수)
+  stemcell:
+    name: bosh-aws-xen-ubuntu-trusty-go_agent        # stemcell 이름(필수)
+    version: 3147                                      # stemcell 버전(필수)
+
+compilation:          # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone), 직접 cpu,disk,ram 사이즈를 넣어도 됨
+  cloud_properties:             # 컴파일 VM을 만드는 데 필요한 IaaS의 속성(instance_type, availability_zone)
+    instance_type: m1.small      # 인스턴스 타입: Flavors 타입 (필수)
+  network: default               # Networks block에서 선언한 network 이름(필수)
+  reuse_compilation_vms: true    # 컴파일 시 VM 재사용 여부(옵션)
+  workers: 2                     # 컴파일 하는 가상머신의 최대수(필수)
+
+jobs:
+- name: mariadb                           #작업 이름(필수): DB 서버
+  instances: 1                              # job 인스턴스 수(필수)
+  template: mariadb                        # job template 이름(필수)
+  resource_pool: small                      # Resource Pools block에 정의한 resource pool 이름(필수)
+  networks:                                # 네트워크 구성정보
+  - name: default                           # Networks block에서 선언한 network 이름
+    static_ips: 10.0.0.210                   # 사용할 IP addresses 정의(필수): db서버
+  properties:                                # job에 대한 속성을 지정(필수)
+    admin_username: root                    # DB 어드민 유저이름 
+    admin_password: openpaas               # DB 어드민 패스워드
+    apiplatform_username: wso2              # API Platform(API Manager)의 DB 접속 유저이름
+    apiplatform_password: openpaas          # API Platform(API Manager)의 DB 접속 패스워드
+    apiplatform_broker_username: apiplatform  # API Platform Service Broker의 DB 접속 유저이름
+    apiplatform_broker_password: openpaas    # API Platform Service Broker의 DB 접속 패스워드
+
+- name: bam                          #작업 이름(필수): BAM
+  instances: 1                         # job 인스턴스 수(필수)
+  template: bam                       # job template 이름(필수)
+  resource_pool: small                 # Resource Pools block에 정의한 resource pool 이름(필수)
+  networks:                            # 네트워크 구성정보
+  - name: default                       # Networks block에서 선언한 network 이름
+    static_ips: 10.0.0.203               # 사용할 IP addresses 정의(필수): BAM
+  properties:
+    database_ip: 10.0.0.210             # Bam이 사용할 DB host
+
+- name: apimanager                # 작업 이름(필수): API Platform(API Manager)
+  instances: 1                        # job 인스턴스 수(필수)
+  template: apimanager               # job template 이름(필수)
+  resource_pool: small                # Resource Pools block에 정의한 resource pool 이름(필수)
+  networks:                          # 네트워크 구성정보
+  - name: default                     # Networks block에서 선언한 network 이름
+    static_ips: 10.0.0.201          # 사용할 IP addresses 정의(필수): API Platform(API Manager)
+  properties:
+    bam_ip: 10.0.0.203            # Bam의 IP 주소
+    database_ip: 10.0.0.210        # API manager가 사용할 DB host
+
+- name: apiplatform-broker            #작업 이름(필수): API Platform Service Broker
+  instances: 1                        # job 인스턴스 수(필수)
+  template: apiplatform-broker         # job template 이름(필수)
+  resource_pool: small                 # Resource Pools block에 정의한 resource pool 이름(필수)
+  networks:                           # 네트워크 구성정보
+  - name: default                      # Networks block에서 선언한 network 이름
+    static_ips: 10.0.0.209               # 사용할 IP addresses 정의(필수): API Platform Service Broker
+  properties:                           # job에 대한 속성을 지정(필수)
+    catalog_login_id: admin             # 카탈로그 API를 사용하기 위한 API플랫폼 유저 아이디
+    catalog_login_password: admin       # 카탈로그 API를 사용하기 위한 API플랫폼 유저 패스워드
+    apimanager_url: http://10.0.0.201           # API Platform(API Manager) URL
+    database_ip: 10.0.0.210                    # DB 접속 URL
+    apiplatform_broker_username: apiplatform    # API Platform Service Broker의 DB 접속 유저이름
+    apiplatform_broker_password: openpaas      # API Platform Service Broker의 DB 접속 패스워드
+
+- name: broker-registrar      # 작업 이름(필수): 서비스 브로커 등록
+  template: broker-registrar   # job template 이름(필수)
+  instances: 1               # job 인스턴스 수(필수)
+  lifecycle: errand           # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로 실행할 때 설정, 주로 테스트 용도에 쓰임
+  resource_pool: small          # Resource Pools block에 정의한 resource pool 이름(필수)
+  networks:                         # 네트워크 구성정보
+  - name: default                    # Networks block에서 선언한 network 이름
+  properties:                        # job에 대한 속성을 지정(필수)
+    cf:                            # 개방형 클라우드 플랫폼 접속 정보
+      api_url: http://api.52.71.64.39.xip.io   # 개방형 클라우드 플랫폼 접속 URL
+      admin_username: "admin"   # 개방형 클라우드 플랫폼 접속 유저이름
+      admin_password: "admin"    # 개방형 클라우드 플랫폼 접속 패스워드
+      skip_ssl_validation: "true"     # 개방형 클라우드 플랫폼 접속 옵션의 일부
+    broker:                            # API Platform Service Broker 설정정보
+      protocol: http                    # API Platform Service Broker 접속 프로토콜
+      host: 10.0.0.209                # API Platform Service Broker 접속 URL
+      port: 8080                       # API Platform Service Broker 접속 포트
+      name: apiplatform-serivce-broker  # API Platform Service Broker 생성명
+      username: "admin"               # API Platform Service Broker auth 유저이름
+      password: "cloudfoundry"         # API Platform Service Broker auth 패스워드
+
+- name: broker-deregistrar         # 작업 이름(필수): 서비스 브로커 삭제
+  template: broker-deregistrar      # job template 이름(필수)
+  instances: 1                     # job 인스턴스 수(필수)
+  lifecycle: errand                 # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로 실행할 때 설정, 주로 테스트 용도에 쓰임
+  resource_pool: small             # Resource Pools block에 정의한 resource pool 이름(필수)
+  networks:                       # 네트워크 구성정보
+  - name: default                 # Networks block에서 선언한 network 이름
+  properties:                      # job에 대한 속성을 지정(필수)
+    cf:                           # 개방형 클라우드 플랫폼 접속 정보    
+      api_url: http://api.52.71.64.39.xip.io   # 개방형 클라우드 플랫폼 접속 URL
+      admin_username: "admin"                  # 개방형 클라우드 플랫폼 접속 유저이름
+      admin_password: "admin"                  # 개방형 클라우드 플랫폼 접속 패스워드
+      skip_ssl_validation: "true"                   # 개방형 클라우드 플랫폼 접속 옵션의 일부
+    broker:                                     # API Platform Service Broker 설정정보
+      name: apiplatform-service-broker           # API Platform Service Broker 생성명
+```
+>
+
+<br>
+
+-	Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
+
+>`$ bosh deployment openpaas-apiplatform-aws-1.0.yml`
+
+>![IMAGE 2.3.04]
+
+<br>
+
+-	API 플랫폼 서비스팩을 배포한다. 환경에 따라 다르지만 API 플랫폼 서비스팩 배포는 일반적으로 30분에서 50분 가량이 소요된다. 하단의 푸른색 박스에서 보듯이 리소스 사용상황에 따라 2시간 가량이 소요될 수도 있다.
+
+>`$ bosh deploy`
+
+>![IMAGE 2.3.05]
+
+>![IMAGE 2.3.06]
+
+<br>
+
+-	배포된 API 플랫폼 서비스팩을 확인한다.
+
+>`$ bosh vms`
+
+>![IMAGE 2.3.07]
 
 
 
@@ -81,7 +299,7 @@ API 플랫폼 서비스팩으로 배포한 API 매니저에는 Public IP가 할�
 ① Session 메뉴를 클릭하여 접속정보 설정 화면으로 이동하여 ② 배포한 API 매니저와 내부망으로 연결되어 있는 머신(설치 환경에 따라 상이함)의 Public IP를 입력한다.
 
 
-(4) Putty 접속 및 로그인<br> 
+(4) Putty 접속 및 로그인<br>
 Open 버튼을 클릭하여 해당 머신에 연결한다
 
 

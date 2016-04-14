@@ -154,8 +154,8 @@ Node.js는 javascript기반의 언어로 Notepad++, Sublim Text, EditPlus등 문
 
 - 아래의 두 명령어중 하나를 이용해 애플리케이션 실행한다.
 
-><div>npm start</div>
-><div>node bin/www</div>
+><div>>npm start</div>
+><div>>node bin/www</div>
 ![2-3-1-3]
 
 - 브라우저로 아래의 주소로 접속하여 애플리케이션이 제대로 동작하는지 확인한다.
@@ -380,9 +380,9 @@ package.json 수정(설정)시 설치된 Node.js의 버전에 맞는 모듈을 �
     <td>mocha test에 사용되는 모듈</td>
   </tr>
   <tr>
-    <td>supertes/t</td>
-  </tr>
+    <td>supertes</td>
     <td>rest test에 사용되는 모듈<td>
+  </tr>
 </table>
 
 - engines

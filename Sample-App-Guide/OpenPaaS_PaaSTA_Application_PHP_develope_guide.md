@@ -77,7 +77,7 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
   ![./image/php/php_develope_guide2.png](./image/php/php_develope_guide2.png)
   XAMP 공식 홈페이지 첫화면
     
-    다운로드는 Windows버전 PHP 5.5.30 (32bit)을 다운로드 받습니다.
+  다운로드는 Windows버전 PHP 5.5.30 (32bit)을 다운로드 받습니다.
     
   2.	다운로드 받은 파일을 실행하고 모두 Next를 하면됩니다. 하지만 아래와 같이 디렉토리를 물어보는데 이때 이 위치를 변경하거나 정확하게 기억하고 있어야 합니다. 설치 완료후php 실행 디렉토리를 환경변수(Path)에 넣어 줘야 하기 때문입니다.
     
@@ -87,7 +87,7 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
   3.	설치가 정상적으로 이루어지고 있으면 아래와 같이 진행이 될겁니다. 처음 실행할 때 Antivirus 프로그램으로 느려질수 있다는 문구 등이 나올수도 있는데 "확인"을 누르시면 됩니다.
     
   ![./image/php/php_develope_guide4.png](./image/php/php_develope_guide4.png)
-    XAMP 설치 진행중
+  XAMP 설치 진행중
     
   4.	설치가 완료되면 Control Panel을 띄우겠다는 메시지가 나옵니다. 선택이 Default로 되어 있어 완료를 선택하면 아래와 같은 Control Panel이 실행됩니다.
     
@@ -98,9 +98,9 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
     
   5.	Apache의 Config를 선택하고 Apache (httpd.conf)를 선택하여 DocumentRootdhk Directory의 위치를 개발소스가 설치된 곳으로 바꾸면 브라우져에서http://localhost 로 호출시 개발하는 위치로 바로 연결됩니다. 개발소스의 위치는 2.2.1에서 설치한 위치를 지정해 넣습니다.
         
-  DocumentRoot C:\개발소스위치
+    DocumentRoot C:\개발소스위치
 
-  <DirectoryC:\개발소스위치>
+    <DirectoryC:\개발소스위치>
 
 ## 2.3.  RUBY 설치
 

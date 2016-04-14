@@ -409,6 +409,69 @@ API 서비스 브로커를 통해 서비스되는 서비스들이 공통적으�
   | serviceKey | API 서비스를 사용하기 위해 서비스 제공자로부터 발급받은 인증키 <br>※ 서비스 바인드 시, 입력 | [사용자가 발급받은 키값] |
   | documentUrl | API 서비스의 기술문서, 개발 가이드 등을 확인할 수 있는 URL <br>Key값: [Service1.DocumentationUrl] | https://www.data.go.kr/subMain.jsp#/L3B1YnIvdXNlL3ByaS... (생략) |
   
+<div id='29'></div>
+### 4.6. 언바인드
+※ 세부정보는 [OpenPaaS_PaaSTA_ServicePack_develope_guide]문서의 [2.5.6  Unbind API 가이드]를 참고한다.
+<div id='30'></div>
+##### 4.6.1 요청
+- Route
+  ```
+  DELETE /v2/service_instances/:instance_id/service_bindings/:binding_id
+  ```
+  
+- cURL
+  ```
+  $ curl 'http://username:password@broker-url/v2/service_instances/:instance_id/
+service_bindings/:binding_id?service_id=Service1 PublicPerformance ServiceID &plan_id=Service1 PublicPerformance Plan1 basic PlanID' -X DELETE -H "X-Broker-API-Version: 2.4"
+  ```
+  ※ 'username:password'는 서비스 브로커의 인증ID와 인증Password를 의미한다. 서비스 브로커 구현 시, 라이브러리에 정의된 값이다. 정의되어 있는 인증ID는 'admin', 인증Password는 'cluoudfoundry'이다.
+
+- body
+
+  | <b>요청필드</b>      | <b>설명</b> | <b>샘플데이터</b> |
+  |-------------|-----------------------------|-----------------------------|
+  | service_id | 카탈로그에서 생성된, 언바인드하는 서비스 인스턴스의 서비스ID | Service1 PublicPerformance ServiceID |
+  | plan_id | 카탈로그에서 생성된, 언바인드하는 서비스 인스턴스의 플랜ID | Service1 PublicPerformance Plan1 basic PlanID |
+
+<div id='31'></div>
+##### 4.6.2 응답
+- body
+
+  | <b>응답</b>      | <b>설명</b> |
+  |-------------|-----------------------------|
+  | {} | 언바인드가 성공적으로 진행되었을 경우, "{}"의 형태로 응답된다. |
+
+<div id='32'></div>
+### 4.6. 디프로비전
+※ 세부정보는 [OpenPaaS_PaaSTA_ServicePack_develope_guide]문서의 [2.5.4  Deprovision API 가이드]를 참고한다.
+<div id='33'></div>
+##### 4.7.1 요청
+- Route
+  ```
+  DELETE /v2/service_instances/:instance_id
+  ```
+  
+- cURL
+  ```
+  $ curl 'http://username:password@broker-url/v2/service_instances/:instance_id?service_id=
+Service1 PublicPerformance ServiceID plan_id=Service1 PublicPerformance Plan1 basic PlanID -X DELETE -H "X-Broker-API-Version: 2.5"
+  ```
+  ※ 'username:password'는 서비스 브로커의 인증ID와 인증Password를 의미한다. 서비스 브로커 구현 시, 라이브러리에 정의된 값이다. 정의되어 있는 인증ID는 'admin', 인증Password는 'cluoudfoundry'이다.
+
+- body
+
+  | <b>요청필드</b>      | <b>설명</b> | <b>샘플데이터</b> |
+  |-------------|-----------------------------|-----------------------------|
+  | service_id | 카탈로그에서 생성된, 디프로비전하는 서비스 인스턴스의 서비스ID | Service1 PublicPerformance ServiceID |
+  | plan_id | 카탈로그에서 생성된, 디프로비전하는 서비스 인스턴스의 플랜ID | Service1 PublicPerformance Plan1 basic PlanID |
+
+<div id='34'></div>
+##### 4.7.2 응답
+- body
+
+  | <b>응답</b>      | <b>설명</b> |
+  |-------------|-----------------------------|
+  | {} | 모든 응답은 Body는 JSON Object "{}" 형식으로 한다. |
 
 
 [2-1-0-0]:/images/openpaas-service/publicapi/2-1-0-0.png

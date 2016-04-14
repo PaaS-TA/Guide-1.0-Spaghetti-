@@ -79,7 +79,7 @@ Ruby 애플리케이션 개발을 위해 다음과 같은 환경으로 개발환
 ##### 2.2.1.	Ruby & Ruby On Rails설치
 
 1)	Ruby & DevKit 다운로드   
->**<http://rubyinstaller.org/downloads/>**   
+**<http://rubyinstaller.org/downloads/>**   
 ![ruby01]
 - 다운로드  
 RubyInstallers : Ruby 1.9.3-p551  

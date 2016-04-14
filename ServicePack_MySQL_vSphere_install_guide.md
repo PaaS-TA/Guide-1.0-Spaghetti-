@@ -33,7 +33,7 @@
 |--------|-------|-------|
 | openpaas-mysql-broker | services-small | 1vCPU / 1GB RAM / 8GB Disk |
 | proxy | services-small | 1vCPU / 1GB RAM / 8GB Disk |
-| server | services-small | 1vCPU / 1GB RAM / 8GB Disk +8GB(영구적 Disk) |
+| mysql_z1 | services-small | 1vCPU / 1GB RAM / 8GB Disk +8GB(영구적 Disk) |
 
 ### 1.4. 참고자료
 [**http://bosh.io/docs**](http://bosh.io/docs)  
@@ -65,7 +65,7 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 >`$ bosh upload release {서비스 릴리즈 파일 PATH}`   
 >`$ bosh upload release openpaas-mysql-1.0.tgz`
 
->※	하단의 화면은 릴리즈 파일을 tarball 형태로 압축하지 않고 릴리즈를 업로드하고 있다. 본 문서에서 안내하는 방법대로 tarball 형태로 릴리즈 파일 압축하여 업로드 할 경우에 출력되는 화면은 하단의 화면과 다소 차이가 있다.
+>※ 하단의 화면은 릴리즈 파일을 tarball 형태로 압축하지 않고 릴리즈를 업로드하고 있다. 본 문서에서 안내하는 방법대로 tarball 형태로 릴리즈 파일 압축하여 업로드 할 경우에 출력되는 화면은 하단의 화면과 다소 차이가 있다.
 
 >![mysql_vsphere_2.2.03]
 
@@ -98,7 +98,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 ##### 다운로드 받은 Deployment Yml 파일을 확인한다. ((openpaas-mysql-vsphere.yml)
 
->`$ cd Deployment`
+>`$ cd Deployment`  
 >`$ ls –all`
 
 >![mysql_vsphere_2.3.01]
@@ -125,7 +125,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 <br>
 
-##### -	openpaas-mysql-vsphere.yml Deployment 파일을 서버 환경에 맞게 수정한다.
+##### openpaas-mysql-vsphere.yml Deployment 파일을 서버 환경에 맞게 수정한다.
 
 >`$ vi openpaas-mysql-vsphere-1.0.yml`
 
@@ -343,8 +343,7 @@ resource_pools:       # 배포시 사용하는 resource pools를 명시하며 �
 
 ##### Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 
->`$ bosh deployment {Deployment manifest 파일 PATH}`
-
+>`$ bosh deployment {Deployment manifest 파일 PATH}`  
 >`$ bosh deployment openpaas-mysql-vsphere-1.0.yml`
 
 >![mysql_vsphere_2.3.04]
@@ -353,7 +352,7 @@ resource_pools:       # 배포시 사용하는 resource pools를 명시하며 �
 
 ##### MySQL 서비스팩을 배포한다.
 
->`$ bosh deploy`
+>`$ bosh deploy`  
 >※	40분 ~ 1시간 정도 소요된다.
 
 >![mysql_vsphere_2.3.05]

@@ -117,9 +117,8 @@ Node.js 애플리케이션 개발을 위해 다음과 같은 환경으로 개발
 
 - 커맨드창에 아래의 명령어를 입력하여 node.js와 npm의 버젼과 제대로 설치되었는지 여부를 확인한다.
 
-> >node -v
->
-> >npm -v
+><div>>node -v</div><br>
+><div>>npm -v</div>
 ![2-2-1-10]
 
 개발도구
@@ -135,50 +134,43 @@ Node.js는 javascript기반의 언어로 Notepad++, Sublim Text, EditPlus등 문
 1. 'express-generator'를 이용하여 Express 애플리케이션을 생성
 - 커맨드 창에서 개발을 진행할 경로로 이동후 아래의 명령어를 입력하여 'express-generator' npm을 설치한다.
 
-> >npm install express-generator
+><div>>npm install express-generator</div>
 ![2-3-1-0]
 
 - Express 애플리케이션을 생성한다. '-e'옵션은 view enjine을 ejs를 사용한다는 것이고 default view enjin은 jade이다.
-> >.\node_modules\.bin\express -e
+><div>>.\node_modules\.bin\express -e</div>
 ![2-3-1-1]
 
 2. npm 설치
 - Express 애플리케이션에 기본적으로 포함되어있는 npm을 설치한다. 설치할 npm에 대한 정의는 package.json에 정의되어있다. 
-> >npm install
+><div>>npm install</div>
 ![2-3-1-2]
 
 3.  Node.js Express 어플리캐이션 실행
 - 아래의 두 명령어중 하나를 이용해 애플리케이션 실행한다.
-<div>
->npm start
->node bin/www
-</div>
-
-
+><div>npm start</div>
+><div>node bin/www</div>
 ![2-3-1-3]
 
 - 브라우저로 아래의 주소로 접속하여 애플리케이션이 제대로 동작하는지 확인한다.
-<div>http://localhost:3000/</div>
-
-
+><div>http://localhost:3000/</div>
 ![2-3-1-3]
  
 <div id='9'></div>
 ### 3.2. Node.js 샘플 애플리케이션
 
 1.  Node.js 샘플 애플리케이션 다운로드 (현재는 비공개이며 지원예정)
+
 - git clone을 통해 Node.js 샘플 애플리케이션을 다운받는다.
 <div>git clone https://github.com/OpenPaaSRnD/OpenPaaSSample</div>
 
 2.  Node.js 샘플 애플리케이션 경로로 이동
+
 - 다운받은 경로아래에 Node.js 샘플 애플리케이션 경로로 이동한다.
-<div>>cd node-sample-app</div>
-
-
+><div>>cd node-sample-app</div>
 ![2-3-2-0]
 
 3.  Node.js 샘플 애플리케이션 디렉토리구조
-
 
 ![2-3-2-1]
 

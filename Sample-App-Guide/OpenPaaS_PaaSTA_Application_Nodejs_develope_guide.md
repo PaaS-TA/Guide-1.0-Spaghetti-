@@ -170,7 +170,9 @@ Node.js는 javascript기반의 언어로 Notepad++, Sublim Text, EditPlus등 문
 
 - git clone을 통해 Node.js 샘플 애플리케이션을 다운받는다.
 
-><div>git clone https://github.com/OpenPaaSRnD/OpenPaaSSample</div>
+```
+git clone https://github.com/OpenPaaSRnD/OpenPaaSSample
+```
 
 ##### 2. Node.js 샘플 애플리케이션 경로로 이동
 
@@ -381,7 +383,7 @@ package.json 수정(설정)시 설치된 Node.js의 버전에 맞는 모듈을 �
   </tr>
   <tr>
     <td>supertes</td>
-    <td>rest test에 사용되는 모듈<td>
+    <td>rest test에 사용되는 모듈</td>
   </tr>
 </table>
 
@@ -403,7 +405,9 @@ package.json 수정(설정)시 설치된 Node.js의 버전에 맞는 모듈을 �
 
 2) 모듈 설치
 - pakage.json에 정의된 모듈을 설치한다. 모듈이름을 지정하지 않으면 package.json의 depencencies의 모든 모듈을 설치한다.
-<div>>npm install</div>
+```
+>npm install
+```
 
 3) ./bin/www
 - HTTP서버가 사용할 PORT를 개방형 플랫폼이 제공하는 PORT를 사용하게 설정한다. 개방형 플랫폼은 이 값을 이용하여 애플리케이션이 제대로 동작하고 있는지 감지하는데 사용한다. 이 값 외의 다른 PORT를 사용하면 애플리케이션이 제대로 동작하지 않는다.

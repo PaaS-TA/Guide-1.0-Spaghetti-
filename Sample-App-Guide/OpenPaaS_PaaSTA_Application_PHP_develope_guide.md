@@ -145,7 +145,8 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
   1.	먼저 문서에 PECL 홈페이지(http://pecl.php.net/package/mongo)에서 DLL를 다운로드 받아야 합니다. 본 가이드는 1.6.12 버전을 을 선택하였습니다. 
    
   위의 링크중 DLL 부분을 눌러서 선택하고 "5.5 Thread Safe (TS) x86"를 다운로드 받습니다. 압축을 해제하면 php_mongo.dll이 있는데 이 파일만 있으면 됩니다.
-  ![./image/php/php_develope_guide5.png](./image/php/php_develope_guide7.png)<br>
+  
+  ![./image/php/php_develope_guide5.png](./image/php/php_develope_guide7.png)
   
   2.	php_mongo.dll 파일을 XAMP 설치된 디렉토리에서php 아래에 ext에 복사를 합니다.
   
@@ -178,74 +179,59 @@ Composer를 사용하여 Dependency를 관리합니다. Composer.json 파일의 
 
 
   Composer를 이용하여 라이브러리를 설치하려면 아래와 같이 install을 실행하면 됩니다. 이 명령은 개방형 플랫폼에 PHP 빌드팩과 같이 배포될 때 자동으로 수행이 됩니다. 
-  phpcomposer.phar install
+    phpcomposer.phar install
   
   만약에 로컬 개발환경에서 composer.json파일이 변경되면 install 대신 update를 이용하여 패키지의 구성을 변경하면 됩니다.
 
 
 
-## 3.2.  RHEL OS 이미지 생성 
+## 3.2.  디렉토리설명
 
-RHEL OS 이미지를 생성하는 절차를 기술한다.
+개발 편의를 위해 API 서비스를 따로 디렉토리로구성하였으며 resource 디렉토리는 HTML에서 필요한 정적인 파일(js, css, image)이 있습니다.
 
-
-1.  RHEL 7.0 iso를 다운로드 받아서 스템셀 생성 VM에 업로드 한다.
-
-  	[https://access.redhat.com/downloads/content/69/ver=/rhel---7/7.0/x86\_64/product-downloads](https://access.redhat.com/downloads/content/69/ver=/rhel---7/7.0/x86_64/product-downloads)
-  
-	※ 다운로드하기 위해서는 RedHat 계정이 있어야 한다.
-
-
-2.  실행 환경 구성
-
-		#스템셀 생성 VM에 접속
-		$ cd ~/workspace/bosh/bosh-stemcell
-		$ vagrant ssh remote
-
-		#RHEL 이미지 마운트
-		$ sudo mkdir -p /mnt/rhel
-		$ sudo mount rhel-server-7.0-x86_64-dvd.iso /mnt/rhel
-
-		#redhat 계정 정보 설정
-		$ export RHN_USERNAME=<RHEL 계정>
-		$ export RHN_PASSWORD=<RHEL 비밀번호>
-
-3.  Build\_os\_image 실행
-
-		#스템셀 생성 VM에서 build_os_image 실행
-		$ cd /bosh
-		$ bundle exec rake stemcell:build_os_image[rhel,7,/tmp/rhel_7_base_image.tgz]
-
-	※ 기본 RHEL OS 이미지는 BOSH에서 제공하지 않는다.
+|파일/폴더  |목적  |
+|-----------|------------------------------------------|
+|.bp-config|	PHP 빌드팩에서 사용하는 extension을 정의하는 곳입니다.|
+|api|	REST API에 대한 소스가 있습니다. 각 서비스별로 구분되어 있습니다.|
+|resources|	HTML에서 사용하는 정적인 파일(js, css, image 등)이 있습니다.|
+|Test|	PHP 단위테스트를 위한 테스트 케이스가 있습니다.|
+|vendor|	Composer로 설치되는 패키지가 있습니다.|
+|.cfiignore|	개방형 플랫폼에 배포시 배포 예외를 시키는 파일/디렉토리를 정의합니다.|
+|.htaccess|	REST/full 구현을 위해 url에 대한 패턴을 정의한 곳입니다.|
+|composer.json, composer.phar, composer.lock|	Composer파일로 패키지의 Dependency를 관리하는 파일입니다.|
+||Info.php|	PHP에 설치된 모듈을 확인하기 위한 phpinfo()를 포함한 웹페이지입니다.|
+|login.html|	예제 실행을 위한 login 페이지입니다.|
+|main.html|	예제의 조직도를 보여주기 위한 main페이지입니다.|
+|manage..html|	예제의 데이터를 관리하기 위한 manage 페이지입니다. login이후에 보여지는 화면입니다.|
+|manifest.yml|	개방형 플랫폼에 배포(push)할 때 사용하는 설정 파일입니다.|
+|phpunit.xml|	PHP 단위테스트를 정의한 설정입니다.|
 
 
-## 3.3.  PHOTON OS 이미지 생성 
+## 3.3.  애플리케이션 환경설정
 
-PHOTON OS 이미지를 생성하는 절차를 기술한다.
+REST/full 서비스를 위한 환경설정과 PHP 빌드팩에서 사용할 Extension을 적용해야 합니다. 
 
+1.	REST/full 서비스를 위해 .htaccess 구성
+REST/full API 형식인 /api/변수 를 처리하기 위한 설정입니다. 루트디렉토리에 .htaccess를 추가하고 아래와 같이 넣어줍니다.
 
-1.  PHOTON iso 이미지를 다운로드 받아서 스템셀 생성 VM에 업로드 한다. ※TP2버전 이상을 다운 받는다.
-  
-	[https://vmware.bintray.com/photon/iso/](https://vmware.bintray.com/photon/iso/)
+\`#<IfModulemod_rewrite.c>
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule /(.*)$ /api/api.php?request=$1 [QSA,NC,L]
+#</IfModule>\`
+	
+	
+2.	PHP 빌드팩에 Extension 추가
+XAMP에서 mongo 드라이브를 추가하였듯이 개방형 플랫폼에도 사용항 Extension 라이브러리를 추가해야합니다. 사용가능한 라이브러리는 여기()에서 확인이 가능합니다.
+추가를 위해서는 .bp-config디렉토리에options.json 파일을 만들고 아래와 같이 추가해주면 됩니다.
+\`{
+    "PHP_EXTENSIONS": ["mysqli", "mongo", "amqp"]
+}\`
+ 	mysqli :mysql과 연결을 위한 extension
+ 	mongo : mongo 연결을 위한 extension
+ 	amqp :rabbitmq와 연결을 위한 extension (현재 SSL연동이 안되서 사용을 못하고 있음)
 
-2.  실행 환경 구성
-
-		#스템셀 생성 VM에 접속
-		$ cd ~/workspace/bosh/bosh-stemcell
-		$ vagrant ssh remote
-
-		#PHOTON 이미지 마운트
-		$ sudo mkdir -p /mnt/photon
-		$ sudo mount photon.iso /mnt/photon
-
-
-3.  Build\_os\_image 실행
-  
-		#스템셀 생성 VM에서 build_os_image 실행
-		$ cd /bosh
-		$ bundle exec rake stemcell:build_os_image[photon,TP2,/tmp/photon_TP2_base_image.tgz]
-
-	※ 기본 Photon OS 이미지는 BOSH에서 제공하지 않는다.
 
 ## 3.4.  생성한 기본 OS 이미지의 보관장소 
 

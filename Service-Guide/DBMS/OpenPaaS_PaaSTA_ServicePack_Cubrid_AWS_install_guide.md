@@ -1,1122 +1,656 @@
+
 ## Table of Contents
 1. [문서 개요](#1)
      * [1.1. 목적](#2)
      * [1.2. 범위](#3)
-     * [1.3. 참고 자료](#4)
-2. [개발환경 구성](#5)
-     * [2.1. Node.js 및 npm 설치](#6)
-3. [개발](#7)
-     * [3.1. Node.js Express애플리케이션 생성](#8)
-     * [3.2. Node.js 샘플 애플리케이션](#9)
-     * [3.3. 애플리케이션 환경설정](#10)
-     * [3.4. VCAP_SERVICES 환경설정 정보](#11)
-     * [3.5. Mysql 연동](#12)
-     * [3.6. Cubrid 연동](#13)
-     * [3.7. MongoDB 연동](#14)
-     * [3.8. Redis 연동](#15)
-     * [3.9. RabbitMQ연동](#16)
-     * [3.10. GlusterFS 연동](#17)
-4. [배포](#18)
-     * [4.1. 개방형 플랫폼 로그인](#19)
-     * [4.2. 서비스 생성](#20)
-     * [4.3. 애플리케이션 배포](#21)
-     * [4.4. 애플리케이션, 서비스 연결](#22)
-     * [4.5. 애플리케이션 실행](#23)
-5. [테스트](#24)
+     * [1.3. 시스템 구성도](#4)
+     * [1.4. 참고자료](#5)
+2. [Cubrid 서비스팩 설치](#6)
+     * [2.1. 설치전 준비사항](#7)
+     * [2.2. Cubrid 서비스 릴리즈 업로드](#8)
+     * [2.3. Cubrid 서비스 Deployment 파일 수정 및 배포](#9)
+     * [2.4. Cubrid 서비스 브로커 등록](#10)
+3. [Cubrid 연동 Sample App 설명](#11)
+     * [3.1. Sample App 구조](#12)
+     * [3.2. 개방형 클라우드 플랫폼에서 서비스 신청](#13)
+     * [3.3. Sample App에 서비스 바인드 신청 및 App 확인](#14)
+4. [Cubrid Client 툴 접속](#15)
+     * [4.1. Putty 다운로드 및 터널링](#16)
+     * [4.2. Cubrid Manager 설치 및 연결](#17)
 
-
+     
 
 <div id='1'></div>
 # 1. 문서 개요
 
 <div id='2'></div>
 ### 1.1. 목적
-
-본 문서(node.js 애플리케이션 개발 가이드)는 개방형 플랫폼 프로젝트의 서비스팩(Mysql, Cubrid, MongoDB, RabbitMQ, Radis, GlusterFS)을 Node.js 애플리케이션과 연동하여서비스를 사용하고 애플리케이션을 배포하는 방법에 대해 제시하는 문서이다.
+      
+본 문서(Cubrid 서비스팩 설치 가이드)는 전자정부표준프레임워크 기반의 Open PaaS에서 제공되는 서비스팩인 Cubrid 서비스팩을 Bosh를 이용하여 설치 하는 방법과 Open PaaS의 SaaS 형태로 제공하는 Application 에서 Cubrid 서비스를 사용하는 방법을 기술하였다.
 
 <div id='3'></div>
-### 1.2. 범위
+### 1.2. 범위 
 
-본 문서의 범위는 개방형 플랫폼 프로젝트의 Node.js 애플리케이션 개발과 서비스팩 연동에 대한 내용으로 한정되어 있다.
+설치 범위는 Cubrid 서비스팩을 검증하기 위한 기본 설치를 기준으로 작성하였다. 
 
 <div id='4'></div>
-### 1.3. 참고자료
-**<https://docs.cloudfoundry.org/devguide/>**
-**<https://docs.cloudfoundry.org/buildpacks/node/node-tips.html>**
-**<https://nodejs.org/>**
-**<http://expressjs.com/ko/>**
-**<https://github.com/felixge/node-mysql>**
-**<https://github.com/CUBRID/node-cubrid>**
-**<https://github.com/mongodb/node-mongodb-native>**
-**<https://github.com/NodeRedis/node_redis>**
-**<https://github.com/postwait/node-amqp>**
-**<https://github.com/pkgcloud/pkgcloud>**
-**<https://mochajs.org/>**
-
-<div id='5'></div>
-# 2. 개발환경 구성
-
-Open PaaS에 등록된 다양한 서비스팩을 Node.js언어로 작성된 애플리케이션과 바인딩하고해당 애플리케이션에 바인딩된 환경정보(VCAP_SERVICES)에서 각 서비스별 접속정보를 획득하여 애플리케이션에 적용하여 이용 할 수 있도록 Windows 환경에서 Node.js 애플리케이션을 작성 할 수 있도록한다.
-
-Node.js 애플리케이션 개발을 위해 다음과 같은 환경으로 개발환경을 구성 한다.
-
-- BuildPack: v1.3.4
-- OS : Windows 7 64bit
-- Node.js : v0.12.4
-- npm : v2.10.1
-
-<div id='6'></div>
-### 2.1. Node.js 및 npm 설치
-
-##### 1. Node.js 다운로드
-
-- 아래의 주소로 접속한 후 node-v0.12.4-x64.msi를 다운받는다.
-
->https://nodejs.org/dist/v0.12.4/x64/node-v0.12.4-x64.msi
->![2-2-1-0]
-
-##### 2. Node.js 설치
-
-- 다운받은 폴더에서 node-v0.12.4-x64.msi를 더블클릭하여 설치를 시작한다.
-
-![2-2-1-1]
-
-- "실행"버튼을 클릭하여 계속 진행한다.
-
-![2-2-1-2]
-
-- "Next"버튼을 클릭하여 계속 진행한다.
-
-![2-2-1-3]
-
-- "I accept the terms in the License Agreement"를 체크하여 라이센스에 동의한 후 "Next"버튼을 클릭하여 계속 진행한다.
-
-![2-2-1-4]
-
-- 설치경로를 입력 혹은 선택한 후 "Next"버튼을 클릭하여 계속 진행한다.
-여기서는 C:\Program Files\nodejs\ 를 설치경로로 설정하였다.
-
-![2-2-1-5]
-
-- 설치할 항목을 선택한 후 "Next"버튼을 클릭하여 계속 진행한다.
-여기서는 선택하여 Node.js, npm, doc을 설치하고 환경변수 PATH까지 추가하였다.
-
-![2-2-1-6]
-
-- "Install"버튼을 클릭하여 설치한다.
-
-![2-2-1-7]
-
-- "Finish"버튼을 클릭하여 설치를 완료한다.
-
-![2-2-1-8]
-
-- '윈도우키+R' 또는 '시작->실행'아이콘을 클릭하여 실행창을 띄운 후 'cmd'를 입력하고 "확인"버튼을 눌러 커맨드창을 연다.
-
-![2-2-1-9]
-
-- 커맨드창에 아래의 명령어를 입력하여 node.js와 npm의 버젼과 제대로 설치되었는지 여부를 확인한다.
-
-> >node -v
->
-> >npm -v
-![2-2-1-10]
-
-개발도구
-Node.js는 javascript기반의 언어로 Notepad++, Sublim Text, EditPlus등 문서편집기를 개발도구로 사용할 수 있다. 또한 Eclipse의 플러그인 Nodeclipse를 설치하여 사용할 수도있다.
-
-<div id='7'></div>
-# 3. 개발
-
-샘플 애플리케이션에의 데이터 관리는 MySQL, CubridDB, MongoDB 중에 하나를 이용하기 때문에 API 요청시 요청 본문에 DBType 값을 가지고 결정한다.
-
-<div id='8'></div>
-### 3.1. Node.js Express애플리케이션 생성
-1. 'express-generator'를 이용하여 Express 애플리케이션을 생성
-- 커맨드 창에서 개발을 진행할 경로로 이동후 아래의 명령어를 입력하여 'express-generator' npm을 설치한다.
-
-> >npm install express-generator
-![2-3-1-0]
-
-- Express 애플리케이션을 생성한다. '-e'옵션은 view enjine을 ejs를 사용한다는 것이고 default view enjin은 jade이다.
-> >.\node_modules\.bin\express -e
-![2-3-1-1]
-
-2. npm 설치
-- Express 애플리케이션에 기본적으로 포함되어있는 npm을 설치한다. 설치할 npm에 대한 정의는 package.json에 정의되어있다. 
-> >npm install
-![2-3-1-2]
-
-3.  Node.js Express 어플리캐이션 실행
-- 아래의 두 명령어중 하나를 이용해 애플리케이션 실행한다.
-<div>
->npm start
->node bin/www
-</div>
-
-
-![2-3-1-3]
-
-- 브라우저로 아래의 주소로 접속하여 애플리케이션이 제대로 동작하는지 확인한다.
-<div>http://localhost:3000/</div>
-
-
-![2-3-1-3]
- 
-<div id='9'></div>
-### 3.2. Node.js 샘플 애플리케이션
-
-1.  Node.js 샘플 애플리케이션 다운로드 (현재는 비공개이며 지원예정)
-- git clone을 통해 Node.js 샘플 애플리케이션을 다운받는다.
-<div>git clone https://github.com/OpenPaaSRnD/OpenPaaSSample</div>
-
-2.  Node.js 샘플 애플리케이션 경로로 이동
-- 다운받은 경로아래에 Node.js 샘플 애플리케이션 경로로 이동한다.
-<div>>cd node-sample-app</div>
-
-
-![2-3-2-0]
-
-3.  Node.js 샘플 애플리케이션 디렉토리구조
-
-
-![2-3-2-1]
+### 1.3. 시스템 구성도
+본 문서의 설치된 시스템 구성도입니다. Cubrid Server, Cubrid 서비스 브로커로 최소사항을 구성하였다.  
+![시스템 구성도][1-3-0-0]
 
 <table>
   <tr>
-    <td>파일/폴더</td>
-    <td>목적</td>
+    <td>구분</td>
+    <td>스펙</td>
   </tr>
   <tr>
-    <td>package.json</td>
-    <td>node.js 어플리케이션에 필요한 npm의 의존성 정보를 기술하는데 사용 한다.<br>
-    npm install 명령을 실행시 install 뒤에 아무런 정보를 입력하지 않으면 이 파일의 정보를 이용하여 npm을 설치한다.</td>
+    <td>openpaas-cubrid-broker</td>
+    <td>1vCPU / 4GB RAM / 8GB Disk</td>
   </tr>
   <tr>
-    <td>app.js</td>
-    <td>Express에 대한 설정을 한다. http요청에 대한 라우팅 정보 또한 이곳에서 정의한다.</td>
+    <td>Cubrid</td>
+    <td>1vCPU / 4GB RAM / 8GB Disk+16GB(영구적 Disk)</td>
+  </tr>
+</table>
+
+<div id='5'></div>
+### 1.4. 참고자료
+**<http://bosh.io/docs>**  
+**<http://docs.cloudfoundry.org/>**
+
+<div id='6'></div>
+#   2. Cubrid 서비스팩 설치
+
+<div id='7'></div>
+### 2.1. 설치전 준비사항
+본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.  
+서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.  
+BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여BOSH CLI를 설치 해야 한다.
+
+- OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Services.zip, OpenPaaS-Deployment.zip, OpenPaaS-Sample-Apps.zip)
+
+<div id='8'></div>
+###   2.2. Cubrid 서비스 릴리즈 업로드
+
+- OpenPaaS-Services.zip 파일 압축을 풀고 폴더안에 있는 cubrid 서비스 릴리즈 openpaas-cubrid-1.0.tgz 파일을 확인한다.
+
+>$ cd OpenPaaS-Services  
+>$ ls -all  
+![2-2-0-0-1]  
+
+- 업로드 되어 있는 릴리즈 목록을 확인한다.
+
+>$ bosh releases  
+![2-2-4-0-1]  
+>Cubrid 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
+
+- Cubrid 서비스 릴리즈를 업로드한다.
+
+>$ bosh upload release {서비스 릴리즈 파일 PATH}
+>
+>$ bosh upload release openpaas-cubrid-1.0.tgz  
+![2-2-6-0-1]
+
+- 업로드 된 Cubrid 릴리즈를 확인한다. 
+
+>$ bosh releases  
+![2-2-7-0-1]  
+>Cubrid 서비스 릴리즈가 업로드 되어 있는 것을 확인
+
+<div id='9'></div>
+### 2.3.  Cubrid 서비스 Deployment 파일 수정 및 배포
+BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
+Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
+
+- OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더안에 있는 AWS용 Cubrid Deployment 화일인 openpaas-cubrid-aws-1.0.yml를 복사한다.
+- 다운로드 받은 Deployment Yml 파일을 확인한다. (openpaas-cubrid-aws-1.0.yml)
+
+><div>$ ls –all</div>
+>![2-3-0-0]
+
+- Director UUID를 확인한다.
+- BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 BOSH Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할수 있다.
+
+><div>$ bosh status</div>
+>![2-3-1-0]
+
+- Deploy시 사용할 Stemcell을 확인한다. (Stemcell 3147 버전 사용)
+ 
+><div>$ bosh stemcells</div>
+>![2-3-2-0]
+><div>Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3147 버전을 업로드를 해야 한다.</div>
+
+- openpaas-cubrid-aws-1.0.yml Deployment 파일을 서버 환경에 맞게 수정한다.
+
+>$ vi openpaas-cubrid-aws-1.0.yml 
+```yaml
+# openpaas-cubrid-aws 설정 파일 내용
+---
+name: openpaas-cubrid-service  # 서비스 배포이름(필수)
+director_uuid: xxxxxxx #bosh status 에서 확인한 Director UUID을 입력(필수)
+>
+release:
+  name: openpaas-cubrid  #서비스 릴리즈 이름(필수)
+  version: 1.0   #서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
+>
+compilation:          # 컴파일시 필요한 가상머신의 속성(필수)
+  workers: 2          # 컴파일 하는 가상머신의 최대수(필수)
+  network: default    # Networks block에서 선언한 network 이름(필수)
+  cloud_properties:   # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone), 직접 cpu,disk,ram 사이즈를 넣어도 됨
+    instance_type: m1.medium
+  reuse_compilation_vms: true
+>
+# this section describes how updates are handled
+update:
+  canaries: 1                 # canary 인스턴스 수(필수)
+  canary_watch_time: 30000    # canary 인스턴스가 수행하기 위한 대기 시간(필수)
+  update_watch_time: 30000    # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
+  max_in_flight: 4            # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
+>
+networks:                     # 네트워크 블록에 나열된 각 서브 블록이 참조 할 수있는 작업이 네트워크 구성을 지정, 네트워크 구성은 네트워크 담당자에게 문의 하여 작성 요망
+- name: default
+  subnets:
+  - cloud_properties:
+      subnet: subnet-e300eabb
+      security_groups:
+      - cf-security
+      - bosh-security
+    dns:                      # DNS 정보
+    - 10.0.0.6
+    - 8.8.8.8
+    gateway: 10.0.0.1
+    range: 10.0.0.0/24
+    reserved:                 # 설치시 제외할 IP 설정
+    - 10.0.0.2 - 10.0.0.19
+    static:
+    - 10.0.0.22 #사용 가능한 IP 설정
+    - 10.0.0.23
+  type: manual
+>
+resource_pools:               # 배포시 사용하는 resource pools를 명시하며 여러 개의 resource pools 을 사용할 경우 name 은 unique 해야함(필수)
+  - name: cubrid_resource_pools # 고유한 resource pool 이름
+    network: default
+    stemcell:
+      name: bosh-aws-xen-ubuntu-trusty-go_agent  # stemcell 이름(필수)
+      version: 3147 # stemcell 버전(필수)
+    cloud_properties:         # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성을 설명 (instance_type, availability_zone), 직접 cpu, disk, 메모리 설정가능
+      instance_type: m1.small
+>
+jobs:
+  - name: cubrid  #작업 이름(필수): Cubrid 서버
+    template: cubrid  # job template 이름(필수)
+    instances: 1  # job 인스턴스 수(필수)
+    resource_pool: cubrid_resource_pools  # resource_pools block에 정의한 resource pool 이름(필수)
+    persistent_disk: 16384  # 영구적 디스크 사이즈 정의(옵션): 16G
+    networks:     # 네트워크 구성정보
+    - name: default   # Networks block에서 선언한 network 이름(필수)
+      static_ips:
+      - 10.0.0.23   # 사용할 IP addresses 정의(필수): MySQL 서버 IP
+  - name: cubrid_broker   #작업 이름(필수): Cubrid 서비스 브로커
+    template: cubrid_broker  # job template 이름(필수)
+    instances: 1  # job 인스턴스 수(필수)
+    resource_pool: cubrid_resource_pools  # resource_pools block에 정의한 resource pool 이름(필수)
+    networks: # 네트워크 구성정보
+    - name: default   # Networks block에서 선언한 network 이름(필수)
+      static_ips:
+      - 10.0.0.22   # 사용할 IP addresses 정의(필수)
+  - name : cubrid_broker_registrar  # 작업 이름: 서비스 브로커 등록
+    template : cubrid_broker_registrar
+    instances: 1
+    lifecycle: errand   # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로 실행할때 설정, 주로 테스트 용도에 쓰임
+    resource_pool: cubrid_resource_pools
+    networks:
+    - name: default
+    properties:
+      broker: # 서비스 브로커 설정 정보
+        host: 10.0.0.22 # 서비스 브로커 IP 
+        name: CubridDB  # CF에서 서비스 브로커를 생성시 생기는 서비스 이름 브로커에 고정되어있는 값
+        password: cloudfoundry  # 브로커 접근 아이디 비밀번호(필수)
+        username: admin   # 브로커 접근 아이디(필수)
+        protocol: http
+        port: 8088  # 브로커 포트
+      cf:
+        admin_password: admin   # CF 사용자의 패스워드
+        admin_username: admin   # CF 사용자 이름
+        api_url: https://api.115.68.46.30.xip.io   # CF 설치시 설정한 api uri 정보(필수)
+    release: openpaas-cubrid
+  - name : cubrid_broker_deregistrar  # 작업 이름: 서비스 브로커 삭제
+    template : cubrid_broker_deregistrar
+    instances: 1
+    lifecycle: errand
+    resource_pool: cubrid_resource_pools
+    networks:
+    - name: default
+    properties:
+      broker:
+        host: 10.0.0.22
+        name: CubridDB
+        password: cloudfoundry
+        username: admin
+        protocol: http
+        port: 8088
+      cf:
+        admin_password: admin
+        admin_username: admin
+        api_url: https://api.115.68.46.30.xip.io
+    release: openpaas-cubrid
+>
+meta:
+  apps_domain: 115.68.46.30.xip.io   # CF 설치시 설정한 apps 도메인 정보
+  environment: null
+  external_domain: 115.68.46.30.xip.io   # CF 설치시 설정한 외부 도메인 정보
+  nats: # CF 설치시 설정한 nats 정보
+    machines:
+    - 10.0.0.199
+    password: admin
+    port: 4222
+    user: nats
+  syslog_aggregator: null
+>
+properties:
+  cubrid:   # Cubrid 설정 정보
+    max_clients: 200
+  cubrid_broker:  # Cubrid Servcice Broker 설정 정보
+    cubrid_ip: 10.0.0.23 # Cubrid IP
+    cubrid_db_port: 30000 # Cubrid Port
+    cubrid_db_name: cubrid_broker   # Cubrid service 관리를 위한 데이터베이스 이름
+    cubrid_db_user: dba   # 브로커 관리용 데이터베이스 접근 사용자이름
+    cubrid_db_passwd: openpaas  # 브로커 관리용 데이터베이스 접근 사용자 비밀번호
+    cubrid_ssh_port: 22   # Cubrid가 설치된 서버 SSH 접속 포트
+    cubrid_ssh_user: vcap # Cubrid가 설치된 서버 SSH 접속 사용자 이름
+    #cubrid_ssh_passwd: c1oudc0w # Cubrid가 설치된 서버 SSH 접속 사용자 비밀번호
+    cubrid_ssh_sudo_passwd: cloudc0w # Cubrid가 설치된 서버 sudo 비밀번호
+    cubrid_ssh_identity: /var/vcap/jobs/cubrid_broker/config/bosh.pem # Cubrid가 설치된 서버 SSH 접속 인증 키
+    cubrid_ssh_key: |
+      -----BEGIN RSA PRIVATE KEY-----
+      MIIEpQIBAAKCAQEAjzJVGaO1AHCiY51mqUd9uGGnwX9A8YZKawAHNTga3uEIPCTyDUVzfhc05qq1
+      fKP5F6xfhHpWsAG5rn3pjJ8U65qrDgq31iotypsyuoyevolAHWgJggGkoviLxhTHgHDrjtXfkvMw
+      pMd36yQjar+UO+/+mbQZDk1hY+9EDmdbB4cjjezyBN35RRZ2huzoOzr+LQaaCdNdvtWLFMy73BZi
+      p6uHbNKc26DtEbbf5jxwpM1AoUQtB6E9bins6sFE9oddz4k/zAbySV0kr5Kded4ro4ODEN+N5Ulm
+      WbRV3tWqHPFIWNHrMGawWrqEjlJQnoDxFfiUmt5F4JEL+BrGq0ICvQIDAQABAoIBAQCIIfGFTnzk
+      zi+TRDA0/iInB6/T5IZ5FpHo5z3y+kORX53Uj8sNktkZJjbEk8W1mK1WNCkaaLPA3+MGX+2IIjRh
+      R8kWsFnU4IRn+ONhNg40VYb+bcmcLrO1u1QmG9sN4EwQnoLN0SSNgpQel1yUP01NLft9ZBnt3uKX
+      fv/UMa34mKqBqA4bBP2wBTi/o9LWyG2l0sp8u2RpJp7ywc4pTAaFyEh/L2tbxJUJsg1F1Ym3c5/g
+      x4qpSNrIkC3l1pT0j8m60J1UkscCWu8tMB/JKF2RxqK/awRmvrhLjxlKONX75Sc7HrEG6ipxsUwV
+      9Y1x1XH9k3QrGnH0ysmUCpNrVrABAoGBAPKxVPL9XCW+deHHp1C06HQi5IOaNEjbmlonCxKT0n5A
+      gaox884LWm41N/Twu8Q+VI8k/syKpKtNu80fjrdbuxxz++ATtGzIvGB3ksKqL08u7fXWQBdD01H5
+      FnSOb0+Oz18bm+ncYNG4C6wa3GQpGfX49J0E4jUzFm6BtlL+s1ldAoGBAJcMYLVBBNCMAZSYf4Ak
+      hHws190LiaUbdhAVuYFlnC9GoEXcXcdF42s2I5LELziCW2htg6dKBaBjDDUinbv5DXqCfq4QOBx9
+      ujPQyX+Wt4LwSy2/GkELKW2c8Am1Ctb8Vhj3f/sgGzr0Wi3BKUEaqoxTS9DvdyWFY75WnzHXgtjh
+      AoGBAN+JTsFxdAqf31xS1V2VA/bUnL5KrpXdD9Kx25UE6wC20be9wt6pvmV8R0oo4gnjj2c5oCcu
+      HHZcZvqMcpuYtkOC4SCHhcwdKMWB3X/H2UOJ6kxhRy8mneIHGBPLjeMtmvvzJizFe7gvWTDwnMb0
+      xKC26jgmY2S05ZhriU/woalRAoGAICWmP21DFQ93FqUOHbun5rW0i3r1JIqfqfS1snBpuTYSzkuE
+      OfEJ4bt3/rh6RFCaG7OTHXuHjwcFhhmD8Imk8LntNCaHiqjHhFefSuRM0jVKCsZtVAKIIqgP/kDl
+      ubOir1Wdi1jd8sImny5JFW4TdiIUNLeCaB3niI7u+rCfTIECgYEAmiRl2iQdOJsGLjZtDHYoO/Cp
+      OJVdo4nVjMpcQ/+yoCm9BmJL1C26IyXVPeSek4aBm3e6BgKbmwxRW9qYc8us8ivMFFBCoFRvKIK+
+      MfcRFQZiSv9g0VUgMQEDJKxb2PPsU/ioX9gSM/VCrHzKexeNrXpdIEzWxrpMivnJP3u7Ack=
+      -----END RSA PRIVATE KEY-----
+```
+
+- Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
+
+>$ bosh deployment {Deployment manifest 파일 PATH}  
+>$ bosh deployment openpaas-cubrid-aws-1.0.yml  
+![2-3-3-0]
+
+- Cubrid 서비스팩을 배포한다.
+
+>$ bosh deploy  
+![2-3-4-0]  
+![2-3-4-1]
+
+- 배포된 Cubrid 서비스팩을 확인한다.
+
+>$ bosh vms  
+![2-3-5-0]  
+![2-3-5-1]  
+
+<div id='10'></div>
+### 2.4. Cubrid 서비스 브로커 등록
+Cubrid 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 Cubrid 서비스 브로커를 등록해 주어야 한다.  
+서비스 브로커 등록시 개방형 클라우드 플랫폼에서 서비스브로커를 등록할 수 있는 사용자로 로그인이 되어있어야 한다.
+
+- 서비스 브로커 목록을 확인한다.
+
+><div>$ cf service-brokers</div>
+![2-4-0-0]
+
+- Cubrid 서비스 브로커를 등록한다.
+
+>$ cf create-service-broker {서비스팩 이름}{서비스팩 사용자ID}{서비스팩 사용자비밀번호} http://{서비스팩 URL}  
+- 서비스팩 이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.  
+- 서비스팩 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID입니다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.  
+- 서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.  
+>
+>$ cf create-service-broker cubrid-service-broker admin cloudfoundry http://10.30.60.22:8080  
+>![2-4-1-0]
+
+- 등록된 Cubrid 서비스 브로커를 확인한다.
+
+><div>$ cf service-brokers</div>
+>![2-4-2-0]
+
+- 접근 가능한 서비스 목록을 확인한다.
+
+><div>$ cf service-access</div>
+>![2-4-3-0]
+><div>서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.</div>
+
+- 특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
+
+>$ cf enable-service-access Mongo-DB  
+>$ cf service-access  
+>![2-4-4-0]
+
+<div id='11'></div>
+#   3. Cubrid연동 Sample App 설명
+본 Sample Web App은 개발형 클라우드 플랫폼에 배포되며 Cubrid의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
+<div id='12'></div>
+### 3.1. Sample App 구조
+Sample Web App은 개방형 클라우드 플랫폼에 App으로 배포가 된다. App을 배포하여 구동시 Bind 된 Cubrid 서비스 연결정보로 접속하여 초기 데이터를 생성하게 된다. 배포 완료 후 정상적으로 App 이 구동되면 브라우져나 curl로 해당 App에 접속 하여 Cubrid 환경정보(서비스 연결 정보)와 초기 적재된 데이터를 보여준다.
+
+Sample Web App 구조는 다음과 같다.
+<table>
+  <tr>
+    <td>이름</td>
+    <td>설명</td>
   </tr>
   <tr>
-    <td>bin/www</td>
-    <td>실질적으로 node.js 샘플 애플리케이션의 시작점이며, http서버를 설정한다. 서버가 구동될 때 사용할 Port를 여기서 설정할 수 있다.</td>
-  </tr>
-  <tr>
-    <td>routes/</td>
-    <td>app.js에서 라우팅 후 실제 수행할 내용이 작성되어있다. 서비스 연결에 대한 내용도 이곳에 있다.</td>
-  </tr>
-  <tr>
-    <td>public/</td>
-    <td>외부에서 접근가능한 디렉토리이다. css, js등 웹서비스에 필요한 정적파일들이 있다.<br>
-    외부에서 접근가능한 디렉토리에 대한 설정은 app.js파일에서 설정한다.</td>
-  </tr>
-  <tr>
-    <td>views/</td>
-    <td>ejs파일들이 위치하는 곳이다.<br>
-    ejs파일은 html을 좀더 쉽게 작성할 수 있게 도와주는 template enjin 이며 express의 view enjin을 ejs로 설정했을시 사용하는 파일이다.<br>
-    render() 메소드를 이용하여 ejs파일을 html로 변환하여 보여준다.</td>
-  </tr>
-  <tr>
-    <td>test/</td>
-    <td>mocha test를 작성한 디렉토리이다.</td>
-  </tr>
-  <tr>
-    <td>(node_modules)</td>
-    <td>위의 그림에서는 보이지 않지만 npm install로 모듈설치시 이 디렉토리아래에 설치가 된다. 여기에 설치되어있는 npm모듈들을 애플리케이션에서 require로 불러와서 사용할 수 있다.</td>
-  </tr>
-  <tr>
-    <td>Makefile</td>
-    <td>linux에서 좀더 쉽게 mocha 테스트를 실행하기위한 파일이다.</td>
+    <td>src</td>
+    <td>Sample 소스 디렉토리</td>
   </tr>
   <tr>
     <td>manifest.yml</td>
-    <td>개방형 플랫폼에 배포시 애플리케이션에 대한 설정이다. 애플리케이션의 이름, 배보될 경로, 인스턴스 수 등을 정의할 수 있다.</td>
+    <td>개방형 클라우드 플랫폼에 app 배포시 필요한 설정을 저장하는 파일</td>
   </tr>
   <tr>
-    <td>.cfignore</td>
-    <td>개방형 플랫폼에 배포시 포함되지않을 디렉토리, 혹은 파일을 기술한다.</td>
+    <td>pom.xml</td>
+    <td>메이븐 project 설정 파일</td>
   </tr>
   <tr>
-    <td>.gitignore</td>
-    <td>git에 배포시 포함되지않을 디렉토리, 혹은 파일을 기술한다.</td>
-  </tr>
-  <tr>
-    <td>README.md</td>
-    <td>Node.js 샘플 애플리케이션에 대한 간략한 설명이 기술되어 있다.</td>
+    <td>target</td>
+    <td>메이븐 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)</td>
   </tr>
 </table>
 
-<div id='10'></div>
-### 3.3. 애플리케이션 환경설정
+- OpenPaaS-Sample-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 Cubrid Sample Web App인 hello-spring-cubrid를 복사한다.
 
-이 샘플은 Node.js version 0.12.4, npm version 2.10.1.을 기준으로 각 모듈의 버전을 명시적으로 선택하여 설치하였다.
-package.json 수정(설정)시 설치된 Node.js의 버전에 맞는 모듈을 설치하는 것을 권장한다.
-
-1)  ./package.json
-- 애플리케이션에서 필요한 모듈을 정의한다.
-
-```json
-{
-  "name": "node-sample-app",
-  "version": "0.8.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "body-parser": "1.13.2",
-    "cookie-parser": "1.3.5",
-    "debug": "2.2.0",
-    "morgan": "1.6.1",
-    "serve-favicon": "2.3.0",
-    "express": "4.13.1",
-    "ejs": "2.3.4",
-    "generic-pool": "2.2.1",
-    "mysql": "2.9.0",
-    "node-cubrid":"2.2.5",
-    "mongodb":"2.0.48",
-    "redis":"2.4.2",
-    "uuid":"2.0.1",
-    "amqp":"0.2.4",
-    "pkgcloud":"1.2.0-alpha.0",
-    "formidable":"1.0.17",
-    "mocha":"2.3.4",
-    "should":"7.1.1",
-    "supertest":"1.1.0"
-  },
-  "engines": {
-    "node": "0.12.4",
-    "npm": "2.10.1"
-  }
-}
-```
-
-<table>
-  <tr>
-    <td>name</td>
-    <td>애플리케이션 이름</td>
-  </tr>
-  <tr>
-    <td>version</td>
-    <td>애플리케이션 버젼</td>
-  </tr>
-  <tr>
-    <td>private</td>
-    <td>npm에 게시할것인지 여부를 설정한다. (true: 게시하지않음)</td>
-  </tr>
-  <tr>
-    <td>scripts.start</td>
-    <td>npm start 명령어로 실행될 명령어(애플리케이션 구동 명령어)</td>
-  </tr>
-</table>
-  
-- dependencies
-
-<table>
-  <tr>
-    <td>body-parser</td>
-    <td rowspan=7>Express프레임워크에서 기본적으로 사용하는 모듈들.</td>
-  </tr>
-  <tr>
-    <td>cookie-parser</td>
-  </tr>
-  <tr>
-    <td>debug</td>
-  </tr>
-  <tr>
-    <td>morgan</td>
-  </tr>
-  <tr>
-    <td>serve-favicon</td>
-  </tr>
-  <tr>
-    <td>express</td>
-  </tr>
-  <tr>
-    <td>ejs</td>
-  </tr>
-  <tr>
-    <td>generic-pool</td>
-    <td>connection pool생성 및 관리 모듈</td>
-  </tr>
-  <tr>
-    <td>mysql</td>
-    <td>mysql 모듈</td>
-  </tr>
-  <tr>
-    <td>node-cubrid</td>
-    <td>cubrid 모듈</td>
-  </tr>
-  <tr>
-    <td>mongodb</td>
-    <td>mongodb 모듈</td>
-  </tr>
-  <tr>
-    <td>redis</td>
-    <td>redis 모듈</td>
-  </tr>
-  <tr>
-    <td>uuid</td>
-    <td>고유식별자를 생성해주는 모듈</td>
-  </tr>
-  <tr>
-    <td>amqp</td>
-    <td>rabbitMQ 사용 모듈</td>
-  </tr>
-  <tr>
-    <td>pkgcloud</td>
-    <td>swift, glusterfs 사용 모듈</td>
-  </tr>
-  <tr>
-    <td>formidable</td>
-    <td>form data를 파싱해주는 모듈</td>
-  </tr>
-  <tr>
-    <td>mocha</td>
-    <td>node.js test 모듈</td>
-  </tr>
-  <tr>
-    <td>should</td>
-    <td>mocha test에 사용되는 모듈</td>
-  </tr>
-  <tr>
-    <td>supertes/t</td>
-  </tr>
-    <td>rest test에 사용되는 모듈<td>
-</table>
-
-- engines
-
-<table>
-  <tr>
-    <td>node</td>
-    <td>애플리케이션에서 사용할 node.js 모듈 버젼.<br>
-    개방형 플랫폼에 배포하여 사용시 Node Buildpack에서 지원하는 Node.js 버젼에 따라 사용할 수 있는 버젼에 제약이 있다.<br>
-    - https://github.com/cloudfoundry/nodejs-buildpack/blob/master/CHANGELOG</td>
-  </tr>
-  <tr>
-    <td>npm</td>
-    <td>애플리케이션에서 사용할 npm 버젼<br>
-    Node.js와 마찬가지로 Node Buildpack에서 지원하는 버젼에 따라 사용할 수 있는 버젼에 제약이 있다.</td>
-  </tr>
-</table>
-
-2) 모듈 설치
-- pakage.json에 정의된 모듈을 설치한다. 모듈이름을 지정하지 않으면 package.json의 depencencies의 모든 모듈을 설치한다.
-<div>>npm install</div>
-
-3) ./bin/www
-- HTTP서버가 사용할 PORT를 개방형 플랫폼이 제공하는 PORT를 사용하게 설정한다. 개방형 플랫폼은 이 값을 이용하여 애플리케이션이 제대로 동작하고 있는지 감지하는데 사용한다. 이 값 외의 다른 PORT를 사용하면 애플리케이션이 제대로 동작하지 않는다.
-
-```
-#!/usr/bin/env node
-
-/**
- * Module dependencies.
- */
-
-var app = require('../app');
-var debug = require('debug')('node-sample-app:server');
-var http = require('http');
-
-/**
- * Get port from environment and store in Express.
- * port 환경변수를 얻어와서 변수에 담는다.
- * 'process.env.PORT'는 Cloud에서 사용하는 환경변수.
- */
-
-var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
-
-/**
- * Create HTTP server.
- * HTTP 서버 생성.
- */
-
-var server = http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
-});
-
-/**
- * Listen on provided port, on all network interfaces.
- * 서버가 사용할 port를 설정한다.
- */
-
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
-...(생략)
-```
-
-4) ./app.js
-- Request URL 매핑 설정
-
-```javascript
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-
-var routes = require('./routes/index');
-var users = require('./routes/users');
-
-var app = express();
-
-// URL 매핑 후 수행할 js 파일들
-var org_chart_mysql = require('./routes/rest/org_chart/mysql')
-  , org_chart_mongo = require('./routes/rest/org_chart/mongo')
-  , org_chart_cubrid = require('./routes/rest/org_chart/cubrid')
-  , orgs_mysql = require('./routes/rest/orgs/mysql')
-  , orgs_mongo = require('./routes/rest/orgs/mongo')
-  , orgs_cubrid = require('./routes/rest/orgs/cubrid')
-  , groups_mysql = require('./routes/rest/groups/mysql')
-  , groups_mongo = require('./routes/rest/groups/mongo')
-  , groups_cubrid = require('./routes/rest/groups/cubrid')
-  , login = require('./routes/rest/login/login')
-  , image = require('./routes/rest/image/image')
-  , page = require('./routes/page/page_processing');
-
-// view engine setup
-// 뷰 엔진 설정
-app.set('views', path.join(__dirname, 'views/'));
-app.set('view engine', 'ejs');
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-// 정적파일 위치 설정
-app.use(express.static(path.join(__dirname, 'public')));
-
-/*
-* URL 매핑 설정
-*/
-app.use(   '/', routes);
-app.use(   '/users', users);
-
-// page
-app.get(   '/login', page.login);
-app.get(   '/manage', page.manage);
-app.get(   '/main/:id', page.main);
-
-// org-chart
-app.get(   '/org-chart/:org_id/mysql', org_chart_mysql.index);
-app.get(   '/org-chart/:org_id/cubrid', org_chart_cubrid.index);
-app.get(   '/org-chart/:org_id/mongo', org_chart_mongo.index);
-app.get(   '/org-chart/:org_id/status/mysql', org_chart_mysql.status);
-app.get(   '/org-chart/:org_id/status/cubrid', org_chart_cubrid.status);
-app.get(   '/org-chart/:org_id/status/mongo', org_chart_mongo.status);
-
-//orgs
-//  mysql
-app.get(   '/orgs/mysql', orgs_mysql.index);
-app.post(  '/orgs/mysql', orgs_mysql.create);
-app.get(   '/orgs/:org_id/mysql', orgs_mysql.show);
-app.put(   '/orgs/:org_id/mysql', orgs_mysql.update);
-app.delete('/orgs/:org_id/mysql', orgs_mysql.destroy);
-…..(생략)
-```
-
-<div id='11'></div>
-### 3.4. VCAP_SERVICES 환경설정 정보 
-개방형 플랫폼에 배포되는 애플리케이션이 바인딩된서비스별 접속 정보를 얻기 위해서는 애플리케이션별로 등록되어있는 VCAP_SERVICES 환경설정 정보를 읽어들여정보를 획득 할 수 있다.
-
-1)  개방형 플랫폼의 애플리케이션 환경정보
-- 서비스를 바인딩하면 JSON 형태로 환경설정 정보가 애플리케이션 별로 등록된다.
-
-```json
-{
- "VCAP_SERVICES": {
-  "CubridDB": [
-   {
-    "credentials": {
-     "host": "10.30.60.23::",
-     "hostname": "10.30.60.23",
-     "jdbcurl": "jdbc:cubrid:10.30.60.23::fccf1d7869ff72ce:b2f6b4af1e7bd7d8:45f179c648ee60a5:",
-     "name": "fccf1d7869ff72ce",
-     "password": "45f179c648ee60a5",
-     "port": "",
-     "uri": "cubrid:10.30.60.23::fccf1d7869ff72ce:b2f6b4af1e7bd7d8:45f179c648ee60a5:",
-     "username": "b2f6b4af1e7bd7d8"
-    },
-    "label": "CubridDB",
-    "name": "sample-cubrid-instance",
-    "plan": "utf8",
-    "tags": [
-     "cubrid",
-     "document"
-    ]
-   }
-  ],
-…..(이하 생략)…..
-```
-
-2)  Node.js에서 개방형 플랫폼의 애플리케이션 환경정보에 접근하는 방법
-- 시스템환경변수의 VCAP_SERVICES값을 읽어서 접근 할 수 있다.
-<div>process.env.VCAP_SERVICES</div>
-
-<div id='12'></div>
-### 3.5. Mysql 연동
-1)  ./route/db/mysql/db_pooling.js
-- 개방형 플랫폼의 애플리케이션 환경정보에 접근하여 mysql Connection Pool을 생성
-```javascript
-/**
- * generic-pool 연동
- * mysql 풀 모듈 구현
- */
-
-var generic_pool  = require("generic-pool");
-var mysql   = require("mysql");
-
-config = {};
-if (process.env.VCAP_SERVICES) {
-  // cloud env 설정. 데이터 구조는 2.3.4 VCAP_SERVICES 환경정보 참고
-  var cloud_env   = JSON.parse(process.env.VCAP_SERVICES);
-  var mysql_env   = cloud_env["Mysql-DB"][0]["credentials"];
-
-  config = {
-    host:mysql_env.hostname,
-    user:mysql_env.username,
-    password:mysql_env.password,
-    database:mysql_env.name
-  };
-} else {
-  // local env
-  config = {
-    host:'10.30.40.63',
-    user:'cESTBl9QpxGVF5Xa',
-    password:'aVu1ynInBnaEeFY0',
-    database:'cf_ea68784e_3de6_439d_afc1_d51b4e95627b'
-  };
-}
-
-var pooling   = generic_pool.Pool({
-  name:"mysql",
-  create:function(cb){
-    // create Connection
-    var conn = mysql.createConnection(config);
-    conn.connect(function(err){
-      if( err) console.log("mysql 연결오류");
-      else {
-      //  console.log("mysql 연결성공");
-      } cb(err, conn);
-      // 콜백함수를 통해 풀링에 커넥션 객체를 던짐
-    });
-  },
-  destroy:function(myConn){
-    myConn.end(function(err){
-      if( err)  console.log("mysql 연결해제오류");
-  //    else    console.log("mysql 연결해제성공");
-    });
-  },
-  min:3,
-  max:5,
-  idleTimeoutMillis:1000*500,
-  log:false
-
-});
-
-process.on("exit", function(){
-  pooling.drain(function(){
-    pooling.destroyAllNow();
-  });
-});
-
-module.exports = pooling;
-```
+><div>$ ls -all</div>
+>![3-1-0-0]
 
 <div id='13'></div>
-### 3.6. Cubrid 연동
-1)  ./route/db/cubrid/db_pooling.js
-- 개방형 플랫폼의 애플리케이션 환경정보에 접근하여 cubrid Connection Pool을 생성
+### 3.2. 개방형 클라우드 플랫폼에서 서비스 신청
+Sample Web App에서 Cubrid 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.
+*참고: 서비스 신청시 개방형 클라우드 플랫폼에서 서비스를신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
-```javascript
-/**
- * generic-pool 연동
- * cubrid 풀 모듈 구현
- */
 
-var generic_pool  = require("generic-pool");
-var cubrid    = require("node-cubrid");
+- 먼저 개방형 클라우드 플랫폼 Marketplace에서 서비스가 있는지 확인을 한다.
 
-var   database
-  , port
-  , hostname
-  , username
-  , password;
-if (process.env.VCAP_SERVICES) {
-  // cloud env 설정. 데이터 구조는 2.3.4 VCAP_SERVICES 환경정보 참고
-  var cloud_env   = JSON.parse(process.env.VCAP_SERVICES);
-  var cubrid_env    = cloud_env["CubridDB"][0]["credentials"];
+><div>$ cf marketplace</div>
+>![3-2-0-0]
 
-  database  = cubrid_env.name
-  port    = cubrid_env.port
-  hostname  = cubrid_env.hostname
-  username  = cubrid_env.username
-  password  = cubrid_env.password;
-} else {
-  // local env
-  database  = 'fccf1d7869ff72ce'
-  port    = '' 
-  hostname  = '10.30.60.23' 
-  username  = 'b2f6b4af1e7bd7d8'
-  password  = '45f179c648ee60a5';
-}
-var pooling   = generic_pool.Pool({
-  name:"cubrid",
-  create:function(cb){
-//    console.log("cubrid_env.uri:" + cubrid_env.uri);
-    var conn = cubrid.createCUBRIDConnection(hostname, port, username, password, database);
-    // create Connection
-    conn.connect(function(err){
-      if( err) console.log("cubrid 연결오류");
-      else{
-//        console.log("cubrid 연결성공");
-        cb(err, conn);
-      }
-      // 콜백함수를 통해 풀링에 커넥션 객체를 던짐
-    });
-  },
-  destroy:function(myConn){
-    myConn.end(function(err){
-      if( err)  console.log("cubrid 연결해제오류");
-//      else    console.log("cubrid 연결해제성공");
-    });
-  },
-  min:3,
-  max:5,
-  idleTimeoutMillis:1000*50,
-  log:false,
-  
-});
+- Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.
 
-process.on("exit", function(){
-  pooling.drain(function(){
-    pooling.destroyAllNow();
-  });
-});
+>$ cf create-service {서비스명} {서비스플랜} {내서비스명}  
+- 서비스명 : Mongo-DB로 Marketplace에서 보여지는 서비스 명칭이다.  
+- 서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. Cubrid 서비스는 100mb, 1gb를 지원한다.  
+- 내서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.  
+>
+>$ cf create-service CubridDB utf8 cubrid-service-instance  
+>![3-2-1-0]
 
-module.exports = pooling;
-```
+- 생성된 Cubrid 서비스 인스턴스를 확인한다.
+
+><div>$ cf services</div>
+>![3-2-2-0]
+
 <div id='14'></div>
-### 3.7. MongoDB 연동
-1)  ./route/db/mongo/db_pooling.js
-- 개방형 플랫폼의 애플리케이션 환경정보에 접근하여 mongodb Connection Pool을 생성
+### 3.3. Sample App에 서비스 바인드 신청 및 App 확인
+서비스 신청이 완료되었으면 Sample Web App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 Cubrid 서비스를 이용한다.  
+*참고: 서비스 Bind 신청시 개방형 클라우드 플랫폼에서 서비스 Bind신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
-```javascript
-/**
- * generic-pool 연동
- * mongo 풀 모듈 구현
- */
+- Sample Web App 디렉토리로 이동하여 manifest 파일을 확인한다.
 
-var generic_pool = require("generic-pool");
-var mongoClient  = require("mongodb").MongoClient;
-
-var url = '';
-if (process.env.VCAP_SERVICES) {
-  // cloud env. 설정. 데이터 구조는 2.3.4 VCAP_SERVICES 환경정보 참고
-  var cloud_env = JSON.parse(process.env.VCAP_SERVICES);
-  var mongo_env = cloud_env["Mongo-DB"][0]["credentials"];
-
-  url = mongo_env.uri;
-
-} else {
-  // local env.
-  url = 'mongodb://d3e35ad5-9f49-43ae-bc85-08e39ec1d8eb:fc23791e-b2d8-402d-b070-90bfbdb5dcfa@10.30.60.53:27017/e37e541c-75de-4f01-8196-63e2d902e768';
-}
-
-var pooling = generic_pool.Pool({
-        name:"mongo",
-        create:function(cb){
-    // create Connection
-    mongoClient.connect(url, function(err, db){
-      if (err) console.log("mongo 연결오류");
-      else {
-        cb(err, db);
-      }
-    });
-        },
-        destroy:function(myDb){
-                myDb.close(function(err){
-                        if( err)        console.log("mysql 연결해제오류");
-        //              else            console.log("mysql 연결해제성공");
-                });
-        },
-        min:3,
-        max:5,
-        idleTimeoutMillis:1000*500,
-        log:false
-
-});
-
-
-module.exports = pooling;
-```
-
-<div id='15'></div>
-### 3.8. Redis 연동
-1)  ./route/redis/redis.js
-- 개방형 플랫폼의 애플리케이션 환경정보에 접근하여 redis Connection을 생성
-
-```javascript
-var redis = require("redis");
-
-var options = {};
-if (process.env.VCAP_SERVICES) {
-  // cloud env. 설정. 데이터 구조는 2.3.4 VCAP_SERVICES 환경정보 참고
-  var services = JSON.parse(process.env.VCAP_SERVICES);
-  var redisConfig = services["redis-sb"];
-
-  if (redisConfig) {
-      var node = redisConfig[0];
-      options = {
-      host: node.credentials.host,
-      port: node.credentials.port,
-      pass: node.credentials.password,
-    };
-  }
-
-} else {
-  // local env.
-    options = {
-    host: '10.30.40.71',
-    port: '34838',
-    pass: 'c239b721-d986-4ee3-8816-b5f5fa9f3ffb',
-  };
-}
-
-var client = null;
-exports.open = function(cb) {
-//  console.log(JSON.stringify(options));
-  //create Client
-  client = redis.createClient(options);
-  // get auth.
-  client.auth(options.pass);
-
-  cb(client);
-}
-exports.close = function(){
-  client.end();
-}
-```
-
-<div id='16'></div>
-### 3.9. RabbitMQ연동
-1)  ./route/rabbitMQ/rabbitMQ.js
-- 개방형 플랫폼의 애플리케이션 환경정보에 접근하여 rabbirMQ Connection을 생성
-
-```javascript
-var amqp = require('amqp');
-
-var url = '';
-if (process.env.VCAP_SERVICES) {
-  // cloud env. 설정. 데이터 구조는 2.3.4 VCAP_SERVICES 환경정보 참고
-        var services = JSON.parse(process.env.VCAP_SERVICES);
-        var rabbitMQConfig = services["p-rabbitmq"];
-
-        if (rabbitMQConfig) {
-                var node = rabbitMQConfig[0];
-    url = node.credentials.uri;
-        }
-} else {
-  // local env.
-  url = 'amqps://14b1ab93-4cdb-46af-8cdd-8d8073bbe282:cl71e9ihgu6gvhj1eiqj9uh4um@10.30.40.82:5671/6ffb4d8a-8748-4f00-a338-80e6eadee822';
-}
-
-exports.open = function(cb){
-  // create connection.
-  var conn = amqp.createConnection({url: url});
-  
-  // it must be cb(callback) after the 'ready' event.
-  conn.on('ready', function(){
-    cb(conn);
-  });
-}
-
-// not used. 
-/*
-exports.close = function(){
-  conn.disconnect();
-}
-*/
-```
-<div id='17'></div>
-### 3.10. GlusterFS 연동
-1)  ./route/glusterfs/glusterfs.js
-- 개방형 플랫폼의 애플리케이션 환경정보에 접근하여 glusterfs Connection을 생성
-
-```javascript
-var pkgcloud = require('pkgcloud');
-var http = require('http');
-var url = require('url');
-
-var credentials = {};
-var container_name = 'node_container';
-if (process.env.VCAP_SERVICES) { 
-  // cloud env. 설정. 데이터 구조는 2.3.4 VCAP_SERVICES 환경정보 참고
-  var services = JSON.parse(process.env.VCAP_SERVICES); 
-  var glusterfsConfig = services["glusterfs"]; 
- 
-  if (glusterfsConfig) { 
-    var config = glusterfsConfig[0]; 
-    credentials = {
-      provider: 'openstack', // 
-            username: config.credentials.username,
-            password: config.credentials.password,
-      authUrl:  config.credentials.auth_url.substring(0, config.credentials.auth_url.lastIndexOf('/')),
-      region: 'RegionOne' //
-    };
-  }
-} else {
-  // local env.
-    credentials = {
-      provider: 'openstack',
-            username: 'cf13d551d997458e', 
-            password: 'b45cc01d53a4f0e0',
-      authUrl:  'http://54.199.136.22:5000/',
-      region: 'RegionOne'
-    };
-}
-
-// create Client
-var client = pkgcloud.storage.createClient(credentials);
-
-// delete container for test
-/*
-client.destroyContainer(container_name, function(err, result){
-  if (err) console.log(err);
-  else console.log(result);
-});
-*/
-
-// check container
-client.getContainer(container_name, function(err, container){
-        if (err)
-        {
-    // if container not exist
-                if (err.statusCode === 404)
-                {
-      // create container
-                        client.createContainer({name:container_name}, function(create_err, create_container){
-                                if (create_err) console.log(err);
-        else
-        {  
-          // if container created successfully, setting a readable member(X-Contaner-Read: .r:*)
-          // 컨테이너가 성공적으로 생성되었다면 컨테이너를 누구나 읽을 수 있게 설정한다.(X-Contaner-Read: .r:*)
-          // There is a bug in the code(pkgcloud). so i used api call.
-          // pkgcloud 모듈에서 metadata를 넣을 경우 prefix가 붙는 로직때문에 제대로 위의 값이 입력이 안되므로 api를 통해서 설정.
-          var serviceUrl = url.parse(create_container.client._serviceUrl);
-          var option = {
-            host: serviceUrl.hostname,
-            port: serviceUrl.port,
-            path: serviceUrl.path+'/'+container_name,
-            method: 'POST',
-            headers: {
-              'X-Auth-Token': create_container.client._identity.token.id,
-              'X-Container-Read': '.r:*' // ACL form
-            }
-          };
-          var req = http.request(option, function(res){
-          });
-          req.end();
-        }
-
-                        });
-                }
-                else    console.log(err);
-        }
-});
-
-module.exports = client;
-```
-
-<div id='18'></div>
-# 4. 배포
-
-개방형 플랫폼에 애플리케이션을 배포하면 배포한 애플리케이션과 개방형 플랫폼이 제공하는 서비스를 연결하여 사용할 수 있다. 개방형 플랫폼상에서 실행을 해야만 개방형 플랫폼의 애플리케이션 환경변수에 접근하여 서비스에 접속할 수 있다.
-
-<div id='19'></div>
-### 4.1.  개방형 플랫폼 로그인
-
-아래의 과정을 수행하기 위해서 개방형 플랫폼에 로그인
-
-<div>
-$ cf api --skip-ssl-validation https://api.cf.open-paas.com # 개방형 플랫폼 TARGET 지정
-#cf api [target url]
-
-$ cf login -u testUser -o sample_test -s sample_space # 로그인 요청
- #cf login –u [user name] –o [org name] –s [space name]
-</div>
-
-
-![2-4-1-0]
-
-<div id='20'></div>
-### 4.2.  서비스 생성
-애플리케이션에서 사용할 서비스를 개방형 플랫폼을 통하여 생성한다. 별도의 서비스 설치과정 없이 생성할 수 있으며, 애플리케이션과 바인딩과정을 통해 접속정보를 얻을 수있다.
-- 서비스 생성 (cf marketplace 명령을 통해 서비스 목록과 각 서비스의 플랜을 조회할 수 있다.
-
-<div>
-# cf create-service SERVICE PLAN SERVICE_INSTANCE [-c PARAMETERS_AS_JSON] [-t TAGS] 
-$ cf create-service p-mysql 100mb node-mysql
-$ cf create-service CubridDB utf8 node-cubrid
-$ cf create-service Mongo-DB default-plan node-mongodb
-$ cf create-service redis-sb shared-vm node-redis
-$ cf create-service glusterfs glusterfs-5Mb node-glusterfs
-$ cf create-service p-rabbitmq standard node-rabbitmq
-</div>
-
-
-![2-4-2-0]
-
-<div id='21'></div>
-### 4.3. 애플리케이션 배포
-애플리케이션을 개방형 플랫폼에 배포한다. 배포된 애플리케이션은 생성된 서비스와 바인드하여 서비스를 사용할 수 있다.
-
-1.  manifest.yml 생성
-
+>$ cd hello-spring-cubrid  
+>$ vi manifest.yml  
 ```yaml
 ---
 applications:
-- name: node-sample-app # 애플리케이션 이름
-  memory: 512M # 애플리케이션 메모리 사이즈
-  instances: 1 # 애플리케이션 인스턴스 개수
-  command: npm start # 애플리케이션 실행 명령어
-  path: ./ # 배포될 애플리케이션의 위치
+- name: hello-spring-cubrid #배포할 App 이름
+  memory: 512M # 배포시 메모리 사이즈
+  instances: 1 # 배포 인스턴스 수
+  path: target/hello-spring-cubrid-1.0.0-BUILD-SNAPSHOT.war #배포하는 App 파일 PATH
 ```
+>참고: ./build/libs/hello-spring-cubrid.war 파일이 존재 하지 않을 경우 gradle 빌드를 수행 하면 파일이 생성된다.
 
-2.  Mysql, Cubrid 테이블 생성 
-- Sample App의 조직관리 기능을 위해 DB에 테이블을 생성해 주어야 한다.
-- Mysql과 Cubrid에 테이블을 추가하는 방법은 OpenPaaS Mysql, Cubrid 서비스팩 설치 가이드의 'Client 툴 접속'을 참고한다.
-- Client 툴을 이용하여 아래의 테이블 생성 sql를 각각 실행한다. (Mysql과 Cubrid 양쪽다 동일한 sql로 생성가능하다.)
+- --no-start 옵션으로 App을 배포한다.  
+--no-start: App 배포시 구동은 하지 않는다.
 
+><div>$ cf push --no-start<br></div>
+>![3-3-0-0]
+
+- 배포된 Sample App을 확인하고 로그를 수행한다.
+
+><div>$ cf apps<br></div>
+>![3-3-1-0]
+><div>$ cf logs {배포된 App명}<br>
+>$ cf logs hello-spring-cubrid</div>
+>![3-3-2-0]
+
+- Sample Web App에서 생성한 서비스 인스턴스 바인드 신청을 한다. 
+
+><div>$ cf bind-service hello-spring-cubrid cubrid-service-instance</div>
+>![3-3-3-0]
+
+- 바인드가 적용되기 위해서 App을 재기동한다.
+
+><div>$ cf restart hello-spring-cubrid</div>
+>![3-3-4-0]  
+>![3-3-4-1]  
+
+- (참고) 바인드 후 App구동시 Cubrid 서비스 접속 에러로 App 구동이 안될 경우 보안 그룹을 추가한다.
+
+><div>-  rule.json 화일을 만들고 아래와 같이 내용을 넣는다.<br></div>
+><div>$ vi rule.json</div>
+```json
+[
+  {
+    "protocol": "tcp",
+    "destination": "10.30.60.23",
+    "ports": "30000"
+  }
+]
 ```
-DROP TABLE IF EXISTS ORG_TBL;
-DROP TABLE IF EXISTS GROUP_TBL;
+><div>- 보안 그룹을 생성한다.<br></div>
+><div>$ cf create-security-group CubridDB rule.json</div>
+>![3-3-5-0]
+><div>- 모든 App에 Cubrid 서비스를 사용할수 있도록 생성한 보안 그룹을 적용한다.<br></div>
+><div>$ cf bind-running-security-group CubridDB</div>
+>![3-3-6-0]
+><div>- App을 리부팅 한다.<br></div>
+><div>$ cf restart hello-spring-cubrid</div>
+>![3-3-7-0]
+
+- App이 정상적으로 Cubrid 서비스를 사용하는지 확인한다.
+
+><div>- curl 로 확인 <br>
+$ curl hello-spring-cubrid.115.68.46.30.xip.io
+></div>
+>![3-3-8-0]
+><div>- 브라우져에서 확인<br>
+></div>
+>![3-3-8-1]
+
+<div id='15'></div>
+# 4. Cubrid Client 툴 접속
+Application에 바인딩된 Cubrid 서비스 연결정보는 Private IP로 구성되어 있기 때문에 Cubrid Client 툴에서 직접 연결할수 없다. 따라서 Cubrid Client 툴에서 SSH 터널, Proxy 터널 등을 제공하는 툴을 사용해서 연결하여야 한다. 본 가이드는 무료 SSH 및 텔넷 접속 툴인 Putty를 이용하여 SSH 터널을 통해 연결 하는 방법을 제공하며 Cubrid Client 툴로써는 Cubrid에서 제공하는 Cubrid Manager로 가이드한다. Cubrid Manager 에서 접속하기 위해서 먼저 SSH 터널링 할수 있는 VM 인스턴스를 생성해야한다. 이 인스턴스는 SSH로 접속이 가능해야 하고 접속 후 Open PaaS 에 설치한 서비스팩에 Private IP 와 해당 포트로 접근이 가능하도록 시큐리티 그룹을 구성해야 한다. 이 부분은 AWS관리자 및 OpenPaaS 운영자에게 문의하여 구성한다.
+
+<div id='16'></div>
+### 4.1.  Putty 다운로드 및 터널링
+Putty 프로그램은 SSH 및 텔넷 접속을 할 수 있는 무료 소프트웨어이다.
+
+- Putty를 다운로드 하기 위해 아래 URL로 이동하여 파일을 다운로드 한다. 별도의 설치과정없이 사용할 수 있다.
+**<http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html>**  
+![4-1-0-0]
+
+- 다운받은 putty.exe.파일을 더블클릭하여 실행한다.  
+![4-1-1-0]
+
+- Session 탭의 Host name과 Port란에. OpenPaaS 운영 관리자에게 제공받은 SSH 터널링 가능한 서버 정보를 입력한다.  
+![4-1-2-0]
+
+- Connection->SSH->Tunnels 탭에서 Source port(내 로컬에서 접근할 포트), Destination(터널링으로 연결할 서버정보)를 입력하고 Local, Auto를 선택 후 Add를 클릭한다.   
+![4-1-3-0]  
+![4-1-3-1]  
+서버 정보는 Application에 바인드되어 있는 서버 정보를 입력한다. cf env <app_name> 명령어로 이용하여 확인한다.  
+예) $ cf env hello-spring-cubrid  
+![4-1-4-0]
+
+- Session 탭에서 Saved Sessions에 저장할 이름을 입력하고 Save를 눌러 저장한 후 Open버튼을 누른다.  
+![4-1-5-0]
+
+- 서버 접속정보를 입력하여 접속하여 터널링을 완료한다.  
+만약 ssh 인증이 Password방식이 아닌 Key인증 방식일 경우, Connection->SSH->인증탭의 '인증 개인키 파일'에 key 파일을 등록하여 인증한다.  
+Key파일의 확장자가 .pem이라면 putty설치시 같이 설치된 puttygen을 사용하여 ppk파일로 변환한뒤 사용한다.  
+![4-1-6-0]
+
+<div id='17'></div>
+### 4.2.  Cubrid Manager 설치 & 연결
+Cubrid Manager 프로그램은 Cubrid에서 제공하는 무료로 사용할 수 있는 소프트웨어이다.
+
+- Cubrid Manager를 다운로드 하기 위해 아래 URL로 이동하여 설치파일을 다운로드 한다.  
+**<http://ftp.cubrid.org/CUBRID_Tools/CUBRID_Manager/>**  
+![4-2-0-0]
+
+- 다운받은 파일을 더블클릭하여 실행한다.  
+![4-2-1-0]
+
+- 한국어를 선택하고 OK를 누른다.  
+![4-2-2-0]
+
+- 다음을 눌러 계속 진행한다.  
+![4-2-3-0]
+
+- 동의함을 눌러 계속 진행한다.  
+![4-2-4-0]
+
+- 바로가기 옵션을 선택 후 다음을 눌러 계속 진행한다.  
+![4-2-5-0]
+
+- 설치 경로를 입력하고 설치를 눌러 설치를 시작한다.  
+![4-2-6-0]
+
+- 설치가 완료되면 다음을 눌러 계속 진행한다.  
+![4-2-7-0]
+
+- 마침을 눌러 설치를 완료한다.  
+![4-2-8-0]
+
+- 설치된 Cubrid Manager를 실행하면 처음 나오는 화면이다. Workspace를 선택 후 OK를 눌러 실행한다. 만약 이 창을 다시보기를 원치않는다면 '기본적으로 이것을 사용하고 다시 물어 보지 않기' 옵션을 선택한다.  
+![4-2-9-0]
+
+- 관리 모드, 질의 모드 둘중 목적에 맞게 선택 후 확인을 눌러 실행한다.  
+여기서는 질의 모드로 실행한다.  
+![4-2-10-0]
+
+- 연결정보를 입력하기 위해서 연결 정보 등록을 누른다.  
+![4-2-11-0]
+
+- Server에 접속하기 위한 Connection 정보를 입력한다.  
+![4-2-12-0]  
+서버 정보는 Application에 바인드되어 있는 서버 정보를 입력한다. cf env <app_name> 명령어로 이용하여 확인한다.  
+예) $ cf env hello-spring-cubrid  
+![4-2-13-0]
+
+- 연결 테스트 버튼을 클릭하여 접속 테스트를 한다.  
+![4-2-14-0]  
+정보가 정상적으로 입력되었다면 '연결이 성공하였습니다.'라는 메시지가 나온다.  
+확인 버튼을 눌러 창을 닫는다.  
+![4-2-15-0]
+
+- 연결 버튼을 클릭하여 접속한다  
+![4-2-16-0]
+
+- 접속이 완료되면 좌측에 스키마 정보가 나타난다.  
+![4-2-17-0]
+
+- 질의 편집기 버튼을 클릭하면 오른쪽 창에 query를 입력할 수 있는 창이 열린다.  
+![4-2-18-0]
+
+- 우측 화면에 쿼리 항목에 Query문을 작성한 후 실행 버튼(삼각형)을 클릭한다.  
+쿼리문에 이상이 없다면 정상적으로 결과를 얻을 수 있을 것이다.  
+![4-2-19-0]
 
 
-CREATE TABLE ORG_TBL (
-  id INT AUTO_INCREMENT PRIMARY KEY
-  , label VARCHAR(40) NOT NULL
-  , `desc` VARCHAR(150)
-  , url VARCHAR(500) DEFAULT '#'
-  , created TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
-  , modified TIMESTAMP
-);
-
-CREATE TABLE GROUP_TBL (
-  id INT AUTO_INCREMENT PRIMARY KEY
-  , org_id INTEGER NOT NULL
-  , parent_id INTEGER
-  , label VARCHAR(40) NOT NULL
-  , `desc` VARCHAR(150)
-  , thumb_img_name VARCHAR(256)
-  , thumb_img_path VARCHAR(512)
-  , url VARCHAR(500) DEFAULT '#'
-  , created TIMESTAMP  DEFAULT CURRENT_TIMESTAMP  NOT NULL
-  , modified TIMESTAMP 
-);
-
-ALTER TABLE GROUP_TBL
-ADD FOREIGN KEY(org_id)
-REFERENCES ORG_TBL(id)
-ON DELETE CASCADE;
-
-ALTER TABLE GROUP_TBL
-ADD FOREIGN KEY(parent_id)
-REFERENCES GROUP_TBL(id)
-ON DELETE CASCADE;
-```
-
-3. 애플리케이션 배포
-- cf push 명령으로 배포한다. 별도의 값을 넣지않으면 manifest.yml의 설정을 사용한다. 아직 서비스를 연결하지 않았기 때문에 --no-start 옵션으로 배포후 실행은 하지않는다.
-<div>$ cf push --no-start</td>div>
-
-
-![2-4-3-0]
-
-<div id='22'></div>
-### 4.4. 애플리케이션, 서비스 연결
-애플리케이션과 서비스를 연결하는 과정을 '바인드(bind)라고 하며, 이 과정을 통해 서비스에 접근할 수 있는 접속정보를 생성한다.
-- 애플리케이션과 서비스 연결
-
-```
-cf bind-service APP_NAME SERVICE_INSTANCE [-c PARAMETERS_AS_JSON]
-$ cf bind-service node-sample-app node-mysql
-$ cf bind-service node-sample-app node-cubrid
-$ cf bind-service node-sample-app node-mongodb
-$ cf bind-service node-sample-app node-redis
-$ cf bind-service node-sample-app node-glusterfs
-$ cf bind-service node-sample-app node-rabbitmq
-```
-
-
-![2-4-4-0]
-
-연결확인
-<div>$ cf services</div>
-
-
-![2-4-4-1]
-
-<div id='23'></div>
-### 4.5. 애플리케이션 실행
-서비스 바인드 과정을 통해 생성된 접속정보 환경변수를 가지고 어플리케이션이 실행된다.
-<div>$ cf start node-sample-app</div>
-
-
-![2-4-5-0]
-
-<div id='24'></div>
-# 5. 테스트
-샘플 어플리케이션은 REST 서비스로 구현되어있으며 REST 테스트를 위해서 mocha 모듈을 사용하였다. 테스트를 진행하기 위해서는 mocha 모듈을 포함한 package.json 안의 모듈들이 설치 되어 있어야한다. (npm install)
-
-1.  Makefile
-- 매번 bin파일에 접근하여 실행하는 불편함을 해결하기 위해 작성. 리눅스 운영체제에서 사용할 수 있다.
-
-```
-test:
-  @./node_modules/.bin/mocha -u tdd
-
-.PHONY: test
-```
-
-2.  테스트 실행
-- test디렉토리 아래에 있는 테스트를 실행한다.
-2.1.  윈도우
-<div>> .\node_modules\.bin\mocha -u tdd test</div>
-
-2.2.  리눅스
-<div>$ make test</div>
-
-
-![2-5-0-0]
-
-[2-2-1-0]:/Sample-App-Guide/image/nodejs/2-2-1-0.png
-[2-2-1-1]:/Sample-App-Guide/image/nodejs/2-2-1-1.png
-[2-2-1-2]:/Sample-App-Guide/image/nodejs/2-2-1-2.png
-[2-2-1-3]:/Sample-App-Guide/image/nodejs/2-2-1-3.png
-[2-2-1-4]:/Sample-App-Guide/image/nodejs/2-2-1-4.png
-[2-2-1-5]:/Sample-App-Guide/image/nodejs/2-2-1-5.png
-[2-2-1-6]:/Sample-App-Guide/image/nodejs/2-2-1-6.png
-[2-2-1-7]:/Sample-App-Guide/image/nodejs/2-2-1-7.png
-[2-2-1-8]:/Sample-App-Guide/image/nodejs/2-2-1-8.png
-[2-2-1-9]:/Sample-App-Guide/image/nodejs/2-2-1-9.png
-[2-2-1-10]:/Sample-App-Guide/image/nodejs/2-2-1-10.png
-[2-3-1-0]:/Sample-App-Guide/image/nodejs/2-3-1-0.png
-[2-3-1-1]:/Sample-App-Guide/image/nodejs/2-3-1-1.png
-[2-3-1-2]:/Sample-App-Guide/image/nodejs/2-3-1-2.png
-[2-3-1-3]:/Sample-App-Guide/image/nodejs/2-3-1-3.png
-[2-3-1-4]:/Sample-App-Guide/image/nodejs/2-3-1-4.png
-[2-3-2-0]:/Sample-App-Guide/image/nodejs/2-3-2-0.png
-[2-3-2-1]:/Sample-App-Guide/image/nodejs/2-3-2-1.png
-[2-4-1-0]:/Sample-App-Guide/image/nodejs/2-4-1-0.png
-[2-4-2-0]:/Sample-App-Guide/image/nodejs/2-4-2-0.png
-[2-4-3-0]:/Sample-App-Guide/image/nodejs/2-4-3-0.png
-[2-4-4-0]:/Sample-App-Guide/image/nodejs/2-4-4-0.png
-[2-4-4-1]:/Sample-App-Guide/image/nodejs/2-4-4-1.png
-[2-4-5-0]:/Sample-App-Guide/image/nodejs/2-4-5-0.png
-[2-5-0-0]:/Sample-App-Guide/image/nodejs/2-5-0-0.png
+[1-3-0-0]:/images/openpaas-service/cubrid/cubrid_aws/1-3-0-0.png
+[2-1-0-0]:/images/openpaas-service/cubrid/cubrid_aws/2-1-0-0.png
+[2-1-1-0]:/images/openpaas-service/cubrid/cubrid_aws/2-1-1-0.png
+[2-2-0-0]:/images/openpaas-service/cubrid/cubrid_aws/2-2-0-0.png
+[2-2-1-0]:/images/openpaas-service/cubrid/cubrid_aws/2-2-1-0.png
+[2-2-2-0]:/images/openpaas-service/cubrid/cubrid_aws/2-2-2-0.png
+[2-2-3-0]:/images/openpaas-service/cubrid/cubrid_aws/2-2-3-0.png
+[2-2-4-0]:/images/openpaas-service/cubrid/cubrid_aws/2-2-4-0.png
+[2-2-5-0]:/images/openpaas-service/cubrid/cubrid_aws/2-2-5-0.png
+[2-2-5-1]:/images/openpaas-service/cubrid/cubrid_aws/2-2-5-1.png
+[2-2-6-0]:/images/openpaas-service/cubrid/cubrid_aws/2-2-6-0.png
+[2-2-7-0]:/images/openpaas-service/cubrid/cubrid_aws/2-2-7-0.png
+[2-3-0-0]:/images/openpaas-service/cubrid/cubrid_aws/2-3-0-0.png
+[2-3-1-0]:/images/openpaas-service/cubrid/cubrid_aws/2-3-1-0.png
+[2-3-2-0]:/images/openpaas-service/cubrid/cubrid_aws/2-3-2-0.png
+[2-3-3-0]:/images/openpaas-service/cubrid/cubrid_aws/2-3-3-0.png
+[2-3-4-0]:/images/openpaas-service/cubrid/cubrid_aws/2-3-4-0.png
+[2-3-4-1]:/images/openpaas-service/cubrid/cubrid_aws/2-3-4-1.png
+[2-3-5-0]:/images/openpaas-service/cubrid/cubrid_aws/2-3-5-0.png
+[2-3-5-1]:/images/openpaas-service/cubrid/cubrid_aws/2-3-5-1.png
+[2-4-0-0]:/images/openpaas-service/cubrid/cubrid_aws/2-4-0-0.png
+[2-4-1-0]:/images/openpaas-service/cubrid/cubrid_aws/2-4-1-0.png
+[2-4-2-0]:/images/openpaas-service/cubrid/cubrid_aws/2-4-2-0.png
+[2-4-3-0]:/images/openpaas-service/cubrid/cubrid_aws/2-4-3-0.png
+[2-4-4-0]:/images/openpaas-service/cubrid/cubrid_aws/2-4-4-0.png
+[3-1-0-0]:/images/openpaas-service/cubrid/cubrid_aws/3-1-0-0.png
+[3-2-0-0]:/images/openpaas-service/cubrid/cubrid_aws/3-2-0-0.png
+[3-2-1-0]:/images/openpaas-service/cubrid/cubrid_aws/3-2-1-0.png
+[3-2-2-0]:/images/openpaas-service/cubrid/cubrid_aws/3-2-2-0.png
+[3-3-0-0]:/images/openpaas-service/cubrid/cubrid_aws/3-3-0-0.png
+[3-3-1-0]:/images/openpaas-service/cubrid/cubrid_aws/3-3-1-0.png
+[3-3-2-0]:/images/openpaas-service/cubrid/cubrid_aws/3-3-2-0.png
+[3-3-3-0]:/images/openpaas-service/cubrid/cubrid_aws/3-3-3-0.png
+[3-3-4-0]:/images/openpaas-service/cubrid/cubrid_aws/3-3-4-0.png
+[3-3-4-1]:/images/openpaas-service/cubrid/cubrid_aws/3-3-4-1.png
+[3-3-5-0]:/images/openpaas-service/cubrid/cubrid_aws/3-3-5-0.png
+[3-3-6-0]:/images/openpaas-service/cubrid/cubrid_aws/3-3-6-0.png
+[3-3-7-0]:/images/openpaas-service/cubrid/cubrid_aws/3-3-7-0.png
+[3-3-8-0]:/images/openpaas-service/cubrid/cubrid_aws/3-3-8-0.png
+[3-3-8-1]:/images/openpaas-service/cubrid/cubrid_aws/3-3-8-1.png
+[4-1-0-0]:/images/openpaas-service/cubrid/cubrid_aws/4-1-0-0.png
+[4-1-1-0]:/images/openpaas-service/cubrid/cubrid_aws/4-1-1-0.png
+[4-1-2-0]:/images/openpaas-service/cubrid/cubrid_aws/4-1-2-0.png
+[4-1-3-0]:/images/openpaas-service/cubrid/cubrid_aws/4-1-3-0.png
+[4-1-3-1]:/images/openpaas-service/cubrid/cubrid_aws/4-1-3-1.png
+[4-1-4-0]:/images/openpaas-service/cubrid/cubrid_aws/4-1-4-0.png
+[4-1-5-0]:/images/openpaas-service/cubrid/cubrid_aws/4-1-5-0.png
+[4-1-6-0]:/images/openpaas-service/cubrid/cubrid_aws/4-1-6-0.png
+[4-2-0-0]:/images/openpaas-service/cubrid/cubrid_aws/4-2-0-0.png
+[4-2-1-0]:/images/openpaas-service/cubrid/cubrid_aws/4-2-1-0.png
+[4-2-2-0]:/images/openpaas-service/cubrid/cubrid_aws/4-2-2-0.png
+[4-2-3-0]:/images/openpaas-service/cubrid/cubrid_aws/4-2-3-0.png
+[4-2-4-0]:/images/openpaas-service/cubrid/cubrid_aws/4-2-4-0.png
+[4-2-5-0]:/images/openpaas-service/cubrid/cubrid_aws/4-2-5-0.png
+[4-2-6-0]:/images/openpaas-service/cubrid/cubrid_aws/4-2-6-0.png
+[4-2-7-0]:/images/openpaas-service/cubrid/cubrid_aws/4-2-7-0.png
+[4-2-8-0]:/images/openpaas-service/cubrid/cubrid_aws/4-2-8-0.png
+[4-2-9-0]:/images/openpaas-service/cubrid/cubrid_aws/4-2-9-0.png
+[4-2-10-0]:/images/openpaas-service/cubrid/cubrid_aws/4-2-10-0.png
+[4-2-11-0]:/images/openpaas-service/cubrid/cubrid_aws/4-2-11-0.png
+[4-2-12-0]:/images/openpaas-service/cubrid/cubrid_aws/4-2-12-0.png
+[4-2-13-0]:/images/openpaas-service/cubrid/cubrid_aws/4-2-13-0.png
+[4-2-14-0]:/images/openpaas-service/cubrid/cubrid_aws/4-2-14-0.png
+[4-2-15-0]:/images/openpaas-service/cubrid/cubrid_aws/4-2-15-0.png
+[4-2-16-0]:/images/openpaas-service/cubrid/cubrid_aws/4-2-16-0.png
+[4-2-17-0]:/images/openpaas-service/cubrid/cubrid_aws/4-2-17-0.png
+[4-2-18-0]:/images/openpaas-service/cubrid/cubrid_aws/4-2-18-0.png
+[4-2-19-0]:/images/openpaas-service/cubrid/cubrid_aws/4-2-19-0.png
+[2-2-0-0-1]:/images/openpaas-service/cubrid/cubrid_aws/2-2-0-0-1.png
+[2-2-4-0-1]:/images/openpaas-service/cubrid/cubrid_aws/2-2-4-0-1.png
+[2-2-6-0-1]:/images/openpaas-service/cubrid/cubrid_aws/2-2-6-0-1.png
+[2-2-7-0-1]:/images/openpaas-service/cubrid/cubrid_aws/2-2-7-0-1.png

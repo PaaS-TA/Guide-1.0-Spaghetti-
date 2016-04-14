@@ -78,16 +78,100 @@ Ruby 애플리케이션 개발을 위해 다음과 같은 환경으로 개발환
 <div id='9'></div>
 ##### 2.2.1.	Ruby & Ruby On Rails설치
 
-1)	Ruby & DevKit 다운로드
+1)	Ruby & DevKit 다운로드   
 **<http://rubyinstaller.org/downloads/>**   
+![ruby01]
+- 다운로드  
+RubyInstallers : Ruby 1.9.3-p551  
+DEVELOPMENT KIT : DevKit-tdm-32-4.5.2-20111229-1559-sfx  
+
+2)	Ruby 설치
+- Ruby 1.9.3-p551.exe 더블클릭하여 설치를 실행한다.   
+![ruby02]    
+- “OK” 버튼 클릭  
+
+![ruby03]  
+- “I accet the License” 선택 후 “Next” 버튼 클릭   
+
+![ruby04]  
+- “Add Ruby executables to your PATH” 선택 후 “Install” 버튼 클릭   
+	
+![ruby05]  
+- “Finish” 버튼을 클릭하여 Ruby 설치를 종료한다.   
+
+
+3)	DEVELOPMENT KIT 설치
+- DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe을 더블클릭하여 설치를 실행한다.   
+![ruby06]  
+![ruby07]  
+- 설치할 폴더를 지정하고 “Extract”버튼을 클릭한다.
+- Windows의 CMD 창을 실행하여 DevKit 설치 폴더로 이동한다.  
+
+>ruby dk.rb init
+-	“ruby dk.rb init” 명령을 실행하여 “config.yml” 파일을 생성한다.
+![ruby08] 
+
+>ruby dk.rb install
+-	“ruby dk.rb install” 명령을 실행하여 DevKit을 설치한다.
+![ruby09] 
+-	“ruby –v” 명령을 실행하여 루비 버전을 확인한다.
+![ruby10] 
+
+4)	Ruby On Rails 설치
+-	“gem update rdoc” 명령을 실행하여 rdoc gem을 업데이트한다.(미 실행시 rails install시 에러가 발생 할 수 있다.)
+![ruby11] 
+-	“gem install rails –v 4.1.8” 명령을 실행하여 rails을 설치한다.
+![ruby12] 
+-	“rails –v” 명령을 사용하여 rails의 버전을 확인한다.
+![ruby13] 
 
 
 <div id='10'></div>
 ### 2.3.	개발
 
+Ruby 샘플 애플리케이션을 개발하기 위한 애플리케이션의 생성과 환경설정, VCAP_SERVICES 정보의 획득 및 각 서비스의 연동 방법에 대하여 설명한다.
 
 <div id='11'></div>
 ##### 2.3.1.	애플리케이션 생성
+
+1)	Rails 애플리케이션 생성(bundle install 제외)
+>rails new [application name] –B –skip-bundle
+![ruby14] 
+![ruby15] 
+
+2)	자동 생성 폴더 및 파일 정의
+
+<table>
+<tr>
+    <td> </td>
+    <td> </td>
+</tr>
+<tr>
+    <td> </td>
+    <td> </td>
+</tr>
+<tr>
+    <td> </td>
+    <td> </td>
+</tr>
+<tr>
+    <td> </td>
+    <td> </td>
+</tr>
+<tr>
+    <td> </td>
+    <td> </td>
+</tr>
+<tr>
+    <td> </td>
+    <td> </td>
+</tr>
+
+</table>
+
+
+
+
 
 
 <div id='12'></div>
@@ -139,5 +223,19 @@ Ruby 애플리케이션 개발을 위해 다음과 같은 환경으로 개발환
 
 
 
-[1-3-0-0]:/images/openpaas-service/cubrid/cubrid_aws/1-3-0-0.png
-[2-1-0-0]:/images/openpaas-service/cubrid/cubrid_aws/2-1-0-0.png
+[ruby01]:/Sample-App-Guide/image/ruby/ruby_01.png
+[ruby02]:/Sample-App-Guide/image/ruby/ruby_02.png
+[ruby03]:/Sample-App-Guide/image/ruby/ruby_03.png
+[ruby04]:/Sample-App-Guide/image/ruby/ruby_04.png
+[ruby05]:/Sample-App-Guide/image/ruby/ruby_05.png
+[ruby06]:/Sample-App-Guide/image/ruby/ruby_06.png
+[ruby07]:/Sample-App-Guide/image/ruby/ruby_07.png
+[ruby08]:/Sample-App-Guide/image/ruby/ruby_08.png
+[ruby09]:/Sample-App-Guide/image/ruby/ruby_09.png
+[ruby10]:/Sample-App-Guide/image/ruby/ruby_10.png
+[ruby11]:/Sample-App-Guide/image/ruby/ruby_11.png
+[ruby12]:/Sample-App-Guide/image/ruby/ruby_12.png
+[ruby13]:/Sample-App-Guide/image/ruby/ruby_13.png
+[ruby14]:/Sample-App-Guide/image/ruby/ruby_14.png
+[ruby15]:/Sample-App-Guide/image/ruby/ruby_15.png
+[ruby16]:/Sample-App-Guide/image/ruby/ruby_16.png

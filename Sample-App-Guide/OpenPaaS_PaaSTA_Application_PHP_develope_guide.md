@@ -82,17 +82,17 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
   2.	다운로드 받은 파일을 실행하고 모두 Next를 하면됩니다. 하지만 아래와 같이 디렉토리를 물어보는데 이때 이 위치를 변경하거나 정확하게 기억하고 있어야 합니다. 설치 완료후php 실행 디렉토리를 환경변수(Path)에 넣어 줘야 하기 때문입니다.
     
   ![./image/php/php_develope_guide3.png](./image/php/php_develope_guide3.png)
-  XAMP 설치 디렉토리
+    XAMP 설치 디렉토리
     
   3.	설치가 정상적으로 이루어지고 있으면 아래와 같이 진행이 될겁니다. 처음 실행할 때 Antivirus 프로그램으로 느려질수 있다는 문구 등이 나올수도 있는데 "확인"을 누르시면 됩니다.
     
   ![./image/php/php_develope_guide4.png](./image/php/php_develope_guide4.png)
-  XAMP 설치 진행중
+    XAMP 설치 진행중
     
   4.	설치가 완료되면 Control Panel을 띄우겠다는 메시지가 나옵니다. 선택이 Default로 되어 있어 완료를 선택하면 아래와 같은 Control Panel이 실행됩니다.
     
   ![./image/php/php_develope_guide5.png](./image/php/php_develope_guide5.png)
-  XAMP 관리 패널 창
+    XAMP 관리 패널 창
     
   사용방법은 간단합니다. 원하는 서비스(여기서는 Apache 만 사용할 예정)의 Start를 선택하면 해당 서비스가 실행이 됩니다. 단. 해당서비스가 사용하는 포트(Apache의 경우 80)는 사용하고 있지 않아야 합니다.
     
@@ -112,154 +112,74 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
   
   2.	여기서 "환경변수"를 선택하고 Path를 편집을 합니다. 변수값의 마지막에 XAMP 설치 디렉토리 아래의 php디렉토리를 추가합니다. 
 
- ![./image/php/php_develope_guide5.png](./image/php/php_develope_guide7.png)
-  Path 환경변수 설정
+  ![./image/php/php_develope_guide5.png](./image/php/php_develope_guide7.png)
+    Path 환경변수 설정
 
   3.	정상적으로 구성이 되었는지 확인하려면 "명령 프롬프트"를 실행하고 php-version 을 선택하여 아래와 같이 나오면 정상적으로 환경설정이 완료된 것입니다.
  
   ![./image/php/php_develope_guide5.png](./image/php/php_develope_guide8.png)
-  명령 프롬프트에서 PHP 버전 확인
+    명령 프롬프트에서 PHP 버전 확인
 
 
-## 2.4.  BOSH 설치
+## 2.4.  2.2.4.	Composer 설치
 
-BOSH 설치 절차는 다음과 같다.
-
-
-1.  설치할 환경 생성
-
-		#git 설치
-		$ sudo apt-get install git
-
-		#실행 디렉토리 생성
-		$ mkdir -p ~/workspace
-		$ cd ~/workspace
-
-
-2.  Bosh 설치 및 설정
+  Composer는 개발시 필요한 라이브러리를 관리하는 툴입니다. 홈페이지는 다음과 같습니다. https://getcomposer.org/
   
-		#Bosh 설치
-		$ git clone https://github.com/cloudfoundry/bosh.git
-  		
-		#Bosh 서브모듈 설치
-		$ cd bosh
-		$ git submodule update --init --recursive
-
-		#Bosh 의존 패키지 설치
-		$ bundle install
-
-		#bosh_cli 설치
-		$ gem install bosh_cli
+  1.	Composer를 다운로드 받아 설치하고 Path에 설정하는 방법이 있지만 여기서는 Manual로 설치를 하겠습니다. Composer.phar 파일을 개방형 플랫폼에서 그대로 사용하고 있어 Manual 설치로 composer.phar파일을 개발 위치에 설치하였습니다. (소스를 Git에서 받았으면 따로 설치할 필요는 없습니다.)
   
-
-3.  Bosh 설치 확인
-
-		$ bundle exec bosh 또는 bosh
-
-
-## 2.5.  Vagrant 설치
-
-Vagrant는 가상 환경을 구축해 주는 오픈 소스이다. 스템셀을 생성 할 VM을 관리하기 위해 vagrant를 사용한다.
-
-
-1.  Vagrant 설치
-
-		$ sudo apt-get install vagrant
-
-2.  Vagrant 플러그인 설치
-
-		$ vagrant plugin install vagrant-berkshelf
-		$ vagrant plugin install vagrant-omnibus
-		$ vagrant plugin install vagrant-aws --plugin-version 0.5.0
-
-
-## 2.6.  스템셀 생성을 위한 VM 설치
-
-스템셀 생성을 위한 가상 환경을 구성한다.
-
-
-1.  AWS 환경 변수 설정
+  2.	매뉴얼 설치는 간단합니다. 아래와 같이 소스의 루트 디렉토리에서 입력을 하면됩니다. 물론 PHP 명령이 실행이 될 수 있게 2.2.3의 환경변수 설정이 되어 있어야만 합니다.
+    php r "readfile('https://getcomposer.org/installer');" | php
+  	
+  3.	필요한 Package를 composer.json에 구성하고 install하면 PHP에서 사용할 수 있는 Package가 vendor 디렉토리 아래에 설치가 됩니다. 
   
-		#아래의 환경변수를 설정을 실행한다.
-		$ export BOSH_AWS_ACCESS_KEY_ID=<YOUR-AWS-ACCESS-KEY>
-		$ export BOSH_AWS_SECRET_ACCESS_KEY=<YOUR-AWS-SECRET-KEY>
-		$ export BOSH_AWS_SECURITY_GROUP=<YOUR-AWS-SECURITY-GROUP-ID>
-		$ export BOSH_AWS_SUBNET_ID=<YOUR-AWS-SUBNET-ID>
+  * 주의사항 *
+  개방형 플랫폼에서 사용하기 위해서는 XAMP와는 환경이 틀리기 때문에 PHP 빌드팩의 Release된 Extension을 확인하고 Dependency를 확인해야 합니다. XAMP 환경에서는 동작을 하지만 개방형 플랫폼에서는 동작을 안할 수 있으니 주의해야 합니다.
+  PHP 빌드팩Extenstion정보 :https://github.com/cloudfoundry/php-buildpack/releases
+
+
+
+## 2.5. Mongo 드라이버 설치
+
+  Mongo 드라이브 설치는 개방형 플랫폼에서 지원하는 Mongo 드라이버를 설치하기 위함입니다. 관련문서는 http://docs.php.net/manual/en/mongo.installation.php#mongo.installation.windows에 있습니다. 라이브러리 파일을 다운받고 config 파일에 정보를 추가하면 됩니다.
+  
+  1.	먼저 문서에 PECL 홈페이지(http://pecl.php.net/package/mongo)에서 DLL를 다운로드 받아야 합니다. 본 가이드는 1.6.12 버전을 을 선택하였습니다. 
+   
+  위의 링크중 DLL 부분을 눌러서 선택하고 "5.5 Thread Safe (TS) x86"를 다운로드 받습니다. 압축을 해제하면 php_mongo.dll이 있는데 이 파일만 있으면 됩니다.
+  ![./image/php/php_develope_guide5.png](./image/php/php_develope_guide7.png)
+  
+  2.	php_mongo.dll 파일을 XAMP 설치된 디렉토리에서php 아래에 ext에 복사를 합니다.
+  
+  3.	XAMP 설치 디렉토리의php디렉토리에 php.ini를 선택하고 아래와 같이 추가를 해줍니다.
+    extension=php_mongo.dll
+  
+  4.	php.ini 파일의 셋팅이 끝났으면 Apache서버를 재기동합니다. 만약에 오류가 있으면 XAMP 패널에 빨간색으로 오류가 표시되니 정상적으로 Apache서버가 올라오는지 확인합니다.
+  
+  5.	모듈이 정상적으로 설치되었는지 확인하려면 소스코드의 루트에 있는 info.php를 실행합니다. 브라우져에서http://localhost/info.php 를 선택하고 내용에 mongo 부분의 설정 정보가 보이면 정상적으로 설치가 된 것입니다.
   
 
-2.  VM 생성
 
-	***기본으로 설정된 VM 크기는 m3.xlarge 타입으로 AWS 과금 대상이다.***
+#3.  개발
 
-		$ cd ~/workspace/bosh/bosh-stemcell
-		$ vagrant up remote --provider=aws
+개발에 필요한 Package의 구성과 소스디렉토리 구성을 설명합니다. 그리고 각각의 서비스와 연동을 하는 부분의 설명합니다
 
+## 3.1.  사용 Package 설명
 
-3.  원격 접속 확인
+Composer를 사용하여 Dependency를 관리합니다. Composer.json 파일의 Package구성을 설명하면 아래의 표와 같습니다. 설정정보는 composer.json에 저장되어 있습니다.
 
-		#접속 키 정보 설정 실행
-		$ export BOSH_KEY_PATH=<접속 키의 경로 및 파일명>
-		$ export BOSH_VAGRANT_KEY_PATH=<접속 키의 경로 및 파일명>
+  |패키지명                  |버전   |설명                                             |
+	|--------------------------|------|--------------------------------------------|
+	|slim/slim                 |2.*     |PHP의 REST/full Framewok를 위해 사용합니다.                                          |
+	|videlalvaro/php-amqplib   |2.5.*   |RabbitMQ 서비스와 연결을 위해 사용합니다. (SSL 접속이 지원되지 않아 현재는 사용하지 못하고 있음)                                         |
+	|predis/predis             |1.0.*   |Redis 서비스와 연동을 위해 사용합니다.       |
+	|rackspace/php-opencloud   |1.15.*  |Openstack 연결 SDK로 GlusterFS에 파일을 Upload할 때 사용합니다.      |
+	|guzzlehttp/guzzle         |6.*     |Http client로 GlusterFS의 Container 권한 변경시 사용합니다.   |
+	|phpunit/phpunit           |4.3.*   |PHP의 단위테스트를 위한 프로그램입니다. Vendor\bin\phpunit를 실행하면 test 디렉토리의 Test Case를 실행하고 결과를 화면에 표시합니다.   |
 
-		#접속 실행
-		$ cd ~/workspace/bosh/bosh-stemcell
-		$ vagrant ssh remote
+  Composer를 이용하여 라이브러리를 설치하려면 아래와 같이 install을 실행하면 됩니다. 이 명령은 개방형 플랫폼에 PHP 빌드팩과 같이 배포될 때 자동으로 수행이 됩니다. 
+  phpcomposer.phar install
+  
+  만약에 로컬 개발환경에서 composer.json파일이 변경되면 install 대신 update를 이용하여 패키지의 구성을 변경하면 됩니다.
 
-
-4.  원격 파일 송수신
-
-		#접속 키 정보 설정 실행
-		$ export BOSH_KEY_PATH=<접속 키의 경로 및 파일명>
-		$ export BOSH_VAGRANT_KEY_PATH=<접속 키의 경로 및 파일명>
-
-		#파일 송수신 실행
-		$ cd ~/workspace/bosh/bosh-stemcell
-
-		#파일을 송신할 경우
-		$ vagrant scp <로컬 파일> remote:<원격 파일 저장 경로>
-
-		#파일을 수신할 경우
-		$ vagrant scp remote:<원격 파일 저장 경로> <로컬 파일>
- 
-
-## 2.7.  BOSH Source 등을 수정하여 스템셀을 생성할 경우
-
-1.  Source Code 수정 또는 업데이트한 gem 파일을 스템셀 생성 VM에 반영하는 경우
-
-		$ cd ~/workspace/bosh/bosh-stemcell
-		$ vagrant provision remote
-
-
-#3.  기본 OS 이미지 생성 
-
-사용자 환경에 맞는 사용자 정의의 OS로 구성한 스템셀이 필요한 경우, 기본 OS 이미지부터 생성한다. 기본 OS 이미지는 스템셀이 요구하는 최소한의 OS 기능과 Bosh agent 및 bosh 모니터로 구성 되어 있다.
-
-
-## 3.1.  Ubuntu OS 이미지 생성
-
-Ubuntu OS 이미지를 생성하는 절차를 기술한다.
-
-
-1.  Build\_os\_image 실행
-
-		#기본 OS 이미지 생성
-		$ cd ~/workspace/bosh/bosh-stemcell
-		$ vagrant ssh -c '
-		cd /bosh
-		bundle exec rake stemcell:build_os_image[ubuntu,trusty,/tmp/ubuntu_base_image.tgz]
-		' remote
-
-
-2.  입력 옵션 정보
-
-	|옵션명                      |필수   |설명                                          |예시|
-	|--------------------------|------|--------------------------------------------|------------------------------|
-	|Operating system name      |O      |OS 타입                                      |ubuntu|
-	|Operating system version   |O      |OS 버전                                      |trusty|
-	|OS image path              |O      |기본 OS 이미지가 생성되는 디렉토리 및 이름       |/tmp/ubuntu_base_image.tgz|
-
-
-	※ 필수 항목이 아닌 곳에 대해서는 ‘’을 입력한다.
 
 
 ## 3.2.  RHEL OS 이미지 생성 

@@ -137,7 +137,7 @@ Name: Phoneverification
 Context: /phoneverify
 Version: 1.0.0
 ```
-※	④번 Edit Swagger Definition 버튼을 클릭하여 다음의 [4. Resources 정의](#DefineResources) 과정을 생략 할 수 있다. 이에 대한 설명은 [4. Resources 정의](#DefineResources) 하단에 [Swagger 정의](#DefineSwagger)로 첨부한다.
+※	④번 Edit Swagger Definition 버튼을 클릭하여 다음의 [[4. Resources 정의]](#DefineResources) 과정을 생략 할 수 있다. 이에 대한 설명은 [[4. Resources 정의]](#DefineResources) 하단에 [[Swagger 정의]](#DefineSwagger)로 첨부한다.
 
 <div id=DefineResources></div>
 ###### 4. Resources 정의
@@ -163,9 +163,10 @@ Version: 1.0.0
 
 <div id=DefineSwagger></div>
 ※	Swagger 정의
-상단의 [3. General Details 정의](#DefineGeneralDetails)에서 푸른색 ④번 박스로 표시된 Edit Swagger Definition 버튼을 클릭하면 Swagger 수정이 가능하다. 다음과 같이 수정하고 Save버튼을 클릭하여 Resources를 정의한다. 이 방법을 통해 상단에 기술된 [[4. Resources 정의]](#DefineResources) 절차를 생략할 수 있다.
+상단의 [[3. General Details 정의]](#DefineGeneralDetails)에서 푸른색 ④번 박스로 표시된 Edit Swagger Definition 버튼을 클릭하면 Swagger 수정이 가능하다. 다음과 같이 수정하고 Save버튼을 클릭하여 Resources를 정의한다. 이 방법을 통해 상단에 기술된 [[4. Resources 정의]](#DefineResources) 절차를 생략할 수 있다.
 
-```swagger
+>
+```yml
 apiVersion: 1.0.0
 swaggerVersion: "1.2"
 apis:
@@ -222,3 +223,32 @@ authorizations:
     type: oauth2
     scopes: []
 ```
+>
+
+###### 5. Endpoint 입력
+① Endpoint를 입력하고 Endpoint 설정과 보안 설정 등을 입력하는 Implement 화면이다.<br>
+② Production Endpoint 입력란과 Sandbox Endpoint 입력란에 다음과 같이 Endpoint를 입력한다.<br>
+>Production Endpoint: http://ws.cdyne.com/phoneverify/phoneverify.asmx<br>
+>Sandbox Endpoint: http://ws.cdyne.com/phoneverify/phoneverify.asmx
+
+③ 추가된 사항을 저장한다.<br>
+④ 다음 단계인 Manage 화면으로 이동한다.<br>
+
+###### 6. Tier 선택
+① API의 Tier 및 추가적인 설정을 입력하는 Manage화면이다.<br>
+② Tier Availability는 해당 API 서비스의 호출 횟수를 제한하는 설정으로 개방형 클라우드 플랫폼에서는 플랜으로 표시된다. API 매니저에 설정된 4가지 기본 Tier 중, 사용자 필요에 맞게 선택할 수 있고 API 매니저 관리자 대시보드({API매니저 URL}:{API매니저 포트}/carbon)에서 Tier명과 호출 횟수 제한을 변경할 수 있다. 다만, 현재는 API 서비스 브로커 설계상 API Tier는 Unlimited Tier를 선택하여야 한다. 따라서 Unlimited Tier만을 선택한다. Unlimited Tier만 선택하여 API 서비스를 배포하더라도 개방형 클라우드 플랫폼에서는 Unlimited와 Bronze의 두 가지 플랜을 선택할 수 있다.<br>
+③ Save & Publish 버튼을 클릭하여 저장하고 API를 배포한다.<br>
+
+
+###### 7. 배포 확인
+① API 매니저의 Store 대시보드에 접속한다.
+
+>
+```
+{API매니저 URL}:{API매니저 포트}/store
+예) https://10.30.60.201:9443/store
+```
+※	http가 아닌 https임에 주의한다.
+>
+
+② 생성한 API가 배포되어 있음을 확인한다. 배포되지 않은 API는 Store 대시보드에 노출되지 않는다.

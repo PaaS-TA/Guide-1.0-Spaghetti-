@@ -4,13 +4,13 @@
 	-	1.2. [범위](#12-범위)
 	-	1.3. [시스템 구성도](#13-시스템-구성도)
 	-	1.4. [참고자료](#14-참고자료)
-2. [API 플랫폼 서비스팩 설치](#2-API 플랫폼-서비스팩-설치)
+2. [API 플랫폼 서비스팩 설치](#2-API-플랫폼-서비스팩-설치)
 	-	2.1. [설치전 준비사항](#21-설치전-준비사항)
-	-	2.2. [API 플랫폼 서비스 릴리즈 업로드](#22-API 플랫폼-서비스-릴리즈-업로드)
+	-	2.2. [API 플랫폼 서비스 릴리즈 업로드](#22-API-플랫폼-서비스-릴리즈-업로드)
 	-	2.3. [API 플랫폼 서비스 Deployment 파일 수정 및 배포](#23-API-플랫폼-서비스-deployment-파일-수정-및-배포)
 	-	2.4. [API 매니저에서 API 생성 및 배포](#24-API-매니저에서-API-생성-및-베포)
 	-   2.5. [API 플랫폼 서비스 브로커 등록](#25-API-플랫폼-서비스-브로커-등록)
-3. [API 플랫폼 연동 Sample Web App 설명](#3-API 플랫폼-연동-sample-web-app-설명)
+3. [API 플랫폼 연동 Sample Web App 설명](#3-API-플랫폼-연동-sample-web-app-설명)
 	-	3.1. [Sample Web App에 서비스 바인드 신청 및 App 확인](#31-sample-web-app에-서비스-바인드-신청-및-app-확인)
 
 
@@ -104,7 +104,7 @@ Open 버튼을 클릭하여 해당 머신에 연결한다
 ###### 3. 터널링 설정 확인
 터널링 설정이 되어있는 Putty 접속을 유지한 채로, Mozila Firefox 브라우저를 이용하여 API 매니저 관리자 화면에 접속해본다. 하단의 화면이 확인된다면 API 매니저 배포 및 터널링 설정이 정상적으로 이루어진 것이다.
 
-
+<div id=APICreatePublish></div>
 ##### 2.4.2. API 생성 및 배포
 터널링 설정이 완료 되었다면, API 플랫폼 서비스팩을 통해 배포된 API 매니저에 접속하여 API를 생성하고 배포(Publish)한다.
 ```
@@ -132,11 +132,15 @@ Open 버튼을 클릭하여 해당 머신에 연결한다
 ① API 생성 화면으로 이동하였다.<br>
 ② API 생성의 첫 단계인 Design 단계이다.<br>
 ③ General Details에 하단의 화면과 동일하게 다음과 같이 값을 입력한다.<br>
+
+>
 ```
 Name: Phoneverification
 Context: /phoneverify
 Version: 1.0.0
 ```
+>
+
 ※	④번 Edit Swagger Definition 버튼을 클릭하여 다음의 [[4. Resources 정의]](#DefineResources) 과정을 생략 할 수 있다. 이에 대한 설명은 [[4. Resources 정의]](#DefineResources) 하단에 [[Swagger 정의]](#DefineSwagger)로 첨부한다.
 
 <div id=DefineResources></div>
@@ -162,7 +166,7 @@ Version: 1.0.0
 ④ 하단의 버튼 중, 좌측의 Save버튼을 클릭하여 저장하고 가운데 Implement 버튼을 클릭하여 다음단계인 Implement 단계로 진행한다.<br>
 
 <div id=DefineSwagger></div>
-※	Swagger 정의
+※	Swagger 정의<br>
 상단의 [[3. General Details 정의]](#DefineGeneralDetails)에서 푸른색 ④번 박스로 표시된 Edit Swagger Definition 버튼을 클릭하면 Swagger 수정이 가능하다. 다음과 같이 수정하고 Save버튼을 클릭하여 Resources를 정의한다. 이 방법을 통해 상단에 기술된 [[4. Resources 정의]](#DefineResources) 절차를 생략할 수 있다.
 
 >
@@ -252,3 +256,26 @@ authorizations:
 >
 
 ② 생성한 API가 배포되어 있음을 확인한다. 배포되지 않은 API는 Store 대시보드에 노출되지 않는다.
+
+
+### 2.5. 플랫폼 서비스 브로커 등록
+API 매니저(API 플랫폼)에 API 서비스가 정상적으로 등록 및 배포가 완료되었다면, 등록된 API 서비스를 개방형 클라우드 플랫폼의 서비스 형태로 제공하기 위해 API 플랫폼 서비스 브로커를 등록해 주어야 한다. 서비스 브로커 등록 시, 개방형 클라우드 플랫폼에서 서비스 브로커를 등록할 수 있는 사용자로 로그인이 되어 있어야 한다.
+
+
+
+# 3. API 플랫폼 연동
+[[2.4 API 매니저에서 API 생성 및 배포]](#APICreatePublish)에서 생성한 API 서비스를 샘플 App에 바인드하여, Vcap 환경설정 정보를 정상적으로 획득할 수 있는지를 확인함으로써 연동여부를 확인한다. 단순히 서비스 바인드만 진행하기 때문에 샘플 어플리케이션은 어떤 어플리케이션을 사용해도 무방하다.
+
+### 3.1. Sample Web App에 서비스 바인드 신청 및 App 확인
+샘플 App을 배포하고 API 서비스와 바인드 신청을 한다. 먼저 샘플 App을 배포한다.
+>※ 참고: 서비스 Bind 신청시 개방형 클라우드 플랫폼에서 서비스 Bind를 할 수 있는 사용자로 로그인이 되어 있어야 한다.
+
+
+
+
+
+
+
+
+### 3.2. 서비스 바인드 확인
+샘플 앱에 대한 VCAP_SERVICES 정보를 확인하여 샘플 앱과 서비스의 정상적인 바인드 여부를 판단한다. VCAP_SERVICES 정보를 확인하는 명령어는 다음과 같다. VCAP_SERVICES에서 앱에서 API를 사용하는데 필요한 정보를 확인할 수 있고 따라서 앱은 이 값을 읽을 수 있도록 작성되어야 한다. 

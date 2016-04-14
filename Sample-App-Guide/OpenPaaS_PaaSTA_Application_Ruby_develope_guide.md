@@ -70,6 +70,7 @@ Ruby 애플리케이션 개발을 위해 다음과 같은 환경으로 개발환
 -	Ruby : 1.9.3-p551
 -	Framwork : Ruby On Rails 4.1.8
 -	IDE : RubyMine 7.1.1   
+
 ※	CubridDB의 Ruby 드라이버 최신 지원 버전이 Ruby 1.9.3 까지 지원하여 해당 버전을 선택하였다. 각 서비스별 지원 되는 드라이버(또는 Gem)에 맞는 Ruby 버전을 사용하길 권장한다.   
 ※	Ruby IDE는 개별 선택하여 사용한다. 
 

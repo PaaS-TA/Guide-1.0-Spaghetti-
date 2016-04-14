@@ -98,49 +98,28 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
     
   5.	Apache의 Config를 선택하고 Apache (httpd.conf)를 선택하여 DocumentRootdhk Directory의 위치를 개발소스가 설치된 곳으로 바꾸면 브라우져에서http://localhost 로 호출시 개발하는 위치로 바로 연결됩니다. 개발소스의 위치는 2.2.1에서 설치한 위치를 지정해 넣습니다.
         
+        
       DocumentRoot C:\개발소스위치
       <DirectoryC:\개발소스위치>
+      
 
-## 2.3.  RUBY 설치
+## 2.3. PHP 실행 환경설정
 
-Ruby 설치 절차는 다음과 같다.
+  1.	XAMP로 설치된 PHP를 어디서나 실행가능하게 환경설정(Path)에 넣어줍니다. 제어판 -> 시스템 -> 고급 시스템 설정을 선택하면 아래와 같이 시스템 속성을 변경하는 창이 나타납니다. 
 
-
-
-1.  의존 패키지 설치
-
-  -   Ubuntu의 경우
-
-			$ sudo apt-get update
-			$ sudo apt-get install -y build-essential zlibc zlib1g-dev ruby ruby-dev openssl libxslt-dev libxml2-dev libssl-dev libreadline6 libreadline6-dev libyaml-dev libsqlite3-dev sqlite3 libxslt1-dev libpq-dev libmysqlclient-dev
-    
-
-  -   CentOS의 경우
-   
-    		$ sudo yum install gcc ruby ruby-devel mysql-devel postgresql-devel postgresql-libs sqlite-devel libxslt-devel libxml2-devel yajl-ruby
-    
-
-  -   OSX의 경우
-    
-    		$ xcode-select --install
-		    xcode-select: note: install requested for command line developer tools
+  ![./image/php/php_develope_guide5.png](./image/php/php_develope_guide6.png)
+  시스템 속성 창
   
+  2.	여기서 "환경변수"를 선택하고 Path를 편집을 합니다. 변수값의 마지막에 XAMP 설치 디렉토리 아래의 php디렉토리를 추가합니다. 
 
-2.  Ruby 설치 관리자 및 Ruby 설치
+ ![./image/php/php_develope_guide5.png](./image/php/php_develope_guide7.png)
+  Path 환경변수 설정
 
-		$ curl -L https://get.rvm.io | bash -s stable
-		$ source ~/.rvm/scripts/rvm
+  3.	정상적으로 구성이 되었는지 확인하려면 "명령 프롬프트"를 실행하고 php-version 을 선택하여 아래와 같이 나오면 정상적으로 환경설정이 완료된 것입니다.
+ 
+  ![./image/php/php_develope_guide5.png](./image/php/php_develope_guide8.png)
+  명령 프롬프트에서 PHP 버전 확인
 
-		#Ruby 2.1.6 설치
-		$ rvm install 2.1.6
-
-		#기본 Ruby 버전 설정
-		$ rvm use 2.1.6 --default
-
-
-3.  설치 확인
-
-		$ ruby -v
 
 ## 2.4.  BOSH 설치
 

@@ -952,8 +952,7 @@ module.exports = client;
 
 >```
 $ cf api --skip-ssl-validation https://api.cf.open-paas.com # 개방형 플랫폼 TARGET 지정
-#cf api [target url]
-
+#cf api [target url]<br>
 $ cf login -u testUser -o sample_test -s sample_space # 로그인 요청
  #cf login –u [user name] –o [org name] –s [space name]
 ```

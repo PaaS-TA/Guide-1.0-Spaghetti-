@@ -961,18 +961,21 @@ module.exports = client;
 애플리케이션에서 사용할 서비스를 개방형 플랫폼을 통하여 생성한다. 별도의 서비스 설치과정 없이 생성할 수 있으며, 애플리케이션과 바인딩과정을 통해 접속정보를 얻을 수있다.
 - 서비스 생성 (cf marketplace 명령을 통해 서비스 목록과 각 서비스의 플랜을 조회할 수 있다.
 
-><div># cf create-service SERVICE PLAN SERVICE_INSTANCE [-c PARAMETERS_AS_JSON] [-t TAGS]</div><br>
-><div>$ cf create-service p-mysql 100mb node-mysql</div><br>
-><div>$ cf create-service CubridDB utf8 node-cubrid</div><br>
-><div>$ cf create-service Mongo-DB default-plan node-mongodb</div><br>
-><div>$ cf create-service redis-sb shared-vm node-redis</div><br>
-><div>$ cf create-service glusterfs glusterfs-5Mb node-glusterfs</div><br>
+><div># cf create-service SERVICE PLAN SERVICE_INSTANCE [-c PARAMETERS_AS_JSON] [-t TAGS]</div>
+><div>$ cf create-service p-mysql 100mb node-mysql</div>
+><div>$ cf create-service CubridDB utf8 node-cubrid</div>
+><div>$ cf create-service Mongo-DB default-plan node-mongodb</div>
+><div>$ cf create-service redis-sb shared-vm node-redis</div>
+><div>$ cf create-service glusterfs glusterfs-5Mb node-glusterfs</div>
 ><div>$ cf create-service p-rabbitmq standard node-rabbitmq</div>
 ![2-4-2-0]
 
 <div id='21'></div>
 ### 4.3. 애플리케이션 배포
+
 애플리케이션을 개방형 플랫폼에 배포한다. 배포된 애플리케이션은 생성된 서비스와 바인드하여 서비스를 사용할 수 있다.
+
+- cf push 명령시 현재 디렉토리의 manifest.yml을 참조하여 배포가 진행된다.
 
 ##### 1. manifest.yml 생성
 

@@ -65,7 +65,7 @@ PHP로 REST/full 서버를 구현하였고 화면(HTML)은 Apache의 Web 서버�
 
 샘플의 위치는 변경될수있느나 개방형 플랙폼 홈페이지에서 찾아볼 수 있습니다. 해당 GIT 위치를 확인하시고 아래와 같은 명령문으로 소스를 다운로드 받습니다. 해당 명령을 위해서는 GIT Client가 설치되어 있어야 합니다.
 
-$ git clone 
+        $ git clone 
 
 
 
@@ -128,7 +128,7 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
   1.	Composer를 다운로드 받아 설치하고 Path에 설정하는 방법이 있지만 여기서는 Manual로 설치를 하겠습니다. Composer.phar 파일을 개방형 플랫폼에서 그대로 사용하고 있어 Manual 설치로 composer.phar파일을 개발 위치에 설치하였습니다. (소스를 Git에서 받았으면 따로 설치할 필요는 없습니다.)
   
   2.	매뉴얼 설치는 간단합니다. 아래와 같이 소스의 루트 디렉토리에서 입력을 하면됩니다. 물론 PHP 명령이 실행이 될 수 있게 2.2.3의 환경변수 설정이 되어 있어야만 합니다.
-    php r "readfile('https://getcomposer.org/installer');" | php
+            php r "readfile('https://getcomposer.org/installer');" | php
   	
   3.	필요한 Package를 composer.json에 구성하고 install하면 PHP에서 사용할 수 있는 Package가 vendor 디렉토리 아래에 설치가 됩니다. 
   
@@ -291,184 +291,292 @@ PHP에서 VCAP 환경정보를 가져오는 방법은 간단합니다. System의
 환경설정정보는 서비스마다 위치/명칭이 다릅니다. cfenv 명령으로 정확한 위치를 파악하거나 서비스 제공자의 매뉴얼을 참조하여야 합니다.
 
 
+## 3.5.  Mysql 연동
+
+Extenstion에 추가한 mysqli를 사용합니다. XAMP에서는 기본으로 설정이 되어 있기 때문에 따로 설치작업이 필요없습니다. 
+(위치 :api/mysql_view.php)
 
-#4.  BOSH 스템셀 생성 
 
-## 4.1.  원격지의 OS 이미지를 사용한 스템셀 생성 
+1.	Mysql 에 접속하기
+        $conn = new mysqli($this->host, $this->username, $this->password, $this->dbname);
+        
+        if($conn->connect_error) {
+            die("conncetion failed:".$conn->connect_error);            
+        }
+mysqli를 이용하여 mysql 서비스에 접속합니다. 환경설정에서 가져온 host, username, password와 db명을 이용하여 접속을 합니다.
 
-원격지의 OS 이미지를 사용해서 스템셀을 생성하는 절차를 기술한다.
+2.	Query보내고 결과값 받기
+Query를 작성하고 Prepared Statement로 실행을 합니다. 실행된 결과값을 받아서 원하는 형태의 Array로 만들어 줍니다. 모든 처리가 완료되면 close로 connection과 statement를 종료합니다.
+        $sql = "SELECT * FROM ORG_TBL";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $org_result = $stmt->get_result();
+        
+        if ($org_result->num_rows> 0) {
+        while($row = $org_result->fetch_assoc()) {
+        
+        $org = array(
+                   "id" =>strval($row["id"]),
+                   "label" => $row["label"],
+                   "desc" => $row["desc"],
+                   "url" => $row["url"],
+                   "created" => $row["created"],
+                   "modified" => $row["modified"]
+            );
+        
+        array_push($result["orgs"], $org);
+        }
+         $result["org"] = $org;
+        }
+        
+        $stmt->close();
+        $conn->close();
+
+3.	결과값을  Json으로컨버전하여 HTML에서 처리할 수 있도록 합니다.
+        echo json_encode($result);
+
+
+## 3.6.  Mysql 연동
+
+현재 CF의 기본 빌드팩에서는 CUBRID를 지원하지 않아 본 샘플에서는 구현하지 않았습니다. 만약 프로젝트에서 CUBRID를 사용해야하면 별도로 문의 바랍니다. 
+
+
+## 3.7.  Mysql 연동
+
+Extenstion에 추가한 mongo 라이브러리를 이용합니다. 단 현재 mongo 라이브러리로는 사용자 인증에 문제가 있습니다. 라이브러리가 버그 fix가 되어야 합니다. 본 가이드에서는 부득이하게 MongoDB의 Root계정으로 접속하여 예제를 구현하였습니다.
+(위치 :api/mongodb_view.php)
+
+1.	Mongodbl 에 접속합니다. 환경설정에서 받아온 uri 정보를 이용합니다.
+        $mongo = new MongoClient($this->uri);
+
+2.	Collection을 설정하고 해당 Collection에서 정보를 요청합니다. Find 명령을 이용하여 필요한 정보를 요청합니다. 받아온 결과는 $cursor에 넣고 원하는 데이터 형태로 변경합니다.
+        $collection = $mongo->selectCollection($this->dbname, 'ORG_TBL');
+        $cursor = $collection->find(array('_id'=>new MongoId($org_id)));
+        
+        foreach ($cursor as $row) {
+        $org = array(
+                        "id" =>strval($row["_id"]),
+                        "label" =>isset($row["label"]) ? $row["label"] : "",
+                        "desc" =>isset($row["desc"]) ? $row["desc"] : "",
+                        "url" =>isset($row["url"]) ? $row["url"] : "",
+                        "created" =>isset($row["created"]) ? $row["created"] : "",
+                        "modified" =>isset($row["modified"]) ? $row["modified"] : ""
+            );
+            $result["org"] = $org;            
+        }
+
+3.	결과값을  Json으로컨버전하여 HTML에서 처리할 수 있도록 합니다.
+        echo json_encode($result);
+
+
+## 3.8.  Mysql 연동
+
+Redis 연동은 추가로 Composer를 통해 설치가된 패키지를 사용합니다. 
+
+1.	Redis 사용을 위해서 Predis의 Class에서 register를 선언합니다.
+        Predis\Autoloader::register();
+
+2.	Redis에  접속을 합니다. 환경설정에서 받은 Host, Port, Passworf를 이용하여 Redis에 접속을 합니다.
+        $redis = new Predis\Client(
+        array(
+             "scheme" => "tcp",
+             "host" => $this->host,
+             "port" => $this->port,
+             "password" => $this->password
+        ));
+
+3.	Session key와 사용자 ID(username)을 Redis에 저장합니다.
+        $redis->set($key, $username);
+
+
+
+
+## 3.9.  Mysql 연동
+
+CF의 PHP 빌드팩에서amqp접속시 SSL 접속에 문제가 있습니다. 그래서 해당 서비스 연동은 구현이 안되어 있습니다. 접속방법만 명시한 php 파일만 있습니다. (위치 :api/rebbitmq_view.php)
+
+
+## 3.10.  Mysql 연동
+
+
+php-opencloud라는 패키지를 사용하며 composer를 통해서 설치가 되게 되어 있습니다. 단 Container를 Public하게 생성하는 SDK가 없어서 API를 직접 호출(REST형식)하여 권한을 Public으로 설정하고 있습니다. 
+
+1.	GlusterFS와 연동하기 (파일 Upload)
+개방형 플랫폼에서는 Object Storage를 GlusterFS를 사용하는데 Object Storage를 API를 통해 사용하기 위해 Openstack의 Swift를 이용하여 서비스를 할 수 있게 구성되어 있습니다.
+php-opencloud는 swif를 만든 rackspace 회사에서 제공하는 SDK입니다. 
+Opencloud를 사용하기 위해 선언을 합니다.
+        use OpenCloud\Rackspace;
+2.	Openstack(Object Storage)에 접속을 하고 잘 접속이 되었는지 체크합니다.
+        $client = new OpenCloud\OpenStack($this->host, array(
+               "username" => $this->username,
+                  "password" => $this->password,
+                  "tenantName" => $this->tenantName,
+        ));
+        $client->authenticate();
+
+3.	파일을 올리기 위한 Container를 설정합니다. 만약에 해당 Container(directory)가 없으면 Container를 새로 생성을 합니다. 그리고 생성된 Container는 Public(읽기권한)으로 설정하여 인증없이 모든 사람이 읽을 수 있게 합니다.
+        $service = $client->objectStoreService($this->catalogName, 'RegionOne', 'publicURL');
+        
+        $container;
+        // Container를 가져오기
+        try {            
+        $container = $service->getContainer($this->containerName
+        } catch (Exception $e) {
+        // 생성하기
+        $container = $service->createContainer($this->containerName);
+        
+        // 만들어진 Container를 Public 모드로 변경하기
+        // PHP-OpenCloud SDK에서 해당 부분을 지원하지 않아서 직접 API를 호출하여 설정함
+        $baseUrl = $container->getService()->getEndpoint()->getPublicUrl().'/'.$this->containerName;
+        $httpClient = new GuzzleHttp\Client();
+        $res = $httpClient->request('POST', $baseUrl, 
+                ['headers' => ['X-Auth-Token' => $container->getService()->getClient()->getToken(), 'X-Container-Read' => '.r:*']]
+              );        
+        
+        // Response Code가 204로 넘어옴. 성공
+        }
+
+4.	파일을 해당 컨테이너에 Upload합니다. Container를 Public으로 설정하였기 때문에 이미지의 URL만 있으면 어디서든 읽어올 수 있습니다. 
+        $fileName = time().'_'.$fileName;
+        // 파일 저장
+        $result = $container->uploadObject($fileName, fopen($file, 'r+'), array('name'=> $fileName, 'Content-Type' => 'image/jpeg'));
+
+5.	저장된 결과를 URL 형태로 만듭니다. 이 URL로 직접 접속하여 해당 이미지에 접근이 가능합니다.
+        $result = array('thumb_img_path' => $container->getService()->getEndpoint()->getPublicUrl().'/'.$this->containerName.'/'.$fileName);
+
+6.	결과값을  Json으로컨버전하여 HTML에서 처리할 수 있도록 합니다.
+        echo json_encode($result);
+
+
+
+# 4.  배포 
+
+개발형 플랫폼에 샘플 애플리케이션을 설치하기 위한 부분입니다. CF PUSH 명령문을 사용하기 위한 사전작업과 서비스를 생성하고 연결하는 작업을 설명하고 있습니다.
+
+1)	./manifest.yml 생성
+-	cf push 명령시 현재 디렉토리의manifest.yml을 참조하여 배포가 진행된다.
+        ---
+        applications:
+        - name:php-sample-app# 애플리케이션 이름
+          memory: 128M# 애플리케이션 메모리 사이즈
+          instances: 1# 애플리케이션 인스턴스 개수
+        path: .
+        buildpack: https://github.com/cloudfoundry/php-buildpack.git# 사용할 빌드팩을 선언
+※애플리케이션 스테이징시할달 받은 포트가 환경변수로 등록되어있다. 이 포트는 애플리케이션의 상태 체크에도 사용되므로 위와 같이 포트를 지정할 것을 권장한다.
+
+2)	개방형 플랫폼 로그인
+        $ cfapi https://api.cf.open-paas.com# 개방형 플랫폼 TARGET 지정
+        #cfapi [target url]
+        
+        $ cf login -u testUser -o sample_test -s sample_space# 로그인 요청
+         #cf login -u [user name] -o [org name] -s [space name]
+        API endpoint: https://api.cf.open-paas.com
+        
+        Password>
+        Authenticating...
+        OK
+        
+        Targeted org sample_test
+        
+        Targeted space sample_space
+        
+        API endpoint:   https://api.cf.open-paas.com (API version: 2.29.0)   
+        User:           testUser
+        Org:            sample_test
+        Space:          sample_space
+
+$
+
+3)	개방형 플랫폼 서비스 생성
+$ cf marketplace# 마켓플레이스 목록 요청
+
+        service         plans                   description
+        p-mysql	100mb, 1gb		MySQL databases on demand   
+        p-rabbitmqstandard		RabbitMQ is a robust …..
+        redis-sb	shared-vm, dedicated-vm	Redis service to provide a ……
+
+        $ cf create-service p-mysql 100mb sample-mysql-instance# 서비스 생성
+        #cf create-service [service] [plan] [service name]
+        
+        $ cf services# 서비스 목록 조회
+        
+        nameservice      plan              bound apps		last…
+        sample-mysql-instance       p-mysql100mb            node-sample, p....	…
+        sample-rabbitmq-instance    p-rabbitmq   standard           python-sample-....	…
+        sample-redis-instanceredis-sbshared-vmpython-sample-....	…
+        
+        $ cf bind-servicephp-sample-app sample-mysql-instance# 애플리케이션 서비스 바인딩
+         #cf bind-service [app name] [service name]
+        
+        $ cf start php-sample-app# 애플리케이션 시작
+        #cf start [app name]
+
+
+4)	개방형 플랫폼 애플리케이션에 서비스 바인딩 및 애플리케이션 시작
+        $ cf push --no-start
+        # 애플리케이션 업로드만 실행하고 시작하지는 않는다.
+        
+        $ cf services# 서비스 목록 조회
+        
+        nameservice      plan              bound apps		last…
+        sample-mysql-instance       p-mysql100mb            node-sample, p....	…
+        sample-cubrid-instanceCubridDButf8              node-sample, p....	…
+        sample-mongo-instanceMongo-DB   default-plan       node-sample, p....	…
+        sample-rabbitmq-instance    p-rabbitmq   standard           python-sample-....	…
+        sample-redis-instanceredis-sbshared-vmpython-sample-....	…
+        sample-glusterfs-instanceglusterfsglusterfs-1000Mb   glusterfs-samp....	…
+        
+        $ cf bind-service php-sample-app sample-mysql-instance# 애플리케이션 서비스 바인딩
+        
+        $ cf start php-sample-app# 애플리케이션 시작
+
+
+5)	Mysql, Cubrid 테이블 생성
+-	Sample App의 조직관리 기능을 위해 DB에 테이블을 생성해 주어야 한다.
+-	Mysql과 Cubrid에 테이블을 추가하는 방법은 OpenPaaS Mysql, Cubrid 서비스팩 설치 가이드의 'Client 툴 접속'을 참고한다.
+-	Client 툴을 이용하여 아래의 테이블 생성 sql를 각각 실행한다. (Mysql과 Cubrid 양쪽다 동일한 sql로 생성가능하다.)
+        DROP TABLE IF EXISTS ORG_TBL;
+        DROP TABLE IF EXISTS GROUP_TBL;
+        
+        
+        CREATE TABLE ORG_TBL (
+        	id INT AUTO_INCREMENT PRIMARY KEY
+        	, label VARCHAR(40) NOT NULL
+        	, `desc` VARCHAR(150)
+        	, url VARCHAR(500) DEFAULT '#'
+        	, created TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+        	, modified TIMESTAMP
+        );
+        
+        CREATE TABLE GROUP_TBL (
+        	id INT AUTO_INCREMENT PRIMARY KEY
+        	, org_id INTEGER NOT NULL
+        	, parent_id INTEGER
+        	, label VARCHAR(40) NOT NULL
+        	, `desc` VARCHAR(150)
+        	, thumb_img_name VARCHAR(256)
+        	, thumb_img_path VARCHAR(512)
+        	, url VARCHAR(500) DEFAULT '#'
+        	, created TIMESTAMP  DEFAULT CURRENT_TIMESTAMP  NOT NULL
+        	, modified TIMESTAMP 
+        );
+        
+        ALTER TABLE GROUP_TBL
+        ADD FOREIGN KEY(org_id)
+        REFERENCES ORG_TBL(id)
+        ON DELETE CASCADE;
+        
+        ALTER TABLE GROUP_TBL
+        ADD FOREIGN KEY(parent_id)
+        REFERENCES GROUP_TBL(id)
+        ON DELETE CASCADE;
+
+
+
+#5.	테스트
+
+
+PHP 단위테스트는 phpunit를 이용해서 합니다. 테스트 케이스는 test 디렉토리에 있으며 단위 테스트 실행은 아래와 같이 실행합니다.
+
+        Vendor\bin\phpunit
 
-1.  Build 실행
-
-		$ cd ~/workspace/bosh/bosh-stemcell
-		$ vagrant ssh -c '
-		cd /bosh
-		CANDIDATE_BUILD_NUMBER=<current_build> bundle exec rake stemcell:build[vsphere,esxi,centos,7,go,bosh-os-images,bosh-centos-7-os-image.tgz]
-		' remote
-
-
-2.  입력 옵션 정보
-
-	|옵션명                      |필수    |설명                       |예시|
-	|--------------------------|------|-----------------------------------------------|------|
-	|CANDIDATE_BUILD_NUMBER     |O      |현재 스템셀 버전            |3147|
-	|Infrastructure             |O      |인프라 타입                 |Vsphere|
-	|Hypervisor                 |O      |하이퍼 바이저 타입          |Esxi|
-	|Operating system name      |O      |OS 타입                    |Centos|
-	|Operating system version   |O      |OS 버전                    |7|
-	|Agent type                 |X      |에이전트 타입               |Go|
-	|OS image s3 bucket name    |O      |Bosh용 OS 이미지 버킷명     |Bosh-os-image|
-	|OS image key               |O      |OS 이미지명                |Bosh-centos-7-os-image.tgz|
-
-
-	※ 다른 OS image에 대해서는 다음을 참조한다. 
-[http://s3.amazonaws.com/bosh-os-images/](http://s3.amazonaws.com/bosh-os-images/)
-
-	※ Agent type타입이 필수 항목은 아니지만 현재 go 타입 이외의 에이전트는 지원하지 않으므로 go를 입력한다.
-
-
-3.  설정 가능한 옵션 구성
-
-	|Infrastructure             |Hypervisor                |OS|
-	|--------------------------|-------------------------|----------------------------|
-	|aws                        |Xen                       |ubuntu|
-    |aws                        |Xen                       |centos|
-	|openstack                  |Kvm						|ubuntu|                       
-	|openstack                  |Kvm						|centos|		
-	|vcloud					   |Esxi						 |ubuntu|		
-	|vsphere					|Esxi						 |ubuntu|
-	|vsphere					|Esxi						 |centos|
-
-	※ 위와 다른 옵션을 지정하고 싶은 경우 Bosh source에서 필요한 부분을 수정하거나 개발 한다.
-
-
-## 4.2.  로컬의 OS 이미지를 사용한 스템셀 생성 
-
-로컬의 OS 이미지를 사용해서 스템셀을 생성하는 절차를 기술한다.
-
-
-1.  기본 OS 이미지를 생성 또는 다운로드 받는다.
-
-	|OS 명            |URL|
-	|----------------|----------------------------------------------------------------------------|
-	|ubuntu           |[https://s3.amazonaws.com/bosh-os-images/bosh-ubuntu-trusty-os-image.tgz](https://s3.amazonaws.com/bosh-os-images/bosh-ubuntu-trusty-os-image.tgz)|
-	|centos           |[https://s3.amazonaws.com/bosh-os-images/bosh-centos-7-os-image.tgz](https://s3.amazonaws.com/bosh-os-images/bosh-centos-7-os-image.tgz)|
-	|사용자 생성 OS     |[3. 기본 OS 이미지 생성 참조](#3--기본-os-이미지-생성)|
-
-
-
-2.  기본 OS 이미지를 다운 받은 경우, 스템셀 생성 VM에 업로드 한다.
-
-
-3.  build\_with\_local\_os\_image 실행
-  
-		$ cd ~/workspace/bosh/bosh-stemcell
-		$ vagrant ssh -c '
-		cd /bosh
-		bundle exec rake STEMCELL_BUILD_NUMBER=<stemcell version> stemcell:build_with_local_os_image[aws,xen,ubuntu,trusty,go,/tmp/ubuntu_base_image.tgz]
-		' remote
-
-	※ STEMCELL\_BUILD\_NUMBER을 생략할 경우, 생성되는 스템셀의 버전은 0000으로 고정된다.
-
-
-4.  입력 옵션 정보
-
-	|옵션명                      |필수    |설명                                   |예시|
-	|--------------------------|------|--------------------------------------|------------------------------|
-	|Infrastructure             |O      |인프라 타입                             |Aws|
-	|Hypervisor                 |O      |하이퍼 바이저 타입                       |Xen|
-	|Operating system name      |O      |OS 타입                                |Ubuntu|
-	|Operating system version   |O      |OS 버전                                |Trusty|
-	|Agent type                 |X      |에이전트 타입                           |Go|
-	|Local os image path        |O      |스템셀 생성 VM에 있는 OS 이미지 경로      |/tmp/ubuntu_base_image.tgz|
-
-
-	※ Agent type타입이 필수 항목은 아니지만 현재 go 타입 이외의 에이전트는 지원하지 않으므로 go를 입력한다
-
-
-5.  설정 가능한 옵션 구성
-
-	|Infrastructure             |Hypervisor                |OS|
-	|--------------------------|-------------------------|----------------------------|
-	|aws                        |Xen                       |ubuntu|
-    |aws                        |Xen                       |centos|
-	|openstack                  |Kvm						|ubuntu|                       
-	|openstack                  |Kvm						|centos|		
-	|vcloud					   |Esxi						 |ubuntu|		
-	|vsphere					|Esxi						 |ubuntu|
-	|vsphere					|Esxi						 |centos|
-
-
-## 4.3.  생성한 스템셀의 보관장소 
-
-1.  생성한 스템셀 확인
-
-		$ cd ~/workspace/bosh/bosh-stemcell
-		$ vagrant ssh remote
-		$ ll /bosh/tmp
-
-
-2.  생성한 스템셀 다운로드
-
-		$ cd ~/workspace/bosh/bosh-stemcell
-		$ vagrant scp remote:/bosh/tmp/<생성한 스템셀명> <다운받을 로컬 경로>
-
-
-#5.  BOSH Light 스템셀 생성 
-
-## 5.1.  Bosh Light 스템셀 생성
-
-Bosh light 스템셀은 AWS (N. Virgina region 한정)에서만 사용가능한 경량 스템셀이다. 스템셀을 AWS에 AMI로 등록하고 등록한 이미지 아이디, 스템셀 정보 등을 기록한 파일을 생성하여 tgz로 압축한다.
-
-1.  다운로드 받았거나 생성한 스템셀을 스템셀 생성 VM에 업로드한다.
-
-		$ cd ~/workspace/bosh/bosh-stemcell	
-		$ scp <업로드 대상 스템셀> remote:/tmp/bosh-stemcell.tgz
-
-
-2.  build\_light 실행
-
-		$ cd ~/workspace/bosh/bosh-stemcell
-		$ vagrant ssh -c '
-		cd /bosh
-		export BOSH_AWS_ACCESS_KEY_ID=<YOUR-AWS-ACCESS-KEY>
-		export BOSH_AWS_SECRET_ACCESS_KEY=<YOUR-AWS-SECRET-KEY>
-		bundle exec rake stemcell:build_light[/tmp/bosh-stemcell.tgz,hvm]
-		' remote
-
-
-3.  입력 옵션 정보
-
-	|옵션명                |필수   |설명                   |예시|
-	|---------------------|------|----------------------|------------------------|
-	|Local stemcell path   |O      |로컬의 stemcell 경로   |/tmp/bosh-stemcell.tgz|
-	|Virtualization type   |X      |가상화 타입            |Hvm|
-
-	※ 필수 항목이 아닌 곳에 대해서는 ‘’을 입력한다.
-
-
-#6.  스템셀 커스터마이징 
-
-## 6.1.  스템셀 생성 소스 수정 
-
-사용자의 요구사항에 맞는 스템셀을 생성하기 위해서는 스템셀 생성 소스를 수정 해야 할 경우가 있다. 스템셀 생성을 구성하는 대부분의 파일은 아래의 디렉토리에 있다.
-
-	bosh/stemcell_builder/stages/<스템셀 생성 stage>/<폴더 또는 파일>
-
-1.  수정한 내용을 스템셀 생성 VM에 적용한다.
-
-		$ cd ~/workspace/bosh/bosh-stemcell
-		$ vagrant provision remote
-
-
-2.  스템셀을 생성한다. (필요한 경우 기본 OS 이미지부터 생성한다.)
-
-
-3.  스템셀 생성 중 오류가 발생한 경우, 해당 오류를 조치한 후 오류가 발생한 stage부터 진행 할 수 있다. 이 경우, resume\_from=<스템셀 생성 stage\>를 생성 명령어에 추가한다. ※ 단, resume 옵션으로
-    스템셀을 생성할 경우, 이전에 정상적으로 진행된 스테이지에서 오류가 발생하는 경우도 있다. 이런 경우, resume\_from옵션을 사용하지 않는다.
-
-		$ cd ~/workspace/bosh/bosh-stemcell
-		$ vagrant ssh -c '
-		cd /bosh
-		bundle exec rake stemcell:build_with_local_os_image[aws,xen,ubuntu,trusty,go,/tmp/ubuntu_base_image.tgz] resume_from=stemcell_openstack
-		' remote

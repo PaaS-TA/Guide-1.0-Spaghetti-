@@ -580,7 +580,7 @@ Service1 PublicPerformance ServiceID plan_id=Service1 PublicPerformance Plan1 ba
 
 | <b>설정 파일 키(key) 값</b>      | <b>Value 값</b> |
 |-------------|-----------------------------|
-| 서비스 1 - 공연전시 정보 조회 서비스 |
+| 서비스 1 - 공연전시 정보 조회 서비스 ||
 | Service1.Name | PublicPerformance |
 
 

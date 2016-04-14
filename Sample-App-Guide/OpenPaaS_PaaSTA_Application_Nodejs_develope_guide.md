@@ -40,7 +40,7 @@
 본 문서의 범위는 개방형 플랫폼 프로젝트의 Node.js 애플리케이션 개발과 서비스팩 연동에 대한 내용으로 한정되어 있다.
 
 <div id='4'></div>
-### 1.4. 참고자료
+### 1.3. 참고자료
 **<https://docs.cloudfoundry.org/devguide/>**
 **<https://docs.cloudfoundry.org/buildpacks/node/node-tips.html>**
 **<https://nodejs.org/>**
@@ -68,14 +68,14 @@ Node.js 애플리케이션 개발을 위해 다음과 같은 환경으로 개발
 <div id='6'></div>
 ### 2.1. Node.js 및 npm 설치
 
-#### 1. Node.js 다운로드
+##### 1. Node.js 다운로드
 
 - 아래의 주소로 접속한 후 node-v0.12.4-x64.msi를 다운받는다.
 
 >https://nodejs.org/dist/v0.12.4/x64/node-v0.12.4-x64.msi
 >![2-2-1-0]
 
-#### 2. Node.js 설치
+##### 2. Node.js 설치
 
 - 다운받은 폴더에서 node-v0.12.4-x64.msi를 더블클릭하여 설치를 시작한다.
 
@@ -117,9 +117,9 @@ Node.js 애플리케이션 개발을 위해 다음과 같은 환경으로 개발
 
 - 커맨드창에 아래의 명령어를 입력하여 node.js와 npm의 버젼과 제대로 설치되었는지 여부를 확인한다.
 
->>node -v
+> >node -v
 >
->>npm -v
+> >npm -v
 >![2-2-1-10]
 
 개발도구
@@ -134,10 +134,9 @@ Node.js는 javascript기반의 언어로 Notepad++, Sublim Text, EditPlus등 문
 ### 3.1. Node.js Express애플리케이션 생성
 1. 'express-generator'를 이용하여 Express 애플리케이션을 생성
 - 커맨드 창에서 개발을 진행할 경로로 이동후 아래의 명령어를 입력하여 'express-generator' npm을 설치한다.
-<div>>npm install express-generator</div>
 
-
-![2-3-1-0]
+> >npm install express-generator
+> ![2-3-1-0]
 
 - Express 애플리케이션을 생성한다. '-e'옵션은 view enjine을 ejs를 사용한다는 것이고 default view enjin은 jade이다.
 <div>>.\node_modules\.bin\express -e</div>
@@ -1125,5 +1124,3 @@ test:
 [2-4-4-1]:/Sample-App-Guide/image/nodejs/2-4-4-1.png
 [2-4-5-0]:/Sample-App-Guide/image/nodejs/2-4-5-0.png
 [2-5-0-0]:/Sample-App-Guide/image/nodejs/2-5-0-0.png
-
-

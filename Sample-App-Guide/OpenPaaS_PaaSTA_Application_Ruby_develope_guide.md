@@ -42,16 +42,15 @@
 
 <div id='5'></div>
 ##### 1.1.3.	참고 자료
-
--	http://rubyinstaller.org/
--	https://docs.pivotal.io/pivotalcf/buildpacks/ruby/index.html
--	http://rubykr.github.io/rails_guides/getting_started.html
--	https://github.com/brianmario/mysql2
--	http://www.cubrid.org/manual/93/ko/api/ruby.html
--	https://docs.mongodb.org/ecosystem/drivers/ruby/
--	http://rubybunny.info/articles/getting_started.html
--	https://github.com/redis/redis-rb
--	https://github.com/fog/fog
+**<http://rubyinstaller.org/>**  
+**<https://docs.pivotal.io/pivotalcf/buildpacks/ruby/index.html/>**  
+**<http://rubykr.github.io/rails_guides/getting_started.html/>**  
+**<https://github.com/brianmario/mysql2/>**  
+**<http://www.cubrid.org/manual/93/ko/api/ruby.html/>**  
+**<https://docs.mongodb.org/ecosystem/drivers/ruby/>**  
+**<http://rubybunny.info/articles/getting_started.html/>**  
+**<https://github.com/redis/redis-rb/>**  
+**<https://github.com/fog/fog/>**  
 
 
 <div id='6'></div>
@@ -72,12 +71,17 @@ Ruby 애플리케이션 개발을 위해 다음과 같은 환경으로 개발환
 -	Ruby : 1.9.3-p551
 -	Framwork : Ruby On Rails 4.1.8
 -	IDE : RubyMine 7.1.1
+
 ※	CubridDB의 Ruby 드라이버 최신 지원 버전이 Ruby 1.9.3 까지 지원하여 해당 버전을 선택하였다. 각 서비스별 지원 되는 드라이버(또는 Gem)에 맞는 Ruby 버전을 사용하길 권장한다.
+
 ※	Ruby IDE는 개별 선택하여 사용한다. 
 
 
 <div id='9'></div>
 ##### 2.2.1.	Ruby & Ruby On Rails설치
+
+1)	Ruby & DevKit 다운로드
+**<http://rubyinstaller.org/downloads/>**   
 
 
 <div id='10'></div>

@@ -344,12 +344,12 @@ Query를 작성하고 Prepared Statement로 실행을 합니다. 실행된 결�
         echo json_encode($result);
 
 <div id='2.3.6'></div>  
-###2.3.6.  Mysql 연동
+###2.3.6.  CUBRID 연동
 
 현재 CF의 기본 빌드팩에서는 CUBRID를 지원하지 않아 본 샘플에서는 구현하지 않았습니다. 만약 프로젝트에서 CUBRID를 사용해야하면 별도로 문의 바랍니다. 
 
 <div id='2.3.7'></div>  
-###2.3.7.  Mysql 연동
+###2.3.7.  MongoDB 연동
 
 Extenstion에 추가한 mongo 라이브러리를 이용합니다. 단 현재 mongo 라이브러리로는 사용자 인증에 문제가 있습니다. 라이브러리가 버그 fix가 되어야 합니다. 본 가이드에서는 부득이하게 MongoDB의 Root계정으로 접속하여 예제를 구현하였습니다.
 (위치 :api/mongodb_view.php)
@@ -377,7 +377,7 @@ Extenstion에 추가한 mongo 라이브러리를 이용합니다. 단 현재 mon
         echo json_encode($result);
 
 <div id='2.3.8'></div>  
-###2.3.8.  Mysql 연동
+###2.3.8.  Redis 연동
 
 Redis 연동은 추가로 Composer를 통해 설치가된 패키지를 사용합니다. 
 
@@ -402,12 +402,12 @@ Redis 연동은 추가로 Composer를 통해 설치가된 패키지를 사용합
 
 
 <div id='2.3.9'></div>  
-###2.3.9.  Mysql 연동
+###2.3.9.  RabbitMQ연동
 
 CF의 PHP 빌드팩에서amqp접속시 SSL 접속에 문제가 있습니다. 그래서 해당 서비스 연동은 구현이 안되어 있습니다. 접속방법만 명시한 php 파일만 있습니다. (위치 :api/rebbitmq_view.php)
 
 <div id='2.3.10'></div>  
-###2.3.10.  Mysql 연동
+###2.3.10.  GlusterFS 연동
 
 
 php-opencloud라는 패키지를 사용하며 composer를 통해서 설치가 되게 되어 있습니다. 단 Container를 Public하게 생성하는 SDK가 없어서 API를 직접 호출(REST형식)하여 권한을 Public으로 설정하고 있습니다. 

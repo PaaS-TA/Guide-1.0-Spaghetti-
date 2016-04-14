@@ -13,6 +13,9 @@
 3. [API 플랫폼 연동 Sample Web App 설명](#3-API 플랫폼-연동-sample-web-app-설명)
 	-	3.1. [Sample Web App에 서비스 바인드 신청 및 App 확인](#31-sample-web-app에-서비스-바인드-신청-및-app-확인)
 
+
+
+
 # 1. 문서 개요
 ### 1.1. 목적
 
@@ -41,6 +44,9 @@
 [**https://docs.wso2.com/display/AM180/Quick+Start+Guide**](https://docs.wso2.com/display/AM180/Quick+Start+Guide/)
 
 
+
+
+
 # 2. API 플랫폼 서비스팩 설치
 ### 2.1. 설치전 준비사항
 
@@ -60,7 +66,6 @@
 
 
 
-
 ##### 2.4.1. 터널링 설정
 API 플랫폼 서비스팩으로 배포한 API 매니저에는 Public IP가 할당되지 않기 때문에 사용자가 웹 브라우저를 통해 API 매니저에 접속할 수 있도록 터널링 설정이 필요하다. 터널링은 다양한 방법을 사용할 수 있지만, 본 문서에서는 SSH 클라이언트인 Putty와 웹 브라우저 Firefox를 이용한 터널링 방법에 대해서 안내한다.
 
@@ -76,7 +81,7 @@ API 플랫폼 서비스팩으로 배포한 API 매니저에는 Public IP가 할�
 ① Session 메뉴를 클릭하여 접속정보 설정 화면으로 이동하여 ② 배포한 API 매니저와 내부망으로 연결되어 있는 머신(설치 환경에 따라 상이함)의 Public IP를 입력한다.
 
 
-(4) Putty 접속 및 로그인<br>
+(4) Putty 접속 및 로그인<br> 
 Open 버튼을 클릭하여 해당 머신에 연결한다
 
 
@@ -105,5 +110,55 @@ Open 버튼을 클릭하여 해당 머신에 연결한다
 ```
 {API매니저 URL}:9443/carbon
 예) https://10.0.0.201:9443/carbon
-
 ```
+###### 1. API 매니저 접속 및 로그인
+① API 플랫폼 서비스팩을 통해 배포된 API 매니저의 publisher 대시보드에 접속한다.
+```
+{API매니저 URL}:{API매니저 포트}/publisher
+예) https://10.30.60.201:9443/publisher
+```
+※	http가 아닌 https임에 주의한다.
+
+
+② 관리자 계정으로 로그인한다. 관리자 계정의 Username과 Password는 admin/admin이다.
+※	API 매니저 관리자 대시보드({API매니저 URL}:{API매니저 포트}/carbon)에서 계정을 추가하고 권한을 설정하여 사용할 수도 있지만, 그에 대한 설명은 본 문서에서는 기술하지 않는다.
+
+
+###### 2. API 생성
+① 로그인이 완료되면 다음과 같은 화면을 확인할 수 있다. 최초 배포가 완료되면 API가 생성되지 않은 상태이므로 ②번의 New API 버튼이 화면에 보여진다. New API 버튼을 클릭하여 API 생성화면으로 이동한다. 
+
+<div id=generalDetails></div>
+###### 3. General Details 정의
+① API 생성 화면으로 이동하였다.<br>
+② API 생성의 첫 단계인 Design 단계이다.<br>
+③ General Details에 하단의 화면과 동일하게 다음과 같이 값을 입력한다.<br>
+```
+Name: Phoneverification
+Context: /phoneverify
+Version: 1.0.0
+```
+※	④번 Edit Swagger Definition 버튼을 클릭하여 다음의 [4. Resources 정의] 과정을 생략 할 수 있다. 이에 대한 설명은 [4. Resources 정의] 하단에 [Swagger 정의]로 첨부한다.
+
+###### 4. Resources 정의
+① General Details 하단에 Resources 입력란이 있다. URL Pattern에 대소문자 구분에 유의하여 CheckPhoneNumber 값을 입력하고 GET, POST, OPTIONS 메소드를 선택한다. Resource Name의 값은 URL Pattern을 입력하면 같은 값이 자동으로 입력되는데 사용자 필요에 따라 변경할 수 있다.<br>
+② 입력이 완료되었다면, Add New Resource 버튼을 클릭하여 Resource를 추가한다.<br>
+
+
+
+리소스를 추가하면 하단의 그림처럼 추가된 Resource가 화면에 나타난다. 그 중 GET 메소드의 리소스를 클릭하여 파라미터 세부사항을 정의한다.
+
+
+리소스를 클릭하면 파라미터 세부사항 입력란이 노출된다.<br>
+① 추가하고자 하는 파라미터 명을 입력한다.<br>
+② Add Parameter 버튼을 클릭하여 파라미터를 추가 한다. Prameter Name 항목에서 입력한 파라미터명을 확인할 수 있다.<br>
+③ 파라미터의 세부사항을 정의하기 위해서 각각의 파라미터의 값(값이 정의 되어있지 않다면 [+Empty]로 표시됨)을 클릭하여 다음과 같이 파라미터를 정의한다.<br>
+
+| Parameter Name | Description | Parameter Type | Data Type | Required |
+|--------|-------|-------|-------|-------|
+| PhoneNumber | Give the phone number to be validated | query | string | True |
+| LicenseKey | Give the license key. If you don't have any, enter 0 | query | string | True |
+
+④ 하단의 버튼 중, 좌측의 Save버튼을 클릭하여 저장하고 가운데 Implement 버튼을 클릭하여 다음단계인 Implement 단계로 진행한다.<br>
+
+※	Swagger 정의
+상단의 [3. General Details 정의](#generalDetails)에서 푸른색 ④번 박스로 표시된 Edit Swagger Definition 버튼을 클릭하면 Swagger 수정이 가능하다. 다음과 같이 수정하고 Save버튼을 클릭하여 Resources를 정의한다. 이 방법을 통해 상단에 기술된 [4. Resources 정의] 절차를 생략할 수 있다.

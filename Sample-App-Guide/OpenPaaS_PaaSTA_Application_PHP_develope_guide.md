@@ -98,9 +98,8 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
     
   5.	Apache의 Config를 선택하고 Apache (httpd.conf)를 선택하여 DocumentRootdhk Directory의 위치를 개발소스가 설치된 곳으로 바꾸면 브라우져에서http://localhost 로 호출시 개발하는 위치로 바로 연결됩니다. 개발소스의 위치는 2.2.1에서 설치한 위치를 지정해 넣습니다.
         
-    DocumentRoot C:\개발소스위치
-
-    <DirectoryC:\개발소스위치>
+      DocumentRoot C:\개발소스위치
+      <DirectoryC:\개발소스위치>
 
 ## 2.3.  RUBY 설치
 

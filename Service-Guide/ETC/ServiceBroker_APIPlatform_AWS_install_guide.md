@@ -113,7 +113,7 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기 위한 현재 대상 
 
 -	openpaas-apiplatform-aws-1.0.yml Deployment 파일을 서버 환경에 맞게 수정한다.
 
->
+
 ```yml
 ---
 name: openpaas-apiplatform-service         # 서비스 배포이름(필수)
@@ -250,7 +250,6 @@ jobs:
     broker:                                     # API Platform Service Broker 설정정보
       name: apiplatform-service-broker           # API Platform Service Broker 생성명
 ```
->
 
 <br>
 

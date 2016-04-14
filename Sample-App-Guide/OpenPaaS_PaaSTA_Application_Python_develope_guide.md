@@ -59,10 +59,10 @@
 
 <div id='1-1-3'></div>  
 #####1.1.3 참고 자료  
-[http://docs.run.pivotal.io/buildpacks/python/index.html](http://docs.run.pivotal.io/buildpacks/python/index.html) 
-[http://www.cubrid.com/manual/93/api/python.html](http://www.cubrid.com/manual/93/api/python.html)
-[https://docs.djangoproject.com/en/1.9/intro/tutorial01](https://docs.djangoproject.com/en/1.9/intro/tutorial01)
-[http://pythontips.com/](http://pythontips.com/)
+[**http://docs.run.pivotal.io/buildpacks/python/index.html**](http://docs.run.pivotal.io/buildpacks/python/index.html) <br>
+[**http://www.cubrid.com/manual/93/api/python.html**](http://www.cubrid.com/manual/93/api/python.html) <br>
+[**https://docs.djangoproject.com/en/1.9/intro/tutorial01**](https://docs.djangoproject.com/en/1.9/intro/tutorial01) <br>
+[**http://pythontips.com/**](http://pythontips.com/) <br>
 
 <div id='2'></div>
 #2.python 애플리케이션개발가이드  
@@ -81,37 +81,41 @@ python 샘플 애플리케이션 개발이 이루어진 환경은 다음과 같�
 
 <div id='2-2-1'></div>  
 #####2.2.1 python 설치
-	- python 2.7.10 다운로드
-`<div>https://www.python.org/downloads/release/python-2710/</div>`
-![python-2][python-2]  
--	다운로드
-  Windows x86-64 MSI installer
-※	사용자 각각의 환경에 따라 설치 파일은 달라질 수 있다.
 
--	python 설치
---	다운로드 받은 python-2.7.10.msi 더블 클릭하여 설치를 실행한다.
-※	python 설치 시, 환경변수를 자동으로 추가 할 수 있도록 옵션을 선택할 수 있다.
+- python 2.7.10 다운로드 
 
---	환경변수 설정
-python 설치 시, 환경변수 추가 옵션을 선택하지 않았다면 시스템 변수 Path에 다음과 같이 직접 추가한다.
->!;C:\Python27;C:\Python27\Scripts
+	`https://www.python.org/downloads/release/python-2710/` 
+	
+![python-2]
 
--	python 설치 확인
---	명령 프롬프트에서 python 실행
-명령 프롬프트에서 'python' 을 입력하여 python의 실행을 확인한다.
->!Python
->![python-3]  
+	-	다운로드
+  	Windows x86-64 MSI installer
+	※	사용자 각각의 환경에 따라 설치 파일은 달라질 수 있다.
 
---	python 실행 종료
-python이 정상적으로 실행되었음을 확인하였으므로 'ctrl'+'c'를 입력하여 python을 종료한다. 
->| 'ctrl' + c
- >![python-4]  
+	-	python 설치
+	--	다운로드 받은 python-2.7.10.msi 더블 클릭하여 설치를 실행한다.
+	※	python 설치 시, 환경변수를 자동으로 추가 할 수 있도록 옵션을 선택할 수 있다.
 
--	pip 설치 확인  
---	명령 프롬프트에서 pip 입력
-pip가 정상적으로 설치 되었을 경우, 명령어를 입력하면 pip 명령어에 대한 설명을 확인 할 수 있다.
+	--	환경변수 설정
+	python 설치 시, 환경변수 추가 옵션을 선택하지 않았다면 시스템 변수 Path에 다음과 같이 직접 추가한다.
+	`;C:\Python27;C:\Python27\Scripts`
 
->|pip
+	-	python 설치 확인
+	--	명령 프롬프트에서 python 실행
+	명령 프롬프트에서 'python' 을 입력하여 python의 실행을 확인한다.
+	`Python`
+	![python-3]  
+
+	--	python 실행 종료
+	python이 정상적으로 실행되었음을 확인하였으므로 'ctrl'+'c'를 입력하여 python을 종료한다. 
+	>>> 'ctrl' + c
+ 	![python-4]  
+
+	-	pip 설치 확인  
+	--	명령 프롬프트에서 pip 입력
+	pip가 정상적으로 설치 되었을 경우, 명령어를 입력하면 pip 명령어에 대한 설명을 확인 할 수 있다.
+
+	`pip`
 >![python-5]  
 
 ※	pip는 python 관련 패키지 설치를 지원하는 도구이다. 일반적으로 python을 설치하면 함께 설치되지만 경우에 따라 pip 설치가 되지 않을 수 있다. 이 때는 python 설치에 기본으로 제공되는 또 다른 설치도구인 easy_install을 사용하여 pip를 설치한다.
@@ -1093,9 +1097,20 @@ Status API Training Shop Blog About
 
 
 
-[python-2]:/Documents/Sample-App-Guide/image/python/image2.png
-[python-2]:/images/python/images2.png
-[python-2]:/images/python/images2.png
-[python-2]:/images/python/images2.png
-[python-2]:/images/python/images2.png
-[python-2]:/images/python/images2.png
+[python-2]:/Sample-App-Guide/image/python/image2.png
+[python-3]:/Sample-App-Guide/image/python/image3.png
+[python-3]:/Sample-App-Guide/image/python/image3.png
+[python-3]:/Sample-App-Guide/image/python/image3.png
+[python-3]:/Sample-App-Guide/image/python/image3.png
+[python-3]:/Sample-App-Guide/image/python/image3.png
+[python-3]:/Sample-App-Guide/image/python/image3.png
+[python-3]:/Sample-App-Guide/image/python/image3.png
+[python-3]:/Sample-App-Guide/image/python/image3.png
+[python-3]:/Sample-App-Guide/image/python/image3.png
+[python-3]:/Sample-App-Guide/image/python/image3.png
+[python-3]:/Sample-App-Guide/image/python/image3.png
+[python-3]:/Sample-App-Guide/image/python/image3.png
+[python-3]:/Sample-App-Guide/image/python/image3.png
+[python-3]:/Sample-App-Guide/image/python/image3.png
+[python-3]:/Sample-App-Guide/image/python/image3.png
+[python-3]:/Sample-App-Guide/image/python/image3.png[python-3]:/Sample-App-Guide/image/python/image3.png

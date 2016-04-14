@@ -41,26 +41,16 @@
 
 <div id='4'></div>
 ### 1.3. 참고자료
-**<https://docs.cloudfoundry.org/devguide/>**
-
-**<https://docs.cloudfoundry.org/buildpacks/node/node-tips.html>**
-
-**<https://nodejs.org/>**
-
-**<http://expressjs.com/ko/>**
-
-**<https://github.com/felixge/node-mysql>**
-
-**<https://github.com/CUBRID/node-cubrid>**
-
-**<https://github.com/mongodb/node-mongodb-native>**
-
-**<https://github.com/NodeRedis/node_redis>**
-
-**<https://github.com/postwait/node-amqp>**
-
-**<https://github.com/pkgcloud/pkgcloud>**
-
+**<https://docs.cloudfoundry.org/devguide/>**  
+**<https://docs.cloudfoundry.org/buildpacks/node/node-tips.html>**  
+**<https://nodejs.org/>**  
+**<http://expressjs.com/ko/>**  
+**<https://github.com/felixge/node-mysql>**  
+**<https://github.com/CUBRID/node-cubrid>**  
+**<https://github.com/mongodb/node-mongodb-native>**  
+**<https://github.com/NodeRedis/node_redis>**  
+**<https://github.com/postwait/node-amqp>**  
+**<https://github.com/pkgcloud/pkgcloud>**  
 **<https://mochajs.org/>**
 
 <div id='5'></div>

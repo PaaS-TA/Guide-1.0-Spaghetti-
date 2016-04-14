@@ -561,7 +561,9 @@ app.delete('/orgs/:org_id/mysql', orgs_mysql.destroy);
 
 2)  Node.js에서 개방형 플랫폼의 애플리케이션 환경정보에 접근하는 방법
 - 시스템환경변수의 VCAP_SERVICES값을 읽어서 접근 할 수 있다.
-<div>process.env.VCAP_SERVICES</div>
+```
+process.env.VCAP_SERVICES
+```
 
 <div id='12'></div>
 ### 3.5. Mysql 연동
@@ -948,15 +950,13 @@ module.exports = client;
 
 아래의 과정을 수행하기 위해서 개방형 플랫폼에 로그인
 
-<div>
+>```
 $ cf api --skip-ssl-validation https://api.cf.open-paas.com # 개방형 플랫폼 TARGET 지정
 #cf api [target url]
 
 $ cf login -u testUser -o sample_test -s sample_space # 로그인 요청
  #cf login –u [user name] –o [org name] –s [space name]
-</div>
-
-
+```
 ![2-4-1-0]
 
 <div id='20'></div>

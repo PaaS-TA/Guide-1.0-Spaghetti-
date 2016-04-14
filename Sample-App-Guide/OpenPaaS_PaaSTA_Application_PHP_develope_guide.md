@@ -81,17 +81,17 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
     
   2.	다운로드 받은 파일을 실행하고 모두 Next를 하면됩니다. 하지만 아래와 같이 디렉토리를 물어보는데 이때 이 위치를 변경하거나 정확하게 기억하고 있어야 합니다. 설치 완료후php 실행 디렉토리를 환경변수(Path)에 넣어 줘야 하기 때문입니다.
     
-  ![./image/php/php_develope_guide3.png](./image/php/php_develope_guide3.png)
+  ![./image/php/php_develope_guide3.png](./image/php/php_develope_guide3.png)<br>
     XAMP 설치 디렉토리
     
   3.	설치가 정상적으로 이루어지고 있으면 아래와 같이 진행이 될겁니다. 처음 실행할 때 Antivirus 프로그램으로 느려질수 있다는 문구 등이 나올수도 있는데 "확인"을 누르시면 됩니다.
     
-  ![./image/php/php_develope_guide4.png](./image/php/php_develope_guide4.png)
+  ![./image/php/php_develope_guide4.png](./image/php/php_develope_guide4.png)<br>
     XAMP 설치 진행중
     
   4.	설치가 완료되면 Control Panel을 띄우겠다는 메시지가 나옵니다. 선택이 Default로 되어 있어 완료를 선택하면 아래와 같은 Control Panel이 실행됩니다.
     
-  ![./image/php/php_develope_guide5.png](./image/php/php_develope_guide5.png)
+  ![./image/php/php_develope_guide5.png](./image/php/php_develope_guide5.png)<br>
     XAMP 관리 패널 창
     
   사용방법은 간단합니다. 원하는 서비스(여기서는 Apache 만 사용할 예정)의 Start를 선택하면 해당 서비스가 실행이 됩니다. 단. 해당서비스가 사용하는 포트(Apache의 경우 80)는 사용하고 있지 않아야 합니다.
@@ -107,17 +107,17 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
 
   1.	XAMP로 설치된 PHP를 어디서나 실행가능하게 환경설정(Path)에 넣어줍니다. 제어판 -> 시스템 -> 고급 시스템 설정을 선택하면 아래와 같이 시스템 속성을 변경하는 창이 나타납니다. 
 
-  ![./image/php/php_develope_guide5.png](./image/php/php_develope_guide6.png)
+  ![./image/php/php_develope_guide5.png](./image/php/php_develope_guide6.png)<br>
   시스템 속성 창
   
   2.	여기서 "환경변수"를 선택하고 Path를 편집을 합니다. 변수값의 마지막에 XAMP 설치 디렉토리 아래의 php디렉토리를 추가합니다. 
 
-  ![./image/php/php_develope_guide5.png](./image/php/php_develope_guide7.png)
+  ![./image/php/php_develope_guide5.png](./image/php/php_develope_guide7.png)<br>
     Path 환경변수 설정
 
   3.	정상적으로 구성이 되었는지 확인하려면 "명령 프롬프트"를 실행하고 php-version 을 선택하여 아래와 같이 나오면 정상적으로 환경설정이 완료된 것입니다.
  
-  ![./image/php/php_develope_guide5.png](./image/php/php_develope_guide8.png)
+  ![./image/php/php_develope_guide5.png](./image/php/php_develope_guide8.png)<br>
     명령 프롬프트에서 PHP 버전 확인
 
 
@@ -145,7 +145,7 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
   1.	먼저 문서에 PECL 홈페이지(http://pecl.php.net/package/mongo)에서 DLL를 다운로드 받아야 합니다. 본 가이드는 1.6.12 버전을 을 선택하였습니다. 
    
   위의 링크중 DLL 부분을 눌러서 선택하고 "5.5 Thread Safe (TS) x86"를 다운로드 받습니다. 압축을 해제하면 php_mongo.dll이 있는데 이 파일만 있으면 됩니다.
-  ![./image/php/php_develope_guide5.png](./image/php/php_develope_guide7.png)
+  ![./image/php/php_develope_guide5.png](./image/php/php_develope_guide7.png)<br>
   
   2.	php_mongo.dll 파일을 XAMP 설치된 디렉토리에서php 아래에 ext에 복사를 합니다.
   
@@ -167,14 +167,14 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
 Composer를 사용하여 Dependency를 관리합니다. Composer.json 파일의 Package구성을 설명하면 아래의 표와 같습니다. 설정정보는 composer.json에 저장되어 있습니다.
 
 
-  |패키지명                  |버전   |설명                                             |
-	|--------------------------|------|--------------------------------------------|
-	|slim/slim                 |2.*     |PHP의 REST/full Framewok를 위해 사용합니다.                                          |
-	|videlalvaro/php-amqplib   |2.5.*   |RabbitMQ 서비스와 연결을 위해 사용합니다. (SSL 접속이 지원되지 않아 현재는 사용하지 못하고 있음)                                         |
+  |패키지명                  |버전   |설명                                      
+	|--------------------------|------|--------------------------------------------
+	|slim/slim                 |2.*     |PHP의 REST/full Framewok를 위해 사용합니다.              
+	|videlalvaro/php-amqplib   |2.5.*   |RabbitMQ 서비스와 연결을 위해 사용합니다. (SSL 접속이 지원되지 않아 현재는 사용하지 못하고 있음)                      
 	|predis/predis             |1.0.*   |Redis 서비스와 연동을 위해 사용합니다.       |
-	|rackspace/php-opencloud   |1.15.*  |Openstack 연결 SDK로 GlusterFS에 파일을 Upload할 때 사용합니다.      |
-	|guzzlehttp/guzzle         |6.*     |Http client로 GlusterFS의 Container 권한 변경시 사용합니다.   |
-	|phpunit/phpunit           |4.3.*   |PHP의 단위테스트를 위한 프로그램입니다. Vendor\bin\phpunit를 실행하면 test 디렉토리의 Test Case를 실행하고 결과를 화면에 표시합니다.   |
+	|rackspace/php-opencloud   |1.15.*  |Openstack 연결 SDK로 GlusterFS에 파일을 Upload할 때 사용합니다.     
+	|guzzlehttp/guzzle         |6.*     |Http client로 GlusterFS의 Container 권한 변경시 사용합니다.  
+	|phpunit/phpunit           |4.3.*   |PHP의 단위테스트를 위한 프로그램입니다. Vendor\bin\phpunit를 실행하면 test 디렉토리의 Test Case를 실행하고 결과를 화면에 표시합니다.  
 
 
   Composer를 이용하여 라이브러리를 설치하려면 아래와 같이 install을 실행하면 됩니다. 이 명령은 개방형 플랫폼에 PHP 빌드팩과 같이 배포될 때 자동으로 수행이 됩니다. 

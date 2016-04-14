@@ -68,12 +68,14 @@ Node.js 애플리케이션 개발을 위해 다음과 같은 환경으로 개발
 <div id='6'></div>
 ### 2.1. Node.js 및 npm 설치
 
-1.  Node.js 다운로드
+1. Node.js 다운로드
+
 - 아래의 주소로 접속한 후 node-v0.12.4-x64.msi를 다운받는다.
 https://nodejs.org/dist/v0.12.4/x64/node-v0.12.4-x64.msi
 ![2-2-1-0]
 
-2.  Node.js 설치
+2. Node.js 설치
+
 - 다운받은 폴더에서 node-v0.12.4-x64.msi를 더블클릭하여 설치를 시작한다.
 ![2-2-1-1]
 

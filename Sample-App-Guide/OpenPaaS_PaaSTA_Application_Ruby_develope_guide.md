@@ -207,7 +207,7 @@ Ruby 샘플 애플리케이션을 개발하기 위한 애플리케이션의 생�
 <div id='12'></div>
 ##### 2.3.2.	애플리케이션 환경설정
 
-해당 예제는 Ruby 1.9.3을 기준으로 각 드라이버의 버전을 명시적으로 선택하여 설치하였습니다.
+해당 예제는 Ruby 1.9.3을 기준으로 각 드라이버의 버전을 명시적으로 선택하여 설치하였습니다.  
 ./Gemfile 수정(설정)시 설치된 Ruby의 버전에 맞는 젬을 설치하도록 권장합니다.
 
 <table>
@@ -229,7 +229,7 @@ Ruby 샘플 애플리케이션을 개발하기 위한 애플리케이션의 생�
 </tr>
 <tr>
     <td> ./config/environments/development.rb  </td>
-    <td> 개발환경 설정( Localhost 서버 실행시 기본 환경설정) </td>
+    <td> 개발환경 설정(Localhost 서버 실행시 기본 환경설정) </td>
 </tr>
 <tr>
     <td> ./config/environments/production.rb  </td>
@@ -286,8 +286,10 @@ end
 ※	해당 샘플은 Ruby 1.9.3(64bit 미지원) 이므로 CUBRID-Windows-x86(32bit)버전을 설치하였다.   
 
 2)	젬 설치
--	Gemfile에 정의된 젬을 설치한다.
->bundle install
+-	Gemfile에 정의된 젬을 설치한다.  
+```
+bundle install
+```
 
 3)	./config/application.rb 수정 
 -	애플리케이션의 환경설정

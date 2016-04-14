@@ -161,7 +161,7 @@ Node.js는 javascript기반의 언어로 Notepad++, Sublim Text, EditPlus등 문
 - 브라우저로 아래의 주소로 접속하여 애플리케이션이 제대로 동작하는지 확인한다.
 
 ><div>http://localhost:3000/</div>
-![2-3-1-3]
+![2-3-1-4]
  
 <div id='9'></div>
 ### 3.2. Node.js 샘플 애플리케이션

@@ -950,9 +950,9 @@ module.exports = client;
 
 아래의 과정을 수행하기 위해서 개방형 플랫폼에 로그인
 
-></div>$ cf api --skip-ssl-validation https://api.cf.open-paas.com # 개방형 플랫폼 TARGET 지정</div>
-></div># cf api [target url]</div><br>
-></div>$ cf login -u testUser -o sample_test -s sample_space # 로그인 요청</div>
+></div>$ cf api --skip-ssl-validation https://api.cf.open-paas.com # 개방형 플랫폼 TARGET 지정</div><br>
+></div># cf api [target url]</div><br><br>
+></div>$ cf login -u testUser -o sample_test -s sample_space # 로그인 요청</div><br>
 ></div># cf login –u [user name] –o [org name] –s [space name]</div>
 ![2-4-1-0]
 
@@ -961,24 +961,20 @@ module.exports = client;
 애플리케이션에서 사용할 서비스를 개방형 플랫폼을 통하여 생성한다. 별도의 서비스 설치과정 없이 생성할 수 있으며, 애플리케이션과 바인딩과정을 통해 접속정보를 얻을 수있다.
 - 서비스 생성 (cf marketplace 명령을 통해 서비스 목록과 각 서비스의 플랜을 조회할 수 있다.
 
-<div>
-# cf create-service SERVICE PLAN SERVICE_INSTANCE [-c PARAMETERS_AS_JSON] [-t TAGS] 
-$ cf create-service p-mysql 100mb node-mysql
-$ cf create-service CubridDB utf8 node-cubrid
-$ cf create-service Mongo-DB default-plan node-mongodb
-$ cf create-service redis-sb shared-vm node-redis
-$ cf create-service glusterfs glusterfs-5Mb node-glusterfs
-$ cf create-service p-rabbitmq standard node-rabbitmq
-</div>
-
-
+><div># cf create-service SERVICE PLAN SERVICE_INSTANCE [-c PARAMETERS_AS_JSON] [-t TAGS]</div><br>
+><div>$ cf create-service p-mysql 100mb node-mysql</div><br>
+><div>$ cf create-service CubridDB utf8 node-cubrid</div><br>
+><div>$ cf create-service Mongo-DB default-plan node-mongodb</div><br>
+><div>$ cf create-service redis-sb shared-vm node-redis</div><br>
+><div>$ cf create-service glusterfs glusterfs-5Mb node-glusterfs</div><br>
+><div>$ cf create-service p-rabbitmq standard node-rabbitmq</div>
 ![2-4-2-0]
 
 <div id='21'></div>
 ### 4.3. 애플리케이션 배포
 애플리케이션을 개방형 플랫폼에 배포한다. 배포된 애플리케이션은 생성된 서비스와 바인드하여 서비스를 사용할 수 있다.
 
-1.  manifest.yml 생성
+##### 1. manifest.yml 생성
 
 ```yaml
 ---
@@ -990,7 +986,7 @@ applications:
   path: ./ # 배포될 애플리케이션의 위치
 ```
 
-2.  Mysql, Cubrid 테이블 생성 
+##### 2. Mysql, Cubrid 테이블 생성 
 - Sample App의 조직관리 기능을 위해 DB에 테이블을 생성해 주어야 한다.
 - Mysql과 Cubrid에 테이블을 추가하는 방법은 OpenPaaS Mysql, Cubrid 서비스팩 설치 가이드의 'Client 툴 접속'을 참고한다.
 - Client 툴을 이용하여 아래의 테이블 생성 sql를 각각 실행한다. (Mysql과 Cubrid 양쪽다 동일한 sql로 생성가능하다.)
@@ -1033,50 +1029,48 @@ REFERENCES GROUP_TBL(id)
 ON DELETE CASCADE;
 ```
 
-3. 애플리케이션 배포
+##### 3. 애플리케이션 배포
+
 - cf push 명령으로 배포한다. 별도의 값을 넣지않으면 manifest.yml의 설정을 사용한다. 아직 서비스를 연결하지 않았기 때문에 --no-start 옵션으로 배포후 실행은 하지않는다.
-<div>$ cf push --no-start</td>div>
 
-
+><div>$ cf push --no-start</div>
 ![2-4-3-0]
 
 <div id='22'></div>
 ### 4.4. 애플리케이션, 서비스 연결
+
 애플리케이션과 서비스를 연결하는 과정을 '바인드(bind)라고 하며, 이 과정을 통해 서비스에 접근할 수 있는 접속정보를 생성한다.
+
 - 애플리케이션과 서비스 연결
 
-```
-cf bind-service APP_NAME SERVICE_INSTANCE [-c PARAMETERS_AS_JSON]
-$ cf bind-service node-sample-app node-mysql
-$ cf bind-service node-sample-app node-cubrid
-$ cf bind-service node-sample-app node-mongodb
-$ cf bind-service node-sample-app node-redis
-$ cf bind-service node-sample-app node-glusterfs
-$ cf bind-service node-sample-app node-rabbitmq
-```
-
-
+><div>cf bind-service APP_NAME SERVICE_INSTANCE [-c PARAMETERS_AS_JSON]</div>
+><div>$ cf bind-service node-sample-app node-mysql</div>
+><div>$ cf bind-service node-sample-app node-cubrid</div>
+><div>$ cf bind-service node-sample-app node-mongodb</div>
+><div>$ cf bind-service node-sample-app node-redis</div>
+><div>$ cf bind-service node-sample-app node-glusterfs</div>
+><div>$ cf bind-service node-sample-app node-rabbitmq</div>
 ![2-4-4-0]
 
 연결확인
-<div>$ cf services</div>
 
-
+><div>$ cf services</div>
 ![2-4-4-1]
 
 <div id='23'></div>
 ### 4.5. 애플리케이션 실행
+
 서비스 바인드 과정을 통해 생성된 접속정보 환경변수를 가지고 어플리케이션이 실행된다.
-<div>$ cf start node-sample-app</div>
 
-
+><div>$ cf start node-sample-app</div>
 ![2-4-5-0]
 
 <div id='24'></div>
 # 5. 테스트
+
 샘플 어플리케이션은 REST 서비스로 구현되어있으며 REST 테스트를 위해서 mocha 모듈을 사용하였다. 테스트를 진행하기 위해서는 mocha 모듈을 포함한 package.json 안의 모듈들이 설치 되어 있어야한다. (npm install)
 
-1.  Makefile
+##### 1. Makefile
 - 매번 bin파일에 접근하여 실행하는 불편함을 해결하기 위해 작성. 리눅스 운영체제에서 사용할 수 있다.
 
 ```
@@ -1086,15 +1080,17 @@ test:
 .PHONY: test
 ```
 
-2.  테스트 실행
+##### 2. 테스트 실행
+
 - test디렉토리 아래에 있는 테스트를 실행한다.
+
 2.1.  윈도우
-<div>> .\node_modules\.bin\mocha -u tdd test</div>
+
+><div>> .\node_modules\.bin\mocha -u tdd test</div>
 
 2.2.  리눅스
-<div>$ make test</div>
 
-
+><div>$ make test</div>
 ![2-5-0-0]
 
 [2-2-1-0]:/Sample-App-Guide/image/nodejs/2-2-1-0.png

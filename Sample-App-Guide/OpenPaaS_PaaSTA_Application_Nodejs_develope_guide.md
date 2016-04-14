@@ -120,7 +120,7 @@ Node.js 애플리케이션 개발을 위해 다음과 같은 환경으로 개발
 > >node -v
 >
 > >npm -v
->![2-2-1-10]
+![2-2-1-10]
 
 개발도구
 Node.js는 javascript기반의 언어로 Notepad++, Sublim Text, EditPlus등 문서편집기를 개발도구로 사용할 수 있다. 또한 Eclipse의 플러그인 Nodeclipse를 설치하여 사용할 수도있다.
@@ -136,19 +136,15 @@ Node.js는 javascript기반의 언어로 Notepad++, Sublim Text, EditPlus등 문
 - 커맨드 창에서 개발을 진행할 경로로 이동후 아래의 명령어를 입력하여 'express-generator' npm을 설치한다.
 
 > >npm install express-generator
-> ![2-3-1-0]
+![2-3-1-0]
 
 - Express 애플리케이션을 생성한다. '-e'옵션은 view enjine을 ejs를 사용한다는 것이고 default view enjin은 jade이다.
-<div>>.\node_modules\.bin\express -e</div>
-
-
+> >.\node_modules\.bin\express -e
 ![2-3-1-1]
 
 2. npm 설치
 - Express 애플리케이션에 기본적으로 포함되어있는 npm을 설치한다. 설치할 npm에 대한 정의는 package.json에 정의되어있다. 
-<div>>npm install</div>
-
-
+> >npm install
 ![2-3-1-2]
 
 3.  Node.js Express 어플리캐이션 실행

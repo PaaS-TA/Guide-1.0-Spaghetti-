@@ -117,7 +117,7 @@ Node.js 애플리케이션 개발을 위해 다음과 같은 환경으로 개발
 
 - 커맨드창에 아래의 명령어를 입력하여 node.js와 npm의 버젼과 제대로 설치되었는지 여부를 확인한다.
 
-><div>>node -v</div><br>
+><div>>node -v</div>
 ><div>>npm -v</div>
 ![2-2-1-10]
 
@@ -139,6 +139,7 @@ Node.js는 javascript기반의 언어로 Notepad++, Sublim Text, EditPlus등 문
 ![2-3-1-0]
 
 - Express 애플리케이션을 생성한다. '-e'옵션은 view enjine을 ejs를 사용한다는 것이고 default view enjin은 jade이다.
+
 ><div>>.\node_modules\.bin\express -e</div>
 ![2-3-1-1]
 

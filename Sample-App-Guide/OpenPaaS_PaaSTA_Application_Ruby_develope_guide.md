@@ -1107,14 +1107,15 @@ $ cf start ruby-sample-app    # 애플리케이션 시작
 
 
 1.	윈도우 커맨드 창을 열어 애플리케이션 폴더로 이동합니다.
-2.	(방법1.) 다음의 url에서 dos2unix를 다운로드 하고 압축을 해제하여 dos2unix.exe파일을 샘플 어플리케이션의 bin 폴더로 이동합니다. 
+2.	(방법1.) 다음의 url에서 dos2unix를 다운로드 하고 압축을 해제하여 dos2unix.exe파일을 샘플 어플리케이션의 bin 폴더로 이동합니다.    
 http://sourceforge.net/projects/dos2unix/files/latest/download
 
 	(방법2.) 샘플 어플리케이션을 'git clone'한 사용자는 다음의 명령어를 이용하여 애플리케이션 폴더 내의 dos2unix 파일의 파일명을 변경합니다. 'rename' 명령어를 사용할 수 없다면, 'ren' 명령어를 대신 사용하거나 직접 파일명을 'dos2unix.exe'로 변경하여도 무방합니다.
-rename dos2unix dos2unix.exe
+>rename dos2unix dos2unix.exe   
 
 3.	다음 명령어를 이용하여 bin 폴더 내의 3개의 파일을 유닉스 파일로 변환합니다.
-dos2unix bin/bundle bin/rake bin/rails
+>dos2unix bin/bundle bin/rake bin/rails   
+
 ※	윈도우즈 Power Shell에서는 해당 명령어가 실행되지 않습니다. 명령 프롬프트를 이용하면 명령어를 실행시킬 수 있습니다.
 변환이 정상적으로 완료되면 다음과 같은 화면을 확인할 수 있습니다.
  

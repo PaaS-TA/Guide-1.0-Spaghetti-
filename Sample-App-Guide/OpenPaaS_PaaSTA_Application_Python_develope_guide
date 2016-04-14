@@ -32,7 +32,7 @@ https://docs.djangoproject.com/en/1.9/intro/tutorial01
 http://pythontips.com/
 
 <div id='2'></div>
-2.	python 애플리케이션개발가이드  
+2.python 애플리케이션개발가이드  
 <div id='2-1'></div>
 2.1.	개요
 Open PaaS에 등록된 다양한 서비스팩을 python 언어로 작성된 애플리케이션과 바인딩하고 해당 애플리케이션에 바인딩 된 환경정보(VCAP_SERVICES)에서 각 서비스별 접속정보를 획득하여 애플리케이션에 적용하여 이용 할 수 있도록 Windows 환경에서 python 애플리케이션을 작성할 수 있도록 한다.

@@ -82,9 +82,7 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 -	OpenPaaS-Services.zip 파일 압축을 풀고 폴더안에 있는 Redis 서비스 릴리즈 openpaas-redis-release-1.0.tgz 파일을 복사한다.
 업로드할 openpaas-redis-release-1.0.tgz 파일을 확인한다.
 
-
 ><div>$ls ?all</div>  
-
 ![redis_aws3]
 
 - 업로드 되어 있는 릴리즈 목록을 확인한다.

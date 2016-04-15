@@ -84,12 +84,15 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 
 ><div>$ls ?all</div>  
+
 !(./image/redis_aws/redis_aws3.png)
 
 - 업로드 되어 있는 릴리즈 목록을 확인한다.
 
 ><div>$bosh releases</div>
+
 !(./image/redis_aws/redis_aws4.png)
+
 ><div>Redis 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인</div>
 >
 

@@ -98,7 +98,9 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
+
 <br>
+
 ##### OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더안에 있는 OpenStack용 MySQL Deployment 화일인 openpaas-mysql-openstack-1.0.yml 를 복사한다.
 
 ##### 다운로드 받은 Deployment Yml 파일을 확인한다. (openpaas-mysql-openstack-1.0.yml)

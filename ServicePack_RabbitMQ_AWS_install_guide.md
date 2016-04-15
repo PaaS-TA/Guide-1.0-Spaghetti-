@@ -125,7 +125,7 @@ name: openpaas-rabbitmq-service                 # 서비스 배포이름(필수)
 
 releases:
 - name: openpaas-rabbitmq                       #서비스 릴리즈 이름(필수)
-  version: beta-1.0                             #서비스 릴리즈 버전(필수): latest 시 업로드된 서비스 릴리즈 최신버전
+  version: 1.0                                  #서비스 릴리즈 버전(필수): latest 시 업로드된 서비스 릴리즈 최신버전
 
 jobs:
 - name: rmq                                     # job 이름 (rabbitmq 서버)

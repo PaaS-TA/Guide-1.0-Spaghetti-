@@ -140,163 +140,163 @@ Cloud Controller 는 모든 요청에 HTTP 기본 인증(인증 헤더)을 사�
 >![openpaas-servicepack-12]
 
 ###### sample body response message
-{
-  "services": [
-    {
-      "id": "44b26033-1f54-4087-b7bc-da9652c2a539",
-      "name": "p-mysql",
-      "description": "A MySQL service for application development and testing",
-      "tags": [
-        "mysql"
-      ],
-      "metadata": {
-        "displayName": "MySQL for Pivotal CF",
-        "imageUrl": "data:image/png;base64,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",
-        "longDescription": "Provisioning a service instance creates a MySQL database. Binding applications to the instance creates unique credentials for each application to access the database.",
-        "providerDisplayName": "Pivotal Software",
-        "documentationUrl": "http://docs.gopivotal.com/",
-        "supportUrl": "http://gopivotal.com/support/"
-      },
-      "plans": [
-        {
-          "id": "ab08f1bc-e6fc-4b56-a767-ee0fea6e3f20",
-          "name": "100mb-dev",
-          "description": "Shared MySQL Server",
-          "metadata": {
-            "costs": [
-              {
-                "amount": {
-                  "usd": 0
-                },
-                "unit": "MONTH"
-              }
-            ],
-            "bullets": [
-              "Not for production use - server is not replicated",
-              "Shared MySQL server",
-              "100 MB storage",
-              "40 concurrent connections"
-            ],
-            "displayName": "(( merge || \"100 MB Dev\" ))"
-          }
-        }
-      ],
-      "bindable": true,
-      "dashboard_client": {
-        "id": "p-mysql",
-        "secret": "eaa139af583c",
-        "redirect_uri": "http://10.30.40.61/"
-      }
-    }
-  ]
-}
+	{
+	  "services": [
+	    {
+	      "id": "44b26033-1f54-4087-b7bc-da9652c2a539",
+	      "name": "p-mysql",
+	      "description": "A MySQL service for application development and testing",
+	      "tags": [
+	        "mysql"
+	      ],
+	      "metadata": {
+	        "displayName": "MySQL for Pivotal CF",
+	        "imageUrl": "data:image/png;base64,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",
+	        "longDescription": "Provisioning a service instance creates a MySQL database. Binding applications to the instance creates unique credentials for each application to access the database.",
+	        "providerDisplayName": "Pivotal Software",
+	        "documentationUrl": "http://docs.gopivotal.com/",
+	        "supportUrl": "http://gopivotal.com/support/"
+	      },
+	      "plans": [
+	        {
+	          "id": "ab08f1bc-e6fc-4b56-a767-ee0fea6e3f20",
+	          "name": "100mb-dev",
+	          "description": "Shared MySQL Server",
+	          "metadata": {
+	            "costs": [
+	              {
+	                "amount": {
+	                  "usd": 0
+	                },
+	                "unit": "MONTH"
+	              }
+	            ],
+	            "bullets": [
+	              "Not for production use - server is not replicated",
+	              "Shared MySQL server",
+	              "100 MB storage",
+	              "40 concurrent connections"
+	            ],
+	            "displayName": "(( merge || \"100 MB Dev\" ))"
+	          }
+	        }
+	      ],
+	      "bindable": true,
+	      "dashboard_client": {
+	        "id": "p-mysql",
+	        "secret": "eaa139af583c",
+	        "redirect_uri": "http://10.30.40.61/"
+	      }
+	    }
+	  ]
+	}
 
 3.	Catalog Rest API 구현
 	
 3.1.	JAVA 방식
-
--- CatalogRestController.java (Spring 프레임워크 사용)
-
-@Controller
-@RequestMapping("/v2/catalog")         // Spring 어노테이션을 사용
-class CatalogRestController {
-  def settings;
-
-@RequestMapping(method=RequestMethod.GET)
-  @ResponseBody
-  synchronized Map getCatalog() {
-    if (!settings) {
-      Yaml yaml = new Yaml(); 
-      // settings.yml 파일 안에 서비스 정보와 plan 정보가 들어 있음
-      settings = yaml.load(this.class.getClassLoader().getResourceAsStream("settings.yml"));
-    }
-
-    return settings;
-  }
-
-}
-
--- settings.yml 파일
-
-services:
-- name: p-mysql
-  id: 3101b971-1044-4816-a7ac-9ded2e028079
-  description: MySQL service for application development and testing
-  tags:
-    - mysql
-    - relational
-  max_db_per_node: 250
-  metadata:
-    provider:
-      name:
-    listing:
-      imageUrl: ~
-      blurb: MySQL service for application development and testing
-  plans:
-  - name: 5mb
-    id: 2451fa22-df16-4c10-ba6e-1f682d3dcdc9
-    description: Shared MySQL Server, 5mb persistent disk, 40 max concurrent connections
-    max_storage_mb: 5 # in MB
-    metadata:
-      cost: 0.0
-      bullets:
-      - content: Shared MySQL server
-      - content: 5 MB storage
-      - content: 40 concurrent connections
+	
+	-- CatalogRestController.java (Spring 프레임워크 사용)
+	
+	@Controller
+	@RequestMapping("/v2/catalog")         // Spring 어노테이션을 사용
+	class CatalogRestController {
+	  def settings;
+	
+	@RequestMapping(method=RequestMethod.GET)
+	  @ResponseBody
+	  synchronized Map getCatalog() {
+	    if (!settings) {
+	      Yaml yaml = new Yaml(); 
+	      // settings.yml 파일 안에 서비스 정보와 plan 정보가 들어 있음
+	      settings = yaml.load(this.class.getClassLoader().getResourceAsStream("settings.yml"));
+	    }
+	
+	    return settings;
+	  }
+	
+	}
+	
+	-- settings.yml 파일
+	
+	services:
+	- name: p-mysql
+	  id: 3101b971-1044-4816-a7ac-9ded2e028079
+	  description: MySQL service for application development and testing
+	  tags:
+	    - mysql
+	    - relational
+	  max_db_per_node: 250
+	  metadata:
+	    provider:
+	      name:
+	    listing:
+	      imageUrl: ~
+	      blurb: MySQL service for application development and testing
+	  plans:
+	  - name: 5mb
+	    id: 2451fa22-df16-4c10-ba6e-1f682d3dcdc9
+	    description: Shared MySQL Server, 5mb persistent disk, 40 max concurrent connections
+	    max_storage_mb: 5 # in MB
+	    metadata:
+	      cost: 0.0
+	      bullets:
+	      - content: Shared MySQL server
+	      - content: 5 MB storage
+	      - content: 40 concurrent connections
 
 3.2.	Ruby 방식(Ruby on Rails)
--- 어플리케이션을 만들 때 레일즈(rails)을 이용 해서 새로운 어플리케이션을 위한 기본 생성 구조를 만든다. 아래 표 참고
-$ rails new<broker_name>
->![openpaas-servicepack-13]
-
-	-- config/routes.rb : posts 를 위한 라우팅 정보를 담은 수정된 라우팅 파일
+	-- 어플리케이션을 만들 때 레일즈(rails)을 이용 해서 새로운 어플리케이션을 위한 기본 생성 구조를 만든다. 아래 표 참고
+	$ rails new<broker_name>
+	>![openpaas-servicepack-13]
 	
-	CfMysqlBroker::Application.routes.draw do
-	  resource :preview, only: [:show]
+		-- config/routes.rb : posts 를 위한 라우팅 정보를 담은 수정된 라우팅 파일
+		
+		CfMysqlBroker::Application.routes.draw do
+		  resource :preview, only: [:show]
+		
+		namespace :v2 do
+		resource :catalog, only: [:show] // 접속 라우팅 설정 (V2/catalog)
+		    patch 'service_instances/:id' => 'service_instances#set_plan'
+		    resources :service_instances, only: [:update, :destroy] do
+		      resources :service_bindings, only: [:update, :destroy]
+		    end
+		  end
+		
+		end
+		
+		-- RestController 구현 (app/controllers/v2/catalogs_controller.rb)
+		
+		class V2::CatalogsController < V2::BaseController
+		  def show
+		    render json: {
+		      services: services.map {|service| service.to_hash }
+		    }
+		  end
+		
+		  private
+		
+		  def services
+		    (Settings['services'] || []).map {|attrs| Service.build(attrs)}
+		  end
+		end
 	
-	namespace :v2 do
-	resource :catalog, only: [:show] // 접속 라우팅 설정 (V2/catalog)
-	    patch 'service_instances/:id' => 'service_instances#set_plan'
-	    resources :service_instances, only: [:update, :destroy] do
-	      resources :service_bindings, only: [:update, :destroy]
-	    end
-	  end
-	
-	end
-	
-	-- RestController 구현 (app/controllers/v2/catalogs_controller.rb)
-	
-	class V2::CatalogsController < V2::BaseController
-	  def show
-	    render json: {
-	      services: services.map {|service| service.to_hash }
-	    }
-	  end
-	
-	  private
-	
-	  def services
-	    (Settings['services'] || []).map {|attrs| Service.build(attrs)}
-	  end
-	end
-
-3.3.	Node.js 방식
-	-- express 라는 Node.js 에서 가장 많이 사용하는 웹 프레임워크 모듈을 이용해서 Rest API 를 만든다.
-	
-	# sample (app.js)
-	
-	var express = require('express')
-	  , http = require('http')
-	  , app = express()
-	  , server = http.createServer(app);
-	
-	app.get('/v2/catalog ', function (req, res) {
-	// catalog 기능 구현
-	});
-	
-	server.listen(8000, function() {   // 포트 설정
-	  console.log('Express server listening on port ' + server.address().port);
-	});
+	3.3.	Node.js 방식
+		-- express 라는 Node.js 에서 가장 많이 사용하는 웹 프레임워크 모듈을 이용해서 Rest API 를 만든다.
+		
+		# sample (app.js)
+		
+		var express = require('express')
+		  , http = require('http')
+		  , app = express()
+		  , server = http.createServer(app);
+		
+		app.get('/v2/catalog ', function (req, res) {
+		// catalog 기능 구현
+		});
+		
+		server.listen(8000, function() {   // 포트 설정
+		  console.log('Express server listening on port ' + server.address().port);
+		});
 
 4. 서비스 별 Catalog API 개발 명세
 Catalog API 경우에는 서비스의 종류와 관계없이 Service 및 Plan 정보를 저장되어 있는 settings.yml 파일이나 기타 메타 파일 또는 소스 안에 정보를 저장한 후 제공한다. 만일 AppDirect 를 이용하는 경우는 Catalog 정보를 조회해오는 AppDirect API를 호출하여 그 결과를 제공한다. 샘플 settings.yml 파일은 3. Catalog Rest API 구현 참고.

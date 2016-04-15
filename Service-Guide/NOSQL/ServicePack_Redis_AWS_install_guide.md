@@ -34,7 +34,7 @@
 
 본 문서의 설치된 시스템 구성도입니다. Redis dedicated-node(2대), Redis 서비스 브로커로 최소사항을 구성하였다.
 
-![시스템 구성도](./image/redis_aws/redis_aws2.png)
+![redis_aws2]
 
 <table>
   <tr>
@@ -82,15 +82,14 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 -	OpenPaaS-Services.zip 파일 압축을 풀고 폴더안에 있는 Redis 서비스 릴리즈 openpaas-redis-release-1.0.tgz 파일을 복사한다.
 업로드할 openpaas-redis-release-1.0.tgz 파일을 확인한다.
 
+
 ><div>$ls ?all</div>  
 ![redis_aws3]
 
 - 업로드 되어 있는 릴리즈 목록을 확인한다.
 
 ><div>$bosh releases</div>
-
-!(./image/redis_aws/redis_aws4.png)
-
+![redis_aws4]
 ><div>Redis 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인</div>
 >
 
@@ -100,15 +99,15 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 ><div>$ bosh upload release openpaas-redis-release-beta-1.0.tgz</div><br>
 ><br>※	본 샘플은 직접 릴리즈 파일을 생성하도록 안내하고 있으므로 'bosh upload release'만 입력한다.릴리즈 파일을 직접 생성하지 않고 다운로드 받거나 릴리즈 파일 다운로드 URL이 존재하는 경우는 파일 경로 또는 다운로드 URL을 아래와 같이 입력한다. 
 >$ bosh upload release {서비스 릴리즈 파일 PATH 또는 URL}<br>
->!(./image/redis_aws/redis_aws5.png)
->!(./image/redis_aws/redis_aws6.png)
->!(./image/redis_aws/redis_aws7.png)
->!(./image/redis_aws/redis_aws8.png)
+>![redis_aws5]
+>![redis_aws6]
+>![redis_aws7]
+>![redis_aws8]
 
 - 업로드 된 Redis릴리즈를 확인한다.
 
 ><div>$bosh releases</div>
->!(./image/redis_aws/redis_aws9.png)
+>![redis_aws9]
 ><div>Redis 서비스 릴리즈가 업로드 되어 있는 것을 확인</div>
 
 
@@ -124,18 +123,18 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 - OpenPaaS-Deployment.zip 파일 압축을 풀고폴더안에 있는 vSphere용 Redis Deployment 화일인openpaas-redis-vsphere.yml를 복사한다.
 
 ><div>$ls ?all</div>
->!(./image/redis_aws/redis_aws.png)10]
+>![redis_aws]10]
 
 - Director UUID를 확인한다.
 BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 BOSH Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할수 있다.
 
 ><div>$bosh status</div>
->!(./image/redis_aws/redis_aws.png)11]
+>![redis_aws]11]
 
 - Deploy시 사용할 Stemcell을 확인한다. (Stemcell 3016 버전 사용)
  
 ><div>$bosh stemcells</div>
->!(./image/redis_aws/redis_aws.png)12]
+>![redis_aws]12]
 ><div>Stemcell목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여Stemcell 3016 버전을 업로드를 해야 한다.</div>
 
 - openpaas-redis-vsphere.yml Deployment 파일을 서버 환경에 맞게 수정한다. (빨간색으로 표시된 부분 특히 주의)
@@ -329,18 +328,18 @@ stemcell:
 
 ><div>$bosh deployment {Deployment manifest 파일 PATH}</div>
 ><div>$bosh deployment openpaas-redis-vsphere.yml</div>
->!(./image/redis_aws/redis_aws.png)13]
+>![redis_aws]13]
 
 - Redis서비스팩을 배포한다.
 
 ><div>$bosh deploy</div>
->!(./image/redis_aws/redis_aws.png)14]
->!(./image/redis_aws/redis_aws.png)15]
+>![redis_aws]14]
+>![redis_aws]15]
 
 - 배포된 Redis서비스팩을 확인한다.
 
 ><div>$bosh vms</div>
->!(./image/redis_aws/redis_aws.png)16]
+>![redis_aws]16]
 
 <div id='10'></div>
 ### 2.4. Redis 서비스 브로커 등록
@@ -350,7 +349,7 @@ Redis서비스팩 배포가 완료 되었으면 Application에서 서비스 팩�
 - 서비스 브로커 목록을 확인한다.
 
 ><div>$cf service-brokers</div>
->!(./image/redis_aws/redis_aws.png)17]
+>![redis_aws]17]
 
 - Redis 서비스 브로커를 등록한다.
 
@@ -359,24 +358,24 @@ Redis서비스팩 배포가 완료 되었으면 Application에서 서비스 팩�
 - 서비스팩 사용자ID / 비밀번호 :서비스팩에 접근할 수 있는 사용자 ID이다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.<br>
 - 서비스팩URL :서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.</div><br>
 ><div>$ cf create-service-broker redis-service-broker admin adminhttp://10.30.40.171:80</div>
->!(./image/redis_aws/redis_aws.png)18]
+>![redis_aws]18]
 
 - 등록된 Redis 서비스 브로커를 확인한다.
 
 ><div>$cf service-brokers</div>
->!(./image/redis_aws/redis_aws.png)19]
+>![redis_aws]19]
 
 - 접근 가능한 서비스 목록을 확인한다.
 
 ><div>$cf service-access</div>
->!(./image/redis_aws/redis_aws.png)20]
+>![redis_aws]20]
 ><div>서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.</div>
 
 - 특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
 
 ><div>$cf enable-service-access redis-sb</div>
 ><div>$ cf service-access</div>
->!(./image/redis_aws/redis_aws.png)21]
+>![redis_aws]21]
 
 <div id='11'></div>
 #   3. Redis연동 Sample App 설명
@@ -412,7 +411,7 @@ Sample App 구조는 다음과 같다.
 - OpenPaaS-Sample-Apps.zip 파일 압축을 풀고 Service폴더안에 있는 RedisSample Web App인 redis-example-app을복사한다
 
 ><div>$ls -all</div>
->!(./image/redis_aws/redis_aws.png)22]
+>![redis_aws]22]
 
 <div id='13'></div>
 ### 3.2. 개방형 클라우드 플랫폼에서 서비스 신청
@@ -422,7 +421,7 @@ Sample App에서 Redis 서비스를 사용하기 위해서는 서비스 신청(P
 - 먼저 개방형 클라우드 플랫폼 Marketplace에서 서비스가 있는지 확인을 한다.
 
 ><div>$cf marketplace</div>
->!(./image/redis_aws/redis_aws.png)23]
+>![redis_aws]23]
 
 - Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.
 
@@ -432,12 +431,12 @@ Sample App에서 Redis 서비스를 사용하기 위해서는 서비스 신청(P
 - 내서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.</div><br>
 
 ><div>$ cf create-service redis-sbshared-vmredis-service-instance</div>
->!(./image/redis_aws/redis_aws.png)24]
+>![redis_aws]24]
 
 - 생성된 Redis 서비스 인스턴스를 확인한다.
 
 ><div>$cf services</div>
->!(./image/redis_aws/redis_aws.png)25]
+>![redis_aws]25]
 
 <div id='14'></div>
 ### 3.3. Sample App에 서비스 바인드 신청 및 App 확인
@@ -462,25 +461,25 @@ path: . #배포시 구동되는 Path
 --no-start: App 배포시 구동은 하지 않는다.
 
 ><div>$cf push --no-start<br></div>
->!(./image/redis_aws/redis_aws.png)26]
+>![redis_aws]26]
 
 - 배포된 Sample App을 확인하고 로그를 수행한다.
 
 ><div>$cf apps<br></div>
->!(./image/redis_aws/redis_aws.png)27]
+>![redis_aws]27]
 ><div>$ cf logs {배포된 App명}
 >$ cf logs redis-example-app</div>
->!(./image/redis_aws/redis_aws.png)28]
+>![redis_aws]28]
 
 - Sample App에서 생성한 서비스인스턴스바인드 신청을 한다. 
 
 ><div>$cf bind-service redis-example-appredis-service-instance</div>
->!(./image/redis_aws/redis_aws.png)29]
+>![redis_aws]29]
 
 - 바인드가 적용되기 위해서 App을 재기동한다.
 
 ><div>$cf restart redis-example-app</div>
->!(./image/redis_aws/redis_aws.png)30]
+>![redis_aws]30]
 
 - App이 정상적으로 Redis 서비스를 사용하는지 확인한다.
 
@@ -489,15 +488,15 @@ path: . #배포시 구동되는 Path
 $ export APP=redis-example-app.controller.open-paas.com<br>
 $ curl -X PUT $APP/foo -d 'data=bar'<br>
 ><div>
->!(./image/redis_aws/redis_aws.png)31]
+>![redis_aws]31]
 ><div>- Key 값을 이용하여 Redis 에 저장되어 있는 Value 값 Get<br>
 $ curl -X GET $APP/foo<br>
 ></div>
->!(./image/redis_aws/redis_aws.png)32]
+>![redis_aws]32]
 ><div>- Key 값을 이용하여 Redis 에 저장되어 있는 Value 삭제<br>
 $ curl -X DELETE $APP/foo<br>
 ></div>
->!(./image/redis_aws/redis_aws.png)33]
+>![redis_aws]33]
 
 <div id='15'></div>
 # 4. Redis Client 툴 접속
@@ -509,46 +508,46 @@ Redis Desktop Manager 프로그램은 무료로 사용할 수 있는 오픈소�
 
 - Redis Desktop Manager를 다운로드 하기 위해 아래 URL로 이동하여 설치파일을 다운로드 한다.
 [**http://redisdesktop.com/download**](http://redisdesktop.com/download)<br>
-!(./image/redis_aws/redis_aws.png)34]
+![redis_aws]34]
 
 - 다운로드한 설치파일을 실행한다.<br>
-!(./image/redis_aws/redis_aws.png)35]
+![redis_aws]35]
 
 - Redis Desktop Manager 설치를 위한 안내사항이다. Next 버튼을 클릭한다.<br>
-!(./image/redis_aws/redis_aws.png)36]
+![redis_aws]36]
 
 - 프로그램 라이선스에 관련된 내용이다. I Agree 버튼을 클릭한다.<br>
-!(./image/redis_aws/redis_aws.png)37]
+![redis_aws]37]
 
 - Redis Desktop Manager를 설치할 경로를 설정 후 Install 버튼을 클릭한다.
 별도의 경로 설정이 필요 없을 경우 default로 C드라이브 Program Files 폴더에 설치가 된다.<br>
-!(./image/redis_aws/redis_aws.png)38]
+![redis_aws]38]
 
 - 설치 완료 후 Next 버튼을 클릭하여 다음 과정을 진행한다.<br>
-!(./image/redis_aws/redis_aws.png)39]
+![redis_aws]39]
 
 - Finish 버튼 클릭으로 설치를 완료한다.<br>
-!(./image/redis_aws/redis_aws.png)40]
+![redis_aws]40]
 
 - Redis Desktop Manager를 실행했을 때 처음 뜨는 화면이다. 이 화면에서 Server에 접속하기 위한 profile을 설정/저장하여 접속할 수 있다. Connect to Redis Server 버튼을 클릭한다.<br>
-!(./image/redis_aws/redis_aws.png)41]
+![redis_aws]41]
 
 - Connection 탭에서 아래 붉은색 영역에 접속하려는 서버 정보를 모두 입력한다.<br>
-!(./image/redis_aws/redis_aws.png)42]
+![redis_aws]42]
 
 - 서버 정보는 Application에 바인드되어 있는 서버 정보를 입력한다. cfenv<app_name> 명령어로 이용하여 확인한다.
 예) $ cfenvredis-example-app<br>
-!(./image/redis_aws/redis_aws.png)43]
+![redis_aws]43]
 
 - SSH Tunnel탭을 클릭하고 OpenPaaS 운영 관리자에게 제공받은 SSH 터널링 가능한 서버 정보를 입력하고 공개키(.pem) 파일을 불러온다. Test Connection 버튼을 클릭하면 Redis 서버에 접속이 되는지 테스트 하고 OK 버튼을 눌러 Redis 서버에 접속한다.
 (참고) 만일 공개키 없이 ID/Password로 접속이 가능한 경우에는 공개키 대신 사용자 이름과 암호를 입력한다.<br>
-!(./image/redis_aws/redis_aws.png)44]
+![redis_aws]44]
 
 - 접속이 완료되고 좌측 서버 정보를 더블 클릭하면 좌측에 스키마 정보가 나타난다.<br>
-!(./image/redis_aws/redis_aws.png)45]
+![redis_aws]45]
 
 - 신규 키 등록후 확인<br>
-!(./image/redis_aws/redis_aws.png)46]
+![redis_aws]46]
 
 
 
@@ -557,48 +556,48 @@ Redis Desktop Manager 프로그램은 무료로 사용할 수 있는 오픈소�
 
 
 
-[./image/redis_aws/redis_aws2]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws2.png
+[redis_aws2]:./image/redis_aws/redis_aws2.png
 [redis_aws3]:./image/redis_aws/redis_aws3.png
-[./image/redis_aws/redis_aws4]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws4.png
-[./image/redis_aws/redis_aws5]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws5.png
-[./image/redis_aws/redis_aws6]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws6.png
-[./image/redis_aws/redis_aws7]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws7.png
-[./image/redis_aws/redis_aws8]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws8.png
-[./image/redis_aws/redis_aws9]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws9.png
-[./image/redis_aws/redis_aws10]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws10.png
-[./image/redis_aws/redis_aws11]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws11.png
-[./image/redis_aws/redis_aws12]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws12.png
-[./image/redis_aws/redis_aws13]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws13.png
-[./image/redis_aws/redis_aws14]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws14.png
-[./image/redis_aws/redis_aws15]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws15.png
-[./image/redis_aws/redis_aws16]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws16.png
-[./image/redis_aws/redis_aws17]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws17.png
-[./image/redis_aws/redis_aws18]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws18.png
-[./image/redis_aws/redis_aws19]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws19.png
-[./image/redis_aws/redis_aws20]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws20.png
-[./image/redis_aws/redis_aws21]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws21.png
-[./image/redis_aws/redis_aws22]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws22.png
-[./image/redis_aws/redis_aws23]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws23.png
-[./image/redis_aws/redis_aws24]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws24.png
-[./image/redis_aws/redis_aws25]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws25.png
-[./image/redis_aws/redis_aws26]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws26.png
-[./image/redis_aws/redis_aws27]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws27.png
-[./image/redis_aws/redis_aws28]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws28.png
-[./image/redis_aws/redis_aws29]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws29.png
-[./image/redis_aws/redis_aws30]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws30.png
-[./image/redis_aws/redis_aws31]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws31.png
-[./image/redis_aws/redis_aws32]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws32.png
-[./image/redis_aws/redis_aws33]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws33.png
-[./image/redis_aws/redis_aws34]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws34.png
-[./image/redis_aws/redis_aws35]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws35.png
-[./image/redis_aws/redis_aws36]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws36.png
-[./image/redis_aws/redis_aws37]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws37.png
-[./image/redis_aws/redis_aws38]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws38.png
-[./image/redis_aws/redis_aws39]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws39.png
-[./image/redis_aws/redis_aws40]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws40.png
-[./image/redis_aws/redis_aws41]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws41.png
-[./image/redis_aws/redis_aws42]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws42.png
-[./image/redis_aws/redis_aws43]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws43.png
-[./image/redis_aws/redis_aws44]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws44.png
-[./image/redis_aws/redis_aws45]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws45.png
-[./image/redis_aws/redis_aws46]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws46.png
+[redis_aws4]:./image/redis_aws/redis_aws4.png
+[redis_aws5]:./image/redis_aws/redis_aws5.png
+[redis_aws6]:./image/redis_aws/redis_aws6.png
+[redis_aws7]:./image/redis_aws/redis_aws7.png
+[redis_aws8]:./image/redis_aws/redis_aws8.png
+[redis_aws9]:./image/redis_aws/redis_aws9.png
+[redis_aws10]:./image/redis_aws/redis_aws10.png
+[redis_aws11]:./image/redis_aws/redis_aws11.png
+[redis_aws12]:./image/redis_aws/redis_aws12.png
+[redis_aws13]:./image/redis_aws/redis_aws13.png
+[redis_aws14]:./image/redis_aws/redis_aws14.png
+[redis_aws15]:./image/redis_aws/redis_aws15.png
+[redis_aws16]:./image/redis_aws/redis_aws16.png
+[redis_aws17]:./image/redis_aws/redis_aws17.png
+[redis_aws18]:./image/redis_aws/redis_aws18.png
+[redis_aws19]:./image/redis_aws/redis_aws19.png
+[redis_aws20]:./image/redis_aws/redis_aws20.png
+[redis_aws21]:./image/redis_aws/redis_aws21.png
+[redis_aws22]:./image/redis_aws/redis_aws22.png
+[redis_aws23]:./image/redis_aws/redis_aws23.png
+[redis_aws24]:./image/redis_aws/redis_aws24.png
+[redis_aws25]:./image/redis_aws/redis_aws25.png
+[redis_aws26]:./image/redis_aws/redis_aws26.png
+[redis_aws27]:./image/redis_aws/redis_aws27.png
+[redis_aws28]:./image/redis_aws/redis_aws28.png
+[redis_aws29]:./image/redis_aws/redis_aws29.png
+[redis_aws30]:./image/redis_aws/redis_aws30.png
+[redis_aws31]:./image/redis_aws/redis_aws31.png
+[redis_aws32]:./image/redis_aws/redis_aws32.png
+[redis_aws33]:./image/redis_aws/redis_aws33.png
+[redis_aws34]:./image/redis_aws/redis_aws34.png
+[redis_aws35]:./image/redis_aws/redis_aws35.png
+[redis_aws36]:./image/redis_aws/redis_aws36.png
+[redis_aws37]:./image/redis_aws/redis_aws37.png
+[redis_aws38]:./image/redis_aws/redis_aws38.png
+[redis_aws39]:./image/redis_aws/redis_aws39.png
+[redis_aws40]:./image/redis_aws/redis_aws40.png
+[redis_aws41]:./image/redis_aws/redis_aws41.png
+[redis_aws42]:./image/redis_aws/redis_aws42.png
+[redis_aws43]:./image/redis_aws/redis_aws43.png
+[redis_aws44]:./image/redis_aws/redis_aws44.png
+[redis_aws45]:./image/redis_aws/redis_aws45.png
+[redis_aws46]:./image/redis_aws/redis_aws46.png

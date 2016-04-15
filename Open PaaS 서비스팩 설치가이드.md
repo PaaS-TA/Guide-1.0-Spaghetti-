@@ -1972,7 +1972,7 @@ Software(서비스팩 software)를 배포하는 bosh deploy CLI 명령어를 제
 
 3.	배포된 Software 를 확인한다. (bosh vms)
 
- [openpaas-servicepack-01]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-01]:/images/openpaas-servicepack/openpaas-servicepack-01.PNG
  [openpaas-servicepack-02]:/images/openpaas-servicepack/openpaas-servicepack-02.png
  [openpaas-servicepack-03]:/images/openpaas-servicepack/openpaas-servicepack-03.png
  [openpaas-servicepack-04]:/images/openpaas-servicepack/openpaas-servicepack-04.png

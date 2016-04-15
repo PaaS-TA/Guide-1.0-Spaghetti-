@@ -1,4 +1,3 @@
-
 ## Table of Contents
 
 1. [개요](#1)	
@@ -261,7 +260,7 @@ virtualenv my_virtual_env`
 </table>
 
 <div id='2.3.2'></div>
-#####2.3.2. 애플리케이션 환경설정 
+#####2.3.2. <font color='red'> aaaa
 
  django 애플리케이션에서 환경설정은 settings 모듈에 정의하도록 되어 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성](#2-3-3-1)에서 프로젝트 생성을 통해 자동 생성된 my_sampleproject 디렉토리의 settings.py 파일을 의미한다. 샘플어플리케이션에서 사용하는 패키지를 django 애플리케이션에서 사용하기 위해서는 이 settings 모듈에 설정을 추가하거나 수정하여야 한다. 하단에 settings 모듈에서 추가 또는 수정하여야 하는 부분을 설명과 함께 기술한다.
 
@@ -321,18 +320,19 @@ WhiteNoise를 사용할 수 있도록 wsgi 모듈을 수정한다.
 ..\my_sampleproject\my_sampleproject\wsgi.py
 
 ```
+
 application = get_wsgi_application()
 from whitenoise.django import DjangoWhiteNoise
 application = DjangoWhiteNoise(get_wsgi_application())
 ```
 
 <div id='2.3.3'></div>
-#####2.3.3. VCAP_SERVICES 환경설정 정보 
+#####2.3.3.	VCAP_SERVICES 환경설정 정보 
 
  개방형 플랫폼에 배포되는 애플리케이션이 바인딩 된 각각의 서비스의 접속 정보를 얻기 위해서는 각각의 애플리케이션에 등록되어있는 VCAP_SERVICES 환경설정 정보를 읽어 들여 정보를 획득 해야 한다.
 
-- 개방형 플랫폼의 애플리케이션 환경정보
--- 서비스를 바인딩하면 JSON 형태로 환경설정 정보가 애플리케이션 별로 등록된다.
+	- 개방형 플랫폼의 애플리케이션 환경정보
+		-- 서비스를 바인딩하면 JSON 형태로 환경설정 정보가 애플리케이션 별로 등록된다.
 
 ```
 {
@@ -367,14 +367,15 @@ application = DjangoWhiteNoise(get_wsgi_application())
      "name": "e37e541c-75de-4f01-8196-63e2d902e768",
      "password": "c5649c42-ca5e-42be-926a-c3231aa81dc1",
      "uri": "mongodb://b5d67268-897
-…..(이하 생략)…..
+(이하 생략)
 ```
 
 <div id='2.3.4'></div>
 #####2.3.4. Mysql 연동
+ 
  각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성]에서 프로젝트 생성시 자동으로 생성된다. MySQL의 경우는 MySQL-python 드라이버가 django 연동을 지원하기 때문에 settings 모듈의 DATABASES 정보가 정의된 부분을 찾아 다음과 같이 수정함으로써 연동이 가능하다.
 
-`..\my_sampleproject\my_sampleproject\settings.py`
+`..\my_sampleproject\my_sampleproject\settings.py` 
 
 ```
 import json
@@ -396,14 +397,17 @@ if 'VCAP_SERVICES' in os.environ:
             }, 
         }
 ```
-
  ※ DATABASES에 'default' 데이터베이스로 MySQL을 정의하였다. django에서는 데이터베이스 명칭에서 'default'는 반드시 존재해야 하기 때문에 'mysql'이 아닌 'default'를 사용하였다. 다른 데이터베이스를 추가하고자 한다면 추가되는 데이터베이스에 대해서는 임의의 명칭을 사용할 수 있다.
  ※ 파란색 글씨로 표시된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
 
 mysql_views.py 모듈에서 connections를 임포트하여 다음과 같은 형태로 cursor를 생성한다.
 
 `..\my_sampleproject\my_sampleapp\mysql_views.py`
-`from django.db import connections`
+
+.
+```
+from django.db import connections
+```
 
 ```
 def make_connection():
@@ -414,9 +418,11 @@ def make_connection():
 
 <div id='2.3.5'></div>
 #####2.3.5. Cubrid 연동
- 각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성]에서 프로젝트 생성시 자동으로 생성된다. CUBRID-Python 드라이버는 django 연동을 지원하지 않기 때문에 settings 모듈에서 VCAP_SERVICES 환경설정 정보의 credentials 정보를 cubrid_views 모듈에서 읽어와 connection을 생성한다.
+
+ 각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성](#2-3-1-1)에서 프로젝트 생성시 자동으로 생성된다. CUBRID-Python 드라이버는 django 연동을 지원하지 않기 때문에 settings 모듈에서 VCAP_SERVICES 환경설정 정보의 credentials 정보를 cubrid_views 모듈에서 읽어와 connection을 생성한다.
 
 `..\my_sampleproject\my_sampleproject\settings.py`
+
 ```
 import json
 if 'VCAP_SERVICES' in os.environ:
@@ -426,16 +432,16 @@ if 'VCAP_SERVICES' in os.environ:
         cubrid_srv = vcap_services['CubridDB'][0]
         CUBRID_CRED = cubrid_srv['credentials']
 ```
- ※ django의 settings.py 모듈에 정의된 값을 다른 모듈에서 불러오기 위해서는 settings.py 모듈에서 영문 대문자로 정의되어 있어야만 한다.
- ※ 파란색 글씨로 표시된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
+ ※django의 settings.py 모듈에 정의된 값을 다른 모듈에서 불러오기 위해서는 settings.py 모듈에서 영문 대문자로 정의되어 있어야만 한다.
+ ※파란색 글씨로 표시된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
 
-``..\my_sampleproject\my_sampleapp\cubrid_views.py`
+`..\my_sampleproject\my_sampleapp\cubrid_views.py`
+
 ```
 from django.conf import settings
 import CUBRIDdb
-```
-```
-def make_connection():`
+
+def make_connection():
     if settings.CUBRID_CRED:
         credentials = settings.CUBRID_CRED
         connection = CUBRIDdb.connect(
@@ -444,35 +450,34 @@ def make_connection():`
             credentials['password']
             )
         return connection
+
 ```
 
 <div id='2.3.6'></div>
 #####2.3.6. MongoDB 연동
+
  각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성]에서 프로젝트 생성시 자동으로 생성된다. pymongo 드라이버는 django 연동을 지원하지 않기 때문에 settings 모듈에서 획득한 VCAP_SERVICES 환경설정 정보의 credentials 정보를 mongo_views 모듈에서 읽어와 db를 생성한다.
 
 `..\my_sampleproject\my_sampleproject\settings.py`
+
 ```
 import json
 if 'VCAP_SERVICES' in os.environ:
     vcap_services = json.loads(os.environ['VCAP_SERVICES'])
-
     if 'Mongo-DB' in vcap_services:
         mongo_srv = vcap_services['Mongo-DB'][0]
         MONGO_CRED = mongo_srv['credentials']
-        
 ```
-※ django의 settings 모듈에 정의된 값을 다른 모듈에서 불러오기 위해서는 settings 모듈에서 영문 대문자로 정의되어 있어야만 한다.
-※ 파란색 글씨로 표시된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
 
+ ※ django의 settings 모듈에 정의된 값을 다른 모듈에서 불러오기 위해서는 settings 모듈에서 영문 대문자로 정의되어 있어야만 한다.
+ ※ 파란색 글씨로 표시된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
 
 `..\my_sampleproject\my_sampleapp\mongo_views.py`
 
 ```
 from django.conf import settings
 from pymongo import MongoClient
-```
 
-```
 def make_connection():
     if settings.MONGO_CRED:
         credentials = settings.MONGO_CRED
@@ -485,6 +490,7 @@ def make_connection():
 
 <div id='2.3.7'></div>
 #####2.3.7. Redis 연동
+
  각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성]에서 프로젝트 생성시 자동으로 생성된다. redis의 경우는 django-redis-cache 드라이버가 django 연동을 지원하기 때문에 settings 모듈의 CACHES 정보가 정의된 부분을 찾아 다음과 같이 수정함으로써 연동이 가능하다.
 
 `..\my_sampleproject\my_sampleproject\settings.py`
@@ -508,16 +514,17 @@ if 'VCAP_SERVICES' in os.environ:
                 },
             },
         }
-```        
 
- ※파란색 글씨로 표시된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
+```
+
+ ※ 파란색 글씨로 표시된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
 
 `..\my_sampleproject\my_sampleapp\redis_views.py`
-
 ```
 from django.core.cache import cache
 ```
- ※cache를 임포트하면 다음과 같은 형태로 바로 사용이 가능하다.
+
+ ※ cache를 임포트하면 다음과 같은 형태로 바로 사용이 가능하다.
  
  ```
 cache.get('key값')
@@ -540,8 +547,8 @@ if 'VCAP_SERVICES' in os.environ:
     if 'p-rabbitmq' in vcap_services:
         rabbitmq_srv = vcap_services['p-rabbitmq'][0]
         RABBITMQ_CRED = rabbitmq_srv['credentials']
-```
-
+```        
+        
  ※ django의 settings 모듈에 정의된 값을 다른 모듈에서 불러오기 위해서는 settings 모듈에서 영문 대문자로 정의되어 있어야만 한다.
  ※ 파란색 글씨로 표시된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
 
@@ -550,7 +557,9 @@ if 'VCAP_SERVICES' in os.environ:
 ```
 from django.conf import settings
 import pika
+```
 
+```
 def make_connection():
     if settings.RABBITMQ_CRED:
         credentials = settings.RABBITMQ_CRED
@@ -559,15 +568,14 @@ def make_connection():
         parameters = pika.URLParameters(rabbitmq_uri)
         connection = pika.BlockingConnection(parameters)
         return connection
-
 ```
 
 <div id='2.3.9'></div>
-#####2.3.9. GlusterFS 연동
+#####2.3.9. GlusterFS 연동 
 
- 각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성]에서 프로젝트 생성시 자동으로 생성된다. settings 모듈에서 획득한 VCAP_SERVICES 환경설정 정보의 credentials 정보를 gluster_views 모듈에서 읽어와 connection을 생성한다.
+각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성]에서 프로젝트 생성시 자동으로 생성된다. settings 모듈에서 획득한 VCAP_SERVICES 환경설정 정보의 credentials 정보를 gluster_views 모듈에서 읽어와 connection을 생성한다.
 
-..\my_sampleproject\my_sampleproject\settings.py
+`..\my_sampleproject\my_sampleproject\settings.py`
 
 ```
 import json
@@ -577,7 +585,8 @@ if 'VCAP_SERVICES' in os.environ:
     if 'glusterfs' in vcap_services:
         gluster_srv = vcap_services['glusterfs'][0]
         GLUSTERFS_CRED = gluster_srv['credentials']
-```        
+```
+
  ※ django의 settings 모듈에 정의된 값을 다른 모듈에서 불러오기 위해서는 해당 값이 settings 모듈에서 영문 대문자로 정의되어 있어야만 한다.
  ※ 파란색 글씨로 표시된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
 
@@ -613,11 +622,12 @@ def make_connection():
 
 <div id='2.4.1'></div>
 #####2.4.1. 개방형 클라우드 플랫폼 로그인
-애플리케이션 배포과정을 진행하기 위해 개방형 클라우드 플랫폼의 사용자 계정으로 로그인한다.
+
+ 애플리케이션 배포과정을 진행하기 위해 개방형 클라우드 플랫폼의 사용자 계정으로 로그인한다.
 로그인을 하기 이전에 먼저 target을 지정한다. target 지정 명령어는 아래와 같다. 
 
-# cf api [target URL]
-$ cf api --skip-ssl-validation https://api.cf.open-paas.com
+> # cf api [target URL]
+> $ cf api --skip-ssl-validation https://api.cf.open-paas.com
 
 타겟 지정이 완료되었다면, 로그인 명령어를 통해 로그인한다.
 
@@ -626,31 +636,38 @@ $ cf login -u testUser -o sample_test -s sample_space
 
 <div id='2.4.2'></div>
 #####2.4.2. 서비스 생성
-서비스 생성은 개방형 클라우드 플랫폼에서 제공하는 서비스에 대해서 사용자가 서비스 인스턴스를 생성하는 과정이다. 개방형 클라우드 플랫폼에서 제공하지 않는 서비스에 대해서는 서비스 생성이 불가능하며, 서비스 제공 여부는 플랫폼 관리자(운영자)가 결정한다.
 
-먼저 아래의 명령어를 통해, 사용 가능한 서비스의 목록을 확인한다.
+ 서비스 생성은 개방형 클라우드 플랫폼에서 제공하는 서비스에 대해서 사용자가 서비스 인스턴스를 생성하는 과정이다. 개방형 클라우드 플랫폼에서 제공하지 않는 서비스에 대해서는 서비스 생성이 불가능하며, 서비스 제공 여부는 플랫폼 관리자(운영자)가 결정한다.
 
-$ cf marketplace
+ 먼저 아래의 명령어를 통해, 사용 가능한 서비스의 목록을 확인한다.
 
-상단의 명령어를 통해 확인한 서비스 목록에서 사용하고자 하는 서비스를 생성한다. 샘플 애플리케이션에서는 MySQL, Cubrid, MongoDB, Resdis, RabbitMQ, GlusterFS 서비스를 사용하므로 6개의 서비스를 생성한다. 서비스 생성 명령어는 다음과 같다. 상단의 그림에서 파란색 박스로 표시된 부분이 서비스 명이다.
+`$ cf marketplace`
 
-# cf create-service SERVICE PLAN SERVICE_INSTANCE [-c PARAMETERS_AS_JSON] [-t TAGS]
+![pyhthon-11]
+
+ 상단의 명령어를 통해 확인한 서비스 목록에서 사용하고자 하는 서비스를 생성한다. 샘플 애플리케이션에서는 MySQL, Cubrid, MongoDB, Resdis, RabbitMQ, GlusterFS 서비스를 사용하므로 6개의 서비스를 생성한다. 서비스 생성 명령어는 다음과 같다. 상단의 그림에서 파란색 박스로 표시된 부분이 서비스 명이다.
+
+> # cf create-service SERVICE PLAN SERVICE_INSTANCE [-c PARAMETERS_AS_JSON] [-t TAGS]
 
 예시)
-$ cf create-service Mysql-DB Mysql-Plan1-10con python-mysql
-$ cf create-service CubridDB utf8 python-cubrid
-$ cf create-service Mongo-DB default-plan python-mongodb
-$ cf create-service redis-sb shared-vm python-redis
-$ cf create-service glusterfs glusterfs-5Mb python-glusterfs
-$ cf create-service p-rabbitmq standard python-rabbitmq
-※	cf create-service 명령어는 서비스명, 플랜, 서비스 인스턴스명을 순서대로 입력하게 되어 있다. 서비스명과 플랜은 cf marketplace 명령어를 통해 확인하고, 서비스 인스턴스명은 임의의 명칭을 사용한다.
+> $ cf create-service Mysql-DB Mysql-Plan1-10con python-mysql
+> $ cf create-service CubridDB utf8 python-cubrid
+> $ cf create-service Mongo-DB default-plan python-mongodb
+> $ cf create-service redis-sb shared-vm python-redis
+> $ cf create-service glusterfs glusterfs-5Mb python-glusterfs
+> $ cf create-service p-rabbitmq standard python-rabbitmq 
+
+ ※cf create-service 명령어는 서비스명, 플랜, 서비스 인스턴스명을 순서대로 입력하게 되어 있다. 서비스명과 플랜은 cf marketplace 명령어를 통해 확인하고, 서비스 인스턴스명은 임의의 명칭을 사용한다.
 
 <div id='2.4.3'></div>
 #####2.4.3. 애플리케이션 배포
-1.	requirements.txt 생성
-requirements.txt 파일에 python 샘플 애플리케이션 구동에 필요한 패키지들이 정의된다. 개방형 클라우드 플랫폼에서는 애플리케이션이 배포될 때, requirements.txt 파일에 정의된 패키지들을 설치한다. 따라서 requirements.txt 파일이 존재하지 않거나 내용이 잘못 되어 있을 경우, 애플리케이션 실행에 문제가 발생한다. 
 
-..\my_sampleproject\requirements.txt
+	- requirements.txt 생성
+ requirements.txt 파일에 python 샘플 애플리케이션 구동에 필요한 패키지들이 정의된다. 개방형 클라우드 플랫폼에서는 애플리케이션이 배포될 때, requirements.txt 파일에 정의된 패키지들을 설치한다. 따라서 requirements.txt 파일이 존재하지 않거나 내용이 잘못 되어 있을 경우, 애플리케이션 실행에 문제가 발생한다. 
+
+`..\my_sampleproject\requirements.txt`
+
+```
 Django==1.8.6
 djangorestframework==3.3.1
 gunicorn==19.1.1
@@ -663,25 +680,45 @@ pika==0.10.0
 django-redis-cache==1.6.4
 python-keystoneclient==2.0.0
 python-swiftclient==2.6.0
+```
 
 각각의 패키지에 대한 설명은 하단 표를 참고한다.
-패키지명	버전	설명
-Django	1.8.6	python 웹 프레임워크
-djangorestframework	3.3.1	django 기반의 웹 api 구현 프레임워크
-Gunicorn	19.1.1	유닉스 환경에서 애플리케이션 실행을 위한 WSGI server. 개방형 클라우드 플랫폼에 배포하기 위해서 필요.
-jinja2	2.8	django template 엔진. 샘플 애플리케이션 template의 일부 syntax를 django의 기본 template 엔진이 정상적으로 읽을 수 없기 때문에 사용.
-WhiteNoise	2.0.4	Python 웹 애플리케이션에서 정적파일(static files)을 제공하기 위해 사용
-MySQL-python	1.2.3	Django 애플리케이션과 mysql을 연동하는 드라이버
-CUBRID-Python	9.3.0.0001	python과 Cubrid를 연동하는 드라이버
-pymongo	2.8	python과 Mongodb를 연동하는 드라이버
-pika	0.10.0	python과 RabbitMQ를 연동하는 드라이버
-django-redis-cache	1.6.4	django 애플리케이션과 Redis를 연동하는 드라이버 
-python-keystoneclient	2.0.0.	Openstack의 인증 API를 사용하기 위한 클라이언트.
-GlusterFS 연동에 필요
-python-swiftclient	2.6.0	Openstack의 swift 클라이언트
-GlusterFS 연동에 필요
-
-2.	manifest.yml 생성
+<table>
+<tr>
+<tr>
+<td>패키지명	버전	설명</td>
+</tr>
+<tr><td>Django	1.8.6	python 웹 프레임워크</td>
+</tr>
+<tr><td>djangorestframework	3.3.1	django 기반의 웹 api 구현 프레임워크</td>
+</tr>
+<tr><td>Gunicorn	19.1.1	유닉스 환경에서 애플리케이션 실행을 위한 WSGI server. 개방형 클라우드 플랫폼에 배포하기 위해서 필요.</td>
+</tr>
+<tr><td>jinja2	2.8	django template 엔진. 샘플 애플리케이션 template의 일부 syntax를 django의 기본 template 엔진이 정상적으로 읽을 수 없기 때문에 사용.</td>
+</tr>
+<tr><td>WhiteNoise	2.0.4	Python 웹 애플리케이션에서 정적파일(static files)을 제공하기 위해 사용</td>
+</tr>
+<tr><td>MySQL-python	1.2.3	Django 애플리케이션과 mysql을 연동하는 드라이버</td>
+</tr>
+<tr><td>CUBRID-Python	9.3.0.0001	python과 Cubrid를 연동하는 드라이버</td>
+</tr>
+<tr><td>pymongo	2.8	python과 Mongodb를 연동하는 드라이버</td>
+</tr>
+<tr><td>pika	0.10.0	python과 RabbitMQ를 연동하는 드라이버</td>
+</tr>
+<tr><td>django-redis-cache	1.6.4	django 애플리케이션과 Redis를 연동하는 드라이버 </td>
+</tr>
+<tr>
+<td>python-keystoneclient	2.0.0.	Openstack의 인증 API를 사용하기 위한 클라이언트.</td>
+<tr>
+<td>GlusterFS 연동에 필요</td>
+<tr>
+<td>python-swiftclient	2.6.0	Openstack의 swift 클라이언트</td>
+<tr>
+<td>GlusterFS 연동에 필요</td>
+</tr>
+</table> 
+	- manifest.yml 생성
 애플리케이션 배포 시, manifest.yml 파일을 참조하여 배포가 이루어진다.
 
 ..\my_sampleproject\manifest.yml

@@ -103,11 +103,13 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 >![redis_aws5]
 >![redis_aws6]
 >![redis_aws7]
+>![redis_aws8]
+>![redis_aws9]
 
 - 업로드 된 Redis릴리즈를 확인한다.
 
 ><div>$bosh releases</div>
->![redis_aws8]
+>![redis_aws10]
 ><div>Redis 서비스 릴리즈가 업로드 되어 있는 것을 확인</div>
 
 

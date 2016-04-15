@@ -348,7 +348,8 @@ resource_pools:      # 배포시 사용하는 resource pools를 명시하며 여
 
 ##### Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 
->`$ bosh deployment {Deployment manifest 파일 PATH}`
+>`$ bosh deployment {Deployment manifest 파일 PATH}`  
+
 >`$ bosh deployment openpaas-mysql-openstack-1.0.yml`
 
 >![mysql_openstack_2.3.04]
@@ -527,7 +528,7 @@ applications:
 
 >![mysql_openstack_3.3.02]
 
->`$ cf logs {배포된 App명}`
+>`$ cf logs {배포된 App명}`  
 
 >`$ cf logs hello-spring-mysql`
 
@@ -599,10 +600,6 @@ applications:
 
 >![mysql_openstack_3.3.09]
 
-
-> 브라우져에서 확인
-
-??
 
 # 4. MySQL Client 툴 접속
 

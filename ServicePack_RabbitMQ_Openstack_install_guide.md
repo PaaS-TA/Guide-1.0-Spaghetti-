@@ -28,7 +28,7 @@
 
 ![시스템 구성도][rabbitmq_openstack_(1)]
 
-| 구분 | 사양
+| 구분 | 스펙
 | ---- | -----------
 | openpaasrmq-broker | 2vCPU / 2GB RAM / 20GB Disk+2GB(영구적 Disk)
 | haproxy | 2vCPU / 2GB RAM / 20GB Disk+1GB(영구적 Disk)

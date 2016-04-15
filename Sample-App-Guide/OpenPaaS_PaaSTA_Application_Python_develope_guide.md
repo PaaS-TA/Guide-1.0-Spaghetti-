@@ -269,7 +269,7 @@ virtualenv my_virtual_env
 
  django 애플리케이션에서 환경설정은 settings 모듈에 정의하도록 되어 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성](#2-3-3-1)에서 프로젝트 생성을 통해 자동 생성된 my_sampleproject 디렉토리의 settings.py 파일을 의미한다. 샘플어플리케이션에서 사용하는 패키지를 django 애플리케이션에서 사용하기 위해서는 이 settings 모듈에 설정을 추가하거나 수정하여야 한다. 하단에 settings 모듈에서 추가 또는 수정하여야 하는 부분을 설명과 함께 기술한다.
 
-※ 녹색음영으로 표시된 부분이 추가되는 코드, 붉은색 음영으로 표시된 부분이 삭제되는 코드이다.
+※  +으로 표시된 부분이 추가되는 코드, -로 표시된 부분이 삭제되는 코드이다.
 
 ` ..\my_sampleproject\my_sampleproject\settings.py `
 
@@ -281,40 +281,40 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'my_sampleapp',
+    +'rest_framework',
+    +'my_sampleapp',
 )
 
  ※	django rest framework 패키지를 사용할 수 있도록 INSTALLED APPS에 추가한다.
  ※	[2.3.1.2. django 애플리케이션 생성](#2-3-1-2)에서 생성한 애플리케이션을 INSTALLED APPS에 추가한다.
 
-TEMPLATES = [ 생략 ... ]  #다음과 같이 수정
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'static/templates'), ],
-    }, 
-    {
-        'BACKEND': 'django.template.backends.jinja2.Jinja2',
-        'DIRS': [os.path.join(BASE_DIR, 'static/jinja2'), ],
-    },
-]
+-TEMPLATES = [ 생략 ... ]  #다음과 같이 수정
++TEMPLATES = [
++    {
++        'BACKEND': 'django.template.backends.django.DjangoTemplates',
++        'DIRS': [os.path.join(BASE_DIR, 'static/templates'), ],
++    }, 
++    {
++        'BACKEND': 'django.template.backends.jinja2.Jinja2',
++        'DIRS': [os.path.join(BASE_DIR, 'static/jinja2'), ],
++    },
++]
 #	기존의 TEMPLATES를 연두색 음영으로 표시된 부분으로 수정한다.
 #	..\my_sampleproject\static\template 디렉토리에 위치한 템플릿은 django의 기본 템플릿 엔진으로 읽고, ..\my_sampleproject\static\jinja2 디렉토리에 위치한 템플릿은 jinja2 엔진으로 읽기 위해서 위와 같이 수정한다. jinja2 엔진은 템플릿 main.html과 manage.html에 쓰인 일부 신택스를 django의 기본 템플릿 엔진이 정상적으로 읽어낼 수 없기 때문에 사용한다.
 
-TIME_ZONE = 'UTC'  #다음과 같이 수정
-TIME_ZONE = ' Asia/Seoul'
+- TIME_ZONE = 'UTC'  #다음과 같이 수정
++ TIME_ZONE = ' Asia/Seoul'
 #	애플리케이션의 시간 설정을 'Asia/Seoul'로 변경한다
 
-STATIC_BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATICFILES_DIRS = (
-    os.path.join(STATIC_BASE_DIR, '../static/resources'),
-)
-STATIC_ROOT = 'staticfiles' 
++STATIC_BASE_DIR = os.path.dirname(os.path.abspath(__file__))
++STATICFILES_DIRS = (
++    os.path.join(STATIC_BASE_DIR, '../static/resources'),
++)
++STATIC_ROOT = 'staticfiles' 
 #	STATIC_BASE_DIR는 애플리케이션의 경로를 의미한다. 본 문서의 안내대로 진행했다면 애플리케이션의 경로는 '..\my_sampleproject\my_sampleapp'가 된다. 개방형  클라우드 플랫폼에 애플리케이션을 배포할 때, STATIC_BASE_DIR의 상위 디렉토리의 static/resources 경로에 위치한 파일들이 STATIC_ROOT로 정의된 'staticfiles' 디렉토리에 모이게 된다.
 
-STATIC_URL = '/static/'  #다음과 같이 수정
-STATIC_URL = '/resources/'
+-STATIC_URL = '/static/'  #다음과 같이 수정
++STATIC_URL = '/resources/'
 #	샘플의 템플릿에서 사용하는 리소스에 접근할 수 있는 URL
 
 ※ settings 모듈에 DATABASES 설정과 cache 설정 등, 각각의 서비스와 연동할 수 있는 VCAP_SERVICES 정보를 획득하는 코드가 추가되어야 하지만 하단의 [2.3.4.] ~ [2.3.9]에서 자세히 소개하므로 이 장에서는 다루지 않는다.
@@ -325,9 +325,9 @@ WhiteNoise를 사용할 수 있도록 wsgi 모듈을 수정한다.
 `..\my_sampleproject\my_sampleproject\wsgi.py`
 
 ```
-application = get_wsgi_application()
-from whitenoise.django import DjangoWhiteNoise
-application = DjangoWhiteNoise(get_wsgi_application())
+-application = get_wsgi_application()
++from whitenoise.django import DjangoWhiteNoise
++application = DjangoWhiteNoise(get_wsgi_application())
 ```
 
 <div id='2-3-3'></div>

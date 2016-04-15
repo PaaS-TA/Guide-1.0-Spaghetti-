@@ -1848,7 +1848,7 @@ canary_watch_time [Integer or Range, required]: canary 인스턴스가 수행하
 update_watch_time [Integer or Range, required]: non-canary 인스턴스가 수행하기 위한 대기 시간
 max_in_flight [Integer, required]: non-canary 인스턴스가 병렬로 update 하는 최대 개수
 
-# Example
+// Example
 update:
 canaries: 1
 max_in_flight: 10
@@ -1872,7 +1872,7 @@ update [Hash, optional]: 이 job에 대한 특정 업데이트 설정
 properties [Hash, optional]: job 속성을 지정
 
 
-* Example
+// Example
 
 	- name: redis-master
 	  instances: 1

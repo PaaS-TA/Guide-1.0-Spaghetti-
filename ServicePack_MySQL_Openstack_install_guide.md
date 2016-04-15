@@ -137,48 +137,48 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 ```yml
 # openpaas-mysql-openstack-1.0 설정 파일 내용
-name: openpaas-mysql-service      # 서비스 배포이름(필수)
-director_uuid: xxxxx       #bosh status 에서 확인한 Director UUID을 입력(필수)
+name: openpaas-mysql-service     # 서비스 배포이름(필수)
+director_uuid: xxxxx      		 # bosh status 에서 확인한 Director UUID을 입력(필수)
 
 releases:
-- name: openpaas-mysql       #서비스 릴리즈 이름(필수)
-  version: beta-1.0       #서비스 릴리즈 버전(필수): latest 시 업로드된 서비스 릴리즈 최신버전
+- name: openpaas-mysql       	#서비스 릴리즈 이름(필수)
+  version: beta-1.0       		#서비스 릴리즈 버전(필수): latest 시 업로드된 서비스 릴리즈 최신버전
 
 update:
-  canaries: 1       # canary 인스턴스 수(필수)
-  canary_watch_time: 30000-600000      # canary 인스턴스가 수행하기 위한 대기 시간(필수)
-  max_in_flight: 1      # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
-  update_watch_time: 30000-600000     # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
+  canaries: 1       					# canary 인스턴스 수(필수)
+  canary_watch_time: 30000-600000       # canary 인스턴스가 수행하기 위한 대기 시간(필수)
+  max_in_flight: 1      				# non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
+  update_watch_time: 30000-600000     	# non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
 
-compilation:     # 컴파일시 필요한 가상머신의 속성(필수)
-  cloud_properties:     # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone)
+compilation:    				# 컴파일시 필요한 가상머신의 속성(필수)
+  cloud_properties:     		# 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone)
     instance_type: m1.medium    # 인스턴스 타입: Flavors 타입 (필수)
-  network: openpaas_network      # Networks block에서 선언한 network 이름(필수)
-  reuse_compilation_vms: true     # 컴파일지 VM 재사용 여부(옵션)
-  workers: 4   # 컴파일 하는 가상머신의 최대수(필수)
+  network: openpaas_network     # Networks block에서 선언한 network 이름(필수)
+  reuse_compilation_vms: true   # 컴파일지 VM 재사용 여부(옵션)
+  workers: 4   					# 컴파일 하는 가상머신의 최대수(필수)
 
 jobs:
-- instances: 1     # job 인스턴스 수(필수)
-  name: mysql     # 작업 이름(필수): MySQL 서버
-  networks:      # 네트워크 구성정보
+- instances: 1     	# job 인스턴스 수(필수)
+  name: mysql     	# 작업 이름(필수): MySQL 서버
+  networks:      	# 네트워크 구성정보
   - name: openpaas_network     # Networks block에서 선언한 network 이름(필수)
     static_ips: 
-    - 10.20.0.90     # 사용할 IP addresses 정의(필수): MySQL 서버 IP
-persistent_disk: 10000     # 영구적 디스크 사이즈 정의(옵션): 10G
-  properties:      # job에 대한 속성을 지정(필수)
-    admin_password: admin     # MySQL 어드민 패스워드
-    cluster_ips:     # 클러스터 구성시 IPs(필수)
-    - 10.20.0.90      # MySQL 서버 IP
+    - 10.20.0.90     		# 사용할 IP addresses 정의(필수): MySQL 서버 IP
+persistent_disk: 10000    	# 영구적 디스크 사이즈 정의(옵션): 10G
+  properties:      			# job에 대한 속성을 지정(필수)
+    admin_password: admin   # MySQL 어드민 패스워드
+    cluster_ips:     		# 클러스터 구성시 IPs(필수)
+    - 10.20.0.90      		# MySQL 서버 IP
     - 10.20.0.91
     - 10.20.0.92 
-    network_name: openpaas_network     # Networks block에서 선언한 network 이름
+    network_name: openpaas_network     		# Networks block에서 선언한 network 이름
     seeded_databases: null
     syslog_aggregator: null
-    collation_server: utf8_unicode_ci     # Mysql CharSet
-    character_set_server: utf8      # Mysql CharSet
-  release: openpaas-mysql     # 서비스 릴리즈 이름(필수)
-  resource_pool: services-small     # Resource Pools block에 정의한 resource pool 이름(필수)
-  template: mysql      # job template 이름(필수)
+    collation_server: utf8_unicode_ci     	# Mysql CharSet
+    character_set_server: utf8      		# Mysql CharSet
+  release: openpaas-mysql     				# 서비스 릴리즈 이름(필수)
+  resource_pool: services-small     		# Resource Pools block에 정의한 resource pool 이름(필수)
+  template: mysql      						# job template 이름(필수)
 
 - instances: 1
   name: mysql_z2
@@ -223,47 +223,47 @@ persistent_disk: 10000     # 영구적 디스크 사이즈 정의(옵션): 10G
 template: mysql
 
 - instances: 1
-  name: proxy      # 작업 이름(필수): proxy
+  name: proxy      				# 작업 이름(필수): proxy
   networks:
   - name: openpaas_network
-    static_ips: 10.20.0.93     # 사용할 IP addresses 정의(필수): Proxy IP
+    static_ips: 10.20.0.93     	# 사용할 IP addresses 정의(필수): Proxy IP
   properties:
     cluster_ips:
     - 10.20.0.90
     - 10.20.0.91
     - 10.20.0.92
-    external_host: 115.68.151.190.xip.io      # CF 설치시 설정한 외부 호스트 정보(필수)
-    nats:      # CF 설치시 설치한 nats 정보 (필수)
+    external_host: 115.68.151.190.xip.io      	# CF 설치시 설정한 외부 호스트 정보(필수)
+    nats:      									# CF 설치시 설치한 nats 정보 (필수)
       machines:
-      - 10.10.3.11     # nats 서버 IP
-      password: admin     # nats 유저 비밀번호
-      port: 4222     # nats 서버 포트번호
-      user: nats     # nats 서버 유저아이디
+      - 10.10.3.11     			# nats 서버 IP
+      password: admin     		# nats 유저 비밀번호
+      port: 4222     			# nats 서버 포트번호
+      user: nats     			# nats 서버 유저아이디
     network_name: openpaas_network
-    proxy:     # proxy 정보 (필수)
-      api_password: admin     # proxy api 유저 비밀번호(필수)
-      api_username: api     # proxy api 유저아이디
+    proxy:     					# proxy 정보 (필수)
+      api_password: admin     	# proxy api 유저 비밀번호(필수)
+      api_username: api     	# proxy api 유저아이디
     syslog_aggregator: null
   release: openpaas-mysql
   resource_pool: services-small
-  template: proxy     # job template 이름(필수)
+  template: proxy     			# job template 이름(필수)
 
 - instances: 1
-  name: openpaas-mysql-java-broker     # 작업 이름(필수): 서비스 브로커
+  name: openpaas-mysql-java-broker  # 작업 이름(필수): 서비스 브로커
   networks:
   - name: openpaas_network
     static_ips: 
-    - 10.20.0.94     # 사용할 IP addresses 정의(필수): 서비스 브로커 IP 
+    - 10.20.0.94    				# 사용할 IP addresses 정의(필수): 서비스 브로커 IP 
   properties:
-    jdbc_ip: 10.20.0.93     # Mysql Url
-    jdbc_pwd: admin     # Mysql password
-    jdbc_port: 3306      # Mysql port
+    jdbc_ip: 10.20.0.93     	# Mysql Url
+    jdbc_pwd: admin     		# Mysql password
+    jdbc_port: 3306      		# Mysql port
     log_dir: openpaas-mysql-java-broker
     log_file: openpaas-mysql-java-broker
     log_level: INFO 
     release: openpaas-mysql
   resource_pool: services-small      # Resource Pools block에 정의한 resource pool 이름(필수)
-  template: op-mysql-java-broker      # job template 이름(필수)
+  template: op-mysql-java-broker     # job template 이름(필수)
 
 - instances: 1
   lifecycle: errand                  # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로 실행할때 설정, 주로 테스트 용도에 쓰임
@@ -271,18 +271,18 @@ template: mysql
   networks:
   - name: openpaas_network
   properties:
-    broker:                 # 서비스 브로커 설정 정보
-      host: 10.30.40.195      # 서비스 브로커 IP 
-      name: mysql-service      # 서비스 명
-      password: cloudfoundry     # 서비스 브로커 인증 패스워드
-      username: admin      # 서비스 브러커 인증 아이디
-      protocol: http      # 서비스 브로커 프로토콜
-      port: 8080       # 서비스 프로커 서비스 포트
+    broker:                 	# 서비스 브로커 설정 정보
+      host: 10.30.40.195      	# 서비스 브로커 IP 
+      name: mysql-service      	# 서비스 명
+      password: cloudfoundry    # 서비스 브로커 인증 패스워드
+      username: admin      		# 서비스 브러커 인증 아이디
+      protocol: http      		# 서비스 브로커 프로토콜
+      port: 8080       			# 서비스 프로커 서비스 포트
     cf:
-      admin_password: admin      # CF 사용자 암호
-      admin_username: admin      # CF 사용자 아이디
-      api_url: https://api.115.68.151.190.xip.io      # CF 주소
-      skip_ssl_validation: true      # CF SSL 접속 여부
+      admin_password: admin     # CF 사용자 암호
+      admin_username: admin     # CF 사용자 아이디
+      api_url: https://api.115.68.151.190.xip.io    # CF 주소
+      skip_ssl_validation: true     				# CF SSL 접속 여부
   release: openpaas-mysql
   resource_pool: services-errand
   template: broker-registrar
@@ -305,10 +305,10 @@ template: mysql
   template: broker-deregistrar
 
 meta:
-  apps_domain: 115.68.151.190.xip.io               # CF 설치시 설정한 apps 도메인 정보
+  apps_domain: 115.68.151.190.xip.io        # CF 설치시 설정한 apps 도메인 정보
   environment: null
-  external_domain: 115.68.151.190.xip.io               # CF 설치시 설정한 외부 도메인 정보
-  nats:                                    # CF 설치시 설정한 nats 정보
+  external_domain: 115.68.151.190.xip.io    # CF 설치시 설정한 외부 도메인 정보
+  nats:                                    	# CF 설치시 설정한 nats 정보
     machines:
     - 10.10.3.11
     password: admin
@@ -320,8 +320,8 @@ networks:                       # 네트워크 블록에 나열된 각 서브 �
 - name: openpaas_network
   subnets:
   - cloud_properties:
-      net_id: 7b49e746-161a-4f90-9ed6-c93e27122a1a       # OpenStack에서 사용하는 network 이름 아이디(필수)
-      security_groups:      # OpenStack 에서 사용하는 접근 시큐리티 이름 이름(필수)
+      net_id: 7b49e746-161a-4f90-9ed6-c93e27122a1a      # OpenStack에서 사용하는 network 이름 아이디(필수)
+      security_groups:      							# OpenStack 에서 사용하는 접근 시큐리티 이름 이름(필수)
       - cf-security
       - bosh
       - default 
@@ -339,14 +339,14 @@ type: manual
 properties: {}
 
 resource_pools:      # 배포시 사용하는 resource pools를 명시하며 여러 개의 resource pools 을 사용할 경우 name 은 unique 해야함(필수)
-- cloud_properties:      # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성을 설명 (instance_type, availability_zone)
-    instance_type: m1. small       #인스턴스 타입: Flovers 타입(필수)
-  name: services-small      # 고유한 resource pool 이름
+- cloud_properties:      		# 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성을 설명 (instance_type, availability_zone)
+    instance_type: m1. small    #인스턴스 타입: Flovers 타입(필수)
+  name: services-small      	# 고유한 resource pool 이름
   network: openpaas_network
- # size: 3       # resource pool 안의 가상머신 개수, 주의) jobs 인스턴스 보다 작으면 에러가 남, size 정의하지 않으면 자동으로 가상머신 크기 설정
+ # size: 3       				# resource pool 안의 가상머신 개수, 주의) jobs 인스턴스 보다 작으면 에러가 남, size 정의하지 않으면 자동으로 가상머신 크기 설정
   stemcell:
-    name: bosh-openstack-kvm-ubuntu-trusty-go_agent      # stemcell 이름(필수)
-    version: "3147"      # stemcell 버전(필수)
+    name: bosh-openstack-kvm-ubuntu-trusty-go_agent     # stemcell 이름(필수)
+    version: "3147"      								# stemcell 버전(필수)
 ```
 <br>
 
@@ -602,6 +602,9 @@ applications:
 
 >![update_mysql_openstack_33]
 
+> 브라우져에서 확인
+>![update_mysql_vsphere_34]
+
 
 # 4. MySQL Client 툴 접속
 
@@ -729,41 +732,7 @@ HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트�
 
 
 [mysql_openstack_1.3.01]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_1.3.01.png
-[mysql_openstack_2.2.01]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_2.2.01.png
-[mysql_openstack_2.2.02]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_2.2.02.png
-[mysql_openstack_2.2.03]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_2.2.03.png
-[mysql_openstack_2.2.04]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_2.2.04.png
-[mysql_openstack_2.2.05]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_2.2.05.png
-[mysql_openstack_2.2.06]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_2.2.06.png
-[mysql_openstack_2.2.07]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_2.2.07.png
-[mysql_openstack_2.2.08]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_2.2.08.png
-[mysql_openstack_2.3.01]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_2.3.01.png
-[mysql_openstack_2.3.02]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_2.3.02.png
-[mysql_openstack_2.3.03]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_2.3.03.png
-[mysql_openstack_2.3.04]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_2.3.04.png
-[mysql_openstack_2.3.05]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_2.3.05.png
-[mysql_openstack_2.3.06]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_2.3.06.png
-[mysql_openstack_2.3.07]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_2.3.07.png
-[mysql_openstack_2.3.08]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_2.3.08.png
-[mysql_openstack_2.3.09]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_2.3.09.png
-[mysql_openstack_2.4.01]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_2.4.01.png
-[mysql_openstack_2.4.02]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_2.4.02.png
-[mysql_openstack_2.4.03]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_2.4.03.png
-[mysql_openstack_2.4.04]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_2.4.04.png
-[mysql_openstack_2.4.05]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_2.4.05.png
-[mysql_openstack_3.1.01]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_3.1.01.png
-[mysql_openstack_3.2.01]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_3.2.01.png
-[mysql_openstack_3.2.02]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_3.2.02.png
-[mysql_openstack_3.2.03]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_3.2.03.png
-[mysql_openstack_3.3.01]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_3.3.01.png
-[mysql_openstack_3.3.02]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_3.3.02.png
-[mysql_openstack_3.3.03]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_3.3.03.png
-[mysql_openstack_3.3.04]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_3.3.04.png
-[mysql_openstack_3.3.05]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_3.3.05.png
-[mysql_openstack_3.3.06]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_3.3.06.png
-[mysql_openstack_3.3.07]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_3.3.07.png
-[mysql_openstack_3.3.08]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_3.3.08.png
-[mysql_openstack_3.3.09]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_3.3.09.png
+
 [mysql_openstack_4.1.01]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_4.1.01.png
 [mysql_openstack_4.1.02]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_4.1.02.png
 [mysql_openstack_4.1.03]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_4.1.03.png
@@ -816,3 +785,5 @@ HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트�
 [update_mysql_openstack_31]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_31.png
 [update_mysql_openstack_32]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_32.png
 [update_mysql_openstack_33]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_33.png
+
+[update_mysql_vsphere_34]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_34.png

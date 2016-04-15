@@ -69,8 +69,8 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 #### <a name="2.2"/>2.2 RabbitMQ 서비스 릴리즈 업로드
 
-- OpenPaaS-Services.zip 파일 압축을 풀고폴더안에 있는RabbitMQ 서비스 릴리즈openpaas-rabbitmq-release-1.0.tgz파일을복사한다.  
-업로드할openpaas-rabbitmq-release-1.0.tgz 파일을 확인한다.
+- OpenPaaS-Services.zip 파일 압축을 풀고폴더안에 있는RabbitMQ 서비스 릴리즈 openpaas-rabbitmq-release-1.0.tgz파일을복사한다.  
+업로드할 openpaas-rabbitmq-release-1.0.tgz 파일을 확인한다.
 
 ><div>$ ls –all</div>
 ![rabbitmq_aws_(2)]
@@ -100,8 +100,8 @@ $ bosh upload release openpaas-rabbitmq-release-1.0.tgz</div>
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.  
 Deployment manifest 에는 software를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
 
-- OpenPaaS-Deployment.zip 파일 압축을 풀고폴더안에 있는OpenStack용 RabbitMQ Deployment 화일인openpaas-rabbitmq-openstack.yml를 복사한다.
-- 다운로드 받은 Deployment Yml 파일을 확인한다. (openpaasrabbitmq-openstack.yml)
+- OpenPaaS-Deployment.zip 파일 압축을 풀고폴더안에 있는OpenStack용 RabbitMQ Deployment 화일인 openpaas-rabbitmq-aws.yml를 복사한다.
+- 다운로드 받은 Deployment Yml 파일을 확인한다. (openpaasrabbitmq-aws.yml)
 
 ><div>$ ls –all</div>
 ![rabbitmq_aws_(9)]
@@ -118,10 +118,11 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 B
 ![rabbitmq_aws_(11)]<br><br>
 Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3147 버전을 업로드를 해야 한다.
 
-- openpaas-rabbitmq-aws.yml Deployment 파일을 서버 환경에 맞게 수정한다. (빨간색으로 표시된 부분 특히 주의)
+- openpaas-rabbitmq-aws.yml Deployment 파일을 서버 환경에 맞게 수정한다.
 
 
 $ vi openpaas-rabbitmq-aws.yml
+
 ```yml
 # openpaas-rabbitmq-aws 설정 파일 내용
 ---
@@ -402,8 +403,8 @@ resource_pools:                   # 배포시 사용하는 resource pools를 명
 
 - Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 
-><div>$bosh deployment {Deployment manifest 파일 PATH}<br>
-$bosh deployment openpaas-rabbitmq-aws.yml</div>
+><div>$ bosh deployment {Deployment manifest 파일 PATH}<br>
+$ bosh deployment openpaas-rabbitmq-aws.yml</div>
 ![rabbitmq_aws_(12)]
 
 - RabbitMQ 서비스팩을 배포한다.

@@ -157,14 +157,12 @@ update:
   canary_watch_time: 30000-600000      # canary 인스턴스가 수행하기 위한 대기 시간(필수)
   max_in_flight: 1                     # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
   update_watch_time: 30000-600000      # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
-
 compilation::                        # 컴파일시 필요한 가상머신의 속성(필수)
   cloud_properties:                  # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone)
     instance_type: m1.small          # 인스턴스 타입: Flavors 타입 (필수)
   network: openpaas_network          # Networks block에서 선언한 network 이름(필수)
   reuse_compilation_vms: true        # 컴파일지 VM 재사용 여부(옵션)
   workers: 6                         # 컴파일 하는 가상머신의 최대수(필수)
-
 jobs:
 - instances: 1
   name: openpaas-redis-broker       # 작업 이름(필수)
@@ -183,7 +181,6 @@ jobs:
   templates:
   - name: cf-redis-broker           # job template 이름(필수)
     release: cf-redis               # 서비스 릴리즈 이름(필수)
-
 - instances: 5                      # 생성하는 인스턴스 수(필수)
   name: dedicated-node              # 작업 이름(필수)
   networks:
@@ -200,7 +197,6 @@ jobs:
   - name: dedicated-node            # job template 이름(필수)
     release: cf-redis
   syslog_aggregator: null
-
 - instances: 1
   lifecycle: errand                # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로 실행할때 설정, 주로 테스트 용도에 쓰임
   name: broker-registrar           # 작업 이름: 서비스 브로커 등록
@@ -226,7 +222,6 @@ jobs:
   templates:
   - name: broker-registrar                # job template 이름(필수)
     release: cf-redis
-
 - instances: 1
   lifecycle: errand
   name: broker-deregistrar               # 작업이름: 서비스 브로커 삭제
@@ -242,7 +237,6 @@ jobs:
   templates:
   - name: broker-deregistrar
     release: cf-redis
-
 - instances: 1
   lifecycle: errand
   name: smoke-tests                       # 작업이름: 서비스팩이 정상적으로 설치 되었는 테스트
@@ -262,7 +256,6 @@ meta:
     port: 4222                              # nats 서버 포트번호
     username: nats                          # nats 서버 유저아이디
   syslog_aggregator: null
-
 networks:
 - name: openpaas_network
   subnets:
@@ -282,7 +275,6 @@ networks:
     static:                              # 사용 가능한 IP 설정
     - 10.20.0.81 - 10.20.0.86
   type: manual
-
 properties:
   cf:
     admin_password: admin                                # CF 어드민 아이디 비밀번호(필수)
@@ -320,7 +312,6 @@ properties:
     maxmemory: 262144000                        # 최대 메모리
     save_command: anotherrandomstring           # 저장 명령어가 있을 경우(옵션)
   syslog_aggregator: null
-
 resource_pools:                  # 배포시 사용하는 resource pools를 명시하며 여러 개의 resource pools 을 사용할 경우 name 은 unique 해야함(필수)
 - cloud_properties:              # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성을 설명 (instance_type, availability_zone)
     instance_type: m1.small      # 인스턴스 타입: Flovers 타입(필수)
@@ -333,10 +324,7 @@ resource_pools:                  # 배포시 사용하는 resource pools를 명�
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent     #stemcell 이름(필수)
     version: 3147                                        #stemcell 버전(필수)
-
 ```
-
-
 
 Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 

@@ -99,10 +99,10 @@ Service Broker는 6개의 기본 API 기능이 필요하다. (상세 설명은 �
 >![openpaas-servicepack-05]
 
 Service Broker API의 두 가지 주요 버전은 현재 개방형 클라우드 플랫폼 v1 및 v2를 지원한다. v1은 사용 되지 않으며 개방형 클라우드 플랫폼의 다음 버전에서 제거 될 수 있으니 Service Broker는 v2로 구현하는 것을 권장한다.
--	버전 정보 (가이드 문서는 2.5 버전을 기준으로 작성함)
+- 버전 정보 (가이드 문서는 2.5 버전을 기준으로 작성함)
 >![openpaas-servicepack-06]
 
--	인증
+- 인증
 Cloud Controller 는 모든 요청에 HTTP 기본 인증(인증 헤더)을 사용하여 Broker와 인증하여 사용자 이름과 암호를 포함하지 않는 모든 Broker 등록을 거부한다. Broker는 사용자 이름과 암호를 확인하고 자격 증명이 유효하지 않은 경우 401 Unauthorized 메시지를 반환 한다. Cloud Controller에서 추가 보안이 요구되는 경우 SSL을 사용하여 브로커에 접속 지원을 한다.
 
 ##### 2.5.1. Catalog API 가이드

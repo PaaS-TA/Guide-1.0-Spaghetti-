@@ -1,47 +1,46 @@
 
 ## Table of Contents
 1. [개요](#1)	
-	* [1.1. 문서 개요]	
-	* [1.1.1. 목적]	
-	* [1.1.2. 범위]	
-	* [1.1.3. 참고 자료]	
-2.	Service Broker API 개발 가이드	
-2.1.	개요	
-2.2.	Service Architecture	
-2.3.	Service Broker API Architecture	
-2.4.	Pivotal(Cloud Foundry) Marketplace Model	
-2.5.	개발 가이드	
-2.5.1.	Catalog API 가이드	
-2.5.2.	Provision API 가이드	
-2.5.3.	Update Instance API 가이드	
-2.5.4.	Deprovision API 가이드	
-2.5.5.	Bind API 가이드	
-2.5.6.	Unbind API 가이드	
-3.	Service release 개발 가이드	
-3.1.	개요	
-3.2.	Bosh Architecture	
-3.3.	Release Directory 구조	
-3.3.1.	packages	
-3.3.2.	jobs	
-3.3.3.	src	
-3.3.4.	shared	
-3.3.5.	releases	
-3.3.6.	config	
-3.3.7.	.final_builds	
-3.3.8.	deployments	
-3.3.9.	content_migrations	
-3.4.	개발 가이드	
-3.4.1.	packages 가이드	
-3.4.1.1.	packaging	
-3.4.1.2.	pre_packaging	
-3.4.1.3.	spec	
-3.4.2.	jobs 가이드	
-3.4.2.1.	templates	
-3.4.2.2.	monit	
-3.4.2.3.	spec	
-4.	Deployment Guide	
-5.	Deploy Guide	
-
+	* [1.1. 문서 개요](#2)	
+	* [1.1.1. 목적](#3)
+	* [1.1.2. 범위](#4)
+	* [1.1.3. 참고 자료](#5)	
+2. [Service Broker API 개발 가이드](#6)	
+	* [2.1. 개요](#7)	
+	* [2.2.	Service Architecture](#8)
+	* [2.3.	Service Broker API Architecture](#9)	
+	* [2.4.	Pivotal(Cloud Foundry) Marketplace Model](#10)	
+	* [2.5.	개발 가이드](#11)	
+	* [2.5.1. Catalog API 가이드](#12)	
+	* [2.5.2. Provision API 가이드](#13)	
+	* [2.5.3. Update Instance API 가이드](#14)	
+	* [2.5.4. Deprovision API 가이드](#15)	
+	* [2.5.5. Bind API 가이드](#16)	
+	* [2.5.6. Unbind API 가이드](#17)	
+3. [Service release 개발 가이드](#18)	
+	* [3.1.	개요](#19)	
+	* [3.2.	Bosh Architecture](#20)	
+	* [3.3.	Release Directory 구조](#21)	
+	* [3.3.1. packages](#22)	
+	* [3.3.2. jobs](#23)
+	* [3.3.3. src](#24)	
+	* [3.3.4. shared](#25)	
+	* [3.3.5. releases](#26)	
+	* [3.3.6. config](#27)	
+	* [3.3.7. final_builds](#28)	
+	* [3.3.8. deployments](#29)	
+	* [3.3.9. content_migrations](#30)	
+	* [3.4.	개발 가이드](#31)	
+	* [3.4.1. packages 가이드](#32)	
+	* [3.4.1.1. packaging](#33)
+	* [3.4.1.2. pre_packaging](#34)	
+	* [3.4.1.3. spec](#35)	
+	* [3.4.2. jobs 가이드](#36)	
+	* [3.4.2.1. templates](#37)	
+	* [3.4.2.2. monit](#38)	
+	* [3.4.2.3. spec](#39)	
+4. [Deployment Guide](#40)	
+5. [Deploy Guide](#41)	
 
 ### <a name="1"/> 1. 개요
 #### 1.1. 문서 개요

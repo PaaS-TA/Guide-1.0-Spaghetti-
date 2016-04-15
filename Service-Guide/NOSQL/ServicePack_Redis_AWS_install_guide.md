@@ -34,7 +34,7 @@
 
 본 문서의 설치된 시스템 구성도입니다. Redis dedicated-node(2대), Redis 서비스 브로커로 최소사항을 구성하였다.
 
-![시스템 구성도][./image/redis_aws/redis_aws2]
+![시스템 구성도][./image/redis_aws/redis_aws2.png]
 
 <table>
   <tr>

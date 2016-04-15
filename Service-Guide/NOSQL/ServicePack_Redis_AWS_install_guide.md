@@ -149,11 +149,9 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 B
 # openpaas-redis-aws-1.0 설정 파일 내용
 name: openpaas-redis-service                            # 서비스 배포 이름(필수)
 director_uuid: 3475c880-8836-4a73-9309-c65bc9ac20c6     # bosh status 에서 확인한 Director UUID을 입력(필수)
-
 releases:
 - name: cf-redis                  # 서비스 릴리즈 이름(필수)
   version: 1.0               # 서비스 릴리즈 버전(필수): latest 시 업로드된 서비스 릴리즈 최신버전
-
 update:
   canaries: 1                          # canary 인스턴스 수(필수)
   canary_watch_time: 30000-600000      # canary 인스턴스가 수행하기 위한 대기 시간(필수)

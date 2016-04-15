@@ -52,21 +52,20 @@
 </table>
 
 #### <a name="1.4"/>1.4 참고자료
-[**http://bosh.io/docs**](http://bosh.io/docs)
-
+[**http://bosh.io/docs**](http://bosh.io/docs)  
 [**http://docs.cloudfoundry.org**](http://docs.cloudfoundry.org)
 
 ## <a name="2"/>2. RabbitMQ 서비스팩 설치
 #### <a name="2.1"/>2.1 설치전 준비사항
-본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.
-서비스팩 설치를 위해서는 먼저 BOSH-lite 가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.
-BOSH-lite 가 설치 되어 있지 않을 경우 먼저 BOSH-lite 설치 가이드 문서를 참고 하여 BOSH-lite를 설치 해야 한다.
+본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.  
+서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.  
+BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여BOSH CLI를 설치 해야 한다.  
 OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Deployment.zip, OpenPaaS-Sample-Apps.zip, OpenPaaS-Services.zip)
 
 #### <a name="2.2"/>2.2 RabbitMQ 서비스 릴리즈 업로드
 
-- OpenPaaS-Services.zip 파일 압축을 풀고 폴더안에 있는 RabbitMQ 서비스 릴리즈 openpaas-rabbitmq-release-beta-1.0.tgz 파일을 복사한다.
-업로드할 openpaas-rabbitmq-release-beta-1.0.tgz 파일을 확인한다.
+- OpenPaaS-Services.zip 파일 압축을 풀고폴더안에 있는RabbitMQ 서비스 릴리즈openpaas-rabbitmq-release-1.0.tgz파일을복사한다.  
+업로드할openpaas-rabbitmq-release-1.0.tgz 파일을 확인한다.
 
 ><div>$ ls –all</div>
 ![rabbitmq_aws_(2)]
@@ -80,7 +79,7 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 - RabbitMQ 서비스 릴리즈 파일을 업로드한다.
 
 ><div>$ bosh upload release {서비스 릴리즈 파일 PATH}<br>
-$ bosh upload release openpaas-rabbitmq-release-beta-1.0.tgz</div>
+$ bosh upload release openpaas-rabbitmq-release-1.0.tgz</div>
 ![rabbitmq_aws_(4)]<br>
 ![rabbitmq_aws_(5)]<br>
 ![rabbitmq_aws_(6)]<br>
@@ -126,7 +125,7 @@ name: openpaas-rabbitmq-service                 # 서비스 배포이름(필수)
 
 releases:
 - name: openpaas-rabbitmq                       #서비스 릴리즈 이름(필수)
-  version: beta-1.0                             #서비스 릴리즈 버전(필수): latest 시 업로드된 서비스 릴리즈 최신버전
+  version: 1.0                                  #서비스 릴리즈 버전(필수): latest 시 업로드된 서비스 릴리즈 최신버전
 
 jobs:
 - name: rmq                                     # job 이름 (rabbitmq 서버)

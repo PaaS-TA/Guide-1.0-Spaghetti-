@@ -58,7 +58,7 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 >`$ ls –all`  
 
->![mysql_openstack_2.2.01]
+>![update_mysql_openstack_01]
 
 <br>
 
@@ -70,15 +70,17 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 >※ 하단의 화면은 릴리즈 파일을 tarball 형태로 압축하지 않고 릴리즈를 업로드하고 있다. 본 문서에서 안내하는 방법대로 tarball 형태로 릴리즈 파일 압축하여 업로드 할 경우에 출력되는 화면은 하단의 화면과 다소 차이가 있다.
 
->![mysql_openstack_2.2.03]
+>![update_mysql_openstack_02]
 
->![mysql_openstack_2.2.04]
+>![update_mysql_openstack_03]
 
->![mysql_openstack_2.2.05]
+>![update_mysql_openstack_04]
 
->![mysql_openstack_2.2.06]
+>![update_mysql_openstack_05]
 
->![mysql_openstack_2.2.07]
+>![update_mysql_openstack_06]
+
+>![update_mysql_openstack_07]
 
 <br>
 
@@ -86,7 +88,7 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 >`$ bosh releases`
 
->![mysql_openstack_2.2.08]
+>![update_mysql_openstack_08]
 
 >Mysql 서비스 릴리즈가 업로드 되어 있는 것을 확인
 
@@ -105,7 +107,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 >`$ ls –all`
 
->![mysql_openstack_2.3.01]
+>![update_mysql_openstack_09]
 
 <br>
 
@@ -115,7 +117,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 >`$ bosh status`
 
->![mysql_openstack_2.3.02]
+>![update_mysql_openstack_10]
 
 <br>
 
@@ -123,7 +125,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 >`$ bosh stemcells`
 
->![mysql_openstack_2.3.03]
+>![update_mysql_openstack_11]
 
 >Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3147 버전을 업로드를 해야 한다.
 
@@ -354,7 +356,7 @@ resource_pools:      # 배포시 사용하는 resource pools를 명시하며 여
 
 >`$ bosh deployment openpaas-mysql-openstack-1.0.yml`
 
->![mysql_openstack_2.3.04]
+>![update_mysql_openstack_12]
 
 <br>
 
@@ -362,11 +364,9 @@ resource_pools:      # 배포시 사용하는 resource pools를 명시하며 여
 
 >`$ bosh deploy`
 
->![mysql_openstack_2.3.05]
+>![update_mysql_openstack_13]
 
->![mysql_openstack_2.3.06]
-
->![mysql_openstack_2.3.07]
+>![update_mysql_openstack_14]
 
 <br>
 
@@ -374,7 +374,7 @@ resource_pools:      # 배포시 사용하는 resource pools를 명시하며 여
 
 >`$ bosh vms openpaas-mysql-service`
 
->![mysql_openstack_2.3.08]
+>![update_mysql_openstack_15]
 
 ### 2.4. MySQL 서비스 브로커 등록
 Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 MySQL 서비스 브로커를 등록해 주어야 한다.  
@@ -384,7 +384,7 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 >`$ cf service-brokers`
 
->![mysql_openstack_2.4.01]
+>![update_mysql_openstack_16]
 
 <br>
 
@@ -399,7 +399,7 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 >`$cf create-service-broker mysql-service-broker admin cloudfoundry http://10.0.0.95:8080`
 
->![mysql_openstack_2.4.02]
+>![update_mysql_openstack_17]
 
 <br>
 
@@ -407,7 +407,7 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 >`$ cf service-brokers`
 
->![mysql_openstack_2.4.03]
+>![update_mysql_openstack_18]
 
 <br>
 
@@ -415,7 +415,7 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 >`$ cf service-access`
 
->![mysql_openstack_2.4.04]
+>![update_mysql_openstack_19]
 
 >서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.
 
@@ -427,7 +427,7 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 >`$ cf service-access`
 
->![mysql_openstack_2.4.05]
+>![update_mysql_openstack_20]
 
 # 3. MySQL 연동 Sample Web App 설명
 본 Sample Web App은 개방형 클라우드 플랫폼에 배포되며 MySQL의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
@@ -449,7 +449,7 @@ Sample Web App 구조는 다음과 같다.
 
 >`$ls -all`
 
->![mysql_openstack_3.1.01]
+>![update_mysql_openstack_21]
 
 <br>
 
@@ -464,7 +464,7 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 
 >`$cf marketplace`
 
->![mysql_openstack_3.2.01]
+>![update_mysql_openstack_22]
 
 <br>
 
@@ -478,7 +478,7 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 
 >`$ cf create-service 'Mysql-DB' Mysql-Plan2-100con mysql-service-instance`
 
->![mysql_openstack_3.2.02]
+>![update_mysql_openstack_23]
 
 <br>
 
@@ -486,7 +486,7 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 
 >`$ cf services`
 
->![mysql_openstack_3.2.03]
+>![update_mysql_openstack_24]
 
 <br>
 
@@ -521,20 +521,20 @@ applications:
 
 >`$ cf push --no-start`
 
->![mysql_openstack_3.3.01]
+>![update_mysql_openstack_25]
 
 <br>
 
 ##### 배포된 Sample App을 확인하고 로그를 수행한다.
 >`$ cf apps`
 
->![mysql_openstack_3.3.02]
+>![update_mysql_openstack_26]
 
 >`$ cf logs {배포된 App명}`  
 
 >`$ cf logs hello-spring-mysql`
 
->![mysql_openstack_3.3.03]
+>![update_mysql_openstack_27]
 
 <br>
 
@@ -542,7 +542,7 @@ applications:
 
 >`$ cf bind-service hello-spring-mysql mysql-service-instance`
 
->![mysql_openstack_3.3.04]
+>![update_mysql_openstack_28]
 
 <br>
 
@@ -550,7 +550,7 @@ applications:
 
 >`$ cf restart hello-spring-mysql`
 
->![mysql_openstack_3.3.05]
+>![update_mysql_openstack_29]
 
 >(참고) 바인드 후 App구동시 Mysql 서비스 접속 에러로 App 구동이 안될 경우 보안 그룹을 추가한다.  
 
@@ -574,7 +574,7 @@ applications:
 
 >`$ cf create-security-group p-mysql rule.json`
 
->![mysql_openstack_3.3.06]
+>![update_mysql_openstack_30]
 
 <br>
 
@@ -582,7 +582,7 @@ applications:
 
 >`$ cf bind-running-security-group p-mysql`
 
->![mysql_openstack_3.3.07]
+>![update_mysql_openstack_31]
 
 <br>
 
@@ -590,7 +590,7 @@ applications:
 
 >`$ cf restart hello-spring-mysql`
 
->![mysql_openstack_3.3.08]
+>![update_mysql_openstack_32]
 
 <br>
 
@@ -600,7 +600,7 @@ applications:
 
 >`$ curl hello-spring-mysql.52.71.64.39.xip.io`
 
->![mysql_openstack_3.3.09]
+>![update_mysql_openstack_33]
 
 
 # 4. MySQL Client 툴 접속
@@ -781,3 +781,38 @@ HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트�
 [mysql_openstack_4.1.15]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_4.1.15.png
 [mysql_openstack_4.1.16]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_4.1.16.png
 [mysql_openstack_4.1.17]:/images/openpaas-service/mysql/mysql_openstack/mysql_openstack_4.1.17.png
+
+
+[update_mysql_openstack_01]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_01.png
+[update_mysql_openstack_02]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_02.png
+[update_mysql_openstack_03]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_03.png
+[update_mysql_openstack_04]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_04.png
+[update_mysql_openstack_05]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_05.png
+[update_mysql_openstack_06]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_06.png
+[update_mysql_openstack_07]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_07.png
+[update_mysql_openstack_08]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_08.png
+[update_mysql_openstack_09]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_09.png
+[update_mysql_openstack_10]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_10.png
+[update_mysql_openstack_11]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_11.png
+[update_mysql_openstack_12]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_12.png
+[update_mysql_openstack_13]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_13.png
+[update_mysql_openstack_14]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_14.png
+[update_mysql_openstack_15]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_15.png
+[update_mysql_openstack_16]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_16.png
+[update_mysql_openstack_17]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_17.png
+[update_mysql_openstack_18]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_18.png
+[update_mysql_openstack_19]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_19.png
+[update_mysql_openstack_20]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_20.png
+[update_mysql_openstack_21]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_21.png
+[update_mysql_openstack_22]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_22.png
+[update_mysql_openstack_23]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_23.png
+[update_mysql_openstack_24]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_24.png
+[update_mysql_openstack_25]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_25.png
+[update_mysql_openstack_26]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_26.png
+[update_mysql_openstack_27]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_27.png
+[update_mysql_openstack_28]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_28.png
+[update_mysql_openstack_29]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_29.png
+[update_mysql_openstack_30]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_30.png
+[update_mysql_openstack_31]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_31.png
+[update_mysql_openstack_32]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_32.png
+[update_mysql_openstack_33]:/images/openpaas-service/mysql/mysql_openstack/update_mysql_openstack_33.png

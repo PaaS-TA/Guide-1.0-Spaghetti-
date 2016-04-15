@@ -31,23 +31,28 @@
 <table>
   <tr>
     <td>구분</td>
-    <td>스펙</td>
+    <td>Resource Pool</td>
+    <td>Instance Type / 스펙</td>
   </tr>
   <tr>
     <td>openpaasrmq-broker</td>
-    <td>2vCPU / 2GB RAM / 20GB Disk+2GB(영구적 Disk)</td>
+    <td>services-small</td>
+    <td>m1.small (1vCPU / 1.7GB RAM / 160GB Disk)</td>
   </tr>
   <tr>
     <td>haproxy</td>
-    <td>2vCPU / 2GB RAM / 20GB Disk+1GB(영구적 Disk)</td>
+    <td>services-small</td>
+    <td>m1.small (1vCPU / 1.7GB RAM / 160GB Disk)</td>
   </tr>
   <tr>
     <td>rmq1</td>
-    <td>2vCPU / 2GB RAM / 20GB Disk+2GB(영구적 Disk)</td>
+    <td>services-small</td>
+    <td>m1.small (1vCPU / 1.7GB RAM / 160GB Disk)</td>
   </tr>
   <tr>
     <td>rmq2</td>
-    <td>2vCPU / 2GB RAM / 20GB Disk+2GB(영구적 Disk)</td>
+    <td>services-small</td>
+    <td>m1.small (1vCPU / 1.7GB RAM / 160GB Disk)</td>
   </tr>
 </table>
 
@@ -111,86 +116,87 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 B
 
 ><div>$ bosh stemcells</div>
 ![rabbitmq_aws_(11)]<br><br>
-Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 2776 버전을 업로드를 해야 한다.
+Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3147 버전을 업로드를 해야 한다.
 
-- openpaasrabbitmq-openstack.yml Deployment 파일을 서버 환경에 맞게 수정한다. (빨간색으로 표시된 부분 특히 주의)
+- openpaas-rabbitmq-aws.yml Deployment 파일을 서버 환경에 맞게 수정한다. (빨간색으로 표시된 부분 특히 주의)
 
-<pre>
-$vi openpaasrabbitmq-openstack.yml
 
-# openpaasrabbitmq-openstack 설정 파일 내용
-name: openpaas-rabbitmq-service                       # 서비스 배포이름(필수)
-director_uuid: xxxxx#bosh status 에서 확인한 Director UUID을 입력(필수)
+$ vi openpaas-rabbitmq-aws.yml
+```yml
+# openpaas-rabbitmq-aws 설정 파일 내용
+---
+name: openpaas-rabbitmq-service                    # 서비스 배포이름(필수)
+director_uuid: f7f7e2a8-aae9-4be7-8e11-70d91e4fccc1        # bosh status 에서 확인한 Director UUID을 입력(필수)
 
 releases:
-- name: openpaas-rabbitmq             #서비스 릴리즈 이름(필수)
-  version: 1.0    #서비스 릴리즈 버전(필수): latest 시 업로드된 서비스 릴리즈 최신버전
+- name: openpaas-rabbitmq                    # 서비스 릴리즈 이름(필수)
+  version: 1.0      # 서비스 릴리즈 버전(필수): latest 시 업로드된 서비스 릴리즈 최신버전
 
 update:
-  canaries: 1                    # canary 인스턴스 수(필수)
-canary_watch_time: 30000-600000    # canary 인스턴스가 수행하기 위한 대기 시간(필수)
-max_in_flight: 1               # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
-update_watch_time: 30000-600000    # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
+  canaries: 1                        # canary 인스턴스 수(필수)
+  canary_watch_time: 30000-600000   # canary 인스턴스가 수행하기 위한 대기 시간(필수)
+  max_in_flight: 1                   # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
+  update_watch_time: 30000-600000     # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
 
-compilation:                           #컴파일시 필요한 가상머신의 속성(필수)
-cloud_properties: # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone)
-instance_type: m1.medium          # 인스턴스 타입: Flavors 타입 (필수)
-  network: openpaas_network    # Networks block에서 선언한 network 이름(필수)
-reuse_compilation_vms: true     # 컴파일지 VM 재사용 여부(옵션)
-  workers: 6              # 컴파일 하는 가상머신의 최대수(필수)
+compilation:                      # 컴파일시 필요한 가상머신의 속성(필수)
+  cloud_properties:            # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone)
+    instance_type: m1.medium               # 인스턴스 타입: Flavors 타입 (필수)
+  network: openpaas_network               # Networks block에서 선언한 network 이름(필수)
+  reuse_compilation_vms: true               # 컴파일지 VM 재사용 여부(옵션)
+  workers: 6                               # 컴파일 하는 가상머신의 최대수(필수)
 
 jobs:
-- instances: 1                         # job 인스턴스 수(필수)
-  name: openpaas-rmq-broker# 작업 이름(필수): rabbitmq서비스 브로커
-  networks:# 네트워크 구성정보
-  - name: openpaas_network         # Networks block에서 선언한 network 이름(필수)
-static_ips:
-    - 10.10.7.81# 사용할 IP addresses 정의(필수): Rabbitmq브로커 IP
-persistent_disk: 2048         # 영구적 디스크 사이즈 정의(옵션): 2G
-resource_pool: services-small         # Resource Pools block에 정의한 resource pool 이름(필수)
+- instances: 1                               # job 인스턴스 수(필수)
+  name: openpaas-rmq-broker               # 작업 이름(필수): rabbitmq서비스 브로커
+  networks:
+  - name: openpaas_network                # Networks block에서 선언한 network 이름(필수)
+    static_ips:
+    - 10.0.0.111                         # 사용할 IP addresses 정의(필수): Rabbitmq브로커 IP
+#  persistent_disk: 2048              # 영구적 디스크 사이즈 정의(옵션): 2G
+  resource_pool: services-small         # Resource Pools block에 정의한 resource pool 이름(필수)
   templates:
-  - name: rabbitmq-broker                  # job template 이름(필수)
-    release: openpaas-rabbitmq             #릴리즈 이름(필수)
-syslog_aggregator: null
-- instances: 2
-  name: rmq                     # 작업 이름(필수): rabbitmq 서버
+  - name: rabbitmq-broker                      # job template 이름(필수)
+    release: openpaas-rabbitmq                   #릴리즈 이름(필수)
+  syslog_aggregator: null
+
+- instances: 1
+  name: rmq                         # 작업 이름(필수): rabbitmq 서버
   networks:
   - name: openpaas_network
-static_ips:
-    - 10.10.7.83
-    - 10.10.7.84
-persistent_disk: 2048
-resource_pool: services-small
+    static_ips:
+    - 10.0.0.113
+#  persistent_disk: 2048
+  resource_pool: services-small
   templates:
   - name: rabbitmq-server
     release: openpaas-rabbitmq
-syslog_aggregator: null
+  syslog_aggregator: null
 - instances: 1
-  name: haproxy                       # 작업 이름(필수): Haproxy
+  name: haproxy                            # 작업 이름(필수): Haproxy
   networks:
   - name: openpaas_network
-static_ips:
-    - 10.10.7.82
-persistent_disk: 1024
-resource_pool: services-small
+    static_ips:
+    - 10.0.0.112
+#  persistent_disk: 1024
+  resource_pool: services-small
   templates:
   - name: rabbitmq-haproxy
     release: openpaas-rabbitmq
-syslog_aggregator: null
+  syslog_aggregator: null
 - instances: 1
-  lifecycle: errand          # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로실행할때 설정, 주로 테스트 용도에 쓰임
+  lifecycle: errand            # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로실행할때 설정, 주로 테스트 용도에 쓰임
   name: broker-registrar
   networks:
   - name: openpaas_network
   properties:
     broker:
-      host: 10.10.7.81
+      host: 10.0.0.111
       name: rabbitmq-sb
       password: admin
       username: admin
       protocol: http
       port: 4567
-resource_pool: services-small
+  resource_pool: services-small
   templates:
   - name: broker-registrar
     release: openpaas-rabbitmq
@@ -201,61 +207,60 @@ resource_pool: services-small
   - name: openpaas_network
   properties:
     broker:
-      host: 10.10.7.81
+      host: 10.0.0.111
       name: rabbitmq-sb
       password: admin
       username: admin
       protocol: http
       port: 4567
-resource_pool: services-small
+  resource_pool: services-small
   templates:
   - name: broker-deregistrar
     release: openpaas-rabbitmq
-networks:#네트워크 블록에 나열된 각 서브 블록이 참조 할 수있는 작업이 네트워크 구성을 지정, 네트워크 구성은 네트워크 담당자에게 문의 하여 작성 요망
+
+networks:         #네트워크 블록에 나열된 각 서브 블록이 참조 할 수있는 작업이 네트워크 구성을 지정, 네트워크 구성은 네트워크 담당자에게 문의 하여 작성 요망
 - name: openpaas_network
   subnets:
   - cloud_properties:
-net_id: bfef7fe1-bf86-4e29-842e-84a4d1cff110# OpenStack에서 사용하는 network 이름 아이디(필수)
-security_groups:
-      - cf-security# OpenStack 에서 사용하는 접근 시큐리티 이름 이름(필수)
-dns:                        # DNS 정보
-    - 10.10.5.108
+      subnet: subnet-e51bba93    # AWS에서 사용하는 subnet(필수)
+      security_groups:
+      - op-cf              # AWS에서 사용하는 접근 시큐리티 이름 이름(필수)
+      - op-bosh           # AWS에서 사용하는 접근 시큐리티 이름 이름(필수)
+    dns:                    # DNS 정보
     - 8.8.8.8
-    gateway: 10.10.7.1
-    range: 10.10.7.0/24
-    reserved: # 설치시 제외할 IP 설정 (OpenStack 에서는 서비스팩 설치 구간 이외에는 IP 제외 설정을 해줘야 오류가 나지 않음.
-    - 10.10.7.2 - 10.10.7.80
-    #- 10.30.40.1 - 10.30.40.100
-    #- 10.30.40.201 - 10.30.254.254
+    gateway: 10.0.0.1
+    range: 10.0.0.0/24
+    reserved:
+    - 10.0.0.2 - 10.0.0.110             # 설치시 제외할 IP 설정
     static:
-    - 10.10.7.81 - 10.10.7.90#사용 가능한 IP 설정
+    - 10.0.0.111 - 10.0.0.116         # 사용 가능한 IP 설정
   type: manual
+
 properties:
-cf:
-admin_password: admin                     # CF 어드민 아이디 비밀번호(필수)
-admin_username: admin# CF 어드민 아이디 (필수)
-api_url: http://api.115.68.46.30.xip.io# CF API url(필수)
-    domain: 115.68.46.30.xip.io# CF 도메인(필수)
-nats:                        # CF 설치시 설치한 nats 정보 (필수)
-      host: 10.10.3.11
+  cf:
+    admin_password: admin                      # CF 어드민 아이디 비밀번호(필수)
+    admin_username: admin                     # CF 어드민 아이디 비밀번호(필수)
+    api_url: http://api.52.71.217.204.xip.io          # CF API url(필수)
+    domain: 52.71.217.204.xip.io                 # CF 도메인(필수)
+    nats:                                     # CF 설치시 설치한 nats 정보 (필수)
+      host: 10.0.0.199
       port: 4222
       username: nats
       password: admin
   route-registrar:
-target_ip: 10.10.7.82# 라우터타켓 IP (haproxy IP)
-rabbitmq-server:
-    plugins:#rabbitmq 플러그인 정보(필수)
+    target_ip: 10.0.0.112            # 라우터타켓 IP (haproxy IP)
+  rabbitmq-server:
+    plugins:                       # rabbitmq 플러그인 정보(필수)
     - rabbitmq_management
     - rabbitmq_mqtt
     - rabbitmq_stomp
     administrators:
-      broker:
-        username: broker               #브로커에서 rabbitmq 서버에 접근하는 유저 아이디(필수)
+      broker:           # 브로커에서 rabbitmq 서버에 접근하는 유저 아이디(필수)        
+        username: broker
         password: CkY26kTuAyZT8r2
-static_ips:                          # rabbitmq 서버 IP 목록
-    - 10.10.7.83
-    - 10.10.7.84
-ssl:# SSL 정보(필수)
+    static_ips:              # rabbitmq 서버 IP 목록
+    - 10.0.0.113
+    ssl:               # SSL 정보(필수)
       cert: |
         -----BEGIN CERTIFICATE-----
         MIIC+zCCAeOgAwIBAgIBAjANBgkqhkiG9w0BAQUFADAnMRUwEwYDVQQDEwxNeVRl
@@ -269,7 +274,7 @@ ssl:# SSL 정보(필수)
         ZoQSF1NYE6KRd2MK2A0QaKrn9v8K5/Lp0fk70bvwtLxTWtp3wq3bYQg8UdqY/6R8
         UATS/aMCAwEAAaMvMC0wCQYDVR0TBAIwADALBgNVHQ8EBAMCBSAwEwYDVR0lBAww
         CgYIKwYBBQUHAwEwDQYJKoZIhvcNAQEFBQADggEBAHC89mK1HJgDqwxjsGpa3V7t
-Nuqe/XxEIUUN3Lm4gBLKq4wed4c6z4csv16f3uL9cypyHPSrQmMPV7CDgWLX4F7g
+        Nuqe/XxEIUUN3Lm4gBLKq4wed4c6z4csv16f3uL9cypyHPSrQmMPV7CDgWLX4F7g
         YN9PGaVfIp/rGNsDWJEVNU2rfIEDIUfcL+o844jE8CtmzZ4bGVrCHqKW5pAraai1
         o5h3JaU4yDLo49rqPeRft2n/gj+5E3gi/1TsnuLuzB7kK1gaTTOrV3GASiGokCEN
         4v1ZjaqMSGMcwA/esaLv2N6UYJgd5lyJ7PEL4ddE8QCTo2EPhYyltLxRqOjrxa+5
@@ -285,7 +290,7 @@ Nuqe/XxEIUUN3Lm4gBLKq4wed4c6z4csv16f3uL9cypyHPSrQmMPV7CDgWLX4F7g
         +TvRu/C0vFNa2nfCrdthCDxR2pj/pHxQBNL9owIDAQABAoIBAEaVH/h1m9hXP0pm
         QnLxeFz58FmTy71DA8orQCPB85OOSQ7JM+NVRe50KAeRzVpQJDozkZcRnJrfYoWP
         mfIO6IeZwnAt5jeG6Nnaeb/ACc25K3GIMxUCyTyFHvQehlpzURKiXF93b4NHVBWC
-y+C/NP+QcrYe13tBrEWr6uwzbbm1JABlXXbMoK3QaEv+IgbDg6YtW7mqkjQpjW4K
+        y+C/NP+QcrYe13tBrEWr6uwzbbm1JABlXXbMoK3QaEv+IgbDg6YtW7mqkjQpjW4K
         oLUtmBUnVwT4RzrNEcGmY4jLy2F1HVfIwaqm66V8iOAtv+oGvSv+WTca9ddjfBrr
         ovSJPXMOEt5lf8Yj+j6B00xUDykyzL3emovGYiH0QHRKSYVjnEYkcfvWwa166mE5
         BCQ6IgECgYEA92jrvhpkoQmNV/d61iQvO7VlbWk4WQhXdooKwubqUQ7UTXCIHDHH
@@ -294,16 +299,16 @@ y+C/NP+QcrYe13tBrEWr6uwzbbm1JABlXXbMoK3QaEv+IgbDg6YtW7mqkjQpjW4K
         PLbPUVOnHbTM3GXT8E1wtAGrvGLt2EGQ13GrVG7pS4zEgFykszhKe7qaQrZw+CK8
         aAsVZLtKoUPEkjZaP9A5/Ka5EdMbg2fFDGuaVb+CAZCCMQSa4wyAo5dkaeNlslbf
         HlzJdE+38uGW0kF93Ba2YlN5lSro44jbB7ufReECgYEA1vhjXZqxNPuHxJdUNBzc
-rZS/vIFgZHvLA0SOdSsPDb9E2MSef2EBwDsY+vRWRhDVTfnizX1da22DTP/Ys4+n
+        rZS/vIFgZHvLA0SOdSsPDb9E2MSef2EBwDsY+vRWRhDVTfnizX1da22DTP/Ys4+n
         Z/Tq/uCPjKRqzDRgTXTbUBNzdW/4TV3Exv8kBlJyfafL2/vEwCoZjjusiiSN64d0
         Hf22Wb9feoGx592Y0sFz/OECgYA8Nhdk84z+luqCePurImY0BP0/R0GiVSsb7xLh
         DGyBuVV0UBB/IfWIKc/foX6fJbHkjqbVgDeBg79LmqwFPLvOJJVqEEjCX8vfgEEP
         6kevYwJaj18OuXx5ew9qH8it+w0Zar0zMqMrRO/1+X7quccTlhtHEWoC6nTXu4S2
         Id0FgQKBgCGNRs4rPJ4MrKn/khm2yVHG0MKKJQRhY4k5CKFq+89WQZiHA2n1z72M
-Pg/ph3WFwppZs/uEUuDmdTpM/9nIkIR4TUH55xi4zJbfWXLbKvUKCOjkze3U8t1S
+        Pg/ph3WFwppZs/uEUuDmdTpM/9nIkIR4TUH55xi4zJbfWXLbKvUKCOjkze3U8t1S
         x4fDjuJAz2rzIMyfYaCQWB1MPrwk/247HADyqEB7tsRJdKpF0rBe
         -----END RSA PRIVATE KEY-----
-cacert: |
+      cacert: |
         -----BEGIN CERTIFICATE-----
         MIIC7jCCAdagAwIBAgIJAOVQO4z11jrPMA0GCSqGSIb3DQEBBQUAMCcxFTATBgNV
         BAMTDE15VGVzdFJvb3RDQTEOMAwGA1UEBxMFNjQxMDMwHhcNMTQwOTA0MDcyMjA4
@@ -319,10 +324,10 @@ cacert: |
         SUQ5r1jBezBhGDN684TJOgZrgQrukspN0dT9i41rRGhu1IXBgkehChfR7PYt5vww
         MPz2uCYoAQZJgbbSK+X7ZNE4E3Tao+hrUKL3vu9awEptPdkUH4vBBT88GzzqRJxw
         /BmqGdTGCLsZzlO0Jrc6o9NZLPh4SEn3d22Dz2yzN5x6rxWS1yHWRK/a7eEn0gkd
-NqEeEGnW/T0WA/FosIxUEXyP1d252yeeV47LfJsV6qHg0ksRPQFJfW71Nzi3NQTr
+        NqEeEGnW/T0WA/FosIxUEXyP1d252yeeV47LfJsV6qHg0ksRPQFJfW71Nzi3NQTr
         3nizs9vfxcMfGQ88CyUQSvZ4CVdF3lYbw8a96NHJH71ROQ==
         -----END CERTIFICATE-----
-rabbitmq-haproxy:                    # rabbitmqhaproxy 에서 허용하는 포트 목록(필수)
+  rabbitmq-haproxy:             # rabbitmqhaproxy 에서 허용하는 포트 목록(필수)
     ports:
     - 5672
     - 5671
@@ -332,33 +337,33 @@ rabbitmq-haproxy:                    # rabbitmqhaproxy 에서 허용하는 포�
     - 61614
     - 15672
     - 15674
-server_ips:#rabbitmq 서버 IP 목록(필수)
-    - 10.10.7.83
-    - 10.10.7.84
+    server_ips:                  # rabbitmq 서버 IP 목록(필수)
+    - 10.0.0.113
+#    - 10.0.0.114
     stats:
-      password: admin               # 서비스 브로커 비밀번호(필수)
-      username: admin              # 서비스 브로커 아이디(필수)
-rabbitmq-broker:
-cc_endpoint: http://api.115.68.46.30.xip.io# CF 설치시 설정한 API endpoint(필수)
-uaa_client:                   # UAA client 정보(필수)
-client_id: cf                # UAA client 아이디
-      username: admin             # 사용자명
-      password: admin              # 사용자 비밀번호
-    service:                     # 서비스 브로커 정보(필수)
+      password: admin
+      username: admin
+  rabbitmq-broker:
+    cc_endpoint: http://api.52.71.217.204.xip.io      # CF 설치시 설정한 API endpoint(필수)
+    uaa_client:                                   # UAA client 정보(필수)
+      client_id: cf                                 # UAA client 아이디
+      username: admin                            # 사용자명
+      password: admin                            # 사용자 비밀번호
+    service:                                  # 서비스 브로커 정보(필수)
       username: admin
       password: admin
-      url: http://10.10.7.81:4567# 서비스 브로커 URL(필수)
-    logging:#로깅 정보(필수)
+      url: http://10.0.0.111:4567                # 서비스 브로커 URL(필수)
+    logging:
       level: debug
-print_stack_traces: false
-rabbitmq:
-operator_set_policy:                          # rabbitmq 권한 정책 설정 (필수)
+      print_stack_traces: false
+    rabbitmq:
+      operator_set_policy:                    # rabbitmq 권한 정책 설정 (필수)
         enabled: true
-policy_name: operator_set_policy
-policy_definition: "{\"ha-mode\":\"exactly\",\"ha-params\":2,\"ha-sync-mode\":\"automatic\"}"
-policy_priority: 50
-management_domain: rabbitmq.115.68.46.30.xip.io       # 관리 도메인
-ssl: |
+        policy_name: operator_set_policy
+        policy_definition: "{\"ha-mode\":\"exactly\",\"ha-params\":2,\"ha-sync-mode\":\"automatic\"}"
+        policy_priority: 50
+      management_domain: rabbitmq.52.71.217.204.xip.io             # 관리 도메인
+      ssl: |
         -----BEGIN CERTIFICATE-----
         MIIC+zCCAeOgAwIBAgIBAjANBgkqhkiG9w0BAQUFADAnMRUwEwYDVQQDEwxNeVRl
         c3RSb290Q0ExDjAMBgNVBAcTBTY0MTAzMB4XDTE0MDkwNDA3MjIwOFoXDTI0MDkw
@@ -371,35 +376,34 @@ ssl: |
         ZoQSF1NYE6KRd2MK2A0QaKrn9v8K5/Lp0fk70bvwtLxTWtp3wq3bYQg8UdqY/6R8
         UATS/aMCAwEAAaMvMC0wCQYDVR0TBAIwADALBgNVHQ8EBAMCBSAwEwYDVR0lBAww
         CgYIKwYBBQUHAwEwDQYJKoZIhvcNAQEFBQADggEBAHC89mK1HJgDqwxjsGpa3V7t
-Nuqe/XxEIUUN3Lm4gBLKq4wed4c6z4csv16f3uL9cypyHPSrQmMPV7CDgWLX4F7g
+        Nuqe/XxEIUUN3Lm4gBLKq4wed4c6z4csv16f3uL9cypyHPSrQmMPV7CDgWLX4F7g
         YN9PGaVfIp/rGNsDWJEVNU2rfIEDIUfcL+o844jE8CtmzZ4bGVrCHqKW5pAraai1
         o5h3JaU4yDLo49rqPeRft2n/gj+5E3gi/1TsnuLuzB7kK1gaTTOrV3GASiGokCEN
         4v1ZjaqMSGMcwA/esaLv2N6UYJgd5lyJ7PEL4ddE8QCTo2EPhYyltLxRqOjrxa+5
         KONA94PDj14gOSSsoXkoj7gWQsuHT2RXmurYXk4/PkS+k1j0+ZCzKi/ZxF5jt50=
         -----END CERTIFICATE-----
       hosts:
-        - 10.10.7.82     # haproxy IP(필수
-      administrator:                        # rabbitmq 서버 관리자 정보(필수)
+        - 10.0.0.112                    # haproxy IP(필수)
+      administrator:                  # rabbitmq 서버 관리자 정보(필수)
         username: broker
         password: CkY26kTuAyZT8r2
-resource_pools:         # 배포시 사용하는 resource pools를 명시하며 여러 개의 resource pools 을 사용할 경우 name 은 unique 해야함(필수)
-- cloud_properties:         # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성을 설명 (instance_type, availability_zone)
-instance_type: m1.medium           #인스턴스 타입: Flovers 타입(필수)
-  name: services-small              # 고유한 resource pool 이름
-env:                          # 환경 정보(옵션)
+resource_pools:                   # 배포시 사용하는 resource pools를 명시하며 여러 개의 resource pools 을 사용할 경우 name 은 unique 해야함(필수)
+- cloud_properties:                 # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성을 설명 (instance_type, availability_zone)
+    instance_type: m1.small                   # 인스턴스 타입: Flovers 타입(필수)
+  name: services-small                    # 고유한 resource pool 이름
+  env:                                  # 환경 정보(옵션)
     bosh:
-      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
+      password: $6$gWEwKrGEeUO$79t/Os3vZoKnVpNkzQwEXMNpveTDYhnhnfhvrg8ShvK705ktXxRv/z3rIsJKei9Zb5u3d38oPL/Crsc1UpJGX1
   network: openpaas_network
- # size: 5# resource pool 안의 가상머신 개수, 주의) jobs 인스턴스 보다 작으면 에러가 남, size 정의하지 않으면 자동으로 가상머신 크기 설정
-stemcell:
-    name: bosh-openstack-kvm-ubuntu-trusty-go_agent#stemcell 이름(필수)
-    version: 3147                                                   # stemcell 버전(필수)
-</pre>
+  stemcell:
+    name: bosh-aws-xen-ubuntu-trusty-go_agent                 # stemcell 이름(필수)
+    version: 3147                                              # stemcell 버전(필수)
+```
 
 - Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 
 ><div>$bosh deployment {Deployment manifest 파일 PATH}<br>
-$bosh deployment openpaas-rabbitmq-openstack.yml</div>
+$bosh deployment openpaas-rabbitmq-aws.yml</div>
 ![rabbitmq_aws_(12)]
 
 - RabbitMQ 서비스팩을 배포한다.

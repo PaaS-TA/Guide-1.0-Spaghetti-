@@ -29,7 +29,7 @@ vsphere -> AWS 수정중
 ### 1.3. 시스템 구성도
 본 문서의 설치된 시스템 구성도이다. MySQL Server, MySQL 서비스 브로커, Proxy로 최소사항을 구성하였다.
 
-![시스템구성도][mysql_vsphere_1.3.01]
+![시스템구성도][mysql_AWS_00]
 
 | 구분 | Resource Pool | 스펙 |
 |--------|-------|-------|
@@ -58,7 +58,7 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 >`$ cd openpaas-service-release`   
 >`$ ls –all`
 
->![update_mysql_vsphere_01]
+>![mysql_AWS_01]
 
 <br>
 
@@ -69,17 +69,19 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 >※ 하단의 화면은 릴리즈 파일을 tarball 형태로 압축하지 않고 릴리즈를 업로드하고 있다. 본 문서에서 안내하는 방법대로 tarball 형태로 릴리즈 파일 압축하여 업로드 할 경우에 출력되는 화면은 하단의 화면과 다소 차이가 있다.
 
->![update_mysql_vsphere_02]
+>![mysql_AWS_01]
 
->![update_mysql_vsphere_03]
+>![mysql_AWS_02]
 
->![update_mysql_vsphere_04]
+>![mysql_AWS_03]
 
->![update_mysql_vsphere_05]
+>![mysql_AWS_04]
 
->![update_mysql_vsphere_06]
+>![mysql_AWS_05]
 
->![update_mysql_vsphere_07]
+>![mysql_AWS_06]
+
+>![mysql_AWS_07]
 
 <br>
 
@@ -87,7 +89,7 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 >`$ bosh releases`
 
->![update_mysql_vsphere_08]
+>![mysql_AWS_08]
 
 >Mysql 서비스 릴리즈가 업로드 되어 있는 것을 확인
 
@@ -105,7 +107,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 >`$ cd Deployment`  
 >`$ ls –all`
 
->![update_mysql_vsphere_09]
+>![mysql_AWS_09]
 
 <br>
 
@@ -115,7 +117,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 >`$ bosh status`
 
->![update_mysql_vsphere_10]
+>![mysql_AWS_10]
 
 <br>
 
@@ -123,7 +125,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 >`$ bosh stemcells`
 
->![update_mysql_vsphere_11]
+>![mysql_AWS_11]
 
 >Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3147 버전을 업로드를 해야 한다.
 
@@ -352,7 +354,7 @@ resource_pools:     # 배포시 사용하는 resource pools를 명시하며 여�
 >`$ bosh deployment {Deployment manifest 파일 PATH}`  
 >`$ bosh deployment openpaas-mysql-vsphere-1.0.yml`
 
->![update_mysql_vsphere_12]
+>![mysql_AWS_12]
 
 <br>
 
@@ -362,9 +364,9 @@ resource_pools:     # 배포시 사용하는 resource pools를 명시하며 여�
 
 >※  40분 ~ 1시간 정도 소요된다.
 
->![update_mysql_vsphere_13]
+>![mysql_AWS_13]
 
->![update_mysql_vsphere_14]
+>![mysql_AWS_14]
 
 <br>
 
@@ -372,7 +374,7 @@ resource_pools:     # 배포시 사용하는 resource pools를 명시하며 여�
 
 >`$bosh vms openpaas-mysql-service`
 
->![update_mysql_vsphere_15]
+>![mysql_AWS_15]
 
 ### 2.4. MySQL 서비스 브로커 등록
 Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 MySQL 서비스 브로커를 등록해 주어야 한다.  
@@ -382,7 +384,7 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 >`$ cf service-brokers`
 
->![update_mysql_vsphere_16]
+>![mysql_AWS_16]
 
 <br>
 
@@ -396,7 +398,7 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 >`$cf create-service-broker mysql-service-broker admin cloudfoundry http://10.0.0.95:8080`
 
->![update_mysql_vsphere_17]
+>![mysql_AWS_17]
 
 <br>
 
@@ -404,7 +406,7 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 >`$ cf service-brokers`
 
->![update_mysql_vsphere_18]
+>![mysql_AWS_18]
 
 <br>
 
@@ -412,7 +414,7 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 >`$ cf service-access`
 
->![update_mysql_vsphere_19]
+>![mysql_AWS_19]
 
 >서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.
 
@@ -424,7 +426,7 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 >`$ cf service-access`
 
->![update_mysql_vsphere_20]
+>![mysql_AWS_20]
 
 # 3. MySQL 연동 Sample Web App 설명
 본 Sample Web App은 개방형 클라우드 플랫폼에 배포되며 MySQL의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
@@ -446,7 +448,7 @@ Sample Web App 구조는 다음과 같다.
 
 >`$ls -all`
 
->![update_mysql_vsphere_21]
+>![mysql_AWS_21]
 
 <br>
 
@@ -461,7 +463,7 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 
 >`$cf marketplace`
 
->![update_mysql_vsphere_22]
+>![mysql_AWS_22]
 
 <br>
 
@@ -475,14 +477,14 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 
 >`$ cf create-service 'Mysql-DB' Mysql-Plan2-100con mysql-service-instance
 
->![update_mysql_vsphere_23]
+>![mysql_AWS_23]
 <br>
 
 ##### 생성된 MySQL 서비스 인스턴스를 확인한다.
 
 >`$ cf services`
 
->![update_mysql_vsphere_24]
+>![mysql_AWS_24]
 
 <br>
 
@@ -517,20 +519,20 @@ path: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war      #배포하는 App 
 
 >`$ cf push --no-start`
 
->![update_mysql_vsphere_25]
+>![mysql_AWS_25]
 
 <br>
 
 ##### 배포된 Sample App을 확인하고 로그를 수행한다.
 >`$ cf apps`
 
->![update_mysql_vsphere_26]
+>![mysql_AWS_26]
 
 >`$ cf logs {배포된 App명}`
 
 >`$ cf logs hello-spring-mysql`
 
->![update_mysql_vsphere_27]
+>![mysql_AWS_27]
 
 <br>
 
@@ -538,7 +540,7 @@ path: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war      #배포하는 App 
 
 >`$ cf bind-service hello-spring-mysql mysql-service-instance`
 
->![update_mysql_vsphere_28]
+>![mysql_AWS_28]
 
 <br>
 
@@ -546,7 +548,7 @@ path: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war      #배포하는 App 
 
 >`$ cf restart hello-spring-mysql`
 
->![update_mysql_vsphere_29]
+>![mysql_AWS_29]
 
 >(참고) 바인드 후 App구동시 Mysql 서비스 접속 에러로 App 구동이 안될 경우 보안 그룹을 추가한다.  
 
@@ -570,7 +572,7 @@ path: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war      #배포하는 App 
 
 >`$ cf create-security-group p-mysql rule.json`
 
->![update_mysql_vsphere_30]
+>![mysql_AWS_30]
 
 <br>
 
@@ -586,7 +588,7 @@ path: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war      #배포하는 App 
 
 >`$ cf restart hello-spring-mysql`
 
->![update_mysql_vsphere_32]
+>![mysql_AWS_32]
 
 <br>
 
@@ -596,10 +598,11 @@ path: target/hello-spring-mysql-1.0.0-BUILD-SNAPSHOT.war      #배포하는 App 
 
 >`$ curl hello-spring-mysql.52.71.64.39.xip.io`
 
->![update_mysql_vsphere_33]
+>![mysql_AWS_33]
 
 > 브라우져에서 확인
->![update_mysql_vsphere_34]
+
+>![mysql_AWS_34]
 
 # 4. MySQL Client 툴 접속
 
@@ -726,6 +729,42 @@ HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트�
 >![mysql_vsphere_4.1.17]
 
 
+[mysql_AWS_00]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_00.png
+[mysql_AWS_01]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_01.png
+[mysql_AWS_02]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_02.png
+[mysql_AWS_03]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_03.png
+[mysql_AWS_04]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_04.png
+[mysql_AWS_05]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_05.png
+[mysql_AWS_06]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_06.png
+[mysql_AWS_07]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_07.png
+[mysql_AWS_08]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_08.png
+[mysql_AWS_09]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_09.png
+[mysql_AWS_10]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_10.png
+[mysql_AWS_11]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_11.png
+[mysql_AWS_12]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_12.png
+[mysql_AWS_13]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_13.png
+[mysql_AWS_14]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_14.png
+[mysql_AWS_15]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_15.png
+[mysql_AWS_16]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_16.png
+[mysql_AWS_17]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_17.png
+[mysql_AWS_18]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_18.png
+[mysql_AWS_19]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_19.png
+[mysql_AWS_20]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_20.png
+[mysql_AWS_21]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_21.png
+[mysql_AWS_22]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_22.png
+[mysql_AWS_23]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_23.png
+[mysql_AWS_24]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_24.png
+[mysql_AWS_25]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_25.png
+[mysql_AWS_26]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_26.png
+[mysql_AWS_27]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_27.png
+[mysql_AWS_28]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_28.png
+[mysql_AWS_29]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_29.png
+[mysql_AWS_30]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_30.png
+[mysql_AWS_31]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_31.png
+[mysql_AWS_32]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_32.png
+[mysql_AWS_33]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_33.png
+[mysql_AWS_34]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_34.png
+
 [mysql_vsphere_1.3.01]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_1.3.01.png
 [mysql_vsphere_2.2.01]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.2.01.png
 [mysql_vsphere_2.2.02]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.2.02.png
@@ -815,3 +854,6 @@ HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트�
 [update_mysql_vsphere_32]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_32.png
 [update_mysql_vsphere_33]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_33.png
 [update_mysql_vsphere_34]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_34.png
+
+
+

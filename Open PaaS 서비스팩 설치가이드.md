@@ -1872,25 +1872,25 @@ update [Hash, optional]: 이 job에 대한 특정 업데이트 설정
 properties [Hash, optional]: job 속성을 지정
 
 
-# Example
-- name: redis-master
-  instances: 1
-  templates:
-  - {name: redis-server, release: redis}
-  persistent_disk: 10_240
-  resource_pool: redis-servers
-  networks:
-  - name: default
+* Example
 
-- name: redis-slave
-  instances: 2
-  templates:
-  - {name: redis-server, release: redis}
-  persistent_disk: 10_240
-  resource_pool: redis-servers
-  networks:
-  - name: default
-
+	- name: redis-master
+	  instances: 1
+	  templates:
+	  - {name: redis-server, release: redis}
+	  persistent_disk: 10_240
+	  resource_pool: redis-servers
+	  networks:
+	  - name: default
+	
+	- name: redis-slave
+	  instances: 2
+	  templates:
+	  - {name: redis-server, release: redis}
+	  persistent_disk: 10_240
+	  resource_pool: redis-servers
+	  networks:
+	  - name: default
 
 9. Properties Block
 글로벌 속성과 일반 구성 정보를 설명
@@ -1903,7 +1903,7 @@ properties [Hash, optional]: job 속성을 지정
 	  redis:
 	    max_connections: 10
 
-###5.	Deploy Guide
+###5. Deploy Guide
 BOSH deploy CLI 로 Software를 배포 하기 위해서 선행조건으로 deployment manifest yml 에서
 사용할 stemcell 과release가 먼저 upload 되어 있어야 하고 deployment manifest yml 파일이 작성 
 되어 있어야 한다. 
@@ -1912,6 +1912,7 @@ stemcell 과 release 가 upload 되어 있는지 확인한다. 확인하는 BOSH
 Software(서비스팩 software)를 배포하는 bosh deploy CLI 명령어를 제공한다. 
 
 아래의 단계로 배포를 진행한다.
+
 1. Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.(bosh deployment CLI)
 >![openpaas-servicepack-46]
  

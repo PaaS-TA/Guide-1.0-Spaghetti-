@@ -127,7 +127,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 <br>
 
-##### -	openpaas-mysql-openstack-1.0.yml Deployment 파일을 서버 환경에 맞게 수정한다.
+##### openpaas-mysql-openstack-1.0.yml Deployment 파일을 서버 환경에 맞게 수정한다.
 
 >`$ vi openpaas-mysql-openstack.yml`
 

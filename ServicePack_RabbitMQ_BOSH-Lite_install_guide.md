@@ -95,10 +95,6 @@ Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 �
 
 $ vi openpaas-rabbitmq-lite.yml
 
-openpaas-rabbitmq-lite 설정 파일 내용
-
-$ vi openpaas-rabbitmq-lite.yml
-
 ```yml
 # openpaas-rabbitmq-lite 설정 파일 내용
 ---

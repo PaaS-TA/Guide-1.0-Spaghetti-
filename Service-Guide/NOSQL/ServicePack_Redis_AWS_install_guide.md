@@ -335,13 +335,14 @@ Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 - Redis서비스팩을 배포한다.
 
 ><div>$bosh deploy</div>
->![redis_aws]15]
->![redis_aws]16]
+>![redis_aws15]
+>![redis_aws16]
+>![redis_aws17]
 
 - 배포된 Redis서비스팩을 확인한다.
 
 ><div>$bosh vms</div>
->![redis_aws17]
+>![redis_aws18]
 
 <div id='10'></div>
 ### 2.4. Redis 서비스 브로커 등록
@@ -352,7 +353,7 @@ Redis서비스팩 배포가 완료 되었으면 Application에서 서비스 팩�
 - 서비스 브로커 목록을 확인한다.
 
 ><div>$cf service-brokers</div>
->![redis_aws18]
+>![redis_aws19]
 
 - Redis 서비스 브로커를 등록한다.
 
@@ -361,24 +362,24 @@ Redis서비스팩 배포가 완료 되었으면 Application에서 서비스 팩�
 - 서비스팩 사용자ID / 비밀번호 :서비스팩에 접근할 수 있는 사용자 ID이다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.<br>
 - 서비스팩URL :서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.</div><br>
 ><div>$ cf create-service-broker redis-service-broker admin adminhttp://10.30.40.171:80</div>
->![redis_aws]18]
+>![redis_aws20]
 
 - 등록된 Redis 서비스 브로커를 확인한다.
 
 ><div>$cf service-brokers</div>
->![redis_aws20]
+>![redis_aws21]
 
 - 접근 가능한 서비스 목록을 확인한다.
 
 ><div>$cf service-access</div>
->![redis_aws21]
+>![redis_aws22]
 ><div>서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.</div>
 
 - 특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
 
 ><div>$cf enable-service-access redis-sb</div>
 ><div>$ cf service-access</div>
->![redis_aws22]
+>![redis_aws23]
 
 <div id='11'></div>
 #   3. Redis연동 Sample App 설명
@@ -417,7 +418,7 @@ Sample App 구조는 다음과 같다.
 - OpenPaaS-Sample-Apps.zip 파일 압축을 풀고 Service폴더안에 있는 RedisSample Web App인 redis-example-app을복사한다
 
 ><div>$ls -all</div>
->![redis_aws23]
+>![redis_aws24]
 
 <div id='13'></div>
 ### 3.2. 개방형 클라우드 플랫폼에서 서비스 신청
@@ -428,7 +429,7 @@ Sample App에서 Redis 서비스를 사용하기 위해서는 서비스 신청(P
 - 먼저 개방형 클라우드 플랫폼 Marketplace에서 서비스가 있는지 확인을 한다.
 
 ><div>$cf marketplace</div>
->![redis_aws24]
+>![redis_aws25]
 
 - Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.
 
@@ -438,12 +439,12 @@ Sample App에서 Redis 서비스를 사용하기 위해서는 서비스 신청(P
 - 내서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.</div><br>
 
 ><div>$ cf create-service redis-sbshared-vmredis-service-instance</div>
->![redis_aws25]
+>![redis_aws26]
 
 - 생성된 Redis 서비스 인스턴스를 확인한다.
 
 ><div>$cf services</div>
->![redis_aws26]
+>![redis_aws27]
 
 <div id='14'></div>
 ### 3.3. Sample App에 서비스 바인드 신청 및 App 확인
@@ -469,25 +470,25 @@ path: . #배포시 구동되는 Path
 --no-start: App 배포시 구동은 하지 않는다.
 
 ><div>$cf push --no-start<br></div>
->![redis_aws27]
+>![redis_aws28]
 
 - 배포된 Sample App을 확인하고 로그를 수행한다.
 
 ><div>$cf apps<br></div>
->![redis_aws28]
+>![redis_aws29]
 ><div>$ cf logs {배포된 App명}
 >$ cf logs redis-example-app</div>
->![redis_aws29]
+>![redis_aws30]
 
 - Sample App에서 생성한 서비스인스턴스바인드 신청을 한다. 
 
 ><div>$cf bind-service redis-example-appredis-service-instance</div>
->![redis_aws30]
+>![redis_aws31]
 
 - 바인드가 적용되기 위해서 App을 재기동한다.
 
 ><div>$cf restart redis-example-app</div>
->![redis_aws31]
+>![redis_aws32]
 
 - App이 정상적으로 Redis 서비스를 사용하는지 확인한다.
 
@@ -496,15 +497,15 @@ path: . #배포시 구동되는 Path
 $ export APP=redis-example-app.52.71.64.39.xip.io<br>
 $ curl -X PUT $APP/foo -d 'data=bar'<br>
 ><div>
->![redis_aws32]
+>![redis_aws33]
 ><div>- Key 값을 이용하여 Redis 에 저장되어 있는 Value 값 Get<br>
 $ curl -X GET $APP/foo<br>
 ></div>
->![redis_aws33]
+>![redis_aws34]
 ><div>- Key 값을 이용하여 Redis 에 저장되어 있는 Value 삭제<br>
 $ curl -X DELETE $APP/foo<br>
 ></div>
->![redis_aws34]
+>![redis_aws35]
 
 <div id='15'></div>
 # 4. Redis Client 툴 접속
@@ -517,46 +518,46 @@ Redis Desktop Manager 프로그램은 무료로 사용할 수 있는 오픈소�
 
 - Redis Desktop Manager를 다운로드 하기 위해 아래 URL로 이동하여 설치파일을 다운로드 한다.
 [**http://redisdesktop.com/download**](http://redisdesktop.com/download)<br>
-![redis_aws35]
-
-- 다운로드한 설치파일을 실행한다.<br>
 ![redis_aws36]
 
-- Redis Desktop Manager 설치를 위한 안내사항이다. Next 버튼을 클릭한다.<br>
+- 다운로드한 설치파일을 실행한다.<br>
 ![redis_aws37]
 
-- 프로그램 라이선스에 관련된 내용이다. I Agree 버튼을 클릭한다.<br>
+- Redis Desktop Manager 설치를 위한 안내사항이다. Next 버튼을 클릭한다.<br>
 ![redis_aws38]
+
+- 프로그램 라이선스에 관련된 내용이다. I Agree 버튼을 클릭한다.<br>
+![redis_aws39]
 
 - Redis Desktop Manager를 설치할 경로를 설정 후 Install 버튼을 클릭한다.
 별도의 경로 설정이 필요 없을 경우 default로 C드라이브 Program Files 폴더에 설치가 된다.<br>
-![redis_aws39]
-
-- 설치 완료 후 Next 버튼을 클릭하여 다음 과정을 진행한다.<br>
 ![redis_aws40]
 
-- Finish 버튼 클릭으로 설치를 완료한다.<br>
+- 설치 완료 후 Next 버튼을 클릭하여 다음 과정을 진행한다.<br>
 ![redis_aws41]
 
-- Redis Desktop Manager를 실행했을 때 처음 뜨는 화면이다. 이 화면에서 Server에 접속하기 위한 profile을 설정/저장하여 접속할 수 있다. Connect to Redis Server 버튼을 클릭한다.<br>
+- Finish 버튼 클릭으로 설치를 완료한다.<br>
 ![redis_aws42]
 
-- Connection 탭에서 아래 붉은색 영역에 접속하려는 서버 정보를 모두 입력한다.<br>
+- Redis Desktop Manager를 실행했을 때 처음 뜨는 화면이다. 이 화면에서 Server에 접속하기 위한 profile을 설정/저장하여 접속할 수 있다. Connect to Redis Server 버튼을 클릭한다.<br>
 ![redis_aws43]
+
+- Connection 탭에서 아래 붉은색 영역에 접속하려는 서버 정보를 모두 입력한다.<br>
+![redis_aws44]
 
 - 서버 정보는 Application에 바인드되어 있는 서버 정보를 입력한다. cfenv<app_name> 명령어로 이용하여 확인한다.
 예) $ cfenvredis-example-app<br>
-![redis_aws44]
+![redis_aws45]
 
 - SSH Tunnel탭을 클릭하고 OpenPaaS 운영 관리자에게 제공받은 SSH 터널링 가능한 서버 정보를 입력하고 공개키(.pem) 파일을 불러온다. Test Connection 버튼을 클릭하면 Redis 서버에 접속이 되는지 테스트 하고 OK 버튼을 눌러 Redis 서버에 접속한다.
 (참고) 만일 공개키 없이 ID/Password로 접속이 가능한 경우에는 공개키 대신 사용자 이름과 암호를 입력한다.<br>
-![redis_aws45]
-
-- 접속이 완료되고 좌측 서버 정보를 더블 클릭하면 좌측에 스키마 정보가 나타난다.<br>
 ![redis_aws46]
 
-- 신규 키 등록후 확인<br>
+- 접속이 완료되고 좌측 서버 정보를 더블 클릭하면 좌측에 스키마 정보가 나타난다.<br>
 ![redis_aws47]
+
+- 신규 키 등록후 확인<br>
+![redis_aws48]
 
 
 
@@ -608,4 +609,5 @@ Redis Desktop Manager 프로그램은 무료로 사용할 수 있는 오픈소�
 [redis_aws44]:./image/redis_aws/redis_aws44.png
 [redis_aws45]:./image/redis_aws/redis_aws45.png
 [redis_aws46]:./image/redis_aws/redis_aws46.png
-[redis_aws47]:./image/redis_aws/redis_aws46.png
+[redis_aws47]:./image/redis_aws/redis_aws47.png
+[redis_aws48]:./image/redis_aws/redis_aws48.png

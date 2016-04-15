@@ -59,7 +59,7 @@ Document 관련 사항
 	[OpenStack](./Service-Guide/ETC/ServiceBroker_APIPlatform_Openstack_install_guide.md)), 
 	[Bosh-Lite](./Service-Guide/ETC/ServiceBroker_APIPlatform_BOSH-Lite_install_guide.md)))
 
-	- 2.5.2. [Public API Develope Guide]()
+	- 2.5.2. [Public API Develope Guide](./Service-Guide/ETC/ServiceBroker_PublicAPI_devlope_guide.md)
 
 3. Sample
 

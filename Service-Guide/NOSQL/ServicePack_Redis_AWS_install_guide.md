@@ -85,7 +85,7 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 ><div>$ls ?all</div>  
 
-!(./image/redis_aws/redis_aws3.png)
+![redis_aws3]
 
 - 업로드 되어 있는 릴리즈 목록을 확인한다.
 
@@ -560,7 +560,7 @@ Redis Desktop Manager 프로그램은 무료로 사용할 수 있는 오픈소�
 
 
 [./image/redis_aws/redis_aws2]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws2.png
-[./image/redis_aws/redis_aws3]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws3.png
+[redis_aws3]:./image/redis_aws/redis_aws3.png
 [./image/redis_aws/redis_aws4]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws4.png
 [./image/redis_aws/redis_aws5]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws5.png
 [./image/redis_aws/redis_aws6]:/images/openpaas-service/redis/redis_vsphere/./image/redis_aws/redis_aws6.png

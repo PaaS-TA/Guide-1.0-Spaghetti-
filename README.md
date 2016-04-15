@@ -40,7 +40,7 @@ Document 관련 사항
 
 	2.3. Storage
 
-	- 2.3.1. glusterFS (
+	- 2.3.1. GlusterFS (
 	[vShpere](./Service-Guide/Storage/OpenPaaS_PaaSTA_ServicePack_GlusterFS_vSphere_install_guide.md), 
 	[AWS](./Service-Guide/Storage/OpenPaaS_PaaSTA_ServicePack_GlusterFS_AWS_install_guide.md), 
 	[OpenStack](./Service-Guide/Storage/OpenPaaS_PaaSTA_ServicePack_GlusterFS_Openstack_install_guide.md), 
@@ -48,7 +48,7 @@ Document 관련 사항
 
 	2.4. MasageQueue
 
-	- 2.3.1. rabbitMQ (
+	- 2.3.1. RabbitMQ (
 	[vShpere](), 
 	[AWS](), 
 	[OpenStack](), 
@@ -56,13 +56,23 @@ Document 관련 사항
 
 	2.5. ETC
 
-	- 2.5.1. glusterFS (
+	- 2.5.1. API Platform (
 	[vShpere](), 
 	[AWS](), 
 	[OpenStack](), 
 	[Bosh-Lite]())
 
+	- 2.5.2. [Public API Develope Guide]()
+
 3. Sample
+
+	3.1 [Node.js](./OpenPaaS_PaaSTA_Application_Nodejs_develope_guide.md)
+
+	3.1 [PHP](./OpenPaaS_PaaSTA_Application_PHP_develope_guide.md)
+
+	3.1 [Python](./OpenPaaS_PaaSTA_Application_Python_develope_guide.md)
+
+	3.1 [Ruby](./OpenPaaS_PaaSTA_Application_Ruby_develope_guide.md)
 
 
 4. 개발 가이드

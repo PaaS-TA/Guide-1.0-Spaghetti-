@@ -111,19 +111,17 @@ Cloud Controller 는 모든 요청에 HTTP 기본 인증(인증 헤더)을 사�
 
 1. Request
 1.1. Route
-	```
 	GET /v2/catalog
-	```
 
-1.2.	cURL
-curl -H "X-Broker-API-Version: 2.4" http://username:password@broker-url/v2/catalog
-예)
-curl -H "X-Broker-API-Version: 2.4" http://admin:eaa139af583c@10.30.40.61/v2/catalog
 
-2.	Response
-2.1.	Status Code
-STATUS CODE	DESCRIPTION
-200 OK	Response body 정보는 아래에 제공
+1.2. cURL
+	curl -H "X-Broker-API-Version: 2.4" http://username:password@broker-url/v2/catalog
+	예)
+	curl -H "X-Broker-API-Version: 2.4" http://admin:eaa139af583c@10.30.40.61/v2/catalog
+
+2. Response
+2.1. Status Code
+>![openpaas-servicepack-07]
 
 2.2.	Body (* 필드는 필수)
 RESPONSE FIELD	TYPE	DESCRIPTION
@@ -371,21 +369,10 @@ Catalog API 경우에는 서비스의 종류와 관계없이 Service 및 Plan �
 - clearDB plan 예
 [그림출처] :http://run.pivotal.io/
  
-
- 
-
- 
-
- 
-
-
 # Pivotal 서비스 Dashboard 예시
 - clearDB Dashboard 예
 [그림출처] :https://www.cleardb.com/
  
- 
-
-
 2.5.2.	Provision API 가이드
 Broker가 Cloud Controller로 부터 provision 요구를 수신하면 개발자를 위한 새로운 서비스 인스턴스를 생성한다. provision 시 서비스들의 종류에 따라 provision 결과는 다르다.
 Mysql DataBase 인 경우에는 새로운 DATABASE 스키마를 생성한다. 또한 non-data 서비스 인 경우의 provision은 기존 시스템에 계정을 얻는 의미 일 수도 있다. 자세한 내용은 아래에 각 서비스별 provision을 참고한다.

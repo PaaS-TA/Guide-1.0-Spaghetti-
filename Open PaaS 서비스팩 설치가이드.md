@@ -1777,70 +1777,68 @@ resource_pools:
     ram: 1_024
     disk: 10_240
 
-5.	Disk Pools Block
+5. Disk Pools Block
 disk_pools [Array, required]: 배포시 사용하는 disk pools를 명시하며 여러 개의 disk pools 을 사용할 경우 name 은 고유 식별자이어야 함
 disk pools: disk의 논리적 모음. 같은 설정으로 생성됨
 name [String, required]:고유한 disk pool 이름
 disk_size [Integer, required]:disk 사이즈 명시하며 integer 값으로 표시
 cloud_properties [Hash, required]: disk 를 만드는 데 필요한 IaaS의 특정 속성 (type, iops)
 
-# AWS Example
-type [String, optional]: disk 종류(standard, gp2). 디폴트는 standard
-- standard stands for EBS magnetic drives
-- gp2 stands for EBS general purpose drives (SSD)
-encrypted [Boolean, optional]: 이 영구 디스크에 대한 EBS 볼륨 암호화를 켠다. root 및 임시 디스크는 암호화 되지 않는다. 디폴트는 false.
+AWS Example
+	type [String, optional]: disk 종류(standard, gp2). 디폴트는 standard
+	- standard stands for EBS magnetic drives
+	- gp2 stands for EBS general purpose drives (SSD)
+	encrypted [Boolean, optional]: 이 영구 디스크에 대한 EBS 볼륨 암호화를 켠다. root 및 임시 디스크는 암호화 되지 않는다. 디폴트는 false.
+	
+	disk_pools:
+	- name: default
+	  disk_size: 10_240
+	  cloud_properties:
+	    type: m1.small
 
+OpenStack Example
+	type [String, optional]: OpenStack 설정 볼륨 종류 예) SSD
+	
+	
+	disk_pools:
+	- name: default
+	  disk_size: 10_240
+	  cloud_properties:
+	    type: SSD
 
+vSphere Example
+	현재는 disk를 위한 cloud properties 는 제공하지 않음
+	
+	disk_pools:
+	- name: default
+	  disk_size: 10_240
+	  cloud_properties: {}
 
-disk_pools:
-- name: default
-  disk_size: 10_240
-  cloud_properties:
-    type: m1.small
+vCloud Example
+	현재는 disk를 위한 cloud properties 는 제공하지 않음
+	
+	disk_pools:
+	- name: default
+	  disk_size: 10_240
+	  cloud_properties: {}
 
-# OpenStack Example
-type [String, optional]: OpenStack 설정 볼륨 종류 예) SSD
-
-
-disk_pools:
-- name: default
-  disk_size: 10_240
-  cloud_properties:
-    type: SSD
-
-# vSphere Example
-현재는 disk를 위한 cloud properties 는 제공하지 않음
-
-disk_pools:
-- name: default
-  disk_size: 10_240
-  cloud_properties: {}
-
-# vCloud Example
-현재는 disk를 위한 cloud properties 는 제공하지 않음
-
-disk_pools:
-- name: default
-  disk_size: 10_240
-  cloud_properties: {}
-
-6.	Compilation Block
+6. Compilation Block
 compilation [Hash, required]: 컴파일시 필요한 가상머신의 속성
 workers [Integer, required]: 컴파일 하는 가상머신의 최대수
 network [String, required]: Networks block에서 선언한 network 이름
 reuse_compilation_vms [Boolean, optional]: false 경우에는 BOSH는 각각의 새로운 패키지 컴파일을위한 새로운 컴파일 VM을 생성하고 편집이 완료되면 VM을 삭제한다. true 경우는 재사용한다. 디폴트는 false
 cloud_properties [Hash, required]: 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone)
 
-# Example
-compilation:
-workers: 2
-network: default
-  reuse_compilation_vms: true
-  cloud_properties:
-  instance_type: c1.medium
-  availability_zone: us-east-1c
+Example
+	compilation:
+	workers: 2
+	network: default
+	  reuse_compilation_vms: true
+	  cloud_properties:
+	  instance_type: c1.medium
+	  availability_zone: us-east-1c
 
-7.	Update Block
+7. Update Block
 update [Hash, required]: 업데이트 속성을 정의하며 이러한 속성은 BOSH가 배포 중에 작업 인스턴스를 업데이트하는 방법을 제어
 canaries [Integer, required]: canary 인스턴스 수
 canary: canary 인스턴스에 먼서 인스턴스를 업데이트를 수행하고 에러가 날 경우 배포가 중지 됨
@@ -1848,31 +1846,30 @@ canary_watch_time [Integer or Range, required]: canary 인스턴스가 수행하
 update_watch_time [Integer or Range, required]: non-canary 인스턴스가 수행하기 위한 대기 시간
 max_in_flight [Integer, required]: non-canary 인스턴스가 병렬로 update 하는 최대 개수
 
-// Example
-update:
-canaries: 1
-max_in_flight: 10
-canary_watch_time: 1000-30000
-  update_watch_time: 1000-30000
+Example
+	update:
+	canaries: 1
+	max_in_flight: 10
+	canary_watch_time: 1000-30000
+	  update_watch_time: 1000-30000
 
-8.	Jobs Block
+8. Jobs Block
 jobs [Array, required]: BOSH release jobs 과 cloud 인스턴스 사이의 맵핑을 명시하며 Jobs는 BOSH release 에 명시 되어 있고 Jobs block 은 BOSH가 IaaS에 의해 가상 머신을 어떤 방법으로 생성하고 구동하는지를 정의
 name [String, required]: unique 이름
 templates [Array, required]: release 의 job template 정보
-- name [String, required]: job template 이름
-- release [String, required]: job template 이 존재하는 release 이름
+	- name [String, required]: job template 이름
+	- release [String, required]: job template 이 존재하는 release 이름
 instances [Integer, required]: job 인스턴스 개수. 각 인스턴스는이 특정 job을 실행하는 VM
 resource_pool [String, required]:Resource Pools block에 정의한 resource pool 이름
 networks [Array, required]: 네트워크 정의
-- name [String, required]:Networks block에 정의한 network 이름
-- static_ips [Array, optional]: 사용할 IP addresses 정의
-- default [Array, optional]: 네트워크 구성요소 명시(DNS, Gateway)
+	- name [String, required]:Networks block에 정의한 network 이름
+	- static_ips [Array, optional]: 사용할 IP addresses 정의
+	- default [Array, optional]: 네트워크 구성요소 명시(DNS, Gateway)
 persistent_disk [Integer, optional]:영구적 디스크 사이즈 정의
 update [Hash, optional]: 이 job에 대한 특정 업데이트 설정
 properties [Hash, optional]: job 속성을 지정
 
-
-// Example
+Example
 
 	- name: redis-master
 	  instances: 1
@@ -1897,7 +1894,7 @@ properties [Hash, optional]: job 속성을 지정
 글로벌 속성은 제한 없이 사용가능
   - Passwords, Account names, Shared secrets, Host names, IP addresses, Port numbers, max_connections , etc.
 
-* Example
+Example
 
 	properties:
 	  redis:

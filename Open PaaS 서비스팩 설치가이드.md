@@ -1970,19 +1970,49 @@ Software(서비스팩 software)를 배포하는 bosh deploy CLI 명령어를 제
 
 3.	배포된 Software 를 확인한다. (bosh vms)
 
+ [openpaas-servicepack-01]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-02]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-03]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-04]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-05]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-06]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-07]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-08]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-09]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-10]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-11]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-12]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-13]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-14]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-15]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-16]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-17]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-18]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-19]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-20]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-21]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-22]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-23]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-24]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-25]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-25]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-25]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-25]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-25]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-25]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-25]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-25]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-25]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-25]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-25]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-25]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-25]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-25]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-25]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-25]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-25]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-25]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-25]:/images/openpaas-servicepack/openpaas-servicepack-01.png
+ [openpaas-servicepack-25]:/images/openpaas-servicepack/openpaas-servicepack-01.png
  
-[openpaas-servicepack-01]:/images/openpaas-servicepack/openpaas-servicepack-01.png
-[openpaas-servicepack-01]:/images/openpaas-servicepack/openpaas-servicepack-01.png
-[openpaas-servicepack-01]:/images/openpaas-servicepack/openpaas-servicepack-01.png
-[openpaas-servicepack-01]:/images/openpaas-servicepack/openpaas-servicepack-01.png
-[openpaas-servicepack-01]:/images/openpaas-servicepack/openpaas-servicepack-01.png
-[openpaas-servicepack-01]:/images/openpaas-servicepack/openpaas-servicepack-01.png
-[openpaas-servicepack-01]:/images/openpaas-servicepack/openpaas-servicepack-01.png
-[openpaas-servicepack-01]:/images/openpaas-servicepack/openpaas-servicepack-01.png
-[openpaas-servicepack-01]:/images/openpaas-servicepack/openpaas-servicepack-01.png
-[openpaas-servicepack-01]:/images/openpaas-servicepack/openpaas-servicepack-01.png
-[openpaas-servicepack-01]:/images/openpaas-servicepack/openpaas-servicepack-01.png
-[openpaas-servicepack-01]:/images/openpaas-servicepack/openpaas-servicepack-01.png
-[openpaas-servicepack-01]:/images/openpaas-servicepack/openpaas-servicepack-01.png
-[openpaas-servicepack-01]:/images/openpaas-servicepack/openpaas-servicepack-01.png[openpaas-servicepack-01]:/images/openpaas-servicepack/openpaas-servicepack-01.png
 

@@ -701,8 +701,7 @@ python-swiftclient==2.6.0
 각각의 패키지에 대한 설명은 하단 표를 참고한다.
 <table>
 <tr>
-<tr>
-<th>패키지명</th><th>버전</th><hh>설명</th>
+<th>패키지명</th><th>버전</th><th>설명</th>
 </tr>
 <tr><td>Django</td><td>1.8.6</td><td>python 웹 프레임워크</td>
 </tr>
@@ -725,9 +724,7 @@ python-swiftclient==2.6.0
 <tr><td>django-redis-cache</td><td>1.6.4</td><td>django 애플리케이션과 Redis를 연동하는 드라이버 </td>
 </tr>
 <tr>
-<td>python-keystoneclient</td><td>2.0.0.</td><td>Openstack의 인증 API를 사용하기 위한 클라이언트.</td>
-<tr>
-<td>GlusterFS 연동에 필요</td>
+<td>python-keystoneclient</td><td>2.0.0.</td><td>Openstack의 인증 API를 사용하기 위한 클라이언트.<br>GlusterFS 연동에 필요</td>
 <tr>
 <td>python-swiftclient</td><td>2.6.0</td><td>Openstack의 swift 클라이언트 
 GlusterFS 연동에 필요</td>

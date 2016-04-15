@@ -66,14 +66,13 @@ Document 관련 사항
 
 3. Sample
 
-	3.1 [Node.js](./OpenPaaS_PaaSTA_Application_Nodejs_develope_guide.md)
+	3.1. [Node.js](./OpenPaaS_PaaSTA_Application_Nodejs_develope_guide.md)
 
-	3.1 [PHP](./OpenPaaS_PaaSTA_Application_PHP_develope_guide.md)
+	3.2. [PHP](./OpenPaaS_PaaSTA_Application_PHP_develope_guide.md)
 
-	3.1 [Python](./OpenPaaS_PaaSTA_Application_Python_develope_guide.md)
+	3.3. [Python](./OpenPaaS_PaaSTA_Application_Python_develope_guide.md)
 
-	3.1 [Ruby](./OpenPaaS_PaaSTA_Application_Ruby_develope_guide.md)
-
+	3.4. [Ruby](./OpenPaaS_PaaSTA_Application_Ruby_develope_guide.md)
 
 4. 개발 가이드
 

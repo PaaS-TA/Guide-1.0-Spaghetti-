@@ -1967,5 +1967,5 @@ Software(서비스팩 software)를 배포하는 bosh deploy CLI 명령어를 제
  [openpaas-servicepack-44]:/images/openpaas-servicepack/openpaas-servicepack-44.png
  [openpaas-servicepack-45]:/images/openpaas-servicepack/openpaas-servicepack-45.png
  [openpaas-servicepack-46]:/images/openpaas-servicepack/openpaas-servicepack-46.png
- [openpaas-servicepack-47]:/images/openpaas-servicepack/openpaas-servicepack-47.PNG
- [openpaas-servicepack-48]:/images/openpaas-servicepack/openpaas-servicepack-48.PNG
+ [openpaas-servicepack-47]:/images/openpaas-servicepack/openpaas-servicepack-47.png
+ [openpaas-servicepack-48]:/images/openpaas-servicepack/openpaas-servicepack-48.png

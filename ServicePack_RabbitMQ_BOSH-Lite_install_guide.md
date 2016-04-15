@@ -85,11 +85,11 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 B
 ><div>$ bosh status</div>
 ![rabbitmq_bosh_lite_(10)]
 
--	Deploy시 사용할 Stemcell을 확인한다. (Stemcell 2776 버전 사용)
+-	Deploy시 사용할 Stemcell을 확인한다. (Stemcell 3147 버전 사용)
 
 ><div>$ bosh stemcells</div>
 ![rabbitmq_bosh_lite_(11)]<br><br>
-Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 2776 버전을 업로드를 해야 한다.
+Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3147 버전을 업로드를 해야 한다.
 
 -	openpaas-rabbitmq-lite.yml Deployment 파일을 서버 환경에 맞게 수정한다.
 
@@ -1174,12 +1174,12 @@ resource_pools: # 배포시 사용하는 resource pools를 명시하며 여러 �
 #size: 4    # resource pool 안의 가상머신 개수, 주의) jobs 인스턴스 보다 작으면 에러가 남, size 정의하지 않으면 자동으로 가상머신 크기 설정
   stemcell:
     name: bosh-warden-boshlite-ubuntu-trusty-go_agent    #stemcell 이름(필수)
-    version: latest                  # stemcell 버전(필수)
+    version: 3147                  # stemcell 버전(필수)
 
 meta:
   stemcell:
     name: bosh-warden-boshlite-ubuntu-trusty-go_agent
-    version: latest
+    version: 3147
 
 update:
   canaries: 1             # canary 인스턴스 수(필수)

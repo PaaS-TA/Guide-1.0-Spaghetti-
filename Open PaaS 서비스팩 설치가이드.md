@@ -302,177 +302,171 @@ $ rails new<broker_name>
 Catalog API 경우에는 서비스의 종류와 관계없이 Service 및 Plan 정보를 저장되어 있는 settings.yml 파일이나 기타 메타 파일 또는 소스 안에 정보를 저장한 후 제공한다. 만일 AppDirect 를 이용하는 경우는 Catalog 정보를 조회해오는 AppDirect API를 호출하여 그 결과를 제공한다. 샘플 settings.yml 파일은 3. Catalog Rest API 구현 참고.
 
 
-"#" Pivotal 서비스 Plan 예시
-	- clearDB plan 예
-	[그림출처] :http://run.pivotal.io/
+* Pivotal 서비스 Plan 예시
+- clearDB plan 예
+[그림출처] :http://run.pivotal.io/
+>![openpaas-servicepack-14]
+
+>![openpaas-servicepack-15]
  
-# Pivotal 서비스 Dashboard 예시
+>![openpaas-servicepack-16]
+
+>![openpaas-servicepack-17]
+
+* Pivotal 서비스 Dashboard 예시
 - clearDB Dashboard 예
 [그림출처] :https://www.cleardb.com/
+>![openpaas-servicepack-18]
+
+>![openpaas-servicepack-19]
  
-2.5.2.	Provision API 가이드
+##### 2.5.2. Provision API 가이드
 Broker가 Cloud Controller로 부터 provision 요구를 수신하면 개발자를 위한 새로운 서비스 인스턴스를 생성한다. provision 시 서비스들의 종류에 따라 provision 결과는 다르다.
 Mysql DataBase 인 경우에는 새로운 DATABASE 스키마를 생성한다. 또한 non-data 서비스 인 경우의 provision은 기존 시스템에 계정을 얻는 의미 일 수도 있다. 자세한 내용은 아래에 각 서비스별 provision을 참고한다.
 
-1.	Request
-1.1.	Route
-PUT /v2/service_instances/:instance_id
+1. Request
+
+1.1. Route
+
+	PUT /v2/service_instances/:instance_id
+
 참고: 서비스 인스턴스의 instance_id는 Cloud Controller에 의해 제공된다. 이 ID는 인스턴스 삭제, 바인드 및 바인드 해지에 사용된다.
 
-1.2.	cURL
-$ curl http://username:password@broker-url/v2/service_instances/:instance_id -d '{
-  "service_id":        "service-guid-here",
-  "plan_id":           "plan-guid-here",
-  "organization_guid": "org-guid-here",
-  "space_guid":        "space-guid-here"
-}' -X PUT -H "X-Broker-API-Version: 2.4" -H "Content-Type: application/json"
+1.2. cURL
+	$ curl http://username:password@broker-url/v2/service_instances/:instance_id -d '{
+	  "service_id":        "service-guid-here",
+	  "plan_id":           "plan-guid-here",
+	  "organization_guid": "org-guid-here",
+	  "space_guid":        "space-guid-here"
+	}' -X PUT -H "X-Broker-API-Version: 2.4" -H "Content-Type: application/json"
 
 1.3.	Body
-REQUEST FIELD	TYPE	DESCRIPTION
-service_id*	string	카탈로그 내의 서비스의 ID는 카탈로그 endpoint 에서 사용자가 provision 할 때 필요한 고유 식별자
-plan_id*	string	서비스 내의 plan ID 는 카탈로그 endpoint 에서 사용자가 provision 할 때 필요한 고유 식별자
-organization_guid*	string	Cloud Controller 에서 사용자가 사용하는 ORG GUID 값
-space_guid*	string	organization_guid 필드와 같이SPACE GUID 값
-parameters	JSON object	JSON 형태의 파라미터 값을 제공
+>![openpaas-servicepack-20]
 
-2.	Response
-2.1.	Status Code
-STATUS CODE	DESCRIPTION
-201 Created	서비스 인스턴스 생성(Response body 정보는 아래에 제공)
-200 OK	서비스 인스턴스가 이미 존재하고 요청 된 매개 변수가 기존의 서비스 인스턴스와 동일한 경우 (Response body 정보는 아래에 제공)
-409 Conflict	요청 된 서비스의 인스턴스가 이미 존재하는 경우 반환. 에러 메시지 형태는 {} 안에 description 필드를 사용
-예) 
-{
-  "description": "Something went wrong. Please contact support at http://support.example.com."
-}
+2. Response
+2.1. Status Code
+>![openpaas-servicepack-21]
 
 2.2.	Body 
 모든 응답 bodies 는 JSON Object ({}) 형식으로 한다.
-RESPONSE FIELD	TYPE	DESCRIPTION
-dashboard_url	string	서비스 인스턴스에 대한 웹 기반 대시보드 유저 인터페이스의 URL이다. 사용자가 SSO를 통해 서비스 대시보드 인증 할 수있는 방법에 대한 내용은 2.3 Dashboard Single Sign-On 참고
-예)
-{
- "dashboard_url": "http://mongomgmthost/databases/9189kdfsk0vfnku"
-}
+>![openpaas-servicepack-22]
 
 2.3.	Dashboard Single Sign-On.
 Single Sign-On (SSO)는 개방형 클라우드 플랫폼 사용자들이 개방형 클라우드 플랫폼 자격 증명을 사용하여 third-party 서비스의 대시 보드에 접근한다. 서비스 대시 보드는 서비스가 제공하는 기능의 일부 또는 전부를 사용할 수 있는 웹 인터페이스이다. SSO는 반복되는 로그인과 여러 서비스의 계정을 통합 관리한다. OAuth2 프로토콜 인증을 처리하기 때문에 사용자의 자격 증명은 직접 서비스로 전송하지 않는다. SSO 기능을 사용하려면 Cloud Controller UAA client 에 서비스 브로커의 생성 및 삭제 할 수 있는 권한이 있어야 한다. 이 클라이언트는 개방형 클라우드 플랫폼 설치시 구성한다. (설치 문서 참고)
 
-# CF 설치시 Dashboard SSO 설정 예)
-properties:
-    uaa:
-      clients:
-        cc-service-dashboards:
-          secret: cc-broker-secret
-          scope: openid,cloud_controller_service_permissions.read
-          authorities: clients.read,clients.write,clients.admin
-          authorized-grant-types: client_credentials
+* CF 설치시 Dashboard SSO 설정 예)
+	properties:
+	    uaa:
+	      clients:
+	        cc-service-dashboards:
+	          secret: cc-broker-secret
+	          scope: openid,cloud_controller_service_permissions.read
+	          authorities: clients.read,clients.write,clients.admin
+	          authorized-grant-types: client_credentials
 
-3.	Provision Rest API 구현
-3.1.	JAVA 방식
--- ServiceInstanceRestController.java (Spring 프레임워크 사용)
+3. Provision Rest API 구현
+3.1. JAVA 방식
+	-- ServiceInstanceRestController.java (Spring 프레임워크 사용)
+	
+	@Controller
+	@RequestMapping("/v2/service_instances/{id}")
+	class ServiceInstanceRestController {
+	  @Autowired
+	private ServiceInstanceService service;
+	
+	  @RequestMapping(method = RequestMethod.PUT)
+	  @ResponseBody
+	  Map update(@PathVariable String id) {
+	ServiceInstance instance = service.findById(id);   // Spring 프레임워크 사용으로 서비스 구현
+	    if (!service.isExists(instance)) {
+	service.create(instance);        // 서비스 인스턴스를 생성하는 부분 (개발 명세 내용 구현)
+	    }
+	    return [:];
+	
+	  }
+	}
 
-@Controller
-@RequestMapping("/v2/service_instances/{id}")
-class ServiceInstanceRestController {
-  @Autowired
-private ServiceInstanceService service;
+3.2. Ruby 방식(Ruby on Rails)
+	-- config/routes.rb : 라우팅 정보를 담은 파일
+	
+	CfMysqlBroker::Application.routes.draw do
+	  resource :preview, only: [:show]
+	
+	namespace :v2 do
+	resource :catalog, only: [:show] // 접속 라우팅 설정 (V2/catalog)
+	patch 'service_instances/:id' => 'service_instances#set_plan'
+	    resources :service_instances, only: [:update, :destroy] do
+	      resources :service_bindings, only: [:update, :destroy]
+	    end
+	  end
+	
+	end
+	
+	-- RestController 구현 (app/controllers/v2/service_instances_controller.rb)
+	
+	class V2::ServiceInstancesController < V2::BaseController
+	
+	  # This is actually the create
+	  def update
+	// 서비스 instance 생성 기능 구현 (개발 명세 내용 구현)
+	  end
+	
+	end
 
-  @RequestMapping(method = RequestMethod.PUT)
-  @ResponseBody
-  Map update(@PathVariable String id) {
-ServiceInstance instance = service.findById(id);   // Spring 프레임워크 사용으로 서비스 구현
-    if (!service.isExists(instance)) {
-service.create(instance);        // 서비스 인스턴스를 생성하는 부분 (개발 명세 내용 구현)
-    }
-    return [:];
+3.3. Node.js 방식
+	# sample (app.js) : Catalog API 참고
+	
+	var router = express.Router();
+	
+	router.route('/v2/service_instances/:id’)
+	
+	.put(function(req, res, next) {
+	// 서비스 instance 생성 기능 구현 (개발 명세 내용 구현)
+	
+	})
 
-  }
-}
+4. 서비스 별 Provision API 개발 명세
+- 인스턴스 생성시 unique 한 이름으로 만든다.
+- 생성 요청한 인스턴스 ID 가 이미 존재 하는지 체크한다.
+- 선택 한 plan 정보로 인스턴스가 생성 가능한지 체크 하고 가능할 경우 해당 인스턴스를 만든다.
+- 인스턴스 생성이 완료 되면 위에서 기술된 JSON Object 형식으로 Cloud Controller 에 전송한다.
 
-3.2.	Ruby 방식(Ruby on Rails)
--- config/routes.rb : 라우팅 정보를 담은 파일
+4.1. RDBMS
 
-CfMysqlBroker::Application.routes.draw do
-  resource :preview, only: [:show]
-
-namespace :v2 do
-resource :catalog, only: [:show] // 접속 라우팅 설정 (V2/catalog)
-patch 'service_instances/:id' => 'service_instances#set_plan'
-    resources :service_instances, only: [:update, :destroy] do
-      resources :service_bindings, only: [:update, :destroy]
-    end
-  end
-
-end
-
--- RestController 구현 (app/controllers/v2/service_instances_controller.rb)
-
-class V2::ServiceInstancesController < V2::BaseController
-
-  # This is actually the create
-  def update
-// 서비스 instance 생성 기능 구현 (개발 명세 내용 구현)
-  end
-
-end
-
-3.3.	Node.js 방식
-# sample (app.js) : Catalog API 참고
-
-var router = express.Router();
-
-router.route('/v2/service_instances/:id’)
-
-.put(function(req, res, next) {
-// 서비스 instance 생성 기능 구현 (개발 명세 내용 구현)
-
-})
-
-
-4.	서비스 별 Provision API 개발 명세
--	인스턴스 생성시 unique 한 이름으로 만든다.
--	생성 요청한 인스턴스 ID 가 이미 존재 하는지 체크한다.
--	선택 한 plan 정보로 인스턴스가 생성 가능한지 체크 하고 가능할 경우 해당 인스턴스를 만든다.
--	인스턴스 생성이 완료 되면 위에서 기술된 JSON Object 형식으로 Cloud Controller 에 전송한다.
-
-4.1.	RDBMS
 1. Mysql 경우
-
-- 생성할 데이터 베이스가 존재 하는지 체크 
-SHOW DATABASES LIKE '${instance.database}'
-
-- 새로운 데이터 베이스 생성
-CREATE DATABASE IF NOT EXISTS ${instance.database}
-
-- 생성 후 Dashboard 정보를 JSON Object 형식으로 Cloud Controller 에 전송.
+	- 생성할 데이터 베이스가 존재 하는지 체크 
+	SHOW DATABASES LIKE '${instance.database}'
+	
+	- 새로운 데이터 베이스 생성
+	CREATE DATABASE IF NOT EXISTS ${instance.database}
+	
+	- 생성 후 Dashboard 정보를 JSON Object 형식으로 Cloud Controller 에 전송.
 
 2. Cubrid DB 경우 
+	- 데이터 베이스 생성할 디렉토리 생성 및 이동
+	$ mkdir <databasename>
+	$ cd <databasename>
+	
+	- 데이터 베이스 생성
+	$ cubrid created--db-volume-size=100M --log-volume-size=100M <databasename> en_US
+	
+	- 데이터 베이스 실행
+	$ cubrid service start
+	$ cubrid server start <databasename>
 
-- 데이터 베이스 생성할 디렉토리 생성 및 이동
-$ mkdir <databasename>
-$ cd <databasename>
-
-- 데이터 베이스 생성
-$ cubrid created--db-volume-size=100M --log-volume-size=100M <databasename> en_US
-
-- 데이터 베이스 실행
-$ cubrid service start
-$ cubrid server start <databasename>
-
-4.2.	대용량 저장소
+4.2. 대용량 저장소
 1. GlusterFS 경우
 # GlusterFS 로 파일을 업로드 하기 위해서는 먼저 GlusterFS 와 OpenStack swift 로 service back-end로 구성하여 Object Storage 방식으로 파일을 업로드 다운로드를 할수 있게 제공한다. (아마존 S3 방식과 유사)
 
-- 새로운 Swift Account 를 생성
-
-Method  : PUT 
-
-Req URL : http(s)://[IP Address OR HostName]/auth/v2/[AccountID]
-
-Header  : X-Auth-Admin-User: .super_admin
-	  X-Auth-Admin-Key: swauthkey
-          X-Account-Meta-Quota-Bytes: [Size(Byte)]
+	- 새로운 Swift Account 를 생성
+	
+	Method  : PUT 
+	
+	Req URL : http(s)://[IP Address OR HostName]/auth/v2/[AccountID]
+	
+	Header  : X-Auth-Admin-User: .super_admin
+		  X-Auth-Admin-Key: swauthkey
+	          X-Account-Meta-Quota-Bytes: [Size(Byte)]
 
 
 4.3.	NoSQL DB

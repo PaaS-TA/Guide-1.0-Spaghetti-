@@ -700,8 +700,8 @@ path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
 [apiplatform_bosh_lite_2.4.1.02]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image16.png
 [apiplatform_bosh_lite_2.4.1.03]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image17.png
 [apiplatform_bosh_lite_2.4.1.04]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image18.png
-[apiplatform_bosh_lite_2.4.1.05]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image19.png
-[apiplatform_bosh_lite_2.4.1.06]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image20.jpeg
+[apiplatform_bosh_lite_2.4.1.05]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image19.jpeg
+[apiplatform_bosh_lite_2.4.1.06]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image20.png
 [apiplatform_bosh_lite_2.4.1.07]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image21.png
 [apiplatform_bosh_lite_2.4.1.08]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image22.png
 [apiplatform_bosh_lite_2.4.2.01]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image23.png

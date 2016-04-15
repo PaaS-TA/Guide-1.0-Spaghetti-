@@ -26,7 +26,7 @@
 ### 1.3. 시스템 구성도
 본 문서의 설치된 시스템 구성도입니다. API 플랫폼(apimanager), API 플랫폼 서비스 브로커(apiplatform-broker), Business Activity Monitor(bam), MariaDB(mariadb)로 최소사항을 구성하였다.
 
-![apiplatform_aws_1.3.01]
+![apiplatform_openstack_1.3.01]
 
 | 구분 | Resource Pool | Instance type/스펙 |
 |--------|-------|-------|
@@ -42,7 +42,7 @@
 
 # 2. API 플랫폼 서비스팩 설치
 ### 2.1. 설치전 준비사항
-본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다. 서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다. BOSH CLI가 설치되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고하여 BOSH CLI를 설치 해야 한다.
+본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다. 서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다. BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여 BOSH CLI를 설치 해야 한다.
 
 - OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Services.zip, OpenPaaS-Deployment.zip, OpenPaaS-Sample-Apps.zip)
 
@@ -54,7 +54,7 @@
 
 >`$ ls –all`
 
->![apiplatform_aws_2.2.01]
+>![apiplatform_openstack_2.2.01]
 
 <br>
 
@@ -66,9 +66,9 @@
 
 > ※ 하단의 화면은 릴리즈 파일을 tarball 형태로 압축하지 않고 릴리즈를 업로드하고 있다. 본 문서에서 안내하는 방법대로 tarball 형태로 릴리즈 파일 압축하여 업로드 할 경우에 출력되는 화면은 하단의 화면과 다소 차이가 있다.
 
->![apiplatform_aws_2.2.02]
+>![apiplatform_openstack_2.2.02]
 
->![apiplatform_aws_2.2.03]
+>![apiplatform_openstack_2.2.03]
 
 <br>
 
@@ -76,7 +76,7 @@
 
 >`$ bosh releases`
 
->![apiplatform_aws_2.2.04]
+>![apiplatform_openstack_2.2.04]
 
 >API 플랫폼 릴리즈가 업로드 되어 있는 것을 확인
 
@@ -84,11 +84,11 @@
 ### 2.3. API 플랫폼 서비스 릴리즈 Deployment 파일 수정 및 배포
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다. Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할 것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
 
-- OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더 안에 있는 aws용 API 플랫폼 Deployment 화일인 openpaas-apiplatform-aws-1.0.yml을 확인한다.
+- OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더 안에 있는 Openstack용 API 플랫폼 Deployment 화일인 openpaas-apiplatform-openstack-1.0.yml을 확인한다.
 
 >`$ ls -all`
 
->![apiplatform_aws_2.3.01]
+>![apiplatform_openstack_2.3.01]
 
 <br>
 
@@ -97,7 +97,7 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기 위한 현재 대상 
 
 >`$ bosh status`
 
->![apiplatform_aws_2.3.02]
+>![apiplatform_openstack_2.3.02]
 
 <br>
 
@@ -105,22 +105,23 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기 위한 현재 대상 
 
 >`$ bosh stemcells`
 
->![apiplatform_aws_2.3.03]
+>![apiplatform_openstack_2.3.03]
 
 >Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3147 버전을 업로드를 해야 한다.
 
 <br>
 
-- openpaas-apiplatform-aws-1.0.yml Deployment 파일을 서버 환경에 맞게 수정한다.
+- openpaas-apiplatform-openstack-1.0.yml Deployment 파일을 서버 환경에 맞게 수정한다.
 
 ```yml
-# openpaas-apiplatform-aws 설정파일
+# openpaas-apiplatform-openstack 설정파일
 ---
 name: openpaas-apiplatform-service         # 서비스 배포이름(필수)
-director_uuid: f7f7e2a8-aae9-4be7-8e11-70d91e4fccc1        # bosh status 에서 확인한 Director UUID을 입력(필수)
+
+director_uuid: 3475c880-8836-4a73-9309-c65bc9ac20c6       # bosh status 에서 확인한 Director UUID을 입력(필수)
 
 releases:
-- {name: openpaas-apiplatform, version: 1.0}      # 서비스 릴리즈 이름(필수), 서비스 릴리즈 버전(필수): latest 시 업로드 된 서비스 릴리즈 최신버전
+- {name: openpaas-apiplatform, version: beta-1.0}      # 서비스 릴리즈 이름(필수), 서비스 릴리즈 버전(필수): latest 시 업로드 된 서비스 릴리즈 최신버전
 
 update:
   canaries: 1                          # canary 인스턴스 수(필수)
@@ -132,17 +133,20 @@ networks:
 - name: default            # network 이름(필수)
   subnets:
   - cloud_properties:
-      security_groups:                            # AWS 에서 사용하는 접근 시큐리티 이름 이름(필수)
-      - op-cf
-      - op-bosh
+      net_id: 7b49e746-161a-4f90-9ed6-c93e27122a1a       # OpenStack에서 사용하는 network 이름 아이디(필수)
+      security_groups:            # OpenStack 에서 사용하는 접근 시큐리티 이름 이름(필수)
+      - cf-security
+      - bosh
+      - default
     dns:                   # DNS 정보
+    - 10.20.0.3
     - 8.8.8.8
-    gateway: 10.0.0.1
-    range: 10.0.0.0/24
+    gateway: 10.20.0.1
+    range: 10.20.0.0/24
     reserved:                     # 설치 시 제외할 IP 설정
-    - 10.0.0.2 - 10.0.0.200
+    - 10.20.0.2 - 10.20.0.199
     static:
-    - 10.0.0.201 - 10.0.0.210      #사용 가능한 IP 설정
+    - 10.20.0.200 - 10.20.0.210      #사용 가능한 IP 설정
   type: manual
 
 resource_pools:    # 배포시 사용하는 resource pools를 명시하며 여러 개의 resource pools 을 사용할 경우 name 은 unique 해야함(필수)
@@ -151,7 +155,7 @@ resource_pools:    # 배포시 사용하는 resource pools를 명시하며 여�
   name: small
   network: default             # Networks block에서 선언한 network 이름(필수)
   stemcell:
-    name: bosh-aws-xen-ubuntu-trusty-go_agent        # stemcell 이름(필수)
+    name: bosh-openstack-kvm-ubuntu-trusty-go_agent   # stemcell 이름(필수)
     version: 3147                                      # stemcell 버전(필수)
 
 compilation:          # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone), 직접 cpu,disk,ram 사이즈를 넣어도 됨
@@ -168,7 +172,7 @@ jobs:
   resource_pool: small                      # Resource Pools block에 정의한 resource pool 이름(필수)
   networks:                                # 네트워크 구성정보
   - name: default                           # Networks block에서 선언한 network 이름
-    static_ips: 10.0.0.210                   # 사용할 IP addresses 정의(필수): db서버
+    static_ips: 10.20.0.210                   # 사용할 IP addresses 정의(필수): db서버
   properties:                                # job에 대한 속성을 지정(필수)
     admin_username: root                    # DB 어드민 유저이름 
     admin_password: openpaas               # DB 어드민 패스워드
@@ -177,15 +181,15 @@ jobs:
     apiplatform_broker_username: apiplatform  # API Platform Service Broker의 DB 접속 유저이름
     apiplatform_broker_password: openpaas    # API Platform Service Broker의 DB 접속 패스워드
 
-- name: bam                          #작업 이름(필수): BAM
+- name: bam                          # 작업 이름(필수): BAM
   instances: 1                         # job 인스턴스 수(필수)
   template: bam                       # job template 이름(필수)
   resource_pool: small                 # Resource Pools block에 정의한 resource pool 이름(필수)
   networks:                            # 네트워크 구성정보
   - name: default                       # Networks block에서 선언한 network 이름
-    static_ips: 10.0.0.203               # 사용할 IP addresses 정의(필수): BAM
+    static_ips: 10.20.0.203               # 사용할 IP addresses 정의(필수): BAM
   properties:
-    database_ip: 10.0.0.210             # Bam이 사용할 DB host
+    database_ip: 10.20.0.210             # Bam이 사용할 DB host
 
 - name: apimanager                # 작업 이름(필수): API Platform(API Manager)
   instances: 1                        # job 인스턴스 수(필수)
@@ -193,27 +197,27 @@ jobs:
   resource_pool: small                # Resource Pools block에 정의한 resource pool 이름(필수)
   networks:                          # 네트워크 구성정보
   - name: default                     # Networks block에서 선언한 network 이름
-    static_ips: 10.0.0.201          # 사용할 IP addresses 정의(필수): API Platform(API Manager)
+    static_ips: 10.20.0.201          # 사용할 IP addresses 정의(필수): API Platform(API Manager)
   properties:
-    bam_ip: 10.0.0.203            # Bam의 IP 주소
-    database_ip: 10.0.0.210        # API manager가 사용할 DB host
+    bam_ip: 10.20.0.203            # Bam의 IP 주소
+    database_ip: 10.20.0.210        # API manager가 사용할 DB host
 
-- name: apiplatform-broker            #작업 이름(필수): API Platform Service Broker
+- name: apiplatform-broker            # 작업 이름(필수): API Platform Service Broker
   instances: 1                        # job 인스턴스 수(필수)
   template: apiplatform-broker         # job template 이름(필수)
   resource_pool: small                 # Resource Pools block에 정의한 resource pool 이름(필수)
   networks:                           # 네트워크 구성정보
   - name: default                      # Networks block에서 선언한 network 이름
-    static_ips: 10.0.0.209               # 사용할 IP addresses 정의(필수): API Platform Service Broker
+    static_ips: 10.20.0.200               # 사용할 IP addresses 정의(필수): API Platform Service Broker
   properties:                           # job에 대한 속성을 지정(필수)
     catalog_login_id: admin             # 카탈로그 API를 사용하기 위한 API플랫폼 유저 아이디
     catalog_login_password: admin       # 카탈로그 API를 사용하기 위한 API플랫폼 유저 패스워드
-    apimanager_url: http://10.0.0.201           # API Platform(API Manager) URL
-    database_ip: 10.0.0.210                    # DB 접속 URL
-    apiplatform_broker_username: apiplatform    # API Platform Service Broker의 DB 접속 유저이름
-    apiplatform_broker_password: openpaas      # API Platform Service Broker의 DB 접속 패스워드
+    apimanager_url: http://10.20.0.201          # API Platform(API Manager) URL
+    database_ip: 10.20.0.210                   # DB 접속 URL
+    apiplatform_broker_username: apiplatform   # API Platform Service Broker의 DB 접속 유저이름
+    apiplatform_broker_password: openpaas     # API Platform Service Broker의 DB 접속 패스워드
 
-- name: broker-registrar      # 작업 이름(필수): 서비스 브로커 등록
+- name: broker-registrar      #작업 이름(필수): 서비스 브로커 등록
   template: broker-registrar   # job template 이름(필수)
   instances: 1               # job 인스턴스 수(필수)
   lifecycle: errand           # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로 실행할 때 설정, 주로 테스트 용도에 쓰임
@@ -222,13 +226,13 @@ jobs:
   - name: default                    # Networks block에서 선언한 network 이름
   properties:                        # job에 대한 속성을 지정(필수)
     cf:                            # 개방형 클라우드 플랫폼 접속 정보
-      api_url: http://api.52.71.64.39.xip.io   # 개방형 클라우드 플랫폼 접속 URL
+      api_url: http://api.115.68.151.190.xip.io   # 개방형 클라우드 플랫폼 접속 URL
       admin_username: "admin"   # 개방형 클라우드 플랫폼 접속 유저이름
       admin_password: "admin"    # 개방형 클라우드 플랫폼 접속 패스워드
       skip_ssl_validation: "true"     # 개방형 클라우드 플랫폼 접속 옵션의 일부
     broker:                            # API Platform Service Broker 설정정보
       protocol: http                    # API Platform Service Broker 접속 프로토콜
-      host: 10.0.0.209                # API Platform Service Broker 접속 URL
+      host: 10.20.0.200                # API Platform Service Broker 접속 URL
       port: 8080                       # API Platform Service Broker 접속 포트
       name: apiplatform-serivce-broker  # API Platform Service Broker 생성명
       username: "admin"               # API Platform Service Broker auth 유저이름
@@ -243,31 +247,32 @@ jobs:
   - name: default                 # Networks block에서 선언한 network 이름
   properties:                      # job에 대한 속성을 지정(필수)
     cf:                           # 개방형 클라우드 플랫폼 접속 정보    
-      api_url: http://api.52.71.64.39.xip.io   # 개방형 클라우드 플랫폼 접속 URL
+      api_url: http://api.115.68.151.190.xip.io   # 개방형 클라우드 플랫폼 접속 URL
       admin_username: "admin"                  # 개방형 클라우드 플랫폼 접속 유저이름
       admin_password: "admin"                  # 개방형 클라우드 플랫폼 접속 패스워드
       skip_ssl_validation: "true"                   # 개방형 클라우드 플랫폼 접속 옵션의 일부
     broker:                                     # API Platform Service Broker 설정정보
       name: apiplatform-service-broker           # API Platform Service Broker 생성명
+
 ```
 
 <br>
 
 - Deploy할 deployment manifest 파일을 BOSH에 지정한다.
 
->`$ bosh deployment openpaas-apiplatform-aws-1.0.yml`
+>`$ bosh deployment openpaas-apiplatform-openstack-1.0.yml`
 
->![apiplatform_aws_2.3.04]
+>![apiplatform_openstack_2.3.04]
 
 <br>
 
-- API 플랫폼 서비스팩을 배포한다. 환경에 따라 다르지만 API 플랫폼 서비스팩 배포는 일반적으로 30분에서 50분 가량이 소요된다. 하단의 푸른색 박스에서 보듯이 리소스 상황에 따라 2시간 가량이 소요될 수도 있다.
+- API 플랫폼 서비스팩을 배포한다. 환경에 따라 다르지만 API 플랫폼 서비스팩 배포는 일반적으로 30분에서 50분 가량이 소요된다. 
 
 >`$ bosh deploy`
 
->![apiplatform_aws_2.3.05]
+>![apiplatform_openstack_2.3.05]
 
->![apiplatform_aws_2.3.06]
+>![apiplatform_openstack_2.3.06]
 
 <br>
 
@@ -275,7 +280,7 @@ jobs:
 
 >`$ bosh vms`
 
->![apiplatform_aws_2.3.07]
+>![apiplatform_openstack_2.3.07]
 
 
 ### 2.4. API 매니저에서 API 생성 및 배포
@@ -297,54 +302,54 @@ API 플랫폼 서비스팩으로 배포한 API 매니저에는 Public IP가 할�
 ###### 1. Putty 설정
 (1)다운로드한 Putty를 실행하고 Connection 메뉴를 열어 SSH 메뉴에서 Tunnels를 메뉴를 연다.
 
->![apiplatform_aws_2.4.1.01]
+>![apiplatform_openstack_2.4.1.01]
 
 <br>
 
 (2) 터널링 정보를 입력한다.<br>
 ① Source port에 사용하지 않는 임의의 포트를 입력하고 ②번 Dynamic을 선택한 후, ③ Add 버튼을 눌러 추가한다. ④번 위치에서 D{입력한 포트}의 형태로 추가된 것을 확인한다.
 
->![apiplatform_aws_2.4.1.02]
+>![apiplatform_openstack_2.4.1.02]
 
 <br>
 
 (3) Putty 접속 정보를 입력한다.<br>
 ① Session 메뉴를 클릭하여 접속정보 설정 화면으로 이동하여 ② 배포한 API 매니저와 내부망으로 연결되어 있는 머신(설치 환경에 따라 상이함)의 Public IP를 입력한다.
 
->![apiplatform_aws_2.4.1.03]
+>![apiplatform_openstack_2.4.1.03]
 
 <br>
 
 (4) Putty 접속 및 로그인<br>
 Open 버튼을 클릭하여 해당 머신에 연결한다
 
->![apiplatform_aws_2.4.1.04]
+>![apiplatform_openstack_2.4.1.04]
 
 <br>
 
 로그인 화면에서 로그인을 완료한 채로 접속을 유지해둔다.
 
->![apiplatform_aws_2.4.1.05]
+>![apiplatform_openstack_2.4.1.05]
 
 
 ###### 2. Firefox 설정
 (1) Mozila Firefox 브라우저를 실행하여 첫 화면 하단의 옵션 버튼을 클릭한다.
 
->![apiplatform_aws_2.4.1.06]
+>![apiplatform_openstack_2.4.1.06]
 
 <br>
 
 (2) 설정 창을 연다.<br>
 ① 고급 탭-  ② 네트워크 탭- ③ 설정 버튼을 차례로 클릭하여 설정 창을 연다.
 
->![apiplatform_aws_2.4.1.07]
+>![apiplatform_openstack_2.4.1.07]
 
 <br>
 
 (3) 연결 설정 정보를 입력하고 저장한다.<br>
 ① 프록시 수동설정에 체크하고 ② 화면과 같이 설정을 입력한다. 포트는 Putty 터널링 설정에서 입력한 Source Port와 동일한 포트를 입력한다. ③ 설정을 완료하였으면 확인 버튼을 눌러 저장한다.
 
->![apiplatform_aws_2.4.1.08]
+>![apiplatform_openstack_2.4.1.08]
 
 <br>
 
@@ -359,7 +364,7 @@ Open 버튼을 클릭하여 해당 머신에 연결한다
 예) https://10.0.0.201:9443/carbon
 ```
 
->![apiplatform_aws_2.4.2.01]
+>![apiplatform_openstack_2.4.2.01]
 
 ###### 1. API 매니저 접속 및 로그인
 ① API 플랫폼 서비스팩을 통해 배포된 API 매니저의 publisher 대시보드에 접속한다.
@@ -374,14 +379,14 @@ Open 버튼을 클릭하여 해당 머신에 연결한다
 ② 관리자 계정으로 로그인한다. 관리자 계정의 Username과 Password는 admin/admin이다.
 ※ API 매니저 관리자 대시보드({API매니저 URL}:{API매니저 포트}/carbon)에서 계정을 추가하고 권한을 설정하여 사용할 수도 있지만, 그에 대한 설명은 본 문서에서는 기술하지 않는다.
 
->![apiplatform_aws_2.4.2.02]
+>![apiplatform_openstack_2.4.2.02]
 
 <br>
 
 ###### 2. API 생성
 ① 로그인이 완료되면 다음과 같은 화면을 확인할 수 있다. 최초 배포가 완료되면 API가 생성되지 않은 상태이므로 ②번의 New API 버튼이 화면에 보여진다. New API 버튼을 클릭하여 API 생성화면으로 이동한다.
 
->![apiplatform_aws_2.4.2.03]
+>![apiplatform_openstack_2.4.2.03]
 
 <br>
 
@@ -401,20 +406,20 @@ Version: 1.0.0
 
 ※ ④번 Edit Swagger Definition 버튼을 클릭하여 다음의 [[4. Resources 정의]](#DefineResources) 과정을 생략 할 수 있다. 이에 대한 설명은 [[4. Resources 정의]](#DefineResources) 하단에 [[Swagger 정의]](#DefineSwagger)로 첨부한다.
 
->![apiplatform_aws_2.4.2.04]
+>![apiplatform_openstack_2.4.2.04]
 
 <div id=DefineResources></div>
 ###### 4. Resources 정의
 ① General Details 하단에 Resources 입력란이 있다. URL Pattern에 대소문자 구분에 유의하여 CheckPhoneNumber 값을 입력하고 GET, POST, OPTIONS 메소드를 선택한다. Resource Name의 값은 URL Pattern을 입력하면 같은 값이 자동으로 입력되는데 사용자 필요에 따라 변경할 수 있다.<br>
 ② 입력이 완료되었다면, Add New Resource 버튼을 클릭하여 Resource를 추가한다.<br>
 
->![apiplatform_aws_2.4.2.05]
+>![apiplatform_openstack_2.4.2.05]
 
 <br>
 
 리소스를 추가하면 하단의 그림처럼 추가된 Resource가 화면에 나타난다. 그 중 GET 메소드의 리소스를 클릭하여 파라미터 세부사항을 정의한다.
 
->![apiplatform_aws_2.4.2.06]
+>![apiplatform_openstack_2.4.2.06]
 
 <br>
 
@@ -430,7 +435,7 @@ Version: 1.0.0
 
 ④ 하단의 버튼 중, 좌측의 Save버튼을 클릭하여 저장하고 가운데 Implement 버튼을 클릭하여 다음단계인 Implement 단계로 진행한다.<br>
 
->![apiplatform_aws_2.4.2.07]
+>![apiplatform_openstack_2.4.2.07]
 
 <br>
 
@@ -507,7 +512,7 @@ authorizations:
 ③ 추가된 사항을 저장한다.<br>
 ④ 다음 단계인 Manage 화면으로 이동한다.<br>
 
->![apiplatform_aws_2.4.2.08]
+>![apiplatform_openstack_2.4.2.08]
 
 <div id=TierChoose></div>
 ###### 6. Tier 선택
@@ -515,7 +520,7 @@ authorizations:
 ② Tier Availability는 해당 API 서비스의 호출 횟수를 제한하는 설정으로 개방형 클라우드 플랫폼에서는 플랜으로 표시된다. API 매니저에 설정된 4가지 기본 Tier 중, 사용자 필요에 맞게 선택할 수 있고 API 매니저 관리자 대시보드({API매니저 URL}:{API매니저 포트}/carbon)에서 Tier명과 호출 횟수 제한을 변경할 수 있다. 다만, 현재는 API 서비스 브로커 설계상 API Tier는 Unlimited Tier를 선택하여야 한다. 따라서 Unlimited Tier만을 선택한다. Unlimited Tier만 선택하여 API 서비스를 배포하더라도 개방형 클라우드 플랫폼에서는 Unlimited와 Bronze의 두 가지 플랜을 선택할 수 있다.<br>
 ③ Save & Publish 버튼을 클릭하여 저장하고 API를 배포한다.<br>
 
->![apiplatform_aws_2.4.2.09]
+>![apiplatform_openstack_2.4.2.09]
 
 <br>
 
@@ -532,7 +537,7 @@ authorizations:
 
 ② 생성한 API가 배포되어 있음을 확인한다. 배포되지 않은 API는 Store 대시보드에 노출되지 않는다.
 
->![apiplatform_aws_2.4.2.10]
+>![apiplatform_openstack_2.4.2.10]
 
 
 ### 2.5. 플랫폼 서비스 브로커 등록
@@ -542,7 +547,7 @@ API 매니저(API 플랫폼)에 API 서비스가 정상적으로 등록 및 배�
 
 >`$ cf service-brokers`
 
->![apiplatform_aws_2.5.01]
+>![apiplatform_openstack_2.5.01]
 
 - API 플랫폼 서비스 브로커를 등록한다.
 
@@ -554,7 +559,7 @@ API 매니저(API 플랫폼)에 API 서비스가 정상적으로 등록 및 배�
 
 >`$ cf create-service-broker apiplatform-service-broker admin cloudfoundry http://10.30.60.200:8080`
 
->![apiplatform_aws_2.5.02]
+>![apiplatform_openstack_2.5.02]
 
 <br>
 
@@ -562,7 +567,7 @@ API 매니저(API 플랫폼)에 API 서비스가 정상적으로 등록 및 배�
 
 >`$ cf service-brokers`
 
->![apiplatform_aws_2.5.03]
+>![apiplatform_openstack_2.5.03]
 
 <br>
 
@@ -570,7 +575,7 @@ API 매니저(API 플랫폼)에 API 서비스가 정상적으로 등록 및 배�
 
 >`$ cf service-access`
 
->![apiplatform_aws_2.5.04]
+>![apiplatform_openstack_2.5.04]
 
 >서비스 브로커 생성시 기본적으로 접근을 허용하지 않는다. access가 none인 것을 확인할 수 있다.
 
@@ -584,7 +589,7 @@ API 매니저(API 플랫폼)에 API 서비스가 정상적으로 등록 및 배�
 
 >`$ cf service-access`
 
->![apiplatform_aws_2.5.05]
+>![apiplatform_openstack_2.5.05]
 
 <br>
 
@@ -592,7 +597,7 @@ API 매니저(API 플랫폼)에 API 서비스가 정상적으로 등록 및 배�
 
 >`$ cf marketplace`
 
->![apiplatform_aws_2.5.06]
+>![apiplatform_openstack_2.5.06]
 
 <br>
 
@@ -627,7 +632,7 @@ path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
 
 >`$ cf push --no-start`
 
->![apiplatform_aws_3.1.01]
+>![apiplatform_openstack_3.1.01]
 
 <br>
 
@@ -637,7 +642,7 @@ path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
 
 >`$ cf logs hello-servlet-tomcat`
 
->![apiplatform_aws_3.1.02]
+>![apiplatform_openstack_3.1.02]
 
 <br>
 
@@ -651,7 +656,7 @@ path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
 
 >`$ cf create-service PhoneVerification Unlimited phoneverification-instance-unlimited`
 
->![apiplatform_aws_3.1.03]
+>![apiplatform_openstack_3.1.03]
 
 <br>
 
@@ -659,7 +664,7 @@ path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
 
 >`$ cf services`
 
->![apiplatform_aws_3.1.04]
+>![apiplatform_openstack_3.1.04]
 
 <br>
 
@@ -667,7 +672,7 @@ path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
 
 >`$ cf bind-service hello-servlet-tomcat phoneverification-instance-unlimited`
 
->![apiplatform_aws_3.1.05]
+>![apiplatform_openstack_3.1.05]
 
 
 ### 3.2. 서비스 바인드 확인
@@ -675,48 +680,48 @@ path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
 
 >`$ cf env hello-servlet-tomcat`
 
->![apiplatform_aws_3.2.01]
+>![apiplatform_openstack_3.2.01]
 
 
-[apiplatform_aws_1.3.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image3.png
-[apiplatform_aws_2.2.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image4.png
-[apiplatform_aws_2.2.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image5.png
-[apiplatform_aws_2.2.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image6.png
-[apiplatform_aws_2.2.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image7.png
-[apiplatform_aws_2.3.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image8.png
-[apiplatform_aws_2.3.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image9.png
-[apiplatform_aws_2.3.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image10.png
-[apiplatform_aws_2.3.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image11.png
-[apiplatform_aws_2.3.05]:/images/openpaas-service/apiplatform/apiplatform_aws/image12.png
-[apiplatform_aws_2.3.06]:/images/openpaas-service/apiplatform/apiplatform_aws/image13.png
-[apiplatform_aws_2.3.07]:/images/openpaas-service/apiplatform/apiplatform_aws/image14.png
-[apiplatform_aws_2.4.1.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image15.png
-[apiplatform_aws_2.4.1.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image16.png
-[apiplatform_aws_2.4.1.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image17.png
-[apiplatform_aws_2.4.1.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image18.png
-[apiplatform_aws_2.4.1.05]:/images/openpaas-service/apiplatform/apiplatform_aws/image19.png
-[apiplatform_aws_2.4.1.06]:/images/openpaas-service/apiplatform/apiplatform_aws/image20.jpeg
-[apiplatform_aws_2.4.1.07]:/images/openpaas-service/apiplatform/apiplatform_aws/image21.png
-[apiplatform_aws_2.4.1.08]:/images/openpaas-service/apiplatform/apiplatform_aws/image22.png
-[apiplatform_aws_2.4.2.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image23.png
-[apiplatform_aws_2.4.2.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image24.png
-[apiplatform_aws_2.4.2.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image25.png
-[apiplatform_aws_2.4.2.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image26.png
-[apiplatform_aws_2.4.2.05]:/images/openpaas-service/apiplatform/apiplatform_aws/image27.png
-[apiplatform_aws_2.4.2.06]:/images/openpaas-service/apiplatform/apiplatform_aws/image28.png
-[apiplatform_aws_2.4.2.07]:/images/openpaas-service/apiplatform/apiplatform_aws/image29.png
-[apiplatform_aws_2.4.2.08]:/images/openpaas-service/apiplatform/apiplatform_aws/image30.png
-[apiplatform_aws_2.4.2.09]:/images/openpaas-service/apiplatform/apiplatform_aws/image31.png
-[apiplatform_aws_2.4.2.10]:/images/openpaas-service/apiplatform/apiplatform_aws/image32.png
-[apiplatform_aws_2.5.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image33.png
-[apiplatform_aws_2.5.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image34.png
-[apiplatform_aws_2.5.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image35.png
-[apiplatform_aws_2.5.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image36.png
-[apiplatform_aws_2.5.05]:/images/openpaas-service/apiplatform/apiplatform_aws/image37.png
-[apiplatform_aws_2.5.06]:/images/openpaas-service/apiplatform/apiplatform_aws/image38.png
-[apiplatform_aws_3.1.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image39.png
-[apiplatform_aws_3.1.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image40.png
-[apiplatform_aws_3.1.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image41.png
-[apiplatform_aws_3.1.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image42.png
-[apiplatform_aws_3.1.05]:/images/openpaas-service/apiplatform/apiplatform_aws/image43.png
-[apiplatform_aws_3.2.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image44.png
+[apiplatform_openstack_1.3.01]:/images/openpaas-service/apiplatform/apiplatform_openstack/image3.png
+[apiplatform_openstack_2.2.01]:/images/openpaas-service/apiplatform/apiplatform_openstack/image4.png
+[apiplatform_openstack_2.2.02]:/images/openpaas-service/apiplatform/apiplatform_openstack/image5.png
+[apiplatform_openstack_2.2.03]:/images/openpaas-service/apiplatform/apiplatform_openstack/image6.png
+[apiplatform_openstack_2.2.04]:/images/openpaas-service/apiplatform/apiplatform_openstack/image7.png
+[apiplatform_openstack_2.3.01]:/images/openpaas-service/apiplatform/apiplatform_openstack/image8.png
+[apiplatform_openstack_2.3.02]:/images/openpaas-service/apiplatform/apiplatform_openstack/image9.png
+[apiplatform_openstack_2.3.03]:/images/openpaas-service/apiplatform/apiplatform_openstack/image10.png
+[apiplatform_openstack_2.3.04]:/images/openpaas-service/apiplatform/apiplatform_openstack/image11.png
+[apiplatform_openstack_2.3.05]:/images/openpaas-service/apiplatform/apiplatform_openstack/image12.png
+[apiplatform_openstack_2.3.06]:/images/openpaas-service/apiplatform/apiplatform_openstack/image13.png
+[apiplatform_openstack_2.3.07]:/images/openpaas-service/apiplatform/apiplatform_openstack/image14.png
+[apiplatform_openstack_2.4.1.01]:/images/openpaas-service/apiplatform/apiplatform_openstack/image15.png
+[apiplatform_openstack_2.4.1.02]:/images/openpaas-service/apiplatform/apiplatform_openstack/image16.png
+[apiplatform_openstack_2.4.1.03]:/images/openpaas-service/apiplatform/apiplatform_openstack/image17.png
+[apiplatform_openstack_2.4.1.04]:/images/openpaas-service/apiplatform/apiplatform_openstack/image18.png
+[apiplatform_openstack_2.4.1.05]:/images/openpaas-service/apiplatform/apiplatform_openstack/image19.png
+[apiplatform_openstack_2.4.1.06]:/images/openpaas-service/apiplatform/apiplatform_openstack/image20.jpeg
+[apiplatform_openstack_2.4.1.07]:/images/openpaas-service/apiplatform/apiplatform_openstack/image21.png
+[apiplatform_openstack_2.4.1.08]:/images/openpaas-service/apiplatform/apiplatform_openstack/image22.png
+[apiplatform_openstack_2.4.2.01]:/images/openpaas-service/apiplatform/apiplatform_openstack/image23.png
+[apiplatform_openstack_2.4.2.02]:/images/openpaas-service/apiplatform/apiplatform_openstack/image24.png
+[apiplatform_openstack_2.4.2.03]:/images/openpaas-service/apiplatform/apiplatform_openstack/image25.png
+[apiplatform_openstack_2.4.2.04]:/images/openpaas-service/apiplatform/apiplatform_openstack/image26.png
+[apiplatform_openstack_2.4.2.05]:/images/openpaas-service/apiplatform/apiplatform_openstack/image27.png
+[apiplatform_openstack_2.4.2.06]:/images/openpaas-service/apiplatform/apiplatform_openstack/image28.png
+[apiplatform_openstack_2.4.2.07]:/images/openpaas-service/apiplatform/apiplatform_openstack/image29.png
+[apiplatform_openstack_2.4.2.08]:/images/openpaas-service/apiplatform/apiplatform_openstack/image30.png
+[apiplatform_openstack_2.4.2.09]:/images/openpaas-service/apiplatform/apiplatform_openstack/image31.png
+[apiplatform_openstack_2.4.2.10]:/images/openpaas-service/apiplatform/apiplatform_openstack/image32.png
+[apiplatform_openstack_2.5.01]:/images/openpaas-service/apiplatform/apiplatform_openstack/image33.png
+[apiplatform_openstack_2.5.02]:/images/openpaas-service/apiplatform/apiplatform_openstack/image34.png
+[apiplatform_openstack_2.5.03]:/images/openpaas-service/apiplatform/apiplatform_openstack/image35.png
+[apiplatform_openstack_2.5.04]:/images/openpaas-service/apiplatform/apiplatform_openstack/image36.png
+[apiplatform_openstack_2.5.05]:/images/openpaas-service/apiplatform/apiplatform_openstack/image37.png
+[apiplatform_openstack_2.5.06]:/images/openpaas-service/apiplatform/apiplatform_openstack/image38.png
+[apiplatform_openstack_3.1.01]:/images/openpaas-service/apiplatform/apiplatform_openstack/image39.png
+[apiplatform_openstack_3.1.02]:/images/openpaas-service/apiplatform/apiplatform_openstack/image40.png
+[apiplatform_openstack_3.1.03]:/images/openpaas-service/apiplatform/apiplatform_openstack/image41.png
+[apiplatform_openstack_3.1.04]:/images/openpaas-service/apiplatform/apiplatform_openstack/image42.png
+[apiplatform_openstack_3.1.05]:/images/openpaas-service/apiplatform/apiplatform_openstack/image43.png
+[apiplatform_openstack_3.2.01]:/images/openpaas-service/apiplatform/apiplatform_openstack/image44.png

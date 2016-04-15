@@ -82,18 +82,22 @@ API 플랫폼에서는 도로명 주소 서비스 API에 대한 접근관리와 
 
 먼저 사이트에 접속을 하면 아래 화면과 같이 메인 화면에서 “주소제공”->”도로명주소 DB제공”을 선택합니다.
 >![api_platform_dorojuso_02]
+
 그림. 주소 제공하는 페이지로 이동
 
 주소제공 페이지에서는 주소데이터의 활용방법을 기술한 PDF파일과 가장 최근의 주소 데이터 정보를 다운로드 받으실 수 있습니다. “전체주소 구축가이드 다운로드”와 전체주소(최종안)의 가장 최신의 일자 정보를 받습니다. 아래 화면에서 빨간색 부분으로 표시된 두 영역을 클릭하여 정보를 다운로드 받습니다.
 >![api_platform_dorojuso_03]
+
 그림. 구축가이드와 최종 주소 다운로드
 
 다운로드 받은 “[가이드]주소구축(전체주소)활용방법.pdf”에서는 데이터의 구조를 파악할 수 있습니다. 문서의 13페이지에 같이 다운로드 받은 주소 파일의 스펙이 정의되어 있습니다. 중간에 보면 “건물관리번호”가 있는데 이 정보가 Primary Key 입니다.
 >![api_platform_dorojuso_04]
+
 그림. “[가이드]주소구축(전체주소)활용방법.pdf”에서 스펙정보
 
 주소 파일은 압축파일로 약 158MB정도가 됩니다. (2015년 6월 기준) 이 파일을 압축을 해제하면 아래와 같이 TXT정보로 된 주소파일을 확인할 수 있습니다. 
 >![api_platform_dorojuso_05]
+
 그림. 주소 파일 리스트
 
 압축을 해제하면 1.85GB정도됩니다. 이 TXT 파일은 “|” 구분자로 되어 있는 텍스트 파일로 MySQL에 데이터를 Import해야 합니다.
@@ -152,6 +156,7 @@ CREATE INDEX `IDX_DORO` ON `egov_common`.`doro_juso` (`doro` ASC)  COMMENT '';
 
 파일의 인코딩을 UTF8로 변환하는 방법은 Windows 환경에서 해당 파일을 메모장에서 열고 이 파일을 다시 “다른 이름으로 저장”하기를 할 때 인코딩을 변경하는 방법입니다.
 >![api_platform_dorojuso_06]
+
 그림. 메모장에서 다른 이름으로 저장하기
 
 이렇게 파일을 준비하고 MySQL Import를 이용하여 데이터를 Import합니다.
@@ -272,6 +277,7 @@ Spring Framework를 이용하여 개발을 하였으며 사용한 컴포넌트�
 #### <a name="18"/>4.3.1. Class Diagram
 주요 Class에 대한 구성은 아래의 Class Diagram과 같습니다. Model과 Exception, Utility는 제외한 프로세스에서 중요한 Controller, Service, DAO를 표시하였습니다.
 >![api_platform_dorojuso_07]
+
 그림. 도로명 주소 서비스의 Class Diagram
 
 BaseController는 각종 Exception을 정의하고 있습니다. 이를 상속받은 DoroJusoController가 도로명 주소 검색에 대한 Control하게 되면 DoroJusoService에서 비즈니스 로직을 담당합니다.
@@ -408,6 +414,7 @@ API 플랫폼에 대한 설치 및 사용 방법의 자세한 매뉴얼은 “�
 
 API 플랫폼 Publisher에서 API를 추가(add) 합니다.
 >![api_platform_dorojuso_08]
+
 그림. API의 기본정보를 입력
 
 서비스의 기본정보를 입력합니다. Name은 “개방형 클라우드 플랫폼”의 Market Place에서 보여질 명칭이 될 겁니다. Context는 API 플랫폼에 접속을 위한 최초의 path가 될 겁니다. 기존에 API 플랫폼에 존재하지 않는 명칭을 선택해서 진행을 합니다. 
@@ -415,10 +422,12 @@ Description은 API 플랫폼에서는 필수사항은 아니지만 개방형 클
 
 이제 실제 API를 등록합니다. 도로명 주소 서비스([***http://www.juso.go.kr***](http://www.juso.go.kr))에서 제공하는 스펙과 같이 만들기 위해 API는 addrLinkApi.do로 하였고 Parameter 또한 같은 명칭을 사용하였습니다. 먼저 addrLinkApi.do를 URL Param에 넣고 GET, OPTIONS를 선택하고 Add New Resource를 누릅니다. 그럼 GET, OPTIONS의 두 개의 API가 생성됩니다.
 >![api_platform_dorojuso_09]
+
 그림. API 등록
 
 Add New Resource버튼을 누르면 각각의 Parameter를 정의할 수 있도록 GET과 OPTIONS가 화면하단에 나타납니다. GET에 Parameter를 입력하기 위해 GET을 클릭하여 화면을 확장시킵니다. currentPage, countPerPage는 Data type을 integer로 넣고 Parameter type은 query를 선택합니다. keyword는 Data type은 String으로 Parameter type은 query로 넣습니다. 모두 Required는 true, 필수로 선택을 합니다.
 >![api_platform_dorojuso_10]
+
 그림. Parameter 넣기
 
 OPTIONS을 등록해주는 이유는 https나 기타 Web 통신에서 API가 유효한지 CORS를 체크하기 위해 OPTIONS를 먼저 요청하는 경우가 있어 API 등록 시에는 반드시 OPTIONS를 추가 해줍니다.
@@ -426,16 +435,19 @@ OPTIONS을 등록해주는 이유는 https나 기타 Web 통신에서 API가 유
 API에 대한 등록을 완료하면 Implement 단계로 넘어갑니다. Implement단계에서는 서비스의 Endpoint를 등록합니다. Endpoint type은 Http 통신으로 서비스를 할 것이니 “HTTP Endpoint”를 선택을 하고 도로명 주소 서비스 서버의 URL을 Production, Sandbox Endpoint에 넣습니다. 개발 서버/테스트 서버는 Sandbox endpoint에 넣어주고 실제 운영 서비스는 Production endpoint에 넣어줍니다. 
 여기서 입력한 Endpoint가 기본이 되고 뒤에 API, Parameter를 붙여서 실제 요청을 하게 됩니다.
 >![api_platform_dorojuso_11]
+
 그림. Endpoint 등록
 
 Endpoint 등록이 완료되면 마지막 단계인 API의 접근설정을 합니다. 
 통신방식(http, https)와 접근 제한 설정(Tier Availability)를 설정합니다. 제약사항을 더 추가하기 위해서는 API 플랫폼의 매뉴얼을 참고하여주세요. 여기서는 기본 설정만 하는 것으로 합니다. 
 접근 제한 설정(Tier Availability)는 Unlimited로 설정을 합니다. 개방형 클라우드 플랫폼과의 연결시, 제한 설정을 하지 않고 모니터링만 하기로 되어 있기 때문에 두 시스템을 연결하는 서비스(서비스팩)에 Unlimited만 사용할 수 있게 설정되어 있습니다.
 >![api_platform_dorojuso_12]
+
 그림. 접속 환경 설정
 
 이제 API에 대한 정보는 입력을 마쳤으며 이 API를 Publishing 을 하면 API플랫폼 Store에 보여지는 것을 확인하면 됩니다. 
 >![api_platform_dorojuso_13]
+
 그림. API플랫폼 
 
 위와 같이 Store에서 만든 서비스가 보이고 API Console에서 API를 호출했을 때 결과 값이 정상으로 오면 등록이 성공적으로 된 것입니다.
@@ -448,13 +460,16 @@ API플랫폼에 등록하는 방법은 거의 유사하고 맨 처음 API의 기
 
 도로명 주소 API 등록합니다. 등록, 수정, 삭제, 조회에 대해서 다 등록을 해야 합니다. 자세한 사항은 별첨B의 API 정의서로 등록을 하면 됩니다.
 >![api_platform_dorojuso_14]
+
 그림. 도로명 주소 관리 API 등록
 
 도로명 주소 관리는 Parameter를 query 방식이 아닌 path 방식으로 설계하였습니다. API 플랫폼에서는 아래의 화면과 같이 URL Pattern에 dorojuso/manager/{building_code}와 같이 { }로 path 변수 명을 입력하면 자동으로 parameter를 설정해 줍니다.
 >![api_platform_dorojuso_15]
+
 그림. Path방식의 Parameter 입력
 
 >![api_platform_dorojuso_16]
+
 그림. Path에 변수를 넣었을 경우의 화면
 
 여기서도 주의할 것은 각 API Pattern별로 OPTIONS을 같이 등록해야 합니다. Rest통신시 OPTIONS로 해당 API의 유효성을 체크해주기도 해서 등록을 해줘야 합니다. 나머지 Endpoint, 접속 환경 설정은 도로명 주소 검색 서비스와 동일하기 입력하시면 됩니다. 입력이 완료되고 Publish까지 완료되면 Store에서 API가 잘 보이는 지와 API Console에서 정상동작을 하는지 확인하시면 됩니다.

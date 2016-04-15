@@ -30,10 +30,10 @@
 
 | 구분 | Resource Pool | Instance type/스펙 |
 |--------|-------|-------|
-| apiplatform-broker | small | m1.small (1vCPU / 1.7GB RAM / 160GB Disk) |
-| apimanager | small | m1.small (1vCPU / 1.7GB RAM / 160GB Disk) |
-| bam | small | m1.small (1vCPU / 1.7GB RAM / 160GB Disk) |
-| mariadb | small | m1.small (1vCPU / 1.7GB RAM / 160GB Disk) |
+| apiplatform-broker | apiplatform-servers | 1vCPU / 1GB RAM / 8GB Disk |
+| apimanager | apiplatform-servers | 1vCPU / 1GB RAM / 8GB Disk |
+| bam | apiplatform-servers | 1vCPU / 1GB RAM / 8GB Disk |
+| mariadb | apiplatform-servers | 1vCPU / 1GB RAM / 8GB Disk |
 
 ### 1.4. 참고자료
 [**http://bosh.io/docs**](http://bosh.io/docs)  
@@ -643,9 +643,11 @@ path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
 
 >`$ cf apps`
 
+>![apiplatform_vsphere_3.1.02]
+
 >`$ cf logs hello-servlet-tomcat`
 
->![apiplatform_vsphere_3.1.02]
+>![apiplatform_vsphere_3.1.03]
 
 <br>
 
@@ -659,7 +661,7 @@ path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
 
 >`$ cf create-service PhoneVerification Unlimited phoneverification-instance-unlimited`
 
->![apiplatform_vsphere_3.1.03]
+>![apiplatform_vsphere_3.1.04]
 
 <br>
 
@@ -667,7 +669,7 @@ path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
 
 >`$ cf services`
 
->![apiplatform_vsphere_3.1.04]
+>![apiplatform_vsphere_3.1.05]
 
 <br>
 
@@ -675,7 +677,7 @@ path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
 
 >`$ cf bind-service hello-servlet-tomcat phoneverification-instance-unlimited`
 
->![apiplatform_vsphere_3.1.05]
+>![apiplatform_vsphere_3.1.06]
 
 
 ### 3.2. 서비스 바인드 확인
@@ -686,45 +688,46 @@ path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
 >![apiplatform_vsphere_3.2.01]
 
 
-[apiplatform_vsphere_1.3.01]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image3.png
-[apiplatform_vsphere_2.2.01]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image4.png
-[apiplatform_vsphere_2.2.02]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image5.png
-[apiplatform_vsphere_2.2.03]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image6.png
-[apiplatform_vsphere_2.2.04]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image7.png
-[apiplatform_vsphere_2.3.01]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image8.png
-[apiplatform_vsphere_2.3.02]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image9.png
-[apiplatform_vsphere_2.3.03]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image10.png
-[apiplatform_vsphere_2.3.04]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image11.png
-[apiplatform_vsphere_2.3.05]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image12.png
-[apiplatform_vsphere_2.3.06]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image13.png
-[apiplatform_vsphere_2.3.07]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image14.png
-[apiplatform_vsphere_2.4.1.01]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image15.png
-[apiplatform_vsphere_2.4.1.02]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image16.png
-[apiplatform_vsphere_2.4.1.03]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image17.png
-[apiplatform_vsphere_2.4.1.04]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image18.png
-[apiplatform_vsphere_2.4.1.05]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image19.png
-[apiplatform_vsphere_2.4.1.06]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image20.jpeg
-[apiplatform_vsphere_2.4.1.07]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image21.png
-[apiplatform_vsphere_2.4.1.08]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image22.png
-[apiplatform_vsphere_2.4.2.01]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image23.png
-[apiplatform_vsphere_2.4.2.02]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image24.png
-[apiplatform_vsphere_2.4.2.03]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image25.png
-[apiplatform_vsphere_2.4.2.04]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image26.png
-[apiplatform_vsphere_2.4.2.05]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image27.png
-[apiplatform_vsphere_2.4.2.06]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image28.png
-[apiplatform_vsphere_2.4.2.07]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image29.png
-[apiplatform_vsphere_2.4.2.08]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image30.png
-[apiplatform_vsphere_2.4.2.09]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image31.png
-[apiplatform_vsphere_2.4.2.10]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image32.png
-[apiplatform_vsphere_2.5.01]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image33.png
-[apiplatform_vsphere_2.5.02]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image34.png
-[apiplatform_vsphere_2.5.03]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image35.png
-[apiplatform_vsphere_2.5.04]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image36.png
-[apiplatform_vsphere_2.5.05]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image37.png
-[apiplatform_vsphere_2.5.06]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image38.png
-[apiplatform_vsphere_3.1.01]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image39.png
-[apiplatform_vsphere_3.1.02]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image40.png
-[apiplatform_vsphere_3.1.03]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image41.png
-[apiplatform_vsphere_3.1.04]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image42.png
-[apiplatform_vsphere_3.1.05]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image43.png
+[apiplatform_vsphere_1.3.01]:/images/openpaas-service/apiplatform/apiplatform_vsphere/시스템구성도.png
+[apiplatform_vsphere_2.2.01]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image3.png
+[apiplatform_vsphere_2.2.02]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image4.png
+[apiplatform_vsphere_2.2.03]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image5.png
+[apiplatform_vsphere_2.2.04]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image6.png
+[apiplatform_vsphere_2.3.01]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image7.png
+[apiplatform_vsphere_2.3.02]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image8.png
+[apiplatform_vsphere_2.3.03]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image9.png
+[apiplatform_vsphere_2.3.04]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image10.png
+[apiplatform_vsphere_2.3.05]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image11.png
+[apiplatform_vsphere_2.3.06]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image12.png
+[apiplatform_vsphere_2.3.07]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image13.png
+[apiplatform_vsphere_2.4.1.01]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image14.png
+[apiplatform_vsphere_2.4.1.02]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image15.png
+[apiplatform_vsphere_2.4.1.03]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image16.png
+[apiplatform_vsphere_2.4.1.04]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image17.png
+[apiplatform_vsphere_2.4.1.05]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image18.png
+[apiplatform_vsphere_2.4.1.06]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image19.jpeg
+[apiplatform_vsphere_2.4.1.07]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image20.png
+[apiplatform_vsphere_2.4.1.08]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image21.png
+[apiplatform_vsphere_2.4.2.01]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image22.png
+[apiplatform_vsphere_2.4.2.02]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image23.png
+[apiplatform_vsphere_2.4.2.03]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image24.png
+[apiplatform_vsphere_2.4.2.04]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image25.png
+[apiplatform_vsphere_2.4.2.05]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image26.png
+[apiplatform_vsphere_2.4.2.06]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image27.png
+[apiplatform_vsphere_2.4.2.07]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image28.png
+[apiplatform_vsphere_2.4.2.08]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image29.png
+[apiplatform_vsphere_2.4.2.09]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image30.png
+[apiplatform_vsphere_2.4.2.10]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image31.png
+[apiplatform_vsphere_2.5.01]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image32.png
+[apiplatform_vsphere_2.5.02]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image33.png
+[apiplatform_vsphere_2.5.03]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image34.png
+[apiplatform_vsphere_2.5.04]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image35.png
+[apiplatform_vsphere_2.5.05]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image36.png
+[apiplatform_vsphere_2.5.06]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image37.png
+[apiplatform_vsphere_3.1.01]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image38.png
+[apiplatform_vsphere_3.1.02]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image39.png
+[apiplatform_vsphere_3.1.03]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image40.png
+[apiplatform_vsphere_3.1.04]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image41.png
+[apiplatform_vsphere_3.1.05]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image42.png
+[apiplatform_vsphere_3.1.06]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image43.png
 [apiplatform_vsphere_3.2.01]:/images/openpaas-service/apiplatform/apiplatform_vsphere/image44.png

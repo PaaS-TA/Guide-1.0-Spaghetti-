@@ -28,6 +28,13 @@
 본 문서의 설치된 시스템 구성도이다. MySQL Server, MySQL 서비스 브로커, Proxy로 최소사항을 구성하였다.
 ![시스템구성도][mysql_bosh_lite_1.3.01]
 
+| 구분 | Resource Pool | 스펙 |
+|--------|-------|-------|
+| openpaas-mysql-broker | services-small | 1vCPU / 1GB RAM / 8GB Disk |
+| proxy | services-small |  1vCPU / 1GB RAM / 8GB Disk) |
+| mysql_z1 | services-small |  1vCPU / 1GB RAM / 8GB Disk +8GB(영구적 Disk) |
+
+
 ### 1.4. 참고자료
 [**http://bosh.io/docs**](http://bosh.io/docs)  
 [**http://docs.cloudfoundry.org/**](http://docs.cloudfoundry.org/)
@@ -39,13 +46,14 @@
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.
 서비스팩 설치를 위해서는 먼저 BOSH-lite 가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.
 BOSH-lite 가 설치 되어 있지 않을 경우 먼저 BOSH-lite 설치 가이드 문서를 참고 하여BOSH-lite를 설치 해야 한다.
-OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Deployment.zip, OpenPaaS-Sample-Apps.zip, OpenPaaS-Services.zip)
+
+OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Services.zip, OpenPaaS-Deployment.zip, OpenPaaS-Sample-Apps.zip)
 
 ###2.2. MySQL 서비스 릴리즈 업로드
 
-OpenPaaS-Services.zip 파일 압축을 풀고 폴더안에 있는 MySQL 서비스 릴리즈 openpaas-mysql-release-beta-1.0.tgz 파일을 복사한다.
+##### OpenPaaS-Services.zip 파일 압축을 풀고 폴더 안에 있는 MySQL 서비스 릴리즈 openpaas-mysql-1.0.tgz 파일을 확인한다.
 
-##### 업로드할 openpaas-mysql-release-beta-1.0.tgz 파일을 확인한다.
+>`$ cd openpaas-service-release`
 
 >`$ ls –all`
 
@@ -53,21 +61,13 @@ OpenPaaS-Services.zip 파일 압축을 풀고 폴더안에 있는 MySQL 서비�
 
 <br>
 
-##### 업로드 되어 있는 릴리즈 목록을 확인한다.
-
->`$ bosh releases`
-
->![mysql_bosh_lite_2.2.02]
-
->Mysql 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
-
-<br>
-
 ##### MySQL 서비스 릴리즈 파일을 업로드한다.
 
 >`$ bosh upload release {서비스 릴리즈 파일 PATH}`
 
->`$ bosh upload release openpaas-mysql-release-beta-1.0.tgz`
+>`$ bosh upload release openpaas-mysql-1.0.tgz`
+
+>※ 하단의 화면은 릴리즈 파일을 tarball 형태로 압축하지 않고 릴리즈를 업로드하고 있다. 본 문서에서 안내하는 방법대로 tarball 형태로 릴리즈 파일 압축하여 업로드 할 경우에 출력되는 화면은 하단의 화면과 다소 차이가 있다.
 
 >![mysql_bosh_lite_2.2.03]
 
@@ -96,11 +96,7 @@ OpenPaaS-Services.zip 파일 압축을 풀고 폴더안에 있는 MySQL 서비�
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
 
-##### OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더안에 있는 lite용 MySQL Deployment 화일인 openpaas-mysql-lite.yml를 복사한다.
-
-<br>
-
-##### 다운로드 받은 Deployment Yml 파일을 확인한다. (openpaas-mysql-lite.yml)
+##### OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더안에 있는 bosh lite용 MySQL Deployment 화일인 openpaas-mysql-lite-1.0.yml 파일을 확인한다.
 
 >`$ ls –all`
 
@@ -118,13 +114,13 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 <br>
 
-##### Deploy시 사용할 Stemcell을 확인한다. (Stemcell 389 버전 사용)
+##### Deploy시 사용할 Stemcell을 확인한다. (Stemcell 3147 버전 사용)
 
 >`$ bosh stemcells`
 
 >![mysql_bosh_lite_2.3.03]
 
->Stemcell 목록이 존재 하지 않을 경우 BOSH-lite 설치 가이드 문서를 참고 하여 Stemcell 389 버전을 업로드를 해야 한다.
+>Stemcell 목록이 존재 하지 않을 경우 BOSH-lite 설치 가이드 문서를 참고 하여 Stemcell 3147 버전을 업로드를 해야 한다.
 
 <br>
 
@@ -136,7 +132,7 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 # openpaas-mysql-lite 설정 파일 내용
 
 name: openpaas-mysql-service        # 서비스 배포이름(필수)
-director_uuid: xxxxx                # bosh status 에서 확인한 Director UUID을 입력(필수)
+director_uuid: 46965538-fe7f-4260-b5df-ef9411558b99                # bosh status 에서 확인한 Director UUID을 입력(필수)
 
 releases:
 - name: openpaas-mysql              # 서비스 릴리즈 이름(필수)
@@ -238,9 +234,9 @@ template: mysql                          # job template 이름(필수)
     nats:               # CF 설치시 설치한 nats 정보 (필수)
       machines:
       - 10.244.0.6     # nats 서버 IP
-      password: nats    # nats 유저 비밀번호
-      port: 4222        # nats 서버 포트번호
-      user: nats        # nats 서버 유저아이디
+      password: nats     # nats 유저 비밀번호
+      port: 4222     # nats 서버 포트번호
+      user: nats     # nats 서버 유저아이디
     network_name: openpaas_network
     proxy:              # proxy 정보 (필수)
       api_password: admin      # proxy api 유저 비밀번호(필수)
@@ -274,7 +270,7 @@ release: openpaas-mysql
   - name: openpaas_network
   properties:
     broker:                      # 서비스 브로커 설정 정보
-      host: 10.244.21.6          # 서비스 브로커 IP 
+      host: 10.244.21.5          # 서비스 브로커 IP 
       name: mysql-service        # 서비스 명
       password: cloudfoundry     # 서비스 브로커 인증 패스워드
       username: admin            # 서비스 브러커 인증 아이디
@@ -283,7 +279,7 @@ release: openpaas-mysql
     cf:
       admin_password: admin      # CF 사용자 암호
       admin_username: admin      # CF 사용자 아이디
-      api_url: https://api.bosh-lite.com    # CF 주소
+      api_url: https://api.bosh-lite.com     # CF 주소
       skip_ssl_validation: true    # CF SSL 접속 여부
   release: openpaas-mysql
   resource_pool: services-small
@@ -300,7 +296,7 @@ release: openpaas-mysql
     cf:
       admin_password: admin
       admin_username: admin
-      api_url: https://api.bosh-lite.com
+      api_url: https://api.bosh-lite.com     # CF 주소
       skip_ssl_validation: true
   release: openpaas-mysql
   resource_pool: services-small
@@ -340,7 +336,7 @@ resource_pools:            # 배포시 사용하는 resource pools를 명시하�
   network: openpaas_network
   stemcell:
     name: bosh-warden-boshlite-ubuntu-trusty-go_agent      # stemcell 이름(필수)
-    version: "389"                                         # stemcell 버전(필수)
+    version: "3147"                                         # stemcell 버전(필수)
 ```
 <br>
 
@@ -348,7 +344,7 @@ resource_pools:            # 배포시 사용하는 resource pools를 명시하�
 
 >`$ bosh deployment {Deployment manifest 파일 PATH}`
 
->`$ bosh deployment openpaas-mysql-lite.yml`
+>`$ bosh deployment openpaas-mysql-bosh-lite-1.0.yml`
 
 >![mysql_bosh_lite_2.3.04]
 
@@ -357,6 +353,7 @@ resource_pools:            # 배포시 사용하는 resource pools를 명시하�
 ##### MySQL 서비스팩을 배포한다.
 
 >`$ bosh deploy`
+>※40분 ~ 1시간 정도 소요된다.
 
 >![mysql_bosh_lite_2.3.05]
 
@@ -388,13 +385,14 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 ##### MySQL 서비스 브로커를 등록한다.
 
->`$ cf create-service-broker {서비스 브로커 이름} {서비스 브로커 사용자ID} {서비스 브로커 사용자 비밀번호}  http://{서비스 브로커 URL}`
+>`$ cf create-service-broker {서비스팩 이름}{서비스팩 사용자ID}{서비스팩 사용자비밀번호} http://{서비스팩 URL(IP)}`
 
-	서비스 브로커 이름: 서비스 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스  브로커의의 명칭이다.
-	서비스 브로커  사용자ID / 비밀번호: 서비스 브로커에 접근할 수 있는 사용자 ID이다. 서비스 브로커도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
-	서비스 브로커 URL: 서비스 브로커가 제공하는 API를 사용할 수 있는 URL을 입력한다.
+	서비스팩 이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.
+	서비스팩 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID입니다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
+	서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.
 
->`$cf create-service-broker mysql-service-broker admin cloudfoundry http://10.244.21.6:8080`
+
+>`$cf create-service-broker mysql-service-broker admin cloudfoundry http://10.0.0.95:8080`
 
 >![mysql_bosh_lite_2.4.02]
 
@@ -420,7 +418,7 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 ##### 특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
 
->`$ cf enable-service-access mysql-service`
+>`$ cf enable-service-access Mysql-DB`
 
 >`$ cf service-access`
 
@@ -431,7 +429,7 @@ Mysql 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩
 
 ### 3.1. Sample Web App 구조
 
-Sample Web App은 개방형 클라우드 플랫폼에 App으로 배포가 된다. App을 배포하여 구동시 Bind 된 MySQL 서비스 연결정보로 접속하여 초기 데이터를 생성하게 된다. 배포 완료 후 정상적으로 App 이 구동되면 브라우져나 curl로 해당 App에 접속 하여 MySQL 환경정보(서비스 연결 정보)와 초기 적재된 데이터를 보여준다.
+Sample Web App은 개방형 클라우드 플랫폼에 App으로 배포가 된다. App을 배포하여 구동시 Bind 된 MySQL 서비스 연결정보로 접속하여 초기 데이터를 생성하게 된다. 배포 완료 후 정상적으로 App이 구동되면 브라우져나 curl로 해당 App에 접속 하여 MySQL 환경정보(서비스 연결 정보)와 초기 적재된 데이터를 보여준다.
 
 Sample Web App 구조는 다음과 같다.
 
@@ -442,7 +440,7 @@ Sample Web App 구조는 다음과 같다.
 | pom.xml | 메이븐 project 설정 파일
 | target | 메이븐 빌드시 생성되는 디렉토리(war 파일, classes 폴더 등)
 
-##### OpenPaaS-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를 복사한다.
+##### OpenPaaS-Sample-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 MySQL Sample Web App인 hello-spring-mysql를복사한다.
 
 >`$ls -all`
 
@@ -470,10 +468,10 @@ Sample Web App에서 MySQL 서비스를 사용하기 위해서는 서비스 신�
 >`$ cf create-service {서비스명} {서비스플랜} {내서비스명}`
 	
 	서비스명 : p-mysql로 Marketplace에서 보여지는 서비스 명칭이다.
-	서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. MySQL 서비스는 100mb, 1gb를 지원한다.
+	서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. MySQL 서비스는 10 connection, 100 connection 를 지원한다.
 	내 서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.
 
->`$ cf create-service p-mysql 100mb mysql-service-instance`
+>`$ cf create-service 'Mysql-DB' Mysql-Plan2-100con mysql-service-instance`
 
 >![mysql_bosh_lite_3.2.02]
 
@@ -529,7 +527,7 @@ applications:
 
 >`$ cf logs {배포된 App명}`
 
->`$ cf logs hello-tomcat-mysql`
+>`$ cf logs hello-spring-mysql`
 
 >![mysql_bosh_lite_3.3.03]
 
@@ -545,7 +543,7 @@ applications:
 
 ##### 바인드가 적용되기 위해서 App을 재기동한다.
 
->`$ cf restart hello-tomcat-mysql`
+>`$ cf restart hello-spring-mysql`
 
 >![mysql_bosh_lite_3.3.05]
 
@@ -560,7 +558,7 @@ applications:
 [
   {
     "protocol": "tcp",
-    "destination": "10.244.21.5",
+    "destination": "10.0.0.63",
     "ports": "3306"
   }
 ]
@@ -569,7 +567,7 @@ applications:
 
 ##### 보안 그룹을 생성한다.
 
->`$ cf create-security-group mysql rule.json`
+>`$ cf create-security-group p-mysql rule.json`
 
 >![mysql_bosh_lite_3.3.06]
 
@@ -577,7 +575,7 @@ applications:
 
 ##### 모든 App에 Mysql 서비스를 사용할수 있도록 생성한 보안 그룹을 적용한다.
 
->`$ cf bind-running-security-group mysql`
+>`$ cf bind-running-security-group p-mysql`
 
 >![mysql_bosh_lite_3.3.07]
 
@@ -585,7 +583,7 @@ applications:
 
 ##### App을 리부팅 한다.
 
->`$ cf restarthello-tomcat-mysql`
+>`$ cf restart hello-spring-mysql`
 
 >![mysql_bosh_lite_3.3.08]
 
@@ -595,7 +593,7 @@ applications:
 
 >curl 로 확인
 
->`$ curl hello-tomcat-mysql.controller.open-paas.com`
+>`$ curl hello-spring-mysql.52.71.64.39.xip.io`
 
 >![mysql_bosh_lite_3.3.09]
 

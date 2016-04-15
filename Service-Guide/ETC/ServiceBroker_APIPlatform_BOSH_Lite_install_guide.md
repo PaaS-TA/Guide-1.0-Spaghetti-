@@ -30,10 +30,10 @@
 
 | 구분 | Resource Pool | Instance type/스펙 |
 |--------|-------|-------|
-| apiplatform-broker | small | m1.small (1vCPU / 1.7GB RAM / 160GB Disk) |
-| apimanager | small | m1.small (1vCPU / 1.7GB RAM / 160GB Disk) |
-| bam | small | m1.small (1vCPU / 1.7GB RAM / 160GB Disk) |
-| mariadb | small | m1.small (1vCPU / 1.7GB RAM / 160GB Disk) |
+| apiplatform-broker | apiplatform-servers | 1vCPU / 1GB RAM / 8GB Disk |
+| apimanager | apiplatform-servers | 1vCPU / 1GB RAM / 8GB Disk |
+| bam | apiplatform-servers | 1vCPU / 1GB RAM / 8GB Disk |
+| mariadb | apiplatform-servers | 1vCPU / 1GB RAM / 8GB Disk |
 
 ### 1.4. 참고자료
 [**http://bosh.io/docs**](http://bosh.io/docs)  
@@ -641,9 +641,11 @@ path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
 
 >`$ cf apps`
 
+>![apiplatform_bosh_lite_3.1.02]
+
 >`$ cf logs hello-servlet-tomcat`
 
->![apiplatform_bosh_lite_3.1.02]
+>![apiplatform_bosh_lite_3.1.03]
 
 <br>
 
@@ -657,7 +659,7 @@ path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
 
 >`$ cf create-service PhoneVerification Unlimited phoneverification-instance-unlimited`
 
->![apiplatform_bosh_lite_3.1.03]
+>![apiplatform_bosh_lite_3.1.04]
 
 <br>
 
@@ -665,7 +667,7 @@ path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
 
 >`$ cf services`
 
->![apiplatform_bosh_lite_3.1.04]
+>![apiplatform_bosh_lite_3.1.05]
 
 <br>
 
@@ -673,7 +675,7 @@ path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
 
 >`$ cf bind-service hello-servlet-tomcat phoneverification-instance-unlimited`
 
->![apiplatform_bosh_lite_3.1.05]
+>![apiplatform_bosh_lite_3.1.06]
 
 
 ### 3.2. 서비스 바인드 확인
@@ -684,45 +686,46 @@ path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
 >![apiplatform_bosh_lite_3.2.01]
 
 
-[apiplatform_bosh_lite_1.3.01]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image3.png
-[apiplatform_bosh_lite_2.2.01]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image4.png
-[apiplatform_bosh_lite_2.2.02]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image5.png
-[apiplatform_bosh_lite_2.2.03]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image6.png
-[apiplatform_bosh_lite_2.2.04]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image7.png
-[apiplatform_bosh_lite_2.3.01]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image8.png
-[apiplatform_bosh_lite_2.3.02]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image9.png
-[apiplatform_bosh_lite_2.3.03]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image10.png
-[apiplatform_bosh_lite_2.3.04]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image11.png
-[apiplatform_bosh_lite_2.3.05]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image12.png
-[apiplatform_bosh_lite_2.3.06]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image13.png
-[apiplatform_bosh_lite_2.3.07]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image14.png
-[apiplatform_bosh_lite_2.4.1.01]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image15.png
-[apiplatform_bosh_lite_2.4.1.02]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image16.png
-[apiplatform_bosh_lite_2.4.1.03]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image17.png
-[apiplatform_bosh_lite_2.4.1.04]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image18.png
-[apiplatform_bosh_lite_2.4.1.05]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image19.png
-[apiplatform_bosh_lite_2.4.1.06]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image20.jpeg
-[apiplatform_bosh_lite_2.4.1.07]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image21.png
-[apiplatform_bosh_lite_2.4.1.08]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image22.png
-[apiplatform_bosh_lite_2.4.2.01]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image23.png
-[apiplatform_bosh_lite_2.4.2.02]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image24.png
-[apiplatform_bosh_lite_2.4.2.03]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image25.png
-[apiplatform_bosh_lite_2.4.2.04]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image26.png
-[apiplatform_bosh_lite_2.4.2.05]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image27.png
-[apiplatform_bosh_lite_2.4.2.06]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image28.png
-[apiplatform_bosh_lite_2.4.2.07]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image29.png
-[apiplatform_bosh_lite_2.4.2.08]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image30.png
-[apiplatform_bosh_lite_2.4.2.09]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image31.png
-[apiplatform_bosh_lite_2.4.2.10]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image32.png
-[apiplatform_bosh_lite_2.5.01]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image33.png
-[apiplatform_bosh_lite_2.5.02]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image34.png
-[apiplatform_bosh_lite_2.5.03]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image35.png
-[apiplatform_bosh_lite_2.5.04]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image36.png
-[apiplatform_bosh_lite_2.5.05]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image37.png
-[apiplatform_bosh_lite_2.5.06]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image38.png
-[apiplatform_bosh_lite_3.1.01]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image39.png
-[apiplatform_bosh_lite_3.1.02]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image40.png
-[apiplatform_bosh_lite_3.1.03]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image41.png
-[apiplatform_bosh_lite_3.1.04]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image42.png
-[apiplatform_bosh_lite_3.1.05]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image43.png
+[apiplatform_bosh_lite_1.3.01]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/시스템구성도.png
+[apiplatform_bosh_lite_2.2.01]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image3.png
+[apiplatform_bosh_lite_2.2.02]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image4.png
+[apiplatform_bosh_lite_2.2.03]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image5.png
+[apiplatform_bosh_lite_2.2.04]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image6.png
+[apiplatform_bosh_lite_2.3.01]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image7.png
+[apiplatform_bosh_lite_2.3.02]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image8.png
+[apiplatform_bosh_lite_2.3.03]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image9.png
+[apiplatform_bosh_lite_2.3.04]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image10.png
+[apiplatform_bosh_lite_2.3.05]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image11.png
+[apiplatform_bosh_lite_2.3.06]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image12.png
+[apiplatform_bosh_lite_2.3.07]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image13.png
+[apiplatform_bosh_lite_2.4.1.01]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image14.png
+[apiplatform_bosh_lite_2.4.1.02]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image15.png
+[apiplatform_bosh_lite_2.4.1.03]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image16.png
+[apiplatform_bosh_lite_2.4.1.04]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image17.png
+[apiplatform_bosh_lite_2.4.1.05]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image18.png
+[apiplatform_bosh_lite_2.4.1.06]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image19.jpeg
+[apiplatform_bosh_lite_2.4.1.07]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image20.png
+[apiplatform_bosh_lite_2.4.1.08]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image21.png
+[apiplatform_bosh_lite_2.4.2.01]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image22.png
+[apiplatform_bosh_lite_2.4.2.02]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image23.png
+[apiplatform_bosh_lite_2.4.2.03]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image24.png
+[apiplatform_bosh_lite_2.4.2.04]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image25.png
+[apiplatform_bosh_lite_2.4.2.05]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image26.png
+[apiplatform_bosh_lite_2.4.2.06]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image27.png
+[apiplatform_bosh_lite_2.4.2.07]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image28.png
+[apiplatform_bosh_lite_2.4.2.08]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image29.png
+[apiplatform_bosh_lite_2.4.2.09]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image30.png
+[apiplatform_bosh_lite_2.4.2.10]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image31.png
+[apiplatform_bosh_lite_2.5.01]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image32.png
+[apiplatform_bosh_lite_2.5.02]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image33.png
+[apiplatform_bosh_lite_2.5.03]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image34.png
+[apiplatform_bosh_lite_2.5.04]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image35.png
+[apiplatform_bosh_lite_2.5.05]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image36.png
+[apiplatform_bosh_lite_2.5.06]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image37.png
+[apiplatform_bosh_lite_3.1.01]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image38.png
+[apiplatform_bosh_lite_3.1.02]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image39.png
+[apiplatform_bosh_lite_3.1.03]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image40.png
+[apiplatform_bosh_lite_3.1.04]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image41.png
+[apiplatform_bosh_lite_3.1.05]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image42.png
+[apiplatform_bosh_lite_3.1.06]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image43.png
 [apiplatform_bosh_lite_3.2.01]:/images/openpaas-service/apiplatform/apiplatform_bosh_lite/image44.png

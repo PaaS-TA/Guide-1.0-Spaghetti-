@@ -553,9 +553,7 @@ Redis Desktop Manager 프로그램은 무료로 사용할 수 있는 오픈소�
 
 
 
-
-
-
+[redis_aws1]:./image/redis_aws/redis_aws1.png
 [redis_aws2]:./image/redis_aws/redis_aws2.png
 [redis_aws3]:./image/redis_aws/redis_aws3.png
 [redis_aws4]:./image/redis_aws/redis_aws4.png

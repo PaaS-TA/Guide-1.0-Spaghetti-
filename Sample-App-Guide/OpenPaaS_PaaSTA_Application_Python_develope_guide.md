@@ -164,14 +164,14 @@ virtualenv my_virtual_env
 
 ![python-6]
   
- ※가상환경을 실행을 종료시키기 위해서는 deactivate 명령어를 이용한다. 가상환경이 종료되면 명령어 입력 줄의 가상환경 명칭이 제거된다
+ ※ 가상환경을 실행을 종료시키기 위해서는 deactivate 명령어를 이용한다. 가상환경이 종료되면 명령어 입력 줄의 가상환경 명칭이 제거된다
 
 `deactivate`
 
 ![python-7]
 
 <div id='2-2-3'></div>
-#####2.2.3.	Django 설치
+#####2.2.3. Django 설치
  샘플 어플리케이션은 Django framework를 적용하여 개발되었기 때문에, 어플리케이션 생성을 위해 Django를 설치 한다. 설치하는 django의 버전은 1.8.6 버전이다. pip를 사용하여 django를 설치한다.
 
 `pip install Django==1.8.6`
@@ -180,12 +180,12 @@ virtualenv my_virtual_env
 
  ※ 가상환경에 장고를 설치하고자 하는 사용자는 가상환경을 실행시킨 상태에서 명령어를 입력한다.
 
-<div id='2.2'></div>
-##2.3.	개발
+<div id='2-2'></div>
+##2.3. 개발
 샘플 애플리케이션의 데이터 관리는 MySQL, CubridDB, MongoDB 중 하나를 이용하기 때문에 API 요청시 요청 본문의 DBType 값을 가지고 결정한다.
 
 <div id='2-3-1'></div>
-#####2.3.1.	django 애플리케이션 생성
+#####2.3.1. django 애플리케이션 생성
 
 * django 프로젝트 생성 
 

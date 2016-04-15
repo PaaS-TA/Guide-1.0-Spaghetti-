@@ -702,7 +702,7 @@ python-swiftclient==2.6.0
 <table>
 <tr>
 <tr>
-<hd>패키지명</hd><hd>버전</hd><hd>설명</hd>
+<th>패키지명</th><th>버전</th><hh>설명</th>
 </tr>
 <tr><td>Django</td><td>1.8.6</td><td>python 웹 프레임워크</td>
 </tr>
@@ -796,7 +796,7 @@ $ cf bind-service python-sample-app python-rabbitmq
 
 테스트를 실행하면 다음과 같은 화면을 확인할 수 있다.
 
-![phython-12]
+![python-12]
 
  * 테스트 결과를 html 파일로 저장할 경우
 
@@ -810,12 +810,12 @@ $ cf bind-service python-sample-app python-rabbitmq
 
 테스트가 완료되면 nosetests.html 파일이 생성되는 것을 확인할 수 있다.
 
-![phython-13]
+![python-13]
 
 생성된 nosetests.html 파일은 다음과 같은 화면을 출력한다. Detail 버튼을 눌러 세부 사항을 확인할 수 있다.
  
-![phython-14]
-![phython-15]
+![python-14]
+![python-15]
 
 <div id='3'></div>
 #3. 부록
@@ -849,92 +849,92 @@ $ cf bind-service python-sample-app python-rabbitmq
 
  PyDev는 이클립스에서 python 개발을 가능하게 하는 이클립스 플러그인이다. 
  
-![phython-16]
+![python-16]
  
 이클립스가 실행되면 상단 메뉴바의 help - Eclipse Marketplace를 클릭한다.
 
-![phython-17]
+![python-17]
 
 마켓 플레이스에서 'pydev'로 검색한다.
 
-![phython-18]
+![python-18]
 
 검색 결과에서 'PyDev'를 찾아 'install' 버튼을 클릭한다.
 
-![phython-19]
-![phython-20]
+![python-19]
+![python-20]
 
 설치가 시작되면 몇 가지 사항에 대해 사용자에게 확인 및 동의를 요구한다.
 'Confirm' 버튼을 클릭하여 다음단계로 진행한다.
 
-![phython-21]
+![python-21]
  
 ①번과 같이 저작권 조항에 동의를 표하고 'finish' 버튼을 클릭한다.
  
-![phython-22]
+![python-22]
  
 ① 체크박스에 체크하고 'ok' 버튼을 클릭한다. 이 과정에서 체크박스에 체크하지 않으면 PyDev설치가 취소된다.
 
 
-![phython-22]
+![python-22]
  
 
 설치가 완료되면 이클립스를 재시작해야 한다. 'Yes' 버튼을 선택한다.
 
 
-![phython-23]
+![python-23]
  
 
 <div id='3-2-2'></div>
 #####3.2.2. python 설정
 
 
-![phython-23]
+![python-23]
 
  재실행된 이클립스에서 상단 Windows - Preferences를 클릭하여 설정화면을 연다. 
  
-![phython-24]
+![python-24]
  
  그림처럼 ①,②,③의 순서로 클릭하여 Python Interpreters 설정 화면을 연다. ④번의 Quick Auto-Config를 클릭하면 중앙의 파란색 박스처럼 설치된 python 버전을 확인할 수 있다. python 설치 시, 환경변수 설정을 하지 않은 경우는 python 정보가 제대로 나타나지 않을 수 있다. 
 
  ※가상환경을 구성하여 패키지를 설치한 사용자는 다음의 안내를 따른다.
 
-![phython-25]
+![python-25]
 
  'New' 버튼을 클릭하여 가상환경을 추가한다. 
 
-![phython-26]
+![python-26]
 
 가상환경 명칭을 입력하고 Browse 버튼을 클릭한다.
 
-![phython-27]
+![python-27]
 
 가상환경의 python.exe 파일의 경로를 지정한다.
 
-![phython-28]
+![python-28]
 
 'ok' 버튼을 클릭해 인터프리터 추가를 완료한다.
 
-![phython-29]
+![python-29]
 
 인터프리터를 추가했다면 'ok' 버튼을 눌러 설정을 완료한다. 
 
 <div id='3-2-3'></div>
 #####3.2.3. django 프로젝트 생성
  
-![phython-30]
+![python-30]
  
 화면 상단의 File - New - Other를 클릭하여 프로젝트 생성 창을 실행한다.
 
-![phython-31]
+![python-31]
 
 ①번과 같이 PyDev를 클릭해 하단 메뉴를 열고 메뉴 중 ② PyDev Django Project를 선택하고 'Next '버튼을 눌러 다음단계로 진행한다.
 
-![phython-32] 
+![python-32] 
 
  ①번 위치에 프로젝트 이름을 입력한다. 주의할 점은 명령어를 사용할 때와 마찬가지로 django는 프로젝트 이름에 '-'(hyphen)을 포함할 수 없기 때문에 '_'(underscore)로 대체한다. ②번 박스처럼 인터프리터를 선택한다. 가상환경을 구성한 사용자는 가상환경을 선택한다. 그리고 'Next' 버튼을 눌러 다음 단계로 진행한다.
 
-![phython-33] 
+![python-33] 
 
  샘플 애플리케이션에서는 django의 ORM(객체 관계 매핑) 기능을 사용하지 않기 때문에 Database 설정을 하지 않는다. 그림처럼 기존의 값을 삭제하고 'Finish'버튼을 눌러 프로젝트 생성을 완료한다.
 
@@ -942,15 +942,15 @@ $ cf bind-service python-sample-app python-rabbitmq
 3.2.4.	django 애플리케이션 생성
 </div>
 
-![phython-34]
+![python-34]
 
  이클립스 화면 좌측의 PyDev Package Explorer에서 생성한 프로젝트를 찾을 수 있다. 생성한 프로젝트에 마우스를 올리고 마우스 오른쪽 버튼을 클릭하여 메뉴를 연다. 메뉴에서 Django 메뉴를 찾아 'Create appliation (manage.py startapp)'을 선택한다. 
  
-![phython-35] 
+![python-35] 
 
 애플리케이션 이름을 입력하는 창이 생성된다. 애플리케이션 이름 역시 프로젝트와 마찬가지로 '-'(hyphen)을 포함할 수 없기 때문에 '_'(underscore)로 대체한다. 'ok' 버튼을 입력하면 django 애플리케이션 생성이 완료된다.
 
-![phython-36] 
+![python-36] 
 
 
 

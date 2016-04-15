@@ -28,40 +28,40 @@
 
 ![시스템 구성도][rabbitmq_vsphere_(1)]
 
-| 구분 | 사양
+| 구분 | 스펙
 | ---- | -----------
 | openpaasrmq-broker | 2vCPU / 4GB RAM / 10GB Disk+512MB(영구적 Disk)
 | haproxy | 2vCPU / 4GB RAM / 10GB Disk+256MB(영구적 Disk)
 | rmq1 | 2vCPU / 4GB RAM / 10GB Disk+2GB(영구적 Disk)
 | rmq2 | 2vCPU / 4GB RAM / 10GB Disk+2GB(영구적 Disk)
 
-#### <a name="1.4"/>1.4	참고자료
+#### <a name="1.4"/>1.4 참고자료
 [**http://bosh.io/docs**](http://bosh.io/docs)
 
 [**http://docs.cloudfoundry.org**](http://docs.cloudfoundry.org)
 
 ## <a name="2"/>2. RabbitMQ 서비스팩 설치
 #### <a name="2.1"/>2.1 설치전 준비사항
-본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.
-서비스팩 설치를 위해서는 먼저 BOSH CLI가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.
-BOSH CLI가 설치 되어 있지 않을 경우 먼저 BOSH CLI 설치 가이드 문서를 참고 하여 BOSH CLI를 설치 해야 한다.
+본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.  
+서비스팩 설치를 위해서는 먼저 BOSH CLI가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.  
+BOSH CLI가 설치 되어 있지 않을 경우 먼저 BOSH CLI 설치 가이드 문서를 참고 하여 BOSH CLI를 설치 해야 한다.  
 OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Deployment.zip, OpenPaaS-Sample-Apps.zip, OpenPaaS-Services.zip)
 
 #### <a name="2.2"/>2.2 RabbitMQ 서비스 릴리즈 업로드
 
--	OpenPaaS-Services.zip 파일 압축을 풀고 폴더안에 있는 RabbitMQ 서비스 릴리즈 openpaas-rabbitmq-release-beta-1.0.tgz 파일을 복사한다.
+- OpenPaaS-Services.zip 파일 압축을 풀고 폴더안에 있는 RabbitMQ 서비스 릴리즈 openpaas-rabbitmq-release-beta-1.0.tgz 파일을 복사한다.  
 업로드할 openpaas-rabbitmq-release-beta-1.0.tgz 파일을 확인한다.
 
 ><div>$ ls –all</div>
 ![rabbitmq_vsphere_(2)]
 
--	업로드 되어 있는 릴리즈 목록을 확인한다.
+- 업로드 되어 있는 릴리즈 목록을 확인한다.
 
 ><div>$ bosh releases</div>
 ![rabbitmq_vsphere_(3)]
 <p>RabbitMQ 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인</p>
 
--	RabbitMQ 서비스 릴리즈 파일을 업로드한다.
+- RabbitMQ 서비스 릴리즈 파일을 업로드한다.
 
 ><div>$ bosh upload release {서비스 릴리즈 파일 PATH}<br>
 $ bosh upload release openpaas-rabbitmq-release-beta-1.0.tgz</div>
@@ -70,35 +70,35 @@ $ bosh upload release openpaas-rabbitmq-release-beta-1.0.tgz</div>
 ![rabbitmq_vsphere_(6)]<br>
 ![rabbitmq_vsphere_(7)]
 
--	업로드 된 RabbitMQ 릴리즈를 확인한다.
+- 업로드 된 RabbitMQ 릴리즈를 확인한다.
 
 ><div>$ bosh releases</div>
 ![rabbitmq_vsphere_(8)]
 <p>RabbitMQ 서비스 릴리즈가 업로드 되어 있는 것을 확인</p>
 
 #### <a name="2.3"/>2.3 RabbitMQ 서비스 Deployment 파일 수정 및 배포
-BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
+BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.  
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
 
--	OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더안에 있는 vsphere용 RabbitMQ Deployment 화일인 openpaas-rabbitmq-vsphere.yml 를 복사한다.
+- OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더안에 있는 vsphere용 RabbitMQ Deployment 화일인 openpaas-rabbitmq-vsphere.yml 를 복사한다.
 -   다운로드 받은 Deployment Yml 파일을 확인한다. (openpaas-rabbitmq-vsphere.yml)
 
 ><div>$ ls –all</div>
 ![rabbitmq_vsphere_(9)]
 
--	Director UUID를 확인한다.
+- Director UUID를 확인한다.  
 BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 BOSH Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인 할 수 있다.
 
 ><div>$ bosh status</div>
 ![rabbitmq_vsphere_(10)]
 
--	Deploy시 사용할 Stemcell을 확인한다. (Stemcell 3016 버전 사용)
+- Deploy시 사용할 Stemcell을 확인한다. (Stemcell 3016 버전 사용)
 
 ><div>$ bosh stemcells</div>
 ![rabbitmq_vsphere_(11)]<br><br>
 Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell 3016 버전을 업로드를 해야 한다.
 
--	openpaas-rabbitmq-vsphere.yml Deployment 파일을 서버 환경에 맞게 수정한다.
+- openpaas-rabbitmq-vsphere.yml Deployment 파일을 서버 환경에 맞게 수정한다.
 
 <pre>
 $ vi openpaas-rabbitmq-vsphere.yml
@@ -383,53 +383,53 @@ resource_pools:                     # 배포시 사용하는 resource pools를 �
 </pre>
 
 
--	Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
+- Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 
 ><div>$ bosh deployment {Deployment manifest 파일 PATH}<br>
 $ bosh deployment openpaas-rabbitmq-vsphere.yml</div>
 ![rabbitmq_vsphere_(12)]
 
--	RabbitMQ 서비스팩을 배포한다.
+- RabbitMQ 서비스팩을 배포한다.
 
 ><div>$ bosh deploy</div>
 ![rabbitmq_vsphere_(13)]<br>
 ![rabbitmq_vsphere_(14)]
 
--	배포된 RabbitMQ 서비스팩을 확인한다.
+- 배포된 RabbitMQ 서비스팩을 확인한다.
 
 ><div>$ bosh vms</div>
 ![rabbitmq_vsphere_(15)]<br>
 
 #### <a name="2.4"/>2.4 RabbitMQ 서비스 브로커 등록
-RabbitMQ 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 RabbitMQ 서비스 브로커를 등록해 주어야 한다.
+RabbitMQ 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 RabbitMQ 서비스 브로커를 등록해 주어야 한다.  
 서비스 브로커 등록시 개방형 클라우드 플랫폼에서 서비스 브로커를 등록 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
--	서비스 브로커 목록을 확인한다.
+- 서비스 브로커 목록을 확인한다.
 
 ><div>$ cf service-brokers</div>
 ![rabbitmq_vsphere_(16)]
 
--	RabbitMQ 서비스 브로커를 등록한다.
+- RabbitMQ 서비스 브로커를 등록한다.
 
-><div>$ cf create-service-broker {서비스팩 이름} {서비스팩 사용자ID} {서비스팩 사용자비밀번호} http://{서비스팩 URL}<br>
--	서비스팩 이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.
--	서비스팩 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID이다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
--	서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.</div>
-$ cf create-service-broker rabbitmq-service-broker admin admin http://10.30.40.181:4567<br><br>
+><div>$ cf create-service-broker {서비스팩 이름} {서비스팩 사용자ID} {서비스팩 사용자비밀번호} http://{서비스팩 URL}</div>
+<div>- 서비스팩 이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.</div>
+<div>- 서비스팩 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID이다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.</div>
+<div>- 서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.</div>
+<div>$ cf create-service-broker rabbitmq-service-broker admin admin http://10.30.40.181:4567</div><br>
 ![rabbitmq_vsphere_(17)]
 
--	등록된 RabbitMQ 서비스 브로커를 확인한다.
+- 등록된 RabbitMQ 서비스 브로커를 확인한다.
 
 ><div>$ cf service-brokers</div>
 ![rabbitmq_vsphere_(18)]
 
--	접근 가능한 서비스 목록을 확인한다.
+- 접근 가능한 서비스 목록을 확인한다.
 
 ><div>$ cf service-access</div>
 ![rabbitmq_vsphere_(19)]<br>
 서비스 브로커 생성시 디폴트로 접근을 허용하지 않는다.
 
--	특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
+- 특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
 
 ><div>$ cf enable-service-access p-rabbitmq<br>
 $ cf service-access</div>
@@ -450,39 +450,39 @@ Sample App 구조는 다음과 같다.
 | Gemfile | Sample App 구동시 필요한 ruby gem 설정 파일
 | config.ru | Sample App 구동 파일
 
--	OpenPaaS-Sample-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 RabbitMQ Sample Web App인 rabbit-labrat를 복사한다.
+- OpenPaaS-Sample-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 RabbitMQ Sample Web App인 rabbit-labrat를 복사한다.
 
 ><div>$ ls -all</div>
 ![rabbitmq_vsphere_(21)]
 
 #### <a name="3.2"/>3.2 개방형 클라우드 플랫폼에서 서비스 신청
-Sample App에서 RabbitMQ 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.
+Sample App에서 RabbitMQ 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.  
 *참고: 서비스 신청시 개방형 클라우드 플랫폼에서 서비스를 신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
--	먼저 개방형 클라우드 플랫폼 Marketplace에서 서비스가 있는지 확인을 한다.
+- 먼저 개방형 클라우드 플랫폼 Marketplace에서 서비스가 있는지 확인을 한다.
 
 ><div>$ cf marketplace</div>
 ![rabbitmq_vsphere_(22)]
 
--	Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.
+- Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.
 
-><div>$ cf create-service {서비스명} {서비스플랜} {내서비스명}<br>
--	서비스명 : p-rabbitmq로 Marketplace에서 보여지는 서비스 명칭이다.
--	서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. RabbitMQ 서비스는 standard plan만 지원한다.
--	내서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.</div>
-$ cf create-service p-rabbitmq standard rabbitmq-service-instance<br><br>
+><div>$ cf create-service {서비스명} {서비스플랜} {내서비스명}</div>
+<div>- 서비스명 : p-rabbitmq로 Marketplace에서 보여지는 서비스 명칭이다.</div>
+<div>- 서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. RabbitMQ 서비스는 standard plan만 지원한다.</div>
+<div>- 내서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.</div>
+</div>$ cf create-service p-rabbitmq standard rabbitmq-service-instance</div><br>
 ![rabbitmq_vsphere_(23)]
 
--	생성된 RabbitMQ 서비스 인스턴스를 확인한다.
+- 생성된 RabbitMQ 서비스 인스턴스를 확인한다.
 
 ><div>$ cf services</div>
 ![rabbitmq_vsphere_(24)]
 
 #### <a name="3.3"/>3.3 Sample App에 서비스 바인드 신청 및 App 확인
-서비스 신청이 완료되었으면 Sample App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 RabbitMQ 서비스를 이용한다.
+서비스 신청이 완료되었으면 Sample App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 RabbitMQ 서비스를 이용한다.  
 *참고: 서비스 Bind 신청시 개방형 클라우드 플랫폼에서 서비스 Bind 신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
--	Sample App 디렉토리로 이동하여 manifest 파일을 확인한다.
+- Sample App 디렉토리로 이동하여 manifest 파일을 확인한다.
 
 ><div>$ cd rabbit-labrat<br>
 $ vi manifest.yml</div>
@@ -492,12 +492,12 @@ applications:
 command: puma     #배포시 명령어
 </pre>
 
--	--no-start(App 배포시 구동은 하지 않는다.) 옵션으로 App을 배포한다.
+- --no-start(App 배포시 구동은 하지 않는다.) 옵션으로 App을 배포한다.
 
 ><div>$ cf push --no-start</div>
 ![rabbitmq_vsphere_(25)]
 
--	배포된 Sample App을 확인하고 로그를 수행한다.
+- 배포된 Sample App을 확인하고 로그를 수행한다.
 
 ><div>$ cf apps</div>
 ![rabbitmq_vsphere_(26)]<br><br>
@@ -505,18 +505,18 @@ $ cf logs {배포된 App명}<br>
 $ cf logs lab-rat<br><br>
 ![rabbitmq_vsphere_(27)]
 
--	Sample App에서 생성한 서비스 인스턴스 바인드 신청을 한다.
+- Sample App에서 생성한 서비스 인스턴스 바인드 신청을 한다.
 
 ><div>$ cf bind-service lab-rat rabbitmq-service-instance</div>
 ![rabbitmq_vsphere_(28)]
 
--	바인드가 적용되기 위해서 App을 재기동한다.
+- 바인드가 적용되기 위해서 App을 재기동한다.
 
 ><div>$ cf restart lab-rat</div>
 ![rabbitmq_vsphere_(29)]<br>
 ![rabbitmq_vsphere_(30)]
 
--	App이 정상적으로 RabbitMQ 서비스를 사용하는지 확인한다. (curl로 확인)
+- App이 정상적으로 RabbitMQ 서비스를 사용하는지 확인한다. (curl로 확인)
 
 ><div>$ curl lab-rat.controller.open-paas.com</div>
 ![rabbitmq_vsphere_(31)]<br>

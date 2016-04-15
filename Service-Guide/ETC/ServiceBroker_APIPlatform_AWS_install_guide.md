@@ -261,7 +261,7 @@ jobs:
 
 <br>
 
-- API 플랫폼 서비스팩을 배포한다. 환경에 따라 다르지만 API 플랫폼 서비스팩 배포는 일반적으로 30분에서 50분 가량이 소요된다. 하단의 푸른색 박스에서 보듯이 리소스 사용상황에 따라 2시간 가량이 소요될 수도 있다.
+- API 플랫폼 서비스팩을 배포한다. 환경에 따라 다르지만 API 플랫폼 서비스팩 배포는 일반적으로 30분에서 50분 가량이 소요된다. 하단의 푸른색 박스에서 보듯이 리소스 상황에 따라 2시간 가량이 소요될 수도 있다.
 
 >`$ bosh deploy`
 
@@ -635,9 +635,11 @@ path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
 
 >`$ cf apps`
 
+>![apiplatform_aws_3.1.02]
+
 >`$ cf logs hello-servlet-tomcat`
 
->![apiplatform_aws_3.1.02]
+>![apiplatform_aws_3.1.03]
 
 <br>
 
@@ -651,7 +653,7 @@ path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
 
 >`$ cf create-service PhoneVerification Unlimited phoneverification-instance-unlimited`
 
->![apiplatform_aws_3.1.03]
+>![apiplatform_aws_3.1.04]
 
 <br>
 
@@ -659,7 +661,7 @@ path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
 
 >`$ cf services`
 
->![apiplatform_aws_3.1.04]
+>![apiplatform_aws_3.1.05]
 
 <br>
 
@@ -667,7 +669,7 @@ path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
 
 >`$ cf bind-service hello-servlet-tomcat phoneverification-instance-unlimited`
 
->![apiplatform_aws_3.1.05]
+>![apiplatform_aws_3.1.06]
 
 
 ### 3.2. 서비스 바인드 확인
@@ -678,45 +680,46 @@ path: target/hello-java-1.0.war    #배포하는 App의 war 파일 경로
 >![apiplatform_aws_3.2.01]
 
 
-[apiplatform_aws_1.3.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image3.png
-[apiplatform_aws_2.2.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image4.png
-[apiplatform_aws_2.2.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image5.png
-[apiplatform_aws_2.2.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image6.png
-[apiplatform_aws_2.2.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image7.png
-[apiplatform_aws_2.3.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image8.png
-[apiplatform_aws_2.3.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image9.png
-[apiplatform_aws_2.3.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image10.png
-[apiplatform_aws_2.3.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image11.png
-[apiplatform_aws_2.3.05]:/images/openpaas-service/apiplatform/apiplatform_aws/image12.png
-[apiplatform_aws_2.3.06]:/images/openpaas-service/apiplatform/apiplatform_aws/image13.png
-[apiplatform_aws_2.3.07]:/images/openpaas-service/apiplatform/apiplatform_aws/image14.png
-[apiplatform_aws_2.4.1.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image15.png
-[apiplatform_aws_2.4.1.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image16.png
-[apiplatform_aws_2.4.1.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image17.png
-[apiplatform_aws_2.4.1.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image18.png
-[apiplatform_aws_2.4.1.05]:/images/openpaas-service/apiplatform/apiplatform_aws/image19.png
-[apiplatform_aws_2.4.1.06]:/images/openpaas-service/apiplatform/apiplatform_aws/image20.jpeg
-[apiplatform_aws_2.4.1.07]:/images/openpaas-service/apiplatform/apiplatform_aws/image21.png
-[apiplatform_aws_2.4.1.08]:/images/openpaas-service/apiplatform/apiplatform_aws/image22.png
-[apiplatform_aws_2.4.2.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image23.png
-[apiplatform_aws_2.4.2.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image24.png
-[apiplatform_aws_2.4.2.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image25.png
-[apiplatform_aws_2.4.2.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image26.png
-[apiplatform_aws_2.4.2.05]:/images/openpaas-service/apiplatform/apiplatform_aws/image27.png
-[apiplatform_aws_2.4.2.06]:/images/openpaas-service/apiplatform/apiplatform_aws/image28.png
-[apiplatform_aws_2.4.2.07]:/images/openpaas-service/apiplatform/apiplatform_aws/image29.png
-[apiplatform_aws_2.4.2.08]:/images/openpaas-service/apiplatform/apiplatform_aws/image30.png
-[apiplatform_aws_2.4.2.09]:/images/openpaas-service/apiplatform/apiplatform_aws/image31.png
-[apiplatform_aws_2.4.2.10]:/images/openpaas-service/apiplatform/apiplatform_aws/image32.png
-[apiplatform_aws_2.5.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image33.png
-[apiplatform_aws_2.5.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image34.png
-[apiplatform_aws_2.5.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image35.png
-[apiplatform_aws_2.5.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image36.png
-[apiplatform_aws_2.5.05]:/images/openpaas-service/apiplatform/apiplatform_aws/image37.png
-[apiplatform_aws_2.5.06]:/images/openpaas-service/apiplatform/apiplatform_aws/image38.png
-[apiplatform_aws_3.1.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image39.png
-[apiplatform_aws_3.1.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image40.png
-[apiplatform_aws_3.1.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image41.png
-[apiplatform_aws_3.1.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image42.png
-[apiplatform_aws_3.1.05]:/images/openpaas-service/apiplatform/apiplatform_aws/image43.png
+[apiplatform_aws_1.3.01]:/images/openpaas-service/apiplatform/apiplatform_aws/시스템구성도.png
+[apiplatform_aws_2.2.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image3.png
+[apiplatform_aws_2.2.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image4.png
+[apiplatform_aws_2.2.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image5.png
+[apiplatform_aws_2.2.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image6.png
+[apiplatform_aws_2.3.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image7.png
+[apiplatform_aws_2.3.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image8.png
+[apiplatform_aws_2.3.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image9.png
+[apiplatform_aws_2.3.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image10.png
+[apiplatform_aws_2.3.05]:/images/openpaas-service/apiplatform/apiplatform_aws/image11.png
+[apiplatform_aws_2.3.06]:/images/openpaas-service/apiplatform/apiplatform_aws/image12.png
+[apiplatform_aws_2.3.07]:/images/openpaas-service/apiplatform/apiplatform_aws/image13.png
+[apiplatform_aws_2.4.1.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image14.png
+[apiplatform_aws_2.4.1.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image15.png
+[apiplatform_aws_2.4.1.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image16.png
+[apiplatform_aws_2.4.1.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image17.png
+[apiplatform_aws_2.4.1.05]:/images/openpaas-service/apiplatform/apiplatform_aws/image18.png
+[apiplatform_aws_2.4.1.06]:/images/openpaas-service/apiplatform/apiplatform_aws/image19.jpeg
+[apiplatform_aws_2.4.1.07]:/images/openpaas-service/apiplatform/apiplatform_aws/image20.png
+[apiplatform_aws_2.4.1.08]:/images/openpaas-service/apiplatform/apiplatform_aws/image21.png
+[apiplatform_aws_2.4.2.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image22.png
+[apiplatform_aws_2.4.2.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image23.png
+[apiplatform_aws_2.4.2.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image24.png
+[apiplatform_aws_2.4.2.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image25.png
+[apiplatform_aws_2.4.2.05]:/images/openpaas-service/apiplatform/apiplatform_aws/image26.png
+[apiplatform_aws_2.4.2.06]:/images/openpaas-service/apiplatform/apiplatform_aws/image27.png
+[apiplatform_aws_2.4.2.07]:/images/openpaas-service/apiplatform/apiplatform_aws/image28.png
+[apiplatform_aws_2.4.2.08]:/images/openpaas-service/apiplatform/apiplatform_aws/image29.png
+[apiplatform_aws_2.4.2.09]:/images/openpaas-service/apiplatform/apiplatform_aws/image30.png
+[apiplatform_aws_2.4.2.10]:/images/openpaas-service/apiplatform/apiplatform_aws/image31.png
+[apiplatform_aws_2.5.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image32.png
+[apiplatform_aws_2.5.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image33.png
+[apiplatform_aws_2.5.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image34.png
+[apiplatform_aws_2.5.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image35.png
+[apiplatform_aws_2.5.05]:/images/openpaas-service/apiplatform/apiplatform_aws/image36.png
+[apiplatform_aws_2.5.06]:/images/openpaas-service/apiplatform/apiplatform_aws/image37.png
+[apiplatform_aws_3.1.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image38.png
+[apiplatform_aws_3.1.02]:/images/openpaas-service/apiplatform/apiplatform_aws/image39.png
+[apiplatform_aws_3.1.03]:/images/openpaas-service/apiplatform/apiplatform_aws/image40.png
+[apiplatform_aws_3.1.04]:/images/openpaas-service/apiplatform/apiplatform_aws/image41.png
+[apiplatform_aws_3.1.05]:/images/openpaas-service/apiplatform/apiplatform_aws/image42.png
+[apiplatform_aws_3.1.06]:/images/openpaas-service/apiplatform/apiplatform_aws/image43.png
 [apiplatform_aws_3.2.01]:/images/openpaas-service/apiplatform/apiplatform_aws/image44.png

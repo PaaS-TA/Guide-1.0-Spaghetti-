@@ -1,5 +1,3 @@
-vsphere -> AWS 수정중
-
 ## Table of Contents
 1. [문서 개요](#1-문서-개요)
   - 1.1. [목적](#11-목적)
@@ -616,25 +614,25 @@ HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트�
 
 >[http://www.heidisql.com/download.php](http://www.heidisql.com/download.php)
 
->![mysql_vsphere_4.1.01]
+>![mysql_HeidiSQL_01]
 
 <br>
 
 ##### 다운로드한 설치파일을 실행한다.
 
->![mysql_vsphere_4.1.02]
+>![mysql_HeidiSQL_02]
 
 <br>
 
 ##### HeidSQL 설치를 위한 안내사항이다. Next 버튼을 클릭한다.
 
->![mysql_vsphere_4.1.03]
+>![mysql_HeidiSQL_03]
 
 <br>
 
 ##### 프로그램 라이선스에 관련된 내용이다. 동의(I accept the agreement)에 체크 후 Next 버튼을 클릭한다.
 
->![mysql_vsphere_4.1.04]
+>![mysql_HeidiSQL_04]
 
 <br>
 
@@ -642,14 +640,14 @@ HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트�
 
 >별도의 경로 설정이 필요 없을 경우 default로 C드라이브 Program Files 폴더에 설치가 된다.
 
->![mysql_vsphere_4.1.05]
+>![mysql_HeidiSQL_05]
 
 <br>
 
 ##### 설치 완료 후 시작메뉴에 HeidiSQL 바로가기 아이콘의 이름을 설정하는 과정이다.  
 >Next 버튼을 클릭하여 다음 과정을 진행한다.
 
->![mysql_vsphere_4.1.06]
+>![mysql_HeidiSQL_06]
 
 <br>
 
@@ -662,49 +660,49 @@ HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트�
 
 > 체크박스에 체크 설정/해제를 완료했다면 Next 버튼을 클릭한다.
 
->![mysql_vsphere_4.1.07]
+>![mysql_HeidiSQL_07]
 
 <br>
 
 ##### 설치를 위한 모든 설정이 한번에 출력된다. 확인 후 Install 버튼을 클릭하여 설치를 진행한다.
 
->![mysql_vsphere_4.1.08]
+>![mysql_HeidiSQL_08]
 
 <br>
 
 ##### Finish 버튼 클릭으로 설치를 완료한다.
 
->![mysql_vsphere_4.1.09]
+>![mysql_HeidiSQL_09]
 
 <br>
 
 ##### HeidiSQL을 실행했을 때 처음 뜨는 화면이다. 이 화면에서 Server에 접속하기 위한 profile을 설정/저장하여 접속할 수 있다. 신규 버튼을 클릭한다.
 
->![mysql_vsphere_4.1.10]
+>![mysql_HeidiSQL_10]
 
 <br>
 
 ##### 어떤 Server에 접속하기 위한 Connection 정보인지 별칭을 입력한다.
 
->![mysql_vsphere_4.1.11]
+>![mysql_HeidiSQL_11]
 
 <br>
 
 ##### 네트워크 유형의 목록에서 MySQL(SSH tunel)을 선택한다.
 
->![mysql_vsphere_4.1.12]
+>![mysql_HeidiSQL_12]
 
 <br>
 
 ##### 아래 붉은색 영역에 접속하려는 서버 정보를 모두 입력한다.
 
->![mysql_vsphere_4.1.13]
+>![mysql_HeidiSQL_13]
 
 >서버 정보는 Application에 바인드되어 있는 서버 정보를 입력한다. cf env <app_name> 명령어로 이용하여 확인한다.
 
 >**예)** $cf env hello-spring-mysql
 
->![mysql_vsphere_4.1.14]
+>![mysql_HeidiSQL_14]
 
 <br>
 
@@ -712,13 +710,13 @@ HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트�
 
 >(참고) 만일 개인 키로 접속이 가능한 경우에는 openstack용 Open PaaS Mysql 서비스팩 설치 가이드를 참고한다.
 
->![mysql_vsphere_4.1.15]
+>![mysql_HeidiSQL_15]
 
 <br>
 
 ##### 접속이 완료되면 좌측에 스키마 정보가 나타난다. 하지만 초기설정은 테이블, 뷰, 프로시져, 함수, 트리거, 이벤트 등 모두 섞여 있어서 한눈에 구분하기가 힘들어서 접속한 DB 별칭에 마우스 오른쪽 클릭 후 "트리 방식 옵션" - "객체를 유형별로 묶기"를 클릭하면 아래 화면과 같이 각 유형별로 구분이된다.
 
->![mysql_vsphere_4.1.16]
+>![mysql_HeidiSQL_16]
 
 <br>
 
@@ -726,7 +724,7 @@ HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트�
 
 >쿼리문에 이상이 없다면 정상적으로 결과를 얻을 수 있을 것이다.
 
->![mysql_vsphere_4.1.17]
+>![mysql_HeidiSQL_17]
 
 
 [mysql_AWS_00]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_00.png
@@ -765,95 +763,20 @@ HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트�
 [mysql_AWS_33]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_33.png
 [mysql_AWS_34]:/images/openpaas-service/mysql/mysql_aws/mysql_AWS_34.png
 
-[mysql_vsphere_1.3.01]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_1.3.01.png
-[mysql_vsphere_2.2.01]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.2.01.png
-[mysql_vsphere_2.2.02]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.2.02.png
-[mysql_vsphere_2.2.03]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.2.03.png
-[mysql_vsphere_2.2.04]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.2.04.png
-[mysql_vsphere_2.2.05]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.2.05.png
-[mysql_vsphere_2.2.06]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.2.06.png
-[mysql_vsphere_2.2.07]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.2.07.png
-[mysql_vsphere_2.2.08]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.2.08.png
-[mysql_vsphere_2.3.01]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.3.01.png
-[mysql_vsphere_2.3.02]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.3.02.png
-[mysql_vsphere_2.3.03]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.3.03.png
-[mysql_vsphere_2.3.04]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.3.04.png
-[mysql_vsphere_2.3.05]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.3.05.png
-[mysql_vsphere_2.3.06]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.3.06.png
-[mysql_vsphere_2.3.07]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.3.07.png
-
-[mysql_vsphere_2.4.01]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.4.01.png
-[mysql_vsphere_2.4.02]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.4.02.png
-[mysql_vsphere_2.4.03]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.4.03.png
-[mysql_vsphere_2.4.04]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.4.04.png
-[mysql_vsphere_2.4.05]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_2.4.05.png
-[mysql_vsphere_3.1.01]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_3.1.01.png
-[mysql_vsphere_3.2.01]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_3.2.01.png
-[mysql_vsphere_3.2.02]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_3.2.02.png
-[mysql_vsphere_3.2.03]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_3.2.03.png
-[mysql_vsphere_3.3.01]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_3.3.01.png
-[mysql_vsphere_3.3.02]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_3.3.02.png
-[mysql_vsphere_3.3.03]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_3.3.03.png
-[mysql_vsphere_3.3.04]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_3.3.04.png
-[mysql_vsphere_3.3.05]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_3.3.05.png
-[mysql_vsphere_3.3.06]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_3.3.06.png
-[mysql_vsphere_3.3.07]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_3.3.07.png
-[mysql_vsphere_3.3.08]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_3.3.08.png
-[mysql_vsphere_3.3.09]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_3.3.09.png
-[mysql_vsphere_4.1.01]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_4.1.01.png
-[mysql_vsphere_4.1.02]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_4.1.02.png
-[mysql_vsphere_4.1.03]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_4.1.03.png
-[mysql_vsphere_4.1.04]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_4.1.04.png
-[mysql_vsphere_4.1.05]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_4.1.05.png
-[mysql_vsphere_4.1.06]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_4.1.06.png
-[mysql_vsphere_4.1.07]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_4.1.07.png
-[mysql_vsphere_4.1.08]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_4.1.08.png
-[mysql_vsphere_4.1.09]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_4.1.09.png
-[mysql_vsphere_4.1.10]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_4.1.10.png
-[mysql_vsphere_4.1.11]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_4.1.11.png
-[mysql_vsphere_4.1.12]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_4.1.12.png
-[mysql_vsphere_4.1.13]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_4.1.13.png
-[mysql_vsphere_4.1.14]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_4.1.14.png
-[mysql_vsphere_4.1.15]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_4.1.15.png
-[mysql_vsphere_4.1.16]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_4.1.16.png
-[mysql_vsphere_4.1.17]:/images/openpaas-service/mysql/mysql_vsphere/mysql_vsphere_4.1.17.png
-
-
-
-[update_mysql_vsphere_01]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_01.png
-[update_mysql_vsphere_02]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_02.png
-[update_mysql_vsphere_03]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_03.png
-[update_mysql_vsphere_04]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_04.png
-[update_mysql_vsphere_05]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_05.png
-[update_mysql_vsphere_06]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_06.png
-[update_mysql_vsphere_07]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_07.png
-[update_mysql_vsphere_08]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_08.png
-[update_mysql_vsphere_09]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_09.png
-[update_mysql_vsphere_10]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_10.png
-[update_mysql_vsphere_11]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_11.png
-[update_mysql_vsphere_12]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_12.png
-[update_mysql_vsphere_13]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_13.png
-[update_mysql_vsphere_14]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_14.png
-[update_mysql_vsphere_15]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_15.png
-[update_mysql_vsphere_16]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_16.png
-[update_mysql_vsphere_17]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_17.png
-[update_mysql_vsphere_18]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_18.png
-[update_mysql_vsphere_19]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_19.png
-[update_mysql_vsphere_20]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_20.png
-[update_mysql_vsphere_21]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_21.png
-[update_mysql_vsphere_22]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_22.png
-[update_mysql_vsphere_23]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_23.png
-[update_mysql_vsphere_24]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_24.png
-[update_mysql_vsphere_25]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_25.png
-[update_mysql_vsphere_26]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_26.png
-[update_mysql_vsphere_27]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_27.png
-[update_mysql_vsphere_28]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_28.png
-[update_mysql_vsphere_29]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_29.png
-[update_mysql_vsphere_30]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_30.png
-[update_mysql_vsphere_31]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_31.png
-[update_mysql_vsphere_32]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_32.png
-[update_mysql_vsphere_33]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_33.png
-[update_mysql_vsphere_34]:/images/openpaas-service/mysql/mysql_vsphere/update_mysql_vsphere_34.png
-
-
-
+[mysql_HeidiSQL_01]:/images/openpaas-service/mysql/mysql_aws/mysql_HeidiSQL_01.png
+[mysql_HeidiSQL_02]:/images/openpaas-service/mysql/mysql_aws/mysql_HeidiSQL_02.png
+[mysql_HeidiSQL_03]:/images/openpaas-service/mysql/mysql_aws/mysql_HeidiSQL_03.png
+[mysql_HeidiSQL_04]:/images/openpaas-service/mysql/mysql_aws/mysql_HeidiSQL_04.png
+[mysql_HeidiSQL_05]:/images/openpaas-service/mysql/mysql_aws/mysql_HeidiSQL_05.png
+[mysql_HeidiSQL_06]:/images/openpaas-service/mysql/mysql_aws/mysql_HeidiSQL_06.png
+[mysql_HeidiSQL_07]:/images/openpaas-service/mysql/mysql_aws/mysql_HeidiSQL_07.png
+[mysql_HeidiSQL_08]:/images/openpaas-service/mysql/mysql_aws/mysql_HeidiSQL_08.png
+[mysql_HeidiSQL_09]:/images/openpaas-service/mysql/mysql_aws/mysql_HeidiSQL_09.png
+[mysql_HeidiSQL_10]:/images/openpaas-service/mysql/mysql_aws/mysql_HeidiSQL_10.png
+[mysql_HeidiSQL_11]:/images/openpaas-service/mysql/mysql_aws/mysql_HeidiSQL_11.png
+[mysql_HeidiSQL_12]:/images/openpaas-service/mysql/mysql_aws/mysql_HeidiSQL_12.png
+[mysql_HeidiSQL_13]:/images/openpaas-service/mysql/mysql_aws/mysql_HeidiSQL_13.png
+[mysql_HeidiSQL_14]:/images/openpaas-service/mysql/mysql_aws/mysql_HeidiSQL_14.png
+[mysql_HeidiSQL_15]:/images/openpaas-service/mysql/mysql_aws/mysql_HeidiSQL_15.png
+[mysql_HeidiSQL_16]:/images/openpaas-service/mysql/mysql_aws/mysql_HeidiSQL_16.png
+[mysql_HeidiSQL_17]:/images/openpaas-service/mysql/mysql_aws/mysql_HeidiSQL_17.png

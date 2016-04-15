@@ -338,7 +338,9 @@ resource_pools:                  # 배포시 사용하는 resource pools를 명�
 
 ```
 
-- Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
+
+
+Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 
 ><div>$bosh deployment {Deployment manifest 파일 PATH}</div>
 ><div>$bosh deployment openpaas-redis-aws-1.0.yml</div>

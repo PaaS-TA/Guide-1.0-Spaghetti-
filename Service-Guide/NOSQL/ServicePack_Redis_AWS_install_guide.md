@@ -34,7 +34,7 @@
 
 본 문서의 설치된 시스템 구성도입니다. Redis dedicated-node(2대), Redis 서비스 브로커로 최소사항을 구성하였다.
 
-![redis_aws2]
+![redis_aws1]
 
 <table>
   <tr>
@@ -84,12 +84,12 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 
 ><div>$ls -all</div>  
-![redis_aws3]
+![redis_aws2]
 
 - 업로드 되어 있는 릴리즈 목록을 확인한다.
 
 ><div>$bosh releases</div>
-![redis_aws4]
+![redis_aws3]
 ><div>Redis 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인</div>
 >
 
@@ -99,15 +99,15 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 ><div>$ bosh upload release openpaas-redis-release-beta-1.0.tgz</div><br>
 ><br>※	본 샘플은 직접 릴리즈 파일을 생성하도록 안내하고 있으므로 'bosh upload release'만 입력한다.릴리즈 파일을 직접 생성하지 않고 다운로드 받거나 릴리즈 파일 다운로드 URL이 존재하는 경우는 파일 경로 또는 다운로드 URL을 아래와 같이 입력한다. 
 >$ bosh upload release {서비스 릴리즈 파일 PATH 또는 URL}<br>
+>![redis_aws4]
 >![redis_aws5]
 >![redis_aws6]
 >![redis_aws7]
->![redis_aws8]
 
 - 업로드 된 Redis릴리즈를 확인한다.
 
 ><div>$bosh releases</div>
->![redis_aws9]
+>![redis_aws8]
 ><div>Redis 서비스 릴리즈가 업로드 되어 있는 것을 확인</div>
 
 

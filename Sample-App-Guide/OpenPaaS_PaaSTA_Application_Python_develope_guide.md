@@ -319,41 +319,22 @@ STATIC_URL = '/resources/'
 
 WhiteNoise를 사용할 수 있도록 wsgi 모듈을 수정한다.
 ..\my_sampleproject\my_sampleproject\wsgi.py
-`
-\RED APPLE (&#x1F34E;): 🍎
-GREEN APPLE (&#x1F34F;): 🍏
-BLUE HEART (&#x1F499;): 💙
-GREEN HEART (&#x1F49A;): 💚
-YELLOW HEART (&#x1F49B;): 💛
-PURPLE HEART (&#x1F49C;): 💜
-GREEN BOOK (&#x1F4D7;): 📗
-BLUE BOOK (&#x1F4D8;): 📘
-ORANGE BOOK (&#x1F4D9;): 📙
-LARGE RED CIRCLE (&#x1F534;): 🔴
-LARGE BLUE CIRCLE (&#x1F535;): 🔵
-LARGE ORANGE DIAMOND (&#x1F536;): 🔶
-LARGE BLUE DIAMOND (&#x1F537;): 🔷
-SMALL ORANGE DIAMOND (&#x1F538;): 🔸
-SMALL BLUE DIAMOND (&#x1F539;): 🔹
-UP-POINTING RED TRIANGLE (&#x1F53A;): 🔺
-DOWN-POINTING RED TRIANGLE (&#x1F53B;): 🔻
-UP-POINTING SMALL RED TRIANGLE (&#x1F53C;): 🔼
-DOWN-POINTING SMALL RED TRIANGLE (&#x1F53D;): 🔽
-
-
 
 ```
-
 application = get_wsgi_application()
 from whitenoise.django import DjangoWhiteNoise
 application = DjangoWhiteNoise(get_wsgi_application())
+```
 
 <div id='2.3.3'></div>
-#####2.3.3.	VCAP_SERVICES 환경설정 정보 
-개방형 플랫폼에 배포되는 애플리케이션이 바인딩 된 각각의 서비스의 접속 정보를 얻기 위해서는 각각의 애플리케이션에 등록되어있는 VCAP_SERVICES 환경설정 정보를 읽어 들여 정보를 획득 해야 한다.
+#####2.3.3. VCAP_SERVICES 환경설정 정보 
 
-1)	개방형 플랫폼의 애플리케이션 환경정보
--	서비스를 바인딩하면 JSON 형태로 환경설정 정보가 애플리케이션 별로 등록된다.
+ 개방형 플랫폼에 배포되는 애플리케이션이 바인딩 된 각각의 서비스의 접속 정보를 얻기 위해서는 각각의 애플리케이션에 등록되어있는 VCAP_SERVICES 환경설정 정보를 읽어 들여 정보를 획득 해야 한다.
+
+- 개방형 플랫폼의 애플리케이션 환경정보
+-- 서비스를 바인딩하면 JSON 형태로 환경설정 정보가 애플리케이션 별로 등록된다.
+
+```
 {
  "VCAP_SERVICES": {
   "CubridDB": [
@@ -387,12 +368,15 @@ application = DjangoWhiteNoise(get_wsgi_application())
      "password": "c5649c42-ca5e-42be-926a-c3231aa81dc1",
      "uri": "mongodb://b5d67268-897
 …..(이하 생략)…..
+```
 
 <div id='2.3.4'></div>
-#####2.3.4.	Mysql 연동
-각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성]에서 프로젝트 생성시 자동으로 생성된다. MySQL의 경우는 MySQL-python 드라이버가 django 연동을 지원하기 때문에 settings 모듈의 DATABASES 정보가 정의된 부분을 찾아 다음과 같이 수정함으로써 연동이 가능하다.
+#####2.3.4. Mysql 연동
+ 각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성]에서 프로젝트 생성시 자동으로 생성된다. MySQL의 경우는 MySQL-python 드라이버가 django 연동을 지원하기 때문에 settings 모듈의 DATABASES 정보가 정의된 부분을 찾아 다음과 같이 수정함으로써 연동이 가능하다.
 
-..\my_sampleproject\my_sampleproject\settings.py
+`..\my_sampleproject\my_sampleproject\settings.py`
+
+```
 import json
 if 'VCAP_SERVICES' in os.environ:
     vcap_services = json.loads(os.environ['VCAP_SERVICES'])
@@ -411,24 +395,29 @@ if 'VCAP_SERVICES' in os.environ:
                 'PORT': mysql_cred['port'],  
             }, 
         }
-※	DATABASES에 'default' 데이터베이스로 MySQL을 정의하였다. django에서는 데이터베이스 명칭에서 'default'는 반드시 존재해야 하기 때문에 'mysql'이 아닌 'default'를 사용하였다. 다른 데이터베이스를 추가하고자 한다면 추가되는 데이터베이스에 대해서는 임의의 명칭을 사용할 수 있다.
-※	파란색 글씨로 표시된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
+```
+
+ ※ DATABASES에 'default' 데이터베이스로 MySQL을 정의하였다. django에서는 데이터베이스 명칭에서 'default'는 반드시 존재해야 하기 때문에 'mysql'이 아닌 'default'를 사용하였다. 다른 데이터베이스를 추가하고자 한다면 추가되는 데이터베이스에 대해서는 임의의 명칭을 사용할 수 있다.
+ ※ 파란색 글씨로 표시된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
 
 mysql_views.py 모듈에서 connections를 임포트하여 다음과 같은 형태로 cursor를 생성한다.
 
-..\my_sampleproject\my_sampleapp\mysql_views.py
-from django.db import connections
+`..\my_sampleproject\my_sampleapp\mysql_views.py`
+`from django.db import connections`
 
+```
 def make_connection():
     db_type = 'default'
     cursor = connections[db_type].cursor()
     return cursor
+```
 
 <div id='2.3.5'></div>
-#####2.3.5.	Cubrid 연동
-각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성]에서 프로젝트 생성시 자동으로 생성된다. CUBRID-Python 드라이버는 django 연동을 지원하지 않기 때문에 settings 모듈에서 VCAP_SERVICES 환경설정 정보의 credentials 정보를 cubrid_views 모듈에서 읽어와 connection을 생성한다.
+#####2.3.5. Cubrid 연동
+ 각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성]에서 프로젝트 생성시 자동으로 생성된다. CUBRID-Python 드라이버는 django 연동을 지원하지 않기 때문에 settings 모듈에서 VCAP_SERVICES 환경설정 정보의 credentials 정보를 cubrid_views 모듈에서 읽어와 connection을 생성한다.
 
-..\my_sampleproject\my_sampleproject\settings.py
+`..\my_sampleproject\my_sampleproject\settings.py`
+```
 import json
 if 'VCAP_SERVICES' in os.environ:
     vcap_services = json.loads(os.environ['VCAP_SERVICES'])
@@ -436,14 +425,17 @@ if 'VCAP_SERVICES' in os.environ:
     if 'CubridDB' in vcap_services:
         cubrid_srv = vcap_services['CubridDB'][0]
         CUBRID_CRED = cubrid_srv['credentials']
-※	django의 settings.py 모듈에 정의된 값을 다른 모듈에서 불러오기 위해서는 settings.py 모듈에서 영문 대문자로 정의되어 있어야만 한다.
-※	파란색 글씨로 표시된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
+```
+ ※ django의 settings.py 모듈에 정의된 값을 다른 모듈에서 불러오기 위해서는 settings.py 모듈에서 영문 대문자로 정의되어 있어야만 한다.
+ ※ 파란색 글씨로 표시된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
 
-..\my_sampleproject\my_sampleapp\cubrid_views.py
+``..\my_sampleproject\my_sampleapp\cubrid_views.py`
+```
 from django.conf import settings
 import CUBRIDdb
-
-def make_connection():
+```
+```
+def make_connection():`
     if settings.CUBRID_CRED:
         credentials = settings.CUBRID_CRED
         connection = CUBRIDdb.connect(
@@ -452,12 +444,14 @@ def make_connection():
             credentials['password']
             )
         return connection
+```
 
 <div id='2.3.6'></div>
-#####2.3.6.	MongoDB 연동
-각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성]에서 프로젝트 생성시 자동으로 생성된다. pymongo 드라이버는 django 연동을 지원하지 않기 때문에 settings 모듈에서 획득한 VCAP_SERVICES 환경설정 정보의 credentials 정보를 mongo_views 모듈에서 읽어와 db를 생성한다.
+#####2.3.6. MongoDB 연동
+ 각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성]에서 프로젝트 생성시 자동으로 생성된다. pymongo 드라이버는 django 연동을 지원하지 않기 때문에 settings 모듈에서 획득한 VCAP_SERVICES 환경설정 정보의 credentials 정보를 mongo_views 모듈에서 읽어와 db를 생성한다.
 
-..\my_sampleproject\my_sampleproject\settings.py
+`..\my_sampleproject\my_sampleproject\settings.py`
+```
 import json
 if 'VCAP_SERVICES' in os.environ:
     vcap_services = json.loads(os.environ['VCAP_SERVICES'])
@@ -465,14 +459,20 @@ if 'VCAP_SERVICES' in os.environ:
     if 'Mongo-DB' in vcap_services:
         mongo_srv = vcap_services['Mongo-DB'][0]
         MONGO_CRED = mongo_srv['credentials']
-※	django의 settings 모듈에 정의된 값을 다른 모듈에서 불러오기 위해서는 settings 모듈에서 영문 대문자로 정의되어 있어야만 한다.
-※	파란색 글씨로 표시된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
+        
+```
+※ django의 settings 모듈에 정의된 값을 다른 모듈에서 불러오기 위해서는 settings 모듈에서 영문 대문자로 정의되어 있어야만 한다.
+※ 파란색 글씨로 표시된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
 
 
-..\my_sampleproject\my_sampleapp\mongo_views.py
+`..\my_sampleproject\my_sampleapp\mongo_views.py`
+
+```
 from django.conf import settings
 from pymongo import MongoClient
+```
 
+```
 def make_connection():
     if settings.MONGO_CRED:
         credentials = settings.MONGO_CRED
@@ -481,12 +481,15 @@ def make_connection():
         db = connection[credentials['name']]
         db.authenticate(credentials['username'], credentials['password'])
         return db
+```
 
 <div id='2.3.7'></div>
-#####2.3.7.	Redis 연동
-각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성]에서 프로젝트 생성시 자동으로 생성된다. redis의 경우는 django-redis-cache 드라이버가 django 연동을 지원하기 때문에 settings 모듈의 CACHES 정보가 정의된 부분을 찾아 다음과 같이 수정함으로써 연동이 가능하다.
+#####2.3.7. Redis 연동
+ 각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성]에서 프로젝트 생성시 자동으로 생성된다. redis의 경우는 django-redis-cache 드라이버가 django 연동을 지원하기 때문에 settings 모듈의 CACHES 정보가 정의된 부분을 찾아 다음과 같이 수정함으로써 연동이 가능하다.
 
-..\my_sampleproject\my_sampleproject\settings.py
+`..\my_sampleproject\my_sampleproject\settings.py`
+
+```
 import json
 if 'VCAP_SERVICES' in os.environ:  
     vcap_services = json.loads(os.environ['VCAP_SERVICES'])
@@ -505,21 +508,31 @@ if 'VCAP_SERVICES' in os.environ:
                 },
             },
         }
-※	파란색 글씨로 표시된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
+```        
 
-..\my_sampleproject\my_sampleapp\redis_views.py
+ ※파란색 글씨로 표시된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
+
+`..\my_sampleproject\my_sampleapp\redis_views.py`
+
+```
 from django.core.cache import cache
-
-※	cache를 임포트하면 다음과 같은 형태로 바로 사용이 가능하다.
+```
+ ※cache를 임포트하면 다음과 같은 형태로 바로 사용이 가능하다.
+ 
+ ```
 cache.get('key값')
 cache.set('key값','value값')
 cache.delete('key값')
+```
 
 <div id='2.3.8'></div>
 #####2.3.8. RabbitMQ연동
-각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성]에서 프로젝트 생성시 자동으로 생성된다. settings 모듈에서 획득한 VCAP_SERVICES 환경설정 정보의 credentials 정보를 rabbitmq_views 모듈에서 읽어와 connection을 생성한다.
 
-..\my_sampleproject\my_sampleproject\settings.py
+ 각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성]에서 프로젝트 생성시 자동으로 생성된다. settings 모듈에서 획득한 VCAP_SERVICES 환경설정 정보의 credentials 정보를 rabbitmq_views 모듈에서 읽어와 connection을 생성한다.
+
+`..\my_sampleproject\my_sampleproject\settings.py`
+
+```
 import json
 if 'VCAP_SERVICES' in os.environ:
     vcap_services = json.loads(os.environ['VCAP_SERVICES'])
@@ -527,10 +540,14 @@ if 'VCAP_SERVICES' in os.environ:
     if 'p-rabbitmq' in vcap_services:
         rabbitmq_srv = vcap_services['p-rabbitmq'][0]
         RABBITMQ_CRED = rabbitmq_srv['credentials']
-※	django의 settings 모듈에 정의된 값을 다른 모듈에서 불러오기 위해서는 settings 모듈에서 영문 대문자로 정의되어 있어야만 한다.
-※	파란색 글씨로 표시된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
+```
 
-..\my_sampleproject\my_sampleapp\rabbitmq_views.py
+ ※ django의 settings 모듈에 정의된 값을 다른 모듈에서 불러오기 위해서는 settings 모듈에서 영문 대문자로 정의되어 있어야만 한다.
+ ※ 파란색 글씨로 표시된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
+
+`..\my_sampleproject\my_sampleapp\rabbitmq_views.py`
+
+```
 from django.conf import settings
 import pika
 
@@ -543,11 +560,16 @@ def make_connection():
         connection = pika.BlockingConnection(parameters)
         return connection
 
+```
+
 <div id='2.3.9'></div>
 #####2.3.9. GlusterFS 연동
-각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성]에서 프로젝트 생성시 자동으로 생성된다. settings 모듈에서 획득한 VCAP_SERVICES 환경설정 정보의 credentials 정보를 gluster_views 모듈에서 읽어와 connection을 생성한다.
+
+ 각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성]에서 프로젝트 생성시 자동으로 생성된다. settings 모듈에서 획득한 VCAP_SERVICES 환경설정 정보의 credentials 정보를 gluster_views 모듈에서 읽어와 connection을 생성한다.
 
 ..\my_sampleproject\my_sampleproject\settings.py
+
+```
 import json
 if 'VCAP_SERVICES' in os.environ:
     vcap_services = json.loads(os.environ['VCAP_SERVICES'])
@@ -555,13 +577,18 @@ if 'VCAP_SERVICES' in os.environ:
     if 'glusterfs' in vcap_services:
         gluster_srv = vcap_services['glusterfs'][0]
         GLUSTERFS_CRED = gluster_srv['credentials']
-※	django의 settings 모듈에 정의된 값을 다른 모듈에서 불러오기 위해서는 해당 값이 settings 모듈에서 영문 대문자로 정의되어 있어야만 한다.
-※	파란색 글씨로 표시된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
+```        
+ ※ django의 settings 모듈에 정의된 값을 다른 모듈에서 불러오기 위해서는 해당 값이 settings 모듈에서 영문 대문자로 정의되어 있어야만 한다.
+ ※ 파란색 글씨로 표시된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
 
-..\my_sampleproject\my_sampleapp\gluster_views.py
+`..\my_sampleproject\my_sampleapp\gluster_views.py`
+
+```
 from django.conf import settings
 import swiftclient
+```
 
+```
 def make_connection():
     if settings.GLUSTERFS_CRED:
         credentials = settings.GLUSTERFS_CRED
@@ -577,11 +604,12 @@ def make_connection():
             tenant_name=tenantname
             )
         return connection
-
+```
 
 <div id='2.4'></div>
 ##2.4. 배포
-개발 완료된 애플리케이션을 개방형 클라우드 플랫폼에 배포하는 방법을 기술한다. 배포과정은 개방형 클라우드 플랫폼 로그인, 서비스 생성, 애플리케이션 배포, 서비스 바인드, 애플리케이션 실행의 과정으로 이루어져 있다.
+
+ 개발 완료된 애플리케이션을 개방형 클라우드 플랫폼에 배포하는 방법을 기술한다. 배포과정은 개방형 클라우드 플랫폼 로그인, 서비스 생성, 애플리케이션 배포, 서비스 바인드, 애플리케이션 실행의 과정으로 이루어져 있다.
 
 <div id='2.4.1'></div>
 #####2.4.1. 개방형 클라우드 플랫폼 로그인

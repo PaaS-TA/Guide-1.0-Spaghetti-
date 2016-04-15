@@ -49,8 +49,8 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 #### <a name="2.2"/>2.2 RabbitMQ 서비스 릴리즈 업로드
 
--	OpenPaaS-Services.zip 파일 압축을 풀고 폴더안에 있는 RabbitMQ 서비스 릴리즈 openpaas-rabbitmq-release-beta-1.0.tgz 파일을 복사한다.
-업로드할 openpaas-rabbitmq-release-beta-1.0.tgz 파일을 확인한다.
+-	OpenPaaS-Services.zip 파일 압축을 풀고 폴더안에 있는 RabbitMQ 서비스 릴리즈 openpaas-rabbitmq-release-1.0.tgz 파일을 복사한다.
+업로드할 openpaas-rabbitmq-release-1.0.tgz 파일을 확인한다.
 
 ><div>$ ls –all</div>
 ![rabbitmq_openstack_(2)]
@@ -64,7 +64,7 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 -	RabbitMQ 서비스 릴리즈 파일을 업로드한다.
 
 ><div>$ bosh upload release {서비스 릴리즈 파일 PATH}<br>
-$ bosh upload release openpaas-rabbitmq-release-beta-1.0.tgz</div>
+$ bosh upload release openpaas-rabbitmq-release-1.0.tgz</div>
 ![rabbitmq_openstack_(4)]<br>
 ![rabbitmq_openstack_(5)]<br>
 ![rabbitmq_openstack_(6)]<br>
@@ -110,7 +110,7 @@ director_uuid: xxxxx                                  #bosh status 에서 확인
 
 releases:
 - name: openpaas-rabbitmq                             #서비스 릴리즈 이름(필수)
-  version: beta-1.0                                   #서비스 릴리즈 버전(필수): latest 시 업로드된 서비스 릴리즈 최신버전
+  version: 1.0                                   #서비스 릴리즈 버전(필수): latest 시 업로드된 서비스 릴리즈 최신버전
 
 update:
   canaries: 1                                         # canary 인스턴스 수(필수)

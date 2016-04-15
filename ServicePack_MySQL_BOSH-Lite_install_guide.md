@@ -796,3 +796,9 @@ HeidiSQL 프로그램은 무료로 사용할 수 있는 오픈소스 소프트�
 [update_mysql_BOSH-Lite_01]:/images/openpaas-service/mysql/mysql_bosh_lite/update_mysql_BOSH-Lite_01.png
 [update_mysql_BOSH-Lite_01]:/images/openpaas-service/mysql/mysql_bosh_lite/update_mysql_BOSH-Lite_01.png
 [update_mysql_BOSH-Lite_01]:/images/openpaas-service/mysql/mysql_bosh_lite/update_mysql_BOSH-Lite_01.png
+[update_mysql_BOSH-Lite_01]:/images/openpaas-service/mysql/mysql_bosh_lite/update_mysql_BOSH-Lite_01.png
+[update_mysql_BOSH-Lite_01]:/images/openpaas-service/mysql/mysql_bosh_lite/update_mysql_BOSH-Lite_01.png
+[update_mysql_BOSH-Lite_01]:/images/openpaas-service/mysql/mysql_bosh_lite/update_mysql_BOSH-Lite_01.png
+[update_mysql_BOSH-Lite_01]:/images/openpaas-service/mysql/mysql_bosh_lite/update_mysql_BOSH-Lite_01.png
+[update_mysql_BOSH-Lite_01]:/images/openpaas-service/mysql/mysql_bosh_lite/update_mysql_BOSH-Lite_01.png
+[update_mysql_BOSH-Lite_01]:/images/openpaas-service/mysql/mysql_bosh_lite/update_mysql_BOSH-Lite_01.png

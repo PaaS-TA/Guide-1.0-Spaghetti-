@@ -204,7 +204,7 @@ virtualenv my_virtual_env`
 	</tr>
 	<tr>
 		<td>setting.py</td>
-		<td>사이트에 대한 설정을 관리. 본 문서의 python 샘플 앱에서는 모든 서비스에 대한 연동 설정을 포함한다.<td>
+		<td>사이트에 대한 설정을 관리. 본 문서의 python 샘플 앱에서는 모든 서비스에 대한 연동 설정을 포함한다.</td>
 	</tr>
 	<tr>
 		<td>urls.py</td>
@@ -240,16 +240,15 @@ virtualenv my_virtual_env`
 <table>
 	<tr>
 		<td>admin.py</td>
-		<td>장고에서 제공하는 데이터베이스 관리자 대시보드를 사용하기 위해 필요한 모듈이다. 본 샘플앱에서는 장고의 데이터베이스 관리 기능을 사용하지 않기 때문에 삭제해도 무방하다.<td>
+		<td>장고에서 제공하는 데이터베이스 관리자 대시보드를 사용하기 위해 필요한 모듈이다. 본 샘플앱에서는 장고의 데이터베이스 관리 기능을 사용하지 않기 때문에 삭제해도 무방하다.</td>
 	</tr>
 	<tr>
 		<td>model.py</td>
-		<td>장고에서 객체관계매핑(ORM)을 위해 데이터를 정의하는 모듈. 본 샘플앱에서는 사용하지 않기 때문에 삭제해도 무방하다.<td>
+		<td>장고에서 객체관계매핑(ORM)을 위해 데이터를 정의하는 모듈. 본 샘플앱에서는 사용하지 않기 때문에 삭제해도 무방하다.</td>
 	</tr>
 	<tr>
-		<td>
-		tests.py</td>
-		<td>장고 test 모듈. 본 샘플앱에서는 사용하지 않기 때문에 삭제해도 무방하다.<td>
+		<td>tests.py</td>
+		<td>장고 test 모듈. 본 샘플앱에서는 사용하지 않기 때문에 삭제해도 무방하다.</td>
 	</tr>
 	<tr>
 		<td>views.py</td>
@@ -262,19 +261,23 @@ virtualenv my_virtual_env`
 </table>
 
 <div id='2.3.2'></div>
-#####2.3.2.	애플리케이션 환경설정. 
+#####2.3.2. 애플리케이션 환경설정 
 
  django 애플리케이션에서 환경설정은 settings 모듈에 정의하도록 되어 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성](#2-3-3-1)에서 프로젝트 생성을 통해 자동 생성된 my_sampleproject 디렉토리의 settings.py 파일을 의미한다. 샘플어플리케이션에서 사용하는 패키지를 django 애플리케이션에서 사용하기 위해서는 이 settings 모듈에 설정을 추가하거나 수정하여야 한다. 하단에 settings 모듈에서 추가 또는 수정하여야 하는 부분을 설명과 함께 기술한다.
 
 ※ 녹색음영으로 표시된 부분이 추가되는 코드, 붉은색 음영으로 표시된 부분이 삭제되는 코드이다.
-..\my_sampleproject\my_sampleproject\settings.py 
-`INSTALLED_APPS = (
+
+##### ..\my_sampleproject\my_sampleproject\settings.py 
+
+```
+INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<p style='color:red'>This is some red text.</p>
     'rest_framework',
     'my_sampleapp',
 )
@@ -313,6 +316,7 @@ STATIC_URL = '/resources/'
 #	샘플의 템플릿에서 사용하는 리소스에 접근할 수 있는 URL
 
 ※ settings 모듈에 DATABASES 설정과 cache 설정 등, 각각의 서비스와 연동할 수 있는 VCAP_SERVICES 정보를 획득하는 코드가 추가되어야 하지만 하단의 [2.3.4.] ~ [2.3.9]에서 자세히 소개하므로 이 장에서는 다루지 않는다.
+```
 
 WhiteNoise를 사용할 수 있도록 wsgi 모듈을 수정한다.
 ..\my_sampleproject\my_sampleproject\wsgi.py

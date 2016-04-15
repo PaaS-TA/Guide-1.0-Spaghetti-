@@ -74,30 +74,32 @@ Open PaaS에 등록된 다양한 서비스팩을 python 언어로 작성된 애�
 ##2.2.	개발환경 구성  
 python 샘플 애플리케이션 개발이 이루어진 환경은 다음과 같다..
 
-- OS : Windows 8 64bit
-- python : 2.7.10
-- Framwork : Django 1.8.6   
+* OS : Windows 8 64bit
+* python : 2.7.10
+* Framwork : Django 1.8.6   
 
 <div id='2-2-1'></div>  
 #####2.2.1 python 설치
 
-- python 2.7.10 다운로드 
+* python 2.7.10 다운로드 
 
-	`https://www.python.org/downloads/release/python-2710/` 
+[**https://www.python.org/downloads/release/python-2710/**](https://www.python.org/downloads/release/python-2710/)
 	
 ![python-2]
 
-* 다운로드 
-Windows x86-64 MSI installer
- ※	사용자 각각의 환경에 따라 설치 파일은 달라질 수 있다.
+* 다운로드
 
-* python 설치
+Windows x86-64 MSI installer
+ ※ 사용자 각각의 환경에 따라 설치 파일은 달라질 수 있다.
+
+* python 설치 
+
  다운로드 받은 python-2.7.10.msi 더블 클릭하여 설치를 실행한다.
- ※	python 설치 시, 환경변수를 자동으로 추가 할 수 있도록 옵션을 선택할 수 있다.
+ ※ python 설치 시, 환경변수를 자동으로 추가 할 수 있도록 옵션을 선택할 수 있다.
 
 * 환경변수 설정
- python 설치 시, 환경변수 추가 옵션을 선택하지 않았다면 시스템 변수 Path에 다음과 같이 직접 추가한다.
-`;C:\Python27;C:\Python27\Scripts`
+ python 설치 시, 환경변수 추가 옵션을 선택하지 않았다면 시스템 변수 Path에 다음과 같이 직접 추가한다. 
+;C:\Python27;C:\Python27\Scripts
 
 * python 설치 확인
  명령 프롬프트에서 python 실행
@@ -108,7 +110,6 @@ Windows x86-64 MSI installer
 
 * python 실행 종료 
  python이 정상적으로 실행되었음을 확인하였으므로 'ctrl'+'c'를 입력하여 python을 종료한다. 
->>>'ctrl' + c`
 
 ![python-4]  
 
@@ -125,33 +126,36 @@ Windows x86-64 MSI installer
 ※ easy_install 이용한 pip 설치
  명령 프롬프트에서 python 설치 경로의 Scripts 디렉토리로 이동한다. 
  
-`|cd C:\Python27\Scripts`
+` cd C:\Python27\Scripts`
 
  pip 설치 명령어를 입력한다.
 
-`easy_install pip`
+` easy_install pip` 
 
-<div id='2-2-2'><div>
+ <div id='2-2-2'><div>
 #####2-2-2. python 가상환경 구성
 
  독립된 python 개발환경을 구성하기 위하여 python 가상환경 생성도구인 virtualenv를 설치하여 이용한다. 가상환경에서 패키지 설치를 진행한다. 가상환경 구성은 사용자의 필요에 따라 생략될 수 있다.
 
-	-	가상환경 도구 설치
+* 가상환경 도구 설치
  virtualenv 설치
 
-`pip install virtualenv`
+` pip install virtualenv`
 
-	-	가상환경을 생성할 디렉토리로 이동하여 가상환경 생성
-`cd c:\
-virtualenv my_virtual_env`
+* 가상환경을 생성할 디렉토리로 이동하여 가상환경 생성 
+
+```
+cd c:\
+virtualenv my_virtual_env
+```
 
 ※ 다양한 버전의 python이 설치되어 있다면, 가상환경 생성시에 python의 경로를 '-p' 옵션으로 지정하여, 가상환경 구성에 사용할 python을 선택할 수 있다. 다음은 예시이다.
 
 `virtualenv -p C:\Python34\python.exe my_virtual_env_34`
 `virtualenv -p C:\Python27\python.exe my_virtual_env_27`
 
-	-	가상환경 실행
-		-	가상환경 실행
+* 가상환경 실행
+
  명령 프롬프트에서 다음의 명령어를 이용하여 가상환경을 실행한다.
  
 `my_virtual_env\Scripts\activate`
@@ -159,7 +163,7 @@ virtualenv my_virtual_env`
  가상환경이 정상적으로 실행되면 명령 프롬프트의 다음 화면과 같이 명령어 입력 줄에 가상환경 명칭이 붙는다.
 
 ![python-6]
-
+  
  ※가상환경을 실행을 종료시키기 위해서는 deactivate 명령어를 이용한다. 가상환경이 종료되면 명령어 입력 줄의 가상환경 명칭이 제거된다
 
 `deactivate`

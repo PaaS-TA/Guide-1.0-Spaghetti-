@@ -515,7 +515,7 @@ authorizations:
 
 >![apiplatform_bosh_lite_2.4.2.08]
 
-<div id=TierChoose></div>
+<div id=ChooseTier></div>
 ###### 6. Tier 선택
 ① API의 Tier 및 추가적인 설정을 입력하는 Manage화면이다.<br>
 ② Tier Availability는 해당 API 서비스의 호출 횟수를 제한하는 설정으로 개방형 클라우드 플랫폼에서는 플랜으로 표시된다. API 매니저에 설정된 4가지 기본 Tier 중, 사용자 필요에 맞게 선택할 수 있고 API 매니저 관리자 대시보드({API매니저 URL}:{API매니저 포트}/carbon)에서 Tier명과 호출 횟수 제한을 변경할 수 있다. 다만, 현재는 API 서비스 브로커 설계상 API Tier는 Unlimited Tier를 선택하여야 한다. 따라서 Unlimited Tier만을 선택한다. Unlimited Tier만 선택하여 API 서비스를 배포하더라도 개방형 클라우드 플랫폼에서는 Unlimited와 Bronze의 두 가지 플랜을 선택할 수 있다.<br>
@@ -580,7 +580,7 @@ API 매니저(API 플랫폼)에 API 서비스가 정상적으로 등록 및 배�
 
 >서비스 브로커 생성시 기본적으로 접근을 허용하지 않는다. access가 none인 것을 확인할 수 있다.
 
-※ [[2.4 API 매니저에서 API 생성 및 배포]](#APICreatePublish) 장의 [[6. Tier 선택]](#TierChoose)을 보면 tier는 Unlimited 한 가지만 선택하도록 되어있다. 그럼에도 서비스 목록에 Unlimited와 Bronze 두 개의 플랜으로 서비스가 생기는 것은 서비스 브로커가 두 개의 플랜으로 서비스를 생성하도록 설계되어 있기 때문이다. 두개의 플랜 중 선택에 따라 API 호출 횟수가 제한된다.
+※ [[2.4 API 매니저에서 API 생성 및 배포]](#APICreatePublish) 장의 [[6. Tier 선택]](#ChooseTier)을 보면 tier는 Unlimited 한 가지만 선택하도록 되어있다. 그럼에도 서비스 목록에 Unlimited와 Bronze 두 개의 플랜으로 서비스가 생기는 것은 서비스 브로커가 두 개의 플랜으로 서비스를 생성하도록 설계되어 있기 때문이다. 두개의 플랜 중 선택에 따라 API 호출 횟수가 제한된다.
 
 <br>
 

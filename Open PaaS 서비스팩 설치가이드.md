@@ -103,14 +103,17 @@ Service Broker API의 두 가지 주요 버전은 현재 개방형 클라우드 
 >![openpaas-servicepack-06]
 
 - 인증
+
 Cloud Controller 는 모든 요청에 HTTP 기본 인증(인증 헤더)을 사용하여 Broker와 인증하여 사용자 이름과 암호를 포함하지 않는 모든 Broker 등록을 거부한다. Broker는 사용자 이름과 암호를 확인하고 자격 증명이 유효하지 않은 경우 401 Unauthorized 메시지를 반환 한다. Cloud Controller에서 추가 보안이 요구되는 경우 SSL을 사용하여 브로커에 접속 지원을 한다.
 
 ##### 2.5.1. Catalog API 가이드
 서비스 Catalog는 서비스 및 서비스 Plan의 정보를 조회한다. Cloud Controller는 처음에 모든 Broker에서 endpoint를 취득해서 Cloud Controller 데이터베이스에 저장되어 있는 user-facing service catalog를 조회한다. 또한 Cloud Controller는 Broker가 업데이트 될 때 마다 catalog를 업데이트한다.Catalog API를 구현하면 CF CLI를 통해서 Service Broker를 등록 할 수 있다.
 
-1.	Request
-1.1.	Route
-GET /v2/catalog
+	1. Request
+	1.1. Route
+	```
+	GET /v2/catalog
+	```
 
 1.2.	cURL
 curl -H "X-Broker-API-Version: 2.4" http://username:password@broker-url/v2/catalog

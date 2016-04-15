@@ -64,17 +64,16 @@ http://www.appdirect.com
 
 ### 2. Service Broker API 개발 가이드
 #### 2.1. 개요
-개방형 클라우드 플랫폼 Service API는 Cloud Controller  와 Service Broker  사이의 규약을 정의한다. Broker는 HTTP (or HTTPS) endpoints URI 형식으로 구현된다. 하나 이상의 Service가 하나의 Broker 에 의해 제공 될 수 있고, 로드 밸런싱이 가능하게 수평 확장성 있게 제공 될 수 있다.
+개방형 클라우드 플랫폼 Service API는 Cloud Controller와 Service Broker  사이의 규약을 정의한다. Broker는 HTTP (or HTTPS) endpoints URI 형식으로 구현된다. 하나 이상의 Service가 하나의 Broker 에 의해 제공 될 수 있고, 로드 밸런싱이 가능하게 수평 확장성 있게 제공 될 수 있다.
 
 #### 2.2. Service Architecture
- 
 >![openpaas-servicepack-01]
 [그림출처]: http://docs.cloudfoundry.org/services/overview.html
 
 Services 는 Service Broker API 라고 불리우는 cloud controller 클라이언트 API를 구현하여 개방형 클라우드 플랫폼에서 사용된다. Services API는 독립적인 cloud controller API의 버전이다.
 이는 플랫폼에서 외부 application을 이용 가능하게 한다. (database, message queue, rest endpoint , etc)
-2.3.	Service Broker API Architecture
- 
+
+#### 2.3. Service Broker API Architecture
 >![openpaas-servicepack-02]
 [그림출처]: http://docs.cloudfoundry.org/services/api.html
 
@@ -90,30 +89,18 @@ AppDirect는 Cloud Foundry 서비스 중개(brokerage) 기능과 부가 서비�
 Service Provider 및 Cloud Foundry 통합에 관련 설명
 >![openpaas-servicepack-04]
 [그림출처]: http://www.slideshare.net/platformcf/cloud-foundry-marketplacepowered-by-appdirect
+
 #### 2.5. 개발 가이드
 서비스의 구현 방법은 서비스 제공자(Provider) 와 개발자(developer)의 몫이다. 개방형 클라우드 플랫폼은 서비스 제공자가 6가지의 Service Broker API를 구현해야 한다. 이때 2.4 Pivotal Marketplace Model를 이용해서 AppDirect 에서 제공중인 서비스 제공자와 협의 하여 AppDirect 의 중개 기능을 이용해서 제공할수도 있다. 또한 Broker 는 별도의 애플리케이션으로 구현하든지 기존 서비스에 필요한 HTTP endpoint를 추가함으로써 구현 될 수 있다.
 
 본 개발 가이드는 Service Broker 에서 service back-end를 제어하는 방식을 가이드 한다.AppDirect를 사용하는 경우에는 http://go.appdirect.com/request-more-information를 참고하여 개발한다.
 
 Service Broker는 6개의 기본 API 기능이 필요하다. (상세 설명은 각 API 가이드 참고)
-Routes(API)	Method	Description
-/v2/catalog	GET	서비스 및 서비스 plans 정보 조회
-/v2/service_instances/:id	PUT	서비스를 위한 인스턴스 생성
-/v2/service_instances/:id	DELETE	이전에 생성된 서비스 인스턴스 삭제
-/v2/service_instances/:id	PATCH	이전에 생성된 서비스 인스턴스 Plan 수정
-/v2/service_instances/:id/service_bindings/:id	PUT	서비스 사용에 관련 사용자 생성 및 권한 등 설정 정보 생성
-/v2/service_instances/:id/service_bindings/:id	DELETE	서비스 사용 설정 정보 삭제
+>![openpaas-servicepack-05]
 
 Service Broker API의 두 가지 주요 버전은 현재 개방형 클라우드 플랫폼 v1 및 v2를 지원한다. v1은 사용 되지 않으며 개방형 클라우드 플랫폼의 다음 버전에서 제거 될 수 있으니 Service Broker는 v2로 구현하는 것을 권장한다.
 -	버전 정보 (가이드 문서는 2.5 버전을 기준으로 작성함)
-CURRENT VERSION	PAST VERSIONS
-2.5 (cf-release 209 버전 이상, CLI version 6.12.1)	2.4
-	2.3
-	2.2
-	2.1
-	2.0
-	v1 (unversioned)
-API Version Header 필드: (X-Broker-Api-Version: 2.4)
+>![openpaas-servicepack-06]
 
 -	인증
 Cloud Controller 는 모든 요청에 HTTP 기본 인증(인증 헤더)을 사용하여 Broker와 인증하여 사용자 이름과 암호를 포함하지 않는 모든 Broker 등록을 거부한다. Broker는 사용자 이름과 암호를 확인하고 자격 증명이 유효하지 않은 경우 401 Unauthorized 메시지를 반환 한다. Cloud Controller에서 추가 보안이 요구되는 경우 SSL을 사용하여 브로커에 접속 지원을 한다.

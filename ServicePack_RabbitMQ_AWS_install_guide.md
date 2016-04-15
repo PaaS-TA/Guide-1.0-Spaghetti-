@@ -425,11 +425,11 @@ RabbitMQ 서비스팩 배포가 완료 되었으면 Application에서 서비스 
 
 - RabbitMQ 서비스 브로커를 등록한다.
 
-><div>$ cf create-service-broker {서비스팩 이름} {서비스팩 사용자ID} {서비스팩 사용자비밀번호} http://{서비스팩 URL}</div><br>
+><div>$ cf create-service-broker {서비스팩 이름} {서비스팩 사용자ID} {서비스팩 사용자비밀번호} http://{서비스팩 URL}</div>
 <div>- 서비스팩 이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.  </div>
 <div>- 서비스팩 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID이다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.  </div>
 <div>- 서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.</div>
-<div>$ cf create-service-broker rabbitmq-service-broker admin admin http://10.244.9.14:4567</div><br><br>
+<div>$ cf create-service-broker rabbitmq-service-broker admin admin http://10.244.9.14:4567</div><br>
 ![rabbitmq_aws_(18)]
 
 - 등록된 RabbitMQ 서비스 브로커를 확인한다.
@@ -470,7 +470,7 @@ Sample App 구조는 다음과 같다.
 ![rabbitmq_aws_(22)]
 
 #### <a name="3.2"/>3.2 개방형 클라우드 플랫폼에서 서비스 신청
-Sample App에서 RabbitMQ 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.
+Sample App에서 RabbitMQ 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.  
 *참고: 서비스 신청시 개방형 클라우드 플랫폼에서 서비스를 신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
 - 먼저 개방형 클라우드 플랫폼 Marketplace에서 서비스가 있는지 확인을 한다.
@@ -480,11 +480,11 @@ Sample App에서 RabbitMQ 서비스를 사용하기 위해서는 서비스 신�
 
 - Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.
 
-><div>$ cf create-service {서비스명} {서비스플랜} {내서비스명}<br>
-- 서비스명 : p-rabbitmq로 Marketplace에서 보여지는 서비스 명칭이다.
-- 서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. RabbitMQ 서비스는 standard plan만 지원한다.
-- 내서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.</div>
-$ cf create-service p-rabbitmq standard rabbitmq-service-instance<br><br>
+><div>$ cf create-service {서비스명} {서비스플랜} {내서비스명}</div>
+<div>- 서비스명 : p-rabbitmq로 Marketplace에서 보여지는 서비스 명칭이다.</div>
+<div>- 서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. RabbitMQ 서비스는 standard plan만 지원한다.</div>
+<div>- 내서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.</div>
+<div>$ cf create-service p-rabbitmq standard rabbitmq-service-instance</div><br>
 ![rabbitmq_aws_(24)]
 
 - 생성된 RabbitMQ 서비스 인스턴스를 확인한다.
@@ -493,7 +493,7 @@ $ cf create-service p-rabbitmq standard rabbitmq-service-instance<br><br>
 ![rabbitmq_aws_(25)]
 
 #### <a name="3.3"/>3.3 Sample App에 서비스 바인드 신청 및 App 확인
-서비스 신청이 완료되었으면 Sample App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 RabbitMQ 서비스를 이용한다.
+서비스 신청이 완료되었으면 Sample App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 RabbitMQ 서비스를 이용한다.  
 *참고: 서비스 Bind 신청시 개방형 클라우드 플랫폼에서 서비스 Bind 신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
 - Sample App 디렉토리로 이동하여 manifest 파일을 확인한다.
@@ -506,7 +506,8 @@ applications:
 command: puma     #배포시 명령어
 </pre>
 
-- --no-start(App 배포시 구동은 하지 않는다.) 옵션으로 App을 배포한다.
+- --no-start 옵션으로 App을 배포한다. 
+- --no-start: App 배포시 구동은 하지 않는다.
 
 ><div>$ cf push --no-start</div>
 ![rabbitmq_aws_(26)]

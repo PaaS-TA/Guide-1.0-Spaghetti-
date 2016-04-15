@@ -335,13 +335,14 @@ Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 - Redis서비스팩을 배포한다.
 
 ><div>$bosh deploy</div>
->![redis_aws]15]
->![redis_aws]16]
+>![redis_aws15]
+>![redis_aws16]
+>![redis_aws17]
 
 - 배포된 Redis서비스팩을 확인한다.
 
 ><div>$bosh vms</div>
->![redis_aws17]
+>![redis_aws18]
 
 <div id='10'></div>
 ### 2.4. Redis 서비스 브로커 등록

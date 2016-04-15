@@ -68,7 +68,7 @@ Document 관련 사항
 	[OpenStack](), 
 	[Bosh-Lite]())
 
-	- 2.5.2. [Public API Develope Guide]()
+	- 2.5.2. [Public API Develope Guide](./Service-Guide/ETC/ServiceBroker_PublicAPI_devlope_guide.md)
 
 3. Sample
 

@@ -110,86 +110,36 @@ Cloud Controller 는 모든 요청에 HTTP 기본 인증(인증 헤더)을 사�
 서비스 Catalog는 서비스 및 서비스 Plan의 정보를 조회한다. Cloud Controller는 처음에 모든 Broker에서 endpoint를 취득해서 Cloud Controller 데이터베이스에 저장되어 있는 user-facing service catalog를 조회한다. 또한 Cloud Controller는 Broker가 업데이트 될 때 마다 catalog를 업데이트한다.Catalog API를 구현하면 CF CLI를 통해서 Service Broker를 등록 할 수 있다.
 
 1. Request
+
 1.1. Route
+
 	GET /v2/catalog
 
-
 1.2. cURL
+
 	curl -H "X-Broker-API-Version: 2.4" http://username:password@broker-url/v2/catalog
 	예)
 	curl -H "X-Broker-API-Version: 2.4" http://admin:eaa139af583c@10.30.40.61/v2/catalog
 
 2. Response
+
 2.1. Status Code
+
 >![openpaas-servicepack-07]
 
-2.2.	Body (* 필드는 필수)
-RESPONSE FIELD	TYPE	DESCRIPTION
-services*	array-of-objects	서비스 객체들의 스키마를 정의
-   id*	string	카탈로그에 요청시 서비스의 상관 관계를 구별하는 식별자이다.개방형 클라우드 플랫폼에서 unique 해야 하기 때문에 GUID를 사용하기를 권장
-   name*	string	카탈로그에 표시되는 service 이름(소문자, 공백없음)
-   description*	string	카탈로그에 표시되는 서비스의 설명
-   bindable*	boolean	Application에 서비스를 바인드 할수 있는지의 여부
-   tags	array-of-strings	Tags는 빌드팩 또는 다른 서비스에서 로직을 변경하지 않고 교체 할 수 있게 서비스를 가능하게하며 서비스의 분류, 속성, 또는 기반 기술을 노출 할 수있는 유연한 메커니즘을 제공(MySQL, relation, redis, key-value, 캐싱, 메시징, AMQP)
-   metadata	object	서비스 제공을 위한 메타 데이터의 목록. 상세 설명은 아래 2.3 Service Metadata 참고
-   requires	array-of-strings	사용자가 서비스를 제공 하는 권한 목록. 현재는 syslog_drain 권한만 지원함
-   plan_updateable	boolean	서비스plans의 다운 그레이드/업그레이드 지원 여부
-   plans*	array-of-objects	서비스에 대한 Plans의 스키마를정의
-      id*	string	카탈로그에 요청시 Plan의 상관 관계를 구별하는 식별자이고개방형 클라우드 플랫폼에서 unique 해야 하기 때문에 GUID를 사용하기를 권장
-      name*	string	카탈로그에 표시되는 plan 이름(소문자, 공백없음)
-      description*	string	카탈로그에 표시되는 plan의 설명
-      metadata	object	서비스 Plan을 위한 메타 데이터의 목록. 상세 설명은 아래 2.4 Plan Metadata 참고
-      free	boolean	유료 서비스를 제공할지 설정.Default는 true
-   dashboard_client	object	서비스에 대한 대시 보드 SSO 기능을 활성화하는 데 필요한 데이터를 포함
-      id	string	서비스를 이용하고자하는 Oauth2 클라이언트의 ID
-      secret	string	대시 보드 토큰 서버 인증에 사용하는공유 secret 정보
-      redirect_uri	string	UAA SSO 인증을 위한 서비스 도메인 URL 정보
+2.2. Body (* 필드는 필수)
+>![openpaas-servicepack-09]
 
-2.3.	Service Metadata
-BROKER API FIELD	TYPE	DESCRIPTION	Cloud Controller API FIELD
-name	string	카탈로그에 표시되는 서비스의 이름	label
-description	string	서비스에 대한 설명	description
-metadata.displayName	string	그래픽 클라이언트에 표시되는 서비스 이름	extra.displayName
-metadata.imageUrl	string	이미지 URL	extra.imageUrl
-metadata.longDescription	string	서비스 상세 설명	extra.longDescription
-metadata.providerDisplayName	string	실제 서비스를 제공하는 기업 이름	extra.providerDisplayName
-metadata.documentationUrl	string	서비스를 위한 문서 링크 URL	extra.documentationUrl
-metadata.supportUrl	string	서비스 지원 URL	extra.supportUrl
+2.3. Service Metadata
+>![openpaas-servicepack-10]
 
 2.4.	Plan Metadata
-BROKER API FIELD	TYPE	DESCRIPTION	Cloud Controller API FIELD
-name	string	카탈로그에 표시되는 서비스 plan의 이름	name
-description	string	카탈로그에 표시되는 서비스 plan 의 설명	description
-metadata.bullets	array-of-strings	서비스 plan 정보 목록	extra.bullets
-metadata.costs	cost object	통화나 측정 단위 같은 서비스 비용을 설명. 여러 비용이 있다면 사용자에게 해당 비용을 청구(월별청구 + 단건 비용). 아래의 형식 처럼 제공
-"costs":[
-      {
-"amount":{
-"usd":99.0,
-"eur":49.0
-},
-"unit":"MONTHLY"
-                     },
-                     {
-"amount":{
-"usd":0.99,
-"eur":0.49
-},
-"unit":"1GB of messages over 20GB"
-   }
-]	metadata.costs
-metadata.displayName	string	그래픽 클라이언트에 표시되는 서비스 plan 이름.	extra.displayName
+>![openpaas-servicepack-11]
 
 2.5.	Quota Plan
-NAME	DESCRIPTION	VALID VALUES	EXAMPLE VALUE
-name	Plan을 식별하는데 사용	‘숫자’,’_’ 및 ‘문자’ 형식. Quota plan 이름은 계정내에서 고유해야 함.	silver_quota
-memory_limit	허용되는 최대 메모리 사용량 (MB)	integer	2048
-non_basic_services_allowed	유료 서비스를 제공할지 설정. false 로 설정하면 marketplace 에는 표시 되지만 인스턴스는 제공되지 않음	true/false	true
-total_routes	허용되는 최대 라우터 개수	integer	500
-total_services	허용되는 서비스 개수	integer	25
-trial_db_allowed	기존 필드. 값은 무시	true/false	true
+>![openpaas-servicepack-12]
 
-# sample body response message
+###### sample body response message
 {
   "services": [
     {
@@ -242,7 +192,9 @@ trial_db_allowed	기존 필드. 값은 무시	true/false	true
 }
 
 3.	Catalog Rest API 구현
+	
 3.1.	JAVA 방식
+
 -- CatalogRestController.java (Spring 프레임워크 사용)
 
 @Controller
@@ -295,79 +247,64 @@ services:
 3.2.	Ruby 방식(Ruby on Rails)
 -- 어플리케이션을 만들 때 레일즈(rails)을 이용 해서 새로운 어플리케이션을 위한 기본 생성 구조를 만든다. 아래 표 참고
 $ rails new<broker_name>
+>![openpaas-servicepack-13]
 
-파일/폴더	목적
-Gemfile	레일즈 어플리케이션에게 필요한 Gem의 의존성 정보를 기술하는데 사용
-README	어플리케이션을 위한 설명 (설치, 사용 방법 기술에 쓰임)
-Rakefile	터미널에서 실행할 수 있는 배치잡들을 포함
-app/	어플리케이션을 위한 컨트롤러, 모델, 뷰를 포함
-config/	어플리케이션의 실행 시간의 규칙, 라우팅, 데이터베이스 등 설정을 저장
-config.ru	랙(Rack) 기반의 서버들이 시작할때 필요한 설정
-db/	현재 데이터베이스의 스키마를 포함(데이터베이스 마이그레이션으로 잘 알려져 있음)
-doc/	어플리케이션에 대한 자세한 설명 문서
-lib/	어플리케이션을 위한 확장 모듈
-log/	어플리케이션의 로그 파일
-public/	외부에서 볼수 있는 유일한 폴더(이미지, 자바스크립트, 스타일시트나 그외 정적인 파일)
-script/	레일즈 스크립트 및 어플리케이션을 실행시키거나, 배포, 실행 관련한 스크립트 파일
-test/	유닛 테스트, 픽스쳐, 그외 다른 테스트 도구
-tmp/	임시 파일
-vendor/	서드 파티 코드들을 위한 공간. 일반적인 레일즈 어플리케이션은 루비 젬과 레일즈 소스, 프로젝트 내에 설치시와 미리 패키징된 추가 플러그인들이 위치
-
--- config/routes.rb : posts 를 위한 라우팅 정보를 담은 수정된 라우팅 파일
-
-CfMysqlBroker::Application.routes.draw do
-  resource :preview, only: [:show]
-
-namespace :v2 do
-resource :catalog, only: [:show] // 접속 라우팅 설정 (V2/catalog)
-    patch 'service_instances/:id' => 'service_instances#set_plan'
-    resources :service_instances, only: [:update, :destroy] do
-      resources :service_bindings, only: [:update, :destroy]
-    end
-  end
-
-end
-
--- RestController 구현 (app/controllers/v2/catalogs_controller.rb)
-
-class V2::CatalogsController < V2::BaseController
-  def show
-    render json: {
-      services: services.map {|service| service.to_hash }
-    }
-  end
-
-  private
-
-  def services
-    (Settings['services'] || []).map {|attrs| Service.build(attrs)}
-  end
-end
+	-- config/routes.rb : posts 를 위한 라우팅 정보를 담은 수정된 라우팅 파일
+	
+	CfMysqlBroker::Application.routes.draw do
+	  resource :preview, only: [:show]
+	
+	namespace :v2 do
+	resource :catalog, only: [:show] // 접속 라우팅 설정 (V2/catalog)
+	    patch 'service_instances/:id' => 'service_instances#set_plan'
+	    resources :service_instances, only: [:update, :destroy] do
+	      resources :service_bindings, only: [:update, :destroy]
+	    end
+	  end
+	
+	end
+	
+	-- RestController 구현 (app/controllers/v2/catalogs_controller.rb)
+	
+	class V2::CatalogsController < V2::BaseController
+	  def show
+	    render json: {
+	      services: services.map {|service| service.to_hash }
+	    }
+	  end
+	
+	  private
+	
+	  def services
+	    (Settings['services'] || []).map {|attrs| Service.build(attrs)}
+	  end
+	end
 
 3.3.	Node.js 방식
--- express 라는 Node.js 에서 가장 많이 사용하는 웹 프레임워크 모듈을 이용해서 Rest API 를 만든다.
+	-- express 라는 Node.js 에서 가장 많이 사용하는 웹 프레임워크 모듈을 이용해서 Rest API 를 만든다.
+	
+	# sample (app.js)
+	
+	var express = require('express')
+	  , http = require('http')
+	  , app = express()
+	  , server = http.createServer(app);
+	
+	app.get('/v2/catalog ', function (req, res) {
+	// catalog 기능 구현
+	});
+	
+	server.listen(8000, function() {   // 포트 설정
+	  console.log('Express server listening on port ' + server.address().port);
+	});
 
-# sample (app.js)
-
-var express = require('express')
-  , http = require('http')
-  , app = express()
-  , server = http.createServer(app);
-
-app.get('/v2/catalog ', function (req, res) {
-// catalog 기능 구현
-});
-
-server.listen(8000, function() {   // 포트 설정
-  console.log('Express server listening on port ' + server.address().port);
-});
-
-4.	서비스 별 Catalog API 개발 명세
+4. 서비스 별 Catalog API 개발 명세
 Catalog API 경우에는 서비스의 종류와 관계없이 Service 및 Plan 정보를 저장되어 있는 settings.yml 파일이나 기타 메타 파일 또는 소스 안에 정보를 저장한 후 제공한다. 만일 AppDirect 를 이용하는 경우는 Catalog 정보를 조회해오는 AppDirect API를 호출하여 그 결과를 제공한다. 샘플 settings.yml 파일은 3. Catalog Rest API 구현 참고.
 
-# Pivotal 서비스 Plan 예시
-- clearDB plan 예
-[그림출처] :http://run.pivotal.io/
+
+"#" Pivotal 서비스 Plan 예시
+	- clearDB plan 예
+	[그림출처] :http://run.pivotal.io/
  
 # Pivotal 서비스 Dashboard 예시
 - clearDB Dashboard 예

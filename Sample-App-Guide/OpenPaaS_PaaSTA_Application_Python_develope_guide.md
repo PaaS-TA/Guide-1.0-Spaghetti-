@@ -284,10 +284,10 @@ INSTALLED_APPS = (
     'rest_framework',
     'my_sampleapp',
 )
->
+
  ※	django rest framework 패키지를 사용할 수 있도록 INSTALLED APPS에 추가한다.
  ※	[2.3.1.2. django 애플리케이션 생성](#2-3-1-2)에서 생성한 애플리케이션을 INSTALLED APPS에 추가한다.
->
+
 TEMPLATES = [ 생략 ... ]  #다음과 같이 수정
 TEMPLATES = [
     {
@@ -301,22 +301,22 @@ TEMPLATES = [
 ]
 #	기존의 TEMPLATES를 연두색 음영으로 표시된 부분으로 수정한다.
 #	..\my_sampleproject\static\template 디렉토리에 위치한 템플릿은 django의 기본 템플릿 엔진으로 읽고, ..\my_sampleproject\static\jinja2 디렉토리에 위치한 템플릿은 jinja2 엔진으로 읽기 위해서 위와 같이 수정한다. jinja2 엔진은 템플릿 main.html과 manage.html에 쓰인 일부 신택스를 django의 기본 템플릿 엔진이 정상적으로 읽어낼 수 없기 때문에 사용한다.
->
+
 TIME_ZONE = 'UTC'  #다음과 같이 수정
 TIME_ZONE = ' Asia/Seoul'
 #	애플리케이션의 시간 설정을 'Asia/Seoul'로 변경한다
->
+
 STATIC_BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATICFILES_DIRS = (
     os.path.join(STATIC_BASE_DIR, '../static/resources'),
 )
 STATIC_ROOT = 'staticfiles' 
 #	STATIC_BASE_DIR는 애플리케이션의 경로를 의미한다. 본 문서의 안내대로 진행했다면 애플리케이션의 경로는 '..\my_sampleproject\my_sampleapp'가 된다. 개방형  클라우드 플랫폼에 애플리케이션을 배포할 때, STATIC_BASE_DIR의 상위 디렉토리의 static/resources 경로에 위치한 파일들이 STATIC_ROOT로 정의된 'staticfiles' 디렉토리에 모이게 된다.
->
+
 STATIC_URL = '/static/'  #다음과 같이 수정
 STATIC_URL = '/resources/'
 #	샘플의 템플릿에서 사용하는 리소스에 접근할 수 있는 URL
->
+
 ※ settings 모듈에 DATABASES 설정과 cache 설정 등, 각각의 서비스와 연동할 수 있는 VCAP_SERVICES 정보를 획득하는 코드가 추가되어야 하지만 하단의 [2.3.4.] ~ [2.3.9]에서 자세히 소개하므로 이 장에서는 다루지 않는다.
 ```
 
@@ -333,10 +333,9 @@ application = DjangoWhiteNoise(get_wsgi_application())
 <div id='2-3-3'></div>
 #####2.3.3. VCAP_SERVICES 환경설정 정보 
 
- 개방형 플랫폼에 배포되는 애플리케이션이 바인딩 된 각각의 서비스의 접속 정보를 얻기 위해서는 각각의 애플리케이션에 등록되어있는 VCAP_SERVICES 환경설정 정보를 읽어 들여 정보를 획득 해야 한다.
+개방형 플랫폼에 배포되는 애플리케이션이 바인딩 된 각각의 서비스의 접속 정보를 얻기 위해서는 각각의 애플리케이션에 등록되어있는 VCAP_SERVICES 환경설정 정보를 읽어 들여 정보를 획득 해야 한다.
 
 * 개방형 플랫폼의 애플리케이션 환경정보
-
   서비스를 바인딩하면 JSON 형태로 환경설정 정보가 애플리케이션 별로 등록된다.
 
 ```
@@ -403,13 +402,13 @@ if 'VCAP_SERVICES' in os.environ:
         }
 ```
  ※ DATABASES에 'default' 데이터베이스로 MySQL을 정의하였다. django에서는 데이터베이스 명칭에서 'default'는 반드시 존재해야 하기 때문에 'mysql'이 아닌 'default'를 사용하였다. 다른 데이터베이스를 추가하고자 한다면 추가되는 데이터베이스에 대해서는 임의의 명칭을 사용할 수 있다.
+ 
  ※ 파란색 글씨로 표시된 부분은 개방형 클라우드 플랫폼에서 서비스되는 서비스의 이름이다. 실제 서비스 되는 이름과 정확히 일치해야 한다. 개방형 클라우드 플랫폼에서 'cf marketplace' 명령어를 입력하여 서비스명을 확인할 수 있다.
 
 mysql_views.py 모듈에서 connections를 임포트하여 다음과 같은 형태로 cursor를 생성한다.
 
 `..\my_sampleproject\my_sampleapp\mysql_views.py`
 
-.
 ```
 from django.db import connections
 ```
@@ -424,7 +423,7 @@ def make_connection():
 <div id='2-3-5'></div>
 #####2.3.5. Cubrid 연동
 
- 각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성](#2-3-1-1)에서 프로젝트 생성시 자동으로 생성된다. CUBRID-Python 드라이버는 django 연동을 지원하지 않기 때문에 settings 모듈에서 VCAP_SERVICES 환경설정 정보의 credentials 정보를 cubrid_views 모듈에서 읽어와 connection을 생성한다.
+ 각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성](#2-3-1-1) 에서 프로젝트 생성시 자동으로 생성된다. CUBRID-Python 드라이버는 django 연동을 지원하지 않기 때문에 settings 모듈에서 VCAP_SERVICES 환경설정 정보의 credentials 정보를 cubrid_views 모듈에서 읽어와 connection을 생성한다.
 
 `..\my_sampleproject\my_sampleproject\settings.py`
 
@@ -432,7 +431,7 @@ def make_connection():
 import json
 if 'VCAP_SERVICES' in os.environ:
     vcap_services = json.loads(os.environ['VCAP_SERVICES'])
->
+
     if 'CubridDB' in vcap_services:
         cubrid_srv = vcap_services['CubridDB'][0]
         CUBRID_CRED = cubrid_srv['credentials']
@@ -446,7 +445,7 @@ if 'VCAP_SERVICES' in os.environ:
 ```
 from django.conf import settings
 import CUBRIDdb
->
+
 def make_connection():
     if settings.CUBRID_CRED:
         credentials = settings.CUBRID_CRED
@@ -507,11 +506,11 @@ def make_connection():
 import json
 if 'VCAP_SERVICES' in os.environ:  
     vcap_services = json.loads(os.environ['VCAP_SERVICES'])
->
+
     if 'redis-sb' in vcap_services:
         redis_srv = vcap_services['redis-sb'][0]
         redis_cred = redis_srv['credentials']
->        
+        
         CACHES = {
             "default": {
                 "BACKEND": "redis_cache.RedisCache",
@@ -544,7 +543,7 @@ cache.delete('key값')
 <div id='2-3-8'></div>
 #####2.3.8. RabbitMQ연동
 
- 각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성]에서 프로젝트 생성시 자동으로 생성된다. settings 모듈에서 획득한 VCAP_SERVICES 환경설정 정보의 credentials 정보를 rabbitmq_views 모듈에서 읽어와 connection을 생성한다.
+ 각 서비스에 대한 VCAP_SERVICES 환경설정 정보는 settings 모듈에서 획득할 수 있다. settings 모듈은 [2.3.1.1. django 프로젝트 생성](#2-3-1-1)에서 프로젝트 생성시 자동으로 생성된다. settings 모듈에서 획득한 VCAP_SERVICES 환경설정 정보의 credentials 정보를 rabbitmq_views 모듈에서 읽어와 connection을 생성한다.
 
 `..\my_sampleproject\my_sampleproject\settings.py`
 
@@ -552,7 +551,7 @@ cache.delete('key값')
 import json
 if 'VCAP_SERVICES' in os.environ:
     vcap_services = json.loads(os.environ['VCAP_SERVICES'])
->
+
     if 'p-rabbitmq' in vcap_services:
         rabbitmq_srv = vcap_services['p-rabbitmq'][0]
         RABBITMQ_CRED = rabbitmq_srv['credentials']
@@ -590,7 +589,7 @@ def make_connection():
 import json
 if 'VCAP_SERVICES' in os.environ:
     vcap_services = json.loads(os.environ['VCAP_SERVICES'])
->
+
     if 'glusterfs' in vcap_services:
         gluster_srv = vcap_services['glusterfs'][0]
         GLUSTERFS_CRED = gluster_srv['credentials']
@@ -662,7 +661,7 @@ $ cf login -u testUser -o sample_test -s sample_space
 
 ```
  # cf create-service SERVICE PLAN SERVICE_INSTANCE [-c PARAMETERS_AS_JSON] [-t TAGS]
->
+
 예시)
  $ cf create-service Mysql-DB Mysql-Plan1-10con python-mysql
  $ cf create-service CubridDB utf8 python-cubrid
@@ -703,7 +702,7 @@ python-swiftclient==2.6.0
 <table>
 <tr>
 <tr>
-<td>패키지명</td><td>버전</td><td>설명</td>
+<hd>패키지명</hd><hd>버전</hd><hd>설명</hd>
 </tr>
 <tr><td>Django</td><td>1.8.6</td><td>python 웹 프레임워크</td>
 </tr>

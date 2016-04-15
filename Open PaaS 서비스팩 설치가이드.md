@@ -305,6 +305,7 @@ Catalog API 경우에는 서비스의 종류와 관계없이 Service 및 Plan �
 * Pivotal 서비스 Plan 예시
 - clearDB plan 예
 [그림출처] :http://run.pivotal.io/
+
 >![openpaas-servicepack-14]
 
 >![openpaas-servicepack-15]
@@ -486,9 +487,9 @@ PATCH /v2/service_instances/:instance_id
 참고: instance_id는 이전에 provision 서비스 인스턴스의 GUID
 
 1.2.	cURL
-$ curl http://username:password@broker-url/v2/service_instances/:instance_id -d '{
-  "plan_id": "plan-guid-here"
-}' -X PATCH -H "X-Broker-API-Version: 2.4" -H "Content-Type: application/json"
+	$ curl http://username:password@broker-url/v2/service_instances/:instance_id -d '{
+	  "plan_id": "plan-guid-here"
+	}' -X PATCH -H "X-Broker-API-Version: 2.4" -H "Content-Type: application/json"
 
 1.3.	Body
 REQUEST FIELD	TYPE	DESCRIPTION
@@ -507,35 +508,35 @@ STATUS CODE	DESCRIPTION
 200 OK	요청한 plan 으로 변경하고 응답 본문은 "{}" 으로 전송
 422 Unprocessable entity	요구 된 특정 plan 변경이 지원되지 않는 경우. (예. 인스턴스 사용률이 요청한 계획의 할당량을 초과)
 에러 메시지 형태는 {} 안에 description 필드를 사용.
-예) 
-{
-  "description": "Something went wrong. Please contact support at http://support.example.com."
-}
+	예) 
+	{
+	  "description": "Something went wrong. Please contact support at http://support.example.com."
+	}
 
 2.2.	Body 
 모든 응답 bodies 는 JSON Object ({}) 형식으로 한다.
 
 3.	Update Service instance Rest API 구현
 3.1.	JAVA 방식
--- ServiceInstanceRestController.java (Spring 프레임워크 사용)
-
-@Controller
-@RequestMapping("/v2/service_instances/{id}")
-class ServiceInstanceRestController {
-  @Autowired
-  private ServiceInstanceService service;
-
-  @RequestMapping(method = RequestMethod.PATCH)
-  @ResponseBody
-  Map updateInstance(@PathVariable String id) {
-    ServiceInstance instance = service.findById(id);   // Spring 프레임워크 사용으로 서비스 구현
-    if (!service.isExists(instance)) {
-      service.update(instance);        // 서비스 인스턴스를 정보 수정하는 부분 (개발 명세 내용 구현)
-    }
-    return [:];
-
-  }
-}
+	-- ServiceInstanceRestController.java (Spring 프레임워크 사용)
+	
+	@Controller
+	@RequestMapping("/v2/service_instances/{id}")
+	class ServiceInstanceRestController {
+	  @Autowired
+	  private ServiceInstanceService service;
+	
+	  @RequestMapping(method = RequestMethod.PATCH)
+	  @ResponseBody
+	  Map updateInstance(@PathVariable String id) {
+	    ServiceInstance instance = service.findById(id);   // Spring 프레임워크 사용으로 서비스 구현
+	    if (!service.isExists(instance)) {
+	      service.update(instance);        // 서비스 인스턴스를 정보 수정하는 부분 (개발 명세 내용 구현)
+	    }
+	    return [:];
+	
+	  }
+	}
 
 3.2.	Ruby 방식(Ruby on Rails)
 -- config/routes.rb : posts 를 위한 라우팅 정보를 담은 수정된 라우팅 파일
@@ -956,7 +957,7 @@ roles: [
 
 1.	Request
 1.1.	Route
-DELETE /v2/service_instances/:instance_id/service_bindings/:binding_id
+	DELETE /v2/service_instances/:instance_id/service_bindings/:binding_id
 
 1.2.	Parameters
 QUERY-STRING FIELD	TYPE	DESCRIPTION
@@ -964,8 +965,8 @@ service_id*	string	카탈로그에 있는 서비스 ID
 plan_id*	string	카탈로그에 있는 Plan ID
 
 1.3.	cURL
-$ curl 'http://username:password@broker-url/v2/service_instances/:instance_id/
-service_bindings/:binding_id?service_id=service-id-here&plan_id=plan-id-here' -X DELETE -H "X-Broker-API-Version: 2.4"
+	$ curl 'http://username:password@broker-url/v2/service_instances/:instance_id/
+	service_bindings/:binding_id?service_id=service-id-here&plan_id=plan-id-here' -X DELETE -H "X-Broker-API-Version: 2.4"
 
 2.	Response
 2.1.	Status Code
@@ -979,60 +980,59 @@ STATUS CODE	DESCRIPTION
 
 3.	Unbind Rest API 구현
 3.1.	JAVA 방식
--- ServiceBindingRestController.java (Spring 프레임워크 사용)
-
-@Controller
-@RequestMapping("/v2/service_instances/{instanceId}/service_bindings/{bindingId}")
-class ServiceBindingRestController {
-  @Autowired ServiceBindingService bindingService;
-
-@RequestMapping(method = RequestMethod.DELETE)
-@ResponseBody
-Map destroy(@PathVariable String instanceId, @PathVariable String bindingId) {
-    ServiceBinding binding = bindingService.findById(bindingId, instanceId); 
-    bindingService.destroy(binding);  // 서비스 unbind 기능 구현 (개발 명세 내용 구현)
-    return [:];
-  }
-}
+	-- ServiceBindingRestController.java (Spring 프레임워크 사용)
+	
+	@Controller
+	@RequestMapping("/v2/service_instances/{instanceId}/service_bindings/{bindingId}")
+	class ServiceBindingRestController {
+	  @Autowired ServiceBindingService bindingService;
+	
+	@RequestMapping(method = RequestMethod.DELETE)
+	@ResponseBody
+	Map destroy(@PathVariable String instanceId, @PathVariable String bindingId) {
+	    ServiceBinding binding = bindingService.findById(bindingId, instanceId); 
+	    bindingService.destroy(binding);  // 서비스 unbind 기능 구현 (개발 명세 내용 구현)
+	    return [:];
+	  }
+	}
 
 3.2.	Ruby 방식(Ruby on Rails)
--- config/routes.rb : posts 를 위한 라우팅 정보를 담은 수정된 라우팅 파일
-
-CfMysqlBroker::Application.routes.draw do
-  resource :preview, only: [:show]
-
-namespace :v2 do
-resource :catalog, only: [:show] // 접속 라우팅 설정 (V2/catalog)
-    patch 'service_instances/:id' => 'service_instances#set_plan'
-    resources :service_instances, only: [:update, :destroy] do
-resources :service_bindings, only: [:update, :destroy]
-    end
-  end
-
-end
-
--- RestController 구현 (app/controllers/v2/service_bindings_controller.rb)
-
-class V2::ServiceBindingsController< V2::BaseController
-
-  def destroy
-// 서비스 unbind 기능 구현 (개발 명세 내용 구현)
-  end
-
-end
+	-- config/routes.rb : posts 를 위한 라우팅 정보를 담은 수정된 라우팅 파일
+	
+	CfMysqlBroker::Application.routes.draw do
+	  resource :preview, only: [:show]
+	
+	namespace :v2 do
+	resource :catalog, only: [:show] // 접속 라우팅 설정 (V2/catalog)
+	    patch 'service_instances/:id' => 'service_instances#set_plan'
+	    resources :service_instances, only: [:update, :destroy] do
+	resources :service_bindings, only: [:update, :destroy]
+	    end
+	  end
+	
+	end
+	
+	-- RestController 구현 (app/controllers/v2/service_bindings_controller.rb)
+	
+	class V2::ServiceBindingsController< V2::BaseController
+	
+	  def destroy
+	// 서비스 unbind 기능 구현 (개발 명세 내용 구현)
+	  end
+	
+	end
 
 3.3.	Node.js 방식
-# sample (app.js): Catalog API 참고
-
-var router = express.Router();
-
-router.route('/v2/service_instances/:instanceId/service_bindings/:bindingId’)
-
-.delete(function(req, res, next) {
-// 서비스 unbind 기능 구현 (개발 명세 내용 구현)
-
-})
-
+	# sample (app.js): Catalog API 참고
+	
+	var router = express.Router();
+	
+	router.route('/v2/service_instances/:instanceId/service_bindings/:bindingId’)
+	
+	.delete(function(req, res, next) {
+	// 서비스 unbind 기능 구현 (개발 명세 내용 구현)
+	
+	})
 
 4.	서비스 별 Unbind API 개발 명세
 -	Unbind 할 bind 인스턴스가 존재 하는지 체크 한다.

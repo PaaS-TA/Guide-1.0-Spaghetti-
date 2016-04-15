@@ -306,15 +306,18 @@ Extenstion에 추가한 mysqli를 사용합니다. XAMP에서는 기본으로 �
 
 
 1.	Mysql 에 접속하기
+2.	
         $conn = new mysqli($this->host, $this->username, $this->password, $this->dbname);
         
         if($conn->connect_error) {
             die("conncetion failed:".$conn->connect_error);            
         }
+
 mysqli를 이용하여 mysql 서비스에 접속합니다. 환경설정에서 가져온 host, username, password와 db명을 이용하여 접속을 합니다.
 
 2.	Query보내고 결과값 받기
 Query를 작성하고 Prepared Statement로 실행을 합니다. 실행된 결과값을 받아서 원하는 형태의 Array로 만들어 줍니다. 모든 처리가 완료되면 close로 connection과 statement를 종료합니다.
+
         $sql = "SELECT * FROM ORG_TBL";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -341,23 +344,26 @@ Query를 작성하고 Prepared Statement로 실행을 합니다. 실행된 결�
         $conn->close();
 
 3.	결과값을  Json으로컨버전하여 HTML에서 처리할 수 있도록 합니다.
+
         echo json_encode($result);
 
 <div id='2.3.6'></div>  
-###2.3.6.  Mysql 연동
+###2.3.6.  CUBRID 연동
 
 현재 CF의 기본 빌드팩에서는 CUBRID를 지원하지 않아 본 샘플에서는 구현하지 않았습니다. 만약 프로젝트에서 CUBRID를 사용해야하면 별도로 문의 바랍니다. 
 
 <div id='2.3.7'></div>  
-###2.3.7.  Mysql 연동
+###2.3.7.  MongoDB 연동
 
 Extenstion에 추가한 mongo 라이브러리를 이용합니다. 단 현재 mongo 라이브러리로는 사용자 인증에 문제가 있습니다. 라이브러리가 버그 fix가 되어야 합니다. 본 가이드에서는 부득이하게 MongoDB의 Root계정으로 접속하여 예제를 구현하였습니다.
 (위치 :api/mongodb_view.php)
 
 1.	Mongodbl 에 접속합니다. 환경설정에서 받아온 uri 정보를 이용합니다.
+2.	
         $mongo = new MongoClient($this->uri);
 
 2.	Collection을 설정하고 해당 Collection에서 정보를 요청합니다. Find 명령을 이용하여 필요한 정보를 요청합니다. 받아온 결과는 $cursor에 넣고 원하는 데이터 형태로 변경합니다.
+
         $collection = $mongo->selectCollection($this->dbname, 'ORG_TBL');
         $cursor = $collection->find(array('_id'=>new MongoId($org_id)));
         
@@ -374,10 +380,11 @@ Extenstion에 추가한 mongo 라이브러리를 이용합니다. 단 현재 mon
         }
 
 3.	결과값을  Json으로컨버전하여 HTML에서 처리할 수 있도록 합니다.
+	
         echo json_encode($result);
 
 <div id='2.3.8'></div>  
-###2.3.8.  Mysql 연동
+###2.3.8.  Redis 연동
 
 Redis 연동은 추가로 Composer를 통해 설치가된 패키지를 사용합니다. 
 
@@ -402,12 +409,12 @@ Redis 연동은 추가로 Composer를 통해 설치가된 패키지를 사용합
 
 
 <div id='2.3.9'></div>  
-###2.3.9.  Mysql 연동
+###2.3.9.  RabbitMQ연동
 
 CF의 PHP 빌드팩에서amqp접속시 SSL 접속에 문제가 있습니다. 그래서 해당 서비스 연동은 구현이 안되어 있습니다. 접속방법만 명시한 php 파일만 있습니다. (위치 :api/rebbitmq_view.php)
 
 <div id='2.3.10'></div>  
-###2.3.10.  Mysql 연동
+###2.3.10.  GlusterFS 연동
 
 
 php-opencloud라는 패키지를 사용하며 composer를 통해서 설치가 되게 되어 있습니다. 단 Container를 Public하게 생성하는 SDK가 없어서 API를 직접 호출(REST형식)하여 권한을 Public으로 설정하고 있습니다. 
@@ -473,6 +480,7 @@ Opencloud를 사용하기 위해 선언을 합니다.
 
 1)	./manifest.yml 생성
 -	cf push 명령시 현재 디렉토리의manifest.yml을 참조하여 배포가 진행된다.
+	
         ---
         applications:
         - name:php-sample-app# 애플리케이션 이름
@@ -480,9 +488,11 @@ Opencloud를 사용하기 위해 선언을 합니다.
           instances: 1# 애플리케이션 인스턴스 개수
         path: .
         buildpack: https://github.com/cloudfoundry/php-buildpack.git# 사용할 빌드팩을 선언
+
 ※애플리케이션 스테이징시할달 받은 포트가 환경변수로 등록되어있다. 이 포트는 애플리케이션의 상태 체크에도 사용되므로 위와 같이 포트를 지정할 것을 권장한다.
 
 2)	개방형 플랫폼 로그인
+
         $ cfapi https://api.cf.open-paas.com# 개방형 플랫폼 TARGET 지정
         #cfapi [target url]
         

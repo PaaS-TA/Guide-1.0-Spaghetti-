@@ -42,9 +42,9 @@
 
 ## <a name="2"/>2. RabbitMQ 서비스팩 설치
 #### <a name="2.1"/>2.1 설치전 준비사항
-본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.
-서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.
-BOSH CLI가 설치 되어 있지 않을 경우 먼저 BOSH CLI 설치 가이드 문서를 참고 하여 BOSH CLI를 설치 해야 한다.
+본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.  
+서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.  
+BOSH CLI가 설치 되어 있지 않을 경우 먼저 BOSH CLI 설치 가이드 문서를 참고 하여 BOSH CLI를 설치 해야 한다.  
 OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Deployment.zip, OpenPaaS-Sample-Apps.zip, OpenPaaS-Services.zip)
 
 #### <a name="2.2"/>2.2 RabbitMQ 서비스 릴리즈 업로드
@@ -77,7 +77,7 @@ $ bosh upload release openpaas-rabbitmq-release-1.0.tgz</div>
 <p>RabbitMQ 서비스 릴리즈가 업로드 되어 있는 것을 확인</p>
 
 #### <a name="2.3"/>2.3 RabbitMQ 서비스 Deployment 파일 수정 및 배포
-BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
+BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.  
 Deployment manifest 에는 software를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
 
 -	OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더안에 있는 OpenStack용 RabbitMQ Deployment 화일인 openpaas-rabbitmq-openstack.yml 를 복사한다.
@@ -402,7 +402,7 @@ $ bosh deployment openpaas-rabbitmq-openstack.yml</div>
 ![rabbitmq_openstack_(16)]
 
 #### <a name="2.4"/>2.4 RabbitMQ 서비스 브로커 등록
-RabbitMQ 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 RabbitMQ 서비스 브로커를 등록해 주어야 한다.
+RabbitMQ 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을 사용하기 위해서 먼저 RabbitMQ 서비스 브로커를 등록해 주어야 한다.  
 서비스 브로커 등록시 개방형 클라우드 플랫폼에서 서비스 브로커를 등록 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
 -	서비스 브로커 목록을 확인한다.
@@ -412,11 +412,11 @@ RabbitMQ 서비스팩 배포가 완료 되었으면 Application에서 서비스 
 
 -	RabbitMQ 서비스 브로커를 등록한다.
 
-><div>$ cf create-service-broker {서비스팩 이름} {서비스팩 사용자ID} {서비스팩 사용자비밀번호} http://{서비스팩 URL}<br>
--	서비스팩 이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.
--	서비스팩 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID이다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.
--	서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.</div>
-$ cf create-service-broker rabbitmq-service-broker admin admin  http://10.10.7.81:4567<br><br>
+><div>$ cf create-service-broker {서비스팩 이름} {서비스팩 사용자ID} {서비스팩 사용자비밀번호} http://{서비스팩 URL}</div>
+<div>-	서비스팩 이름 : 서비스 팩 관리를 위해 개방형 클라우드 플랫폼에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.</div>
+<div>-	서비스팩 사용자ID / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID이다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.</div>
+<div>-	서비스팩 URL : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.</div>
+<div>$ cf create-service-broker rabbitmq-service-broker admin admin  http://10.10.7.81:4567</div><br>
 ![rabbitmq_openstack_(18)]
 
 -	등록된 RabbitMQ 서비스 브로커를 확인한다.
@@ -457,7 +457,7 @@ Sample App 구조는 다음과 같다.
 ![rabbitmq_openstack_(22)]
 
 #### <a name="3.2"/>3.2 개방형 클라우드 플랫폼에서 서비스 신청
-Sample App에서 RabbitMQ 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.
+Sample App에서 RabbitMQ 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.  
 *참고: 서비스 신청시 개방형 클라우드 플랫폼에서 서비스를 신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
 -	먼저 개방형 클라우드 플랫폼 Marketplace에서 서비스가 있는지 확인을 한다.
@@ -467,11 +467,11 @@ Sample App에서 RabbitMQ 서비스를 사용하기 위해서는 서비스 신�
 
 -	Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.
 
-><div>$ cf create-service {서비스명} {서비스플랜} {내서비스명}<br>
--	서비스명 : p-rabbitmq로 Marketplace에서 보여지는 서비스 명칭이다.
--	서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. RabbitMQ 서비스는 standard plan만 지원한다.
--	내서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.</div>
-$ cf create-service p-rabbitmq standard rabbitmq-service-instance<br><br>
+><div>$ cf create-service {서비스명} {서비스플랜} {내서비스명}</div>
+<div>-	서비스명 : p-rabbitmq로 Marketplace에서 보여지는 서비스 명칭이다.</div>
+<div>-	서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. RabbitMQ 서비스는 standard plan만 지원한다.</div>
+<div>-	내서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.</div>
+<div>$ cf create-service p-rabbitmq standard rabbitmq-service-instance</div><br>
 ![rabbitmq_openstack_(24)]
 
 -	생성된 RabbitMQ 서비스 인스턴스를 확인한다.
@@ -480,7 +480,7 @@ $ cf create-service p-rabbitmq standard rabbitmq-service-instance<br><br>
 ![rabbitmq_openstack_(25)]
 
 #### <a name="3.3"/>3.3 Sample App에 서비스 바인드 신청 및 App 확인
-서비스 신청이 완료되었으면 Sample App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 RabbitMQ 서비스를 이용한다.
+서비스 신청이 완료되었으면 Sample App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 RabbitMQ 서비스를 이용한다.  
 *참고: 서비스 Bind 신청시 개방형 클라우드 플랫폼에서 서비스 Bind 신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
 -	Sample App 디렉토리로 이동하여 manifest 파일을 확인한다.

@@ -87,34 +87,34 @@ python 샘플 애플리케이션 개발이 이루어진 환경은 다음과 같�
 	
 ![python-2]
 
-	-	다운로드
-  	Windows x86-64 MSI installer
-	※	사용자 각각의 환경에 따라 설치 파일은 달라질 수 있다.
+* 다운로드 
+Windows x86-64 MSI installer
+ ※	사용자 각각의 환경에 따라 설치 파일은 달라질 수 있다.
 
-	-	python 설치
-	--	다운로드 받은 python-2.7.10.msi 더블 클릭하여 설치를 실행한다.
-	※	python 설치 시, 환경변수를 자동으로 추가 할 수 있도록 옵션을 선택할 수 있다.
+* python 설치
+ 다운로드 받은 python-2.7.10.msi 더블 클릭하여 설치를 실행한다.
+ ※	python 설치 시, 환경변수를 자동으로 추가 할 수 있도록 옵션을 선택할 수 있다.
 
-	--	환경변수 설정
-	python 설치 시, 환경변수 추가 옵션을 선택하지 않았다면 시스템 변수 Path에 다음과 같이 직접 추가한다.
-	`;C:\Python27;C:\Python27\Scripts`
+* 환경변수 설정
+ python 설치 시, 환경변수 추가 옵션을 선택하지 않았다면 시스템 변수 Path에 다음과 같이 직접 추가한다.
+`;C:\Python27;C:\Python27\Scripts`
 
-	-	python 설치 확인
-	--	명령 프롬프트에서 python 실행
-	명령 프롬프트에서 'python' 을 입력하여 python의 실행을 확인한다.
-	`Python`
+* python 설치 확인
+ 명령 프롬프트에서 python 실행
+ 명령 프롬프트에서 'python' 을 입력하여 python의 실행을 확인한다.
+`Python`
 
 ![python-3]  
 
-	--	python 실행 종료
-	python이 정상적으로 실행되었음을 확인하였으므로 'ctrl'+'c'를 입력하여 python을 종료한다. 
-	>>> 'ctrl' + c
+* python 실행 종료 
+ python이 정상적으로 실행되었음을 확인하였으므로 'ctrl'+'c'를 입력하여 python을 종료한다. 
+>>>'ctrl' + c`
 
 ![python-4]  
 
-	-	pip 설치 확인  
-	--	명령 프롬프트에서 pip 입력
-	pip가 정상적으로 설치 되었을 경우, 명령어를 입력하면 pip 명령어에 대한 설명을 확인 할 수 있다. 
+* pip 설치 확인  
+ 명령 프롬프트에서 pip 입력
+ pip가 정상적으로 설치 되었을 경우, 명령어를 입력하면 pip 명령어에 대한 설명을 확인 할 수 있다. 
 
 `pip`
 
@@ -125,11 +125,11 @@ python 샘플 애플리케이션 개발이 이루어진 환경은 다음과 같�
 ※ easy_install 이용한 pip 설치
  명령 프롬프트에서 python 설치 경로의 Scripts 디렉토리로 이동한다. 
  
-	`|cd C:\Python27\Scripts`
+`|cd C:\Python27\Scripts`
 
  pip 설치 명령어를 입력한다.
 
-	`easy_install pip`
+`easy_install pip`
 
 <div id='2-2-2'><div>
 #####2-2-2. python 가상환경 구성

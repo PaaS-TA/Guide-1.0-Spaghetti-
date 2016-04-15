@@ -130,165 +130,165 @@ Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (
 
 >`$ vi openpaas-mysql-lite.yml`
 
-```yml
+```yaml
 # openpaas-mysql-lite-1.0 설정 파일 내용
-name: openpaas-mysql-service     # 서비스 배포이름(필수)
-director_uuid: 46965538-fe7f-4260-b5df-ef9411558b99    # bosh status 에서 확인한 Director UUID을 입력(필수)
+name: openpaas-mysql-service    						# 서비스 배포이름(필수)
+director_uuid: 46965538-fe7f-4260-b5df-ef9411558b99    	# bosh status 에서 확인한 Director UUID을 입력(필수)
 
 releases:
-- name: openpaas-mysql       #서비스 릴리즈 이름(필수)
-  version: beta-1.0       # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
+- name: openpaas-mysq		#서비스 릴리즈 이름(필수)
+  version: beta-1.0			# 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
 
 update:
-  canaries: 1      # canary 인스턴스 수(필수)
-  canary_watch_time: 30000-600000      # canary 인스턴스가 수행하기 위한 대기 시간(필수)
-  max_in_flight: 1      # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
+  canaries: 1      						# canary 인스턴스 수(필수)
+  canary_watch_time: 30000-600000      	# canary 인스턴스가 수행하기 위한 대기 시간(필수)
+  max_in_flight: 1      				# non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
   update_watch_time: 30000-600000       # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
 
-compilation:     # 컴파일시 필요한 가상머신의 속성(필수)
-  cloud_properties:    # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone), 직접 cpu,disk,ram 사이즈를 넣어도 됨
+compilation:     		# 컴파일시 필요한 가상머신의 속성(필수)
+  cloud_properties:    	# 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone), 직접 cpu,disk,ram 사이즈를 넣어도 됨
     name: random
   network: openpaas_network     # Networks block에서 선언한 network 이름(필수)
-  reuse_compilation_vms: true     # 컴파일지 VM 재사용 여부(옵션)
-  workers: 4          # 컴파일 하는 가상머신의 최대수(필수)
+  reuse_compilation_vms: true   # 컴파일지 VM 재사용 여부(옵션)
+  workers: 4          			# 컴파일 하는 가상머신의 최대수(필수)
 
-disk_pools:   # 영구 디스크 정의
+disk_pools:   					# 영구 디스크 정의
 - cloud_properties: {}
-  disk_size: 10000   # 영구 디스크 크기
+  disk_size: 10000   			# 영구 디스크 크기
   name: mysql-persistent-disk   # 영구 디스크 참조 명
 
 jobs:
-- instances: 1      # job 인스턴스 수(필수)
-  name: mysql_z1     #작업 이름(필수): MySQL 서버
-  networks:        # 네트워크 구성정보
-  - name: openpaas_network     # Networks block에서 선언한 network 이름(필수)
-    static_ips: 10.244.21.2      # 사용할 IP addresses 정의(필수): MySQL 서버 IP
-  persistent_disk_pool: mysql-persistent-disk    # 영구적 디스크 사이즈 정의(옵션): 10G
-  properties:         # job에 대한 속성을 지정(필수)
-    admin_password: admin     # MySQL 어드민 패스워드
-    cluster_ips:       # 클러스터 구성시 IPs(필수)
-    - 10.244.21.2       # MySQL 서버 IP
+- instances: 1      							# job 인스턴스 수(필수)
+  name: mysql_z1     							#작업 이름(필수): MySQL 서버
+  networks:        								# 네트워크 구성정보
+  - name: openpaas_network     					# Networks block에서 선언한 network 이름(필수)
+    static_ips: 10.244.21.2     				# 사용할 IP addresses 정의(필수): MySQL 서버 IP
+  persistent_disk_pool: mysql-persistent-disk   # 영구적 디스크 사이즈 정의(옵션): 10G
+  properties:         							# job에 대한 속성을 지정(필수)
+    admin_password: admi						# MySQL 어드민 패스워드
+    cluster_ips:       							# 클러스터 구성시 IPs(필수)
+    - 10.244.21.2       						# MySQL 서버 IP
     - 10.244.21.3
     - 10.244.21.4  
-    network_name: openpaas_network     # Networks block에서 선언한 network 이름
+    network_name: openpaas_networ			# Networks block에서 선언한 network 이름
     seeded_databases: null
     syslog_aggregator: null
-    collation_server: utf8_unicode_ci      # Mysql CharSet
-    character_set_server: utf8      # Mysql CharSet
-  release: openpaas-mysql       # 서비스 릴리즈 이름(필수)
-  resource_pool: services-small     # Resource Pools block에 정의한 resource pool 이름(필수)
-template: mysql      # job template 이름(필수)
+    collation_server: utf8_unicode_ci      	# Mysql CharSet
+    character_set_server: utf8      		# Mysql CharSet
+  release: openpaas-mysql       			# 서비스 릴리즈 이름(필수)
+  resource_pool: services-small     		# Resource Pools block에 정의한 resource pool 이름(필수)
+template: mysql      						# job template 이름(필수)
 
-- instances: 1      # job 인스턴스 수(필수)
-  name: mysql_z2     #작업 이름(필수): MySQL 서버
-  networks:       # 네트워크 구성정보
-  - name: openpaas_network      # Networks block에서 선언한 network 이름(필수)
-    static_ips: 10.244.21.3      # 사용할 IP addresses 정의(필수): MySQL 서버 IP
-  persistent_disk_pool: mysql-persistent-disk      # 영구적 디스크 사이즈 정의(옵션): 10G 
-  properties:      # job에 대한 속성을 지정(필수)
-    admin_password: admin      # MySQL 어드민 패스워드
-    cluster_ips:     # 클러스터 구성시 IPs(필수)
+- instances: 1  						# job 인스턴스 수(필수)
+  name: mysql_z2     					#작업 이름(필수): MySQL 서버
+  networks:       						# 네트워크 구성정보
+  - name: openpaas_network      		# Networks block에서 선언한 network 이름(필수)
+    static_ips: 10.244.21.3      		# 사용할 IP addresses 정의(필수): MySQL 서버 IP
+  persistent_disk_pool: mysql-persistent-disk   # 영구적 디스크 사이즈 정의(옵션): 10G 
+  properties:      						# job에 대한 속성을 지정(필수)
+    admin_password: admin      			# MySQL 어드민 패스워드
+    cluster_ips:     					# 클러스터 구성시 IPs(필수)
     - 10.244.21.2
     - 10.244.21.3
-    - 10.244.21.4       # MySQL 서버 IP
+    - 10.244.21.4       				# MySQL 서버 IP
     network_name: openpaas_network      # Networks block에서 선언한 network 이름
     seeded_databases: null
     syslog_aggregator: null
-    collation_server: utf8_unicode_ci     # Mysql CharSet
-    character_set_server: utf8     # Mysql CharSet
-  release: openpaas-mysql     # 서비스 릴리즈 이름(필수)
-  resource_pool: services-small     # Resource Pools block에 정의한 resource pool 이름(필수)
-  template: mysql      # job template 이름(필수)
+    collation_server: utf8_unicode_ci   # Mysql CharSet
+    character_set_server: utf8     		# Mysql CharSet
+  release: openpaas-mysql     			# 서비스 릴리즈 이름(필수)
+  resource_pool: services-small     	# Resource Pools block에 정의한 resource pool 이름(필수)
+  template: mysql      					# job template 이름(필수)
 
-- instances: 1       # job 인스턴스 수(필수)
-  name: mysql_z3      #작업 이름(필수): MySQL 서버
-  networks:      # 네트워크 구성정보
-  - name: openpaas_network   # Networks block에서 선언한 network 이름(필수)
-    static_ips: 10.244.21.4      # 사용할 IP addresses 정의(필수): MySQL 서버 IP
+- instances: 1       					# job 인스턴스 수(필수)
+  name: mysql_z3						#작업 이름(필수): MySQL 서버
+  networks:      						# 네트워크 구성정보
+  - name: openpaas_network   			# Networks block에서 선언한 network 이름(필수)
+    static_ips: 10.244.21.4      		# 사용할 IP addresses 정의(필수): MySQL 서버 IP
   persistent_disk_pool: mysql-persistent-disk   # 영구적 디스크 사이즈 정의(옵션): 10G
-  properties:       # job에 대한 속성을 지정(필수)
-    admin_password: admin    # MySQL 어드민 패스워드
-    cluster_ips:         # 클러스터 구성시 IPs(필수)
+  properties:       					# job에 대한 속성을 지정(필수)
+    admin_password: admin    			# MySQL 어드민 패스워드
+    cluster_ips:         				# 클러스터 구성시 IPs(필수)
     - 10.244.21.2
     - 10.244.21.3
-    - 10.244.21.4   # MySQL 서버 IP
-    network_name: openpaas_network     # Networks block에서 선언한 network 이름
+    - 10.244.21.						# MySQL 서버 IP
+    network_name: openpaas_network     	# Networks block에서 선언한 network 이름
     seeded_databases: null
     syslog_aggregator: null
-    collation_server: utf8_unicode_ci    # Mysql CharSet
-    character_set_server: utf8      # Mysql CharSet
-  release: openpaas-mysql    # 서비스 릴리즈 이름(필수)
-  resource_pool: services-small     # Resource Pools block에 정의한 resource pool 이름(필수)
-  template: mysql    # job template 이름(필수)
+    collation_server: utf8_unicode_ci    	# Mysql CharSet
+    character_set_server: utf8      		# Mysql CharSet
+  release: openpaas-mysql    				# 서비스 릴리즈 이름(필수)
+  resource_pool: services-small     		# Resource Pools block에 정의한 resource pool 이름(필수)
+  template: mysql    						# job template 이름(필수)
 
 - instances: 1
-  name: proxy      # 작업 이름(필수): proxy
+  name: proxy      						# 작업 이름(필수): proxy
   networks:
   - name: openpaas_network
-    static_ips: 10.244.21.5      # 사용할 IP addresses 정의(필수): Proxy IP
+    static_ips: 10.244.21.5      		# 사용할 IP addresses 정의(필수): Proxy IP
   properties:
     cluster_ips:
     - 10.244.21.2
     - 10.244.21.3
-    - 10.244.21.4      # MySQL 서버 IP
-    external_host: bosh-lite.com       # CF 설치시 설정한 외부 호스트 정보(필수)
-    nats:       # CF 설치시 설치한 nats 정보 (필수)
+    - 10.244.21.4      					# MySQL 서버 IP
+    external_host: bosh-lite.com       	# CF 설치시 설정한 외부 호스트 정보(필수)
+    nats:       					# CF 설치시 설치한 nats 정보 (필수)
       machines:
-      - 10.244.0.6     # nats 서버 IP
-      password: nats     # nats 유저 비밀번호
-      port: 4222     # nats 서버 포트번호
-      user: nats     # nats 서버 유저아이디
+      - 10.244.0.6     				# nats 서버 IP
+      password: nats     			# nats 유저 비밀번호
+      port: 4222     				# nats 서버 포트번호
+      user: nats     				# nats 서버 유저아이디
     network_name: openpaas_network
-    proxy:       # proxy 정보 (필수)
-      api_password: admin   # proxy api 유저 비밀번호(필수)
-      api_username: api      # proxy api 유저아이디
-      api_force_https: false     # proxy api ssl여부
+    proxy:       				# proxy 정보 (필수)
+      api_password: admin   			# proxy api 유저 비밀번호(필수)
+      api_username: api      			# proxy api 유저아이디
+      api_force_https: false     		# proxy api ssl여부
     syslog_aggregator: null
   release: openpaas-mysql
   resource_pool: services-small
-  template: proxy       # job template 이름(필수)
+  template: proxy       			# job template 이름(필수)
 
 - instances: 1
-  name: openpaas-mysql-java-broker   # 작업 이름(필수): 서비스 브로커
+  name: openpaas-mysql-java-broker   		# 작업 이름(필수): 서비스 브로커
   networks:
   - name: openpaas_network
-    static_ips: 10.244.21.6   # 사용할 IP addresses 정의(필수): 서비스 브로커 IP
+    static_ips: 10.244.21.6   			# 사용할 IP addresses 정의(필수): 서비스 브로커 IP
   properties:
-    jdbc_ip: 10.244.21.5   # Mysql Url
-    jdbc_pwd: admin     # Mysql password
-    jdbc_port: 3306      # Mysql port
-    log_dir: openpaas-mysql-java-broker     # Broker log path
-    log_file: openpaas-mysql-java-broker     # Broker log file name
-    log_level: INFO      # Broker log level
+    jdbc_ip: 10.244.21.5   			# Mysql Url
+    jdbc_pwd: admin     			# Mysql password
+    jdbc_port: 3306      			# Mysql port
+    log_dir: openpaas-mysql-java-broker     	# Broker log path
+    log_file: openpaas-mysql-java-broker     	# Broker log file name
+    log_level: INFO      			# Broker log level
 release: openpaas-mysql 
-  resource_pool: services-small     # Resource Pools block에 정의한 resource pool 이름(필수)
-  template: op-mysql-java-broker     # job template 이름(필수)
+  resource_pool: services-small     		# Resource Pools block에 정의한 resource pool 이름(필수)
+  template: op-mysql-java-broker     		# job template 이름(필수)
 
 - instances: 1
-  lifecycle: errand     # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로 실행할때 설정, 주로 테스트 용도에 쓰임
-  name: broker-registrar     # 작업 이름: 서비스 브로커 등록 
+  lifecycle: errand     			# bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로 실행할때 설정, 주로 테스트 용도에 쓰임
+  name: broker-registrar     			# 작업 이름: 서비스 브로커 등록 
   networks:
   - name: openpaas_network
   properties:
-    broker:         # 서비스 브로커 설정 정보
-      host: 10.244.21.5    # 서비스 브로커 IP 
-      name: mysql-service     # 서비스 명
-      password: cloudfoundry     # 서비스 브로커 인증 패스워드
-      username: admin     # 서비스 브러커 인증 아이디
-      protocol: http     # 서비스 브로커 프로토콜
-      port: 8080      # 서비스 프로커 서비스 포트
+    broker:         				# 서비스 브로커 설정 정보
+      host: 10.244.21.5    			# 서비스 브로커 IP 
+      name: mysql-servic			# 서비스 명
+      password: cloudfoundry     		# 서비스 브로커 인증 패스워드
+      username: admin     			# 서비스 브러커 인증 아이디
+      protocol: http     			# 서비스 브로커 프로토콜
+      port: 8080      				# 서비스 프로커 서비스 포트
     cf:
-      admin_password: admin     # CF 사용자 암호
-      admin_username: admin     # CF 사용자 아이디
-      api_url: https://api.bosh-lite.com     # CF 주소
-      skip_ssl_validation: true     # CF SSL 접속 여부
+      admin_password: admin     		# CF 사용자 암호
+      admin_username: admi			# CF 사용자 아이디
+      api_url: https://api.bosh-lite.com     	# CF 주소
+      skip_ssl_validation: true     		# CF SSL 접속 여부
   release: openpaas-mysql
   resource_pool: services-small
   template: broker-registrar
 
 - instances: 1
   lifecycle: errand
-  name: broker-deregistrar   # 작업 이름: 서비스 브로커 삭제
+  name: broker-deregistrar   			# 작업 이름: 서비스 브로커 삭제
   networks:
   - name: openpaas_network
   properties:
@@ -297,17 +297,17 @@ release: openpaas-mysql
     cf:
       admin_password: admin
       admin_username: admin
-      api_url: https://api.bosh-lite.com     # CF 주소
+      api_url: https://api.bosh-lite.com     	# CF 주소
       skip_ssl_validation: true
   release: openpaas-mysql
   resource_pool: services-small
   template: broker-deregistrar
 
 meta:
-  apps_domain: bosh-lite.com      # CF 설치시 설정한 apps 도메인 정보
+  apps_domain: bosh-lite.com      		# CF 설치시 설정한 apps 도메인 정보
   environment: null
-  external_domain: bosh-lite.com   # CF 설치시 설정한 외부 도메인 정보
-  nats:       # CF 설치시 설정한 nats 정보
+  external_domain: bosh-lite.com   		# CF 설치시 설정한 외부 도메인 정보
+  nats:       					# CF 설치시 설정한 nats 정보
     machines:
     - 10.244.0.6
     password: nats
@@ -315,29 +315,29 @@ meta:
     user: nats
 syslog_aggregator: null
 
-networks:   # 네트워크 블록에 나열된 각 서브 블록이 참조 할 수있는 작업이 네트워크 구성을 지정, 네트워크 구성은 네트워크 담당자에게 문의 하여 작성 요망
+networks:   					# 네트워크 블록에 나열된 각 서브 블록이 참조 할 수있는 작업이 네트워크 구성을 지정, 네트워크 구성은 네트워크 담당자에게 문의 하여 작성 요망
 - name: openpaas_network
   subnets:
   - cloud_properties:
       name: random
     range: 10.244.21.0/24
-    reserved:      # 설치시 제외할 IP 설정
+    reserved:      				# 설치시 제외할 IP 설정
     - 10.244.21.1
     static:
-    - 10.244.21.2 - 10.244.21.6     #사용 가능한 IP 설정
+    - 10.244.21.2 - 10.244.21.6     		#사용 가능한 IP 설정
 type: manual
 
 properties: {}
 
-resource_pools:      # 배포시 사용하는 resource pools를 명시하며 여러 개의 resource pools 을 사용할 경우 name 은 unique 해야함(필수)
-- cloud_properties:        # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성을 설명 (instance_type, availability_zone), 직접 cpu, disk, 메모리 설정가능
+resource_pools:      				# 배포시 사용하는 resource pools를 명시하며 여러 개의 resource pools 을 사용할 경우 name 은 unique 해야함(필수)
+- cloud_properties:        			# 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성을 설명 (instance_type, availability_zone), 직접 cpu, disk, 메모리 설정가능
     name: random
-  name: services-small             # 고유한 resource pool 이름
-#size: 4   # resource pool 안의 가상머신 개수, 주의) jobs 인스턴스 보다 작으면 에러가 남, size 정의하지 않으면 자동으로 가상머신 크기 설정
+  name: services-small             	# 고유한 resource pool 이름
+#size: 4   							# resource pool 안의 가상머신 개수, 주의) jobs 인스턴스 보다 작으면 에러가 남, size 정의하지 않으면 자동으로 가상머신 크기 설정
   network: openpaas_network
   stemcell:
     name: bosh-warden-boshlite-ubuntu-trusty-go_agent      #stemcell 이름(필수)
-    version: "3147"                                         # stemcell 버전(필수)
+    version: "3147"  
 ```
 <br>
 

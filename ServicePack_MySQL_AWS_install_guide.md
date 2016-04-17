@@ -29,7 +29,7 @@
 
 ![시스템구성도][mysql_AWS_00]
 
-| 구분 | Resource Pool | 스펙 |
+| 구분 | Resource Pool | Instance Type (스펙) |
 |--------|-------|-------|
 | openpaas-mysql-broker | services-small | m1.small (1vCPU / 1.7GB RAM / 160GB Disk) |
 | proxy | services-small | m1.small (1vCPU / 1.7GB RAM / 160GB Disk) |

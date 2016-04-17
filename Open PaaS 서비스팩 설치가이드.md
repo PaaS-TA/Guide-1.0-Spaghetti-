@@ -140,6 +140,7 @@ Cloud Controller 는 모든 요청에 HTTP 기본 인증(인증 헤더)을 사�
 >![openpaas-servicepack-12]
 
 ###### sample body response message
+	
 	{
 	  "services": [
 	    {
@@ -280,7 +281,7 @@ Cloud Controller 는 모든 요청에 HTTP 기본 인증(인증 헤더)을 사�
 		  end
 		end
 	
-	3.3.	Node.js 방식
+3.3.	Node.js 방식
 		-- express 라는 Node.js 에서 가장 많이 사용하는 웹 프레임워크 모듈을 이용해서 Rest API 를 만든다.
 		
 		# sample (app.js)
@@ -1589,82 +1590,79 @@ networks [Array, required]: 네트워크 블록에 나열된 각 서브 블록�
 Dynamic network 또는 manual network 서브넷에서 사용하는 ‘cloud_properties’ 스키마
 subnet [String, required]: AWS에서 생성한 subnet ID
 
-#Example of manual network:
+Example of manual network:
 
-networks:
-- name: default
-  type: manual
+	networks:
+	- name: default
+	  type: manual
+	
+	  subnets:
+	  - range:   10.10.0.0/24
+	    gateway: 10.10.0.1
+	    cloud_properties:
+	      subnet: subnet-9be6c3f7
 
-  subnets:
-  - range:   10.10.0.0/24
-    gateway: 10.10.0.1
-    cloud_properties:
-      subnet: subnet-9be6c3f7
+Example of dynamic network:
 
-#Example of dynamic network:
+	networks:
+	- name: default
+	  type: dynamic
+	  cloud_properties:
+	    subnet: subnet-9be6c6gh
 
-networks:
-- name: default
-  type: dynamic
-  cloud_properties:
-    subnet: subnet-9be6c6gh
+Example of vip network:
 
-#Example of vip network:
-
-networks:
-- name: default
-  type: vip
-  cloud_properties: {}
-
-# OpenStack Example
+	networks:
+	- name: default
+	 OpenStack Example
 Dynamic network 또는 manual network 서브넷에서 사용하는 ‘cloud_properties’ 스키마
 net_id [String, required]: OpenStack에서 생성한 subnet ID. 예) net-b98ab66e-6fae-4c6a-81af-566e630d21d1
 security_groups [Array, optional]: security groups 이 네크워크 구성에 적용.
 
 
-#Example of manual network:
+Example of manual network:
 
-networks:
-- name: default
-  type: manual
+	networks:
+	- name: default
+	  type: manual
+	
+	  subnets:
+	  - range:   10.10.0.0/24
+	    gateway: 10.10.0.1
+	    cloud_properties:
+	      net_id: net-b98ab66e-6fae-4c6a-81af-566e630d21d1
+	      security_groups: [my-sec-group]
 
-  subnets:
-  - range:   10.10.0.0/24
-    gateway: 10.10.0.1
-    cloud_properties:
-      net_id: net-b98ab66e-6fae-4c6a-81af-566e630d21d1
-      security_groups: [my-sec-group]
+Example of dynamic network:
 
-#Example of dynamic network:
+	networks:
+	- name: default
+	  type: dynamic
+	  cloud_properties:
+	    net_id: net-b98ab66e-6fae-4c6a-81af-566e630d21d1
 
-networks:
-- name: default
-  type: dynamic
-  cloud_properties:
-    net_id: net-b98ab66e-6fae-4c6a-81af-566e630d21d1
+Example of vip network:
 
-#Example of vip network:
+	networks:
+	- name: default
+	  type: vip
+	  cloud_properties: {}
 
-networks:
-- name: default
-  type: vip
-  cloud_properties: {}
-
-# vSphere Example
+vSphere Example
 manual network 서브넷에서 사용하는 ‘cloud_properties’ 스키마
 name [String, required]: vSphere 에서 사용하는 network 이름
 
-#Example of manual network:
+Example of manual network:
 
-networks:
-- name: default
-  type: manual
-
-  subnets:
-  - range:   10.10.0.0/24
-    gateway: 10.10.0.1
-    cloud_properties:
-      name: VM Network
+	networks:
+	- name: default
+	  type: manual
+	
+	  subnets:
+	  - range:   10.10.0.0/24
+	    gateway: 10.10.0.1
+	    cloud_properties:
+	      name: VM Network
 
 참고 :vSphere CPI does not support dynamic or vip networks.
 
@@ -1672,7 +1670,7 @@ networks:
 manual network 서브넷에서 사용하는 ‘cloud_properties’ 스키마
 name [String, required]: vApp 에서 생성된network 이름
 
-#Example of manual network:
+Example of manual network:
 
 networks:
 - name: default
@@ -1686,7 +1684,7 @@ networks:
 
 참고 :vCloud CPI does not support dynamic or vip networks.
 
-4.	Resource Pools Block
+4. Resource Pools Block
 resource_pools [Array, required]:배포시 사용하는 resource pools를 명시하며 여러 개의 resource pools 을 사용할 경우 name 은 unique 해야함
 Resource pools: 같은 stemcell 부터 생성한 가상머신 모음
 name [String, required]:고유한 resource pool 이름
@@ -1698,7 +1696,7 @@ stemcell [Hash, required]: resource pool 가상머신에서 생성한 stemcell �
 cloud_properties [Hash, required]: 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성을 설명 (instance_type, availability_zone)
 env [Hash, optional]: CPI (cloud provider interface) 에서 create_stemcell 호출할때 가상머신 환경 변수이고 env 데이터는 가상머신에 세팅 되어 있는 BOSH Agents 에서 사용할수 있다. 디폴트는 {}
 
-# AWS Example
+AWS Example
 instance_type [String, required]: 인스턴스 종류. 예) m1.small
 availability_zone [String, required]:인스턴스를 생성하기 위한 availability zone 예) us-east-1a
 key_name [String, optional]: key pair 이름. 디폴트 key pair 이름은 global CPI 설정안의 default_key_name 예) bosh
@@ -1719,7 +1717,7 @@ resource_pools:
     instance_type: m1.small
     availability_zone: us-east-1a
 
-# OpenStack Example
+OpenStack Example
 instance_type [String, required]: 인스턴스 종류 예) m1.small
 availability_zone [String, required]:인스턴스를 생성하기 위한 availability zone 예) us-east-1a
 key_name [String, optional]: key pair 이름. 디폴트 key pair 이름은 global CPI 설정안의 default_key_name 예) bosh
@@ -1736,7 +1734,7 @@ resource_pools:
     instance_type: m1.small
     availability_zone: us-east-1a
 
-# vSphere Example
+vSphere Example
 cpu [Integer, required]: CPUs 수
 ram [Integer, required]:RAM in megabytes
 disk [Integer, required]:Ephemeral disk size in megabytes.
@@ -1760,7 +1758,7 @@ resource_pools:
     ram: 1_024
     disk: 10_240
 
-# vCloud Example
+vCloud Example
 cpu [Integer, required]: CPUs 수
 ram [Integer, required]:RAM in megabytes
 disk [Integer, required]:Ephemeral disk size in megabytes

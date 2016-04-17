@@ -62,24 +62,24 @@ https://github.com/cloudfoundry-community/cf-mysql-java-broker
 http://rubykr.github.io/rails_guides/getting_started.html
 http://www.appdirect.com
 
-### 2. Service Broker API 개발 가이드
-#### 2.1. 개요
+### <a name="6"/>2. Service Broker API 개발 가이드
+#### <a name="7"/>2.1. 개요
 개방형 클라우드 플랫폼 Service API는 Cloud Controller와 Service Broker  사이의 규약을 정의한다. Broker는 HTTP (or HTTPS) endpoints URI 형식으로 구현된다. 하나 이상의 Service가 하나의 Broker 에 의해 제공 될 수 있고, 로드 밸런싱이 가능하게 수평 확장성 있게 제공 될 수 있다.
 
-#### 2.2. Service Architecture
+#### <a name="8"/>2.2. Service Architecture
 >![openpaas-servicepack-01]
 [그림출처]: http://docs.cloudfoundry.org/services/overview.html
 
 Services 는 Service Broker API 라고 불리우는 cloud controller 클라이언트 API를 구현하여 개방형 클라우드 플랫폼에서 사용된다. Services API는 독립적인 cloud controller API의 버전이다.
 이는 플랫폼에서 외부 application을 이용 가능하게 한다. (database, message queue, rest endpoint , etc)
 
-#### 2.3. Service Broker API Architecture
+#### <a name="9"/>2.3. Service Broker API Architecture
 >![openpaas-servicepack-02]
 [그림출처]: http://docs.cloudfoundry.org/services/api.html
 
 개방형 클라우드 플랫폼 Service API는 Cloud Controller 와 Service Broker 사이의 규약 (catalog, provision, deprovision, update provision plan, bind, unbind)이고 Service Broker 는 RESTful API 로 구현하고 Cloud Controller 에 등록한다.
 
-#### 2.4. Pivotal(Cloud Foundry) Marketplace Model
+#### <a name="10"/>2.4. Pivotal(Cloud Foundry) Marketplace Model
 >![openpaas-servicepack-03]
 [그림출처]: http://www.slideshare.net/platformcf/cloud-foundry-marketplacepowered-by-appdirect
 
@@ -90,7 +90,7 @@ Service Provider 및 Cloud Foundry 통합에 관련 설명
 >![openpaas-servicepack-04]
 [그림출처]: http://www.slideshare.net/platformcf/cloud-foundry-marketplacepowered-by-appdirect
 
-#### 2.5. 개발 가이드
+#### <a name="11"/>2.5. 개발 가이드
 서비스의 구현 방법은 서비스 제공자(Provider) 와 개발자(developer)의 몫이다. 개방형 클라우드 플랫폼은 서비스 제공자가 6가지의 Service Broker API를 구현해야 한다. 이때 2.4 Pivotal Marketplace Model를 이용해서 AppDirect 에서 제공중인 서비스 제공자와 협의 하여 AppDirect 의 중개 기능을 이용해서 제공할수도 있다. 또한 Broker 는 별도의 애플리케이션으로 구현하든지 기존 서비스에 필요한 HTTP endpoint를 추가함으로써 구현 될 수 있다.
 
 본 개발 가이드는 Service Broker 에서 service back-end를 제어하는 방식을 가이드 한다.AppDirect를 사용하는 경우에는 http://go.appdirect.com/request-more-information를 참고하여 개발한다.
@@ -106,7 +106,7 @@ Service Broker API의 두 가지 주요 버전은 현재 개방형 클라우드 
 
 Cloud Controller 는 모든 요청에 HTTP 기본 인증(인증 헤더)을 사용하여 Broker와 인증하여 사용자 이름과 암호를 포함하지 않는 모든 Broker 등록을 거부한다. Broker는 사용자 이름과 암호를 확인하고 자격 증명이 유효하지 않은 경우 401 Unauthorized 메시지를 반환 한다. Cloud Controller에서 추가 보안이 요구되는 경우 SSL을 사용하여 브로커에 접속 지원을 한다.
 
-##### 2.5.1. Catalog API 가이드
+##### <a name="12"/>2.5.1. Catalog API 가이드
 서비스 Catalog는 서비스 및 서비스 Plan의 정보를 조회한다. Cloud Controller는 처음에 모든 Broker에서 endpoint를 취득해서 Cloud Controller 데이터베이스에 저장되어 있는 user-facing service catalog를 조회한다. 또한 Cloud Controller는 Broker가 업데이트 될 때 마다 catalog를 업데이트한다.Catalog API를 구현하면 CF CLI를 통해서 Service Broker를 등록 할 수 있다.
 
 1. Request
@@ -322,7 +322,7 @@ Catalog API 경우에는 서비스의 종류와 관계없이 Service 및 Plan �
 
 >![openpaas-servicepack-19]
  
-##### 2.5.2. Provision API 가이드
+##### <a name="13"/>2.5.2. Provision API 가이드
 Broker가 Cloud Controller로 부터 provision 요구를 수신하면 개발자를 위한 새로운 서비스 인스턴스를 생성한다. provision 시 서비스들의 종류에 따라 provision 결과는 다르다.
 Mysql DataBase 인 경우에는 새로운 DATABASE 스키마를 생성한다. 또한 non-data 서비스 인 경우의 provision은 기존 시스템에 계정을 얻는 의미 일 수도 있다. 자세한 내용은 아래에 각 서비스별 provision을 참고한다.
 
@@ -478,7 +478,7 @@ Single Sign-On (SSO)는 개방형 클라우드 플랫폼 사용자들이 개방�
 >use <databasename>
 switched to db <databasename>
 
-2.5.3.	Update Instance API 가이드
+##### <a name="14"/>2.5.3. Update Instance API 가이드
 Update Instance API는 기존의 서비스 인스턴스의 plan를 수정 한다. 즉 서비스 인스턴스의 plan을 업그레이드나 다운그레이드 한다.
 이 기능을 사용하려면 브로커는 카탈로그 endpoint 에서 “plan_updateable: true”설정 해주어야 한다. 이 옵션 필드가 포함되어 있지 않은 경우에는 service plan 변경 요청에 대해 의미 있는 오류를 반환하고 브로커는 API 호출을 하지 않는다. 이 필드가 포함된 경우 개방형 클라우드 플랫폼의 모든 plan 변경 요청에 브로커로 API 호출을 수행하며 브로커에서는 plan 지원 여부를 확인한다.
 
@@ -587,7 +587,7 @@ router.route('/v2/service_instances/:id’)
 
 4.	변경된 내용을 Cloud Controller 전달 한다.
 
-2.5.4.	Deprovision API 가이드
+##### <a name="15"/>2.5.4. Deprovision API 가이드
 브로커가 개방형 클라우드 플랫폼으로부터 deprovision 요청을 수신 할 때 provision 생성시 제공했던 모든 리소스를 삭제한다.
 
 1.	Request
@@ -718,7 +718,7 @@ switched to db <databasename>
 >
 
 
-2.5.5.	Bind API 가이드
+##### <a name="16"/>2.5.5. Bind API 가이드
 Provision만으로 서비스를 사용할 수 있을 경우에는 bind 기능 구현은 필요 없고 결과 성공 메시지만 개방형 클라우드 플랫폼에 전송하면 된다. 브로커가 개방형 클라우드 플랫폼으로부터 바인딩 요청을 수신 할 때 프로비저닝 된 자원을 활용하는데 필요한 정보를 반환한다. 해당 정보는 credentials(자격증명)안에 제공된다. Applicatoin에 고유한 credentials(자격증명)을 발급하여다른  Application에는 영향을 주어서는 안된다.
 
 1.	Request
@@ -952,7 +952,7 @@ roles: [
    }
  )
 
-2.5.6.	Unbind API 가이드
+##### <a name="17"/>2.5.6. Unbind API 가이드
 참고: 바인딩 서비스를 제공하지 않는 브로커는 Unbind API를 구현할 필요가 없다.
 브로커가 개방형 클라우드 플랫폼으로부터 unbind 요청을 받으면 바인드(bind)에서 만든 모든 자원(resource)을 삭제한다. 삭제 되면 service에 접근 할수 없다.
 
@@ -1079,13 +1079,15 @@ switched to db <databasename>
                 } )
 
  
-3.	Service release 개발 가이드
-3.1.	개요
+
+### <a name="18"/>3. Service release 개발 가이드
+
+#### <a name="19"/>3.1.	개요
 BOSH release 는 jobs(packages 구동 스크립트, monit 스크립트 등), packages, 소스 코드 및 관련 자료의 메타 데이터로 구성되어 있다.BOSH를 통해서 소프트웨어(service back-end, broker 및 etc)를 설치한다. 패키징에 필요한 바이너리 파일 (일명 "blobs")은 release 저장소 내부에 보관하는 필요성을 없애고 release 내 Blob 저장소에 저장되어 외부에서 참조 할 수있다.또한 BOSH release를 활용하기 위해 release yml 를 작성 한다.
 
 참고: service back-end (서비스 provider 가 제공하는 소프트웨어: 2.2 Service Architecture 참고) 가 외부 서비스로 이미 제공하는 provider 인 경우에는 BOSH release 로 service back-end 를 설치할 필요는 없고 해당 브로커만 개발하여 외부 서비스와 연결할수 있다. 이런 경우에는 Borker만 Bosh release 로 설치 한다. 하지만 외부에서 제공하는 서비스가 CF 가 설치 되는 IaaS 에 포함(단절된 네트워크에서 cloud 운영인 경우)되는 경우에는 해당 service back-end 를 BOSH release로 배포한다. 또한 외부 서비스를 사용하고 Broker가 개방형 클라우드 플랫폼의 Application으로 (cf push) 제공 하려는 경우에는 BOSH release 는 생략 하고 2. Service Borker Guide 를 진행하면된다.
 
-3.2.	Bosh Architecture
+#### <a name="20"/>3.2.	Bosh Architecture
  
 [그림출처]: http://www.cloudsofchange.com/2012/05/fork-in-road-to-cloud.html
 
@@ -1097,57 +1099,45 @@ BOSH release 는 jobs(packages 구동 스크립트, monit 스크립트 등), pac
  
 [그림출처]: https://www.ibm.com/developerworks/community/blogs/fe313521-2e95-46f2-817d-44a4f27eba32/entry/porting_cloud_foundry_on_power8_ubuntu_le?lang=en
 
-3.3.	Release Directory 구조
+#### <a name="21"/>3.3.	Release Directory 구조
 디랙토리 구조는 Bosh release 로 구성 할수 있게 되어 있다. Bosh는 릴리스 엔지니어링, 배포 및 대규모 분산 서비스의 라이프 사이클 관리를위한 오픈 소스 도구이다.
 
-3.3.1.	packages
+##### <a name="22"/>3.3.1. packages
 packages에는 Boshrelease 설치를 위한 바이너리에 대한 종속성을 준비하는데 필요한 정보를 제공한다. (packaging, pre_packaging, spec 파일)
  
-
-3.3.2.	jobs
+##### <a name="23"/>3.3.2. jobs
 설치되는 package 들의 jobs(processes) 의 구동 및 정지 script 들과 모니터링(monit) script 로 구성한다.
  
-
-3.3.3.	src
+##### <a name="24"/>3.3.3. src
 service release 에서 사용하는 컨포넌트 소스 코드 또는 pre-compiled software 파일로 구성한다.
  
-
-
-
-
-3.3.4.	shared
+##### <a name="25"/>3.3.4. shared
 ruby 및 lib 와 같은 공통 컴포넌트 소스를 관리한다. (옵션)
  
-
-3.3.5.	releases
+##### <a name="26"/>3.3.5. releases
 -	버전별 서비스 release yml 파일들을 관리한다.(yaml 설치 방식)
 -	버전별 서비스 release tgz 압축 파일들을 관리한다. (tarball 설치 방식)
 -	Yaml 및 tarball 설치 방식은 아래 개발 가이드 참고한다.
  
-
-3.3.6.	config
+##### <a name="27"/>3.3.6. config
 최종 release를 저장하기 위한 Bosh blobstore에 URL 및 액세스 자격 증명을 위한 설정 파일로 구성한다.
  
-
-3.3.7.	.final_builds
+##### <a name="28"/>3.3.7. final_builds
 최종 jobs 및 packages 에 대한 public blobstore 정보를 제공한다.
  
-
-3.3.8.	deployments
+##### <a name="29"/>3.3.8. deployments
 IaaS 별 service 배포 manifest 파일 들을 관리한다.
  
-
-3.3.9.	content_migrations
+##### <a name="30"/>3.3.9. content_migrations
 이번버전으로 부터의 마이그레이션 정보 파일 들을 관리한다. (옵션)
  
-
-3.4.	개발 가이드
+#### <a name="31"/>3.4.개발 가이드
 service를 Bosh release를 통해 배포 해야 하기 때문에 Bosh release 개발 방식에 따라
 작성되어야한다.Bosh release 는 packages 와 jobs 관련 스크립트로 구성되어 있다.
 Bosh 는 software를 release 할 때 두가지 방식을 제공한다.
 Boshupload release CLI명령어 및 프로세스는 다음과 같다.
 
-# bosh upload release CLI 
+bosh upload release CLI 
 boshupload release [<release_file>] [--rebase] [--skip-if-exists]
 release_file: 로컬 파일 또는 원격 URI 정보
     --rebase:최신 버전으로 Director에 설정
@@ -1156,12 +1146,13 @@ release_file: 로컬 파일 또는 원격 URI 정보
 1.	Yaml 파일을 이용한 설치 프로세스 [<release_file> 파라미터가 yml 파일일 경우]: releases 디랙토리안에 cf-<service_name>-<version>.yml 파일을 읽어서 sha1 값으로 .final_builds 폴더의 해당 packages 또는 jobs 폴더안의 index.yml 의 blobstore_id 로 config/final.yml 의 blobstore 에 접근하여 설치하는 방식이다.
 2.	tarball(설치할 release 파일을 모두 포함한 압축 파일: tgz 형식) 을 이용한 설치 프로세스 [<release_file> 파라미터가 tgz 파일일 경우]: blobstore 를 이용하지 않고 설치할 모든 packages 와 jobs 파일 및 release(release.MF), job메타 파일이 tgz 압축 파일 안에 있어서 blobstore에서 다운 받지 않고 설치하는 방식이다. (releases 디랙토리 안에 .tgz 파일로 압축)
 
-3.4.1.	packages 가이드
+##### <a name="32"/>3.4.1. packages 가이드
 Service software 설치 관련하여 packaging, pre_packaging 와 spec 파일로 구성 되어 있다.
-3.4.1.1.	packaging
+
+###### <a name="33"/>3.4.1.1. packaging
 packaging 파일은 software 를 설치 하는 script 를 제공한다.
 
-# packaging 파일 설명
+packaging 파일 설명
 1	“bosh generate package PACKAGE_NAME” 명령어로 packaging script file 를 자동생성한다.
 1.1	예) $ bosh generate package test (service release 폴더에서 실행)
 1.2	packages 폴더 안에 test package 폴더가 생성되고 해당 폴더에 packaging, pre_packaging, spec 파일 생성
@@ -1176,74 +1167,74 @@ packaging 파일은 software 를 설치 하는 script 를 제공한다.
 4.2	복사, 설치 또는 컴파일이 (BOSH_INSTALL_TARGET 환경 변수로 표현) 설치 대상 디렉토리에 코드가 생성 되는지 확인한다.“make” commands에 대한 use configure 또는 이에 상응하는 작업을 수행한다.
 4.3	BOSH 패키지 사양 파일의 dependencies배포 된 바이너리를 사용할 수 있는지 확인해야 한다.
 
-# Example libyaml packaging script
-set -e -x
+	Example libyaml packaging script
+	set -e -x
+	
+	tar xzf libyaml_0.1.4/yaml-0.1.4.tar.gz
+	pushd yaml-0.1.4
+	  ./configure --prefix=${BOSH_INSTALL_TARGET}
+	
+	  make
+	  make install
+	popd
+	
+	Example Ruby packaging script
+	set -e -x
+	
+	tar xzf ruby_1.9.3/ruby-1.9.3-p484.tar.gz
+	pushd ruby-1.9.3-p484
+	  ./configure \
+	    --prefix=${BOSH_INSTALL_TARGET} \
+	    --disable-install-doc \
+	    --with-opt-dir=/var/vcap/packages/libyaml_0.1.4
+	
+	  make
+	  make install
+	popd
+	
+	tar zxvf ruby_1.9.3/rubygems-1.8.24.tgz
+	pushd rubygems-1.8.24
+	  ${BOSH_INSTALL_TARGET}/bin/ruby setup.rb
+	popd
+	
+	${BOSH_INSTALL_TARGET}/bin/gem install ruby_1.9.3/bundler-1.2.1.gem --no-ri --no-rdoc
+	
+	Example ruby_app packaging script
+	set -e -x
+	
+	cp -a ruby_app/* ${BOSH_INSTALL_TARGET}
+	
+	cd ${BOSH_INSTALL_TARGET}
+	
+	/var/vcap/packages/ruby_1.9.3/bin/bundle install \
+	  --local \
+	  --deployment \
+	  --without development test
 
-tar xzf libyaml_0.1.4/yaml-0.1.4.tar.gz
-pushd yaml-0.1.4
-  ./configure --prefix=${BOSH_INSTALL_TARGET}
-
-  make
-  make install
-popd
-
-# Example Ruby packaging script
-set -e -x
-
-tar xzf ruby_1.9.3/ruby-1.9.3-p484.tar.gz
-pushd ruby-1.9.3-p484
-  ./configure \
-    --prefix=${BOSH_INSTALL_TARGET} \
-    --disable-install-doc \
-    --with-opt-dir=/var/vcap/packages/libyaml_0.1.4
-
-  make
-  make install
-popd
-
-tar zxvf ruby_1.9.3/rubygems-1.8.24.tgz
-pushd rubygems-1.8.24
-  ${BOSH_INSTALL_TARGET}/bin/ruby setup.rb
-popd
-
-${BOSH_INSTALL_TARGET}/bin/gem install ruby_1.9.3/bundler-1.2.1.gem --no-ri --no-rdoc
-
-# Example ruby_app packaging script
-set -e -x
-
-cp -a ruby_app/* ${BOSH_INSTALL_TARGET}
-
-cd ${BOSH_INSTALL_TARGET}
-
-/var/vcap/packages/ruby_1.9.3/bin/bundle install \
-  --local \
-  --deployment \
-  --without development test
-
-3.4.1.2.	pre_packaging
+###### <a name="34"/>3.4.1.2. pre_packaging
 pre_packaging 파일은 software 를 미리 packaging 하는 script 를 제공한다. (옵션)
 bosh document 에서는 pre_packaging 파일의 사용은 권장되지 않으며 이 튜토리얼에서 논의되지 않는다.(Use of the pre_packaging file is not recommended, and is not discussed in this tutorial.) https://bosh.io/docs/create-release.html#dev-release-release 문서에 명시되어 있음
 
-# mysql-service-broker pre_packaging Sample
-# abort script on any command that exits with a non zero value
-set -e
+	mysql-service-broker pre_packaging Sample
+	abort script on any command that exits with a non zero value
+	set -e
+	
+	(
+	  cd ${BUILD_DIR}/cf-mysql-broker
+	
+	  # cache gems
+	  bundle package --all
+	
+	  RAILS_ENV=assets bundle exec rake assets:precompile
+	
+	  # remove unneeded files
+	  rm -rf spec
+	)
 
-(
-  cd ${BUILD_DIR}/cf-mysql-broker
-
-  # cache gems
-  bundle package --all
-
-  RAILS_ENV=assets bundle exec rake assets:precompile
-
-  # remove unneeded files
-  rm -rf spec
-)
-
-3.4.1.3.	spec
+###### <a name="35"/>3.4.1.3. spec
 설치할 package 의 메터 정보인 이름, dependencies 및 설치 파일 정보가 제공된다.
 
-# spec 파일 설명
+spec 파일 설명
 1	name: package 이름을 정의 
 2	dependencies: (옵션) 패키지에 의존하는 다른 패키지의 목록을 정의
 3	files: 패키지에 포함 된 파일의 목록을 정의하거나 명시적 또는 패턴 매칭을 통해 파일 목록을 정의 할 수 있음
@@ -1263,211 +1254,210 @@ set -e
 4.4.3	files 부분은 먼저 src 디랙토리에서 해당 파일을 찾고 없을 경우 blobstore 의 blobs 에서 찾는다.
 4.4.4	files 해당 파일이 소스로 구성되어 있을 경우에는 일반적으로 globbing pattern(<package_name>/**/*) 을 사용한다.
 
+	Example Ruby package spec file
+	---
+	name: ruby_1.9.3
+	
+	  dependencies:
+	  - libyaml_0.1.4
+	
+	  files:
+	  - ruby_1.9.3/ruby-1.9.3-p484.tar.gz
+	  - ruby_1.9.3/rubygems-1.8.24.tgz
+	  - ruby_1.9.3/bundler-1.2.1.gem
 
-# Example Ruby package spec file
----
-name: ruby_1.9.3
-
-  dependencies:
-  - libyaml_0.1.4
-
-  files:
-  - ruby_1.9.3/ruby-1.9.3-p484.tar.gz
-  - ruby_1.9.3/rubygems-1.8.24.tgz
-  - ruby_1.9.3/bundler-1.2.1.gem
-
-3.4.2.	jobs 가이드
+##### <a name="36"/>3.4.2. jobs 가이드
 모든 job은 시작 및 중지하는 방법이 제공되어야 한다. 따라서 제어 스크립트를 작성하고 MONIT 파일을 작성하여해당 실행 되는 jobs(processes)를 모니터링 한다.
 
-3.4.2.1.	templates
+###### <a name="37"/>3.4.2.1. templates
 설치된 package를 구동 및 정지 및 관련 설정 파일을 구성하는 템플릿 파일.
 
-# control script 설명 : *.erb 화일
+control script 설명 : *.erb 화일
 1	시작 명령과 중지 명령이 포함되어 있다.
 2	관련 job에 대한 templates 디렉토리에 ERb template 형식으로 구성한다. (shell script로 구성)
 3	각 job 에 대해 “/var/vcap/sys/log/JOB_NAME” 안에 로그 작업을 구성하는 제어 스크립트를 만든다.
 
-# Example mariadb_ctl.erb
-#!/bin/bash -e
+	Example mariadb_ctl.erb
+	!/bin/bash -e
+	
+	set -e
+	
+	export MARIADB_JOB_DIR=/var/vcap/jobs/mysql
+	RUN_DIR=/var/vcap/sys/run/mysql
+	datadir=/var/vcap/store/mysql
+	LOG_DIR=/var/vcap/sys/log/mysql
+	LOG_FILE=$LOG_DIR/maria-ctl.log
+	CONFIG_DIR=/etc/mysql
+	export JOB_INDEX=<%= index %>
+	STATE_FILE=/var/vcap/store/mysql/state.txt
+	MYSQL_DAEMON_FILE=/var/vcap/packages/mariadb_ctrl/mysql_daemon.sh
+	MYSQL_CLIENT_FILE=/var/vcap/packages/mariadb/bin/mysql
+	MYSQL_SERVER_FILE=/var/vcap/packages/mariadb/support-files/mysql.server
+	DB_SEED_SCRIPT_FILE=$MARIADB_JOB_DIR/bin/mysql_database_seed.sh
+	package_dir=/var/vcap/packages/mariadb_ctrl
+	executable_name=mariadb_ctrl-executable
+	MYSQL_UPGRADE_SCRIPT_FILE=$package_dir/mysql_upgrade.sh
+	MYSQL_SHOW_DATABASES_SCRIPT_FILE=$package_dir/show_databases.sh
+	
+	export MY_NAME=mariadb_ctl
+	export RUN_DIR=/var/vcap/sys/run/$MY_NAME
+	export PIDFILE=$RUN_DIR/$MY_NAME.pid
+	
+	DATABASE_SEED_ATTEMPTS=30
+	
+	source /var/vcap/packages/common/utils.sh
+	
+	add mysql to path
+	if [ ! -f /usr/local/bin/mysql ]; then
+	  log "Adding mysql to path"
+	  ln -s /var/vcap/packages/mariadb/bin/mysql /usr/local/bin
+	fi
+	
+	add xtrabackup to path
+	export PATH=$PATH:/var/vcap/packages/xtrabackup/bin
+	
+	add perl libraries to perl env
+	export PERL5LIB=$PERL5LIB:/var/vcap/packages/xtrabackup/lib/perl/5.18.2
+	
+	case $1 in
+	
+	  The start script must always exit 0 if there's a chance Maria could start successfully,
+	  as if monit sees a pid for Maria but this script exited with error, it will assume
+	  someone else started the process in the background.
+	  This will latch the status to "Execution failed" until someone manually calls
+	  monit unmonitor && monit monitor, at which point monit would find the pid and reset the status to 'running'
+	
+	  start)
+	
+	if [[ ! -d "$RUN_DIR" ]]; then
+	      log "start script: directory $RUN_DIR does not exist, creating it now"
+	      mkdir -p $RUN_DIR
+	    fi
+	
+	    log "start script: checking for existing instance of $MY_NAME"
+	    set +e
+	    $(source /var/vcap/packages/common/utils.sh; pid_guard $PIDFILE $MY_NAME)
+	    pg_exit_code=$?
+	    log "start script: pg_exit_code: $pg_exit_code"
+	    if [ $pg_exit_code -eq 1 ]; then
+	log "start script: $MY_NAME already running. Exiting 0 so that monit doesn't think that execution failed"
+	      exit 0
+	    fi
+	    set -e
+	
+	    log "start script: writing pid $$ for $MY_NAME to $PIDFILE"
+	    echo $$ > $PIDFILE
+	
+	log "start script: checking if mysqld_safe is already running... "
+	    set +e
+	    pgrep -f /var/vcap/packages/mariadb/bin/mysqld_safe
+	    result_code=$?
+	    set -e
+	    // Exit code of 0 means we did find a process, so we should exit.
+	    if [ $result_code -eq 0 ]; then
+	      log "start script: mysqld_safe already running - exiting with 0 so that monit doesn't think that execution failed"
+	      exit 0
+	    else
+	      log "start script: mysqld_safe not already running - continue"
+	    fi
+	
+	    Start syslog forwarding
+	    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $MARIADB_JOB_DIR/config
+	
+	    mkdir -p $LOG_DIR
+	    touch $LOG_FILE
+	    chown vcap:vcap $LOG_FILE
+	    date >> $LOG_FILE 2>> $LOG_FILE
+	
+	    It is surprisingly hard to get the config file location passed in
+	    on the command line to the mysql.server script. This is easier.
+	    mkdir -p $CONFIG_DIR
+	    rm -f /etc/my.cnf
+	    rm -f $CONFIG_DIR/my.cnf
+	    ln -sf $MARIADB_JOB_DIR/config/my.cnf $CONFIG_DIR/my.cnf
+	
+	if ! test -d ${datadir}; then
+	      log "start script: making ${datadir} and running /var/vcap/packages/mariadb/scripts/mysql_install_db"
+	      mkdir -p ${datadir}
+	      /var/vcap/packages/mariadb/scripts/mysql_install_db \
+	             --basedir=/var/vcap/packages/mariadb --user=vcap \
+	             --datadir=${datadir} >> $LOG_FILE 2>> $LOG_FILE
+	    fi
+	    chown -R vcap:vcap ${datadir}
+	
+	    cd $package_dir
+	
+	<% node_ip = spec.networks.send(p('network_name')).ip %>
+	
+	log "start script: starting mariadb_ctrl..."
+	    $package_dir/$executable_name \
+	             -logFile=$LOG_FILE \
+	             -stateFile=$STATE_FILE \
+	             -mysqlDaemon=$MYSQL_DAEMON_FILE \
+	             -mysqlClient=$MYSQL_CLIENT_FILE \
+	             -mysqlUser=<%= p('admin_username')%> \
+	             -mysqlPassword=<%= p('admin_password')%> \
+	             -jobIndex=$JOB_INDEX \
+	             -dbSeedScript=$DB_SEED_SCRIPT_FILE \
+	             -upgradeScriptPath=$MYSQL_UPGRADE_SCRIPT_FILE \
+	             -showDatabasesScriptPath=$MYSQL_SHOW_DATABASES_SCRIPT_FILE \
+	             -numberOfNodes=<%= p('cluster_ips').length %> \
+	             -clusterIps=<%= (p('cluster_ips') - [node_ip]).join(',') %> \
+	             -maxDatabaseSeedTries=$DATABASE_SEED_ATTEMPTS
+	>> $LOG_FILE 2>> $LOG_FILE
+	
+	
+	log "start script: completed starting mariadb_ctrl."
+	    ;;
+	
+	  stop)
+	log "stop script: stopping mariadb_ctrl..."
+	    mkdir -p $LOG_DIR
+	    date >> $LOG_FILE 2>> $LOG_FILE
+	    log "stop script: stopping node $JOB_INDEX" >> $LOG_FILE
+	    /var/vcap/packages/mariadb/support-files/mysql.server stop >> $LOG_FILE 2>> $LOG_FILE
+	
+	    log "stop script: completed stopping mariadb_ctrl"
+	    ;;
+	
+	  *)
+	    echo "Usage: mysql_ctl {start|stop}"
+	    ;;
+	
+	esac
 
-set -e
-
-export MARIADB_JOB_DIR=/var/vcap/jobs/mysql
-RUN_DIR=/var/vcap/sys/run/mysql
-datadir=/var/vcap/store/mysql
-LOG_DIR=/var/vcap/sys/log/mysql
-LOG_FILE=$LOG_DIR/maria-ctl.log
-CONFIG_DIR=/etc/mysql
-export JOB_INDEX=<%= index %>
-STATE_FILE=/var/vcap/store/mysql/state.txt
-MYSQL_DAEMON_FILE=/var/vcap/packages/mariadb_ctrl/mysql_daemon.sh
-MYSQL_CLIENT_FILE=/var/vcap/packages/mariadb/bin/mysql
-MYSQL_SERVER_FILE=/var/vcap/packages/mariadb/support-files/mysql.server
-DB_SEED_SCRIPT_FILE=$MARIADB_JOB_DIR/bin/mysql_database_seed.sh
-package_dir=/var/vcap/packages/mariadb_ctrl
-executable_name=mariadb_ctrl-executable
-MYSQL_UPGRADE_SCRIPT_FILE=$package_dir/mysql_upgrade.sh
-MYSQL_SHOW_DATABASES_SCRIPT_FILE=$package_dir/show_databases.sh
-
-export MY_NAME=mariadb_ctl
-export RUN_DIR=/var/vcap/sys/run/$MY_NAME
-export PIDFILE=$RUN_DIR/$MY_NAME.pid
-
-DATABASE_SEED_ATTEMPTS=30
-
-source /var/vcap/packages/common/utils.sh
-
-# add mysql to path
-if [ ! -f /usr/local/bin/mysql ]; then
-  log "Adding mysql to path"
-  ln -s /var/vcap/packages/mariadb/bin/mysql /usr/local/bin
-fi
-
-# add xtrabackup to path
-export PATH=$PATH:/var/vcap/packages/xtrabackup/bin
-
-# add perl libraries to perl env
-export PERL5LIB=$PERL5LIB:/var/vcap/packages/xtrabackup/lib/perl/5.18.2
-
-case $1 in
-
-  # The start script must always exit 0 if there's a chance Maria could start successfully,
-  # as if monit sees a pid for Maria but this script exited with error, it will assume
-  # someone else started the process in the background.
-  # This will latch the status to "Execution failed" until someone manually calls
-  # monit unmonitor && monit monitor, at which point monit would find the pid and reset the status to 'running'
-
-  start)
-
-if [[ ! -d "$RUN_DIR" ]]; then
-      log "start script: directory $RUN_DIR does not exist, creating it now"
-      mkdir -p $RUN_DIR
-    fi
-
-    log "start script: checking for existing instance of $MY_NAME"
-    set +e
-    $(source /var/vcap/packages/common/utils.sh; pid_guard $PIDFILE $MY_NAME)
-    pg_exit_code=$?
-    log "start script: pg_exit_code: $pg_exit_code"
-    if [ $pg_exit_code -eq 1 ]; then
-log "start script: $MY_NAME already running. Exiting 0 so that monit doesn't think that execution failed"
-      exit 0
-    fi
-    set -e
-
-    log "start script: writing pid $$ for $MY_NAME to $PIDFILE"
-    echo $$ > $PIDFILE
-
-log "start script: checking if mysqld_safe is already running... "
-    set +e
-    pgrep -f /var/vcap/packages/mariadb/bin/mysqld_safe
-    result_code=$?
-    set -e
-    # Exit code of 0 means we did find a process, so we should exit.
-    if [ $result_code -eq 0 ]; then
-      log "start script: mysqld_safe already running - exiting with 0 so that monit doesn't think that execution failed"
-      exit 0
-    else
-      log "start script: mysqld_safe not already running - continue"
-    fi
-
-    # Start syslog forwarding
-    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $MARIADB_JOB_DIR/config
-
-    mkdir -p $LOG_DIR
-    touch $LOG_FILE
-    chown vcap:vcap $LOG_FILE
-    date >> $LOG_FILE 2>> $LOG_FILE
-
-    # It is surprisingly hard to get the config file location passed in
-    # on the command line to the mysql.server script. This is easier.
-    mkdir -p $CONFIG_DIR
-    rm -f /etc/my.cnf
-    rm -f $CONFIG_DIR/my.cnf
-    ln -sf $MARIADB_JOB_DIR/config/my.cnf $CONFIG_DIR/my.cnf
-
-if ! test -d ${datadir}; then
-      log "start script: making ${datadir} and running /var/vcap/packages/mariadb/scripts/mysql_install_db"
-      mkdir -p ${datadir}
-      /var/vcap/packages/mariadb/scripts/mysql_install_db \
-             --basedir=/var/vcap/packages/mariadb --user=vcap \
-             --datadir=${datadir} >> $LOG_FILE 2>> $LOG_FILE
-    fi
-    chown -R vcap:vcap ${datadir}
-
-    cd $package_dir
-
-<% node_ip = spec.networks.send(p('network_name')).ip %>
-
-log "start script: starting mariadb_ctrl..."
-    $package_dir/$executable_name \
-             -logFile=$LOG_FILE \
-             -stateFile=$STATE_FILE \
-             -mysqlDaemon=$MYSQL_DAEMON_FILE \
-             -mysqlClient=$MYSQL_CLIENT_FILE \
-             -mysqlUser=<%= p('admin_username')%> \
-             -mysqlPassword=<%= p('admin_password')%> \
-             -jobIndex=$JOB_INDEX \
-             -dbSeedScript=$DB_SEED_SCRIPT_FILE \
-             -upgradeScriptPath=$MYSQL_UPGRADE_SCRIPT_FILE \
-             -showDatabasesScriptPath=$MYSQL_SHOW_DATABASES_SCRIPT_FILE \
-             -numberOfNodes=<%= p('cluster_ips').length %> \
-             -clusterIps=<%= (p('cluster_ips') - [node_ip]).join(',') %> \
-             -maxDatabaseSeedTries=$DATABASE_SEED_ATTEMPTS
->> $LOG_FILE 2>> $LOG_FILE
-
-
-log "start script: completed starting mariadb_ctrl."
-    ;;
-
-  stop)
-log "stop script: stopping mariadb_ctrl..."
-    mkdir -p $LOG_DIR
-    date >> $LOG_FILE 2>> $LOG_FILE
-    log "stop script: stopping node $JOB_INDEX" >> $LOG_FILE
-    /var/vcap/packages/mariadb/support-files/mysql.server stop >> $LOG_FILE 2>> $LOG_FILE
-
-    log "stop script: completed stopping mariadb_ctrl"
-    ;;
-
-  *)
-    echo "Usage: mysql_ctl {start|stop}"
-    ;;
-
-esac
-
-3.4.2.2.	monit
+###### <a name="38"/>3.4.2.2. monit
 배포 된 release 에서 BOSH Agent가 job VM에서 실행된다. BOSH는 차례로 제어 스크립트의 명령을 실행하여 에이전트와 통신한다. Agent는 Monit 라는 오픈 소스 process 모니터링 software 를 사용한다.
 
-# monit 파일 설명
+monit 파일 설명
 1	작업 프로세스 ID (PID) 파일을 지정한다.
 2	job이 vcap 그룹에 속하도록 지정
 
-# Example mariadb monit file
-check process mariadb_ctrl-executable
-  with pidfile /var/vcap/sys/run/mysql/mysql.pid
-  start program "/var/vcap/jobs/mysql/bin/mariadb_ctl start" with timeout 300 seconds
-  stop program "/var/vcap/jobs/mysql/bin/mariadb_ctl stop" with timeout 10 seconds
-  group vcap
-  depends on galera-healthcheck-executable
+	Example mariadb monit file
+	check process mariadb_ctrl-executable
+	  with pidfile /var/vcap/sys/run/mysql/mysql.pid
+	  start program "/var/vcap/jobs/mysql/bin/mariadb_ctl start" with timeout 300 seconds
+	  stop program "/var/vcap/jobs/mysql/bin/mariadb_ctl stop" with timeout 10 seconds
+	  group vcap
+	  depends on galera-healthcheck-executable
+	
+	check process galera-healthcheck-executable
+	  with pidfile /var/vcap/sys/run/galera-healthcheck/galera-healthcheck.pid
+	  start program "/var/vcap/jobs/mysql/bin/galera-healthcheck_ctl start" with timeout 10 seconds
+	  stop program "/var/vcap/jobs/mysql/bin/galera-healthcheck_ctl stop" with timeout 10 seconds
+	  group vcap
+	  depends on gra-log-purger-executable
+	
+	check process gra-log-purger-executable
+	  with pidfile /var/vcap/sys/run/gra-log-purger/gra-log-purger.pid
+	  start program "/var/vcap/jobs/mysql/bin/gra-log-purger_ctl start" with timeout 10 seconds
+	  stop program "/var/vcap/jobs/mysql/bin/gra-log-purger_ctl stop" with timeout 10 seconds
+	  group vcap
 
-check process galera-healthcheck-executable
-  with pidfile /var/vcap/sys/run/galera-healthcheck/galera-healthcheck.pid
-  start program "/var/vcap/jobs/mysql/bin/galera-healthcheck_ctl start" with timeout 10 seconds
-  stop program "/var/vcap/jobs/mysql/bin/galera-healthcheck_ctl stop" with timeout 10 seconds
-  group vcap
-  depends on gra-log-purger-executable
-
-check process gra-log-purger-executable
-  with pidfile /var/vcap/sys/run/gra-log-purger/gra-log-purger.pid
-  start program "/var/vcap/jobs/mysql/bin/gra-log-purger_ctl start" with timeout 10 seconds
-  stop program "/var/vcap/jobs/mysql/bin/gra-log-purger_ctl stop" with timeout 10 seconds
-  group vcap
-
-3.4.2.3.	spec
+###### <a name="38"/>3.4.2.3. spec
 설치할 job 의 메타 정보인 이름, templates 및 설정 properties 정보가 제공된다.
 
-# spec 파일 설명
+spec 파일 설명
 1	name: job이름을 정의 
 2	templates: key/value 형식으로 존재
 2.1	각 key는 template 이름
@@ -1477,78 +1467,78 @@ check process gra-log-purger-executable
 3	packages: 설치되는 package의 목록
 4	properties: template 파일에서 사용되는 변수들을 정의
 
-# Example mysql job spec file
----
-name: mysql
-
-templates:
-  mariadb_ctl.erb:  bin/mariadb_ctl
-  my.cnf.erb:     config/my.cnf
-  mariadb_init.erb: config/mariadb_init
-  galera-healthcheck_ctl.erb: bin/galera-healthcheck_ctl
-  gra-log-purger_ctl.erb: bin/gra-log-purger_ctl
-  gra-log-purger.sh.erb: bin/gra-log-purger.sh
-  mysql_database_seed.sh.erb: bin/mysql_database_seed.sh
-  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
-
-packages:
-- xtrabackup
-- mariadb
-- mariadb_ctrl
-- galera
-- galera-healthcheck
-- gra-log-purger
-- golang
-- common
-- syslog_aggregator
-
-properties:
-  admin_username:
-    description: 'Username for the MySQL server admin user'
-    default: 'root'
-  admin_password:
-    description: 'Password for the MySQL server admin user'
-  port:
-    description: 'Port the mysql server should bind to'
-    default: 3306
-  max_connections:
-    description: 'Maximum total number of database connections for the node'
-    default: 1500
-  innodb_buffer_pool_size:
-    description: 'The size in bytes of the memory buffer InnoDB uses to cache data and indexes of its tables'
-  cluster_ips:
-description: 'List of nodes.  Must have the same number of ips as there are nodes in the cluster'
-  haproxy_mysql_user:
-    description: 'A user for HAProxy health check'
-  haproxy_ips:
-    description: 'List of haproxy node ip addresses'
-
-  #these two properties are also used by the Broker
-  gcache_size:
-    description: 'Cache size used by galera (maximum amount of data possible in an IST), in MB'
-    default: 512
-  ib_log_file_size:
-    description: 'Size of the ib_log_file used by innodb, in MB'
-    default: 1024
-  seeded_databases:
-    description: 'Set of databases to seed'
-    default: {}
-
-  network_name:
-    description: "The name of the network (needed for the syslog aggregator)"
-  syslog_aggregator.address:
-    description: "IP address for syslog aggregator"
-  syslog_aggregator.port:
-    description: "TCP port of syslog aggregator"
-  syslog_aggregator.all:
-description: "Define whether forwarders should also send non-mysql syslog activity to the aggregator."
-    default: false
-  syslog_aggregator.transport:
-description: "Transport to be used when forwarding logs (tcp|udp|relp)."
-    default: "tcp"
-
- 
-4.	Deployment Guide
+	Example mysql job spec file
+	---
+	name: mysql
+	
+	templates:
+	  mariadb_ctl.erb:  bin/mariadb_ctl
+	  my.cnf.erb:     config/my.cnf
+	  mariadb_init.erb: config/mariadb_init
+	  galera-healthcheck_ctl.erb: bin/galera-healthcheck_ctl
+	  gra-log-purger_ctl.erb: bin/gra-log-purger_ctl
+	  gra-log-purger.sh.erb: bin/gra-log-purger.sh
+	  mysql_database_seed.sh.erb: bin/mysql_database_seed.sh
+	  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+	
+	packages:
+	- xtrabackup
+	- mariadb
+	- mariadb_ctrl
+	- galera
+	- galera-healthcheck
+	- gra-log-purger
+	- golang
+	- common
+	- syslog_aggregator
+	
+	properties:
+	  admin_username:
+	    description: 'Username for the MySQL server admin user'
+	    default: 'root'
+	  admin_password:
+	    description: 'Password for the MySQL server admin user'
+	  port:
+	    description: 'Port the mysql server should bind to'
+	    default: 3306
+	  max_connections:
+	    description: 'Maximum total number of database connections for the node'
+	    default: 1500
+	  innodb_buffer_pool_size:
+	    description: 'The size in bytes of the memory buffer InnoDB uses to cache data and indexes of its tables'
+	  cluster_ips:
+	description: 'List of nodes.  Must have the same number of ips as there are nodes in the cluster'
+	  haproxy_mysql_user:
+	    description: 'A user for HAProxy health check'
+	  haproxy_ips:
+	    description: 'List of haproxy node ip addresses'
+	
+	  #these two properties are also used by the Broker
+	  gcache_size:
+	    description: 'Cache size used by galera (maximum amount of data possible in an IST), in MB'
+	    default: 512
+	  ib_log_file_size:
+	    description: 'Size of the ib_log_file used by innodb, in MB'
+	    default: 1024
+	  seeded_databases:
+	    description: 'Set of databases to seed'
+	    default: {}
+	
+	  network_name:
+	    description: "The name of the network (needed for the syslog aggregator)"
+	  syslog_aggregator.address:
+	    description: "IP address for syslog aggregator"
+	  syslog_aggregator.port:
+	    description: "TCP port of syslog aggregator"
+	  syslog_aggregator.all:
+	description: "Define whether forwarders should also send non-mysql syslog activity to the aggregator."
+	    default: false
+	  syslog_aggregator.transport:
+	description: "Transport to be used when forwarding logs (tcp|udp|relp)."
+	    default: "tcp"
+	
+	
+### <a name="40"/>4. Deployment Guide
 BOSH Deploymentmanifest 는 components 요소 및 배포의 속성을 정의한YAML  파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의하여 Bosh deploy CLI 을 이용하여 software(여기서는 서비스팩)를 설치 한다. (3.2 Bosh Architecture의 Modules components 그림 참고)
 
@@ -1567,93 +1557,110 @@ BOSH Deplyment manifest 의 내용은 아래와 같다.
 name [String, required]: 배포의 이름. 단일 BOSH Director는 다수의 배포를 관리하고 그들의 이름으로 구별 한다.
 director_uuid [String, required]:BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 BOSH Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할수 있다.
 
-# bosh status CLI
+bosh status CLI
  
-
-# Example
-name: my-redis-deployment
-director_uuid: 8b701af8-d658-48ee-893e-9d299622e332
+	Example
+	name: my-redis-deployment
+	director_uuid: 8b701af8-d658-48ee-893e-9d299622e332
 
 2.	Releases Block
 releases [Array, required]:deployment 안의 각 release 의 이름 및 버전 정보
 name [String, required]: release 에서 사용하는 이름
 version [String, required]: release 에서 사용하는 버전. ‘latest’ 를 넣을 경우 최신 버전 사용
 
-# Example
-releases:
-- {name: redis, version: 12}
+	Example
+	releases:
+	- {name: redis, version: 12}
 
 3.	Networks Block
 networks [Array, required]: 네트워크 블록에 나열된 각 서브 블록이 참조 할 수있는 작업이 네트워크 구성을 지정한다. 네트워크는 manual, dynamic, vip 세 개의 종류가 있다.
 
-# AWS Example
+AWS Example
 Dynamic network 또는 manual network 서브넷에서 사용하는 ‘cloud_properties’ 스키마
 subnet [String, required]: AWS에서 생성한 subnet ID
 
-Example of manual network:
-
-	networks:
-	- name: default
-	  type: manual
+	Example of manual network:
 	
-	  subnets:
-	  - range:   10.10.0.0/24
-	    gateway: 10.10.0.1
-	    cloud_properties:
-	      subnet: subnet-9be6c3f7
-
-Example of dynamic network:
-
-	networks:
-	- name: default
-	  type: dynamic
-	  cloud_properties:
-	    subnet: subnet-9be6c6gh
-
-Example of vip network:
-
-	networks:
-	- name: default
-	 OpenStack Example
-Dynamic network 또는 manual network 서브넷에서 사용하는 ‘cloud_properties’ 스키마
-net_id [String, required]: OpenStack에서 생성한 subnet ID. 예) net-b98ab66e-6fae-4c6a-81af-566e630d21d1
-security_groups [Array, optional]: security groups 이 네크워크 구성에 적용.
-
-
-Example of manual network:
-
-	networks:
-	- name: default
-	  type: manual
+		networks:
+		- name: default
+		  type: manual
+		
+		  subnets:
+		  - range:   10.10.0.0/24
+		    gateway: 10.10.0.1
+		    cloud_properties:
+		      subnet: subnet-9be6c3f7
 	
-	  subnets:
-	  - range:   10.10.0.0/24
-	    gateway: 10.10.0.1
-	    cloud_properties:
-	      net_id: net-b98ab66e-6fae-4c6a-81af-566e630d21d1
-	      security_groups: [my-sec-group]
-
-Example of dynamic network:
-
-	networks:
-	- name: default
-	  type: dynamic
-	  cloud_properties:
-	    net_id: net-b98ab66e-6fae-4c6a-81af-566e630d21d1
-
-Example of vip network:
-
-	networks:
-	- name: default
-	  type: vip
-	  cloud_properties: {}
+	Example of dynamic network:
+	
+		networks:
+		- name: default
+		  type: dynamic
+		  cloud_properties:
+		    subnet: subnet-9be6c6gh
+	
+	Example of vip network:
+	
+		networks:
+		- name: default
+		 OpenStack Example
+	Dynamic network 또는 manual network 서브넷에서 사용하는 ‘cloud_properties’ 스키마
+	net_id [String, required]: OpenStack에서 생성한 subnet ID. 예) net-b98ab66e-6fae-4c6a-81af-566e630d21d1
+	security_groups [Array, optional]: security groups 이 네크워크 구성에 적용.
+	
+	
+	Example of manual network:
+	
+		networks:
+		- name: default
+		  type: manual
+		
+		  subnets:
+		  - range:   10.10.0.0/24
+		    gateway: 10.10.0.1
+		    cloud_properties:
+		      net_id: net-b98ab66e-6fae-4c6a-81af-566e630d21d1
+		      security_groups: [my-sec-group]
+	
+	Example of dynamic network:
+	
+		networks:
+		- name: default
+		  type: dynamic
+		  cloud_properties:
+		    net_id: net-b98ab66e-6fae-4c6a-81af-566e630d21d1
+	
+	Example of vip network:
+	
+		networks:
+		- name: default
+		  type: vip
+		  cloud_properties: {}
 
 vSphere Example
 manual network 서브넷에서 사용하는 ‘cloud_properties’ 스키마
 name [String, required]: vSphere 에서 사용하는 network 이름
 
-Example of manual network:
+	Example of manual network:
+	
+		networks:
+		- name: default
+		  type: manual
+		
+		  subnets:
+		  - range:   10.10.0.0/24
+		    gateway: 10.10.0.1
+		    cloud_properties:
+		      name: VM Network
 
+참고 :vSphere CPI does not support dynamic or vip networks.
+
+vCloud Example
+manual network 서브넷에서 사용하는 ‘cloud_properties’ 스키마
+name [String, required]: vApp 에서 생성된network 이름
+
+	Example of manual network:
+	
 	networks:
 	- name: default
 	  type: manual
@@ -1662,25 +1669,7 @@ Example of manual network:
 	  - range:   10.10.0.0/24
 	    gateway: 10.10.0.1
 	    cloud_properties:
-	      name: VM Network
-
-참고 :vSphere CPI does not support dynamic or vip networks.
-
-# vCloud Example
-manual network 서브넷에서 사용하는 ‘cloud_properties’ 스키마
-name [String, required]: vApp 에서 생성된network 이름
-
-Example of manual network:
-
-networks:
-- name: default
-  type: manual
-
-  subnets:
-  - range:   10.10.0.0/24
-    gateway: 10.10.0.1
-    cloud_properties:
-      name: VPC_BOSH
+	      name: VPC_BOSH
 
 참고 :vCloud CPI does not support dynamic or vip networks.
 
@@ -1707,15 +1696,15 @@ ephemeral_disk [Hash, optional]:EBS backed ephemeral disk of custom size for whe
   - standard stands for EBS magnetic drives
   - gp2 stands for EBS general purpose drives (SSD)
 
-resource_pools:
-- name: default
-  network: default
-  stemcell:
-    name: bosh-aws-xen-ubuntu-trusty-go_agent
-    version: latest
-  cloud_properties:
-    instance_type: m1.small
-    availability_zone: us-east-1a
+	resource_pools:
+	- name: default
+	  network: default
+	  stemcell:
+	    name: bosh-aws-xen-ubuntu-trusty-go_agent
+	    version: latest
+	  cloud_properties:
+	    instance_type: m1.small
+	    availability_zone: us-east-1a
 
 OpenStack Example
 instance_type [String, required]: 인스턴스 종류 예) m1.small
@@ -1724,15 +1713,15 @@ key_name [String, optional]: key pair 이름. 디폴트 key pair 이름은 globa
 scheduler_hints [Hash, optional]:Data passed to the OpenStack Filter scheduler to influence its decision where new VMs can be placed 예) { group: af09abf2-2283... }
 
 
-resource_pools:
-- name: default
-  network: default
-  stemcell:
-    name: bosh-openstack-kvm-ubuntu-trusty-go_agent
-    version: latest
-  cloud_properties:
-    instance_type: m1.small
-    availability_zone: us-east-1a
+	resource_pools:
+	- name: default
+	  network: default
+	  stemcell:
+	    name: bosh-openstack-kvm-ubuntu-trusty-go_agent
+	    version: latest
+	  cloud_properties:
+	    instance_type: m1.small
+	    availability_zone: us-east-1a
 
 vSphere Example
 cpu [Integer, required]: CPUs 수
@@ -1746,34 +1735,32 @@ datacenters [Array, optional]:datacenters의 배열을 VM 위치에 상관 없�
 -	name [String, required]: Director 가 만들 DRS 규칙 이름
 -	type [String, required]: DRS rule종류. 현재는separate_vms 만 제공
 
-
-resource_pools:
-- name: default
-  network: default
-  stemcell:
-    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent
-    version: latest
-  cloud_properties:
-    cpu: 2
-    ram: 1_024
-    disk: 10_240
+	resource_pools:
+	- name: default
+	  network: default
+	  stemcell:
+	    name: bosh-vsphere-esxi-ubuntu-trusty-go_agent
+	    version: latest
+	  cloud_properties:
+	    cpu: 2
+	    ram: 1_024
+	    disk: 10_240
 
 vCloud Example
 cpu [Integer, required]: CPUs 수
 ram [Integer, required]:RAM in megabytes
 disk [Integer, required]:Ephemeral disk size in megabytes
 
-
-resource_pools:
-- name: default
-  network: default
-  stemcell:
-    name: bosh-vcloud-esxi-ubuntu-trusty-go_agent
-    version: latest
-  cloud_properties:
-    cpu: 2
-    ram: 1_024
-    disk: 10_240
+	resource_pools:
+	- name: default
+	  network: default
+	  stemcell:
+	    name: bosh-vcloud-esxi-ubuntu-trusty-go_agent
+	    version: latest
+	  cloud_properties:
+	    cpu: 2
+	    ram: 1_024
+	    disk: 10_240
 
 5. Disk Pools Block
 disk_pools [Array, required]: 배포시 사용하는 disk pools를 명시하며 여러 개의 disk pools 을 사용할 경우 name 은 고유 식별자이어야 함
@@ -1796,7 +1783,6 @@ AWS Example
 
 OpenStack Example
 	type [String, optional]: OpenStack 설정 볼륨 종류 예) SSD
-	
 	
 	disk_pools:
 	- name: default
@@ -1868,7 +1854,6 @@ update [Hash, optional]: 이 job에 대한 특정 업데이트 설정
 properties [Hash, optional]: job 속성을 지정
 
 Example
-
 	- name: redis-master
 	  instances: 1
 	  templates:
@@ -1893,12 +1878,11 @@ Example
   - Passwords, Account names, Shared secrets, Host names, IP addresses, Port numbers, max_connections , etc.
 
 Example
-
 	properties:
 	  redis:
 	    max_connections: 10
 
-###5. Deploy Guide
+### <a name="41"/>5. Deploy Guide
 BOSH deploy CLI 로 Software를 배포 하기 위해서 선행조건으로 deployment manifest yml 에서
 사용할 stemcell 과release가 먼저 upload 되어 있어야 하고 deployment manifest yml 파일이 작성 
 되어 있어야 한다. 

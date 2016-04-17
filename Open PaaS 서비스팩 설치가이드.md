@@ -303,7 +303,7 @@ Cloud Controller 는 모든 요청에 HTTP 기본 인증(인증 헤더)을 사�
 Catalog API 경우에는 서비스의 종류와 관계없이 Service 및 Plan 정보를 저장되어 있는 settings.yml 파일이나 기타 메타 파일 또는 소스 안에 정보를 저장한 후 제공한다. 만일 AppDirect 를 이용하는 경우는 Catalog 정보를 조회해오는 AppDirect API를 호출하여 그 결과를 제공한다. 샘플 settings.yml 파일은 3. Catalog Rest API 구현 참고.
 
 
-* Pivotal 서비스 Plan 예시
+◎ Pivotal 서비스 Plan 예시
 - clearDB plan 예
 [그림출처] :http://run.pivotal.io/
 

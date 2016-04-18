@@ -57,7 +57,7 @@ Document 관련 사항
 	- 2.5.1. API Platform ([vSphere](./Service-Guide/ETC/ServiceBroker_APIPlatform_vSphere_install_guide.md), 
 	[AWS](./Service-Guide/ETC/ServiceBroker_APIPlatform_AWS_install_guide.md), 
 	[OpenStack](./Service-Guide/ETC/ServiceBroker_APIPlatform_Openstack_install_guide.md), 
-	[Bosh-Lite](./Service-Guide/ETC/ServiceBroker_APIPlatform_BOSH-Lite_install_guide.md))
+	[Bosh-Lite](./Service-Guide/ETC/ServiceBroker_APIPlatform_BOSH_Lite_install_guide.md))
 
 	- 2.5.2. [Public API Develope Guide](./Service-Guide/ETC/ServiceBroker_PublicAPI_devlope_guide.md)
 

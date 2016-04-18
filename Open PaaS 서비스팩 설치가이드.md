@@ -139,7 +139,7 @@ Cloud Controller 는 모든 요청에 HTTP 기본 인증(인증 헤더)을 사�
 2.5.	Quota Plan
 >![openpaas-servicepack-12]
 
-###### sample body response message
+◎ sample body response message
 	
 	{
 	  "services": [
@@ -246,6 +246,7 @@ Cloud Controller 는 모든 요청에 HTTP 기본 인증(인증 헤더)을 사�
 	      - content: 40 concurrent connections
 
 3.2.	Ruby 방식(Ruby on Rails)
+
 	-- 어플리케이션을 만들 때 레일즈(rails)을 이용 해서 새로운 어플리케이션을 위한 기본 생성 구조를 만든다. 아래 표 참고
 	$ rails new<broker_name>
 	>![openpaas-servicepack-13]
@@ -282,6 +283,7 @@ Cloud Controller 는 모든 요청에 HTTP 기본 인증(인증 헤더)을 사�
 		end
 	
 3.3.	Node.js 방식
+
 		-- express 라는 Node.js 에서 가장 많이 사용하는 웹 프레임워크 모듈을 이용해서 Rest API 를 만든다.
 		
 		# sample (app.js)
@@ -315,7 +317,7 @@ Catalog API 경우에는 서비스의 종류와 관계없이 Service 및 Plan �
 
 >![openpaas-servicepack-17]
 
-* Pivotal 서비스 Dashboard 예시
+◎ Pivotal 서비스 Dashboard 예시
 - clearDB Dashboard 예
 [그림출처] :https://www.cleardb.com/
 >![openpaas-servicepack-18]
@@ -356,7 +358,8 @@ Mysql DataBase 인 경우에는 새로운 DATABASE 스키마를 생성한다. �
 2.3.	Dashboard Single Sign-On.
 Single Sign-On (SSO)는 개방형 클라우드 플랫폼 사용자들이 개방형 클라우드 플랫폼 자격 증명을 사용하여 third-party 서비스의 대시 보드에 접근한다. 서비스 대시 보드는 서비스가 제공하는 기능의 일부 또는 전부를 사용할 수 있는 웹 인터페이스이다. SSO는 반복되는 로그인과 여러 서비스의 계정을 통합 관리한다. OAuth2 프로토콜 인증을 처리하기 때문에 사용자의 자격 증명은 직접 서비스로 전송하지 않는다. SSO 기능을 사용하려면 Cloud Controller UAA client 에 서비스 브로커의 생성 및 삭제 할 수 있는 권한이 있어야 한다. 이 클라이언트는 개방형 클라우드 플랫폼 설치시 구성한다. (설치 문서 참고)
 
-* CF 설치시 Dashboard SSO 설정 예)
+◎ CF 설치시 Dashboard SSO 설정 예)
+	
 	properties:
 	    uaa:
 	      clients:
@@ -368,6 +371,7 @@ Single Sign-On (SSO)는 개방형 클라우드 플랫폼 사용자들이 개방�
 
 3. Provision Rest API 구현
 3.1. JAVA 방식
+
 	-- ServiceInstanceRestController.java (Spring 프레임워크 사용)
 	
 	@Controller
@@ -389,6 +393,7 @@ Single Sign-On (SSO)는 개방형 클라우드 플랫폼 사용자들이 개방�
 	}
 
 3.2. Ruby 방식(Ruby on Rails)
+
 	-- config/routes.rb : 라우팅 정보를 담은 파일
 	
 	CfMysqlBroker::Application.routes.draw do
@@ -416,7 +421,8 @@ Single Sign-On (SSO)는 개방형 클라우드 플랫폼 사용자들이 개방�
 	end
 
 3.3. Node.js 방식
-	# sample (app.js) : Catalog API 참고
+
+	◎ sample (app.js) : Catalog API 참고
 	
 	var router = express.Router();
 	
@@ -436,6 +442,7 @@ Single Sign-On (SSO)는 개방형 클라우드 플랫폼 사용자들이 개방�
 4.1. RDBMS
 
 1. Mysql 경우
+
 	- 생성할 데이터 베이스가 존재 하는지 체크 
 	SHOW DATABASES LIKE '${instance.database}'
 	
@@ -445,6 +452,7 @@ Single Sign-On (SSO)는 개방형 클라우드 플랫폼 사용자들이 개방�
 	- 생성 후 Dashboard 정보를 JSON Object 형식으로 Cloud Controller 에 전송.
 
 2. Cubrid DB 경우 
+
 	- 데이터 베이스 생성할 디렉토리 생성 및 이동
 	$ mkdir <databasename>
 	$ cd <databasename>
@@ -458,7 +466,7 @@ Single Sign-On (SSO)는 개방형 클라우드 플랫폼 사용자들이 개방�
 
 4.2. 대용량 저장소
 1. GlusterFS 경우
-# GlusterFS 로 파일을 업로드 하기 위해서는 먼저 GlusterFS 와 OpenStack swift 로 service back-end로 구성하여 Object Storage 방식으로 파일을 업로드 다운로드를 할수 있게 제공한다. (아마존 S3 방식과 유사)
+◎ GlusterFS 로 파일을 업로드 하기 위해서는 먼저 GlusterFS 와 OpenStack swift 로 service back-end로 구성하여 Object Storage 방식으로 파일을 업로드 다운로드를 할수 있게 제공한다. (아마존 S3 방식과 유사)
 
 	- 새로운 Swift Account 를 생성
 	
@@ -474,9 +482,9 @@ Single Sign-On (SSO)는 개방형 클라우드 플랫폼 사용자들이 개방�
 4.3.	NoSQL DB
 1. mongoDB 경우
 
-- 새로운 데이터 베이스를 생성
->use <databasename>
-switched to db <databasename>
+	- 새로운 데이터 베이스를 생성
+	>use <databasename>
+	switched to db <databasename>
 
 ##### <a name="14"/>2.5.3. Update Instance API 가이드
 Update Instance API는 기존의 서비스 인스턴스의 plan를 수정 한다. 즉 서비스 인스턴스의 plan을 업그레이드나 다운그레이드 한다.
@@ -484,7 +492,8 @@ Update Instance API는 기존의 서비스 인스턴스의 plan를 수정 한다
 
 1.	Request
 1.1.	Route
-PATCH /v2/service_instances/:instance_id
+	PATCH /v2/service_instances/:instance_id
+
 참고: instance_id는 이전에 provision 서비스 인스턴스의 GUID
 
 1.2.	cURL
@@ -493,26 +502,12 @@ PATCH /v2/service_instances/:instance_id
 	}' -X PATCH -H "X-Broker-API-Version: 2.4" -H "Content-Type: application/json"
 
 1.3.	Body
-REQUEST FIELD	TYPE	DESCRIPTION
-plan_id	string	변경할 새로운 plan ID
-service_id*	string	카탈로그 내의 서비스의 ID는 카탈로그 endpoint 에서 사용자가 provision 할 때 필요한 고유 식별자
-parameters	JSON object	JSON 형태의 파라미터 값을 제공
-previous_values	object	업데이트하기 전 인스턴스에 대한 정보
-previous_values.plan_id	string	업데이트하기 전 plan ID
-previous_values.service_id	string	업데이트하기 전 서비스 ID
-previous_values.organization_id	string	업데이트하기 전 조직 ID
-previous_values.space_id	string	업데이트하기 전 스페이스 ID
+>![openpaas-servicepack-23]
 
 2.	Response
 2.1.	Status Code
 STATUS CODE	DESCRIPTION
-200 OK	요청한 plan 으로 변경하고 응답 본문은 "{}" 으로 전송
-422 Unprocessable entity	요구 된 특정 plan 변경이 지원되지 않는 경우. (예. 인스턴스 사용률이 요청한 계획의 할당량을 초과)
-에러 메시지 형태는 {} 안에 description 필드를 사용.
-	예) 
-	{
-	  "description": "Something went wrong. Please contact support at http://support.example.com."
-	}
+>![openpaas-servicepack-24]
 
 2.2.	Body 
 모든 응답 bodies 는 JSON Object ({}) 형식으로 한다.
@@ -540,74 +535,70 @@ STATUS CODE	DESCRIPTION
 	}
 
 3.2.	Ruby 방식(Ruby on Rails)
--- config/routes.rb : posts 를 위한 라우팅 정보를 담은 수정된 라우팅 파일
+	-- config/routes.rb : posts 를 위한 라우팅 정보를 담은 수정된 라우팅 파일
+	
+	CfMysqlBroker::Application.routes.draw do
+	  resource :preview, only: [:show]
+	
+	namespace :v2 do
+	resource :catalog, only: [:show] // 접속 라우팅 설정 (V2/catalog)
+	patch 'service_instances/:id' => 'service_instances#set_plan'
+	resources :service_instances, only: [:update, :destroy] do
+	      resources :service_bindings, only: [:update, :destroy]
+	    end
+	  end
+	
+	end
 
-CfMysqlBroker::Application.routes.draw do
-  resource :preview, only: [:show]
-
-namespace :v2 do
-resource :catalog, only: [:show] // 접속 라우팅 설정 (V2/catalog)
-patch 'service_instances/:id' => 'service_instances#set_plan'
-resources :service_instances, only: [:update, :destroy] do
-      resources :service_bindings, only: [:update, :destroy]
-    end
-  end
-
-end
-
--- RestController 구현 (app/controllers/v2/service_instances_controller.rb)
-
-class V2::ServiceInstancesController < V2::BaseController
-
-def set_plan
-// 서비스 인스턴스 plan 정보 업데이트
-  end
-
-end
+	-- RestController 구현 (app/controllers/v2/service_instances_controller.rb)
+	
+	class V2::ServiceInstancesController < V2::BaseController
+	
+	def set_plan
+	// 서비스 인스턴스 plan 정보 업데이트
+	  end
+	
+	end
 
 3.3.	Node.js 방식
-# sample (app.js) : Catalog API 참고
-
-var router = express.Router();
-
-router.route('/v2/service_instances/:id’)
-
-.patch(function(req, res, next) {
-  // 서비스 instance 수정 기능 구현 (개발 명세 내용 구현)
-
-})
+	◎ sample (app.js) : Catalog API 참고
+	
+	var router = express.Router();
+	
+	router.route('/v2/service_instances/:id’)
+	
+	.patch(function(req, res, next) {
+	  // 서비스 instance 수정 기능 구현 (개발 명세 내용 구현)
+	
+	})
 
 4.	서비스 별 Update Service instance API 개발 명세
 4.1.	공통
-1.	현재 제공 중인 plan 정보와 변경 요청 받은 plan 정보가 다른지 체크한다.
-
-2.	다운 그레이드 할 경우 이미 사용하는 용량이 다운 그레이드 할 용량보다 클 경우 에러를 발생시킨다.
-
-3.	업 그레이드 할 경우 plan 정보를 업데이트 한다. (예: DBMS 서비스 경우 connection 수, storage 용량)
-
-4.	변경된 내용을 Cloud Controller 전달 한다.
+	1.	현재 제공 중인 plan 정보와 변경 요청 받은 plan 정보가 다른지 체크한다.
+	
+	2.	다운 그레이드 할 경우 이미 사용하는 용량이 다운 그레이드 할 용량보다 클 경우 에러를 발생시킨다.
+	
+	3.	업 그레이드 할 경우 plan 정보를 업데이트 한다. (예: DBMS 서비스 경우 connection 수, storage 용량)
+	
+	4.	변경된 내용을 Cloud Controller 전달 한다.
 
 ##### <a name="15"/>2.5.4. Deprovision API 가이드
 브로커가 개방형 클라우드 플랫폼으로부터 deprovision 요청을 수신 할 때 provision 생성시 제공했던 모든 리소스를 삭제한다.
 
 1.	Request
 1.1.	Route
-DELETE /v2/service_instances/:instance_id
+	DELETE /v2/service_instances/:instance_id
 
 1.2.	Parameters
-QUERY-STRING FIELD	TYPE	DESCRIPTION
-service_id*	string	카탈로그에 있는 서비스 ID.
-plan_id*	string	카탈로그에 있는 Plan ID
+>![openpaas-servicepack-25]
 
 1.3.	cURL
-$ curl 'http://username:password@broker-url/v2/service_instances/:instance_id?service_id=
-    service-id-here&plan_id=plan-id-here' -X DELETE -H "X-Broker-API-Version: 2.4"
+	$ curl 'http://username:password@broker-url/v2/service_instances/:instance_id?service_id=
+	    service-id-here&plan_id=plan-id-here' -X DELETE -H "X-Broker-API-Version: 2.4"
 
 2.	Response
 2.1.	Status Code
-STATUS CODE	DESCRIPTION
-200 OK	서비스 인스턴스를 삭제. “{}” 메시지를 응답
-410 Gone	서비스 인스턴스가 존재 하지 않을 경우. “{}” 메시지를 응답
+>![openpaas-servicepack-26]
 
 2.2.	Body 
 모든 응답 bodies 는 JSON Object ({}) 형식으로 한다.
@@ -615,62 +606,62 @@ STATUS CODE	DESCRIPTION
 
 3.	Deprovision Rest API 구현
 3.1.	JAVA 방식
--- ServiceInstanceRestController.java (Spring 프레임워크 사용)
-
-@Controller
-@RequestMapping("/v2/service_instances/{id}")
-class ServiceInstanceRestController {
-  @Autowired
-private ServiceInstanceService service;
-
-@RequestMapping(method = RequestMethod.DELETE)
-  @ResponseBody
-  Map destroy(@PathVariable String id) {
-    ServiceInstance instance = service.findById(id);
-    if (service.isExists(instance)) {
-      service.delete(instance); // 서비스 instance 삭제 기능 구현 (개발 명세 내용 구현)
-    }
-    return [:]
-  }
-}
+	-- ServiceInstanceRestController.java (Spring 프레임워크 사용)
+	
+	@Controller
+	@RequestMapping("/v2/service_instances/{id}")
+	class ServiceInstanceRestController {
+	  @Autowired
+	private ServiceInstanceService service;
+	
+	@RequestMapping(method = RequestMethod.DELETE)
+	  @ResponseBody
+	  Map destroy(@PathVariable String id) {
+	    ServiceInstance instance = service.findById(id);
+	    if (service.isExists(instance)) {
+	      service.delete(instance); // 서비스 instance 삭제 기능 구현 (개발 명세 내용 구현)
+	    }
+	    return [:]
+	  }
+	}
 
 3.2.	Ruby 방식(Ruby on Rails)
--- config/routes.rb : posts 를 위한 라우팅 정보를 담은 수정된 라우팅 파일
-
-CfMysqlBroker::Application.routes.draw do
-  resource :preview, only: [:show]
-
-namespace :v2 do
-resource :catalog, only: [:show] // 접속 라우팅 설정 (V2/catalog)
-patch 'service_instances/:id' => 'service_instances#set_plan'
-    resources :service_instances, only: [:update, :destroy] do
-      resources :service_bindings, only: [:update, :destroy]
-    end
-  end
-
-end
-
--- RestController 구현 (app/controllers/v2/service_instances_controller.rb)
-
-class V2::ServiceInstancesController < V2::BaseController
-
-  def destroy
-// 서비스 instance 삭제 기능 구현 (개발 명세 내용 구현)
-  end
-
-end
+	-- config/routes.rb : posts 를 위한 라우팅 정보를 담은 수정된 라우팅 파일
+	
+	CfMysqlBroker::Application.routes.draw do
+	  resource :preview, only: [:show]
+	
+	namespace :v2 do
+	resource :catalog, only: [:show] // 접속 라우팅 설정 (V2/catalog)
+	patch 'service_instances/:id' => 'service_instances#set_plan'
+	    resources :service_instances, only: [:update, :destroy] do
+	      resources :service_bindings, only: [:update, :destroy]
+	    end
+	  end
+	
+	end
+	
+	-- RestController 구현 (app/controllers/v2/service_instances_controller.rb)
+	
+	class V2::ServiceInstancesController < V2::BaseController
+	
+	  def destroy
+	// 서비스 instance 삭제 기능 구현 (개발 명세 내용 구현)
+	  end
+	
+	end
 
 3.3.	Node.js 방식
-# sample (app.js) : Catalog API 참고
-
-var router = express.Router();
-
-router.route('/v2/service_instances/:id’)
-
-.delete(function(req, res, next) {
-// 서비스 instance 삭제 기능 구현 (개발 명세 내용 구현)
-
-})
+	◎ sample (app.js) : Catalog API 참고
+	
+	var router = express.Router();
+	
+	router.route('/v2/service_instances/:id’)
+	
+	.delete(function(req, res, next) {
+	// 서비스 instance 삭제 기능 구현 (개발 명세 내용 구현)
+	
+	})
 
 
 4.	서비스 별 Deprovision API 개발 명세
@@ -683,39 +674,39 @@ router.route('/v2/service_instances/:id’)
 1. Mysql 경우
 
 - 데이터 베이스 삭제
-DROP DATABASE IF EXISTS #{connection.quote_table_name(database_name)}
+	DROP DATABASE IF EXISTS #{connection.quote_table_name(database_name)}
 
 2. Cubrid DB 경우 
 
 - 서비스 종료 후 데이터베이스 제거
-$ cubrid service stop
-$ cubrid deletedb <databasename>
+	$ cubrid service stop
+	$ cubrid deletedb <databasename>
 
 - 제거한 데이터베이스 디렉터리 제거
-$ rm –rf <database 설치 path>/<databasename>
+	$ rm –rf <database 설치 path>/<databasename>
 
 
 4.2.	대용량 저장소
 1. GlusterFS 경우
 
-- Swift Account 를 삭제
-
-Method  : DELETE 
-
-Req URL : http(s)://[IP Address OR HostName]/auth/v2/[AccountID]
-
-Header  : X-Auth-Admin-User: .super_admin
-	  X-Auth-Admin-Key: swauthkey
+	- Swift Account 를 삭제
+	
+	Method  : DELETE 
+	
+	Req URL : http(s)://[IP Address OR HostName]/auth/v2/[AccountID]
+	
+	Header  : X-Auth-Admin-User: .super_admin
+		  X-Auth-Admin-Key: swauthkey
 
 4.3.	NoSQL DB
 1. mongoDB 경우
 
-- 데이터 베이스 삭제
->use <databasename>
-switched to db <databasename>
->db.dropDatabase()
->{ "dropped" : "<databasename>", "ok" : 1 }
->
+	- 데이터 베이스 삭제
+	>use <databasename>
+	switched to db <databasename>
+	>db.dropDatabase()
+	>{ "dropped" : "<databasename>", "ok" : 1 }
+	>
 
 
 ##### <a name="16"/>2.5.5. Bind API 가이드
@@ -723,111 +714,85 @@ Provision만으로 서비스를 사용할 수 있을 경우에는 bind 기능 �
 
 1.	Request
 1.1.	Route
-PUT /v2/service_instances/:instance_id/service_bindings/:binding_id
+	PUT /v2/service_instances/:instance_id/service_bindings/:binding_id
 참고: binding_id는 서비스 바인딩을 하기 위해 Cloud Controller에 의해 제공된다. binding_id는 향후 바인딩 해제 요청에 사용된다.
 
 1.2.	cURL
-$ curl http://username:password@broker-url/v2/service_instances/
-:instance_id/service_bindings/:binding_id -d '{
-  "plan_id":        "plan-guid-here",
-  "service_id":     "service-guid-here",
-  "app_guid":       "app-guid-here"
-}' -X PUT -H "X-Broker-API-Version: 2.4" -H "Content-Type: application/json"
+	$ curl http://username:password@broker-url/v2/service_instances/
+	:instance_id/service_bindings/:binding_id -d '{
+	  "plan_id":        "plan-guid-here",
+	  "service_id":     "service-guid-here",
+	  "app_guid":       "app-guid-here"
+	}' -X PUT -H "X-Broker-API-Version: 2.4" -H "Content-Type: application/json"
 
 1.3.	Body
-REQUEST FIELD	TYPE	DESCRIPTION
-service_id*	string	카탈로그 내의 서비스의 ID
-plan_id*	string	서비스 내의 plan ID
-app_guid*	string	서비스 바인드를 할 Application 의 GUID
-parameters	JSON object	JSON 형태의 파라미터 값을 제공
+>![openpaas-servicepack-27]
 
 2.	Response
 2.1.	Status Code
-STATUS CODE	DESCRIPTION
-201 Created	바인딩 생성.Response body 정보는 아래에 제공
-200 OK	서비스 바인딩이 이미 존재하고 요청 된 매개 변수가 기존의 바인딩과 동일한 경우. Response body 정보는 아래에 제공
-409 Conflict	요청 된 바인딩이 이미 존재하는 경우 반환. 에러 메시지 형태는 {} 안에 description 필드를 사용
-예) 
-{
-  "description": "Something went wrong. Please contact support at http://support.example.com."
-}
-422 Unprocessable Entity	브로커가 요청 본문에 app_guid를 포함 할 것을 요구하는 경우
-예) 
-{ 
-"error": "RequiresApp", "description": "This service supports generation of credentials through binding an application only." 
-}
+>![openpaas-servicepack-28]
 다른 상태코드(Status Code) 응답은 실패를 의미한다.
 
 2.2.	Body 
-모든 응답 bodies 는 JSON Object ({}) 형식으로 한다.
-RESPONSE FIELD	TYPE	DESCRIPTION
-credentials	object	Application이 서비스에 접근할수 있는 credentials 정보. 해시 형태로 제공. 자세한 정보는 2.3 Binding Credentials를 참고
-syslog_drain_url	string	개방형 클라우드 플랫폼에 bound 된 Application에 대한 로그 URL. 자세한 정보는 2.4 Application Log Streaming 을 참고
+>![openpaas-servicepack-29]
 
 2.3.	Binding Credentials 
 서비스 바인딩 경우 바인드 API 호출에 응답하여 사용자가 Application에서 사용 할 수있는 인증 정보를 반환한다. 개방형 클라우드 플랫폼 환경 변수 VCAP_SERVICES에 이러한 자격 증명을 제공한다. 가능하면 credentials(자격증명) 필드 목록에서 사용하기를 권장한다. 필요에 따라 추가 필드를 제공 할 수 있지만 제공되는 필드로 사용자의 요구 사항을 충족하는 경우 해당 필드를 사용한다.
 
 중요: 연결 문자열(connection string)을 지원하는 서비스를 제공하는 경우 적어도 uri 키를 제공해야한다.위에서 언급 한 바와 같이 또한 별도의 자격 증명 필드를 제공 할 수있다. Buildpacks 및 Application 라이브러리는 uri 키를 사용한다.
-CREDENTIALS	DESCRIPTION
-uri	dbtype 같은 연결 문자열(Connection string)의 형태는 아래와 같다. dbtype://username:password@hostname:port/name
-dbtype: mysql, postgres, mongodb, amqp, etc.
-hostname	서버 호스트의 FQDN(Full Qualified Domain Name)
-port	서버 호스트의 포트 번호
-name	서비스 인스턴스 이름: 예) database name
-vhost	메시징 서버의 가상 호스트의 이름 (AMQP 공급자에서 특정 이름 교체)
-username	서버 사용자
-password	서버 사용자 비밀번호
+>![openpaas-servicepack-30]
 
-# Example VCAP_SERVICES 결과
-VCAP_SERVICES=
-{
-  cleardb: [
-    {
-      name: "cleardb-1",
-      label: "cleardb",
-      plan: "spark",
-      credentials: {
-        name: "ad_c6f4446532610ab",
-        hostname: "us-cdbr-east-03.cleardb.com",
-        port: "3306",
-        username: "b5d435f40dd2b2",
-        password: "ebfc00ac",
-        uri: "mysql://b5d435f40dd2b2:ebfc00ac@us-cdbr-east-03.cleardb.com:3306/ad_c6f4446532610ab",
-        jdbcUrl: "jdbc:mysql://b5d435f40dd2b2:ebfc00ac@us-cdbr-east-03.cleardb.com:3306/ad_c6f4446532610ab"
-      }
-    }
-  ],
-  cloudamqp: [
-    {
-      name: "cloudamqp-6",
-      label: "cloudamqp",
-      plan: "lemur",
-      credentials: {
-        uri: "amqp://ksvyjmiv:IwN6dCdZmeQD4O0ZPKpu1YOaLx1he8wo@lemur.cloudamqp.com/ksvyjmiv"
-      }
-    }
-    {
-      name: "cloudamqp-9dbc6",
-      label: "cloudamqp",
-      plan: "lemur",
-      credentials: {
-        uri: "amqp://vhuklnxa:9lNFxpTuJsAdTts98vQIdKHW3MojyMyV@lemur.cloudamqp.com/vhuklnxa"
-      }
-    }
-  ],
-  rediscloud: [
-    {
-      name: "rediscloud-1",
-      label: "rediscloud",
-      plan: "20mb",
-      credentials: {
-        port: "6379",
-        host: "pub-redis-6379.us-east-1-2.3.ec2.redislabs.com",
-        password: "1M5zd3QfWi9nUyya"
-      }
-    },
-  ],
-}
+◎ Example VCAP_SERVICES 결과
+
+	VCAP_SERVICES=
+	{
+	  cleardb: [
+	    {
+	      name: "cleardb-1",
+	      label: "cleardb",
+	      plan: "spark",
+	      credentials: {
+	        name: "ad_c6f4446532610ab",
+	        hostname: "us-cdbr-east-03.cleardb.com",
+	        port: "3306",
+	        username: "b5d435f40dd2b2",
+	        password: "ebfc00ac",
+	        uri: "mysql://b5d435f40dd2b2:ebfc00ac@us-cdbr-east-03.cleardb.com:3306/ad_c6f4446532610ab",
+	        jdbcUrl: "jdbc:mysql://b5d435f40dd2b2:ebfc00ac@us-cdbr-east-03.cleardb.com:3306/ad_c6f4446532610ab"
+	      }
+	    }
+	  ],
+	  cloudamqp: [
+	    {
+	      name: "cloudamqp-6",
+	      label: "cloudamqp",
+	      plan: "lemur",
+	      credentials: {
+	        uri: "amqp://ksvyjmiv:IwN6dCdZmeQD4O0ZPKpu1YOaLx1he8wo@lemur.cloudamqp.com/ksvyjmiv"
+	      }
+	    }
+	    {
+	      name: "cloudamqp-9dbc6",
+	      label: "cloudamqp",
+	      plan: "lemur",
+	      credentials: {
+	        uri: "amqp://vhuklnxa:9lNFxpTuJsAdTts98vQIdKHW3MojyMyV@lemur.cloudamqp.com/vhuklnxa"
+	      }
+	    }
+	  ],
+	  rediscloud: [
+	    {
+	      name: "rediscloud-1",
+	      label: "rediscloud",
+	      plan: "20mb",
+	      credentials: {
+	        port: "6379",
+	        host: "pub-redis-6379.us-east-1-2.3.ec2.redislabs.com",
+	        password: "1M5zd3QfWi9nUyya"
+	      }
+	    },
+	  ],
+	}
 
 2.4.	Application Log Streaming 
 개방형 클라우드 플랫폼은 서비스 인스턴스에 바인딩 된 Application에 대한 로그를 스트리밍 한다. 서비스 인스턴스에 바인딩 된 모든 Application에 대한 로그는 해당 인스턴스로 스트리밍된다.
@@ -842,60 +807,60 @@ VCAP_SERVICES=
 
 3.	Bind Rest API 구현
 3.1.	JAVA 방식
--- ServiceBindingRestController.java (Spring 프레임워크 사용)
-
-@Controller
-@RequestMapping("/v2/service_instances/{instanceId}/service_bindings/{bindingId}")
-class ServiceBindingRestController {
-  @Autowired ServiceBindingService bindingService;
-
-@RequestMapping(method = RequestMethod.PUT)
-  @ResponseBody
-  ServiceBinding update(@PathVariable String instanceId, @PathVariable String bindingId) {
-    ServiceBinding binding = bindingService.findById(bindingId, instanceId);
-    bindingService.save(binding);     // 서비스 바인드 기능 구현 (개발 명세 내용 구현)
-    return binding;
-  }
-
-}
+	-- ServiceBindingRestController.java (Spring 프레임워크 사용)
+	
+	@Controller
+	@RequestMapping("/v2/service_instances/{instanceId}/service_bindings/{bindingId}")
+	class ServiceBindingRestController {
+	  @Autowired ServiceBindingService bindingService;
+	
+	@RequestMapping(method = RequestMethod.PUT)
+	  @ResponseBody
+	  ServiceBinding update(@PathVariable String instanceId, @PathVariable String bindingId) {
+	    ServiceBinding binding = bindingService.findById(bindingId, instanceId);
+	    bindingService.save(binding);     // 서비스 바인드 기능 구현 (개발 명세 내용 구현)
+	    return binding;
+	  }
+	
+	}
 
 3.2.	Ruby 방식(Ruby on Rails)
--- config/routes.rb : posts 를 위한 라우팅 정보를 담은 수정된 라우팅 파일
+	-- config/routes.rb : posts 를 위한 라우팅 정보를 담은 수정된 라우팅 파일
+	
+	CfMysqlBroker::Application.routes.draw do
+	  resource :preview, only: [:show]
+	
+	namespace :v2 do
+	resource :catalog, only: [:show] // 접속 라우팅 설정 (V2/catalog)
+	    patch 'service_instances/:id' => 'service_instances#set_plan'
+	    resources :service_instances, only: [:update, :destroy] do
+	resources :service_bindings, only: [:update, :destroy]
+	    end
+	  end
+	
+	end
 
-CfMysqlBroker::Application.routes.draw do
-  resource :preview, only: [:show]
-
-namespace :v2 do
-resource :catalog, only: [:show] // 접속 라우팅 설정 (V2/catalog)
-    patch 'service_instances/:id' => 'service_instances#set_plan'
-    resources :service_instances, only: [:update, :destroy] do
-resources :service_bindings, only: [:update, :destroy]
-    end
-  end
-
-end
-
--- RestController 구현 (app/controllers/v2/service_bindings_controller.rb)
-
-class V2::ServiceBindingsController< V2::BaseController
-
-  def update
-// 서비스 bind 기능 구현 (개발 명세 내용 구현)
-  end
-
-end
+	-- RestController 구현 (app/controllers/v2/service_bindings_controller.rb)
+	
+	class V2::ServiceBindingsController< V2::BaseController
+	
+	  def update
+	// 서비스 bind 기능 구현 (개발 명세 내용 구현)
+	  end
+	
+	end
 
 3.3.	Node.js 방식
-# sample (app.js) : Catalog API 참고
+	◎ sample (app.js) : Catalog API 참고
 
-var router = express.Router();
-
-router.route('/v2/service_instances/:instanceId/service_bindings/:bindingId’)
-
-.put(function(req, res, next) {
-// 서비스 bind 기능 구현 (개발 명세 내용 구현)
-
-})
+	var router = express.Router();
+	
+	router.route('/v2/service_instances/:instanceId/service_bindings/:bindingId’)
+	
+	.put(function(req, res, next) {
+	// 서비스 bind 기능 구현 (개발 명세 내용 구현)
+	
+	})
 
 
 4.	서비스 별 Bind API 개발 명세
@@ -906,51 +871,51 @@ router.route('/v2/service_instances/:instanceId/service_bindings/:bindingId’)
 4.1.	RDBMS
 1. Mysql 경우
 
-- 데이터 베이스에 접속할 사용자를 생성한다.
-CREATE USER #{username} IDENTIFIED BY #{password}
-
-- provision 시 생성한 데이터 베이스에 생성한 사용자가 사용 가능하게 권한을 주고 plan에 해당하는 connection 수를 제공한다.
-
-GRANT ALL PRIVILEGES ON #{databasename}.* TO #{username}@'%'WITH MAX_USER_CONNECTIONS #{max_user_connections}
-
-- 서버에 권한 테이블을 재배치한다.
-FLUSH PRIVILEGES
+	- 데이터 베이스에 접속할 사용자를 생성한다.
+	CREATE USER #{username} IDENTIFIED BY #{password}
+	
+	- provision 시 생성한 데이터 베이스에 생성한 사용자가 사용 가능하게 권한을 주고 plan에 해당하는 connection 수를 제공한다.
+	
+	GRANT ALL PRIVILEGES ON #{databasename}.* TO #{username}@'%'WITH MAX_USER_CONNECTIONS #{max_user_connections}
+	
+	- 서버에 권한 테이블을 재배치한다.
+	FLUSH PRIVILEGES
 
 2. Cubrid DB 경우 
 
-- 데이터 베이스에 접속할 사용자를 생성한다.
-CREATE USER #{username};
+	- 데이터 베이스에 접속할 사용자를 생성한다.
+	CREATE USER #{username};
 
 참고: Cubrid DB에서 권한 부여의 최소 단위는 테이블이다. 자신이 만든 테이블은 모든 접근을 허용한다.
 
 4.2.	대용량 저장소
 1. GlusterFS 경우
 
-- 새로운 Swift User 를 생성
-
-Method  : PUT 
-
-Req URL : http(s)://[IP Address OR HostName]:[PORT]/auth/v2/[AccountID]/[UserId]
-
-Header  : X-Auth-Admin-User: .super_admin
-	  X-Auth-Admin-Key: swauthkey
-	  X-Auth-User-Key: [Password]
-	  X-Auth-User-Admin: [true OR false]
+	- 새로운 Swift User 를 생성
+	
+	Method  : PUT 
+	
+	Req URL : http(s)://[IP Address OR HostName]:[PORT]/auth/v2/[AccountID]/[UserId]
+	
+	Header  : X-Auth-Admin-User: .super_admin
+		  X-Auth-Admin-Key: swauthkey
+		  X-Auth-User-Key: [Password]
+		  X-Auth-User-Admin: [true OR false]
 
 4.3.	NoSQL DB
 1. mongoDB 경우
 
-- 데이터 베이스에 접속할 사용자를 생성하고 접근 role(read, Write)을 부여한다.
->use <databasename>
-switched to db <databasename>
->db.getSiblingDB("<databasename>").runCommand(
- { createUser: "<username>",
- pwd: "<password>",
-roles: [
-"readWrite"
-         ]
-   }
- )
+	- 데이터 베이스에 접속할 사용자를 생성하고 접근 role(read, Write)을 부여한다.
+	>use <databasename>
+	switched to db <databasename>
+	>db.getSiblingDB("<databasename>").runCommand(
+	 { createUser: "<username>",
+	 pwd: "<password>",
+	roles: [
+	"readWrite"
+	         ]
+	   }
+	 )
 
 ##### <a name="17"/>2.5.6. Unbind API 가이드
 참고: 바인딩 서비스를 제공하지 않는 브로커는 Unbind API를 구현할 필요가 없다.
@@ -961,9 +926,7 @@ roles: [
 	DELETE /v2/service_instances/:instance_id/service_bindings/:binding_id
 
 1.2.	Parameters
-QUERY-STRING FIELD	TYPE	DESCRIPTION
-service_id*	string	카탈로그에 있는 서비스 ID
-plan_id*	string	카탈로그에 있는 Plan ID
+>![openpaas-servicepack-31]
 
 1.3.	cURL
 	$ curl 'http://username:password@broker-url/v2/service_instances/:instance_id/
@@ -971,9 +934,7 @@ plan_id*	string	카탈로그에 있는 Plan ID
 
 2.	Response
 2.1.	Status Code
-STATUS CODE	DESCRIPTION
-200 OK	서비스 바인딩이 삭제. “{}” 메시지를 응답
-410 Gone	서비스 바인딩이 존재 하지 않을 경우. “{}” 메시지를 응답
+>![openpaas-servicepack-32]
 
 2.2.	Body 
 모든 응답 bodies 는 JSON Object ({}) 형식으로 한다.
@@ -1024,7 +985,7 @@ STATUS CODE	DESCRIPTION
 	end
 
 3.3.	Node.js 방식
-	# sample (app.js): Catalog API 참고
+	◎ sample (app.js): Catalog API 참고
 	
 	var router = express.Router();
 	
@@ -1041,42 +1002,42 @@ STATUS CODE	DESCRIPTION
 
 4.1.	RDBMS
 1. Mysql 경우
-
-- unbind 할 사용자가 존재 하는지 체크
-SHOW GRANTS FOR #{username)}
-
-- 생성된 사용자를 삭제한다.
-DROP USER #{username}
-
-- 서버에 권한 테이블을 재배치한다.
-FLUSH PRIVILEGES
+	
+	- unbind 할 사용자가 존재 하는지 체크
+	SHOW GRANTS FOR #{username)}
+	
+	- 생성된 사용자를 삭제한다.
+	DROP USER #{username}
+	
+	- 서버에 권한 테이블을 재배치한다.
+	FLUSH PRIVILEGES
 
 2. Cubrid DB 경우 
 
-- bind 시 생성한 사용자를 삭제한다.
-DROP USER #{username};
+	- bind 시 생성한 사용자를 삭제한다.
+	DROP USER #{username};
 
 4.2.	대용량 저장소
 1. GlusterFS 경우
 
-- Swift User 를 삭제
-
-Method  : DELETE
-
-Req URL : http(s)://[IP Address OR HostName]/auth/v2/[AccountID]/[UserId]
-
-Header  : X-Auth-Admin-User: .super_admin
-	  X-Auth-Admin-Key: swauthkey	  X-Auth-User-Key: [Password]
-	  X-Auth-User-Admin: [true OR false]
+	- Swift User 를 삭제
+	
+	Method  : DELETE
+	
+	Req URL : http(s)://[IP Address OR HostName]/auth/v2/[AccountID]/[UserId]
+	
+	Header  : X-Auth-Admin-User: .super_admin
+		  X-Auth-Admin-Key: swauthkey	  X-Auth-User-Key: [Password]
+		  X-Auth-User-Admin: [true OR false]
 
 4.3.	NoSQL DB
 1. mongoDB 경우
-
-- bind 시 생성한 사용자를 삭제한다.
->use <databasename>
-switched to db <databasename>
->db.runCommand( { dropUser: "<username>"
-                } )
+	
+	- bind 시 생성한 사용자를 삭제한다.
+	>use <databasename>
+	switched to db <databasename>
+	>db.runCommand( { dropUser: "<username>"
+	                } )
 
  
 
@@ -1089,6 +1050,8 @@ BOSH release 는 jobs(packages 구동 스크립트, monit 스크립트 등), pac
 
 #### <a name="20"/>3.2.	Bosh Architecture
  
+>![openpaas-servicepack-33]
+
 [그림출처]: http://www.cloudsofchange.com/2012/05/fork-in-road-to-cloud.html
 
 -	개방형 클라우드 플랫폼 아키텍쳐와 흡사함 (Message Bus, Health Monitor, Blobstore 등)
@@ -1096,7 +1059,8 @@ BOSH release 는 jobs(packages 구동 스크립트, monit 스크립트 등), pac
 -	IaaS 종류에 따라 CPIs 구현 내용이 달라짐. (CPI : Cloud Provider Interface)
 -	Worker 들은 Director에 의해 결정된 task 들을 실행시키는 역할을 함
 
- 
+>![openpaas-servicepack-34]
+
 [그림출처]: https://www.ibm.com/developerworks/community/blogs/fe313521-2e95-46f2-817d-44a4f27eba32/entry/porting_cloud_foundry_on_power8_ubuntu_le?lang=en
 
 #### <a name="21"/>3.3.	Release Directory 구조
@@ -1104,32 +1068,50 @@ BOSH release 는 jobs(packages 구동 스크립트, monit 스크립트 등), pac
 
 ##### <a name="22"/>3.3.1. packages
 packages에는 Boshrelease 설치를 위한 바이너리에 대한 종속성을 준비하는데 필요한 정보를 제공한다. (packaging, pre_packaging, spec 파일)
+
+>![openpaas-servicepack-35]
  
 ##### <a name="23"/>3.3.2. jobs
 설치되는 package 들의 jobs(processes) 의 구동 및 정지 script 들과 모니터링(monit) script 로 구성한다.
- 
+
+>![openpaas-servicepack-36]
+
 ##### <a name="24"/>3.3.3. src
 service release 에서 사용하는 컨포넌트 소스 코드 또는 pre-compiled software 파일로 구성한다.
  
+>![openpaas-servicepack-37]
+ 
 ##### <a name="25"/>3.3.4. shared
 ruby 및 lib 와 같은 공통 컴포넌트 소스를 관리한다. (옵션)
+ 
+>![openpaas-servicepack-38]
  
 ##### <a name="26"/>3.3.5. releases
 -	버전별 서비스 release yml 파일들을 관리한다.(yaml 설치 방식)
 -	버전별 서비스 release tgz 압축 파일들을 관리한다. (tarball 설치 방식)
 -	Yaml 및 tarball 설치 방식은 아래 개발 가이드 참고한다.
  
+>![openpaas-servicepack-39]
+
 ##### <a name="27"/>3.3.6. config
 최종 release를 저장하기 위한 Bosh blobstore에 URL 및 액세스 자격 증명을 위한 설정 파일로 구성한다.
  
+>![openpaas-servicepack-40]
+
 ##### <a name="28"/>3.3.7. final_builds
 최종 jobs 및 packages 에 대한 public blobstore 정보를 제공한다.
+
+>![openpaas-servicepack-41]
  
 ##### <a name="29"/>3.3.8. deployments
 IaaS 별 service 배포 manifest 파일 들을 관리한다.
  
+>![openpaas-servicepack-42]
+
 ##### <a name="30"/>3.3.9. content_migrations
 이번버전으로 부터의 마이그레이션 정보 파일 들을 관리한다. (옵션)
+ 
+>![openpaas-servicepack-43]
  
 #### <a name="31"/>3.4.개발 가이드
 service를 Bosh release를 통해 배포 해야 하기 때문에 Bosh release 개발 방식에 따라
@@ -1152,7 +1134,7 @@ Service software 설치 관련하여 packaging, pre_packaging 와 spec 파일로
 ###### <a name="33"/>3.4.1.1. packaging
 packaging 파일은 software 를 설치 하는 script 를 제공한다.
 
-packaging 파일 설명
+◎ packaging 파일 설명
 1	“bosh generate package PACKAGE_NAME” 명령어로 packaging script file 를 자동생성한다.
 1.1	예) $ bosh generate package test (service release 폴더에서 실행)
 1.2	packages 폴더 안에 test package 폴더가 생성되고 해당 폴더에 packaging, pre_packaging, spec 파일 생성
@@ -1167,7 +1149,7 @@ packaging 파일 설명
 4.2	복사, 설치 또는 컴파일이 (BOSH_INSTALL_TARGET 환경 변수로 표현) 설치 대상 디렉토리에 코드가 생성 되는지 확인한다.“make” commands에 대한 use configure 또는 이에 상응하는 작업을 수행한다.
 4.3	BOSH 패키지 사양 파일의 dependencies배포 된 바이너리를 사용할 수 있는지 확인해야 한다.
 
-	Example libyaml packaging script
+	◎ Example libyaml packaging script
 	set -e -x
 	
 	tar xzf libyaml_0.1.4/yaml-0.1.4.tar.gz
@@ -1178,7 +1160,7 @@ packaging 파일 설명
 	  make install
 	popd
 	
-	Example Ruby packaging script
+	◎ Example Ruby packaging script
 	set -e -x
 	
 	tar xzf ruby_1.9.3/ruby-1.9.3-p484.tar.gz
@@ -1199,7 +1181,7 @@ packaging 파일 설명
 	
 	${BOSH_INSTALL_TARGET}/bin/gem install ruby_1.9.3/bundler-1.2.1.gem --no-ri --no-rdoc
 	
-	Example ruby_app packaging script
+	◎ Example ruby_app packaging script
 	set -e -x
 	
 	cp -a ruby_app/* ${BOSH_INSTALL_TARGET}
@@ -1215,7 +1197,7 @@ packaging 파일 설명
 pre_packaging 파일은 software 를 미리 packaging 하는 script 를 제공한다. (옵션)
 bosh document 에서는 pre_packaging 파일의 사용은 권장되지 않으며 이 튜토리얼에서 논의되지 않는다.(Use of the pre_packaging file is not recommended, and is not discussed in this tutorial.) https://bosh.io/docs/create-release.html#dev-release-release 문서에 명시되어 있음
 
-	mysql-service-broker pre_packaging Sample
+	◎ mysql-service-broker pre_packaging Sample
 	abort script on any command that exits with a non zero value
 	set -e
 	
@@ -1234,7 +1216,7 @@ bosh document 에서는 pre_packaging 파일의 사용은 권장되지 않으며
 ###### <a name="35"/>3.4.1.3. spec
 설치할 package 의 메터 정보인 이름, dependencies 및 설치 파일 정보가 제공된다.
 
-spec 파일 설명
+◎ spec 파일 설명
 1	name: package 이름을 정의 
 2	dependencies: (옵션) 패키지에 의존하는 다른 패키지의 목록을 정의
 3	files: 패키지에 포함 된 파일의 목록을 정의하거나 명시적 또는 패턴 매칭을 통해 파일 목록을 정의 할 수 있음
@@ -1243,6 +1225,8 @@ spec 파일 설명
 예) dependency 그래프
 [그림출처]: https://bosh.io/docs/create-release.html
  
+>![openpaas-servicepack-44]
+
 4.2	“bosh generate package PACKAGE_NAME” 명령어로 spec script file 를 자동생성한다.
 4.2.1	예) $ bosh generate package test (service release 폴더에서 실행)
 4.2.2	packages 폴더 안에 test package 폴더가 생성되고 해당 폴더에 packaging, pre_packaging, spec 파일 생성
@@ -1254,7 +1238,7 @@ spec 파일 설명
 4.4.3	files 부분은 먼저 src 디랙토리에서 해당 파일을 찾고 없을 경우 blobstore 의 blobs 에서 찾는다.
 4.4.4	files 해당 파일이 소스로 구성되어 있을 경우에는 일반적으로 globbing pattern(<package_name>/**/*) 을 사용한다.
 
-	Example Ruby package spec file
+	◎ Example Ruby package spec file
 	---
 	name: ruby_1.9.3
 	
@@ -1272,12 +1256,12 @@ spec 파일 설명
 ###### <a name="37"/>3.4.2.1. templates
 설치된 package를 구동 및 정지 및 관련 설정 파일을 구성하는 템플릿 파일.
 
-control script 설명 : *.erb 화일
+◎ control script 설명 : *.erb 화일
 1	시작 명령과 중지 명령이 포함되어 있다.
 2	관련 job에 대한 templates 디렉토리에 ERb template 형식으로 구성한다. (shell script로 구성)
 3	각 job 에 대해 “/var/vcap/sys/log/JOB_NAME” 안에 로그 작업을 구성하는 제어 스크립트를 만든다.
 
-	Example mariadb_ctl.erb
+	◎ Example mariadb_ctl.erb
 	!/bin/bash -e
 	
 	set -e
@@ -1307,24 +1291,24 @@ control script 설명 : *.erb 화일
 	
 	source /var/vcap/packages/common/utils.sh
 	
-	add mysql to path
+	◎ add mysql to path
 	if [ ! -f /usr/local/bin/mysql ]; then
 	  log "Adding mysql to path"
 	  ln -s /var/vcap/packages/mariadb/bin/mysql /usr/local/bin
 	fi
 	
-	add xtrabackup to path
+	◎ add xtrabackup to path
 	export PATH=$PATH:/var/vcap/packages/xtrabackup/bin
 	
-	add perl libraries to perl env
+	◎ add perl libraries to perl env
 	export PERL5LIB=$PERL5LIB:/var/vcap/packages/xtrabackup/lib/perl/5.18.2
 	
 	case $1 in
 	
-	  The start script must always exit 0 if there's a chance Maria could start successfully,
-	  as if monit sees a pid for Maria but this script exited with error, it will assume
-	  someone else started the process in the background.
-	  This will latch the status to "Execution failed" until someone manually calls
+	  ◎ The start script must always exit 0 if there's a chance Maria could start successfully,
+	  ◎ as if monit sees a pid for Maria but this script exited with error, it will assume
+	  ◎ someone else started the process in the background.
+	  ◎ This will latch the status to "Execution failed" until someone manually calls
 	  monit unmonitor && monit monitor, at which point monit would find the pid and reset the status to 'running'
 	
 	  start)
@@ -1429,11 +1413,11 @@ control script 설명 : *.erb 화일
 ###### <a name="38"/>3.4.2.2. monit
 배포 된 release 에서 BOSH Agent가 job VM에서 실행된다. BOSH는 차례로 제어 스크립트의 명령을 실행하여 에이전트와 통신한다. Agent는 Monit 라는 오픈 소스 process 모니터링 software 를 사용한다.
 
-monit 파일 설명
+◎ monit 파일 설명
 1	작업 프로세스 ID (PID) 파일을 지정한다.
 2	job이 vcap 그룹에 속하도록 지정
 
-	Example mariadb monit file
+	◎ Example mariadb monit file
 	check process mariadb_ctrl-executable
 	  with pidfile /var/vcap/sys/run/mysql/mysql.pid
 	  start program "/var/vcap/jobs/mysql/bin/mariadb_ctl start" with timeout 300 seconds
@@ -1457,7 +1441,7 @@ monit 파일 설명
 ###### <a name="38"/>3.4.2.3. spec
 설치할 job 의 메타 정보인 이름, templates 및 설정 properties 정보가 제공된다.
 
-spec 파일 설명
+◎ spec 파일 설명
 1	name: job이름을 정의 
 2	templates: key/value 형식으로 존재
 2.1	각 key는 template 이름
@@ -1467,7 +1451,7 @@ spec 파일 설명
 3	packages: 설치되는 package의 목록
 4	properties: template 파일에서 사용되는 변수들을 정의
 
-	Example mysql job spec file
+	◎ Example mysql job spec file
 	---
 	name: mysql
 	
@@ -1556,10 +1540,11 @@ BOSH Deplyment manifest 의 내용은 아래와 같다.
 1.	Deployment Identification
 name [String, required]: 배포의 이름. 단일 BOSH Director는 다수의 배포를 관리하고 그들의 이름으로 구별 한다.
 director_uuid [String, required]:BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 BOSH Director의 UUID와 일치해야한다. ‘bosh status’ CLI 을 통해서 현재 BOSH Director 에 target 되어 있는 UUID를 확인할수 있다.
+>![openpaas-servicepack-45]
 
 bosh status CLI
  
-	Example
+	◎ Example
 	name: my-redis-deployment
 	director_uuid: 8b701af8-d658-48ee-893e-9d299622e332
 
@@ -1568,18 +1553,18 @@ releases [Array, required]:deployment 안의 각 release 의 이름 및 버전 �
 name [String, required]: release 에서 사용하는 이름
 version [String, required]: release 에서 사용하는 버전. ‘latest’ 를 넣을 경우 최신 버전 사용
 
-	Example
+	◎  xample
 	releases:
 	- {name: redis, version: 12}
 
 3.	Networks Block
 networks [Array, required]: 네트워크 블록에 나열된 각 서브 블록이 참조 할 수있는 작업이 네트워크 구성을 지정한다. 네트워크는 manual, dynamic, vip 세 개의 종류가 있다.
 
-AWS Example
+◎  AWS Example
 Dynamic network 또는 manual network 서브넷에서 사용하는 ‘cloud_properties’ 스키마
 subnet [String, required]: AWS에서 생성한 subnet ID
 
-	Example of manual network:
+	◎  Example of manual network:
 	
 		networks:
 		- name: default
@@ -1591,7 +1576,7 @@ subnet [String, required]: AWS에서 생성한 subnet ID
 		    cloud_properties:
 		      subnet: subnet-9be6c3f7
 	
-	Example of dynamic network:
+	◎ Example of dynamic network:
 	
 		networks:
 		- name: default
@@ -1599,7 +1584,7 @@ subnet [String, required]: AWS에서 생성한 subnet ID
 		  cloud_properties:
 		    subnet: subnet-9be6c6gh
 	
-	Example of vip network:
+	◎ Example of vip network:
 	
 		networks:
 		- name: default
@@ -1609,7 +1594,7 @@ subnet [String, required]: AWS에서 생성한 subnet ID
 	security_groups [Array, optional]: security groups 이 네크워크 구성에 적용.
 	
 	
-	Example of manual network:
+	◎ Example of manual network:
 	
 		networks:
 		- name: default
@@ -1622,7 +1607,7 @@ subnet [String, required]: AWS에서 생성한 subnet ID
 		      net_id: net-b98ab66e-6fae-4c6a-81af-566e630d21d1
 		      security_groups: [my-sec-group]
 	
-	Example of dynamic network:
+	◎ Example of dynamic network:
 	
 		networks:
 		- name: default
@@ -1630,14 +1615,14 @@ subnet [String, required]: AWS에서 생성한 subnet ID
 		  cloud_properties:
 		    net_id: net-b98ab66e-6fae-4c6a-81af-566e630d21d1
 	
-	Example of vip network:
+	◎ Example of vip network:
 	
 		networks:
 		- name: default
 		  type: vip
 		  cloud_properties: {}
 
-vSphere Example
+◎ vSphere Example
 manual network 서브넷에서 사용하는 ‘cloud_properties’ 스키마
 name [String, required]: vSphere 에서 사용하는 network 이름
 
@@ -1655,7 +1640,7 @@ name [String, required]: vSphere 에서 사용하는 network 이름
 
 참고 :vSphere CPI does not support dynamic or vip networks.
 
-vCloud Example
+◎ vCloud Example
 manual network 서브넷에서 사용하는 ‘cloud_properties’ 스키마
 name [String, required]: vApp 에서 생성된network 이름
 
@@ -1685,7 +1670,7 @@ stemcell [Hash, required]: resource pool 가상머신에서 생성한 stemcell �
 cloud_properties [Hash, required]: 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성을 설명 (instance_type, availability_zone)
 env [Hash, optional]: CPI (cloud provider interface) 에서 create_stemcell 호출할때 가상머신 환경 변수이고 env 데이터는 가상머신에 세팅 되어 있는 BOSH Agents 에서 사용할수 있다. 디폴트는 {}
 
-AWS Example
+◎ AWS Example
 instance_type [String, required]: 인스턴스 종류. 예) m1.small
 availability_zone [String, required]:인스턴스를 생성하기 위한 availability zone 예) us-east-1a
 key_name [String, optional]: key pair 이름. 디폴트 key pair 이름은 global CPI 설정안의 default_key_name 예) bosh
@@ -1706,7 +1691,7 @@ ephemeral_disk [Hash, optional]:EBS backed ephemeral disk of custom size for whe
 	    instance_type: m1.small
 	    availability_zone: us-east-1a
 
-OpenStack Example
+◎ OpenStack Example
 instance_type [String, required]: 인스턴스 종류 예) m1.small
 availability_zone [String, required]:인스턴스를 생성하기 위한 availability zone 예) us-east-1a
 key_name [String, optional]: key pair 이름. 디폴트 key pair 이름은 global CPI 설정안의 default_key_name 예) bosh
@@ -1723,7 +1708,7 @@ scheduler_hints [Hash, optional]:Data passed to the OpenStack Filter scheduler t
 	    instance_type: m1.small
 	    availability_zone: us-east-1a
 
-vSphere Example
+◎ vSphere Example
 cpu [Integer, required]: CPUs 수
 ram [Integer, required]:RAM in megabytes
 disk [Integer, required]:Ephemeral disk size in megabytes.
@@ -1746,7 +1731,7 @@ datacenters [Array, optional]:datacenters의 배열을 VM 위치에 상관 없�
 	    ram: 1_024
 	    disk: 10_240
 
-vCloud Example
+◎ vCloud Example
 cpu [Integer, required]: CPUs 수
 ram [Integer, required]:RAM in megabytes
 disk [Integer, required]:Ephemeral disk size in megabytes
@@ -1769,7 +1754,7 @@ name [String, required]:고유한 disk pool 이름
 disk_size [Integer, required]:disk 사이즈 명시하며 integer 값으로 표시
 cloud_properties [Hash, required]: disk 를 만드는 데 필요한 IaaS의 특정 속성 (type, iops)
 
-AWS Example
+◎ AWS Example
 	type [String, optional]: disk 종류(standard, gp2). 디폴트는 standard
 	- standard stands for EBS magnetic drives
 	- gp2 stands for EBS general purpose drives (SSD)
@@ -1781,7 +1766,7 @@ AWS Example
 	  cloud_properties:
 	    type: m1.small
 
-OpenStack Example
+◎ OpenStack Example
 	type [String, optional]: OpenStack 설정 볼륨 종류 예) SSD
 	
 	disk_pools:
@@ -1790,7 +1775,7 @@ OpenStack Example
 	  cloud_properties:
 	    type: SSD
 
-vSphere Example
+◎ vSphere Example
 	현재는 disk를 위한 cloud properties 는 제공하지 않음
 	
 	disk_pools:
@@ -1798,7 +1783,7 @@ vSphere Example
 	  disk_size: 10_240
 	  cloud_properties: {}
 
-vCloud Example
+◎ vCloud Example
 	현재는 disk를 위한 cloud properties 는 제공하지 않음
 	
 	disk_pools:
@@ -1813,7 +1798,7 @@ network [String, required]: Networks block에서 선언한 network 이름
 reuse_compilation_vms [Boolean, optional]: false 경우에는 BOSH는 각각의 새로운 패키지 컴파일을위한 새로운 컴파일 VM을 생성하고 편집이 완료되면 VM을 삭제한다. true 경우는 재사용한다. 디폴트는 false
 cloud_properties [Hash, required]: 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone)
 
-Example
+◎ Example
 	compilation:
 	workers: 2
 	network: default
@@ -1830,7 +1815,7 @@ canary_watch_time [Integer or Range, required]: canary 인스턴스가 수행하
 update_watch_time [Integer or Range, required]: non-canary 인스턴스가 수행하기 위한 대기 시간
 max_in_flight [Integer, required]: non-canary 인스턴스가 병렬로 update 하는 최대 개수
 
-Example
+◎ Example
 	update:
 	canaries: 1
 	max_in_flight: 10
@@ -1853,7 +1838,7 @@ persistent_disk [Integer, optional]:영구적 디스크 사이즈 정의
 update [Hash, optional]: 이 job에 대한 특정 업데이트 설정
 properties [Hash, optional]: job 속성을 지정
 
-Example
+◎ Example
 	- name: redis-master
 	  instances: 1
 	  templates:
@@ -1877,7 +1862,7 @@ Example
 글로벌 속성은 제한 없이 사용가능
   - Passwords, Account names, Shared secrets, Host names, IP addresses, Port numbers, max_connections , etc.
 
-Example
+◎ Example
 	properties:
 	  redis:
 	    max_connections: 10

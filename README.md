@@ -47,7 +47,7 @@ Document 관련 사항
 
 	2.4. MasageQueue
 
-	- 2.3.1. RabbitMQ ([vSphere](./Service-Guide/MessageQueue/ServicePack_RabbitMQ_vSphere_install_guide.md), 
+	- 2.4.1. RabbitMQ ([vSphere](./Service-Guide/MessageQueue/ServicePack_RabbitMQ_vSphere_install_guide.md), 
 	[AWS](./Service-Guide/MessageQueue/ServicePack_RabbitMQ_AWS_install_guide.md), 
 	[OpenStack](./Service-Guide/MessageQueue/ServicePack_RabbitMQ_Openstack_install_guide.md), 
 	[Bosh-Lite](./Service-Guide/MessageQueue/ServicePack_RabbitMQ_BOSH-Lite_install_guide.md))

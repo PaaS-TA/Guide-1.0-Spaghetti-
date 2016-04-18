@@ -40,23 +40,23 @@
   <tr>
     <td>구분</td>
     <td>Resource Pool</td>
-    <td>스펙</td>
+    <td>Instance Type(스펙)</td>
   </tr>
   <tr>
-    <td>open-redis-broker</td>
-    <td>m1.small</td>
-    <td>1vCPU / 1.7GB RAM / 8GB Disk+2GB(영구적 Disk)</td>
+    <td>openpaas-redis-broker</td>
+    <td>services-small</td>
+    <td>m1.small (1vCPU / 1.7GB RAM / 160GB Disk) + 8GB(영구Disk)</td>
   </tr>
   <tr>
     <td>dedicated-node1</td>
-    <td>m1.small</td>
-    <td>1vCPU / 1.7GB RAM / 8GB Disk+2GB(영구적 Disk)</td>
+    <td>services-small</td>
+    <td>m1.small (1vCPU / 1.7GB RAM / 160GB Disk) + 8GB(영구Disk)</td>
   </tr>
   <tr>
     <td>dedicated-node2</td>
-    <td>m1.small</td>
-    <td>1vCPU / 1.7GB RAM / 8GB Disk+2GB(영구적 Disk)</td>
-  </tr> 
+    <td>services-small</td>
+    <td>m1.small (1vCPU / 1.7GB RAM / 160GB Disk) + 8GB(영구Disk)</td>
+  </tr>
 </table>
 
 <div id='5'></div>
@@ -122,8 +122,8 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
 
--	OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더안에 있는 AWS용 Redis Deployment 화일인 openpaas-redis-aws-1.0.yml를 복사한다.
-다운로드 받은 Deployment Yml 파일을 확인한다. (openpaas-redis-aws.yml-1.0)
+-	OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더안에 있는 AWS용 Redis Deployment 화일인 openpaas-redis_aws-1.0.yml를 복사한다.
+다운로드 받은 Deployment Yml 파일을 확인한다. (openpaas-redis_aws.yml-1.0)
 
 
 ><div>$ls -all</div>
@@ -142,27 +142,33 @@ BOSH CLI가 배포에 대한 모든 작업을 허용하기위한 현재 대상 B
 >![redis_aws13]
 ><div>Stemcell목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여Stemcell 3147  버전을 업로드를 해야 한다.</div>
 
--	openpaas-redis-aws-1.0.yml Deployment 파일을 서버 환경에 맞게 수정한다. (빨간색으로 표시된 부분 특히 주의)
+-	openpaas-redis_aws-1.0.yml Deployment 파일을 서버 환경에 맞게 수정한다. (빨간색으로 표시된 부분 특히 주의)
 
 >$vi openpaas-redis-vsphere.yml
+
 ```yaml
-# openpaas-redis-aws-1.0 설정 파일 내용
+# openpaas-redis_aws-1.0 설정 파일 내용
+---
 name: openpaas-redis-service                            # 서비스 배포 이름(필수)
 director_uuid: 3475c880-8836-4a73-9309-c65bc9ac20c6     # bosh status 에서 확인한 Director UUID을 입력(필수)
+
 releases:
-- name: cf-redis                  # 서비스 릴리즈 이름(필수)
+- name: openpaas-redis       # 서비스 릴리즈 이름(필수)
   version: 1.0               # 서비스 릴리즈 버전(필수): latest 시 업로드된 서비스 릴리즈 최신버전
+
 update:
   canaries: 1                          # canary 인스턴스 수(필수)
   canary_watch_time: 30000-600000      # canary 인스턴스가 수행하기 위한 대기 시간(필수)
   max_in_flight: 1                     # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
   update_watch_time: 30000-600000      # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
+
 compilation::                        # 컴파일시 필요한 가상머신의 속성(필수)
   cloud_properties:                  # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성 (instance_type, availability_zone)
     instance_type: m1.small          # 인스턴스 타입: Flavors 타입 (필수)
   network: openpaas_network          # Networks block에서 선언한 network 이름(필수)
   reuse_compilation_vms: true        # 컴파일지 VM 재사용 여부(옵션)
-  workers: 6                         # 컴파일 하는 가상머신의 최대수(필수)
+  workers: 3                         # 컴파일 하는 가상머신의 최대수(필수)
+
 jobs:
 - instances: 1
   name: openpaas-redis-broker       # 작업 이름(필수)
@@ -180,23 +186,22 @@ jobs:
   resource_pool: services-small     # Resource Pools block에 정의한 resource pool 이름(필수)
   templates:
   - name: cf-redis-broker           # job template 이름(필수)
-    release: cf-redis               # 서비스 릴리즈 이름(필수)
-- instances: 5                      # 생성하는 인스턴스 수(필수)
+    release: openpaas-small               # 서비스 릴리즈 이름(필수)
+
+- instances: 2                      # 생성하는 인스턴스 수(필수)
   name: dedicated-node              # 작업 이름(필수)
   networks:
   - name: openpaas_network          # Networks block에서 선언한 network 이름(필수)
     static_ips:                     # 전용 노드 IP 목록(필수)
     - 10.20.0.81
     - 10.20.0.82
-    - 10.20.0.83
-    - 10.20.0.84
-    - 10.20.0.85
-  persistent_disk: 2048                 # 영구적 디스크 사이즈 정의(옵션): 2G
+  persistent_disk: 8192                 # 영구적 디스크 사이즈 정의(옵션): 2G
   resource_pool: services-small
   templates:
   - name: dedicated-node            # job template 이름(필수)
-    release: cf-redis
+    release: openpaas-redis
   syslog_aggregator: null
+
 - instances: 1
   lifecycle: errand                # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로 실행할때 설정, 주로 테스트 용도에 쓰임
   name: broker-registrar           # 작업 이름: 서비스 브로커 등록
@@ -204,7 +209,7 @@ jobs:
   - name: openpaas_network
   properties:
     broker:                          # 서비스 브로커 설정 정보
-      host: 10.20.0.86               # 서비스 브로커 IP
+      host: 10.0.0.120               # 서비스 브로커 IP
       name: openpaas-redis-service
       password: admin
       username: admin
@@ -222,6 +227,7 @@ jobs:
   templates:
   - name: broker-registrar                # job template 이름(필수)
     release: cf-redis
+
 - instances: 1
   lifecycle: errand
   name: broker-deregistrar               # 작업이름: 서비스 브로커 삭제
@@ -229,14 +235,15 @@ jobs:
   - name: openpaas_network
   properties:
     broker:
-      host: 10.20.0.81
+      host: 10.0.0.120
       name: openpaas-redis-service
       password: admin
       username: admin
   resource_pool: services-small
   templates:
   - name: broker-deregistrar
-    release: cf-redis
+    release: openpaas-redis
+
 - instances: 1
   lifecycle: errand
   name: smoke-tests                       # 작업이름: 서비스팩이 정상적으로 설치 되었는 테스트
@@ -245,42 +252,42 @@ jobs:
   resource_pool: services-small
   templates:
   - name: smoke-tests
-    release: cf-redis
+    release: openpaas-redis
 meta:
-  apps_domain: 52.71.64.39.xip.io             # CF 설치시 설정한 apps 도메인 정보
+  apps_domain: 52.71.217.204.xip.io             # CF 설치시 설정한 apps 도메인 정보
   environment: null
-  external_domain: 52.71.64.39.xip.io         # CF 설치시 설정한 외부 도메인 정보
+  external_domain: 52.71.217.204.xip.io       # CF 설치시 설정한 외부 도메인 정보
   nats:                                             # CF 설치시 설치한 nats 정보 (필수)
-    host: 10.20.0.11                        # nats 서버 IP
+    host: 10.0.0.11                        # nats 서버 IP
     password: admin                         # nats 유저 비밀번호
     port: 4222                              # nats 서버 포트번호
     username: nats                          # nats 서버 유저아이디
   syslog_aggregator: null
+
 networks:
 - name: openpaas_network
   subnets:
   - cloud_properties:
-      net_id: 7b49e746-161a-4f90-9ed6-c93e27122a1a        # aws에서 사용하는 network 이름 아이디(필수)
+      subnet: subnet-e51bba93          # aws에서 사용하는 network 이름 아이디(필수)
       security_groups:                                    # aws 에서 사용하는 접근 시큐리티 이름 이름(필수)
-      - cf-security
-      - bosh
-      - default     
+      - op-cf
+      - op-bosh     
     dns:                                        # DNS 정보
-    - 10.20.0.3
     - 8.8.8.8
-    gateway: 10.20.0.1
-    range: 10.20.0.0/24
+    gateway: 10.0.0.1
+    range: 10.0.0.0/24
     reserved:                            # 설치시 제외할 IP 설정 (OpenStack 에서는 서비스팩 설치 구간 이외에는 IP 제외 설정을 해줘야 오류가 나지 않음.
-    - 10.20.0.2 - 10.20.0.80
+    - 10.0.0.2 - 10.0.0.119
     static:                              # 사용 가능한 IP 설정
-    - 10.20.0.81 - 10.20.0.86
+    - 10.0.0.120 - 10.0.0.129
   type: manual
+
 properties:
   cf:
     admin_password: admin                                # CF 어드민 아이디 비밀번호(필수)
     admin_username: admin                                # CF 어드민 아이디 (필수)
-    api_url: http://api.52.71.64.39.xip.io         # CF API url(필수)
-    apps_domain: 52.71.64.39.xip.io                # CF 도메인(필수)
+    api_url: http://api.52.71.217.204.xip.io         # CF API url(필수)
+    apps_domain: 52.71.217.204.xip.io                # CF 도메인(필수)
     nats:                                        # CF 설치시 설치한 nats 정보 (필수)
       host: 10.20.0.11
       password: admin
@@ -294,24 +301,22 @@ properties:
       auth:
         password: admin
         username: admin
-      backend_host: 10.20.0.86
+      backend_host: 10.0.0.120
       backend_port: 12345
       dedicated_nodes:
-      - 10.20.0.81
-      - 10.20.0.82
-      - 10.20.0.83
-      - 10.20.0.84
-      - 10.20.0.85
+      - 10.0.0.121
+      - 10.0.0.122
       enable_service_access: true
       name: openpaas-redis-service
       network: openpaas_network
       service_instance_limit: 5                 # 서비스 인스턴스 생성 가능 수(필수)
       service_name: redis-sb
     config_command: configalias                 # config 설정 명령어가 있을 경우(옵션)
-    host: 10.20.0.86
+    host: 10.0.0.120
     maxmemory: 262144000                        # 최대 메모리
     save_command: anotherrandomstring           # 저장 명령어가 있을 경우(옵션)
   syslog_aggregator: null
+
 resource_pools:                  # 배포시 사용하는 resource pools를 명시하며 여러 개의 resource pools 을 사용할 경우 name 은 unique 해야함(필수)
 - cloud_properties:              # 컴파일 VM을 만드는 데 필요한 IaaS의 특정 속성을 설명 (instance_type, availability_zone)
     instance_type: m1.small      # 인스턴스 타입: Flovers 타입(필수)
@@ -323,13 +328,13 @@ resource_pools:                  # 배포시 사용하는 resource pools를 명�
     #size: 7  # resource pool 안의 가상머신 개수, 주의) jobs 인스턴스 보다 작으면 에러가 남, size 정의하지 않으면 자동으로 가상머신 크기 설정
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent     #stemcell 이름(필수)
-    version: 3147                                        #stemcell 버전(필수)
+    version: 3147                                 #stemcell 버전(필수)
 ```
 
 Deploy 할 deployment manifest 파일을 BOSH 에 지정한다.
 
 ><div>$bosh deployment {Deployment manifest 파일 PATH}</div>
-><div>$bosh deployment openpaas-redis-aws-1.0.yml</div>
+><div>$bosh deployment openpaas-redis_aws-1.0.yml</div>
 >![redis_aws14]
 
 - Redis서비스팩을 배포한다.
@@ -563,51 +568,51 @@ Redis Desktop Manager 프로그램은 무료로 사용할 수 있는 오픈소�
 
 
 
-[redis_aws1]:./image/redis_aws/redis_aws1.png
-[redis_aws2]:./image/redis_aws/redis_aws2.png
-[redis_aws3]:./image/redis_aws/redis_aws3.png
-[redis_aws4]:./image/redis_aws/redis_aws4.png
-[redis_aws5]:./image/redis_aws/redis_aws5.png
-[redis_aws6]:./image/redis_aws/redis_aws6.png
-[redis_aws7]:./image/redis_aws/redis_aws7.png
-[redis_aws8]:./image/redis_aws/redis_aws8.png
-[redis_aws9]:./image/redis_aws/redis_aws9.png
-[redis_aws10]:./image/redis_aws/redis_aws10.png
-[redis_aws11]:./image/redis_aws/redis_aws11.png
-[redis_aws12]:./image/redis_aws/redis_aws12.png
-[redis_aws13]:./image/redis_aws/redis_aws13.png
-[redis_aws14]:./image/redis_aws/redis_aws14.png
-[redis_aws15]:./image/redis_aws/redis_aws15.png
-[redis_aws16]:./image/redis_aws/redis_aws16.png
-[redis_aws17]:./image/redis_aws/redis_aws17.png
-[redis_aws18]:./image/redis_aws/redis_aws18.png
-[redis_aws19]:./image/redis_aws/redis_aws19.png
-[redis_aws20]:./image/redis_aws/redis_aws20.png
-[redis_aws21]:./image/redis_aws/redis_aws21.png
-[redis_aws22]:./image/redis_aws/redis_aws22.png
-[redis_aws23]:./image/redis_aws/redis_aws23.png
-[redis_aws24]:./image/redis_aws/redis_aws24.png
-[redis_aws25]:./image/redis_aws/redis_aws25.png
-[redis_aws26]:./image/redis_aws/redis_aws26.png
-[redis_aws27]:./image/redis_aws/redis_aws27.png
-[redis_aws28]:./image/redis_aws/redis_aws28.png
-[redis_aws29]:./image/redis_aws/redis_aws29.png
-[redis_aws30]:./image/redis_aws/redis_aws30.png
-[redis_aws31]:./image/redis_aws/redis_aws31.png
-[redis_aws32]:./image/redis_aws/redis_aws32.png
-[redis_aws33]:./image/redis_aws/redis_aws33.png
-[redis_aws34]:./image/redis_aws/redis_aws34.png
-[redis_aws35]:./image/redis_aws/redis_aws35.png
-[redis_aws36]:./image/redis_aws/redis_aws36.png
-[redis_aws37]:./image/redis_aws/redis_aws37.png
-[redis_aws38]:./image/redis_aws/redis_aws38.png
-[redis_aws39]:./image/redis_aws/redis_aws39.png
-[redis_aws40]:./image/redis_aws/redis_aws40.png
-[redis_aws41]:./image/redis_aws/redis_aws41.png
-[redis_aws42]:./image/redis_aws/redis_aws42.png
-[redis_aws43]:./image/redis_aws/redis_aws43.png
-[redis_aws44]:./image/redis_aws/redis_aws44.png
-[redis_aws45]:./image/redis_aws/redis_aws45.png
-[redis_aws46]:./image/redis_aws/redis_aws46.png
-[redis_aws47]:./image/redis_aws/redis_aws47.png
-[redis_aws48]:./image/redis_aws/redis_aws48.png
+[redis_aws1]:/images/openpaas-service/redis/redis_aws/redis_aws1.png
+[redis_aws2]:/images/openpaas-service/redis/redis_aws/redis_aws2.png
+[redis_aws3]:/images/openpaas-service/redis/redis_aws/redis_aws3.png
+[redis_aws4]:/images/openpaas-service/redis/redis_aws/redis_aws4.png
+[redis_aws5]:/images/openpaas-service/redis/redis_aws/redis_aws5.png
+[redis_aws6]:/images/openpaas-service/redis/redis_aws/redis_aws6.png
+[redis_aws7]:/images/openpaas-service/redis/redis_aws/redis_aws7.png
+[redis_aws8]:/images/openpaas-service/redis/redis_aws/redis_aws8.png
+[redis_aws9]:/images/openpaas-service/redis/redis_aws/redis_aws9.png
+[redis_aws10]:/images/openpaas-service/redis/redis_aws/redis_aws10.png
+[redis_aws11]:/images/openpaas-service/redis/redis_aws/redis_aws11.png
+[redis_aws12]:/images/openpaas-service/redis/redis_aws/redis_aws12.png
+[redis_aws13]:/images/openpaas-service/redis/redis_aws/redis_aws13.png
+[redis_aws14]:/images/openpaas-service/redis/redis_aws/redis_aws14.png
+[redis_aws15]:/images/openpaas-service/redis/redis_aws/redis_aws15.png
+[redis_aws16]:/images/openpaas-service/redis/redis_aws/redis_aws16.png
+[redis_aws17]:/images/openpaas-service/redis/redis_aws/redis_aws17.png
+[redis_aws18]:/images/openpaas-service/redis/redis_aws/redis_aws18.png
+[redis_aws19]:/images/openpaas-service/redis/redis_aws/redis_aws19.png
+[redis_aws20]:/images/openpaas-service/redis/redis_aws/redis_aws20.png
+[redis_aws21]:/images/openpaas-service/redis/redis_aws/redis_aws21.png
+[redis_aws22]:/images/openpaas-service/redis/redis_aws/redis_aws22.png
+[redis_aws23]:/images/openpaas-service/redis/redis_aws/redis_aws23.png
+[redis_aws24]:/images/openpaas-service/redis/redis_aws/redis_aws24.png
+[redis_aws25]:/images/openpaas-service/redis/redis_aws/redis_aws25.png
+[redis_aws26]:/images/openpaas-service/redis/redis_aws/redis_aws26.png
+[redis_aws27]:/images/openpaas-service/redis/redis_aws/redis_aws27.png
+[redis_aws28]:/images/openpaas-service/redis/redis_aws/redis_aws28.png
+[redis_aws29]:/images/openpaas-service/redis/redis_aws/redis_aws29.png
+[redis_aws30]:/images/openpaas-service/redis/redis_aws/redis_aws30.png
+[redis_aws31]:/images/openpaas-service/redis/redis_aws/redis_aws31.png
+[redis_aws32]:/images/openpaas-service/redis/redis_aws/redis_aws32.png
+[redis_aws33]:/images/openpaas-service/redis/redis_aws/redis_aws33.png
+[redis_aws34]:/images/openpaas-service/redis/redis_aws/redis_aws34.png
+[redis_aws35]:/images/openpaas-service/redis/redis_aws/redis_aws35.png
+[redis_aws36]:/images/openpaas-service/redis/redis_aws/redis_aws36.png
+[redis_aws37]:/images/openpaas-service/redis/redis_aws/redis_aws37.png
+[redis_aws38]:/images/openpaas-service/redis/redis_aws/redis_aws38.png
+[redis_aws39]:/images/openpaas-service/redis/redis_aws/redis_aws39.png
+[redis_aws40]:/images/openpaas-service/redis/redis_aws/redis_aws40.png
+[redis_aws41]:/images/openpaas-service/redis/redis_aws/redis_aws41.png
+[redis_aws42]:/images/openpaas-service/redis/redis_aws/redis_aws42.png
+[redis_aws43]:/images/openpaas-service/redis/redis_aws/redis_aws43.png
+[redis_aws44]:/images/openpaas-service/redis/redis_aws/redis_aws44.png
+[redis_aws45]:/images/openpaas-service/redis/redis_aws/redis_aws45.png
+[redis_aws46]:/images/openpaas-service/redis/redis_aws/redis_aws46.png
+[redis_aws47]:/images/openpaas-service/redis/redis_aws/redis_aws47.png
+[redis_aws48]:/images/openpaas-service/redis/redis_aws/redis_aws48.png

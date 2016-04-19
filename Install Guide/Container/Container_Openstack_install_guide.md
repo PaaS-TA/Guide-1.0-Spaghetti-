@@ -46,7 +46,7 @@ https://github.com/cloudfoundry-incubator/diego-release
 
 확인하는 방법은 bosh deployments를 통해 배포된 리스트 목록으로 확인한다.
  
-![controller_openstack_image01]
+![container_openstack_image01]
 
 
 #3. Open Paas Container 설치

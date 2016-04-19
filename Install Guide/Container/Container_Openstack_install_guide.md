@@ -7,8 +7,8 @@
 2. [Prerequisites](#2-Prerequisites)	
 	-	2.1. [개요](#21-개요)		
 	-	2.2. [범위](#22-범위)	
-	-	2.3. [참고 자료](#23-참고_자료)	
-	-	2.4. [확인 사항](#24-확인_사항)	
+	-	2.3. [참고 자료](#23-참고-자료)	
+	-	2.4. [확인 사항](#24-확인-사항)	
 		-	2.4.1. [bosh deployments 명령어](#241-bosh-deployments-명령어)	
 3. [Open Paas Container 설치](#3-Open-Paas-Container-설치)	
 	-	3.1. [Release Upload](#31-Release-Upload)	
@@ -46,7 +46,7 @@ https://github.com/cloudfoundry-incubator/diego-release
 
 확인하는 방법은 bosh deployments를 통해 배포된 리스트 목록으로 확인한다.
  
->![container_openstack_image01]
+![container_openstack_image01]
 
 
 #3. Open Paas Container 설치

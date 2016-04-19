@@ -72,9 +72,9 @@ Document 관련 사항
 
 	3.4. [Ruby](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Ruby_develope_guide.md)
 	
-	3.5. [Ruby](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Java_develope_guide.md)
+	3.5. [Java](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Java_develope_guide.md)
 		
-	3.6. [Ruby](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Go_develope_guide.md)
+	3.6. [Go](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Go_develope_guide.md)
 	
 4. 개발 가이드
 

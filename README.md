@@ -59,8 +59,6 @@ Document 관련 사항
 	[OpenStack](./Service-Guide/ETC/ServiceBroker_APIPlatform_Openstack_install_guide.md), 
 	[Bosh-Lite](./Service-Guide/ETC/ServiceBroker_APIPlatform_BOSH_Lite_install_guide.md))
 
-	- 2.5.2. [Public API Develope Guide](./Service-Guide/ETC/ServiceBroker_PublicAPI_devlope_guide.md)
-
 3. Sample
 
 	3.1. [Node.js](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Nodejs_develope_guide.md)
@@ -80,6 +78,8 @@ Document 관련 사항
 	4.3. [빌드팩 개발 가이드](./Development%20Guide/Buildpack_develope_guide.md)
 	
 	4.4. [어플리케이션 APIPlatform 도로주소 개발 가이드](./Development%20Guide/Application_APIPlatform_dorojuso_devlope_guide.md)
+	
+	4.5. [퍼블릭 API 개발 가이드](./Development%20Guide/PublicAPI_devlope_guide.md)
 
 5. 기타
 

@@ -45,7 +45,7 @@ https://github.com/cloudfoundry-incubator/diego-release
 ![container_openstack_image01]
 
 
-#3. Open Paas Container 설치
+#<a name="3"/>3. Open Paas Container 설치
 ###<a name="31"/>3.1. Release Upload
 배포된 설치 패키지의 OpenPaaS-Container 폴더에 있는 Open PaaS Container Bosh Release와 의존관계에 있는 garden-linux 및 etcd 를 Bosh Server로 아래와 같은 명령으로 Upload 한다.
 

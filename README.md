@@ -13,7 +13,7 @@ Document 관련 사항
 
 	1.4. Container ([vSphere](./Install%20Guide/Container/Container_vSphere_install_guide.md),
 	[AWS](./Install%20Guide/Container/Container_AWS_install_guide.md),
-	[Openstack](./Install%20Guide/Container/Container_Openstack_install_guide.md)
+	[Openstack](./Install%20Guide/Container/Container_Openstack_install_guide.md))
 
 2. 서비스
 
@@ -71,7 +71,11 @@ Document 관련 사항
 	3.3. [Python](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Python_develope_guide.md)
 
 	3.4. [Ruby](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Ruby_develope_guide.md)
-
+	
+	3.5. [Ruby](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Java_develope_guide.md)
+		
+	3.6. [Ruby](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Go_develope_guide.md)
+	
 4. 개발 가이드
 
 	4.1. [스템셀 생성](./Development%20Guide/OpenPaaS_PaaSTA_Build_Stemcell_guide.md)

@@ -22,7 +22,7 @@
 	-	3.6. [Troubleshooting](#36)
 4. [설치 검증](#4-설치-검증)	
 	-	4.1. [CF Login](#41)	
-	-	4.2. [Application Deploy](#42	
+	-	4.2. [Application Deploy](#42)	
 	-	4.3. [Application Access](#43)	
 
 #<a name="1"/>1. 개요

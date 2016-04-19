@@ -36,7 +36,7 @@
 ###1.2.	범위
 본 문서의 범위는 개방형클라우드플랫폼을 Openstack 기반에 설치하기 위한 내용으로 한정되어 있다. VMWare/AWS와 같은 다른 IaaS 환경에서의 설치는 그에 맞는 가이드 문서를 참고해야 하며, Bosh/CF release 설치 또한 해당 가이드 문서를 별도로 참조해야 한다.
 
-###1.3.	참고 자료
+###1.3.	참고자료
 https://github.com/cloudfoundry-incubator/diego-release
 
 

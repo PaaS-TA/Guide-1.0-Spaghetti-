@@ -25,19 +25,19 @@
 	-	4.2. [Application Deploy](#42-Application-Deploy)	
 	-	4.3. [Application Access](#43-Application-Access)	
 
-#1. 개요
-###1.1.	문서 목적
+#<a name="1"/>1. 개요
+###<a name="11"/>1.1. 문서 목적
 본 문서(설치가이드)는, 현 시점에서 지원되는 IaaS(Infrastructure as a Service) 중 하나인 Openstack 환경에서 개방형클라우드플랫폼(Diego) 을 설치하기 위한 가이드를 제공하는데 그 목적이 있다.
 
 ###<a name="12"/>1.2. 범위
 본 문서의 범위는 개방형클라우드플랫폼을 Openstack 기반에 설치하기 위한 내용으로 한정되어 있다. VMWare/AWS와 같은 다른 IaaS 환경에서의 설치는 그에 맞는 가이드 문서를 참고해야 하며, Bosh/CF release 설치 또한 해당 가이드 문서를 별도로 참조해야 한다.
 
-###1.3.	참고자료
+###<a name="13"/>1.3. 참고자료
 https://github.com/cloudfoundry-incubator/diego-release
 
 
-#2. Prerequisites
-###2.1.	OpenPaas Controller 설치확인
+#<a name="2"/>2. Prerequisites
+###<a name="21"/>2.1. OpenPaas Controller 설치확인
 개방형클라우드플랫폼 (OpenPaas Container) 를 설치하기 위해서는 사전에 OpenPaas Controller가 설치되어 있어야 한다.
 
 확인하는 방법은 bosh deployments를 통해 배포된 리스트 목록으로 확인한다.
@@ -46,7 +46,7 @@ https://github.com/cloudfoundry-incubator/diego-release
 
 
 #3. Open Paas Container 설치
-###3.1.	Release Upload
+###<a name="31"/>3.1. Release Upload
 배포된 설치 패키지의 OpenPaaS-Container 폴더에 있는 Open PaaS Container Bosh Release와 의존관계에 있는 garden-linux 및 etcd 를 Bosh Server로 아래와 같은 명령으로 Upload 한다.
 
 	bosh upload release $INSTALL_PACKAGE/OpenPaaS-Container/garden-linux-0.329.0.tgz
@@ -64,10 +64,10 @@ Bosh Sever에 Release가 정상적으로 Upload 되었는지는 “bosh releases
 
 ![container_openstack_image03]
 
-###3.2.	Deployment Manifest 파일 수정하기
+###<a name="32"/>3.2. Deployment Manifest 파일 수정하기
 배포된 설치 패키지에 포함된 Sample Deployment Manifest File($INSTALL_PACKAGE/OpenPaaS-Deployment/openpaas-container-openstack- 1.0.yml)을 아래의 순서대로 설치환경에 적합하게 수정한다.
 
-####3.2.1. Name & Release
+####<a name="321"/>3.2.1. Name & Release
 
 	name: openpaas-container-openstack-1.0     # Deployment Name
 	director_uuid: 3475c880-8836-4a73-9309-c65bc9ac20c6  # Bosh Director UUID
@@ -85,7 +85,7 @@ Deployment Name은 설치자가 임의로 부여하는데, IaaS와 Version을 �
 
 ※ Controller, Container, Garden-linux, etcd의 Release Name과 Version은 “bosh releases” 명령의 결과로 나오는 값들을 입력하도록 한다. 본 가이드에서는 각 하나의 release가 업로드 되어 있으므로 명시적 버전 대신 업로드 된 릴리즈 버전 중 최신 버전인 latest 로 지정하여 사용한다. 
 
-####3.2.2. Networks
+####<a name="322"/>3.2.2. Networks
 
 	networks:
 	- name: openpaas-container-network               # Platform이 설치될 Network Name
@@ -109,7 +109,7 @@ Deployment Name은 설치자가 임의로 부여하는데, IaaS와 Version을 �
 
 Network Name은 설치자가 임의로 부여 가능하다. Network ID, Security_groups, Gateway, DNS Server, Network CIDR은 Openstack 구성을 직접 확인하거나 인프라 담당자에게 문의하여 정보를 얻도록 한다. Static IP 주소는 Platform을 설치할 때 개별 VM에 할당될 IP의 주소 대역으로 마찬가지로 인프라 담당자에게 할당을 받아야 한다.
 
-####3.2.3. Compilation	
+####<a name="323"/>3.2.3. Compilation	
 
 	compilation:
 	  cloud_properties:
@@ -121,7 +121,7 @@ Network Name은 설치자가 임의로 부여 가능하다. Network ID, Security
 	
 Network Name은 3.3.2에서 정의한 것과 동일한 이름을 줘야 한다. Workers는 동시에 Compile을 수행하는 VM의 개수로 별다른 환경적 특성이 없다면 Default 값을 사용토록 한다.
 
-####3.2.4. Resource Pools
+####<a name="324"/>3.2.4. Resource Pools
 
 	resource_pools:
 	- name: access_z1                       # Resource Name
@@ -174,7 +174,7 @@ Network Name은 3.3.2에서 정의한 것과 동일한 이름을 줘야 한다. 
 
 Resource pool 정보는 Jobs 영역에서 각 VM들이 사용하기 위한 Resource를 사전 정의한 영역으로, 각 VM 영역의 이름으로 명명되어 있으며, 필요 크기에 따라 instance_type에 설정된 Openstack Flavor 정보를 수정한다. Stemcell Name과 Version은 “bosh stemcells” 명령어 결과로 출력되는 값들을 입력하도록 한다.
 
-#### 3.2.5. Update
+####<a name="325"/>3.2.5. Update
 
 	update:
 	  canaries: 1			   # Canary instance 개수
@@ -184,7 +184,7 @@ Resource pool 정보는 Jobs 영역에서 각 VM들이 사용하기 위한 Resou
 	update_watch_time: 5000-120000  # canary instance 테스트 후 실제 instance update 하면서 health 상태 점검 대기 시간
 		Default 값들을 수정 없이 사용한다.
 
-####3.2.6. Jobs
+####<a name="326"/>3.2.6. Jobs
 아래 Sample Jobs를 참고하여 설치 환경에 맞게 수정한다.
 	
 	jobs:
@@ -354,7 +354,7 @@ Resource pool 정보는 Jobs 영역에서 각 VM들이 사용하기 위한 Resou
 	    max_in_flight: 1
 	    serial: false
 
-####3.2.7. Properties
+####<a name="327"/>3.2.7. Properties
 아래 Sample Manifest를 참조하여 설치 환경에 맞게 값을 수정한다. 
 
 	properties:
@@ -730,7 +730,7 @@ ssh_proxy 접속을 위한 키(diego-certs/ssh_proxy.fin)는 아래와 같이 op
 	    host_key_fingerprint: 17:2b:92:3e:03:7b:6c:3a:31:31:1e:f7:49:63:24:b0 # diego-certs/ssh_proxy.fin 파일 내용으로 치환
 	    oauth_client_id: ssh-proxy
 
-###3.3.	Deployment Manifest 지정
+###<a name="33"/>3.3. Deployment Manifest 지정
 
 	bosh deployment openpaas-container-openstack-1.0.yml
 
@@ -740,7 +740,7 @@ ssh_proxy 접속을 위한 키(diego-certs/ssh_proxy.fin)는 아래와 같이 op
 ![container_openstack_image04]
 
 
-###3.4.	Bosh Deploy
+###<a name="34"/>3.4. Bosh Deploy
 Diego module에 대한 bosh upload 과정이 끝났으면, deploy 과정을 통해 Diego 관련 VM을 생성한다.
 
 	$ bosh deploy
@@ -749,7 +749,7 @@ Diego module에 대한 bosh upload 과정이 끝났으면, deploy 과정을 통�
 
 [그림: bosh deploy 실행 결과]
 
-###3.5.	설치형상 확인
+###<a name="35"/>3.5. 설치형상 확인
 설치가 정상적으로 완료된 후 “bosh vms” 명령으로 설치된 Platform의 형상을 확인한다.
 
 	bosh vms
@@ -759,7 +759,7 @@ Diego module에 대한 bosh upload 과정이 끝났으면, deploy 과정을 통�
 ![container_openstack_image06]
 
 
-###3.6. Trobleshooting
+###<a name="36"/>3.6. Trobleshooting
 Container 파일을 Deploy를 한 후 다음 사진과 같이 “database_z1 > database_z1/0 (canary). Failed: Volume”이라는 에러가 발생하는 경우 사용하고 있는 OpenStack에 접속하여 리소스가 부족하지 않은지 확인해 보고 필요하지 않은 것들은 Delete를 해 준다.
  
 ![container_openstack_image07]
@@ -797,8 +797,8 @@ monit quit etcd까지 다 실행하고 monit summary를 실행하면 ‘etcd’�
  
 ![container_openstack_image12]
 
-#4. 설치 검증
-###4.1.	CF Login
+#<a name="4"/>4. 설치 검증
+###<a name="41"/>4.1.	CF Login
 	cf api http://api.115.68.46.29.xip.io --skip-ssl-validation # cf target 지정
 	…
 	cf login
@@ -817,7 +817,7 @@ Application을 Deploy할 ORG와 Space를 생성하고, 해당하는 ORG/Space로
 
 ※ admin 계정의 패스워드 설정을 바꾸고 싶다면, CF-Release deploy시 manifest 설정 파일에서 변경하야 한다.
 
-###4.2. Application Deploy
+###<a name="42"/>4.2. Application Deploy
 개방형클라우드플랫폼 패키지와 함께 배포된 Sample Application이 위치하는 디렉토리로 이동하고 Application을 Deploy 한다.
 
 	cd $PACKAGE_ROOT/apps/hello-java
@@ -841,7 +841,7 @@ Docker 파일을 Deploy하는 경우 다음과 같이 명령어를 입력한다.
 
 ![container_openstack_image14]
 
-###4.3. Application Access
+###<a name="43"/>4.3. Application Access
 Deploy한 Application URL을 Browser 또는 curl 명령어로 Access하여 정상 접근 되는지를 확인한다. 
 
 ![container_openstack_image15]

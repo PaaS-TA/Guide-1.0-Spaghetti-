@@ -735,6 +735,8 @@ ssh_proxy 접속을 위한 키(diego-certs/ssh_proxy.fin)는 아래와 같이 op
 	bosh deployment openpaas-container-openstack-1.0.yml
 
 “bosh deployment” 명령어로 생성한 Deployment Manifest File을 지정하고, 아래의 그림과 같이 동일한 명령어로 정상 지정 되었는지를 확인한다 
+
+
 ![container_openstack_image04]
 
 

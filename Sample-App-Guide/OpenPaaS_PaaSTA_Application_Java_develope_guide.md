@@ -458,7 +458,7 @@ java package Root에 있는 Application.java 우측 버튼을 클릭 --> Run As 
   - java-sample application이 maven install을 실행하여 war가 존재하여야 한다.
   - cf cli가 설치되어 있고, cf login이 이미 되어 있다는 가정하에 진행한다.
  ```
- ### Go 샘플 어플리케이션 배포
+ ### Java 샘플 어플리케이션 배포
  $ cd “Java 샘플 어플리케이션” 디렉토리
 
  $cd  /home/csupshin/git/OpenPaaSSample/java-sample-app

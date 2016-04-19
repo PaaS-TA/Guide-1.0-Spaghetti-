@@ -1,7 +1,7 @@
-# Open PaaS PaaSTA 가이드 문서 
+# Open PaaS(PaaSTA) 가이드 문서 
 
 
-## PaaSTA 설치 가이드
+## 설치 가이드
 
 - 개인 환경 설치
   - [BOSH-Lite](./Install-Guide/BOSH%20Lite/OpenPaaS_PaaSTA_BOSH_Lite_install_guide.md)
@@ -13,7 +13,7 @@
 [AWS](./Install-Guide/Container/Container_AWS_install_guide.md),
 [Openstack](./Install-Guide/Container/Container_Openstack_install_guide.md))
 
-## PaaSTA 서비스 설치 가이드
+## 서비스 설치 가이드
 - DBMS 설치
   - Cubrid ( [vSphere](./Service-Guide/DBMS/OpenPaaS_PaaSTA_ServicePack_Cubrid_vSphere_install_guide.md), 
 [AWS](./Service-Guide/DBMS/OpenPaaS_PaaSTA_ServicePack_Cubrid_AWS_install_guide.md), 
@@ -48,7 +48,7 @@
 [OpenStack](./Service-Guide/ETC/ServiceBroker_APIPlatform_Openstack_install_guide.md), 
 [Bosh-Lite](./Service-Guide/ETC/ServiceBroker_APIPlatform_BOSH_Lite_install_guide.md))
 
-## PaaSTA 활용 가이드
+## 활용 가이드
 - [BOSH CLI(Command Line Interface) 사용](./Use-Guide/OpenPaaS_PaaSTA_BOSH_CLI_guide.md)
 - [CF CLI(Command Line Interface) 사용](Use-Guide/OpenPaas%20CLi%20가이드.md)
 - [Eclipse plugin 개발도구 사용] (./Use-Guide/Open%20PaaS%20%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD%20%EC%82%AC%EC%9A%A9%20%EA%B0%80%EC%9D%B4%EB%93%9C.md)
@@ -56,7 +56,7 @@
 - [외부 인증/인가 서비스 통합](./Use-Guide/OpenPaaS_PaaSTA_외부Identity서비스_integrate_guide.md)
 - [Open PaaS 관리자 대시보드 사용](./Use-Guide/Open%20PaaS%20%EA%B4%80%EB%A6%AC%EC%9E%90%20%EB%8C%80%EC%8B%9C%EB%B3%B4%EB%93%9C%20%EC%82%AC%EC%9A%A9%EA%B0%80%EC%9D%B4%EB%93%9C.md)
 
-## 개발 언어 별 PaaSTA 배포 어플리케이션 개발 가이드
+## 개발 언어 별 어플리케이션 가이드
 - [Node.js](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Nodejs_develope_guide.md)
 - [PHP](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_PHP_develope_guide.md)
 - [Python](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Python_develope_guide.md)
@@ -64,7 +64,7 @@
 - [Java](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Java_develope_guide.md)
 - [Go](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Go_develope_guide.md)
 	
-## PaaSTA 플랫폼 개발 가이드
+## 플랫폼 개발 가이드
 - [스템셀 개발 가이드](./Development-0Guide/OpenPaaS_PaaSTA_Build_Stemcell_guide.md)
 - [서비스팩 개발 가이드](./Development-0Guide/ServicePack_develope_guide.md)
 - [빌드팩 개발 가이드](./Development-Guide/Buildpack_develope_guide.md)

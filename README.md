@@ -65,7 +65,7 @@
 
 	3.1. [BOSH CLI(Command Line Interface)](./Use-Guide/OpenPaaS_PaaSTA_BOSH_CLI_guide.md)
 
-        3.2. [CF CLI(Command Line Interface)](Use-Guide/OpenPaas%20CLi%20가이드.md)
+	3.2. [CF CLI(Command Line Interface)](Use-Guide/OpenPaas%20CLi%20가이드.md)
         
         3.3. [Eclipse plugin 개발도구] (./Use-Guide/Open%20PaaS%20%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD%20%EC%82%AC%EC%9A%A9%20%EA%B0%80%EC%9D%B4%EB%93%9C.md)
         

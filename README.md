@@ -2,17 +2,17 @@
 
 1. PaaSTA 설치 가이드
 
-	1.1. [BOSH-Lite](./Install%20Guide/BOSH%20Lite/OpenPaaS_PaaSTA_BOSH_Lite_install_guide.md)
+	1.1. [BOSH-Lite](./Install-Guide/BOSH%20Lite/OpenPaaS_PaaSTA_BOSH_Lite_install_guide.md)
  
-	1.2. BOSH ([AWS](./Install%20Guide/BOSH/OpenPaaS_PaaSTA_BOSH_AWS_install_guide.md), [OpenStack](./Install%20Guide/BOSH/OpenPaaS_PaaSTA_BOSH_Openstack_install_guide.md))
+	1.2. BOSH ([AWS](./Install-Guide/BOSH/OpenPaaS_PaaSTA_BOSH_AWS_install_guide.md), [OpenStack](./Install-Guide/BOSH/OpenPaaS_PaaSTA_BOSH_Openstack_install_guide.md))
 
-	1.3. Controller ([vSphere](./Install%20Guide/Controller/Controller_vSphere_install_guide.md),
-	[AWS](./Install%20Guide/Controller/Controller_AWS_install_guide.md),
-	[Openstack](./Install%20Guide/Controller/Controller_Openstack_install_guide.md))
+	1.3. Controller ([vSphere](./Install-Guide/Controller/Controller_vSphere_install_guide.md),
+	[AWS](./Install-Guide/Controller/Controller_AWS_install_guide.md),
+	[Openstack](./Install-Guide/Controller/Controller_Openstack_install_guide.md))
 
-	1.4. Container ([vSphere](./Install%20Guide/Container/Container_vSphere_install_guide.md),
-	[AWS](./Install%20Guide/Container/Container_AWS_install_guide.md),
-	[Openstack](./Install%20Guide/Container/Container_Openstack_install_guide.md))
+	1.4. Container ([vSphere](./Install-Guide/Container/Container_vSphere_install_guide.md),
+	[AWS](./Install-Guide/Container/Container_AWS_install_guide.md),
+	[Openstack](./Install-Guide/Container/Container_Openstack_install_guide.md))
 
 2. PaaSTA 서비스 설치 가이드
 
@@ -63,11 +63,11 @@
 
 3. PaaSTA 활용 가이드
 
-	3.1. [BOSH CLI](./etc/OpenPaaS_PaaSTA_BOSH_CLI_guide.md)
+	3.1. [BOSH CLI](./Use-Guide/OpenPaaS_PaaSTA_BOSH_CLI_guide.md)
 
-	3.2. [외부 Identity 서비스 통합](./etc/OpenPaaS_PaaSTA_외부Identity서비스_integrate_guide.md)
+	3.2. [외부 Identity 서비스 통합](./Use-Guide/OpenPaaS_PaaSTA_외부Identity서비스_integrate_guide.md)
 	
-	3.3. [UAA 권한관리](./etc/OpenPaaS_PaaSTA_UAA권한관리_guide.md)
+	3.3. [UAA 권한관리](./Use-Guide/OpenPaaS_PaaSTA_UAA권한관리_guide.md)
 
 
 4. PaaSTA 배포 어플리케이션 개발 가이드
@@ -86,13 +86,13 @@
 	
 5. PaaSTA 개발 가이드
 
-	5.1. [스템셀 개발 가이드](./Development%20Guide/OpenPaaS_PaaSTA_Build_Stemcell_guide.md)
+	5.1. [스템셀 개발 가이드](./Development-0Guide/OpenPaaS_PaaSTA_Build_Stemcell_guide.md)
 	
-	5.2. [서비스팩 개발 가이드](./Development%20Guide/ServicePack_develope_guide.md)
+	5.2. [서비스팩 개발 가이드](./Development-0Guide/ServicePack_develope_guide.md)
 	
-	5.3. [빌드팩 개발 가이드](./Development%20Guide/Buildpack_develope_guide.md)
+	5.3. [빌드팩 개발 가이드](./Development-Guide/Buildpack_develope_guide.md)
 	
-	5.4. [어플리케이션 APIPlatform 도로주소 개발 가이드](./Development%20Guide/Application_APIPlatform_dorojuso_devlope_guide.md)
+	5.4. [어플리케이션 APIPlatform 도로주소 개발 가이드](./Development-Guide/Application_APIPlatform_dorojuso_devlope_guide.md)
 	
-	5.5. [퍼블릭 API 개발 가이드](./Development%20Guide/PublicAPI_devlope_guide.md)
+	5.5. [퍼블릭 API 개발 가이드](./Development-Guide/PublicAPI_devlope_guide.md)
 

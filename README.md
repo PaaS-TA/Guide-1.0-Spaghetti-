@@ -63,11 +63,17 @@
 
 3. PaaSTA 활용 가이드
 
-	3.1. [BOSH CLI](./Use-Guide/OpenPaaS_PaaSTA_BOSH_CLI_guide.md)
+	3.1. [BOSH CLI(Command Line Interface)](./Use-Guide/OpenPaaS_PaaSTA_BOSH_CLI_guide.md)
 
-	3.2. [외부 Identity 서비스 통합](./Use-Guide/OpenPaaS_PaaSTA_외부Identity서비스_integrate_guide.md)
+        3.2. [CF CLI(Command Line Interface)](Use-Guide/OpenPaas%20CLi%20가이드.md)
+        
+        3.3. [Eclipse plugin 개발도구] (./Use-Guide/Open%20PaaS%20%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD%20%EC%82%AC%EC%9A%A9%20%EA%B0%80%EC%9D%B4%EB%93%9C.md)
+        
+	3.4. [인증인가(UAA) 서비스관리](./Use-Guide/OpenPaaS_PaaSTA_UAA권한관리_guide.md)
 	
-	3.3. [UAA 권한관리](./Use-Guide/OpenPaaS_PaaSTA_UAA권한관리_guide.md)
+	3.5. [외부 인증/인가 서비스 통합](./Use-Guide/OpenPaaS_PaaSTA_외부Identity서비스_integrate_guide.md)
+	
+	3.6. [Open PaaS 관리자 대시보드 사용가이드](./Use-Guide/Open%20PaaS%20%EA%B4%80%EB%A6%AC%EC%9E%90%20%EB%8C%80%EC%8B%9C%EB%B3%B4%EB%93%9C%20%EC%82%AC%EC%9A%A9%EA%B0%80%EC%9D%B4%EB%93%9C.md)
 
 
 4. PaaSTA 배포 어플리케이션 개발 가이드

@@ -39,58 +39,40 @@
 ###1.3.	참고 자료
 https://github.com/cloudfoundry-incubator/diego-release
 
+
 #2. Prerequisites
 ###2.1.	OpenPaas Controller 설치확인
 개방형클라우드플랫폼 (OpenPaas Container) 를 설치하기 위해서는 사전에 OpenPaas Controller가 설치되어 있어야 한다.
 
 확인하는 방법은 bosh deployments를 통해 배포된 리스트 목록으로 확인한다.
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![controller_openstack_image01]
 
 
 #3. Open Paas Container 설치
 ###3.1.	Release Upload
 배포된 설치 패키지의 OpenPaaS-Container 폴더에 있는 Open PaaS Container Bosh Release와 의존관계에 있는 garden-linux 및 etcd 를 Bosh Server로 아래와 같은 명령으로 Upload 한다.
-bosh upload release $INSTALL_PACKAGE/OpenPaaS-Container/garden-linux-0.329.0.tgz
-bosh upload release $INSTALL_PACKAGE/OpenPaaS-Container/etcd -20.tgz
-bosh upload release $INSTALL_PACKAGE/OpenPaaS-Container/openpaas-container -1.0.tgz
+
+	bosh upload release $INSTALL_PACKAGE/OpenPaaS-Container/garden-linux-0.329.0.tgz
+	bosh upload release $INSTALL_PACKAGE/OpenPaaS-Container/etcd -20.tgz
+	bosh upload release $INSTALL_PACKAGE/OpenPaaS-Container/openpaas-container -1.0.tgz
 
 Release Upload는 상황에 따라 다소 차이는 있으나 보통 20-30분 정도 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.
- 
+
+![controller_openstack_image02]
 
 [주의] Release Upload 과정에서 작업장비의 “/tmp” 폴더의 사이즈가 작을 경우 압축파일을 풀거나 묶을 때 에러가 발생할 수 있으므로, 10GB 이상 Free Size가 있는지를 확인해야 한다.
 
 Bosh Sever에 Release가 정상적으로 Upload 되었는지는 “bosh releases” 명령으로 확인한다.
-bosh releases
+	bosh releases
 
- 
+![controller_openstack_image03]
 
 ###3.2.	Deployment Manifest 파일 수정하기
 배포된 설치 패키지에 포함된 Sample Deployment Manifest File($INSTALL_PACKAGE/OpenPaaS-Deployment/openpaas-container-openstack- 1.0.yml)을 아래의 순서대로 설치환경에 적합하게 수정한다.
 
 ####3.2.1. Name & Release
+
 	name: openpaas-container-openstack-1.0     # Deployment Name
 	director_uuid: 3475c880-8836-4a73-9309-c65bc9ac20c6  # Bosh Director UUID
 	releases:
@@ -102,33 +84,37 @@ bosh releases
 	  version: latest                # garden-linux Release Version 
 	- name: etcd                   # etcd Release Name
 	  version: latest                # etcd Release Version
+
 Deployment Name은 설치자가 임의로 부여하는데, IaaS와 Version을 표시할 것을 권장한다. Bosh Director UUID는 “bosh status” 명령을 실행하면 출력되는 UUID 값을 넣는다.
 
 ※ Controller, Container, Garden-linux, etcd의 Release Name과 Version은 “bosh releases” 명령의 결과로 나오는 값들을 입력하도록 한다. 본 가이드에서는 각 하나의 release가 업로드 되어 있으므로 명시적 버전 대신 업로드 된 릴리즈 버전 중 최신 버전인 latest 로 지정하여 사용한다. 
 
-####3.2.2. Networks		
-networks:
-- name: openpaas-container-network               # Platform이 설치될 Network Name
-  subnets:
-  - cloud_properties:
-      net_id: 7b49e746-161a-4f90-9ed6-c93e27122a1a    # 네트워크 ID
-      security_groups:
-      - cf-security
-      - bosh                 # Security_Group 
-      - default
-    dns:
-    - 8.8.8.8
-    gateway: 10.20.0.1      # Gateway IP Address
-    range: 10.20.0.0/24           # Network CIDR
-reserved:
-    - 10.20.0.2 - 10.20.0.40
-    static:
-    - 10.20.0.50 - 10.20.0.60   # VM에 할당될 Static IP 주소 대역
+####3.2.2. Networks
 
-  type: manual
-	Network Name은 설치자가 임의로 부여 가능하다. Network ID, Security_groups, Gateway, DNS Server, Network CIDR은 Openstack 구성을 직접 확인하거나 인프라 담당자에게 문의하여 정보를 얻도록 한다. Static IP 주소는 Platform을 설치할 때 개별 VM에 할당될 IP의 주소 대역으로 마찬가지로 인프라 담당자에게 할당을 받아야 한다.
+	networks:
+	- name: openpaas-container-network               # Platform이 설치될 Network Name
+	  subnets:
+	  - cloud_properties:
+	      net_id: 7b49e746-161a-4f90-9ed6-c93e27122a1a    # 네트워크 ID
+	      security_groups:
+	      - cf-security
+	      - bosh                 # Security_Group 
+	      - default
+	    dns:
+	    - 8.8.8.8
+	    gateway: 10.20.0.1      # Gateway IP Address
+	    range: 10.20.0.0/24           # Network CIDR
+	reserved:
+	    - 10.20.0.2 - 10.20.0.40
+	    static:
+	    - 10.20.0.50 - 10.20.0.60   # VM에 할당될 Static IP 주소 대역
+	
+	  type: manual
+
+Network Name은 설치자가 임의로 부여 가능하다. Network ID, Security_groups, Gateway, DNS Server, Network CIDR은 Openstack 구성을 직접 확인하거나 인프라 담당자에게 문의하여 정보를 얻도록 한다. Static IP 주소는 Platform을 설치할 때 개별 VM에 할당될 IP의 주소 대역으로 마찬가지로 인프라 담당자에게 할당을 받아야 한다.
 
 ####3.2.3. Compilation	
+
 	compilation:
 	  cloud_properties:
 	    instance_type: m1.medium        # Openstack에서 설정한 Flavor 정보
@@ -139,7 +125,8 @@ reserved:
 	
 Network Name은 3.3.2에서 정의한 것과 동일한 이름을 줘야 한다. Workers는 동시에 Compile을 수행하는 VM의 개수로 별다른 환경적 특성이 없다면 Default 값을 사용토록 한다.
 
-####3.2.4. Resource Pools	
+####3.2.4. Resource Pools
+
 	resource_pools:
 	- name: access_z1                       # Resource Name
 	cloud_properties:
@@ -192,6 +179,7 @@ Network Name은 3.3.2에서 정의한 것과 동일한 이름을 줘야 한다. 
 Resource pool 정보는 Jobs 영역에서 각 VM들이 사용하기 위한 Resource를 사전 정의한 영역으로, 각 VM 영역의 이름으로 명명되어 있으며, 필요 크기에 따라 instance_type에 설정된 Openstack Flavor 정보를 수정한다. Stemcell Name과 Version은 “bosh stemcells” 명령어 결과로 출력되는 값들을 입력하도록 한다.
 
 #### 3.2.5. Update
+
 	update:
 	  canaries: 1			   # Canary instance 개수
 	  canary_watch_time: 5000-120000	   # Canary instance 의 health 상태 점검 대기 시간
@@ -747,45 +735,48 @@ ssh_proxy 접속을 위한 키(diego-certs/ssh_proxy.fin)는 아래와 같이 op
 	    oauth_client_id: ssh-proxy
 
 ###3.3.	Deployment Manifest 지정
-bosh deployment openpaas-container-openstack-1.0.yml
+
+	bosh deployment openpaas-container-openstack-1.0.yml
 
 “bosh deployment” 명령어로 생성한 Deployment Manifest File을 지정하고, 아래의 그림과 같이 동일한 명령어로 정상 지정 되었는지를 확인한다 
- 
+![controller_openstack_image04]
 
 
 ###3.4.	Bosh Deploy
 Diego module에 대한 bosh upload 과정이 끝났으면, deploy 과정을 통해 Diego 관련 VM을 생성한다.
+
 	$ bosh deploy
 	
-	 
+![controller_openstack_image05]
+
 [그림: bosh deploy 실행 결과]
 
 ###3.5.	설치형상 확인
 설치가 정상적으로 완료된 후 “bosh vms” 명령으로 설치된 Platform의 형상을 확인한다.
+
 	bosh vms
+	
 아래 그림과 같이 Deployment Name, Virtual Machine, IP 주소 등의 정보를 확인할 수 있다.
  
-
-
-
-
-
-
-
+![controller_openstack_image06]
 
 
 ###3.6. Trobleshooting
 Container 파일을 Deploy를 한 후 다음 사진과 같이 “database_z1 > database_z1/0 (canary). Failed: Volume”이라는 에러가 발생하는 경우 사용하고 있는 OpenStack에 접속하여 리소스가 부족하지 않은지 확인해 보고 필요하지 않은 것들은 Delete를 해 준다.
  
+![controller_openstack_image07]
 
 Container 파일을 Deploy를 한 후 다음 사진과 같이 “database_z1 > database_z1/0 (canary). Failed: ‘database_z1/0’ is not running after update”라는 에러가 발생하는 경우가 있다.
  
+![controller_openstack_image08]
 
 다음과 같이 bosh ssh를 통해 database_z1/0에 접근한다. “Choose an instance”에서 database_z1/0을 선택하면 된다.
  
+![controller_openstack_image09]
 
 다음 그림과 같이 sudo su를 통해 접속하면 ‘etcd’가 ‘not monitored’ 상태인 것을 확인할 수 있다.
  
+![controller_openstack_image10]
 
 monit summary를 통해 먼저 프로세스의 상태를 확인한다. 프로세스를 없애고 다시 상태를 확인한다. 다음의 명령어들을 하나씩 실행하면서 프로세스의 상태를 확인한다.
 	monit summary
@@ -801,13 +792,15 @@ monit summary를 통해 먼저 프로세스의 상태를 확인한다. 프로세
 	monit summary
 
 monit quit etcd까지 다 실행하고 monit summary를 실행하면 ‘etcd’가 running으로 바뀐 것을 볼 수 있다.
- 
+
+![controller_openstack_image11]
 
 ‘etcd’를 확인한 후 종료하고 OpenStack 서버에서 다음과 같은 명령어를 실행하면 database_z1/0가 running 상태인 것을 확인할 수 있다.
  
+![controller_openstack_image12]
 
 #4. 설치 검증
-###4.2.	CF Login
+###4.1.	CF Login
 	cf api http://api.115.68.46.29.xip.io --skip-ssl-validation # cf target 지정
 	…
 	cf login
@@ -820,33 +813,53 @@ monit quit etcd까지 다 실행하고 monit summary를 실행하면 ‘etcd’�
 	cf create-space dev
 	cf target -o open-paas -s dev
 	…
-	CF Target을 지정하고, Login을 수행한다. 이 때 계정은 admin/admin을 사용한다.
-	Application을 Deploy할 ORG와 Space를 생성하고, 해당하는 ORG/Space로 Targetting 한다.
+
+CF Target을 지정하고, Login을 수행한다. 이 때 계정은 admin/admin을 사용한다.
+Application을 Deploy할 ORG와 Space를 생성하고, 해당하는 ORG/Space로 Targetting 한다.
 
 ※ admin 계정의 패스워드 설정을 바꾸고 싶다면, CF-Release deploy시 manifest 설정 파일에서 변경하야 한다.
 
-###4.3. Application Deploy
+###4.2. Application Deploy
 개방형클라우드플랫폼 패키지와 함께 배포된 Sample Application이 위치하는 디렉토리로 이동하고 Application을 Deploy 한다.
+
 	cd $PACKAGE_ROOT/apps/hello-java
 	cf push “application-name” –i “instance_count” –m “memory_size”
+	
 CF-Release는 기본적으로 DEA 환경에 Application을 배포하기 때문에 Diego 환경에 Application을 배포한다. Application 업로드가 완료된 후에 아래 명령어를 실행해야 한다.
 
-
-
+![controller_openstack_image13]
  
-	
 	cf start “application-name”
 
 Docker 파일을 Deploy하는 경우 다음과 같이 명령어를 입력한다.
+
 	cf enable-feature-flag diego_docker
 	cf push docker1 -m 512M --docker-image cloudfoundry/lattice-app
 		
 	cf start “application-name”
 	
 
-
 다음과 같이 cf apps를 통해 Deploy된 App을 확인한다.
-	 
 
-###4.4. Application Access
-Deploy한 Application URL을 Browser 또는 curl 명령어로 Access하여 정상 접근 되는지를 확인한다.
+![controller_openstack_image14]
+
+###4.3. Application Access
+Deploy한 Application URL을 Browser 또는 curl 명령어로 Access하여 정상 접근 되는지를 확인한다. 
+
+![controller_openstack_image15]
+
+[container-openstack-image01]:/images/openpaas-container/container-openstack-image01.png
+[container-openstack-image02]:/images/openpaas-container/container-openstack-image02.png
+[container-openstack-image03]:/images/openpaas-container/container-openstack-image03.png
+[container-openstack-image04]:/images/openpaas-container/container-openstack-image04.png
+[container-openstack-image05]:/images/openpaas-container/container-openstack-image05.png
+[container-openstack-image06]:/images/openpaas-container/container-openstack-image06.png
+[container-openstack-image07]:/images/openpaas-container/container-openstack-image07.png
+[container-openstack-image08]:/images/openpaas-container/container-openstack-image08.png
+[container-openstack-image09]:/images/openpaas-container/container-openstack-image09.png
+[container-openstack-image10]:/images/openpaas-container/container-openstack-image10.png
+[container-openstack-image11]:/images/openpaas-container/container-openstack-image11.png
+[container-openstack-image12]:/images/openpaas-container/container-openstack-image12.png
+[container-openstack-image13]:/images/openpaas-container/container-openstack-image13.png
+[container-openstack-image14]:/images/openpaas-container/container-openstack-image14.png
+[container-openstack-image15]:/images/openpaas-container/container-openstack-image15.png

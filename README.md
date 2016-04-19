@@ -1,7 +1,7 @@
 # Open PaaS(PaaSTA) 가이드 문서 
 
 
-## 설치 가이드
+## 플랫폼 설치 가이드
 
 - 개인 환경 설치
   - [BOSH-Lite](./Install-Guide/BOSH%20Lite/OpenPaaS_PaaSTA_BOSH_Lite_install_guide.md)

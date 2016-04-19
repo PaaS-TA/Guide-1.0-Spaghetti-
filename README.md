@@ -7,9 +7,9 @@ Document 관련 사항
  
 	1.2. BOSH ([AWS](./Install%20Guide/BOSH/OpenPaaS_PaaSTA_BOSH_AWS_install_guide.md), [OpenStack](./Install%20Guide/OpenPaaS_PaaSTA_BOSH_Openstack_install_guide.md))
 
-	1.3. Controller ([vSphere](./OpenPaaS-설치가이드/Controller_vSphere_install_guide.md),
-	[AWS](./OpenPaaS-설치가이드/Controller_AWS_install_guide.md),
-	[Openstack](./OpenPaaS-설치가이드/Controller_Openstack_install_guide.md))
+	1.3. Controller ([vSphere](./Install%20Guide/Controller/Controller_vSphere_install_guide.md),
+	[AWS](./Install%20Guide/Controller/Controller_AWS_install_guide.md),
+	[Openstack](./Install%20Guide/Controller/Controller_Openstack_install_guide.md))
 
 
 2. 서비스

@@ -4,7 +4,7 @@
 
 	1.1. [BOSH-Lite](./Install%20Guide/BOSH%20Lite/OpenPaaS_PaaSTA_BOSH_Lite_install_guide.md)
  
-	1.2. BOSH ([AWS](./Install%20Guide/BOSH/OpenPaaS_PaaSTA_BOSH_AWS_install_guide.md), [OpenStack](./Install%20Guide/OpenPaaS_PaaSTA_BOSH_Openstack_install_guide.md))
+	1.2. BOSH ([AWS](./Install%20Guide/BOSH/OpenPaaS_PaaSTA_BOSH_AWS_install_guide.md), [OpenStack](./Install%20Guide/BOSH/OpenPaaS_PaaSTA_BOSH_Openstack_install_guide.md))
 
 	1.3. Controller ([vSphere](./Install%20Guide/Controller/Controller_vSphere_install_guide.md),
 	[AWS](./Install%20Guide/Controller/Controller_AWS_install_guide.md),
@@ -61,34 +61,38 @@
 	[OpenStack](./Service-Guide/ETC/ServiceBroker_APIPlatform_Openstack_install_guide.md), 
 	[Bosh-Lite](./Service-Guide/ETC/ServiceBroker_APIPlatform_BOSH_Lite_install_guide.md))
 
-3. PaaSTA 배포 어플리케이션 개발 가이드
+3. PaaSTA 활용 가이드
 
-	3.1. [Node.js](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Nodejs_develope_guide.md)
+	3.1. [BOSH CLI](./etc/OpenPaaS_PaaSTA_BOSH_CLI_guide.md)
 
-	3.2. [PHP](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_PHP_develope_guide.md)
-
-	3.3. [Python](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Python_develope_guide.md)
-
-	3.4. [Ruby](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Ruby_develope_guide.md)
+	3.2. [외부 Identity 서비스 통합](./etc/OpenPaaS_PaaSTA_외부Identity서비스_integrate_guide.md)
 	
-	3.5. [Java](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Java_develope_guide.md)
+	3.3. [UAA 권한관리](./etc/OpenPaaS_PaaSTA_UAA권한관리_guide.md)
+
+
+4. PaaSTA 배포 어플리케이션 개발 가이드
+
+	4.1. [Node.js](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Nodejs_develope_guide.md)
+
+	4.2. [PHP](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_PHP_develope_guide.md)
+
+	4.3. [Python](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Python_develope_guide.md)
+
+	4.4. [Ruby](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Ruby_develope_guide.md)
+	
+	4.5. [Java](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Java_develope_guide.md)
 		
-	3.6. [Go](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Go_develope_guide.md)
+	4.6. [Go](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Go_develope_guide.md)
 	
-4. PaaSTA 개발 가이드
+5. PaaSTA 개발 가이드
 
-	4.1. [스템셀 개발 가이드](./Development%20Guide/OpenPaaS_PaaSTA_Build_Stemcell_guide.md)
+	5.1. [스템셀 개발 가이드](./Development%20Guide/OpenPaaS_PaaSTA_Build_Stemcell_guide.md)
 	
-	4.2. [서비스팩 개발 가이드](./Development%20Guide/ServicePack_develope_guide.md)
+	5.2. [서비스팩 개발 가이드](./Development%20Guide/ServicePack_develope_guide.md)
 	
-	4.3. [빌드팩 개발 가이드](./Development%20Guide/Buildpack_develope_guide.md)
+	5.3. [빌드팩 개발 가이드](./Development%20Guide/Buildpack_develope_guide.md)
 	
-	4.4. [어플리케이션 APIPlatform 도로주소 개발 가이드](./Development%20Guide/Application_APIPlatform_dorojuso_devlope_guide.md)
+	5.4. [어플리케이션 APIPlatform 도로주소 개발 가이드](./Development%20Guide/Application_APIPlatform_dorojuso_devlope_guide.md)
 	
-	4.5. [퍼블릭 API 개발 가이드](./Development%20Guide/PublicAPI_devlope_guide.md)
+	5.5. [퍼블릭 API 개발 가이드](./Development%20Guide/PublicAPI_devlope_guide.md)
 
-5. 기타
-
-	5.1. [BOSH CLI](./etc/OpenPaaS_PaaSTA_BOSH_CLI_guide.md)
-
-	5.2. [외부 Identity 서비스 통합](./etc/OpenPaaS_PaaSTA_외부Identity서비스_integrate_guide.md)

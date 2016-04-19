@@ -1,5 +1,6 @@
+# Open PaaS PaaSTA 가이드 문서 
 
-1. 오픈파스 파스타 설치 가이드
+1. PaaSTA 설치 가이드
 
 	1.1. [BOSH-Lite](./Install%20Guide/BOSH%20Lite/OpenPaaS_PaaSTA_BOSH_Lite_install_guide.md)
  
@@ -13,7 +14,7 @@
 	[AWS](./Install%20Guide/Container/Container_AWS_install_guide.md),
 	[Openstack](./Install%20Guide/Container/Container_Openstack_install_guide.md))
 
-2. 서비스
+2. PaaSTA 서비스 설치 가이드
 
 	2.1. DBMS 
 
@@ -60,7 +61,7 @@
 	[OpenStack](./Service-Guide/ETC/ServiceBroker_APIPlatform_Openstack_install_guide.md), 
 	[Bosh-Lite](./Service-Guide/ETC/ServiceBroker_APIPlatform_BOSH_Lite_install_guide.md))
 
-3. Sample
+3. PaaSTA 배포 어플리케이션 개발 가이드
 
 	3.1. [Node.js](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Nodejs_develope_guide.md)
 
@@ -74,7 +75,7 @@
 		
 	3.6. [Go](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Go_develope_guide.md)
 	
-4. 개발 가이드
+4. PaaSTA 개발 가이드
 
 	4.1. [스템셀 생성](./Development%20Guide/OpenPaaS_PaaSTA_Build_Stemcell_guide.md)
 	

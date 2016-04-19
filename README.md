@@ -3,43 +3,50 @@
 
 ## PaaSTA 설치 가이드
 
-- [개인 환경(BOSH-Lite) 설치](./Install-Guide/BOSH%20Lite/OpenPaaS_PaaSTA_BOSH_Lite_install_guide.md)
-- BOSH 운영 환경 설치([AWS](./Install-Guide/BOSH/OpenPaaS_PaaSTA_BOSH_AWS_install_guide.md), [OpenStack](./Install-Guide/BOSH/OpenPaaS_PaaSTA_BOSH_Openstack_install_guide.md))
-- Controller 운영 환결 설치([vSphere](./Install-Guide/Controller/Controller_vSphere_install_guide.md),
+- 개인 환경 설치
+  - [BOSH-Lite](./Install-Guide/BOSH%20Lite/OpenPaaS_PaaSTA_BOSH_Lite_install_guide.md)
+- 운영 환경 설치
+  - BOSH 설치([AWS](./Install-Guide/BOSH/OpenPaaS_PaaSTA_BOSH_AWS_install_guide.md), [OpenStack](./Install-Guide/BOSH/OpenPaaS_PaaSTA_BOSH_Openstack_install_guide.md))
+  - Controller 설치([vSphere](./Install-Guide/Controller/Controller_vSphere_install_guide.md),
 [AWS](./Install-Guide/Controller/Controller_AWS_install_guide.md), [Openstack](./Install-Guide/Controller/Controller_Openstack_install_guide.md))
-- Container 운영 환경 설치([vSphere](./Install-Guide/Container/Container_vSphere_install_guide.md),
+  - Container 설치([vSphere](./Install-Guide/Container/Container_vSphere_install_guide.md),
 [AWS](./Install-Guide/Container/Container_AWS_install_guide.md),
 [Openstack](./Install-Guide/Container/Container_Openstack_install_guide.md))
 
 ## PaaSTA 서비스 설치 가이드
+
 - DBMS 설치
-  - Cubrid (	[vSphere](./Service-Guide/DBMS/OpenPaaS_PaaSTA_ServicePack_Cubrid_vSphere_install_guide.md), 
+  - Cubrid ( [vSphere](./Service-Guide/DBMS/OpenPaaS_PaaSTA_ServicePack_Cubrid_vSphere_install_guide.md), 
 [AWS](./Service-Guide/DBMS/OpenPaaS_PaaSTA_ServicePack_Cubrid_AWS_install_guide.md), 
 [OpenStack](./Service-Guide/DBMS/OpenPaaS_PaaSTA_ServicePack_Cubrid_Openstack_install_guide.md), 
 [Bosh-Lite](./Service-Guide/DBMS/OpenPaaS_PaaSTA_ServicePack_Cubrid_BOSH-Lite_install_guide.md))
-  2. Mysql ([vSphere](./Service-Guide/DBMS/ServicePack_MySQL_vSphere_install_guide.md), 
+  - Mysql ([vSphere](./Service-Guide/DBMS/ServicePack_MySQL_vSphere_install_guide.md), 
 [AWS](./Service-Guide/DBMS/ServicePack_MySQL_AWS_install_guide.md), 
 [OpenStack](./Service-Guide/DBMS/ServicePack_MySQL_Openstack_install_guide.md), 
 [Bosh-Lite](./Service-Guide/DBMS/ServicePack_MySQL_BOSH-Lite_install_guide.md))
+
 - NOSQL 설치
   - Mongodb ([vSphere](./Service-Guide/NOSQL/OpenPaaS_PaaSTA_ServicePack_MongoDB_vSphere_install_guide.md), 
 [AWS](./Service-Guide/NOSQL/OpenPaaS_PaaSTA_ServicePack_MongoDB_AWS_install_guide.md), 
 [OpenStack](./Service-Guide/NOSQL/OpenPaaS_PaaSTA_ServicePack_MongoDB_Openstack_install_guide.md), 
 [Bosh-Lite](./Service-Guide/NOSQL/OpenPaaS_PaaSTA_ServicePack_MongoDB_BOSH-Lite_install_guide.md))
-  2. Redis ([vSphere](./Service-Guide/NOSQL/ServicePack_Redis_vSphere_install_guide.md), 
+  - Redis ([vSphere](./Service-Guide/NOSQL/ServicePack_Redis_vSphere_install_guide.md), 
 [AWS](./Service-Guide/NOSQL/ServicePack_Redis_AWS_install_guide.md), 
 [OpenStack](./Service-Guide/NOSQL/ServicePack_Redis_Openstack_install_guide.md), 
 [Bosh-Lite](./Service-Guide/NOSQL/ServicePack_Redis_BOSH-Lite_install_guide.md))
+
 - Storage 설치
   - GlusterFS ([vSphere](./Service-Guide/Storage/OpenPaaS_PaaSTA_ServicePack_GlusterFS_vSphere_install_guide.md), 
 [AWS](./Service-Guide/Storage/OpenPaaS_PaaSTA_ServicePack_GlusterFS_AWS_install_guide.md), 
 [OpenStack](./Service-Guide/Storage/OpenPaaS_PaaSTA_ServicePack_GlusterFS_Openstack_install_guide.md), 
 [Bosh-Lite](./Service-Guide/Storage/OpenPaaS_PaaSTA_ServicePack_GlusterFS_BOSH-Lite_install_guide.md))
+
 - MasageQueue 설치
   - RabbitMQ ([vSphere](./Service-Guide/MessageQueue/ServicePack_RabbitMQ_vSphere_install_guide.md), 
 [AWS](./Service-Guide/MessageQueue/ServicePack_RabbitMQ_AWS_install_guide.md), 
 [OpenStack](./Service-Guide/MessageQueue/ServicePack_RabbitMQ_Openstack_install_guide.md), 
 [Bosh-Lite](./Service-Guide/MessageQueue/ServicePack_RabbitMQ_BOSH-Lite_install_guide.md))
+
 - API Platform 설치
   - WSO2([vSphere](./Service-Guide/ETC/ServiceBroker_APIPlatform_vSphere_install_guide.md), 
 [AWS](./Service-Guide/ETC/ServiceBroker_APIPlatform_AWS_install_guide.md), 

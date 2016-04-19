@@ -14,7 +14,6 @@
 [Openstack](./Install-Guide/Container/Container_Openstack_install_guide.md))
 
 ## PaaSTA 서비스 설치 가이드
-
 - DBMS 설치
   - Cubrid ( [vSphere](./Service-Guide/DBMS/OpenPaaS_PaaSTA_ServicePack_Cubrid_vSphere_install_guide.md), 
 [AWS](./Service-Guide/DBMS/OpenPaaS_PaaSTA_ServicePack_Cubrid_AWS_install_guide.md), 
@@ -24,7 +23,6 @@
 [AWS](./Service-Guide/DBMS/ServicePack_MySQL_AWS_install_guide.md), 
 [OpenStack](./Service-Guide/DBMS/ServicePack_MySQL_Openstack_install_guide.md), 
 [Bosh-Lite](./Service-Guide/DBMS/ServicePack_MySQL_BOSH-Lite_install_guide.md))
-
 - NOSQL 설치
   - Mongodb ([vSphere](./Service-Guide/NOSQL/OpenPaaS_PaaSTA_ServicePack_MongoDB_vSphere_install_guide.md), 
 [AWS](./Service-Guide/NOSQL/OpenPaaS_PaaSTA_ServicePack_MongoDB_AWS_install_guide.md), 
@@ -34,19 +32,16 @@
 [AWS](./Service-Guide/NOSQL/ServicePack_Redis_AWS_install_guide.md), 
 [OpenStack](./Service-Guide/NOSQL/ServicePack_Redis_Openstack_install_guide.md), 
 [Bosh-Lite](./Service-Guide/NOSQL/ServicePack_Redis_BOSH-Lite_install_guide.md))
-
 - Storage 설치
   - GlusterFS ([vSphere](./Service-Guide/Storage/OpenPaaS_PaaSTA_ServicePack_GlusterFS_vSphere_install_guide.md), 
 [AWS](./Service-Guide/Storage/OpenPaaS_PaaSTA_ServicePack_GlusterFS_AWS_install_guide.md), 
 [OpenStack](./Service-Guide/Storage/OpenPaaS_PaaSTA_ServicePack_GlusterFS_Openstack_install_guide.md), 
 [Bosh-Lite](./Service-Guide/Storage/OpenPaaS_PaaSTA_ServicePack_GlusterFS_BOSH-Lite_install_guide.md))
-
 - MasageQueue 설치
   - RabbitMQ ([vSphere](./Service-Guide/MessageQueue/ServicePack_RabbitMQ_vSphere_install_guide.md), 
 [AWS](./Service-Guide/MessageQueue/ServicePack_RabbitMQ_AWS_install_guide.md), 
 [OpenStack](./Service-Guide/MessageQueue/ServicePack_RabbitMQ_Openstack_install_guide.md), 
 [Bosh-Lite](./Service-Guide/MessageQueue/ServicePack_RabbitMQ_BOSH-Lite_install_guide.md))
-
 - API Platform 설치
   - WSO2([vSphere](./Service-Guide/ETC/ServiceBroker_APIPlatform_vSphere_install_guide.md), 
 [AWS](./Service-Guide/ETC/ServiceBroker_APIPlatform_AWS_install_guide.md), 

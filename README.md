@@ -77,7 +77,7 @@
 	
 4. PaaSTA 개발 가이드
 
-	4.1. [스템셀 생성](./Development%20Guide/OpenPaaS_PaaSTA_Build_Stemcell_guide.md)
+	4.1. [스템셀 개발 가이드](./Development%20Guide/OpenPaaS_PaaSTA_Build_Stemcell_guide.md)
 	
 	4.2. [서비스팩 개발 가이드](./Development%20Guide/ServicePack_develope_guide.md)
 	

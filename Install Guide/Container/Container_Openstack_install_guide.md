@@ -844,7 +844,7 @@ Deploy한 Application URL을 Browser 또는 curl 명령어로 Access하여 정�
 
 ![container_openstack_image15]
 
-[container-openstack-image01]:/images/openpaas-container/container-openstack-image01.png
+[container_openstack_image01]:/images/openpaas-container/container-openstack-image01.png
 [container-openstack-image02]:/images/openpaas-container/container-openstack-image02.png
 [container-openstack-image03]:/images/openpaas-container/container-openstack-image03.png
 [container-openstack-image04]:/images/openpaas-container/container-openstack-image04.png

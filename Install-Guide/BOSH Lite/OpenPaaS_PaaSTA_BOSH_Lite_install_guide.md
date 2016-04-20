@@ -71,6 +71,8 @@ OpenPaaS Container 배포:
 
 다음의 OpenPaaS 설치패키지를 다운받는다.
 
+[다운로드 페이지](../../Download_page.md)
+
 |**구분**|**디렉토리**|**파일명**|**설명**|
 |-------|------------|---------------|------------------------------|
 |warden|OpenPaaS-Env|bosh-init-0.0.81-linux-amd64|BOSH init 실행 파일|

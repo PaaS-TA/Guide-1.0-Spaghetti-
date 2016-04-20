@@ -58,7 +58,7 @@
 
 ### 3.1. 관리자 대시보드 로그인
 1. 관리자 대시보드에 접속하면 인증을 위한 로그인 화면이 나타난다.  
-![](images/openpaas-admin-dashboard-use/image1.png)
+![](./../images/openpaas-admin-dashboard-use/image1.png)
 
 2. 아이디와 비밀번호를 입력후 SIGN IN 버튼을 클릭한다.  
 ![](images/openpaas-admin-dashboard-use/image2.png)

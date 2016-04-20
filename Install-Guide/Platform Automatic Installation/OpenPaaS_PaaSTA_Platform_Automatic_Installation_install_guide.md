@@ -333,8 +333,8 @@ spiff는 BOSH 배포 Manifest를 생성하기 위해 만들어진 커맨드 라�
 
 	![auto_deploy_webpage](./../images/automatic-installation/auto_deploy_webpage.png "auto_deploy_webpage")
 
-##3.2.  플랫폼 설치 자동화 사용
+##3.2.  플랫폼 설치 자동화 활용
 
-플랫폼 설치 자동화 시스템의 사용법에 대해서는 다음의 다운로드 페이지의 플랫폼 설치 자동화 설치 가이드 문서를 참조한다.
+플랫폼 설치 자동화 시스템의 사용법에 대해서는 다음의 다운로드 페이지에 있는 플랫폼 설치 자동화 설치 가이드 문서를 참조한다.
 
 [사용 가이드](http://extdisk.hancom.com:8080/share.cgi?ssid=0GjSntB)

@@ -13,3 +13,4 @@
 |OpenPaaS-Sample-Apps|Open PaaS 에서 실행되는 샘플 예제 |http://extdisk.hancom.com:8080/share.cgi?ssid=0icB5ZW |
 |OpenPaaS-Services|Open PaaS 서비스 팩|http://extdisk.hancom.com:8080/share.cgi?ssid=0IgH8sM |
 |OpenPaaS-Stemcells|Open PaaS 스템셀 이미지|http://extdisk.hancom.com:8080/share.cgi?ssid=0TJz1wc |
+|OpenPaaS-설치가이드|Open PaaS 설치 및 활용 가이드 문서|http://extdisk.hancom.com:8080/share.cgi?ssid=0GjSntB |

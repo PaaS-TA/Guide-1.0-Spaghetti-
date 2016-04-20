@@ -5,7 +5,7 @@
 |OpenPaaS-Buildpacks|Open PaaS 빌드 팩|http://extdisk.hancom.com:8080/share.cgi?ssid=0zQqS0u |
 |OpenPaaS-Container|Open PaaS 컨테이너 릴리즈|http://extdisk.hancom.com:8080/share.cgi?ssid=0GYdumN |
 |OpenPaaS-Controller|Open PaaS 컨트롤러 릴리즈|http://extdisk.hancom.com:8080/share.cgi?ssid=0v3Mo2B |
-|OpenPaaS-Deployment|Open PaaS 샘플 배포 Manifest|http://extdisk.hancom.com:8080/share.cgi?ssid=0v3Mo2B |
+|OpenPaaS-Deployment|Open PaaS 샘플 배포 Manifest|http://extdisk.hancom.com:8080/share.cgi?ssid=0YWXQzq |
 |OpenPaaS-Dev-Tools|Open PaaS 개인 환경 설치 도구|http://extdisk.hancom.com:8080/share.cgi?ssid=0ZPBtmD |
 |OpenPaaS-Eclipse-Plugin|Open PaaS 연동 전자정부 프레임워크 플러그인|http://extdisk.hancom.com:8080/share.cgi?ssid=0gKIRnB |
 |OpenPaaS-Env|Open PaaS 환경 구축에 필요한 설치 도구|http://extdisk.hancom.com:8080/share.cgi?ssid=056pFuu |

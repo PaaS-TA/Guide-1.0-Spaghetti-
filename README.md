@@ -13,7 +13,7 @@
 [AWS](./Install-Guide/Container/Container_AWS_install_guide.md),
 [Openstack](./Install-Guide/Container/Container_Openstack_install_guide.md))
 - 플랫폼 설치
-  - 플랫폼 설치 자동화(./Install-Guide/Platform%20Install%20System/OpenPaaS_PaaSTA_Platform_Install_System_install_guide.md)
+  - [플랫폼 설치 자동화](./Install-Guide/Platform%20Install%20System/OpenPaaS_PaaSTA_Platform_Install_System_install_guide.md)
  
 ## 서비스 설치 가이드
 - DBMS 설치

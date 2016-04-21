@@ -58,6 +58,8 @@ MicroBOSH를 설치한 후에는 선택에 따라 MicroBOSH를 이용하여 BOSH
 
 다음의 설치 패키지는 MicroBOSH와 BOSH를 설치하기 위한 패키지로 아래의 구성 항목을 로컬 설치 환경의 기준 디렉토리(“workspace”)로 복사한다.
 
+[다운로드](./../../Download_Page.md)
+
 |**구분**|**디렉토리**|**파일명**|**설명**|
 |-------|-----------|----------|--------|
 |공통|OpenPaaS-Env|bosh-init-0.0.81-linux-amd64|BOSH init 실행 파일|

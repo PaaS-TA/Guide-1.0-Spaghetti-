@@ -145,7 +145,7 @@ Bosh Sever에 Stemcell이 정상적으로 Upload 되었는지는 “bosh stemcel
 ![controller_vsphere_image009]    
 
 ### 3.3. Deployment Manifest
-배포된 설치 패키지에 포함된 Sample Deployment Manifest File($INSTALL_PACKAGE/OpenPaaS-Deployment/openpaas-vsphere-beta-1.0.yml)을 아래의 순서대로 설치환경에 적합하게 수정한다.
+배포된 설치 패키지에 포함된 Sample Deployment Manifest File($INSTALL_PACKAGE/OpenPaaS-Deployment/openpaas-vsphere-1.0.yml)을 아래의 순서대로 설치환경에 적합하게 수정한다.
 
 #### 3.3.1. Name & Release
 ```yml
@@ -1456,7 +1456,7 @@ properties:
 지금까지 설치를 위한 준비 과정이 정상적으로 수행되었으면, 지금부터 Open PaaS Controller를 IaaS 환경(vSphere)에 아래의 절차로 설치한다.
 
 #### 3.4.1. Deployment Manifest 지정
-`$ bosh deployment openpaas-vsphere-beta-1.0.yml`
+`$ bosh deployment openpaas-vsphere-1.0.yml`
 
 “bosh deployment” 명령어로 생성한 Deployment Manifest File을 지정하고, 아래의 그림과 같이 동일한 명령어로 정상 지정 되었는지를 확인한다.
 

@@ -70,5 +70,3 @@
 - [스템셀 개발 가이드](./Development-Guide/OpenPaaS_PaaSTA_Build_Stemcell_guide.md)
 - [서비스팩 개발 가이드](./Development-Guide/ServicePack_develope_guide.md)
 - [빌드팩 개발 가이드](./Development-Guide/Buildpack_develope_guide.md)
-
-

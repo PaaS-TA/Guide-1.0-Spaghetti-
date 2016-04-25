@@ -113,7 +113,7 @@ Open PaaS 설치 패키지 내에 포함되어 있는 OP CLI 압축 파일을 �
 
 ### 3.1. Release Upload
 
-배포된 설치 패키지의 OpenPaaS-Controller 폴더에 있는 Open PaaS Controller Bosh Release를 Bosh Server로 아래와 같은 명령으로 212 버전을 Upload 한다.
+배포된 설치 패키지의 OpenPaaS-Controller 폴더에 있는 Open PaaS Controller Bosh Release를 Bosh Server로 아래와 같은 명령어를 이용하여 Upload 한다.
 
 `$ bosh upload release $INSTALL_PACKAGE/OpenPaaS-Controller/openpaas-controller-1.0.tgz`
 

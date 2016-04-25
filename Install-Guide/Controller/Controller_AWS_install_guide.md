@@ -134,9 +134,14 @@ Open PaaS 설치 패키지 내에 포함되어 있는 OP CLI 압축 파일을 �
 
 # 3. Open PaaS Controller 설치
 ### 3.1 Release Upload
-배포된 설치 패키지의 OpenPaaS-Controller 폴더에 있는 Open PaaS Controller Bosh Release를 Bosh Server로 아래와 같은 명령으로 1.0 버전을 Upload 한다.
-`bosh upload release $INSTALL_PACKAGE/OpenPaaS-Controller/openpaas-controller-1.0.tgz`
 
+하단 링크로 접속하여 OpenPaaS Controller 릴리즈 파일인 openpaas-controller-1.0.tgz를 다운로드 한다. 
+
+>OpenPaaS-Controller : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0v3Mo2B>**
+
+다음의 명령어를 이용하여 릴리즈 파일을 bosh에 업로드한다.
+
+`bosh upload release $INSTALL_PACKAGE/OpenPaaS-Controller/openpaas-controller-1.0.tgz`
 
 Release Upload는 상황에 따라 다소 차이는 있으나 보통 20-30분 정도 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.
 
@@ -150,9 +155,13 @@ Bosh Sever에 Release가 정상적으로 Upload 되었는지는 “bosh releases
 
 ![controller_aws_image009]
 
-
 ### 3.2 Stemcell Upload
-배포된 설치 패키지의 OpenPaaS-Stemcells 폴더에 있는 Open PaaS AWS용 Stemcell 을 Bosh Server로 아래와 같은 명령으로 3147 Version을 Upload 한다.
+
+하단의 링크로 접속하여 AWS용 OpenPaaS-Stemcell인 bosh-stemcell-3147-aws-xen-ubuntu-trusty-go_agent.tgz 파일을 다운로드 한다.
+
+>OpenPaaS-Stemcells : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0TJz1wc>**
+
+다음의 명령어를 사용하여 Stemcell을 bosh에 업로드 한다.
 
 `bosh upload stemcell$INSALL_PACKAGE/OpenPaaS-Stemcells/bosh-stemcell-3147-aws-xen-ubuntu-trusty-go_agent.tgz`
 
@@ -170,7 +179,12 @@ Bosh Sever에 Stemcell이 정상적으로 Upload 되었는지는 “bosh stemcel
 
 
 ### 3.3. Deployment Manifest
-배포된 설치 패키지에 포함된 Sample Deployment Manifest File($INSTALL_PACKAGE/OpenPaaS-Deployment/openpaas-controller-aws-1.0.yml)을 아래의 순서대로 설치환경에 적합하게 수정한다.
+
+하단의 링크로 접속하여 AWS용 Controller Deployment인 openpaas-controller-aws-1.0.yml 파일을 다운로드 한다.
+
+>OpenPaaS-Deployment : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0YWXQzq>**
+
+하단의 예시(3.3.1 ~ 3.3.7)를 참조하여 사용자의 설치환경에 적합하게 수정한다.
 
 #### 3.3.1. Name & Release
 ```yml 

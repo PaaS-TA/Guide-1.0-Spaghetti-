@@ -76,7 +76,7 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 
 #### <a name="2.2"/>2.2 RabbitMQ 서비스 릴리즈 업로드
 
-- OpenPaaS-Services을 다운로드 받고 폴더안에 있는 RabbitMQ 서비스 릴리즈 openpaas-rabbitmq-release-1.0.tgz파일을 복사한다.  
+- OpenPaaS-Services를 다운로드 받고 폴더안에 있는 RabbitMQ 서비스 릴리즈 openpaas-rabbitmq-release-1.0.tgz파일을 복사한다.  
 업로드할 openpaas-rabbitmq-release-1.0.tgz 파일을 확인한다.
 
 ><div>$ ls –all</div>

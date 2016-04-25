@@ -90,7 +90,7 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 <div id='8'></div>
 ###   2.2. Redis 서비스 릴리즈 업로드
 
-- OpenPaaS-Services 폴더안에 있는 Redis 서비스 릴리즈openpaas-redis-release-beta-1.0.tgz 파일을복사한다.
+- OpenPaaS-Services 폴더안에 있는 Redis 서비스 릴리즈 openpaas-redis-release-beta-1.0.tgz 파일을 복사한다.
 - 업로드할openpaas-redis-release-beta-1.0.tgz 파일을 확인한다.
 
 

@@ -90,7 +90,7 @@
 ### 2.3. API 플랫폼 서비스 릴리즈 Deployment 파일 수정 및 배포
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다. Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할 것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
 
-- OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더 안에 있는 vSphere용 API 플랫폼 Deployment 화일인 openpaas-apiplatform-vsphere-1.0.yml을 확인한다.
+- OpenPaaS-Deployment 폴더 안에 있는 vsphere 용 API 플랫폼 Deployment 화일인 openpaas-apiplatform-vsphere-1.0.yml을 다운로드 한다.
 
 >`$ ls -all`
 
@@ -617,7 +617,7 @@ API 매니저(API 플랫폼)에 API 서비스가 정상적으로 등록 및 배�
 샘플 App을 배포하고 API 서비스와 바인드 신청을 한다. 먼저 샘플 App을 배포한다.
 >※ 참고: 서비스 Bind 신청시 개방형 클라우드 플랫폼에서 서비스 Bind를 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
-- Sample Web App 디렉토리로 이동하여 manifest 파일을 확인한다.
+OpenPaaS-Sample-Apps의 Etc 디렉토리의 hello-spring을 다운로드 한다.
 
 >`$ cd {샘플앱 경로}`
 

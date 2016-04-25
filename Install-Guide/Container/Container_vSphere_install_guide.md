@@ -14,7 +14,7 @@
      * [3.2.3. Compilation](#12)
      * [3.2.4. Resource Pools](#13)
      * [3.2.5. Update](#14)
-     * [3.2.6 Jobs](#15)
+     * [3.2.6. Jobs](#15)
      * [3.2.7. Properties](#16)
      * [3.3. Deployment Manifest 지정](#17)
      * [3.4. Bosh Deploy](#18)

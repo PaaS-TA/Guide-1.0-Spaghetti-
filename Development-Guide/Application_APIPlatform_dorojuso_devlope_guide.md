@@ -403,14 +403,14 @@ DoroJusomanagerController는 DoroJusoConroller와 같이 BaseController를 상�
     <td>도로명 주소 관리의 비즈니스 로직을 담당하는 Service입니다.</td>
   </tr>
   <tr>
-    <td>DoroJusoService</td>
+    <td>DoroJusoService</td>소
     <td>도로명 주소 검색의 비즈니스 로직을 담당하는 Service입니다.</td>
   </tr>
 </table>
 
 
 
-# <a name="20"/>5. 도로명 서비스 등록(API 플랫폼)
+# <a name="20"/>5. 도로명 주소 서비스 등록(API 플랫폼)
 4장에서 만들어지 도로명 주소 서비스는 인증/API 관리(Life cycle)부분이 없습니다. 단순히 요청에 대해 응답하는 구조입니다. 실제 서비스를 위해서는 사용자 인증, Token 발생/관리, API의 Life cycle 관리, 통계 등의 많은 필수 기능들이 필요합니다. 이를 위해 기존의 전자정부 프레임워크의 공통 컴포넌트를 서비스화 할 때 도움을 주고자 API 플랫폼을 선정하여 이를 통해서 서비스가 이루어지도록 하였습니다.
 API 플랫폼에 대한 설치 및 사용 방법의 자세한 매뉴얼은 “분석_API Manager 설치 매뉴얼”를 참조하여 주시기 바랍니다.
 본 문서에서는 API 플랫폼에 도로명 주소 서비스 API를 등록하는 방법과 노하우 정도를 간단하게 기술하였습니다.

@@ -56,7 +56,7 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 
 ###2.2. MySQL 서비스 릴리즈 업로드
 
-##### OpenPaaS-Services.zip 파일 압축을 풀고 폴더안에 있는 MySQL 서비스 릴리즈 openpaas-mysql-1.0.tgz 파일을 확인한다.
+##### OpenPaaS-Services을 다운로드 받고 폴더안에 있는 MySQL 서비스 릴리즈 openpaas-mysql-1.0.tgz 파일을 확인한다.
 
 >`$ cd openpaas-service-release`   
 >`$ ls –all`

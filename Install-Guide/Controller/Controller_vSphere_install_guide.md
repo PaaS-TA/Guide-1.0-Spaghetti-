@@ -131,7 +131,7 @@ Bosh Sever에 Release가 정상적으로 Upload 되었는지는 “bosh releases
 ### 3.2. Stemcell Upload
 배포된 설치 패키지의 OpenPaaS-Stemcells 폴더에 있는 Open PaaS vSphere용 Stemcell 을 Bosh Server로 아래와 같은 명령으로 3147 Version을 Upload 한다.
 
-`$ bosh upload stemcell $INSALL_PACKAGE/OpenPaaS-Stemcells/bosh-stemcell-3016-vsphere-esxi-ubuntu-trusty-go_agent.tgz`
+`$ bosh upload stemcell $INSALL_PACKAGE/OpenPaaS-Stemcells/bosh-stemcell-3147-vsphere-esxi-ubuntu-trusty-go_agent.tgz`
 
 Stemcell Upload는 상황에 따라 다소 차이는 있으나 보통 5-10분 정도 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.
 

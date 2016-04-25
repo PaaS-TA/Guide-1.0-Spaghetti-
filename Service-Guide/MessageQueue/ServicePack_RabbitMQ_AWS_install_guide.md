@@ -65,11 +65,18 @@
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.  
 서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.  
 BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여BOSH CLI를 설치 해야 한다.  
-OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Deployment.zip, OpenPaaS-Sample-Apps.zip, OpenPaaS-Services.zip)
+OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Deployment, OpenPaaS-Sample-Apps, OpenPaaS-Services)
+
+- 다운로드 위치
+
+>OpenPaaS-Deployment : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0YWXQzq>**  
+>OpenPaaS-Sample-Apps : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0icB5ZW>**
+>OpenPaaS-Services : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0IgH8sM>**  
+
 
 #### <a name="2.2"/>2.2 RabbitMQ 서비스 릴리즈 업로드
 
-- OpenPaaS-Services.zip 파일 압축을 풀고폴더안에 있는RabbitMQ 서비스 릴리즈 openpaas-rabbitmq-release-1.0.tgz파일을복사한다.  
+- OpenPaaS-Services을 다운로드 받고 폴더안에 있는 RabbitMQ 서비스 릴리즈 openpaas-rabbitmq-release-1.0.tgz파일을 복사한다.  
 업로드할 openpaas-rabbitmq-release-1.0.tgz 파일을 확인한다.
 
 ><div>$ ls –all</div>
@@ -97,10 +104,10 @@ $ bosh upload release openpaas-rabbitmq-release-1.0.tgz</div>
 <p>RabbitMQ 서비스 릴리즈가 업로드 되어 있는 것을 확인</p>
 
 #### <a name="2.3"/>2.3 RabbitMQ 서비스 Deployment 파일 수정 및 배포
-BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.  
+BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다.  
 Deployment manifest 에는 software를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
 
-- OpenPaaS-Deployment.zip 파일 압축을 풀고폴더안에 있는OpenStack용 RabbitMQ Deployment 화일인 openpaas-rabbitmq-aws.yml를 복사한다.
+- OpenPaaS-Deployment을 다운로드 받고 폴더안에 있는OpenStack용 RabbitMQ Deployment 화일인 openpaas-rabbitmq-aws.yml를 복사한다.
 - 다운로드 받은 Deployment Yml 파일을 확인한다. (openpaas-rabbitmq-aws.yml)
 
 ><div>$ ls –all</div>
@@ -469,7 +476,7 @@ Sample App 구조는 다음과 같다.
 | Gemfile | Sample App 구동시 필요한 ruby gem 설정 파일
 | config.ru | Sample App 구동 파일
 
-- OpenPaaS-Sample-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 RabbitMQ Sample Web App인 rabbit-labrat를 복사한다.
+- OpenPaaS-Sample-Apps을 다운로드 받고  Service 폴더안에 있는 RabbitMQ Sample Web App인 rabbit-labrat를 복사한다.
 
 ><div>$ ls -all</div>
 ![rabbitmq_aws_(22)]

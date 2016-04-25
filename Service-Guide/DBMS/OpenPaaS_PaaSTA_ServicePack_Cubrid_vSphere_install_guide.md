@@ -67,7 +67,7 @@
 서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.  
 BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여BOSH CLI를 설치 해야 한다.
 
-- OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Services.zip, OpenPaaS-Deployment.zip, OpenPaaS-Sample-Apps.zip)
+- OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Services, OpenPaaS-Deployment, OpenPaaS-Sample-Apps)
 
 - 다운로드 위치
 
@@ -79,7 +79,7 @@ BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문
 <div id='8'></div>
 ###   2.2. Cubrid 서비스 릴리즈 업로드
 
-- OpenPaaS-Services.zip 파일 압축을 풀고 폴더안에 있는 cubrid 서비스 릴리즈 openpaas-cubrid-1.0.tgz 파일을 확인한다.
+- OpenPaaS-Services 파일 압축을 풀고 폴더안에 있는 cubrid 서비스 릴리즈 openpaas-cubrid-1.0.tgz 파일을 확인한다.
 
 >$ cd OpenPaaS-Services  
 >$ ls -all  

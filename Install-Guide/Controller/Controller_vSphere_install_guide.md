@@ -115,7 +115,7 @@ Open PaaS 설치 패키지 내에 포함되어 있는 OP CLI 압축 파일을 �
 
 배포된 설치 패키지의 OpenPaaS-Controller 폴더에 있는 Open PaaS Controller Bosh Release를 Bosh Server로 아래와 같은 명령으로 212 버전을 Upload 한다.
 
-`$ bosh upload release $INSTALL_PACKAGE/OpenPaaS-Controller/openpaas-beta-1.0.tgz`
+`$ bosh upload release $INSTALL_PACKAGE/OpenPaaS-Controller/openpaas-controller-1.0.tgz`
 
 Release Upload는 상황에 따라 다소 차이는 있으나 보통 20-30분 정도 소요가 되며, 정상 Upload가 되면 아래의 그림과 같은 메시지가 출력된다.
 
@@ -129,7 +129,7 @@ Bosh Sever에 Release가 정상적으로 Upload 되었는지는 “bosh releases
 ![controller_vsphere_image007] 
 
 ### 3.2. Stemcell Upload
-배포된 설치 패키지의 OpenPaaS-Stemcells 폴더에 있는 Open PaaS vSphere용 Stemcell 을 Bosh Server로 아래와 같은 명령으로 3016 Version을 Upload 한다.
+배포된 설치 패키지의 OpenPaaS-Stemcells 폴더에 있는 Open PaaS vSphere용 Stemcell 을 Bosh Server로 아래와 같은 명령으로 3147 Version을 Upload 한다.
 
 `$ bosh upload stemcell $INSALL_PACKAGE/OpenPaaS-Stemcells/bosh-stemcell-3016-vsphere-esxi-ubuntu-trusty-go_agent.tgz`
 

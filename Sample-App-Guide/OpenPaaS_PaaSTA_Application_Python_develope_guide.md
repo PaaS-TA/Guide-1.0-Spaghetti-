@@ -145,14 +145,15 @@ Windows x86-64 MSI installer
 
 * 가상환경을 생성할 디렉토리로 이동하여 가상환경 생성 
 
-```
-cd c:\
-virtualenv my_virtual_env
-```
+`cd c:\`
+
+`virtualenv my_virtual_env`
+
 
 ※ 다양한 버전의 python이 설치되어 있다면, 가상환경 생성시에 python의 경로를 '-p' 옵션으로 지정하여, 가상환경 구성에 사용할 python을 선택할 수 있다. 다음은 예시이다.
 
 `virtualenv -p C:\Python34\python.exe my_virtual_env_34`
+
 `virtualenv -p C:\Python27\python.exe my_virtual_env_27`
 
 * 가상환경 실행
@@ -272,9 +273,9 @@ virtualenv my_virtual_env
 
 ※  +으로 표시된 부분이 추가되는 코드, -로 표시된 부분이 삭제되는 코드이다.
 
-` ..\my_sampleproject\my_sampleproject\settings.py `
+`..\my_sampleproject\my_sampleproject\settings.py`
 
-```
+```python
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -325,7 +326,7 @@ WhiteNoise를 사용할 수 있도록 wsgi 모듈을 수정한다.
 
 `..\my_sampleproject\my_sampleproject\wsgi.py`
 
-```
+```yml
 -application = get_wsgi_application()
 +from whitenoise.django import DjangoWhiteNoise
 +application = DjangoWhiteNoise(get_wsgi_application())
@@ -339,7 +340,7 @@ WhiteNoise를 사용할 수 있도록 wsgi 모듈을 수정한다.
 * 개방형 플랫폼의 애플리케이션 환경정보
   서비스를 바인딩하면 JSON 형태로 환경설정 정보가 애플리케이션 별로 등록된다.
 
-```
+```json
 {
  "VCAP_SERVICES": {
   "CubridDB": [
@@ -382,7 +383,7 @@ WhiteNoise를 사용할 수 있도록 wsgi 모듈을 수정한다.
 
 `..\my_sampleproject\my_sampleproject\settings.py` 
 
-```
+```python
 import json
 if 'VCAP_SERVICES' in os.environ:
     vcap_services = json.loads(os.environ['VCAP_SERVICES'])
@@ -410,11 +411,11 @@ mysql_views.py 모듈에서 connections를 임포트하여 다음과 같은 형�
 
 `..\my_sampleproject\my_sampleapp\mysql_views.py`
 
-```
+```python
 from django.db import connections
 ```
 
-```
+```python
 def make_connection():
     db_type = 'default'
     cursor = connections[db_type].cursor()
@@ -428,7 +429,7 @@ def make_connection():
 
 `..\my_sampleproject\my_sampleproject\settings.py`
 
-```
+```python
 import json
 if 'VCAP_SERVICES' in os.environ:
     vcap_services = json.loads(os.environ['VCAP_SERVICES'])
@@ -443,7 +444,7 @@ if 'VCAP_SERVICES' in os.environ:
 
 `..\my_sampleproject\my_sampleapp\cubrid_views.py`
 
-```
+```python
 from django.conf import settings
 import CUBRIDdb
 
@@ -466,7 +467,7 @@ def make_connection():
 
 `..\my_sampleproject\my_sampleproject\settings.py`
 
-```
+```python
 import json
 if 'VCAP_SERVICES' in os.environ:
     vcap_services = json.loads(os.environ['VCAP_SERVICES'])
@@ -480,12 +481,12 @@ if 'VCAP_SERVICES' in os.environ:
 
 `..\my_sampleproject\my_sampleapp\mongo_views.py`
 
-```
+```python
 from django.conf import settings
 from pymongo import MongoClient
 ```
 
-```
+```python
 def make_connection():
     if settings.MONGO_CRED:
         credentials = settings.MONGO_CRED
@@ -503,7 +504,7 @@ def make_connection():
 
 `..\my_sampleproject\my_sampleproject\settings.py`
 
-```
+```python
 import json
 if 'VCAP_SERVICES' in os.environ:  
     vcap_services = json.loads(os.environ['VCAP_SERVICES'])
@@ -529,13 +530,13 @@ if 'VCAP_SERVICES' in os.environ:
 
 `..\my_sampleproject\my_sampleapp\redis_views.py`
 
-```
+```python
 from django.core.cache import cache
 ```
 
  ※ cache를 임포트하면 다음과 같은 형태로 바로 사용이 가능하다.
  
- ```
+ ```python
 cache.get('key값')
 cache.set('key값','value값')
 cache.delete('key값')
@@ -548,7 +549,7 @@ cache.delete('key값')
 
 `..\my_sampleproject\my_sampleproject\settings.py`
 
-```
+```python
 import json
 if 'VCAP_SERVICES' in os.environ:
     vcap_services = json.loads(os.environ['VCAP_SERVICES'])
@@ -563,12 +564,12 @@ if 'VCAP_SERVICES' in os.environ:
 
 `..\my_sampleproject\my_sampleapp\rabbitmq_views.py`
 
-```
+```python
 from django.conf import settings
 import pika
 ```
 
-```
+```python
 def make_connection():
     if settings.RABBITMQ_CRED:
         credentials = settings.RABBITMQ_CRED
@@ -586,7 +587,7 @@ def make_connection():
 
 `..\my_sampleproject\my_sampleproject\settings.py`
 
-```
+```python
 import json
 if 'VCAP_SERVICES' in os.environ:
     vcap_services = json.loads(os.environ['VCAP_SERVICES'])
@@ -601,12 +602,12 @@ if 'VCAP_SERVICES' in os.environ:
 
 `..\my_sampleproject\my_sampleapp\gluster_views.py`
 
-```
+```python
 from django.conf import settings
 import swiftclient
 ```
 
-```
+```python
 def make_connection():
     if settings.GLUSTERFS_CRED:
         credentials = settings.GLUSTERFS_CRED
@@ -643,17 +644,15 @@ Sample-App: [http://extdisk.hancom.com:8080/share.cgi?ssid=0icB5ZW](http://extdi
  애플리케이션 배포과정을 진행하기 위해 개방형 클라우드 플랫폼의 사용자 계정으로 로그인한다.
 로그인을 하기 이전에 먼저 target을 지정한다. target 지정 명령어는 아래와 같다. 
 
-```
- # cf api [target URL]
- $ cf api --skip-ssl-validation https://api.cf.open-paas.com
-``` 
+ `# cf api [target URL]`
+ 
+ `$ cf api --skip-ssl-validation https://api.cf.open-paas.com`
  
 타겟 지정이 완료되었다면, 로그인 명령어를 통해 로그인한다.
 
-```
-# cf login –u [user name] –o [org name] –s [space name]
-$ cf login -u testUser -o sample_test -s sample_space
-```
+`# cf login –u [user name] –o [org name] –s [space name]`
+
+`$ cf login -u testUser -o sample_test -s sample_space`
 
 <div id='2-4-3'></div>
 #####2.4.3. 서비스 생성
@@ -678,7 +677,6 @@ $ cf login -u testUser -o sample_test -s sample_space
  $ cf create-service redis-sb shared-vm python-redis
  $ cf create-service glusterfs glusterfs-5Mb python-glusterfs
  $ cf create-service p-rabbitmq standard python-rabbitmq 
-
 ```
 
  ※cf create-service 명령어는 서비스명, 플랜, 서비스 인스턴스명을 순서대로 입력하게 되어 있다. 서비스명과 플랜은 cf marketplace 명령어를 통해 확인하고, 서비스 인스턴스명은 임의의 명칭을 사용한다.
@@ -692,7 +690,7 @@ $ cf login -u testUser -o sample_test -s sample_space
 
 `..\my_sampleproject\requirements.txt`
 
-```
+```python
 Django==1.8.6
 djangorestframework==3.3.1
 gunicorn==19.1.1
@@ -746,7 +744,7 @@ GlusterFS 연동에 필요</td>
 
 `..\my_sampleproject\manifest.yml`
 
-```
+```yml
 ---
 applications:
 - name: python-sample-app      # 애플리케이션 이름

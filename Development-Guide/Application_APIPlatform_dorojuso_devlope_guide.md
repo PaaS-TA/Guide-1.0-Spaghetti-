@@ -555,7 +555,7 @@ $ cf update-service-broker {서비스팩 이름} {서비스팩 사용자ID} {서
 
 
 
-# <a name="26"/>7. 도로먕 주소 검색  Sample Web App 설명
+# <a name="26"/>7. 도로명 주소 검색  Sample Web App 설명
 본 Sample Web App은 개방형 클라우드 플랫폼에 배포되며 API 플랫폼의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능합니다.
 
 ### <a name="27"/>7.1. Sample Web App 구조

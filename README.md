@@ -2,7 +2,7 @@
 
 
 ## 플랫폼 설치 가이드
-
+- [설치 파일 다운로드 받기](./Download_Page.md)
 - 개인 환경 설치
   - [BOSH-Lite](./Install-Guide/BOSH%20Lite/OpenPaaS_PaaSTA_BOSH_Lite_install_guide.md)
 - 운영 환경 설치

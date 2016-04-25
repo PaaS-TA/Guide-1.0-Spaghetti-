@@ -190,7 +190,7 @@ Oepn API 카테고리로 이동하면, ①API 서비스 명으로 검색하거�
 | 바인드(Bind)    | cf bind-service [어플리케이션명] [서비스 인스턴스명] <br>확인: cf env [어플리케이션명] |
 | 언바인드(Unbind)    | cf unbind-service [어플리케이션명] [서비스 인스턴스명] <br>확인: cf env |
 | 디프로비전(Deprovision)    | cf delete-service [서비스 인스턴스명] <br>확인: cf services |
-※ 서비스 브로커 APIs에 대한 상세 정보는 [OpenPaaS_PaaSTA_ServicePack_develope_guide]문서의 [2.5 개발가이드]를 참고한다.
+※ 서비스 브로커 APIs에 대한 상세 정보는 [서비스팩 개발 가이드](../Development-Guide/ServicePack_develope_guide.md)문서의 [2.5 개발가이드]를 참고한다.
 
 <div id='11'></div>
 ### 3.3. API 서비스 브로커 동작구조
@@ -236,7 +236,7 @@ API 서비스 브로커를 통해 서비스되는 서비스들이 공통적으�
 
 <div id='17'></div>
 ### 4.2. 카탈로그
-※ 세부정보는 [OpenPaaS_PaaSTA_ServicePack_develope_guide]문서의 [2.5.1. Catalog API 가이드]를 참고한다.
+※ 세부정보는 [서비스팩 개발 가이드](../Development-Guide/ServicePack_develope_guide.md)문서의 [2.5.1. Catalog API 가이드]를 참고한다.
 <div id='18'></div>
 ##### 4.2.1 요청
 - Route
@@ -296,7 +296,7 @@ API 서비스 브로커를 통해 서비스되는 서비스들이 공통적으�
 
 <div id='20'></div>
 ### 4.3. 프로비전
-※ 세부정보는 [OpenPaaS_PaaSTA_ServicePack_develope_guide]문서의 [2.5.1  Provision 가이드]를 참고한다.
+※ 세부정보는 [서비스팩 개발 가이드](../Development-Guide/ServicePack_develope_guide.md)문서의 [2.5.1  Provision 가이드]를 참고한다.
 <div id='21'></div>
 ##### 4.3.1 요청
 - Route
@@ -333,7 +333,7 @@ API 서비스 브로커를 통해 서비스되는 서비스들이 공통적으�
 
 <div id='23'></div>
 ### 4.4. 업데이트
-※ 세부정보는 [OpenPaaS_PaaSTA_ServicePack_develope_guide]문서의 [2.5.3  Update Instance API 가이드]를 참고한다.
+※ 세부정보는 [서비스팩 개발 가이드](../Development-Guide/ServicePack_develope_guide.md)문서의 [2.5.3  Update Instance API 가이드]를 참고한다.
 <div id='24'></div>
 ##### 4.4.1 요청
 - Route
@@ -365,7 +365,7 @@ API 서비스 브로커를 통해 서비스되는 서비스들이 공통적으�
 
 <div id='26'></div>
 ### 4.5. 바인드
-※ 세부정보는 [OpenPaaS_PaaSTA_ServicePack_develope_guide]문서의 [2.5.5  Bind API 가이드]를 참고한다.
+※ 세부정보는 [서비스팩 개발 가이드](../Development-Guide/ServicePack_develope_guide.md)문서의 [2.5.5  Bind API 가이드]를 참고한다.
 <div id='27'></div>
 ##### 4.5.1 요청
 - Route
@@ -411,7 +411,7 @@ API 서비스 브로커를 통해 서비스되는 서비스들이 공통적으�
   
 <div id='29'></div>
 ### 4.6. 언바인드
-※ 세부정보는 [OpenPaaS_PaaSTA_ServicePack_develope_guide]문서의 [2.5.6  Unbind API 가이드]를 참고한다.
+※ 세부정보는 [서비스팩 개발 가이드](../Development-Guide/ServicePack_develope_guide.md)문서의 [2.5.6  Unbind API 가이드]를 참고한다.
 <div id='30'></div>
 ##### 4.6.1 요청
 - Route
@@ -443,7 +443,7 @@ service_bindings/:binding_id?service_id=Service1 PublicPerformance ServiceID &pl
 
 <div id='32'></div>
 ### 4.6. 디프로비전
-※ 세부정보는 [OpenPaaS_PaaSTA_ServicePack_develope_guide]문서의 [2.5.4  Deprovision API 가이드]를 참고한다.
+※ 세부정보는 [서비스팩 개발 가이드](../Development-Guide/ServicePack_develope_guide.md)문서의 [2.5.4  Deprovision API 가이드]를 참고한다.
 <div id='33'></div>
 ##### 4.7.1 요청
 - Route

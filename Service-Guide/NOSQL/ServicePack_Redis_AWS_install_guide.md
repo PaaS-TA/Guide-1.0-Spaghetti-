@@ -74,13 +74,18 @@
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다.
 서비스팩 설치를 위해서는 먼저 BOSH CLI 가 설치 되어 있어야 하고 BOSH 에 로그인 및 타켓 설정이 되어 있어야 한다.
 BOSH CLI 가 설치 되어 있지 않을 경우 먼저 BOSH 설치 가이드 문서를 참고 하여BOSH CLI를 설치 해야 한다.
-OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (OpenPaaS-Deployment.zip, OpenPaaS-Sample-Apps.zip, OpenPaaS-Services.zip)
+
+- OpenPaaS에서 제공하는 파일(Service Release, Deployment, Sample App)
+
+- 다운로드 위치
+>OpenPaaS-Services : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0IgH8sM>**  
+>OpenPaaS-Deployment : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0YWXQzq>**  
+>OpenPaaS-Sample-Apps : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0icB5ZW>**
 
 <div id='8'></div>
 ###   2.2. Redis 서비스 릴리즈 업로드
 
--	OpenPaaS-Services.zip 파일 압축을 풀고 폴더안에 있는 Redis 서비스 릴리즈 openpaas-redis-release-1.0.tgz 파일을 복사한다.
-업로드할 openpaas-redis-release-1.0.tgz 파일을 확인한다.
+- OpenPaaS-Services 폴더 안에 있는 redis 서비스 릴리즈 파일 openpaas-redis-release-1.0.tgz 을 다운로드 한다.
 
 
 ><div>$ls -all</div>  
@@ -122,9 +127,7 @@ OpenPaaS 에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML  파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
 
--	OpenPaaS-Deployment.zip 파일 압축을 풀고 폴더안에 있는 AWS용 Redis Deployment 화일인 openpaas-redis_aws-1.0.yml를 복사한다.
-다운로드 받은 Deployment Yml 파일을 확인한다. (openpaas-redis_aws.yml-1.0)
-
+-	OpenPaaS-Deployment 폴더안에 있는 AWS용 Redis Deployment 화일인 openpaas-redis_aws-1.0.yml를 다운로드한다.
 
 ><div>$ls -all</div>
 >![redis_aws11]
@@ -420,7 +423,7 @@ Sample App 구조는 다음과 같다.
   </tr>
 </table>
 
-- OpenPaaS-Sample-Apps.zip 파일 압축을 풀고 Service폴더안에 있는 RedisSample Web App인 redis-example-app을복사한다
+- 링크 OpenPaaS-Sample-Apps에서 Service 폴더 안에 있는 Redis Sample Web App인 redis-example-app을 다운로드한다.
 
 ><div>$ls -all</div>
 >![redis_aws24]

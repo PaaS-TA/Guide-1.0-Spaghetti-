@@ -171,7 +171,7 @@ Node.js는 javascript기반의 언어로 Notepad++, Sublim Text, EditPlus등 문
 - git clone을 통해 Node.js 샘플 애플리케이션을 다운받는다.
 
 ```
-git clone https://github.com/OpenPaaSRnD/OpenPaaSSample
+git clone https://github.com/OpenPaaS-Sample-Apps/OpenPaaSSample/node-sample-app
 ```
 
 ##### 2. Node.js 샘플 애플리케이션 경로로 이동

@@ -187,7 +187,8 @@ Windows x86-64 MSI installer
 샘플 애플리케이션의 데이터 관리는 MySQL, CubridDB, MongoDB 중 하나를 이용하기 때문에 API 요청시 요청 본문의 DBType 값을 가지고 결정한다.
 
 ※샘플 애플리케이션 다운로드
-완성된 샘플 애플리케이션은 하단 링크의 /OpenPaas-Sample/python-sample-app 에서 다운로드 할 수 있다. 
+완성된 샘플 애플리케이션은 하단 링크의 /OpenPaas-Sample/python-sample-app 에서 다운로드 할 수 있다.
+<br>
 Sample-App: [http://extdisk.hancom.com:8080/share.cgi?ssid=0icB5ZW](http://extdisk.hancom.com:8080/share.cgi?ssid=0icB5ZW)
 
 

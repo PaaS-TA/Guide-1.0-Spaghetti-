@@ -131,6 +131,13 @@ DEVELOPMENT KIT : DevKit-tdm-32-4.5.2-20111229-1559-sfx
 
 Ruby 샘플 애플리케이션을 개발하기 위한 애플리케이션의 생성과 환경설정, VCAP_SERVICES 정보의 획득 및 각 서비스의 연동 방법에 대하여 설명한다.
 
+
+- 샘플 애플리케이션 다운로드
+
+ 완성된 샘플 애플리케이션은 아래 링크의 /OpenPaaSSample/ruby-sample-app 에서 받을 수 있다.
+
+> http://extdisk.hancom.com:8080/share.cgi?ssid=0icB5ZW#0icB5ZW
+
 <div id='11'></div>
 ##### 2.3.1.	애플리케이션 생성
 

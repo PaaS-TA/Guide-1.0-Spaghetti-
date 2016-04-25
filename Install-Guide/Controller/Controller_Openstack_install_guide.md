@@ -177,7 +177,7 @@ Bosh Sever에 Stemcell이 정상적으로 Upload 되었는지는 “bosh stemcel
 
 ### 3.3. Deployment Manifest
 
-하단의 링크로 접속하여 AWS용 Controller Deployment인 openpaas-controller-openstack-1.0.yml 파일을 다운로드 한다.
+하단의 링크로 접속하여 Openstack용 Controller Deployment인 openpaas-controller-openstack-1.0.yml 파일을 다운로드 한다.
 
 >OpenPaaS-Deployment : **<http://extdisk.hancom.com:8080/share.cgi?ssid=0YWXQzq>**
 

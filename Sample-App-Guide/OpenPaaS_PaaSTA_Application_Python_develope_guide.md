@@ -633,9 +633,6 @@ def make_connection():
         return connection
 ```
 
-
-
-
 <div id='2-4'></div>
 ##2.4. 배포
 
@@ -696,9 +693,9 @@ Sample-App: [http://extdisk.hancom.com:8080/share.cgi?ssid=0icB5ZW](http://extdi
 
  requirements.txt 파일에 python 샘플 애플리케이션 구동에 필요한 패키지들이 정의된다. 개방형 클라우드 플랫폼에서는 애플리케이션이 배포될 때, requirements.txt 파일에 정의된 패키지들을 설치한다. 따라서 requirements.txt 파일이 존재하지 않거나 내용이 잘못 되어 있을 경우, 애플리케이션 실행에 문제가 발생한다. 
 
-`..\my_sampleproject\requirements.txt`
+`..\my_sampleproject(python-sample-app)\requirements.txt`
 
-```python
+```yml
 Django==1.8.6
 djangorestframework==3.3.1
 gunicorn==19.1.1
@@ -750,7 +747,7 @@ GlusterFS 연동에 필요</td>
 
  애플리케이션 배포 시, manifest.yml 파일을 참조하여 배포가 이루어진다.
 
-`..\my_sampleproject\manifest.yml`
+`..\my_sampleproject(python-sample-app)\manifest.yml`
 
 ```yml
 ---

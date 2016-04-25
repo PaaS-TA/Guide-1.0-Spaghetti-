@@ -75,11 +75,11 @@
 <div id='3'></div>
 ### 1.2. 범위 
 플랫폼 운영자는 개발자들이 사용하게 될 서비스를 개방형 클라우드 플랫폼의 마켓 플레이스에 노출시킨다. 따라서 본 문서는 API 서비스 브로커의 구현과 배포, API 서비스를 추가하는 방법을 기술한다.(2장~6장) 또한, 어플리케이션에서 API 서비스를 사용하는 방법을 안내하는데(7장), 이는 플랫폼 운영자가 아닌 어플리케이션 개발자의 영역이지만, 검증을 위해 필요하므로 함께 기술한다.
-본 문서의 [4장 API 서비스 브로커 구현]을 이해하기 위해서 [서비스팩 개발 가이드 (./Development-Guide/ServicePack_develope_guide.md)]문서의 [2장 Service Broker API 개발가이드]를 숙지하여야 하며, 본 문서는 그 중 JAVA 방식 구현에 대해서만 기술하였다.
+본 문서의 [4장 API 서비스 브로커 구현]을 이해하기 위해서 [서비스팩 개발 가이드](./Development-Guide/ServicePack_develope_guide.md)문서의 [2장 Service Broker API 개발가이드]를 숙지하여야 하며, 본 문서는 그 중 JAVA 방식 구현에 대해서만 기술하였다.
 
 <div id='4'></div>
 ### 1.3. 참고자료
-- 서비스팩 개발 가이드 (./Development-Guide/ServicePack_develope_guide.md)
+- [서비스팩 개발 가이드](./Development-Guide/ServicePack_develope_guide.md)
 - CF document
 - 인천문화예술정보 공공 Open API 센터(**<http://iq.ifac.or.kr/openAPI/look/culture_guide.php>**)
 - 네이버 개발자 센터(**<http://developer.naver.com/wiki/pages/Tutorial_JavaScript>**)

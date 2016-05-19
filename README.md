@@ -54,9 +54,7 @@
 - [BOSH CLI(Command Line Interface) 사용](./Use-Guide/OpenPaaS_PaaSTA_BOSH_CLI_guide.md)
 - [CF CLI(Command Line Interface) 사용](Use-Guide/OpenPaas%20CLi%20가이드.md)
 - [Eclipse plugin 개발도구 사용] (./Use-Guide/Open%20PaaS%20%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD%20%EC%82%AC%EC%9A%A9%20%EA%B0%80%EC%9D%B4%EB%93%9C.md)
-- [인증인가(UAA) 서비스 관리](./Use-Guide/OpenPaaS_PaaSTA_UAA권한관리_guide.md)
-- [외부 인증/인가 서비스 통합](./Use-Guide/OpenPaaS_PaaSTA_외부Identity서비스_integrate_guide.md)
-- [Open PaaS 관리자 대시보드 사용](./Use-Guide/Open%20PaaS%20%EA%B4%80%EB%A6%AC%EC%9E%90%20%EB%8C%80%EC%8B%9C%EB%B3%B4%EB%93%9C%20%EC%82%AC%EC%9A%A9%EA%B0%80%EC%9D%B4%EB%93%9C.md)
+
 
 ## 개발 언어 별 어플리케이션 가이드
 - [Node.js](./Sample-App-Guide/OpenPaaS_PaaSTA_Application_Nodejs_develope_guide.md)

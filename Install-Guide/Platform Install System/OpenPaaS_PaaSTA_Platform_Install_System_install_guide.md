@@ -247,12 +247,12 @@ spiff는 BOSH 배포 Manifest를 생성하기 위해 만들어진 커맨드 라�
 	
   |**구분**|**디렉토리**|**파일명**|**설명**|
   |-------|------------|---------------|------------------------------|
-  | - |OpenPaaS-Env|OPENPAAS-IEDA-WEB.tar|플랫폼 설치 자동화 시스템|
+  | - |OpenPaaS-Env|OPENPAAS-IEDA-WEB.zip|플랫폼 설치 자동화 시스템|
 
 
 2.  다운로드 받는 OPENPAAS-IEDA-WEB.tar 파일을 Home 디렉토리에 압축을 푼다.
 
-		$ tar xvfx OPENPAAS-IEDA-WEB.tar -C ~/
+		$ unzip OPENPAAS-IEDA-WEB.zip -d ~/
 
 
 3.  플랫폼 설치 자동화 실행에 필요한 설정 파일을 생성하고, 다음과 같이 편집한다.

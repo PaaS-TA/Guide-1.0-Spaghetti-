@@ -73,7 +73,7 @@ BOSH CLI가 지원하는 Ruby버전 중 2.1.6버전을 설치 대상으로 기�
 
 		$ cd
 		$ git clone https://github.com/sstephenson/rbenv.git .rbenv
-		$ echo 'export PATH="$HOME/.rbenv/bin:\$PATH"' >> ~/.bashrc
+		$ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 		$ echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 		$ exec $SHELL
 

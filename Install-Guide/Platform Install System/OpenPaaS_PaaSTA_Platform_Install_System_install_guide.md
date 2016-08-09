@@ -309,9 +309,9 @@ spiff는 BOSH 배포 Manifest를 생성하기 위해 만들어진 커맨드 라�
 
 		# 테이블 속성 수정
 		$ mysql -u root -p
-		mysql> use idea;
-		mysql> alter table idea_diego_aws engine=innodb row_format=compressed key_block_size=8;
-		mysql> alter table idea_diego_openstack engine=innodb row_format=compressed key_block_size=8;
+		mysql> use ieda;
+		mysql> alter table ieda_diego_aws engine=innodb row_format=compressed key_block_size=8;
+		mysql> alter table ieda_diego_openstack engine=innodb row_format=compressed key_block_size=8;
 		mysql> exit
 
 		# mysql 데이터베이스 재시작

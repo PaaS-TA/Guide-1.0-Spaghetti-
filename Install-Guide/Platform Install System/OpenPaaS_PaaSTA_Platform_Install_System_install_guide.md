@@ -281,8 +281,8 @@ spiff는 BOSH 배포 Manifest를 생성하기 위해 만들어진 커맨드 라�
 		# 데이터베이스 테이블 스키마 설정(schema.sql)	## 설치환경에 맞게 스키마 경로를 수정
 		spring.datasource.schema=/home/ubuntu/OPENPAAS-IEDA-WEB/src/main/resources/schema.sql
 
-		# 초기 업로드 데이터 설정(data.sql)			## 설치환경에 맞게 설정파일 경로를 수정
-		spring.datasource.data=/home/ubuntu/OPENPAAS-IEDA-WEB/src/main/resources/data.sql
+		# 초기 업로드 데이터 설정(import.sql)			## 설치환경에 맞게 설정파일 경로를 수정
+		spring.datasource.data=/home/ubuntu/OPENPAAS-IEDA-WEB/src/main/resources/import.sql
 
 		# 플랫폼 설치 자동화 구동시 필요한 테이블과 데이터 초기 로딩 및 관리를 위한 설정 
 		# 최초 실행시 아래와 같이 설정하고 처리가 끝난 후 주석 처리한다.

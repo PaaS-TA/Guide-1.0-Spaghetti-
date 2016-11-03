@@ -66,8 +66,8 @@ MicroBOSH를 설치한 후에는 선택에 따라 MicroBOSH를 이용하여 BOSH
 |공통|OpenPaaS-Env|bosh\_gem\_package.tar|BOSH CLI 설치 패키지|
 |공통|OpenPaaS-Env|ruby-2.1.6.tar.gz|Ruby 2.1.6 버전|
 |공통|OpenPaaS-Env/bosh\_env\_packages|디렉토리 전체|BOSH 실행 환경 설치 패키지|
-|공통|OpenPaaS-IaaS-Controller|bosh-233.tgz|BOSH v233 릴리즈|
-|AWS|OpenPaaS-IaaS-Controller|bosh-aws-cpi-release-36.tgz|BOSH Plugin CPI|
+|공통|OpenPaaS-IaaS-Container|bosh-233.tgz|BOSH v233 릴리즈|
+|AWS|OpenPaaS-IaaS-Container|bosh-aws-cpi-release-36.tgz|BOSH Plugin CPI|
 |AWS|OpenPaaS-Stemcells|light-bosh-stemcell-3147-aws-xen-hvm-ubuntu-trusty-go_agent.tgz|AWS v3147 스템셀 이미지 Bosh-init 설치용|
 |AWS|OpenPaaS-Stemcells|bosh-stemcell-3147-aws-xen-ubuntu-trusty-go_agent.tgz|AWS v3147 스템셀 이미지 Bosh 설치용|
 |AWS|OpenPaaS-Deployment|openpaas-bosh-init-aws-1.0.yml|AWS MicroBOSH 배포 Manifest Sample 파일|

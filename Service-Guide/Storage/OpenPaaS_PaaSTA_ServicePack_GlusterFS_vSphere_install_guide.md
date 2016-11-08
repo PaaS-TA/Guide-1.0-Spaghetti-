@@ -314,7 +314,7 @@ GlusterFS 서비스팩 배포가 완료 되었으면 Application에서 서비스
 
 - 특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
 
->$ cf enable-service-access Mongo-DB  
+>$ cf enable-service-access glusterfs
 >$ cf service-access  
 >![2-4-4-0]
 
@@ -368,7 +368,7 @@ Sample Web App에서 GlusterFS 서비스를 사용하기 위해서는 서비스 
 - Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.
 
 >$ cf create-service {서비스명} {서비스플랜} {내서비스명}  
-- 서비스명 : Mongo-DB로 Marketplace에서 보여지는 서비스 명칭이다.  
+- 서비스명 : glusterfs로 Marketplace에서 보여지는 서비스 명칭이다.  
 - 서비스플랜 : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. GlusterFS 서비스는 100mb, 1gb를 지원한다.  
 - 내서비스명 : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경설정정보를 가져온다.  
 >

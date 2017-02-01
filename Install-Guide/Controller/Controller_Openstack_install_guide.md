@@ -67,6 +67,9 @@ OpenStack Dashboard(Horizon)으로 정상 접속되어야 하고, Open PaaS Cont
 
 SSH, HTTP, HTTPS, DNS Protocol을 받을 수 있고, 모든 통신 Protocol을 엑세스 할 수 있도록 Security Group을 설정한다.(주의: 내부 네트워크 구간에서는 모든 Procotol이 사용 가능하도록 구성해야 한다.)
 
+*** PaaS-TA v2.0 이상의 버전에서는 다음을 참조하여 시큐리티 그룹을 설정한다. ***
+[https://docs.cloudfoundry.org/deploying/openstack/security_group.html](https://docs.cloudfoundry.org/deploying/openstack/security_group.html)
+
 ###2.3. Bosh Server 및 Bosh CLI
 
 ![controller_openstack_image004]

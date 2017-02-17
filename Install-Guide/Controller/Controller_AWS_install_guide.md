@@ -72,6 +72,10 @@ SSH, HTTP, HTTPS, DNS Protocol을 받을 수 있고, 모든 통신 Protocol을 �
 
 ![controller_aws_image004]
 
+***PaaS-TA v2.0 이상의 버전에서는 다음을 참조하여 시큐리티 그룹을 설정한다.***
+[https://docs.cloudfoundry.org/deploying/openstack/security_group.html](https://docs.cloudfoundry.org/deploying/openstack/security_group.html)
+
+
 #### 2.3. Bosh Server 및 Bosh CLI
 
 ![controller_aws_image005]

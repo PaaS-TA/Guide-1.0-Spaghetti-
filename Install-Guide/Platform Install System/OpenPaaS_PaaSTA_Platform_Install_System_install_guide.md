@@ -16,17 +16,17 @@
      * [플랫폼 설치 자동화 설치](#31--플랫폼-설치-자동화-설치)
 
 
-#1.  문서 개요 
+# 1.  문서 개요 
 
-##1.1.  목적
+## 1.1.  목적
 
 본 문서는 플랫폼 설치 자동화 시스템의 설치를 위한 환경 구성 및 설치 절차에 대해 기술하였다.
 
-##1.2.  범위
+## 1.2.  범위
 
 본 문서에서는 Linux 환경(Ubuntu 14.04)을 기준으로 플랫폼 설치 자동화의 설치하는 방법에 대해 작성되었고, 플랫폼 설치 자동화는 현재 Openstack과 AWS를 지원하고 있다.
 
-##1.3.  참고자료
+## 1.3.  참고자료
 
 본 문서는 Cloud Foundry의 Document를 참고로 작성하였다.
 
@@ -36,9 +36,9 @@ CF & Diego Document:
 [http://docs.cloudfoundry.org/](http://docs.cloudfoundry.org/)
 
 
-#2.  플랫폼 설치 자동화 실행환경 구성
+# 2.  플랫폼 설치 자동화 실행환경 구성
 
-##2.1.  실행 환경을 위한 패키지 설치 
+## 2.1.  실행 환경을 위한 패키지 설치 
 
 플랫폼 설치 자동화는 BOSH CLI(command line interface) 실행환경을 웹으로 구현한 것으로 BOSH CLI와 유사한 구동 환경을 구성할 필요가 있다. 2장에서 설치한 가상머신에 실행환경을 구성한다. 환경 구성에 있어서 전제조건으로 가상머신은 외부와 통신이 가능해야 한다.
 
@@ -54,7 +54,7 @@ CF & Diego Document:
 -   maven
 -   mysql
 
-##2.2.  Ruby 및 BOSH 의존 패키지 설치 
+## 2.2.  Ruby 및 BOSH 의존 패키지 설치 
 
 BOSH CLI가 지원하는 Ruby버전 중 2.1.6버전을 설치 대상으로 기술하였고, 상세 설치 절차는 다음과 같다. 설치는 ubuntu(14.04)를 기준으로 설명하였다.
 
@@ -92,7 +92,7 @@ BOSH CLI가 지원하는 Ruby버전 중 2.1.6버전을 설치 대상으로 기�
   		$ ruby -v
 
 
-##2.3.  bosh-init 설치
+## 2.3.  bosh-init 설치
 
 플랫폼 설치 자동화 서비스는 MicroBOSH를 bosh-init을 통해 배포한다. 따라서 bosh-init의 설치가 필요하다. bosh-init을 설치하는 절차는 다음과 같다.
 
@@ -116,7 +116,7 @@ BOSH CLI가 지원하는 Ruby버전 중 2.1.6버전을 설치 대상으로 기�
     	$ bosh-init -v
 
 
-##2.4.  bosh_cli 설치
+## 2.4.  bosh_cli 설치
 
 bosh\_cli는 클라우드 환경에 릴리즈, 배포, 라이프 사이클을 관리하는 BOSH와 연동하여 사용되는 커맨드라인 도구이다.
 
@@ -130,7 +130,7 @@ bosh\_cli는 클라우드 환경에 릴리즈, 배포, 라이프 사이클을 �
 		$ bosh or bosh help
 
 
-##2.5.  spiff 설치
+## 2.5.  spiff 설치
 
 spiff는 BOSH 배포 Manifest를 생성하기 위해 만들어진 커맨드 라인 도구이다.
 
@@ -156,7 +156,7 @@ spiff는 BOSH 배포 Manifest를 생성하기 위해 만들어진 커맨드 라�
 		$ spiff -v
 
 
-##2.6.  Java8 설치
+## 2.6.  Java8 설치
 
 플랫폼 설치 자동화는 spring-boot기반의 java8로 개발되었기 때문에 java8 실행 환경을 설치하여야 한다.
 
@@ -172,7 +172,7 @@ spiff는 BOSH 배포 Manifest를 생성하기 위해 만들어진 커맨드 라�
 		$ java -version
 
 
-##2.7.  Maven 설치
+## 2.7.  Maven 설치
 
 라이브러리 의존관계 관리 및 빌드 도구 Maven을 설치한다.
 
@@ -186,7 +186,7 @@ spiff는 BOSH 배포 Manifest를 생성하기 위해 만들어진 커맨드 라�
 		$ mvn -version
 
 
-##2.8.  MySQL 설치
+## 2.8.  MySQL 설치
 
 플랫폼 설치 자동화가 사용할 MySQL 데이터베이스를 설치한다.
 
@@ -234,12 +234,12 @@ spiff는 BOSH 배포 Manifest를 생성하기 위해 만들어진 커맨드 라�
 		^C
 
 
-#3.  플랫폼 설치 자동화 메뉴얼
+# 3.  플랫폼 설치 자동화 메뉴얼
 
 본 장에서는 플랫폼 설치 자동화를 설치하는 방법과 메뉴 구성 및 화면 설명에 대해서 기술하였다.
 
 
-##3.1.  플랫폼 설치 자동화 설치
+## 3.1.  플랫폼 설치 자동화 설치
 
 1.  플랫폼 설치 자동화(OPENPAAS-IEDA-WEB) 모듈을 다운로드 받는다.
 
@@ -337,7 +337,7 @@ spiff는 BOSH 배포 Manifest를 생성하기 위해 만들어진 커맨드 라�
 
 	![auto_deploy_webpage](./../images/automatic-installation/auto_deploy_webpage.png "auto_deploy_webpage")
 
-##3.2.  플랫폼 설치 자동화 활용
+## 3.2.  플랫폼 설치 자동화 활용
 
 플랫폼 설치 자동화 시스템의 사용법에 대해서는 다음의 다운로드 페이지에 있는 플랫폼 설치 자동화 설치 가이드 문서를 참조한다.
 

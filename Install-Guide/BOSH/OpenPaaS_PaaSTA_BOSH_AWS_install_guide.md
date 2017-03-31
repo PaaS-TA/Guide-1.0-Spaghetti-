@@ -23,7 +23,7 @@
      * [BOSH 배포 Troubleshooting](#66--bosh-배포-troubleshooting)
 
 
-#1.  문서 개요
+# 1.  문서 개요
 
 ## 1.1.  목적
 
@@ -42,7 +42,7 @@
 BOSH Document: [http://bosh.io](http://bosh.io)
 
 
-#2.  Basic BOSH Workflow
+# 2.  Basic BOSH Workflow
 
 본 문서의 목적에서도 언급했듯이 BOSH는 클라우드 환경에 서비스를 배포 관리하는 소프트웨어로 BOSH자체도 클라우드에 배포되어야 하는 서비스로 설치 환경이 구성되어 있는 서버로부터 MicroBOSH만을 설치하여 운영하는 방법과 MiroBOSH 로부터 배포된 BOSH를 이용하는 방법 2가지 유형이 있으니 자신의 로컬 설치 환경에 따라 선택할 수 있다.
 
@@ -54,7 +54,7 @@ MicroBOSH (Single-VM BOSH)는 소프트웨어 배포 및 관리를 하나의 VM�
 MicroBOSH를 설치한 후에는 선택에 따라 MicroBOSH를 이용하여 BOSH (Multi-VM BOSH)를 배포하거나 또는 다른 서비스들을 배포할 수도 있다.
 
 
-#3.  BOSH 설치 패키지 구성 요소
+# 3.  BOSH 설치 패키지 구성 요소
 
 다음의 설치 패키지는 MicroBOSH와 BOSH를 설치하기 위한 패키지로 아래의 구성 항목을 로컬 설치 환경의 기준 디렉토리(“workspace”)로 복사한다.
 
@@ -74,7 +74,7 @@ MicroBOSH를 설치한 후에는 선택에 따라 MicroBOSH를 이용하여 BOSH
 |AWS|OpenPaaS-Deployment|openpaas-bosh-aws-1.0.yml|AWS BOSH 배포 Manifest Samle 파일|
 
 
-#4.  Install BOSH CLI
+# 4.  Install BOSH CLI
 
 BOSH는 Ruby언어로 구현되어 있으므로 Ruby개발 환경 설치 후 BOSH CLI를 설치해야 한다. BOSH CLI설치 가능한 Ruby버전은 1.9.3 이상이며, 개발 환경에 이미 설치가 되어 있다면 4.1절 Ruby설치는 건너뛰면 된다.
 
@@ -283,7 +283,7 @@ BOSH CLI를 설치하는 절차는 다음과 같다.
 		$ bosh
 
 
-#5.  Install MicroBOSH
+# 5.  Install MicroBOSH
 
 본 장에서는 단일 VM에서 동작하는 MicroBOSH를 상용 클라우드 플랫폼인 AWS에 설치하는 절차를 기술한다.
 
@@ -303,12 +303,12 @@ MicroBOSH를 배포하기 위해서는 아래와 같이 몇가지 준비 사항�
 
 MicroBOSH를 배포하기 위한 AWS 사전 준비사항 및 필요한 사항을 아래의 가이드를 참조하여 설정한다.
 
-###-   사전 준비 및 확인 사항
+### -   사전 준비 및 확인 사항
 
 -   AWS 계정
 
 
-###-   Access Key 설정
+### -   Access Key 설정
 
 1.  AWS에 로그인: [https://console.aws.amazon.com/console/home](https://console.aws.amazon.com/console/home)
 
@@ -341,7 +341,7 @@ MicroBOSH를 배포하기 위한 AWS 사전 준비사항 및 필요한 사항을
 6.  다이얼로그 화면을 닫는다.
 
 
-###-   Virtual Private Cloud (VPC) 구성
+### -   Virtual Private Cloud (VPC) 구성
 
 1.  화면 우측 상단의 지역메뉴를 선택한다. (현재 N. Virginia 지역에서만 light stemcell을 사용할 수 있다.)
 
@@ -375,7 +375,7 @@ MicroBOSH를 배포하기 위한 AWS 사전 준비사항 및 필요한 사항을
 	**Subnet ID, CIDR, Availability Zone**을 manifest의 네트워크에 설정한다.
 
 
-###-   Elastic IP 생성
+### -   Elastic IP 생성
 
 1.  VPC 대시보드에서 ‘Elastic IPs’ 버튼과 ‘Allocate New Address’ 버튼을 차례로 눌러 Elastic IP를 생성한다.
 
@@ -422,7 +422,7 @@ MicroBOSH를 배포하기 위한 AWS 사전 준비사항 및 필요한 사항을
 	‘~/.ssh/bosh.pem’ 값을 manifest의 **private\_key**에 설정한다.
 
 
-###-   시큐리티 그룹 생성
+### -   시큐리티 그룹 생성
 
 1.  EC2 대시보드 화면에서 ‘Security Groups’과 ‘Create Security Group’ 버튼을 차례대로 누른다.
 
@@ -659,7 +659,7 @@ Bosh-init을 이용해 MicroBOSH를 배포한다.
 		$ export BOSH_INIT_LOG_PATH=<로그를 출력할 경로>/<로그 파일명>
 
 
-#6.  Install BOSH
+# 6.  Install BOSH
 
 본 장에서는 이전 장에서 설치한 MicroBOSH 이용하여 BOSH를 설치하는 절차를 기술한다.
 
@@ -941,15 +941,15 @@ MicroBOSH 배포 Manifest파일 작성과 동일하게 로컬에 YAML파일을 �
 
 ※ VM의 vcap 아이디의 비밀번호는 다음의 절차를 통해 변경할 수 있다.
 
-	#1. 암호화된 비밀번호 생성도구 설치
+	# 1. 암호화된 비밀번호 생성도구 설치
 	$ sudo apt-get install whois
 
-	#2. vcap 비밀번호 생성
+	# 2. vcap 비밀번호 생성
 	$ mkpasswd -m sha-512
 	Password: <PASSWORD>
 	$6$4A2jmWvsaYv2O37d$WtT5ul2L4IeRcYcGljeYpd9NHuA3dbdUWcHuDInLG9542g0sU.j4/fj.0uVfEQuutTxw3FW4DANgIqn1OGVTq1
 
-	#​3. 생성한 암호화된 비밀번호를 manifest의 env.bosh.password에 적용
+	# 3. 생성한 암호화된 비밀번호를 manifest의 env.bosh.password에 적용
 
 
 ## 6.5.  BOSH 배포

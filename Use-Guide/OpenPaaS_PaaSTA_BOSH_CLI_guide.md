@@ -101,11 +101,9 @@
 	* [export compiled_package] (#export-compiled_package)
 	* [vm resurrection] (#vm-resurrection)
 
-<div id='11111'/>
-## 문서 개요
+## <div id='11111'/> 문서 개요
 
-<div id='1-목적'/>
-### 문서 목적 
+### <div id='1-목적'/> 문서 목적 
 본 문서는 MicroBOSH/BOSH에 대한 설치 및 운영 관리를 위한 도구인 BOSH CLI에 대해 기본 사용법 및 사용 예시를 통해 BOSH를 이해하는데 목적이 있다. 
 
 <div id='1-범위'/>

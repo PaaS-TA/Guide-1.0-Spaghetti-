@@ -27,38 +27,38 @@
      * 2.4. [배포](#2.4)
      * 2.5. [테스트](#2.5)
 
-<div id='1'></div>  
-#1.  개요
-<div id='1.1'></div>  
-##1.1.  문서 개요
-<div id='1.1.1'></div>  
-###1.1.1.  목적 
+  
+# <div id='1'> 1.  개요
+  
+## <div id='1.1'> 1.1.  문서 개요
+ 
+### <div id='1.1.1'> 1.1.1.  목적 
 
 본 문서(PHP 애플리케이션 개발 가이드)는 개발형 플랫폼 프로젝트의 서비스를PHP 애플리케이션과 연동하는 방법을 제공하는데 있습니다.
-<div id='1.1.2'></div>  
-###1.1.2.  범위
+  
+### <div id='1.1.2'> 1.1.2.  범위
 
 연동을 하는 서비스는 MySQL, MongoDB, Redis, GlusterFS 입니다. 데이터 저장에는 MySQL, MongoDB를 사용하고 사용자의 Session은 Redis에 샘플 어플리케이션에서 사용하는 이미지 파일 관리(Upload)를 위해서는 GlusterFS를 사용합니다.
-<div id='1.1.3'></div>  
-### 1.1.3.  제약사항
+
+### <div id='1.1.3'>  1.1.3.  제약사항
 
 현재 PHP 빌드팩(CloudFoundry의 공식 빌드팩 v4.3.1)의 지원하는 드라이버가 본 사업의 서비스와 정확하게 맞지 않아 일부 서비스(RabbitMQ, CUBRID)는 연동하지 못했습니다. 또한 MongoDB와 연결은 DB인증 절차가 적용이 되지 않아 DB Admin 계정으로 접속하는 방법을 설명하였습니다.
 실제 사용시에는 PHP 빌드팩을커스터마이징하여 프로젝트 환경에 맞추어서 개발을 진행하셔야 합니다.
 
-<div id='1.1.4'></div>  
-### 1.1.4.  참고자료
+
+### <div id='1.1.4'> 1.1.4.  참고자료
 
 -	PHP 빌드팩 :https://github.com/cloudfoundry/php-buildpack
 -	XAMP 사이트 :https://www.apachefriends.org/index.html
 
-<div id='2'></div>  
-#2.  PHP 애플리케이션개발가이드
-<div id='2.1'></div>  
-##2.1.  개요
+  
+# <div id='2'> 2.  PHP 애플리케이션개발가이드
+ 
+## <div id='2.1'> 2.1.  개요
 
 개발환경은 개방형 플랫폼의 네트워크의 구성에 따라 로컬에 구성을 하거나 직접 개방형 플랫폼에 Deploy하여 관리할 수 있습니다. 여기서는 Windows 환경에 간단하게 개발환경을 구성하고 개방형 플랫폼에 배포(Deploy)하는 방법을 설명하겠습니다.
-<div id='2.2'></div>  
-##2.2.  개발환경 구성
+ 
+## <div id='2.2'> 2.2.  개발환경 구성
 
 PHP 개발환경을 구성하려면 Web Server와 PHP 엔진, Extension 설치등을해야하는데 이를 간편하게 구성 놓은 툴이 있습니다. 본 가이드에서는 XAMP를 이용하여 설치를 하고 구성하도록 하겠습니다.
 
@@ -69,15 +69,15 @@ PHP 개발환경을 구성하려면 Web Server와 PHP 엔진, Extension 설치�
 -	Composer : 
 
 PHP로 REST/full 서버를 구현하였고 화면(HTML)은 Apache의 Web 서버에서 제공을 합니다. HTML과 PHP는 별도로 돌아가는 구조입니다.
-<div id='2.2.1'></div>  
-### 2.2.1.  PHP 샘플 소스 받기
+ 
+### <div id='2.2.1'>  2.2.1.  PHP 샘플 소스 받기
 
 샘플의 위치는 변경될수있느나 개방형 플랙폼 홈페이지에서 찾아볼 수 있습니다. 해당 GIT 위치를 확인하시고 아래와 같은 명령문으로 소스를 다운로드 받습니다. 해당 명령을 위해서는 GIT Client가 설치되어 있어야 합니다.
 
         $ git clone 
 
-<div id='2.2.2'></div>  
-###2.2.2.  XAMP설치
+ 
+### <div id='2.2.2'> 2.2.2.  XAMP설치
 
 BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템셀을 생성하기 위해서는 AWS에 계정을 생성하고 스템셀을 생성하기 위한 환경을 구성해야 한다.
   1.	URL (https://www.apachefriends.org/index.html) 에 접속하면 바로 다운로드 화면이 나옵니다. 여기서 "Click here for other version"을 선택합니다. 
@@ -110,8 +110,8 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
       DocumentRoot C:\개발소스위치
       <DirectoryC:\개발소스위치>
       
-<div id='2.2.3'></div>  
-###2.2.3. PHP 실행 환경설정
+ 
+### <div id='2.2.3'> 2.2.3. PHP 실행 환경설정
 
   1.	XAMP로 설치된 PHP를 어디서나 실행가능하게 환경설정(Path)에 넣어줍니다. 제어판 -> 시스템 -> 고급 시스템 설정을 선택하면 아래와 같이 시스템 속성을 변경하는 창이 나타납니다. 
 
@@ -128,8 +128,8 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
   ![./image/php/php_develope_guide5.png](./image/php/php_develope_guide8.png)<br>
     명령 프롬프트에서 PHP 버전 확인
 
-<div id='2.2.4'></div>  
-###2.2.4. Composer 설치
+ 
+### <div id='2.2.4'> 2.2.4. Composer 설치
 
   Composer는 개발시 필요한 라이브러리를 관리하는 툴입니다. 홈페이지는 다음과 같습니다. https://getcomposer.org/
   
@@ -145,8 +145,8 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
   PHP 빌드팩Extenstion정보 :https://github.com/cloudfoundry/php-buildpack/releases
 
 
-<div id='2.2.5'></div>  
-###2.2.5.  Mongo 드라이버 설치
+ 
+### <div id='2.2.5'> 2.2.5.  Mongo 드라이버 설치
 
   Mongo 드라이브 설치는 개방형 플랫폼에서 지원하는 Mongo 드라이버를 설치하기 위함입니다. 관련문서는 http://docs.php.net/manual/en/mongo.installation.php#mongo.installation.windows에 있습니다. 라이브러리 파일을 다운받고 config 파일에 정보를 추가하면 됩니다.
   
@@ -166,12 +166,12 @@ BOSH는 스템셀을 생성하는 VM을 AWS에 생성하고 관리한다. 스템
   5.	모듈이 정상적으로 설치되었는지 확인하려면 소스코드의 루트에 있는 info.php를 실행합니다. 브라우져에서http://localhost/info.php 를 선택하고 내용에 mongo 부분의 설정 정보가 보이면 정상적으로 설치가 된 것입니다.
   
 
-<div id='2.3'></div>  
-##2.3.  개발
+ 
+## <div id='2.3'> 2.3.  개발
 
 개발에 필요한 Package의 구성과 소스디렉토리 구성을 설명합니다. 그리고 각각의 서비스와 연동을 하는 부분의 설명합니다
-<div id='2.3.1'></div>  
-###2.3.1.  사용 Package 설명
+ 
+### <div id='2.3.1'> 2.3.1.  사용 Package 설명
 
 Composer를 사용하여 Dependency를 관리합니다. Composer.json 파일의 Package구성을 설명하면 아래의 표와 같습니다. 설정정보는 composer.json에 저장되어 있습니다.
 
@@ -192,8 +192,8 @@ Composer를 사용하여 Dependency를 관리합니다. Composer.json 파일의 
   만약에 로컬 개발환경에서 composer.json파일이 변경되면 install 대신 update를 이용하여 패키지의 구성을 변경하면 됩니다.
 
 
-<div id='2.3.2'></div>  
-###2.3.2.  디렉토리설명
+ 
+### <div id='2.3.2'> 2.3.2.  디렉토리설명
 
 개발 편의를 위해 API 서비스를 따로 디렉토리로구성하였으며 resource 디렉토리는 HTML에서 필요한 정적인 파일(js, css, image)이 있습니다.
 
@@ -214,8 +214,8 @@ Composer를 사용하여 Dependency를 관리합니다. Composer.json 파일의 
 |manifest.yml|	개방형 플랫폼에 배포(push)할 때 사용하는 설정 파일입니다.|
 |phpunit.xml|	PHP 단위테스트를 정의한 설정입니다.|
 
-<div id='2.3.3'></div>  
-###2.3.3.  애플리케이션 환경설정
+ 
+### <div id='2.3.3'> 2.3.3.  애플리케이션 환경설정
 
 REST/full 서비스를 위한 환경설정과 PHP 빌드팩에서 사용할 Extension을 적용해야 합니다. 
 
@@ -242,8 +242,8 @@ XAMP에서 mongo 드라이브를 추가하였듯이 개방형 플랫폼에도 �
  	mongo : mongo 연결을 위한 extension
  	amqp :rabbitmq와 연결을 위한 extension (현재 SSL연동이 안되서 사용을 못하고 있음)
 
-<div id='2.3.4'></div>  
-###2.3.4.  VCAP_SERVICES 환경설정 정보 
+  
+### <div id='2.3.4'> 2.3.4.  VCAP_SERVICES 환경설정 정보 
 
 개방형 플랫폼에서는 서비스를 사용하기 위해 서비스 생성/바인딩을 합니다. 그리고 연결된 서비스를 사용하기 위해 VCAP_SERVICES 환경설정 정보를 가져와야 합니다. 이 정보는 연결할 Host 주소/포트, 사용자명, 비밀번호 등 서비스 접속에 필요한 모든 정보를 포함하고 있습니다. 
 
@@ -298,8 +298,8 @@ PHP에서 VCAP 환경정보를 가져오는 방법은 간단합니다. System의
 
 환경설정정보는 서비스마다 위치/명칭이 다릅니다. cfenv 명령으로 정확한 위치를 파악하거나 서비스 제공자의 매뉴얼을 참조하여야 합니다.
 
-<div id='2.3.5'></div>  
-###2.3.5.  Mysql 연동
+ 
+### <div id='2.3.5'> 2.3.5.  Mysql 연동
 
 Extenstion에 추가한 mysqli를 사용합니다. XAMP에서는 기본으로 설정이 되어 있기 때문에 따로 설치작업이 필요없습니다. 
 (위치 :api/mysql_view.php)
@@ -347,13 +347,13 @@ Query를 작성하고 Prepared Statement로 실행을 합니다. 실행된 결�
 
         echo json_encode($result);
 
-<div id='2.3.6'></div>  
-###2.3.6.  CUBRID 연동
+ 
+### <div id='2.3.6'> 2.3.6.  CUBRID 연동
 
 현재 CF의 기본 빌드팩에서는 CUBRID를 지원하지 않아 본 샘플에서는 구현하지 않았습니다. 만약 프로젝트에서 CUBRID를 사용해야하면 별도로 문의 바랍니다. 
 
-<div id='2.3.7'></div>  
-###2.3.7.  MongoDB 연동
+ 
+### <div id='2.3.7'> 2.3.7.  MongoDB 연동
 
 Extenstion에 추가한 mongo 라이브러리를 이용합니다. 단 현재 mongo 라이브러리로는 사용자 인증에 문제가 있습니다. 라이브러리가 버그 fix가 되어야 합니다. 본 가이드에서는 부득이하게 MongoDB의 Root계정으로 접속하여 예제를 구현하였습니다.
 (위치 :api/mongodb_view.php)
@@ -383,8 +383,8 @@ Extenstion에 추가한 mongo 라이브러리를 이용합니다. 단 현재 mon
 	
         echo json_encode($result);
 
-<div id='2.3.8'></div>  
-###2.3.8.  Redis 연동
+ 
+### <div id='2.3.8'> 2.3.8.  Redis 연동
 
 Redis 연동은 추가로 Composer를 통해 설치가된 패키지를 사용합니다. 
 
@@ -408,13 +408,13 @@ Redis 연동은 추가로 Composer를 통해 설치가된 패키지를 사용합
 
 
 
-<div id='2.3.9'></div>  
-###2.3.9.  RabbitMQ연동
+ 
+### <div id='2.3.9'> 2.3.9.  RabbitMQ연동
 
 CF의 PHP 빌드팩에서amqp접속시 SSL 접속에 문제가 있습니다. 그래서 해당 서비스 연동은 구현이 안되어 있습니다. 접속방법만 명시한 php 파일만 있습니다. (위치 :api/rebbitmq_view.php)
 
-<div id='2.3.10'></div>  
-###2.3.10.  GlusterFS 연동
+ 
+### <div id='2.3.10'> 2.3.10.  GlusterFS 연동
 
 
 php-opencloud라는 패키지를 사용하며 composer를 통해서 설치가 되게 되어 있습니다. 단 Container를 Public하게 생성하는 SDK가 없어서 API를 직접 호출(REST형식)하여 권한을 Public으로 설정하고 있습니다. 
@@ -473,8 +473,8 @@ Opencloud를 사용하기 위해 선언을 합니다.
         echo json_encode($result);
 
 
-<div id='2.4'></div>  
-##2.4.  배포 
+
+## <div id='2.4'>  2.4.  배포 
 
 개발형 플랫폼에 샘플 애플리케이션을 설치하기 위한 부분입니다. CF PUSH 명령문을 사용하기 위한 사전작업과 서비스를 생성하고 연결하는 작업을 설명하고 있습니다.
 
@@ -600,8 +600,8 @@ $ cf marketplace# 마켓플레이스 목록 요청
         ON DELETE CASCADE;
 
 
-<div id='2.5'></div>  
-##2.5.  테스트
+
+## <div id='2.5'>  2.5.  테스트
 
 
 PHP 단위테스트는 phpunit를 이용해서 합니다. 테스트 케이스는 test 디렉토리에 있으며 단위 테스트 실행은 아래와 같이 실행합니다.

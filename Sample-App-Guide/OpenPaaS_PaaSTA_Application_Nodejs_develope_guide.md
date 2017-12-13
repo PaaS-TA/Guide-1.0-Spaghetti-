@@ -26,35 +26,35 @@
 
 
 
-<div id='1'></div>
-# 1. 문서 개요
 
-<div id='2'></div>
-### 1.1. 목적
+# <div id='1'> 1. 문서 개요
+
+
+### <div id='2'> 1.1. 목적
 
 본 문서(node.js 애플리케이션 개발 가이드)는 개방형 플랫폼 프로젝트의 서비스팩(Mysql, Cubrid, MongoDB, RabbitMQ, Radis, GlusterFS)을 Node.js 애플리케이션과 연동하여서비스를 사용하고 애플리케이션을 배포하는 방법에 대해 제시하는 문서이다.
 
-<div id='3'></div>
-### 1.2. 범위
+
+### <div id='3'> 1.2. 범위
 
 본 문서의 범위는 개방형 플랫폼 프로젝트의 Node.js 애플리케이션 개발과 서비스팩 연동에 대한 내용으로 한정되어 있다.
 
-<div id='4'></div>
-### 1.3. 참고자료
-**<https://docs.cloudfoundry.org/devguide/>**  
-**<https://docs.cloudfoundry.org/buildpacks/node/node-tips.html>**  
-**<https://nodejs.org/>**  
-**<http://expressjs.com/ko/>**  
-**<https://github.com/felixge/node-mysql>**  
-**<https://github.com/CUBRID/node-cubrid>**  
-**<https://github.com/mongodb/node-mongodb-native>**  
-**<https://github.com/NodeRedis/node_redis>**  
-**<https://github.com/postwait/node-amqp>**  
-**<https://github.com/pkgcloud/pkgcloud>**  
+
+### <div id='4'> 1.3. 참고자료
+**<https://docs.cloudfoundry.org/devguide/>**
+**<https://docs.cloudfoundry.org/buildpacks/node/node-tips.html>**
+**<https://nodejs.org/>**
+**<http://expressjs.com/ko/>**
+**<https://github.com/felixge/node-mysql>**
+**<https://github.com/CUBRID/node-cubrid>**
+**<https://github.com/mongodb/node-mongodb-native>**
+**<https://github.com/NodeRedis/node_redis>**
+**<https://github.com/postwait/node-amqp>**
+**<https://github.com/pkgcloud/pkgcloud>**
 **<https://mochajs.org/>**
 
-<div id='5'></div>
-# 2. 개발환경 구성
+
+# <div id='5'> 2. 개발환경 구성
 
 Open PaaS에 등록된 다양한 서비스팩을 Node.js언어로 작성된 애플리케이션과 바인딩하고해당 애플리케이션에 바인딩된 환경정보(VCAP_SERVICES)에서 각 서비스별 접속정보를 획득하여 애플리케이션에 적용하여 이용 할 수 있도록 Windows 환경에서 Node.js 애플리케이션을 작성 할 수 있도록한다.
 
@@ -65,8 +65,8 @@ Node.js 애플리케이션 개발을 위해 다음과 같은 환경으로 개발
 - Node.js : v0.12.4
 - npm : v2.10.1
 
-<div id='6'></div>
-### 2.1. Node.js 및 npm 설치
+
+### <div id='6'> 2.1. Node.js 및 npm 설치
 
 ##### 1. Node.js 다운로드
 
@@ -117,54 +117,54 @@ Node.js 애플리케이션 개발을 위해 다음과 같은 환경으로 개발
 
 - 커맨드창에 아래의 명령어를 입력하여 node.js와 npm의 버젼과 제대로 설치되었는지 여부를 확인한다.
 
-><div>>node -v</div>
-><div>>npm -v</div>
+><div>>node -v
+><div>>npm -v
 ![2-2-1-10]
 
 개발도구
 Node.js는 javascript기반의 언어로 Notepad++, Sublim Text, EditPlus등 문서편집기를 개발도구로 사용할 수 있다. 또한 Eclipse의 플러그인 Nodeclipse를 설치하여 사용할 수도있다.
 
-<div id='7'></div>
-# 3. 개발
+
+# <div id='7'> 3. 개발
 
 샘플 애플리케이션에의 데이터 관리는 MySQL, CubridDB, MongoDB 중에 하나를 이용하기 때문에 API 요청시 요청 본문에 DBType 값을 가지고 결정한다.
 
-<div id='8'></div>
-### 3.1. Node.js Express애플리케이션 생성
+
+### <div id='8'> 3.1. Node.js Express애플리케이션 생성
 ##### 1. 'express-generator'를 이용하여 Express 애플리케이션을 생성
 
 - 커맨드 창에서 개발을 진행할 경로로 이동후 아래의 명령어를 입력하여 'express-generator' npm을 설치한다.
 
-><div>>npm install express-generator</div>
+><div>>npm install express-generator
 ![2-3-1-0]
 
 - Express 애플리케이션을 생성한다. '-e'옵션은 view enjine을 ejs를 사용한다는 것이고 default view enjin은 jade이다.
 
-><div>>.\node_modules\.bin\express -e</div>
+><div>>.\node_modules\.bin\express -e
 ![2-3-1-1]
 
 ##### 2. npm 설치
 
-- Express 애플리케이션에 기본적으로 포함되어있는 npm을 설치한다. 설치할 npm에 대한 정의는 package.json에 정의되어있다. 
+- Express 애플리케이션에 기본적으로 포함되어있는 npm을 설치한다. 설치할 npm에 대한 정의는 package.json에 정의되어있다.
 
-><div>>npm install</div>
+><div>>npm install
 ![2-3-1-2]
 
 ##### 3. Node.js Express 어플리캐이션 실행
 
 - 아래의 두 명령어중 하나를 이용해 애플리케이션 실행한다.
 
-><div>>npm start</div>
-><div>>node bin/www</div>
+><div>>npm start
+><div>>node bin/www
 ![2-3-1-3]
 
 - 브라우저로 아래의 주소로 접속하여 애플리케이션이 제대로 동작하는지 확인한다.
 
-><div>http://localhost:3000/</div>
+><div>http://localhost:3000/
 ![2-3-1-4]
- 
-<div id='9'></div>
-### 3.2. Node.js 샘플 애플리케이션
+
+
+### <div id='9'> 3.2. Node.js 샘플 애플리케이션
 
 ##### 1. Node.js 샘플 애플리케이션 다운로드
 
@@ -176,7 +176,7 @@ Node.js는 javascript기반의 언어로 Notepad++, Sublim Text, EditPlus등 문
 
 - 다운받은 경로아래에 Node.js 샘플 애플리케이션 경로로 이동한다.
 
-><div>>cd node-sample-app</div>
+><div>>cd node-sample-app
 ![2-3-2-0]
 
 ##### 3. Node.js 샘플 애플리케이션 디렉토리구조
@@ -246,8 +246,8 @@ Node.js는 javascript기반의 언어로 Notepad++, Sublim Text, EditPlus등 문
   </tr>
 </table>
 
-<div id='10'></div>
-### 3.3. 애플리케이션 환경설정
+
+### <div id='10'> 3.3. 애플리케이션 환경설정
 
 이 샘플은 Node.js version 0.12.4, npm version 2.10.1.을 기준으로 각 모듈의 버전을 명시적으로 선택하여 설치하였다.
 package.json 수정(설정)시 설치된 Node.js의 버전에 맞는 모듈을 설치하는 것을 권장한다.
@@ -309,7 +309,7 @@ package.json 수정(설정)시 설치된 Node.js의 버전에 맞는 모듈을 �
     <td>npm start 명령어로 실행될 명령어(애플리케이션 구동 명령어)</td>
   </tr>
 </table>
-  
+
 - dependencies
 
 <table>
@@ -523,8 +523,8 @@ app.delete('/orgs/:org_id/mysql', orgs_mysql.destroy);
 …..(생략)
 ```
 
-<div id='11'></div>
-### 3.4. VCAP_SERVICES 환경설정 정보 
+
+### <div id='11'> 3.4. VCAP_SERVICES 환경설정 정보
 개방형 플랫폼에 배포되는 애플리케이션이 바인딩된서비스별 접속 정보를 얻기 위해서는 애플리케이션별로 등록되어있는 VCAP_SERVICES 환경설정 정보를 읽어들여정보를 획득 할 수 있다.
 
 1)  개방형 플랫폼의 애플리케이션 환경정보
@@ -563,8 +563,8 @@ app.delete('/orgs/:org_id/mysql', orgs_mysql.destroy);
 process.env.VCAP_SERVICES
 ```
 
-<div id='12'></div>
-### 3.5. Mysql 연동
+
+### <div id='12'> 3.5. Mysql 연동
 1)  ./route/db/mysql/db_pooling.js
 - 개방형 플랫폼의 애플리케이션 환경정보에 접근하여 mysql Connection Pool을 생성
 ```javascript
@@ -633,8 +633,8 @@ process.on("exit", function(){
 module.exports = pooling;
 ```
 
-<div id='13'></div>
-### 3.6. Cubrid 연동
+
+### <div id='13'> 3.6. Cubrid 연동
 1)  ./route/db/cubrid/db_pooling.js
 - 개방형 플랫폼의 애플리케이션 환경정보에 접근하여 cubrid Connection Pool을 생성
 
@@ -665,8 +665,8 @@ if (process.env.VCAP_SERVICES) {
 } else {
   // local env
   database  = 'fccf1d7869ff72ce'
-  port    = '' 
-  hostname  = '10.30.60.23' 
+  port    = ''
+  hostname  = '10.30.60.23'
   username  = 'b2f6b4af1e7bd7d8'
   password  = '45f179c648ee60a5';
 }
@@ -695,7 +695,7 @@ var pooling   = generic_pool.Pool({
   max:5,
   idleTimeoutMillis:1000*50,
   log:false,
-  
+
 });
 
 process.on("exit", function(){
@@ -706,8 +706,8 @@ process.on("exit", function(){
 
 module.exports = pooling;
 ```
-<div id='14'></div>
-### 3.7. MongoDB 연동
+
+### <div id='14'> 3.7. MongoDB 연동
 1)  ./route/db/mongo/db_pooling.js
 - 개방형 플랫폼의 애플리케이션 환경정보에 접근하여 mongodb Connection Pool을 생성
 
@@ -761,8 +761,8 @@ var pooling = generic_pool.Pool({
 module.exports = pooling;
 ```
 
-<div id='15'></div>
-### 3.8. Redis 연동
+
+### <div id='15'> 3.8. Redis 연동
 1)  ./route/redis/redis.js
 - 개방형 플랫폼의 애플리케이션 환경정보에 접근하여 redis Connection을 생성
 
@@ -808,8 +808,8 @@ exports.close = function(){
 }
 ```
 
-<div id='16'></div>
-### 3.9. RabbitMQ연동
+
+### <div id='16'> 3.9. RabbitMQ연동
 1)  ./route/rabbitMQ/rabbitMQ.js
 - 개방형 플랫폼의 애플리케이션 환경정보에 접근하여 rabbirMQ Connection을 생성
 
@@ -834,22 +834,22 @@ if (process.env.VCAP_SERVICES) {
 exports.open = function(cb){
   // create connection.
   var conn = amqp.createConnection({url: url});
-  
+
   // it must be cb(callback) after the 'ready' event.
   conn.on('ready', function(){
     cb(conn);
   });
 }
 
-// not used. 
+// not used.
 /*
 exports.close = function(){
   conn.disconnect();
 }
 */
 ```
-<div id='17'></div>
-### 3.10. GlusterFS 연동
+
+### <div id='17'> 3.10. GlusterFS 연동
 1)  ./route/glusterfs/glusterfs.js
 - 개방형 플랫폼의 애플리케이션 환경정보에 접근하여 glusterfs Connection을 생성
 
@@ -860,15 +860,15 @@ var url = require('url');
 
 var credentials = {};
 var container_name = 'node_container';
-if (process.env.VCAP_SERVICES) { 
+if (process.env.VCAP_SERVICES) {
   // cloud env. 설정. 데이터 구조는 2.3.4 VCAP_SERVICES 환경정보 참고
-  var services = JSON.parse(process.env.VCAP_SERVICES); 
-  var glusterfsConfig = services["glusterfs"]; 
- 
-  if (glusterfsConfig) { 
-    var config = glusterfsConfig[0]; 
+  var services = JSON.parse(process.env.VCAP_SERVICES);
+  var glusterfsConfig = services["glusterfs"];
+
+  if (glusterfsConfig) {
+    var config = glusterfsConfig[0];
     credentials = {
-      provider: 'openstack', // 
+      provider: 'openstack', //
             username: config.credentials.username,
             password: config.credentials.password,
       authUrl:  config.credentials.auth_url.substring(0, config.credentials.auth_url.lastIndexOf('/')),
@@ -879,7 +879,7 @@ if (process.env.VCAP_SERVICES) {
   // local env.
     credentials = {
       provider: 'openstack',
-            username: 'cf13d551d997458e', 
+            username: 'cf13d551d997458e',
             password: 'b45cc01d53a4f0e0',
       authUrl:  'http://54.199.136.22:5000/',
       region: 'RegionOne'
@@ -908,7 +908,7 @@ client.getContainer(container_name, function(err, container){
                         client.createContainer({name:container_name}, function(create_err, create_container){
                                 if (create_err) console.log(err);
         else
-        {  
+        {
           // if container created successfully, setting a readable member(X-Contaner-Read: .r:*)
           // 컨테이너가 성공적으로 생성되었다면 컨테이너를 누구나 읽을 수 있게 설정한다.(X-Contaner-Read: .r:*)
           // There is a bug in the code(pkgcloud). so i used api call.
@@ -938,38 +938,38 @@ client.getContainer(container_name, function(err, container){
 module.exports = client;
 ```
 
-<div id='18'></div>
-# 4. 배포
+
+# <div id='18'> 4. 배포
 
 개방형 플랫폼에 애플리케이션을 배포하면 배포한 애플리케이션과 개방형 플랫폼이 제공하는 서비스를 연결하여 사용할 수 있다. 개방형 플랫폼상에서 실행을 해야만 개방형 플랫폼의 애플리케이션 환경변수에 접근하여 서비스에 접속할 수 있다.
 
-<div id='19'></div>
-### 4.1.  개방형 플랫폼 로그인
+
+### <div id='19'> 4.1.  개방형 플랫폼 로그인
 
 아래의 과정을 수행하기 위해서 개방형 플랫폼에 로그인
 
-></div>$ cf api --skip-ssl-validation https://api.cf.open-paas.com # 개방형 플랫폼 TARGET 지정</div><br>
-></div># cf api [target url]</div><br><br>
-></div>$ cf login -u testUser -o sample_test -s sample_space # 로그인 요청</div><br>
-></div># cf login –u [user name] –o [org name] –s [space name]</div>
+>$ cf api --skip-ssl-validation https://api.cf.open-paas.com # 개방형 플랫폼 TARGET 지정<br>
+># cf api [target url]<br><br>
+>$ cf login -u testUser -o sample_test -s sample_space # 로그인 요청<br>
+># cf login –u [user name] –o [org name] –s [space name]
 ![2-4-1-0]
 
-<div id='20'></div>
-### 4.2.  서비스 생성
+
+### <div id='20'> 4.2.  서비스 생성
 애플리케이션에서 사용할 서비스를 개방형 플랫폼을 통하여 생성한다. 별도의 서비스 설치과정 없이 생성할 수 있으며, 애플리케이션과 바인딩과정을 통해 접속정보를 얻을 수있다.
 - 서비스 생성 (cf marketplace 명령을 통해 서비스 목록과 각 서비스의 플랜을 조회할 수 있다.
 
-><div># cf create-service SERVICE PLAN SERVICE_INSTANCE [-c PARAMETERS_AS_JSON] [-t TAGS]</div>
-><div>$ cf create-service p-mysql 100mb node-mysql</div>
-><div>$ cf create-service CubridDB utf8 node-cubrid</div>
-><div>$ cf create-service Mongo-DB default-plan node-mongodb</div>
-><div>$ cf create-service redis-sb shared-vm node-redis</div>
-><div>$ cf create-service glusterfs glusterfs-5Mb node-glusterfs</div>
-><div>$ cf create-service p-rabbitmq standard node-rabbitmq</div>
+><div># cf create-service SERVICE PLAN SERVICE_INSTANCE [-c PARAMETERS_AS_JSON] [-t TAGS]
+><div>$ cf create-service p-mysql 100mb node-mysql
+><div>$ cf create-service CubridDB utf8 node-cubrid
+><div>$ cf create-service Mongo-DB default-plan node-mongodb
+><div>$ cf create-service redis-sb shared-vm node-redis
+><div>$ cf create-service glusterfs glusterfs-5Mb node-glusterfs
+><div>$ cf create-service p-rabbitmq standard node-rabbitmq
 ![2-4-2-0]
 
-<div id='21'></div>
-### 4.3. 애플리케이션 배포
+
+### <div id='21'> 4.3. 애플리케이션 배포
 
 애플리케이션을 개방형 플랫폼에 배포한다. 배포된 애플리케이션은 생성된 서비스와 바인드하여 서비스를 사용할 수 있다.
 
@@ -987,7 +987,7 @@ applications:
   path: ./ # 배포될 애플리케이션의 위치
 ```
 
-##### 2. Mysql, Cubrid 테이블 생성 
+##### 2. Mysql, Cubrid 테이블 생성
 - Sample App의 조직관리 기능을 위해 DB에 테이블을 생성해 주어야 한다.
 - Mysql과 Cubrid에 테이블을 추가하는 방법은 OpenPaaS Mysql, Cubrid 서비스팩 설치 가이드의 'Client 툴 접속'을 참고한다.
 - Client 툴을 이용하여 아래의 테이블 생성 sql를 각각 실행한다. (Mysql과 Cubrid 양쪽다 동일한 sql로 생성가능하다.)
@@ -1016,7 +1016,7 @@ CREATE TABLE GROUP_TBL (
   , thumb_img_path VARCHAR(512)
   , url VARCHAR(500) DEFAULT '#'
   , created TIMESTAMP  DEFAULT CURRENT_TIMESTAMP  NOT NULL
-  , modified TIMESTAMP 
+  , modified TIMESTAMP
 );
 
 ALTER TABLE GROUP_TBL
@@ -1034,40 +1034,40 @@ ON DELETE CASCADE;
 
 - cf push 명령으로 배포한다. 별도의 값을 넣지않으면 manifest.yml의 설정을 사용한다. 아직 서비스를 연결하지 않았기 때문에 --no-start 옵션으로 배포후 실행은 하지않는다.
 
-><div>$ cf push --no-start</div>
+><div>$ cf push --no-start
 ![2-4-3-0]
 
-<div id='22'></div>
-### 4.4. 애플리케이션, 서비스 연결
+
+### <div id='22'> 4.4. 애플리케이션, 서비스 연결
 
 애플리케이션과 서비스를 연결하는 과정을 '바인드(bind)라고 하며, 이 과정을 통해 서비스에 접근할 수 있는 접속정보를 생성한다.
 
 - 애플리케이션과 서비스 연결
 
-><div>cf bind-service APP_NAME SERVICE_INSTANCE [-c PARAMETERS_AS_JSON]</div>
-><div>$ cf bind-service node-sample-app node-mysql</div>
-><div>$ cf bind-service node-sample-app node-cubrid</div>
-><div>$ cf bind-service node-sample-app node-mongodb</div>
-><div>$ cf bind-service node-sample-app node-redis</div>
-><div>$ cf bind-service node-sample-app node-glusterfs</div>
-><div>$ cf bind-service node-sample-app node-rabbitmq</div>
+><div>cf bind-service APP_NAME SERVICE_INSTANCE [-c PARAMETERS_AS_JSON]
+><div>$ cf bind-service node-sample-app node-mysql
+><div>$ cf bind-service node-sample-app node-cubrid
+><div>$ cf bind-service node-sample-app node-mongodb
+><div>$ cf bind-service node-sample-app node-redis
+><div>$ cf bind-service node-sample-app node-glusterfs
+><div>$ cf bind-service node-sample-app node-rabbitmq
 ![2-4-4-0]
 
 연결확인
 
-><div>$ cf services</div>
+><div>$ cf services
 ![2-4-4-1]
 
-<div id='23'></div>
-### 4.5. 애플리케이션 실행
+
+### <div id='23'> 4.5. 애플리케이션 실행
 
 서비스 바인드 과정을 통해 생성된 접속정보 환경변수를 가지고 어플리케이션이 실행된다.
 
-><div>$ cf start node-sample-app</div>
+><div>$ cf start node-sample-app
 ![2-4-5-0]
 
-<div id='24'></div>
-# 5. 테스트
+
+# <div id='24'> 5. 테스트
 
 샘플 어플리케이션은 REST 서비스로 구현되어있으며 REST 테스트를 위해서 mocha 모듈을 사용하였다. 테스트를 진행하기 위해서는 mocha 모듈을 포함한 package.json 안의 모듈들이 설치 되어 있어야한다. (npm install)
 
@@ -1087,11 +1087,11 @@ test:
 
 2.1.  윈도우
 
-><div>> .\node_modules\.bin\mocha -u tdd test</div>
+><div>> .\node_modules\.bin\mocha -u tdd test
 
 2.2.  리눅스
 
-><div>$ make test</div>
+><div>$ make test
 ![2-5-0-0]
 
 [2-2-1-0]:/Sample-App-Guide/image/nodejs/2-2-1-0.png

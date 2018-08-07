@@ -1,1934 +1,1395 @@
-#1.  문서 개요
+## Table Contents
+1. [개요] (#11111)
+	* [문서 목적](#1-목적)
+	* [문서 범위](#1-범위)
+	* [참고 자료](#1-자료)
 
-## 1.1.  ***목적*** 
+1. [BOSH CLI 기본 사용법] (#22222)
 
-본 문서는 MicroBOSH/BOSH에 대한 설치 및 운영 관리를 위한 도구인 BOSH CLI에 대해 기본 사용법 및 사용 예시를 통해 BOSH를 이해하는데 목적이 있다.
+1. [BOSH CLI - micro] (#33333)
+	* [micro deployment] (#micro-deployment)
+	* [micro deployments] (#micro-deployments)
+	* [micro deploy] (#micro-deploy)
+	* [micro status] (#micro-status)
+	* [micro agent] (#micro-agent)
+	* [micro apply] (#micro-apply)
+	* [micro delete] (#micro-delete)
 
+1. [BOSH CLI - Deployment] (#44444)
+	* [deployment] (#deployment)
+	* [deployments] (#deployments)
+	* [edit deployment] (#edit-deployment)
+	* [deploy] (#deploy)
+	* [download manifest] (#download-manifest)
+	* [diff] (#diff)
+	* [validate jobs] (#validate-jobs)
 
-## 1.2.  ***범위*** 
+1. [BOSH CLI - Release] (#55555)
+	* [create release] (#create-release)
+	* [delete release] (#delete-release)
+	* [verify release] (#verify-release)
+	* [upload release] (#upload-release)
+	* [releases] (#releases)
+	* [reset release] (#reset-release)
+	* [init release] (#init-release)
+	* [generate job] (#generate-job)
+	* [generate package] (#generate-package)
+
+1. [BOSH CLI - Stemcell] (#66666)
+	* [upload stemcell] (#upload-stemcell)
+	* [verify stemcell] (#verify-stemcell)
+	* [stemcells] (#stemcells)
+	* [delete stemcell] (#delete-stemcell)
+	* [public stemcells] (#public-stemcells)
+	* [download public stemcell] (#download-public-stemcell)
+
+1. [BOSH CLI - Job] (#77777)
+	* [start] (#start)
+	* [stop] (#stop)
+	* [restart] (#restart)
+	* [recreate] (#recreate)
+
+1. [BOSH CLI - User] (#88888)
+	* [create user] (#create-user)
+	* [delete user] (#delete-user)
+	* [login] (#login)
+	* [logout] (#logout)
+
+1. [BOSH CLI - Task] (#99999)
+	* [task] (#task)
+	* [tasks] (#tasks)
+	* [tasks recent] (#tasks-recent)
+	* [cancel task] (#cancel-task)
+
+1. [BOSH CLI - Property] (#aaaaa)
+	* [set property] (#set-property)
+	* [get property] (#get-property)
+	* [properties] (#properties)
+	* [unset property] (#unset-property)
+
+1. [BOSH CLI - Log] (#bbbbb)
+	* [logs] (#logs)
+
+1. [BOSH CLI - Maintenance] (#ccccc)
+	* [cleanup] (#cleanup)
+	* [cloudcheck] (#cloudcheck)
+
+1. [BOSH CLI – Remote Access] (#ddddd)
+	* [ssh] (#ssh)
+	* [scp] (#scp)
+
+1. [BOSH CLI - Blob] (#eeeee)
+	* [upload blob] (#upload-blobs)
+	* [add blob] (#add-blob)
+	* [sync blobs] (#sync-blobs)
+	* [blobs] (#blobs)
+
+1. [BOSH CLI - Snapshot] (#fffff)
+	* [take snapshot] (#take-snapshot)
+	* [delete snapshot] (#delete-snapshot)
+	* [delete snapshots] (#delete-snapshots)
+	* [snapshots] (#snapshots)
+
+1. [BOSH CLI - Misc] (#ggggg)
+	* [status] (#status)
+	* [target] (#target)
+	* [targets] (#targets)
+	* [vms] (#vms)
+	* [locks] (#locks)
+	* [alias] (#alias)
+	* [aliases] (#aliases)
+	* [export compiled_package] (#export-compiled_package)
+	* [vm resurrection] (#vm-resurrection)
+
+<div id='11111'/>
+## 문서 개요
+
+<div id='1-목적'/>
+### 문서 목적 
+본 문서는 MicroBOSH/BOSH에 대한 설치 및 운영 관리를 위한 도구인 BOSH CLI에 대해 기본 사용법 및 사용 예시를 통해 BOSH를 이해하는데 목적이 있다. 
+
+<div id='1-범위'/>
+### 문서 범위 
 
 본 문서에서는 BOSH CLI 사용법에 대해서 작성하였습니다.
 
+<div id='1-자료'/>
+### 참고 자료 
 
-## 1.3.  ***참고자료*** 
+본 문서는 Cloud Foundry의 BOSH Document([http://bosh.io](http://bosh.io))를 참고로 작성하였습니다.
 
-본 문서는 Cloud Foundry의 BOSH Document를 참고로 작성하였습니다.
-
-BOSH Document: [http://bosh.io](http://bosh.io)
-
-
-#2.  BOSH CLI 기본 사용법
+<div id='22222'/>
+## BOSH CLI 기본 사용법
 
 CLI는 BOSH 배포와 Release를 관리하기 위해 도움을 주는 커맨드 라인 명령어로 아래와 같이 2가지 형태로 구분된다.
 
-
--   bosh: BOSH (Multi-VM BOSH)를 관리하기 위한 CLI
-
--   bosh micro: MicroBOSH (Single-VM BOSH)를 관리하기 위한 CLI
+- bosh : BOSH (Multi-VM BOSH)를 관리하기 위한 CLI
+- bosh micro : MicroBOSH (Single-VM BOSH)를 관리하기 위한 CLI
 
 
-###1. 기본 문법
+- **기본 Syntax**
 
-	$ bosh [<options>] <command> [<args>]
-	$ bosh micro [<options>] <command> [<args>]
+		$ bosh [<options>] <command> [<args>]
+		$ bosh micro [<options>] <command> [<args>]
 
+	bosh 또는 bosh micro 명령어에 대괄호로 묶인 options 과 args는 명령어에 따라 선택적으로 사용되고, command는 필수인자이다.
 
-bosh 또는 bosh micro 명령어에 대괄호로 묶인 인자인 <options>과 <args>는 명령어에 따라 선택적으로 사용하며, <command> 인자는 필수 인자이다.
+- **Options**
 
+	|**번호**   |**옵션**                  |**설명**|
+	|----------|-------------------------|--------------------------------|
+	|1          |-c, --config              |BOSH configuration file 지정|
+	|2          |--parallel MAX            |병렬 다운로드 최대 개수 설정|
+	|3          |--[no-]color              |Toggle colorized output|
+	|4          |-v, --verbose             |Show additional output|
+	|5          |-q, --quiet               |suppress all output|
+	|6          |-n, --non-interactive     |Don’t ask for user input|
+	|7          |-N, --no-track            |Return task ID and don’t track|
+	|8          |-P, --poll INTERVAL       |Director task polling interval|
+	|9          |-t, --target URL          |타겟 디렉터 지정|
+	|10         |-u, --user USER           |BOSH 사용자 아이디|
+	|11         |-p, --password PASSWORD   |BOSH 사용자 비밀번호|
+	|12         |-d, --deployment FILE     |BOSH 배포파일 지정|
+	|13         |-h, --help                |Help 메시지 보기|
 
-###2. Options
+<div id='33333'/>
+##  BOSH CLI - micro
 
-	---------- ------------------------- --------------------------------
-	번호	      옵션                      설명
-	---------- ------------------------- --------------------------------
-	1          -c, --config              BOSH configuration file 지정
-	2          --parallel MAX            병렬 다운로드 최대 개수 설정
-	3          --[no-]color              Toggle colorized output
-	4          -v, --verbose             Show additional output
-	5          -q, --quiet               suppress all output
-	6          -n, --non-interactive     Don’t ask for user input
-	7          -N, --no-track            Return task ID and don’t track
-	8          -P, --poll INTERVAL       Director task polling interval
-	9          -t, --target URL          타겟 디렉터 지정
-	10         -u, --user USER           BOSH 사용자 아이디
-	11         -p, --password PASSWORD   BOSH 사용자 비밀번호
-	12         -d, --deployment FILE     BOSH 배포파일 지정
-	13         -h, --help                Help 메시지 보기
-	---------- ------------------------- --------------------------------
+<div id='micro-deployment'/>
+### ***micro deployment***
 
-BOSH 운영 및 관리하기 위한 도구인 BOSH CLI 아래와 같이 많은 명령어를 제공하고 있으며, 유형을 분류하면 다음과 같다.
+- **기본 Syntax**
 
-	------------------------- --------------------------------
-	구분                       명령어
-	------------------------- --------------------------------
-	MicroBOSH                 micro deployment
-	                          micro deployments
-	                          micro deploy
-	                          micro status
-	                          micro agent
-	                          micro apply
-	                          micro delete
-	------------------------- --------------------------------
-	Deployment                deploy
-	                          deployment
-	                          deployments
-	                          delete deployment
-	                          download manifest
-	                          edit deployment
-	                          diff
-	                          validate jobs
-	------------------------- --------------------------------
-	Release                   init release
-	                          reset releases
-	                          verify release
-	                          create release
-	                          delete release
-	                          upload release
-	                          releases
-	                          generate job
-	                          generate package
-	------------------------- --------------------------------
-	Stemcell                  public stemcells
-	                          download public stemcell
-	                          verify stemcell
-	                          upload stemcell
-	                          delete stemcell
-	                          stemcells
-	------------------------- --------------------------------
-	Job                       start
-	                          stop
-	                          restart
-	                          recreate
-	------------------------- --------------------------------
-	User                      create user
-	                          delete user
-	                          login
-	                          logout
-	------------------------- --------------------------------
-	Task                      task
-	                          tasks
-	                          tasks recent
-	                          cancel task
-	------------------------- --------------------------------
-	Property                  set property
-	                          get property
-	                          unset property
-	                          properties
-	------------------------- --------------------------------
-	Log                       logs
-	------------------------- --------------------------------
-	Maintenance               cleanup
-	                          cloudcheck
-	------------------------- --------------------------------	
-	Remote Access             ssh
-	                          scp
-	------------------------- --------------------------------
-	Blob                      upload blobs
-	                          add blob
-	                          sync blobs
-	                          blobs
-	------------------------- --------------------------------
-	Snapshot                  task snapshot
-	                          delete snapshot
-	                          delete snapshots
-	                          snpashots
-	------------------------- --------------------------------
-	Misc                      status
-	                          target
-	                          targets
-	                          vms
-	                          locks
-	                          alias
-	                          aliases
-	                          export compiled_packages
-	                          vm resurrection
-	------------------------- --------------------------------
+		$ bosh micro deployment [<manifest-filename>]
+
+- **설명**
+
+	bosh micro에 설정된 배포 파일을 확인하거나 또는 설정하기 위한 명령어
+
+- **파라미터**
+
+	|**파라미터 명** |**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|manifest-filename| MicroBOSH 배포 Manifest파일|X|
+
+<div id='micro-deployments'/>
+### ***micro deployments***
+
+- **기본 Syntax**
+
+		$ bosh micro deployments
+
+- **설명**
+
+	bosh micro에서 배포한 목록 출력
+
+- **파라미터**
+
+	없음
+
+<div id='micro-deploy'/>
+### ***micro deploy*** 
+
+- **기본 Syntax**
+
+		$ bosh micro deploy [<stemcell>] [--update] [--update-if-exists]
+
+- **설명**
+
+	MicroBOSH Instance 배포
+
+- **파라미터**
 
 
-#3.  BOSH CLI - micro
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|stemcell|Stemcell 파일|O|
+	|--update|update existing instance|X|
+	|--update-if-exists|create new or update existing instance|X|
 
+<div id='micro-status'/>
+### ***micro status*** 
 
-## 3.1.  ***micro deployment*** 
+- **기본 Syntax**
 
-**- 기본 문법**
+		$ bosh micro status
 
-	$ bosh micro deployment [<manifest-filename>]
+- **설명**
 
+	MicroBOSH 등록 정보 출력
 
-**설명**
-
-bosh micro에 설정된 배포 파일을 확인하거나 또는 설정하기 위한 명령어
-
-
-**- 파라미터**
-
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	manifest-filename     X         MicroBOSH 배포 Manifest파일
-	--------------------- --------- ---------------------------------------------------------------
-
-
-**- 사용 예시**
-
-	# 파라미터 지정한 경우
-	$ bosh micro deployment ./bosh-micro.yml  
-
-	# 파라미터 지정하지 않을 경우
-	$ bosh micro deployment
-
-
-## 3.2.  ***micro deployments*** 
-
-**- 기본 문법**
-
-	$ bosh micro deployments
-
-
-**설명**
-
-bosh micro에서 배포한 목록 출력
-
-**- 파라미터**
+- **파라미터**
 
 -   없음
 
 
-**사용 예시**
+<div id='micro-agent'/>
+### ***micro agent***
 
-	$ bosh micro deployments
+- **기본 Syntax**
 
-## 3.3.  ***micro deploy*** 
+		$ bosh micro agent <args>
 
-**- 기본 문법**
+- **설명**
 
-	$ bosh micro deploy [<stemcell>] [--update] [--update-if-exists]
+	MicroBOSH Agent에게 요청 Message 전달
 
+- **파라미터**
 
-**설명**
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|args|메시지 유형|O|
 
-MicroBOSH Instance 배포
+	**메시지 유형**
+	- start : MicroBOSH 에 구동중인 모든 Job 시작
+	- stop : MicroBOSH 에 구동중인 모든 Job 종료
+	- ping : Agent 응답 여부 확인
+	- drain TYPE SPEC
+		-   TYPE : ‘shutdown’, ‘update’, ‘status’ 중 하나
+		-   SPEC : 사용할 drain spec
+	- state [full] : 시스템의 상태 출력
+	- list_disk : MicroBOSH에 마운트된 디스크 CID목록 출력
+	- migrate_disk OLD NEW : 디스크 Migrate
+	- mount_disk CID : 마운트 디스크
+	- unmount_disk CID : 언마운트 디스크
 
-**- 파라미터**
+<div id='micro-apply'/>
+### ***micro apply***
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	stemcell              O         Stemcell 파일
-	--update              X         동일한 인스턴스가 존재하는 경우 업데이트
-	--update-if-exists    X         동일한 인스턴스가 존재하면 업데이트하고 없는 경우 인스턴스를 새로 배포                           
-	--------------------- --------- ---------------------------------------------------------------
+- **기본 Syntax**
 
+		$ bosh micro apply <spec>
 
-**- 사용 예시**
-  
-	$ bosh micro deploy ~/workspace/stemcells/bosh-stemcell-3016-openstack-kvm-ubuntu-trusty-go_agent.tgz
+- **설명**
 
+	MicroBOSH Instance에 지정된 Spec정보 적용
 
-## 3.4.  ***micro status*** 
+- **파라미터**
 
-**- 기본 문법**
-
-	$ bosh micro status
-
-
-**설명**
-
-MicroBOSH 등록 정보 출력
-
-
-**- 파라미터**
-
--   없음
-
-
-**사용 예시**
-
-	$ bosh micro status
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|spec|MicroBOSH Instance에 적용할 spec 파일|O|
 
 
-## 3.5.  ***micro agent***
+<div id='micro-delete'/>
+### ***micro delete*** 
 
+- **기본 Syntax**
 
-**기본 문법**
+		$ bosh micro delete
 
-	$ bosh micro agent <args>
+- **설명**
 
+	MicroBOSH Instance 삭제
 
-**설명**
-
-MicroBOSH Agent에게 요청 Message 전달
-
-
-**- 파라미터**
-
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	args                  O         메시지 유형         
-	                                - start: MicroBOSH 에 구동중인 모든 Job 시작
-	                                - stop: MicroBOSH 에 구동중인 모든 Job 종료
-	                                - ping: Agent 응답 여부 확인
-	                                - drain TYPE SPEC
-		                              TYPE: ‘shutdown’, ‘update’, ‘status’ 중 하나
-	                                  SPEC: 사용할 drain spec
-	                                - state [full]: 시스템의 상태 출력
-	                                - list_disk: MicroBOSH에 마운트된 디스크 CID목록 출력
-	                                - migrate_disk OLD NEW: 디스크 Migrate
-	                                - mount_disk CID: 마운트 디스크
-	                                - unmount_disk CID: 언마운트 디스크
-	--------------------- --------- ---------------------------------------------------------------
-
-
-**사용 예시**
-
-	$ bosh micro agent ping
-
-	$ bosh micro agent list_disk
-
-	$ bosh micro agent drain state
-
-
-## 3.6.  ***micro apply***
-
-**기본 문법**
-
-	$ bosh micro apply <spec>
-
-
-**설명**
-
-MicroBOSH Instance에 지정된 Spec정보 적용
-
-**- 파라미터**
-
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	spec                  O         MicroBOSH Instance에 적용할 spec 파일         
-	--------------------- --------- ---------------------------------------------------------------
-
-
-## 3.7.  ***micro delete***
-
-**- 기본 문법**
-
-	$ bosh micro delete
-
-
-**설명**
-
-MicroBOSH Instance 삭제
-
-
-**- 파라미터**
+- **파라미터**
 
 -   없음
 
+<div id='44444'/>
+## BOSH CLI - Deployment
 
-**사용 예시**
+<div id='deployment'/>
+### ***deployment***
 
-	$ bosh micro delete
+- **기본 Syntax**
 
+		$ bosh deployment [<manifest-filename>]
 
-# 4.  BOSH CLI - Deployment
+- **설명**
 
-## 4.1.  ***deployment***
+	bosh에 설정된 배포 파일을 확인하거나 또는 설정하기 위한 명령어
 
-**- 기본 문법**
+- **파라미터**
 
-	$ bosh deployment [<manifest-filename>]
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|manifest-filename|BOSH 배포 Manifest파일|X|
 
 
-**설명**
+<div id='deployments'/>
+### ***deployments***
 
-bosh에 설정된 배포 파일을 확인하거나 또는 설정하기 위한 명령어
+- **기본 Syntax**
 
+		$ bosh deployments
 
-**- 파라미터**
+- **설명**
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	manifest-filename     X         BOSH 배포 Manifest파일         
-	--------------------- --------- ---------------------------------------------------------------
+	bosh에서 배포한 목록 출력
 
+- **파라미터**
 
-**- 사용 예시**
+	없음
 
-	# 파라미터 지정한 경우
-	$ bosh deployment ./bosh-openstack.yml
 
-	# 파라미터 지정하지 않을 경우
-	$ bosh deployment
 
+<div id='edit-deployment'/>
+### ***edit deployment***
 
-## 4.2.  ***deployments***
+- **기본 Syntax**
 
-**- 기본 문법**
+		$ bosh edit deployment
 
-	$ bosh deployments
+- **설명**
 
+	현재 설정된 배포 Manifest 파일 편집기를 이용해서 수정
 
-**설명**
+- **파라미터**
 
-bosh에서 배포한 목록 출력
+	없음
 
+<div id='deploy'/>
+### ***deploy***
 
-**- 파라미터**
+- **기본 Syntax**
 
--   없음
+		$ bosh deploy [--recreate] [--redact-diff]
 
+- **설명**
 
-**사용 예시**
+	배포 수행
 
-	$ bosh deployments
+- **파라미터**
 
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|--recreate|모든 VM 재생성|X|
+	|--redact-diff|Manifest내 변경된 정보는 무시|X|
 
-## 4.3.  ***edit deployment***
 
-**- 기본 문법**
 
-	$ bosh edit deployment
+<div id='download-manifest'/>
+### ***download manifest***
 
+- **기본 Syntax**
 
-**설명**
+		$ bosh download manifest <deployment_name> [<save_as>]
 
-현재 설정된 배포 Manifest 파일 편집기를 이용해서 수정
+- **설명**
 
+	BOSH Manifest 파일 다운로드
 
-**- 파라미터**
+- **파라미터**
 
--   없음
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|deployment_name|다운로드할 배포명 설정|O|
+	|save_as|저장할 파일명 설정|X|
 
+<div id='diff'/>
+### ***diff***
 
-**사용 예시**
+- **기본 Syntax**
 
-	# 현재 배포 manifest 확인
-	$ bosh deployment  
+		$ bosh diff <template>
 
-	# 현재 배포 manifest 수정
-	$ bosh edit deployment
+- **설명**
 
+	현재 Deployment 설정된 정보와 지정된 Manifest파일과의 비교하여 차이 출력
 
-## 4.  ***deploy***
+- **파라미터**
 
-**- 기본 문법**
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|template|비교 대상 Manifst 파일|O|
 
-	$ bosh deploy [--recreate] [--redact-diff]
 
+<div id='validate-jobs'/>
+### ***validate jobs***
 
-**설명**
+- **기본 Syntax**
 
-배포 수행
+		$ bosh validate jobs
 
+- **설명**
 
-**- 파라미터**
+	현재 배포 Manifest를 사용하여 Release에서 모든 Job의 유효 여부 확인
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	--recreate            X         모든 VM 재생성
-	--redact-diff         X         Manifest내 변경된 정보는 무시                  
-	--------------------- --------- ---------------------------------------------------------------
+- **파라미터**
 
+	없음
 
-**- 사용 예시**
+<div id='55555'/>
+## BOSH CLI - Release
 
-	$ bosh deploy
+<div id='create-release'/>
+### ***create release***
 
+- **기본 Syntax**
 
-## 4.5.  ***download manifest***
+		$ bosh create release [--force] [--final] [--with-tarball] [--dry-run]
+		[--name NAME] [--version VERSION]
 
-**- 기본 문법**
+- **설명**
 
-	$ bosh download manifest <deployment_name> [<save_as>]
+	Release 생성
 
+- **파라미터**
 
-**설명**
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|--force|bypass git dirty state check|X|
+	|--final|create final release|X|
+	|--with-tarball|create release tarball|X|
+	|--dry-run|stop before writing release manifest|X|
+	|--name NAME|specify a custom release name|X|
+	|--version VERSION|specify a custom version number|X|
 
-BOSH Manifest 파일 다운로드
+<div id='delete-release'/>
+### ***delete release***
 
+- **기본 Syntax**
 
-**- 파라미터**
+		$ bosh delete release <name> [<version>] [--force]
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	deployment_name       O         다운로드할 배포명 설정
-	save_as               X         저장할 파일명 설정                  
-	--------------------- --------- ---------------------------------------------------------------
+- **설명**
 
+	등록된 Release 삭제
 
-**- 사용 예시**
+- **파라미터**
 
-	$ bosh download manifest bosh-openstack ~/test.yml
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|name|삭제할 Release 이름|O|
+	|version|삭제할 Release 버전|X|
+	|--force|Release 삭제하는 동안 에러 무시|X|
 
+<div id='verify-release'/>
+### ***verify release***
 
-## 4.6.  ***diff***
+- **기본 Syntax**
 
-**- 기본 문법**
+		$ bosh verify release <tarball_path>
 
-	$ bosh diff <template>
+- **설명**
 
+	Release 유효성 체크
 
-**설명**
+- **파라미터**
 
-현재 Deployment 설정된 정보와 지정된 Manifest파일과의 비교하여 차이 출력
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|tarball_path|Release 파일|O|
 
-**- 파라미터**
+<div id='upload-release'/>
+### ***upload release***
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	template              O         비교 대상 Manifst 파일              
-	--------------------- --------- ---------------------------------------------------------------
+- **기본 Syntax**
 
+		$ bosh upload release [<release_file>] [--rebase] [--skip-if-exists]
 
-**- 사용 예시**
+- **설명**
 
-	$ bosh diff ./bosh-openstack-test.yml
+	Release 업로드
 
+- **파라미터**
 
-## 4.7.  ***validate jobs***
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|release_file|업로드할 Release 파일|O|
+	|--rebase|최신 버전 Release|X|
+	|--skip-if-exists|Release가 존재하는 경우 무시|X|
 
-**- 기본 문법**
+<div id='releases'/>
+### ***releases***
 
-	$ bosh validate jobs
+- **기본 Syntax**
 
+		$ bosh releases
 
-**설명**
+- **설명**
 
-현재 배포 Manifest를 사용하여 Release에서 모든 Job의 유효 여부 확인
+	Release 목록 출력
 
-**- 파라미터**
+- **파라미터**
 
--   없음
+	없음
 
+<div id='reset-release'/>
+### ***reset release***
 
-#5.  BOSH CLI - Release
+ **기본 Syntax**
 
-## 5.1.  ***create release***
+		$ bosh reset release
 
-**- 기본 문법**
+- **설명**
 
-	$ bosh create release [--force] [--final] [--with-tarball] [--dry-run] [--name NAME] [--version VERSION]
+	Reset Dev release
 
+- **파라미터**
 
-**설명**
+	없음
 
-Release 생성
+<div id='init-release'/>
+### ***init release***
 
+- **기본 Syntax**
 
-**- 파라미터**
+		$ bosh init release [<base>] [--git]
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	--force               X         bypass git dirty state check
-	--final               X         create final release
-	--with-tarball        X         create release tarball
-	--dry-run             X         stop before writing release manifest
-	--name NAME           X         specify a custom release name
-	--version VERSION     X         specify a custom version number                  
-	--------------------- --------- ---------------------------------------------------------------
+- **설명**
 
+	Release작성하기 위한 템플릿 디렉토리 및 파일 생성
 
-**- 사용 예시**
+- **파라미터**
 
-	$ bosh create release --force
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|base|Release 작성을 위한 기준 디렉토리 지정(지정하지 않을 경우 현재 디렉토리에 생성됨)|X|
+	|--git|git repository 초기화|X|
 
+<div id='generate-job'/>
+### ***generate job***
 
-## 5.2.  ***delete release***
+- **기본 Syntax**
 
-**- 기본 문법**
+		$ bosh generate job <name>
 
-	$ bosh delete release <name> [<version>] [--force]
+- **설명**
 
+	Job Template 생성
 
-**설명**
+- **파라미터**
 
-등록된 Release 삭제
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|name|생성할 Job Template 이름|O|
 
-**- 파라미터**
+<div id='generate-package'/>
+### ***generate package***
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	name                  O         삭제할 Release 이름
-	version               X         삭제할 Release 버전
-	--force               X         Release 삭제하는 동안 에러 무시           
-	--------------------- --------- ---------------------------------------------------------------
+- **기본 Syntax**
 
+		$ bosh generate package <name>
 
-**- 사용 예시**
+- **설명**
 
-	$ bosh delete release bosh 198
+	Package 템플릿 생성
 
+- **파라미터**
 
-## 5.3.  ***verify release*** 
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|name|생성할 패키지 이름|O|
 
-**- 기본 문법**
+<div id='66666'/>
+## BOSH CLI - Stemcell 
 
-	$ bosh verify release <tarball_path>
+<div id='upload-stemcell'/>
+### ***upload stemcell***
 
+- **기본 Syntax**
 
-**설명**
+		$ bosh upload stemcell <stemcell_location> [--skip-if-exists]
 
-Release 유효성 체크
+- **설명**
 
-**- 파라미터**
+	BOSH stemcell 업로드
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	tarball_path          O         Release 파일          
-	--------------------- --------- ---------------------------------------------------------------
+- **파라미터**
 
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|stemcell_location|BOSH Stemcell 파일 경로|O|
+	|--skip-if-exists|존재하는 BOSH Stemcell이면 Skip|X|
 
-**사용 예시**
+<div id='verify-stemcell'/>
+### ***verify stemcell***
 
-	$ bosh verify release bosh-198.tgz
+- **기본 Syntax**
 
+		$ bosh verify stemcell <tarball_path>
 
-## 5.4.  ***upload release***
+- **설명**
 
-**- 기본 문법**
+	BOSH stemcell 유효성 검사
 
-	$ bosh upload release [<release_file>] [--rebase] [--skip-if-exists]
+- **파라미터**
 
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|tarball_path|BOSH Stemcell 파일 경로|O|
 
-**설명**
+<div id='stemcells'/>
+### ***stemcells***
 
-Release 업로드
+- **기본 Syntax**
 
-**- 파라미터**
+		$ bosh stemcells
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	release_file          O         업로드할 Release 파일
-	--rebase              X         최신 버전 Release
-	--skip-if-exists      X         Release가 존재하는 경우 무시
-	--------------------- --------- ---------------------------------------------------------------
+- **설명**
 
+	Director에 업로드한 Stemcell 목록 출력
 
-**- 사용 예시**
+- **파라미터**
 
-	$ bosh upload release ~/workspace/bosh/release/releases/bosh-187.yml
+	없음
 
+<div id='delete-stemcell'/>
+### ***delete stemcell***
 
-## 5.5.  ***releases***
+- **기본 Syntax**
 
-**- 기본 문법**
+		$ bosh delete stemcell <name> <version> [--force]
 
-	$ bosh releases
+- **설명**
 
+	BOSH stemcell 삭제
 
-**설명**
+- **파라미터**
 
-Release 목록 출력
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|name|Stemcell 이름|O|
+	|version|Stemcell 버전|O|
+	|--force|Stemcell 삭제하는 동안 에러 무시|X|
 
+<div id='public-stemcells'/>
+### ***public stemcells***
 
-**- 파라미터**
+- **기본 Syntax**
 
--   없음
+		$ bosh public stemcells [--full] [--all]
 
+- **설명**
 
-**사용 예시**
+	public stemcell 목록 출력
 
-	$ bosh releases
+- **파라미터**
 
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|--full|다운로드 URL 출력|X|
+	|--all|모든 Stemcell 출력|X|
 
-## 6.  ***reset release***
+<div id='download-public-stemcell'/>
+### ***download public stemcell***
 
-**- 기본 문법**
+- **기본 Syntax**
 
-	$ bosh reset release
+		$ bosh download public stemcell <stemcell_filename>
 
+- **설명**
 
-**설명**
+	public stemcell 다운로드
 
-Reset Dev release
+- **파라미터**
 
-**- 파라미터**
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|stemcell_filename|다운로드 받을 Stemcell 파일명|O|
 
--   없음
+<div id='77777'/>
+## BOSH CLI - Job
 
+<div id='start'/>
+### ***start*** 
 
-**사용 예시**
+- **기본 Syntax**
 
-	$ bosh reset release
+		$ bosh start <job> [<index>] [--force]
 
+- **설명**
 
-## 5.7.  ***init release*** 
+	Job/Instance 시작
 
-**- 기본 문법**
+- **파라미터**
 
-	$ bosh init release [<base>] [--git]
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|job|Job 이름|O|
+	|index|Job 번호|X|
+	|--force|수행중 발생하는 에러 무시|X|
 
+<div id='stop'/>
+### ***stop***
 
-**설명**
+- **기본 Syntax**
 
-Release작성하기 위한 템플릿 디렉토리 및 파일 생성
+		$ bosh stop <job> [<index>] [--soft] [--hard] [--force]
 
-**- 파라미터**
+- **설명**
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	base                  X         Release 작성을 위한 기준 디렉토리 지정(지정하지 않을 경우 현재 디렉토리에 생성됨)
-	--git                 X         git repository 초기화
-	--------------------- --------- ---------------------------------------------------------------
+	Job/Instance 종료
 
+- **파라미터**
 
-**- 사용 예시**
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|job|Job 이름|O|
+	|index|Job 번호|X|
+	|--soft|프로세스만 종료|X|
+	|--hard|VM 종료|X|
+	|--force|수행중 발생하는 에러 무시|X|
 
-	$ bosh init release ~/workspace/test3 --git
 
-	# Release 작성을 위한 템플릿 디렉토리 생성
-	$ ls -al test3
+<div id='restart'/>
+### ***restart***
 
+- **기본 Syntax**
 
-## 5.8.  ***generate job***
+		$ bosh restart <job> [<index>] [--force]
 
-**- 기본 문법**
+- **설명**
 
-	$ bosh generate job <name>
+	Job/Instance (Soft stop+start) 재시작
 
+- **파라미터**
 
-**설명**
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|job|Job 이름|O|
+	|index|Job 번호|X|
+	|--force|수행중 발생하는 에러 무시|X|
 
-Job Template 생성
+<div id='recreate'/>
+### ***recreate***
 
-**- 파라미터**
+- **기본 Syntax**
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	name                  O         생성할 Job Template 이름
-	--------------------- --------- ---------------------------------------------------------------
+		$ bosh recreate <job> [<index>] [--force]
 
+- **설명**
 
-**- 사용 예시**
+	Job/Instance (Soft stop+start) 재생성
 
-	$ bosh generate job sample-job
+- **파라미터**
 
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|job|Job 이름|O|
+	|index|Job 번호|X|
+	|--force|수행중 발생하는 에러 무시|X|
 
-## 5.9.  ***generate package***
+	
+<div id='88888'/>
+## BOSH CLI - User
 
-**- 기본 문법**
+<div id='create-user'/>
+### ***create user***
 
-	$ bosh generate package <name>
+- **기본 Syntax**
 
+		$ bosh create user [<username>] [<password>]
 
-**설명**
+- **설명**
 
-Package 템플릿 생성
+	BOSH 사용자 등록
 
-**- 파라미터**
+- **파라미터**
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	name                  O         생성할 패키지 이름
-	--------------------- --------- ---------------------------------------------------------------
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|username|사용자 아이디|X|
+	|password|사용자 비밀번호|X|
 
+<div id='delete-user'/>
+### ***delete user***
 
-**- 사용 예시**
+- **기본 Syntax**
 
-	$ bosh generate package ruby_1.9.3
+		$ bosh delete user [<username>]
 
+- **설명**
 
-#6.  BOSH CLI - Stemcell
+	BOSH 사용자 삭제
 
-## 6.1.  ***upload stemcell***
+- **파라미터**
 
-**- 기본 문법**
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|username|사용자 아이디|X|
 
-	$ bosh upload stemcell <stemcell_location> [--skip-if-exists]
+<div id='login'/>
+### ***login*** 
 
+- **기본 Syntax**
 
-**설명**
+		$ bosh login [<username>] [<password>]
 
-BOSH stemcell 업로드
+- **설명**
 
-**- 파라미터**
+	BOSH 사용자 등록
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	stemcell_location     O         BOSH Stemcell 파일 경로
-	--skip-if-exists      X         존재하는 BOSH Stemcell이면 Skip         
-	--------------------- --------- ---------------------------------------------------------------
+- **파라미터**
 
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|username|사용자 아이디|X|
+	|password|사용자 비밀번호|X|
 
-**- 사용 예시**
+<div id='logout'/>
+### ***logout***
 
-	$ bosh upload stemcell ~/workspace/stemcells/bosh-stemcell-3016-openstack-kvm-ubuntu-trusty-go_agent.tgz
+- **기본 Syntax**
 
+		$ bosh logout
 
-## 6.2.  ***verify stemcell***
+- **설명**
 
-**- 기본 문법**
+	BOSH 로그 아웃
 
-	$ bosh verify stemcell <tarball_path>
+- **파라미터**
 
+	없음
 
-**설명**
+<div id='99999'/>
+## BOSH CLI - Task
 
-BOSH stemcell 유효성 검사
+<div id='task'/>
+### ***task***
 
+- **기본 Syntax**
 
-**- 파라미터**
+		$ bosh task [<task_id>] [--event] [--cpi] [--debug] [--result] [--raw] [--no-filter]
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	tarball_path          O         BOSH Stemcell 파일 경로         
-	--------------------- --------- ---------------------------------------------------------------
+- **설명**
 
+	BOSH Task 수행 로그 출력
 
-**- 사용 예시**
+- **파라미터**
+	
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|task_id|Task ID|O|
+	|--event|Event Log 출력|X|
+	|--cpi|CPI Log 출력|X|
+	|--debug|Debug Log 출력|X|
+	|--result|Result Log 출력|X|
+	|--raw|raw 로그 출력|X|
+	|--no-filter|모든 Task 유형(ssh, logs, vms, etc) 포함해서 로그 출력|X|
 
-	$ bosh verify stemcell ~/workspace/stemcells/bosh-stemcell-3016-openstack-kvm-ubuntu-trusty-go_agent.tgz
+<div id='tasks'/>
+### ***tasks***
 
+- **기본 Syntax**
 
-## 6.3.  ***stemcells***
+		$ bosh tasks [--no-filter]
 
-**- 기본 문법**
+- **설명**
 
-	$ bosh stemcells
+	BOSH 수행중인 Task 목록 출력
 
+- **파라미터**
 
-**설명**
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|--no-filter|모든 Task 유형(ssh, logs, vms, etc) 포함해서 로그 출력|X|
 
-Director에 업로드한 Stemcell 목록 출력
+<div id='tasks-recent'/>
+### ***tasks recent***
 
-**- 파라미터**
+- **기본 Syntax**
 
--   없음
+		$ bosh tasks recent [<count>] [--no-filter]
 
+- **설명**
 
-**사용 예시**
+	수행 완료한 Task 목록 출력
 
-	$ bosh stemcells
+- **파라미터**
 
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|count|Task ID|O|
+	|--no-filter|모든 Task 유형(ssh, logs, vms, etc) 포함해서 출력|X|
 
-## 6.4.  ***delete stemcell***
+<div id='cancel-task'/>
+### ***cancel task***
 
-**- 기본 문법**
+- **기본 Syntax**
 
-	$ bosh delete stemcell <name> <version> [--force]
+		$ bosh cancel task <task_id>
 
+- **설명**
 
-**설명**
+	수행중인 Task 취소
 
-BOSH stemcell 삭제
+- **파라미터**
 
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|task_id|수행중인 Task ID|O|
 
-**- 파라미터**
+<div id='aaaaa'/>
+## BOSH CLI - Property
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	name                  O         Stemcell 이름
-	version               O         Stemcell 버전
-	--force               X         Stemcell 삭제하는 동안 에러 무시         
-	--------------------- --------- ---------------------------------------------------------------
+<div id='set-property'/>
+### ***set property***
 
+- **기본 Syntax**
 
-**- 사용 예시**
+		$ bosh set property <name> <value>
 
-	$ bosh delete stemcell bosh-openstack-kvm-ubuntu-trusty-go_agent 3012
+- **설명**
 
+	Deployment Property 설정
 
-## 6.5.  ***public stemcells***
+- **파라미터**
 
-**- 기본 문법**
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|name|Property 이름|O|
+	|value|Property 값|O|
 
-	$ bosh public stemcells [--full] [--all]
+<div id='get-property'/>
+###  ***get property***
 
+- **기본 Syntax**
 
-**설명**
+		$ bosh get property <name>
 
-public stemcell 목록 출력
+- **설명**
 
+	Deployment Property 확인
 
-**- 파라미터**
+- **파라미터**
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	--full                O         다운로드 URL 출력
-	--all                 O         모든 Stemcell 출력         
-	--------------------- --------- ---------------------------------------------------------------
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|name|Property 이름|O|
 
+<div id='properties'/>
+### ***properties***
 
-**- 사용 예시**
+- **기본 Syntax**
 
-	$ bosh public stemcells
+		$ bosh properties [--terse]
 
+- **설명**
 
-## 6.6.  ***download public stemcell***
+	Deployment Property 목록 출력
 
-**- 기본 문법**
+- **파라미터**
 
-	$ bosh download public stemcell <stemcell_filename>
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|--terse|간결한 형식으로 출력X|
 
+<div id='unset-property'/>
+### ***unset property***
 
-**설명**
+- **기본 Syntax**
 
-public stemcell 다운로드
+		$ bosh unset property <name>
 
+- **설명**
 
-**- 파라미터**
+	Deployment Property 설정 해제
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	stemcell_filename     O         다운로드 받을 Stemcell 파일명
-	--------------------- --------- ---------------------------------------------------------------
+- **파라미터**
 
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|name|Property 이름|O|
 
-**- 사용 예시**
+<div id='bbbbb'/>
+## BOSH CLI - Log
 
-	$ bosh download public stemcell bosh-stemcell-3016-openstack-kvm-ubuntu-trusty-go_agent.tgz
+<div id='logs'/>
+### ***logs***
 
+- **기본 Syntax**
 
-#7.  BOSH CLI - Job
+		$ bosh logs <job> [<index>] [--agent] [--job] [--only filter1,filter2,...] [--dir destination_directory] [--all]
 
-## 7.1.  ***start***
+- **설명**
 
-**- 기본 문법**
+	BOSH에서 배포된 VM에서 Agent나 Job 수행 로그 다운로드
 
-	$ bosh start <job> [<index>] [--force]
+- **파라미터**
 
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|job|Job 이름|O|
+	|index|Job 번호|X|
+	|--agent|Agent 로그 출력|X|
+	|--job|Job 로그 출력|X|
+	|--only filter1,filter2|지정된 Filter에 대한 로그만 출력|X|
+	|--dir destination_directory|로그 다운로드 경로 지정|X|
+	|--all|Deprecated|X|
 
-**설명**
+<div id='ccccc'/>
+## BOSH CLI - Maintenance
 
-Job/Instance 시작
+<div id='cleanup'/>
+### ***cleanup***
 
+- **기본 Syntax**
 
-**- 파라미터**
+		$ bosh cleanup [--all]
 
-**파라미터 명**
+- **설명**
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	job                   O         Job 이름
-	index                 X         Job 번호
-	--force               X         수행중 발생하는 에러 무시 
-	--------------------- --------- ---------------------------------------------------------------
+	사용되지 않은 오래된(2일) release와 stemcell 삭제
 
+- **파라미터**
 
-**- 사용 예시**
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|--all|사용되지 않은 Release와 Stemcell 모두 삭제|X|
 
-	$ bosh start redis --force
+<div id='cloudcheck'/>
+### ***cloudcheck***
 
+- **기본 Syntax**
 
-## 7.2.  ***stop*** 
+		$ bosh cloudcheck [<deployment_name>] [--auto] [--report]
 
-**- 기본 문법**
+- **설명**
 
-	$ bosh stop <job> [<index>] [--soft] [--hard] [--force]
+	배포 Manifest기준으로 차이가 있는 문제 검출 및 해결
 
+- **파라미터**
 
-**설명**
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|deployment_name|배포 이름|X|
+	|--auto|자동으로 Problem 해결|X|
+	|--report|Report 생성|X|
 
-Job/Instance 종료
+<div id='ddddd'/>
+## BOSH CLI – Remote Access
 
+<div id='ssh'/>
+### ***ssh***
 
-**- 파라미터**
+- **기본 Syntax**
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	job                   O         Job 이름
-	index                 X         Job 번호
-	--soft                X         프로세스만 종료
-	--hard                X         VM 종료
-	--force               X         수행중 발생하는 에러 무시      
-	--------------------- --------- ---------------------------------------------------------------
+		$ bosh ssh [--public_key FILE] [--gateway_host HOST] [--gateway_user USER] [--gateway_identity_file FILE] [--default_password PASSWORD]
 
+- **설명**
 
-**- 사용 예시**
+	배포된 VM ssh 세션 생성
 
-	$ bosh stop redis --soft --force
+- **파라미터**
 
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|--public_key FILE|인증서 파일 설정|X|
+	|--gateway_host HOST|Gateway Host IP|X|
+	|--gateway_user USER|Gateway User|X|
+	|--gateway_identity_file FILE|Gateway Identity File|X|
+	|--default_password PASSWORD|Default 비밀번호|X|
 
-## 7.3.  ***restart***
+<div id='scp'/>
+### ***scp***
 
-**- 기본 문법**
+- **기본 Syntax**
 
-	$ bosh restart <job> [<index>] [--force]
+		$ bosh scp <job> [--index][--download] [--upload] [--public_key FILE] [--gateway_host HOST] [--gateway_user USER] [--gateway_identity_file FILE]
 
+- **설명**
 
-**설명**
+	배포된 VM으로부터 파일 다운로드 또는 업로드
 
-Job/Instance (Soft stop+start) 재시작
+- **파라미터**
 
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|job|Job 이름|O|
+	|--download|다운로드할 파일|X|
+	|--upload|업로드할 파일|X|
+	|--public_key FILE|인증서 파일 설정|X|
+	|--gateway_host HOST|Gateway Host IP|X|
+	|--gateway_user USER|Gateway User|X|
+	|--gateway_identity_file FILE|Gateway Identity File|X|
 
-**- 파라미터**
+<div id='eeeee'/>
+## BOSH CLI - Blob
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	job                   O         Job 이름
-	index                 X         Job 번호
-	--force               X         수행중 발생하는 에러 무시      
-	--------------------- --------- ---------------------------------------------------------------
+<div id='upload-blobs'/>
+### ***upload blobs***
 
+- **기본 Syntax**
 
-**- 사용 예시**
+		$ bosh upload blobs
 
-	$ bosh restart registry --force
+- **설명**
 
+	blobstore에 blob 업로드
 
-## 7.4.  ***recreate***
+- **파라미터**
 
-**- 기본 문법**
+	없음
 
-	$ bosh recreate <job> [<index>] [--force]
+<div id='add-blob'/>
+### ***add blob*** 
 
+- **기본 Syntax**
 
-**설명**
+		$ bosh add blob <local_path> [<blob_dir>]
 
-Job/Instance (Soft stop+start) 재생성
+- **설명**
 
+	Blobstore에 로컬 blob 추가
 
-**- 파라미터**
+- **파라미터**
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	job                   O         Job 이름
-	index                 X         Job 번호
-	--force               X         수행중 발생하는 에러 무시      
-	--------------------- --------- ---------------------------------------------------------------
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|local_path|로컬 Blob디렉토리|O|
+	|blob_dir|Release내 blob 디렉토리|X|
 
+<div id='sync-blobs'/>
+### ***sync blobs***
 
-**- 사용 예시**
+- **기본 Syntax**
 
-	$ bosh recreate registry --force
+		$ bosh sync blobs
 
+- **설명**
 
-#8.  BOSH CLI - User
+	blobstore의 blob 동기화
 
-## 8.1.  ***create user*** 
+- **파라미터**
 
-**- 기본 문법**
+	없음
 
-	$ bosh create user [<username>] [<password>]
+<div id='blobs'/>
+### ***blobs***
 
+- **기본 Syntax**
 
-**설명**
+		$ bosh blobs
 
-BOSH 사용자 등록
+- **설명**
 
+	현재 blob 상태 출력
 
-**- 파라미터**
+- **파라미터**
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	username              O         사용자 아이디
-	password              X         사용자 비밀번호      
-	--------------------- --------- ---------------------------------------------------------------
+	없음
 
+<div id='fffff'/>
+## BOSH CLI - Snapshot
 
-**- 사용 예시**
+<div id='take-snapshot'/>
+### ***take snapshot***
 
-	$ bosh create user
+- **기본 Syntax**
 
+		$ bosh take snapshot [<job>] [<index>]
 
-## 8.2.  ***delete user***
+- **설명**
 
-**- 기본 문법**
+	Snapshot 생성
 
-	$ bosh delete user [<username>]
+- **파라미터**
 
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|job|Job 이름|O|
+	|index|Job 번호|O|
 
-**설명**
+<div id='delete-snapshot'/>
+### ***delete snapshot***
 
-BOSH 사용자 삭제
+- **기본 Syntax**
 
+		$ bosh delete snapshot <snapshot_cid>
 
-**- 파라미터**
+- **설명**
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	username              X         사용자 아이디      
-	--------------------- --------- ---------------------------------------------------------------
+	지정된 Snapshot CID의 Snapshot 삭제
 
+- **파라미터**
 
-**- 사용 예시**
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|snapshot_cid|snapshot_cid|O|
 
-	$ bosh delete user
+<div id='delete-snapshots'/>
+### ***delete snapshots***
 
+- **기본 Syntax**
 
-## 8.3.  ***login***
+		$ bosh delete snapshots
 
-**- 기본 문법**
+- **설명**
 
-	$ bosh login [<username>] [<password>]
+	설정된 배포내의 모든 Snapshot 삭제
 
+- **파라미터**
 
-**설명**
+	없음
 
-BOSH 사용자 등록
+<div id='snapshots'/>
+### ***snapshots***
 
+- **기본 Syntax**
 
-**- 파라미터**
+		$ bosh snapshots [<job>] [<index>]
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	username              X         사용자 아이디      
-	password              X         사용자 비밀번호
-	--------------------- --------- ---------------------------------------------------------------
+- **설명**
 
+	모든 Snapshot 목록 출력
 
-**- 사용 예시**
+- **파라미터**
 
-	$ bosh login
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|job|Job 이름|X|
+	|index|Job 번호|X|
 
+<div id='ggggg'/>
+## BOSH CLI - Misc
 
-## 8.4.  ***logout***
+<div id='status'/>
+### ***status***
 
-**- 기본 문법**
+- **기본 Syntax**
 
-	$ bosh logout
+		$ bosh status [--uuid]
 
+- **설명**
 
-**설명**
+	BOSH 타겟 Director 설정
 
-BOSH logout
+- **파라미터**
+	
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|--uuid|BOSH Director 등록 정보 출력|X|
 
+<div id='target'/>
+### ***target***
 
-**- 파라미터**
+- **기본 Syntax**
 
--   없음
+		$ bosh target [<director_url>] [<name>] [--ca-cert FILE]
 
+- **설명**
 
-**사용 예시**
+	BOSH 타겟 Director 설정
 
-	$ bosh logout
+- **파라미터**
 
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|director_url|BOSH Director URL|O|
+	|name|BOSH Director의 Alias 지정|X|
+	|--ca-cert FILE|UAA server에서 제공된 인증서|X|
 
-#9.  BOSH CLI - Task
+<div id='targets'/>
+### ***targets***
 
-## 9.1.  ***task***
+- **기본 Syntax**
 
-**- 기본 문법**
+		$ bosh targets
 
-	$ bosh task [<task_id>] [--event] [--cpi] [--debug] [--result] [--raw] [--no-filter]
+- **설명**
 
+	BOSH 타겟 Director 목록 출력
 
-**설명**
+- **파라미터**
 
-BOSH Task 수행 로그 출력
+	없음
 
+<div id='vms'/>
+### ***vms***
 
-**- 파라미터**
+- **기본 Syntax**
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	task_id               O         Task ID
-	--event               X         Event Log 출력
-	--cpi                 X         CPI Log 출력
-	--debug               X         Debug Log 출력
-	--result              X         Result Log 출력
-	--raw                 X         raw 로그 출력
-	--no-filter           X         모든 Task 유형(ssh, logs, vms, etc) 포함해서 로그 출력
-	--------------------- --------- ---------------------------------------------------------------
+		$ bosh vms [<deployment_name>] [--details] [--dns] [--vitals]
 
+- **설명**
 
-**- 사용 예시**
+	BOSH에서 배포된 VM 목록 출력
 
-	$ bosh task 12 --result
+- **파라미터**
 
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|deployment_name|배포이름|X|
+	|--details|VM 상세정보 출력|X|
+	|--dns|DNS 레코드 포함 출력|X|
+	|--vitals|VM 자원 사용 상태 출력|X|
 
-## 9.2.  ***tasks***
+<div id='locks'/>
+### ***locks***
 
-**- 기본 문법**
+- **기본 Syntax**
 
-	$ bosh tasks [--no-filter]
+		$ bosh locks
 
+- **설명**
 
-**설명**
+	Lock된 VM 목록 출력
 
-BOSH 수행중인 Task 목록 출력
+- **파라미터**
 
+	없음
 
-**- 파라미터**
+<div id='alias'/>
+### ***alias***
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	--no-filter           X         모든 Task 유형(ssh, logs, vms, etc) 포함해서 로그 출력
-	--------------------- --------- ---------------------------------------------------------------
+- **기본 Syntax**
 
+		$ bosh alias <name> <command>
 
-**- 사용 예시**
-  
-	$ bosh tasks
+- **설명**
 
+	BOSH 커맨드 Alias 등록
 
-## 9.3.  ***tasks recent***
+- **파라미터**
 
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|name|Alias 이름|O|
+	|command|등록할 BOSH Command|O|
 
-**- 기본 문법**
+<div id='aliases'/>
+### ***aliases***
 
-	$ bosh tasks recent [<count>] [--no-filter]
+- **기본 Syntax**
 
+		$ bosh aliases
 
-**설명**
+- **설명**
 
-수행 완료한 Task 목록 출력
+	등록된 Alias 목록 출력
 
+- **파라미터**
 
-**- 파라미터**
+	없음
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	count                 O         Task ID
-	--no-filter           X         모든 Task 유형(ssh, logs, vms, etc) 포함해서 출력 
-	--------------------- --------- ---------------------------------------------------------------
+<div id='export-compiled_package'/>
+### ***export compiled_package***
 
+- **기본 Syntax**
 
-**- 사용 예시**
+		$ bosh export compiled_packages <release> <stemcell> <download_dir>
 
-	$ bosh tasks recent
+- **설명**
 
+	compiled Package 내보내기
 
-## 9.4.  ***cancel task*** 
+- **파라미터**
 
-**- 기본 문법**
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|release|Release 이름과 버전|O|
+	|stemcell|Stemcell 이름과 버전|O|
+	|download_dir|내보내기 디렉토리|O|
 
-	$ bosh cancel task <task_id>
+<div id='vm-resurrection'/>
+### ***vm resurrection***
 
+- **기본 Syntax**
 
-**설명**
+		$ bosh vm resurrection [<job>] [<index>] <new_state>
 
-수행중인 Task 취소
+- **설명**
 
+	배포된 VM의 재시작 여부 설정
 
-**- 파라미터**
+- **파라미터**
 
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	task_id               O         수행중인 Task ID 
-	--------------------- --------- ---------------------------------------------------------------
+	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|----------|-------------------------|--------------------------------|
+	|job|Job 이름|X|
+	|index|Job 번호|X|
+	|new_state|‘on’ or ‘off’, ‘yes’ or ‘no’, ‘enable’ or ‘disable’|O|
 
-
-**- 사용 예시**
-
-	$ bosh cancel task 15
-
-
-#10. BOSH CLI - Property
-
-## 10.1.  ***set property***
-
-**- 기본 문법**
-
-	$ bosh set property <name> <value>
-
-
-**설명**
-
-Deployment Property 설정
-
-
-**- 파라미터**
-
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	name                  O         Property 이름
-	value                 O         Property 값 
-	--------------------- --------- ---------------------------------------------------------------
-
-
-**- 사용 예시**
-
-	$ bosh set property redis.max_connection 10
-
-
-## 10.2.  ***get property***
-
-**- 기본 문법**
-
-	$ bosh get property <name>
-
-
-**설명**
-
-Deployment Property 확인
-
-
-**- 파라미터**
-
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	name                  O         Property 이름
-	--------------------- --------- ---------------------------------------------------------------
-
-
-**- 사용 예시**
-
-	$ bosh get property redis.max_connection
-
-
-## 10.3.  ***properties*** 
-
-**- 기본 문법**
-
-	$ bosh properties [--terse]
-
-
-**설명**
-
-Deployment Property 목록 출력
-
-
-**- 파라미터**
-
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	--terse               X         간결한 형식으로 출력
-	--------------------- --------- ---------------------------------------------------------------
-
-
-**- 사용 예시**
-
-	$ bosh properties --terse
-
-
-## 10.4.  ***unset property***
-
-**- 기본 문법**
-
-	$ bosh unset property <name>
-
-
-**설명**
-
-Deployment Property 설정 해제
-
-
-**- 파라미터**
-
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	name                  O         Property 이름
-	--------------------- --------- ---------------------------------------------------------------
-
-
-**- 사용 예시**
-
-	$ bosh unset property redis.max_connection
-
-
-#11. BOSH CLI - Log
-
-## 11.1.  ***logs*** 
-
-**- 기본 문법**
-
-	$ bosh logs <job> [<index>] [--agent] [--job] [--only filter1,filter2,...] [--dir destination_directory] [--all]
-
-
-**설명**
-
-BOSH에서 배포된 VM에서 Agent나 Job 수행 로그 다운로드
-
-
-**- 파라미터**
-
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	job                   O         Job 이름
-	index                 X         Job 번호
-	--agent               X         Agent 로그 출력
-	--job                 X         Job 로그 출력
-	--only filter1,...    X         지정된 Filter에 대한 로그만 출력
-	--dir dest_dir        X         로그 다운로드 경로 지정
-	--all                 X         Deprecated
-	--------------------- --------- ---------------------------------------------------------------
-
-
-**- 사용 예시**
-
-	$ bosh logs director
-
-
-#12. BOSH CLI - Maintenance
-
-## 12.1.  ***cleanup***
-
-**- 기본 문법**
-
-	$ bosh cleanup [--all]
-
-
-**설명**
-
-사용되지 않은 오래된(2일) release와 stemcell 삭제
-
-
-**- 파라미터**
-
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	--all                 X         사용되지 않은 Release와 Stemcell 모두 삭제
-	--------------------- --------- ---------------------------------------------------------------
-
-
-**- 사용 예시**
-
-	$ bosh cleanup
-
-
-## 12.2.  ***cloudcheck*** 
-
-**- 기본 문법**
-
-	$ bosh cloudcheck [<deployment_name>] [--auto] [--report]
-
-
-**설명**
-
-배포 Manifest기준으로 차이가 있는 문제 검출 및 해결
-
-
-**- 파라미터**
-
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	deployment_name       X         배포 이름
-	--auto                X         자동으로 Problem 해결
-	--report              X         Report 생성 
-	--------------------- --------- ---------------------------------------------------------------
-
-
-**- 사용 예시**
-
-	$ bosh cloudcheck bosh-openstack --report
-
-	# VM 강제 삭제한 후 실행 시
-	$ bosh cloudcheck bosh-openstack --auto
-
-
-#13. BOSH CLI – Remote Access
-
-## 13.1.  ***ssh***
-
-**- 기본 문법**
-
-	$ bosh ssh [--public_key FILE] [--gateway_host HOST] [--gateway_user USER] [--gateway_identity_file FILE] [--default_password PASSWORD]
-
-
-**설명**
-
-배포된 VM ssh 세션 생성
-
-* ~/.ssh 디렉토리에서 Public Key(‘ssh-keygen -t rsa’) 생성 후 사용 가능
-
-**- 파라미터**
-
-	------------------------------ --------- ---------------------------------------------------------------
-	파라미터 명                     필수 (O/X) 설명                                   
-	------------------------------ --------- ---------------------------------------------------------------
-	--public_key FILE              X         인증서 파일 설정
-	--gateway_host HOST            X         Gateway Host IP
-	--gateway_user USER            X         Gateway User
-	--gateway_identity_file FILE   X         Gateway Identity File
-    --default_password PASSWORD    X         Default 비밀번호
-	------------------------------ --------- ---------------------------------------------------------------
-
-
-**- 사용 예시**
-
-	$ bosh ssh
-
-
-## 13.2.  ***scp*** 
-
-**- 기본 문법**
-
-	$ bosh scp <job> [--index][--download] [--upload] [--public_key FILE] [--gateway_host HOST] [--gateway_user USER] [--gateway_identity_file FILE]
-
-
-**설명**
-
-배포된 VM으로부터 파일 다운로드 또는 업로드
-
-* ~/.ssh 디렉토리에서 Public Key(‘ssh-keygen -t rsa’) 생성 후 사용 가능
-
-**- 파라미터**
-
-	------------------------------ --------- ---------------------------------------------------------------
-	파라미터 명                     필수 (O/X) 설명                                   
-	------------------------------ --------- ---------------------------------------------------------------
-	job                            O         Job 이름
-	--download                     X         다운로드할 파일
-	--upload                       X         업로드할 파일         
-	--public_key FILE              X         인증서 파일 설정
-	--gateway_host HOST            X         Gateway Host IP
-	--gateway_user USER            X         Gateway User
-	--gateway_identity_file FILE   X         Gateway Identity File
-	------------------------------ --------- ---------------------------------------------------------------
-
-
-**- 사용 예시**
-
-	$ bosh scp director/0 –download /var/vcap/sys/log/director/access.log /tmp
-
-
-#14. BOSH CLI - Blob
-
-
-## 14.1.  ***upload blob***
-
-**- 기본 문법**
-
-	$ bosh upload blobs
-
-
-**설명**
-
-blobstore에 blob 업로드
-
-
-**- 파라미터**
-
--   없음
-
-
-**사용 예시**
-
-	$ bosh upload blobs
-
-
-## 14.2.  ***add blob***
-
-**- 기본 문법**
-
-	$ bosh add blob <local_path> [<blob_dir>]
-
-
-**설명**
-
-Blobstore에 로컬 blob 추가
-
-
-**- 파라미터**
-
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	local_path            O         로컬 Blob디렉토리
-	blob_dir              X         Release내 blob 디렉토리
-	--report              X         Report 생성 
-	--------------------- --------- ---------------------------------------------------------------
-
-
-**- 사용 예시**
-
-	$ bosh add blob ~/workspace/releases/test/blobs/
-
-
-## 14.3.  ***sync blobs***
-
-**- 기본 문법**
-
-	$ bosh sync blobs
-
-
-**설명**
-
-blobstore의 blob 동기화
-
-**- 파라미터**
-
--   없음
-
-
-**사용 예시**
-
-	$ bosh sync blobs
-
-
-## 14.4.  ***blobs***
-
-**- 기본 문법**
-
-$ bosh blobs
-
-
-**설명**
-
-현재 blob 상태 출력
-
-
-**- 파라미터**
-
--   없음
-
-
-**사용 예시**
-
-	$ bosh blobs
-
-
-#15. BOSH CLI - Snapshot
-
-## 15.1.  ***take snapshot***
-
-**- 기본 문법**
-
-	$ bosh take snapshot [<job>] [<index>]
-
-
-**설명**
-
-Snapshot 생성
-
-
-**- 파라미터**
-
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	job                   O         Job 이름
-	index                 O         Job 번호 
-	--------------------- --------- ---------------------------------------------------------------
-
-
-**- 사용 예시**
-
-	$ bosh take snapshot registry 0
-
-
-## 15.2.  ***delete snapshot***
-
-**- 기본 문법**
-
-	$ bosh delete snapshot <snapshot_cid>
-
-
-**설명**
-
-지정된 Snapshot CID의 Snapshot 삭제
-
-
-**- 파라미터**
-
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	snapshot_cid          O         snapshot cid
-	--------------------- --------- ---------------------------------------------------------------
-
-
-## 15.3.  ***delete snapshots***
-
-**- 기본 문법**
-
-	$ bosh delete snapshots
-
-
-**설명**
-
-설정된 배포내의 모든 Snapshot 삭제
-
-
-**- 파라미터**
-
--   없음
-
-
-**사용 예시**
-
-	$ bosh delete snapshots
-
-
-## 15.4.  ***snapshots***
-
-**- 기본 문법**
-
-	$ bosh snapshots [<job>] [<index>]
-
-
-**설명**
-
-모든 Snapshot 목록 출력
-
-
-**- 파라미터**
-
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	job                   X         Job 이름
-	index                 X         Job 번호 
-	--------------------- --------- ---------------------------------------------------------------
-
-
-**- 사용 예시**
-
-	$ bosh snapshots
-
-
-#16. BOSH CLI - Misc
-
-## 16.1.  ***status***
-
-**- 기본 문법**
-
-	$ bosh status [--uuid]
-
-
-**설명**
-
-BOSH 타겟 Director 설정
-
-
-**- 파라미터**
-
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	--uuid                X         BOSH Director 등록 정보 출력
-	--------------------- --------- ---------------------------------------------------------------
-
-
-**- 사용 예시**
-
-	# bosh 상태 조회
-	$ bosh status  
-
-	# bosh uuid 조회
-	$ bosh status --uuid
-
-
-## 16.2.  ***target***
-
-**- 기본 문법**
-
-	$ bosh target [<director_url>] [<name>] [--ca-cert FILE]
-
-
-**설명**
-
-BOSH 타겟 Director 설정
-
-
-**- 파라미터**
-
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	director_url          O         BOSH Director URL
-	name                  X         BOSH Director의 Alias 지정
-	--ca-cert FILE        X         UAA server에서 제공된 인증서
-	--------------------- --------- ---------------------------------------------------------------
-
-
-**- 사용 예시**
-
-	$ bosh target https://10.10.5.100:25555
-
-
-## 16.3.  ***targets***
-
-**- 기본 문법**
-
-	$ bosh targets
-
-
-**설명**
-
-BOSH 타겟 Director 목록 출력
-
-
-**- 파라미터**
-
--   없음
-
-
-**사용 예시**
-
-	$ bosh targets
-
-
-## 16.4.  ***vms*** 
-
-**- 기본 문법**
-
-	$ bosh vms [<deployment_name>] [--details] [--dns] [--vitals]
-
-
-**설명**
-
-BOSH에서 배포된 VM 목록 출력
-
-
-**- 파라미터**
-
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	deployment_name       X         배포이름
-	--details             X         VM 상세정보 출력
-	--dns                 X         DNS 레코드 포함 출력
-	--vitals              X         VM 자원 사용 상태 출력
-	--------------------- --------- ---------------------------------------------------------------
-
-
-**- 사용 예시**
-
-	$ bosh vms
-
-
-## 16.5.  ***locks***
-
-**- 기본 문법**
-
-	$ bosh locks
-
-
-**설명**
-
-Lock된 VM 목록 출력
-
-
-**- 파라미터**
-
--   없음
-
-
-**사용 예시**
-
-	$ bosh locks
-
-
-## 16.6.  ***alias***
-
-**- 기본 문법**
-
-	$ bosh alias <name> <command>
-
-
-**설명**
-
-BOSH 커맨드 Alias 등록
-
-
-**- 파라미터**
-
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	name                  O         Alias 이름
-	command               O         등록할 BOSH Command
-	--------------------- --------- ---------------------------------------------------------------
-
-
-**- 사용 예시**
-
-	$ bosh alias vm-list 'vms'
-  
-
-## 17.7.  ***aliases***
-
-**- 기본 문법**
-
-	$ bosh aliases
-
-
-**설명**
-
-등록된 Alias 목록 출력
-
-**- 파라미터**
-
--   없음
-
-
-**사용 예시**
-
-	$ bosh aliases
-
-
-## 16.8.  ***export compiled package***
-
-**- 기본 문법**
-
-	$ bosh export compiled_packages <release> <stemcell> <download_dir>
-
-
-**설명**
-
-compiled Package 내보내기
-
-
-**- 파라미터**
-
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	release               O         Release 이름과 버전
-	stemcell              O         Stemcell 이름과 버전
-	download_dir          O         내보내기 디렉토리 
-	--------------------- --------- ---------------------------------------------------------------
-
-
-**- 사용 예시**
-
-	$ bosh export compiled_packages bosh/187 bosh-openstack-kvm-ubuntu-trusty-go_agent/3016 ~/bosh-workspace
-
-
-## 16.9.  ***vm resurrection***
-
-**- 기본 문법**
-
-	$ bosh vm resurrection [<job>] [<index>] <new_state>
-
-
-**설명**
-
-배포된 VM의 재시작 여부 설정
-
-
-**- 파라미터**
-
-	--------------------- --------- ---------------------------------------------------------------
-	파라미터 명            필수 (O/X) 설명                                   
-	--------------------- --------- ---------------------------------------------------------------
-	job                   X         Job 이름
-	index                 X         Job 번호
-	new_state             X         ‘on’ or ‘off’, ‘yes’ or ‘no’, ‘enable’ or ‘disable’ 
-	--------------------- --------- ---------------------------------------------------------------
-
-
-**- 사용 예시**
-
-	# Resurrection Off 설정
-	$ bosh vm resurrection nats off
-
-	# Resurrection On 설정
-	$ bosh vm resurrection nats 0 on

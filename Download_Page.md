@@ -6,9 +6,9 @@
 |OpenPaaS-Container|Open PaaS 컨테이너 릴리즈|http://extdisk.hancom.com:8080/share.cgi?ssid=0GYdumN |
 |OpenPaaS-Controller|Open PaaS 컨트롤러 릴리즈|http://extdisk.hancom.com:8080/share.cgi?ssid=0v3Mo2B |
 |OpenPaaS-Deployment|Open PaaS 샘플 배포 Manifest|http://extdisk.hancom.com:8080/share.cgi?ssid=0YWXQzq |
-|OpenPaaS-Dev-Tools|Open PaaS 개인 환경 설치 도구|https://paas-ta.kr/data/packages/1.0/OpenPaaS-Dev-Tools.zip |
-|OpenPaaS-Eclipse-Plugin|Open PaaS 연동 전자정부 프레임워크 플러그인|https://paas-ta.kr/data/packages/1.0/OpenPaaS-Eclipse-Plugin.zip |
-|OpenPaaS-Env|Open PaaS 환경 구축에 필요한 설치 도구|https://paas-ta.kr/data/packages/1.0/OpenPaaS-Env.zip |
+|OpenPaaS-Dev-Tools|Open PaaS 개인 환경 설치 도구|http://45.248.73.44/index.php/s/mBeMHs7We28zZJB/download |
+|OpenPaaS-Eclipse-Plugin|Open PaaS 연동 전자정부 프레임워크 플러그인|http://45.248.73.44/index.php/s/JRANx5fDcHg72S4/download |
+|OpenPaaS-Env|Open PaaS 환경 구축에 필요한 설치 도구|http://45.248.73.44/index.php/s/RqNtMttJWJbmt98/download |
 |OpenPaaS-IaaS-Controller|Open PaaS 설치 관리자 릴리즈|http://extdisk.hancom.com:8080/share.cgi?ssid=0wMNp3l |
 |OpenPaaS-Sample-Apps|Open PaaS 에서 실행되는 샘플 예제 |http://extdisk.hancom.com:8080/share.cgi?ssid=0icB5ZW |
 |OpenPaaS-Services|Open PaaS 서비스 팩|http://extdisk.hancom.com:8080/share.cgi?ssid=0IgH8sM |

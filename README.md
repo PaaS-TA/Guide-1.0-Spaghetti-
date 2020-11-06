@@ -4,16 +4,16 @@
 ## 플랫폼 설치 가이드
 - [설치 파일 다운로드 받기](./Download_Page.md)
 - 개인 환경 설치
-  - [BOSH-Lite](./Install-Guide/BOSH%20Lite/OpenPaaS_PaaSTA_BOSH_Lite_install_guide.md)
+  - [BOSH-Lite](./install-Guide/install-guide/BOSH-LITE/OpenPaaS_PaaSTA_BOSH_Lite_install_guide.md)
 - 운영 환경 설치
-  - BOSH 설치([AWS](./Install-Guide/BOSH/OpenPaaS_PaaSTA_BOSH_AWS_install_guide.md), [OpenStack](./Install-Guide/BOSH/OpenPaaS_PaaSTA_BOSH_Openstack_install_guide.md))
-  - Controller 설치([vSphere](./Install-Guide/Controller/Controller_vSphere_install_guide.md),
-[AWS](./Install-Guide/Controller/Controller_AWS_install_guide.md), [Openstack](./Install-Guide/Controller/Controller_Openstack_install_guide.md))
-  - Container 설치([vSphere](./Install-Guide/Container/Container_vSphere_install_guide.md),
-[AWS](./Install-Guide/Container/Container_AWS_install_guide.md),
-[Openstack](./Install-Guide/Container/Container_Openstack_install_guide.md))
+  - BOSH 설치([AWS](./install-Guide/BOSH/OpenPaaS_PaaSTA_BOSH_AWS_install_guide.md), [OpenStack](./install-Guide/BOSH/OpenPaaS_PaaSTA_BOSH_Openstack_install_guide.md))
+  - Controller 설치([vSphere](./install-Guide/Controller/Controller_vSphere_install_guide.md),
+[AWS](./install-Guide/Controller/Controller_AWS_install_guide.md), [Openstack](./install-Guide/Controller/Controller_Openstack_install_guide.md))
+  - Container 설치([vSphere](./install-Guide/Container/Container_vSphere_install_guide.md),
+[AWS](./install-Guide/Container/Container/Container_AWS_install_guide.md),
+[Openstack](./install-Guide/Container/Container_Openstack_install_guide.md))
 - 플랫폼 설치
-  - [플랫폼 설치 자동화](./Install-Guide/Platform%20Install%20System/OpenPaaS_PaaSTA_Platform_Install_System_install_guide.md)
+  - [플랫폼 설치 자동화](./install-Guide/Platform-Install-System-1/OpenPaaS_PaaSTA_Platform_Install_System_install_guide.md)
  
 ## 서비스 설치 가이드
 - DBMS 설치
@@ -52,8 +52,8 @@
 
 ## 활용 가이드
 - [BOSH CLI(Command Line Interface) 사용](./Use-Guide/OpenPaaS_PaaSTA_BOSH_CLI_guide.md)
-- [CF CLI(Command Line Interface) 사용](Use-Guide/OpenPaas%20CLi%20가이드.md)
-- [Eclipse plugin 개발도구 사용] (./Use-Guide/Open%20PaaS%20%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD%20%EC%82%AC%EC%9A%A9%20%EA%B0%80%EC%9D%B4%EB%93%9C.md)
+- [CF CLI(Command Line Interface) 사용](./Use-Guide/OpenPaas-CLi-guide.md)
+- [Eclipse plugin 개발도구 사용] (./Use-Guide/Open_PaaS_develop_guide.md)
 
 
 ## 개발 언어 별 어플리케이션 가이드

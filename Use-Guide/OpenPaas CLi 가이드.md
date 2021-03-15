@@ -1,10 +1,10 @@
 ## Table of Contents
-1. [개요](#개요)
-     * [문서 목적](#문서-목적)
-     * [범위](#범위)
-     * [참고 자료](#참고-자료)
+1. [Outline](#Outline)
+     * [Document Objectivce](#Document-Objectivce)
+     * [Range](#Range)
+     * [References Materials](#References-Materials)
 
-1. [OpenPaaS CLI기본 사용법](#ID-OpenPaaS-CLI-USAGE)
+1. [OpenPaaS CLI Basic anual](#ID-OpenPaaS-CLI-USAGE)
 
 1. [GETTING STARTED](#ID-GETTING-STARTED)
      * [login](#login)
@@ -175,42 +175,42 @@
     * [plugins](#plugins)
     * [install-plugin](#install-plugin)
 
-## 개요
+## Outline
 ---
 
-#### 문서 목적
+#### Document Objective
 
-본 문서는 OpenPaaS에 대한 설치 및 운영 관리를 위한 도구인 OpenPaaS CLI에 대해 기본 사용법 및 사용 예시를 통해 OpenPaaS를 이해하는데 목적이 있습니다.
+This document aims to understand OpenPaaS through basic usage and usage examples of OpenPaaS CLI, a tool for installation and operation management of OpenPaaS.
 
-#### 범위
+#### Range
 
-본 문서는 OpenPaaS CLI 분류 및 기본 사용법에 대해서 작성하였습니다.
+This document has been written about OpenPaaS CLI classification and basic usage.
 
-#### 참고 자료
+#### References Materials
 
- 본 문서는 Cloud Foundry의 CF Document를 참고로 작성하였습니다.
+ This document was written with reference to CF Document of Cloud Foundry.
 
  [***https://docs.cloudfoundry.org/devguide/installcf/***](https://docs.cloudfoundry.org/devguide/installcf/)
 
 <div id='ID-OpenPaaS-CLI-USAGE'/>
-## OpenPaaS CLI기본 사용법
+## OpenPaaS CLI Basic Manual
 
-OpenPaaS CLI : OpenPaaS를 관리하기 위한 CLI 도구입니다.
+OpenPaaS CLI : CLI tool for managing OpenPaaS..
 
-CLI는 OpenPaaS배포와 Release를 관리하기 위해 도움을 주는 커맨드 라인 유틸리티로 사용법은 다음과 같습니다.
+CLI is a command line utility that helps to manage OpenPaaS deployment and release. Its usage is as follows.
 
 
 
- - **기본 Syntax**
+ - **basic Syntax**
 
 
  ```
 cf [global options] command <arguments...> [command options]
  ```
 
-OpenPaaS command 명령어에 따라 약어를 제공해 줍니다. 예를 들어 App start CLI명령어는 start 이지만 st도 사용가능합니다.
+Abbreviations are provided according to the OpenPaaS command. For example, the app start CLI command is start, but st can also be used.
 
-- **약어 사용예시**
+- **Examples of abbreviations**
 
 ```
 $ cf start
@@ -218,8 +218,7 @@ $ cf start
 $ cf st
 ```
 
-OpenPaaS 명령어에 대괄호로 묶인 인자인 [command options]은 명령어에 따라 선택적으로 사용되고, command  `<arguments>` 인자는 필수 인자입니다. OpenPaaS 운영 및 관리하기 위한 도구인 OpenPaaS CLI 아래와 같은 명령어들을 제공하고 있습니다.
-
+[Command options], an argument enclosed in brackets for the OpenPaaS command, is optionally used depending on the command, and the command `<arguments>` argument is a required argument. OpenPaaS CLI, a tool for operating and managing OpenPaaS, provides the following commands.
 
 <div id='ID-GETTING-STARTED'/>
 ## GETTING STARTED

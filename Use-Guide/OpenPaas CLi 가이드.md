@@ -227,7 +227,7 @@ $ cf st
 #### login
 
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 
 ```
@@ -235,7 +235,7 @@ $ cf login [-a API_URL] [-u USERNAME] [-p PASSWORD] [-o ORG] [-s SPACE]
 ```
 
 
-- **설명**
+- **Description**
 
 
 ```
@@ -243,10 +243,10 @@ OpenPaaS에 로그인 하기 위한 명령어
 ```
 
 
-- **파라미터**
+- **Parameter **
 
 
-| 파라미터명   |           설명                 | 필수(O/X) |
+| Parameter Name   |           Description                 | Required(O/X) |
 |-------------|-----------------------------|-----------|
 |-a API_URL    |CLI가 접속 하려는 OpenPaaS  URL<br>Ex) https://api.10.244.0.34.xip.io    |X        |
 |-u USERNAMEL  |OpenPaaS에 접속하는 사용자 id               |X        |
@@ -255,14 +255,14 @@ OpenPaaS에 로그인 하기 위한 명령어
 |-s SPACE      |OpenPaaS에 접속하는 사용자의 소속조직 스페이스직 명      |X        |
 
 
-- **사용예시**
+- **Example**
 
 
 ```
-# 파라미터 지정한 경우
+# Parameter  지정한 경우
 $ cf login --skip-ssl-validation -a https://api.10.244.0.34.xip.io -u admin -p admin -o crossent -s development
 
-# 파라미터 지정하지 않을 경우
+# Parameter  지정하지 않을 경우
 $ cf login
 API endpoint: https://api.10.244.0.34.xip.io
 
@@ -290,7 +290,7 @@ Space:          development
 ```
 
 #### logout
-- **기본 Syntax**
+- **Basic Syntax**
 
 
 ```
@@ -298,7 +298,7 @@ $ cf logout
 ```
 
 
-- **설명**
+- **Description**
 
 
 ```
@@ -306,12 +306,12 @@ cf에 logout합니다.
 ```
 
 
-- **파라미터**
+- **parameter**
 
-  -없음
+  -none
 
 
-- **사용예시**
+- **Example**
 
 ```
 $ cf logout
@@ -319,7 +319,7 @@ $ cf logout
 ```
 
 #### passwd
-- **기본 Syntax**
+- **Basic Syntax**
 
 
 ```
@@ -328,7 +328,7 @@ $ cf passwd
 
 
 
-- **설명**
+- **Description**
 
 
 ```
@@ -336,12 +336,12 @@ OpenPaaS 사용자계정의 패스워드를 변경합니다.
 ```
 
 
-- **파라미터**
+- **parameter**
 
-  -없음
+  -none
 
 
-- **사용예시**
+- **Example**
 
 
 ```
@@ -357,14 +357,14 @@ Please log in again
 ```
 
 #### target
-- **기본 Syntax**
+- **Basic Syntax**
 
 
 ```
 $ cf target [-o ORG] [-s SPACE]
 ```
 
-- **설명**
+- **Description**
 
 
 ```
@@ -372,25 +372,25 @@ $ cf target [-o ORG] [-s SPACE]
 ```
 
 
-- **파라미터**
+- **parameter**
 
-| 파라미터명   |           설명                 | 필수(O/X) |
+| Parameter Name   |           Description                 | Required(O/X) |
 |-------------|-----------------------------|-----------|
 |-o ORG      |Target 조직                    |X        |
 |-s SPACE    |Target 스페이스                |X        |
 
 
 
-- **사용예시**
+- **Example**
 
 ```
-# 파라미터 지정한 경우
+# Parameter  지정한 경우
 $ cf target -o cf -s development
 API endpoint:   https://api.10.244.0.34.xip.io (API version: 2.29.0)   
 User:           admin   
 Org:            cf   
 Space:          development
-# 파라미터 지정하지 않은 경우(현재 Target된 정보가 출력)
+# Parameter  지정하지 않은 경우(현재 Target된 정보가 출력)
 $ cf target
 API endpoint:   https://api.10.244.0.34.xip.io (API version: 2.29.0)   
 User:           admin   
@@ -400,14 +400,14 @@ Space:          development
 
 
 #### api
-- **기본 Syntax**
+- **Basic Syntax**
 
 ```
 $ cf api <URL>
 ```
 
 
-- **설명**
+- **Description**
 
 
 ```
@@ -416,21 +416,21 @@ Target api를 조회하거나 target api URL을 설정합니다.
 
 
 
-- **파라미터**
+- **Parameter **
 
-| 파라미터명   |           설명                 | 필수(O/X) |
+| Parameter Name   |           Description                 | Required(O/X) |
 |-------------|-----------------------------|-----------|
 |URL         |Api Target URL                   |O        |
 
 
-- **사용예시**
+- **Example**
 
 ```
 $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 ```
 
 #### auth
-- **기본 Syntax**
+- **Basic Syntax**
 
 
 ```
@@ -438,7 +438,7 @@ $ cf auth <USERNAME> <PASSWORD>
 ```
 
 
-- **설명**
+- **Description**
 
 
 ```
@@ -446,16 +446,16 @@ OpenPaaS login시 로그인만 되며 스페이스, 타겟은 지정되지 않�
 ```
 
 
-- **파라미터**
+- **Parameter **
 
-| 파라미터명   |           설명                 | 필수(O/X) |
+| Parameter Name   |           Description                 | Required(O/X) |
 |-------------|--------------------------------|-----------|
 |USERNAME     |로그인 사용자 ID                 |O        |
 |PASSWORD    |로그인 사용자 PASSWORD            |O        |
 
 
 
-- **사용예시**
+- **Example**
 
 ```
 $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
@@ -465,7 +465,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
 #### apps
-- **기본 Syntax**
+- **Basic Syntax**
 
 
 ```
@@ -473,7 +473,7 @@ $cf apps
 ```
 
 
-- **설명**
+- **Description**
 
 
 ```
@@ -481,11 +481,11 @@ $cf apps
 ```
 
 
-- **파라미터**
+- **Parameter **
 
-  -없음
+  -none
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf apps
@@ -493,7 +493,7 @@ $cf apps
 
 #### app
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -501,7 +501,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -509,15 +509,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |APP명                          |O        |
 
 
-    - **사용예시**
+    - **Example**
 
     ```
     $ cf app spring-music
@@ -526,7 +526,7 @@ $cf apps
 <div id='push-p'/>
 #### push,p
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -534,7 +534,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -542,10 +542,10 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |push하는 App명(지정하지 않으면 디렉토리명)                         |O        |
   |-b BUILDPACK |custom빌드팩 URL <br> ex) https://github.com/OpenPaaSRnD/egov-java-buildpack   |X        |
@@ -565,7 +565,7 @@ $cf apps
   |--no-start     |App을 push하고 Start하지 않음                       |X        |
   |--random-route    |App에게 라우트 정보를 랜덤하게 생성                |X        |
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf push spring-music
@@ -573,7 +573,7 @@ $cf apps
 
 #### scale
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -581,7 +581,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -589,10 +589,10 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |APP명                           |O        |
   |-i INSTANCES |인스턴스 갯수                    |X        |
@@ -601,7 +601,7 @@ $cf apps
   |-f           |App 강제 restart                |X        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf scale spring-music -i 2 -m 512m
@@ -610,7 +610,7 @@ $cf apps
 
 #### delete
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -618,7 +618,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -626,17 +626,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |APP명                           |O        |
   |--f          |확인 없이 App 삭제               |X        |
   |--r          |App에 매핑된 라우트 정보 삭제     |X        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $  cf delete spring-music
@@ -645,7 +645,7 @@ $cf apps
 
 #### rename
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -653,7 +653,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -661,16 +661,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |APP명                           |O        |
   |NEW_APP_NAME |변경하려는 App명                 |O        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $  cf rename spring-music new-spring-music
@@ -679,7 +679,7 @@ $cf apps
 <div id='start-st'/>
 #### start,st
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -687,7 +687,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -695,15 +695,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |APP명                           |O        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $  cf start spring-music
@@ -711,7 +711,7 @@ $cf apps
 <div id='stop-sp'/>
 #### stop,sp
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -719,7 +719,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -727,15 +727,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |APP명                           |O        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $  cf stop spring-music
@@ -744,7 +744,7 @@ $cf apps
 <div id='restart-rs'/>
 #### restart, rs
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -752,7 +752,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -760,15 +760,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |APP명                           |O        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $cf restart spring-music
@@ -776,7 +776,7 @@ $cf apps
 <div id='restage-rg'/>
 #### restage, rg
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -784,7 +784,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -792,15 +792,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |APP명                           |O        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $cf restage spring-music
@@ -808,7 +808,7 @@ $cf apps
 
 #### restart-app-instance
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -816,7 +816,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -824,15 +824,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |APP명                           |O        |
   |INDEX        |인스턴스 인덱스                   |O        |
 
-  - **사용예시**
+  - **Example**
 
   ```
   $cf restart-app-instance spring-music 1
@@ -840,7 +840,7 @@ $cf apps
 
 #### events
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -848,7 +848,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -856,14 +856,14 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |APP명                           |O        |
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf events spring-music
@@ -872,7 +872,7 @@ $cf apps
 
 #### files
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -880,7 +880,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -888,16 +888,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |APP명                           |O        |
   |PATH         |APP의 디렉토리                   |X        |
   |-i INSTANCE  |App인스턴스 인덱스               |X        |
 
-  - **사용예시**
+  - **Example**
 
   ```
   $  cf files spring-music
@@ -905,7 +905,7 @@ $cf apps
 
 #### logs
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -913,7 +913,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -921,16 +921,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |APP명                           |O        |
   |PATH         |APP의 디렉토리                   |X        |
   |-i INSTANCE  |App인스턴스 인덱스               |X        |
 
-  - **사용예시**
+  - **Example**
 
   ```
   $  cf logs spring-music
@@ -938,7 +938,7 @@ $cf apps
 <div id='env-e'/>
 #### env,e
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -946,7 +946,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -954,14 +954,14 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |APP명                           |O        |
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf env spring-music
@@ -970,7 +970,7 @@ $cf apps
 <div id='set-env-se'/>
 #### set-env,se
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -978,7 +978,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -986,17 +986,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |APP명                           |O        |
   |ENV_VAR_NAME |App의 환경변수 Key               |O        |
   |ENV_VAR_VALUE|App의 환경변수 Value               |O        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf se spring-music author Jim
@@ -1006,7 +1006,7 @@ $cf apps
 
 #### unset-env
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1014,7 +1014,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1022,16 +1022,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |APP명                           |O        |
   |ENV_VAR_NAME |App의 환경변수 Key               |O        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf unset-env spring-music author
@@ -1039,7 +1039,7 @@ $cf apps
 
 #### stacks
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1047,7 +1047,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1055,13 +1055,13 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-    - 없음
+    - none
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $  cf stacks
@@ -1069,7 +1069,7 @@ $cf apps
 
 #### stack
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1077,7 +1077,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1085,16 +1085,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |APP명                           |O        |
   |--guid       |Stack guid를 조회            |X        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $  cf stack cflinuxfs2
@@ -1102,7 +1102,7 @@ $cf apps
 
 #### copy-source
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1110,7 +1110,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1118,10 +1118,10 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SOURCE-APP   |원본 APP명                        |O        |
   |TARGET-APP   |소스가 복사될 대상 App명            |X        |
@@ -1129,7 +1129,7 @@ $cf apps
   |-s TARGET-SPACE|타겟 스페이스                    |X        |
   |--no-restart   |소스 복사 후 restart하지 않음  |X        |
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf copy-source spring-music another-music
@@ -1137,7 +1137,7 @@ $cf apps
 
 #### create-app-manifest
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1145,7 +1145,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1153,15 +1153,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SOURCE-APP   |원본 APP명                        |O        |
   |-p /path/<app-name>.yml   |파일이 생성될 위치와 파일명(-p 를 사용하지 않으면 자동생성된다)            |X        |
 
-  - **사용예시**
+  - **Example**
 
   ```
   $  cf create-app-manifest spring-music -p ./spring-music-manifest.yml
@@ -1173,7 +1173,7 @@ $cf apps
 <div id='marketplace-m'/>
 #### marketplace,m
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1181,7 +1181,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1189,15 +1189,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |-s SERVICE_NAME   |서비스의 plan이 조회된다.    |X        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $  cf create-app-manifest spring-music -p ./spring-music-manifest.yml
@@ -1205,7 +1205,7 @@ $cf apps
 <div id='services-s'/>
 #### services,s
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1213,7 +1213,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1221,15 +1221,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |-s SERVICE_NAME   |서비스의 plan이 조회된다.    |X        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $  cf create-app-manifest spring-music -p ./spring-music-manifest.yml
@@ -1237,7 +1237,7 @@ $cf apps
 
 #### service
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1245,7 +1245,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1253,15 +1253,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SERVICE_INSTANCE   |서비스 인스턴스명           |O        |
   |--guid             |서비스 인스턴스의 Guid를 조회합니다.   |X        |
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf service spring-music-db
@@ -1270,7 +1270,7 @@ $cf apps
 
 #### create-service
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1278,17 +1278,17 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
   마켓플레이스에서 제공하는 서비스로 서비스 인스턴스를 만든다.
   ```
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SERVICE      |마켓플레이스에 있는 서비스명                                              |O        |
   |PLAN         |서비스 플랜명                                                           |O        |
@@ -1296,7 +1296,7 @@ $cf apps
   |-c PARAMETERS_AS_JSON |서비스 설정정보를 json 형태로 입력 <br> Ex) -c '{"ram_gb":4}'    |X        |
   |-t TAGS      |서비스 인스턴스 테그                                                     |X        |
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf create-service spring-music-db silver p-mysql
@@ -1305,7 +1305,7 @@ $cf apps
 
 #### update-service
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1313,7 +1313,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1321,17 +1321,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SERVICE_INSTANCE        |서비스 인스턴스명                                               |O        |
   |-p NEW_PLAN             |서비스 플랜명                                                  |O        |
   |-c PARAMETERS_AS_JSON   |서비스 설정정보를 json 형태로 입력 <br> Ex) -c '{"ram_gb":4}'    |O        |
   |-t TAGS                 |서비스 인스턴스 테그                                            |X        |
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf update-service spring-music-db -p gold_plan
@@ -1340,7 +1340,7 @@ $cf apps
 
 #### delete-service
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1348,7 +1348,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1356,15 +1356,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SERVICE_INSTANCE  |서비스 인스턴스명                                        |O        |
   |-f                |삭제 확인 메시지 없이 서비스 인스턴스 삭제합니다.             |X        |
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf delete-service spring-music-db
@@ -1372,7 +1372,7 @@ $cf apps
 
 #### rename-service
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1380,7 +1380,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1388,15 +1388,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SERVICE_INSTANCE       |서비스 인스턴스명                       |O        |
   |NEW_SERVICE_INSTANCE   |변경하려는 서비스 인스턴스명             |O        |
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf rename-service spring-music-db new_spring-music-db
@@ -1405,7 +1405,7 @@ $cf apps
 <div id='create-service-key-csk'/>
 #### create-service-key,csk
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1413,7 +1413,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1421,17 +1421,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SERVICE_INSTANCE       |서비스 인스턴스명                       |O        |
   |SERVICE_KEY            |서비스 인스턴스 key명                   |O        |
   |-c PARAMETERS_AS_JSON  |서비스 인스턴스 설정(JSON Parameter)    |X        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf create-service-key spring-music-db mykey -c '{"permissions":"read-only"}'
@@ -1440,7 +1440,7 @@ $cf apps
 <div id='service-keys-sk'/>
 #### service-keys,sk
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1448,7 +1448,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1456,15 +1456,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SERVICE_INSTANCE       |서비스 인스턴스명                       |O        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf service-keys spring-music-db
@@ -1472,7 +1472,7 @@ $cf apps
 
 #### service-key
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1480,7 +1480,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1488,10 +1488,10 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SERVICE_INSTANCE  |서비스 인스턴스명                       |O        |
   |SERVICE_KEY       |서비스 인스턴스 key명                   |O        |
@@ -1499,7 +1499,7 @@ $cf apps
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf service-key spring-music-db mykey
@@ -1508,7 +1508,7 @@ $cf apps
 <div id='delete-service-key-dsk'/>
 #### delete-service-key,dsk
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1516,7 +1516,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1524,10 +1524,10 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SERVICE_INSTANCE  |서비스 인스턴스명                       |O        |
   |SERVICE_KEY       |서비스 인스턴스 key명                   |O        |
@@ -1535,7 +1535,7 @@ $cf apps
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf delete-service-key spring-music-db mykey
@@ -1544,7 +1544,7 @@ $cf apps
 <div id='bind-service-bs'/>
 #### bind-service,bs
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1552,7 +1552,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1560,18 +1560,18 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |APP명                                            |O        |
   |SERVICE_INSTANCE  |서비스 인스턴스 명                           |O        |
-  |-c PARAMETERS_AS_JSON   |바인딩 설정 파라미터 (json형태)         |X        |
+  |-c PARAMETERS_AS_JSON   |바인딩 설정 Parameter  (json형태)         |X        |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf bind-service spring-music spring-music-db -c '{"permissions":"read-only"}'
@@ -1582,7 +1582,7 @@ $cf apps
 <div id='unbind-service-us'/>
 #### unbind-service,us
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1590,7 +1590,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1598,17 +1598,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME          |서비스 인스턴스명                            |O        |
   |SERVICE_INSTANCE  |서비스 인스턴스 명                           |O        |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf unbind-service spring-music spring-music-db
@@ -1617,7 +1617,7 @@ $cf apps
 <div id='create-user-provided-service-cups'/>
 #### create-user-provided-service,cups
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1625,7 +1625,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1633,17 +1633,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SERVICE_INSTANCE          |서비스 인스턴스명                            |O        |
   |-p CREDENTIALS            |서비스 인스턴스 명                           |X        |
   |-l SYSLOG-DRAIN-URL       |서비스 인스턴스 명                           |X        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf create-user-provided-service spring-music-db -p '{"username":"admin","password":"pa55woRD"}'
@@ -1652,7 +1652,7 @@ $cf apps
 <div id='update-user-provided-service-uups'/>
 #### update-user-provided-service,uups
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1660,7 +1660,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1668,17 +1668,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SERVICE_INSTANCE          |서비스 인스턴스명                            |O        |
   |-p CREDENTIALS            |서비스 인스턴스 명                           |X        |
   |-l SYSLOG-DRAIN-URL       |서비스 인스턴스 명                           |X        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $  cf update-user-provided-service spring-music-db -p '{"username":"admin","password":"pa55woRD"}'
@@ -1690,7 +1690,7 @@ $cf apps
 <div id='orgs-o'/>
 #### orgs,o
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1698,7 +1698,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1706,12 +1706,12 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
-   - 없음
+   - none
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf orgs
@@ -1721,7 +1721,7 @@ $cf apps
 
 #### org
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1729,7 +1729,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1737,16 +1737,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |ORG_NAME      |조직명                         |O        |
+  |ORG_NAME      |Organization Name                         |O        |
   |--guid       |조직의 guid를 조회합니다.           |X        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf org cf
@@ -1756,7 +1756,7 @@ $cf apps
 <div id='create-org-co'/>
 #### create-org,co
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1764,7 +1764,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1772,16 +1772,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |ORG_NAME      |조직명                         |O        |
+  |ORG_NAME      |Organization Name                         |O        |
   |-q QUOTA_NAME |조직에게 할당할 quota           |X        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $cf create-org test -q default
@@ -1791,7 +1791,7 @@ $cf apps
 
 #### delete-org
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1799,7 +1799,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1807,16 +1807,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |ORG_NAME      |조직명                          |O        |
+  |ORG_NAME      |Organization Name                          |O        |
   |-f           |확인메시지 없이 조직정보 삭제합니다.  |X        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf delete-org cf -f
@@ -1825,7 +1825,7 @@ $cf apps
 
 #### rename-org
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1833,24 +1833,24 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
-  조직명을 변경합니다.
+  Organization Name을 변경합니다.
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |ORG_NAME       |조직명                          |O        |
-  |NEW_ORG_NAME   |변경할 조직명                    |O        |
+  |ORG_NAME       |Organization Name                          |O        |
+  |NEW_ORG_NAME   |변경할 Organization Name                    |O        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf rename cf new-cf
@@ -1861,7 +1861,7 @@ $cf apps
 
 #### spaces
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1869,7 +1869,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1877,12 +1877,12 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
-   - 없음
+   - none
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf spaces
@@ -1891,7 +1891,7 @@ $cf apps
 
 #### space
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1899,7 +1899,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1907,15 +1907,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE_NAME   |스페이스명                           |O          |
+  |SPACE_NAME   |Space Name                           |O          |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf space development
@@ -1923,7 +1923,7 @@ $cf apps
 
 #### create-space
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1931,7 +1931,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1939,16 +1939,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE_NAME   |스페이스명                           |O         |
-  |-o ORG_NAME  |스페이스에 매핑될 조직명               |X         |
+  |SPACE_NAME   |Space Name                           |O         |
+  |-o ORG_NAME  |스페이스에 매핑될 Organization Name               |X         |
   |-q SPACE-QUOTA-NAME    |스페이스에 할당될 QUOTA명    |X         |
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf create-space -o cf -q cf-space-quota
@@ -1956,7 +1956,7 @@ $cf apps
 
 #### delete-space
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1964,7 +1964,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -1972,15 +1972,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE_NAME   |스페이스명                           |O         |
+  |SPACE_NAME   |Space Name                           |O         |
   |-f           |삭제 확인메시지 없이 스페이스 삭제합니다. |X         |
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf delete-space development
@@ -1988,7 +1988,7 @@ $cf apps
 
 #### rename-space
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -1996,7 +1996,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2004,15 +2004,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE_NAME     |스페이스명                           |O         |
+  |SPACE_NAME     |Space Name                           |O         |
   |NEW_SPACE_NAME |삭제 확인메시지 없이 스페이스 삭제합니다. |O         |
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf rename-space development new_development
@@ -2023,7 +2023,7 @@ $cf apps
 
 #### domains
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2031,7 +2031,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2039,13 +2039,13 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-    - 없음
+    - none
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf domains
@@ -2054,7 +2054,7 @@ $cf apps
 
 #### create-domain
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2062,7 +2062,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2070,16 +2070,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |ORG_NAME     |조직명                           |O         |
+  |ORG_NAME     |Organization Name                           |O         |
   |DOMAIN       |도메인명                          |O         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf create-domain cf-org cf.or.kr
@@ -2088,7 +2088,7 @@ $cf apps
 
 #### delete-domain
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2096,7 +2096,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2104,16 +2104,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |DOMAIN       |도메인명                           |O         |
   |-f           |삭제 확인메시지 없이 도메인을 삭제합니다. |X         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf delete-domain cf.or.kr
@@ -2122,7 +2122,7 @@ $cf apps
 
 #### create-shared-domain
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2130,7 +2130,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2138,15 +2138,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |DOMAIN       |조직명                           |O         |
+  |DOMAIN       |Organization Name                           |O         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf create-shared-domain cf.or.kr
@@ -2154,7 +2154,7 @@ $cf apps
 
 #### delete-shared-domain
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2162,7 +2162,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2170,15 +2170,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |DOMAIN       |조직명                           |O         |
+  |DOMAIN       |Organization Name                           |O         |
   |-f           |삭제 확인메시지 없이 도메인을 삭제합니다.    |X         |
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf delete-shared-domain cf.or.kr
@@ -2190,7 +2190,7 @@ $cf apps
 <div id='routes-r'/>
 #### routes, r
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2198,7 +2198,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2206,11 +2206,11 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
-    - 없음
+    - none
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf routes
@@ -2219,7 +2219,7 @@ $cf apps
 
 #### create-route
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2227,7 +2227,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2235,17 +2235,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE_NAME   |스페이스명                           |O         |
+  |SPACE_NAME   |Space Name                           |O         |
   |DOMAIN       |삭제 확인메시지 없이 공유 도메인을 삭제합니다. <br>   - 도메인 정보가 입력되어있어야 합니다.   |O         |
   |-n HOSTNAME  |호스트 명                          |X         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf create-route development cf.or.kr
@@ -2254,7 +2254,7 @@ $cf apps
 
 #### update-route
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2262,7 +2262,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2270,17 +2270,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE_NAME   |스페이스명                           |O         |
+  |SPACE_NAME   |Space Name                           |O         |
   |DOMAIN       |삭제 확인메시지 없이 공유 도메인을 삭제합니다. <br>   - 도메인 정보가 입력되어있어야 합니다.   |O         |
   |-n HOSTNAME  |호스트 명                          |X         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf update-route development cf.or.kr
@@ -2290,7 +2290,7 @@ $cf apps
 
 #### check-route
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2298,7 +2298,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2306,16 +2306,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |HOST         |호스트 명                                    |O         |
   |DOMAIN       |삭제 확인메시지 없이 공유 도메인을 삭제합니다.    |O         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf check-route spring-music cf.or.kr
@@ -2324,7 +2324,7 @@ $cf apps
 
 #### map-route
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2332,7 +2332,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2340,17 +2340,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |App명                           |O         |
   |DOMAIN       |App에게 할당할 도메인             |O         |
   |-n HOSTNAME  |App에게 할당할 Host              |X         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf map-route spring-music cf.or.kr -n test
@@ -2359,7 +2359,7 @@ $cf apps
 
 #### unmap-route
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2367,7 +2367,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2375,17 +2375,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |App명                           |O         |
   |DOMAIN       |App에게 할당할 도메인             |O         |
   |-n HOSTNAME  |App에게 할당할 Host              |X         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf unmap-route spring-music cf.or.kr -n spring-music
@@ -2393,7 +2393,7 @@ $cf apps
 
 #### delete-route
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2401,7 +2401,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2409,17 +2409,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |DOMAIN       |App에게 할당할 도메인             |O         |
   |-n HOSTNAME  |App에게 할당할 Host              |X         |
   |-f           |삭제 확인메시지 없이 라우트 정보를 삭제합니다.              |X         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf delete-route spring-music cf.or.kr -n spring-music
@@ -2427,7 +2427,7 @@ $cf apps
 
 #### delete-orphaned-routes
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2435,7 +2435,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2443,15 +2443,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |-f           |삭제 확인메시지 없이 라우트 정보를 삭제합니다.           |X         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf delete-orphaned-routes
@@ -2463,7 +2463,7 @@ $cf apps
 
 #### buildpacks
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2471,7 +2471,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2479,13 +2479,13 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-    - 없음
+    - none
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf buildpacks
@@ -2494,7 +2494,7 @@ $cf apps
 
 #### create-buildpack
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2502,7 +2502,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2510,10 +2510,10 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |BUILDPACK     |빌드팩명                           |O         |
   |-p PATH       |빌드팩 경로                      |O         |
@@ -2523,7 +2523,7 @@ $cf apps
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf create-buildpack egov-buildpack ~/workspace/buildpack/egov -i 1
@@ -2532,7 +2532,7 @@ $cf apps
 
 #### update-buildpack
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2540,7 +2540,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2548,10 +2548,10 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |BUILDPACK     |빌드팩명                           |O         |
   |-p PATH       |빌드팩 경로                      |O         |
@@ -2561,7 +2561,7 @@ $cf apps
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf create-buildpack egov-buildpack ~/workspace/buildpack/egov -i 1
@@ -2569,7 +2569,7 @@ $cf apps
 
 #### delete-buildpack
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2577,7 +2577,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2585,16 +2585,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |BUILDPACK     |빌드팩명                           |O         |
   |-f           |삭제 확인메시지 없이 빌드팩 정보를 삭제       |X         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf delete-buildpack egov-buildpack
@@ -2606,7 +2606,7 @@ $cf apps
 
 #### create-user
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2614,7 +2614,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2622,16 +2622,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |USERNAME     |사용자 ID                        |O         |
   |PASSWORD     |패스워드                         |O         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf create-user cfuser userpassword
@@ -2640,7 +2640,7 @@ $cf apps
 
 #### delete-user
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2648,7 +2648,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2656,16 +2656,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |USERNAME     |사용자 ID                       |O         |
   |-f           |삭제 확인메시지 없이 사용자 정보를 삭제                         |X         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf delete-user cfuser
@@ -2674,7 +2674,7 @@ $cf apps
 
 #### org-users
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2682,7 +2682,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2690,15 +2690,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |ORG_NAME     |조직명                          |O         |
+  |ORG_NAME     |Organization Name                          |O         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf org-users cforg
@@ -2706,7 +2706,7 @@ $cf apps
 
 #### set-org-role
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2714,7 +2714,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2722,18 +2722,18 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |USERNAME     |사용자명                          |O         |
-  |ORG          |조직명                          |O         |
+  |USERNAME     |UserName                          |O         |
+  |ORG          |Organization Name                          |O         |
   |ROLE        |역할명 <br>  - OrgManager : 사용자 관리 및 plan설정/변경 권한 <br> - BillingManager : 빌링계정 및 과금정보 생성 및 관리 <br>  - OrgAuditor : 조직 quota사용률 및 사용자 role을 조회             |O         |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf set-org-role cfuser cforg OrgManager
@@ -2742,7 +2742,7 @@ $cf apps
 
 #### unset-org-role
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2750,7 +2750,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2758,18 +2758,18 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |USERNAME     |사용자명                          |O         |
-  |ORG          |조직명                          |O         |
+  |USERNAME     |UserName                          |O         |
+  |ORG          |Organization Name                          |O         |
   |ROLE        |역할명 <br>  - OrgManager : 사용자 관리 및 plan설정/변경 권한 <br> - BillingManager : 빌링계정 및 과금정보 생성 및 관리 <br>  - OrgAuditor : 조직 quota사용률 및 사용자 role을 조회             |O         |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf unset-org-role cfuser cforg OrgManager
@@ -2778,7 +2778,7 @@ $cf apps
 
 #### space-users
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2786,7 +2786,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2794,16 +2794,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |ORG          |조직명                          |O         |
-  |SPACE        |스페이스명                       |O         |
+  |ORG          |Organization Name                          |O         |
+  |SPACE        |Space Name                       |O         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf space-users development
@@ -2812,7 +2812,7 @@ $cf apps
 
 #### set-space-role
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2820,7 +2820,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2828,17 +2828,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |USERNAME     |사용자명                         |O         |
-  |ORG          |조직명                           |O         |
-  |SPACE        |스페이스명                       |O         |
+  |USERNAME     |UserName                         |O         |
+  |ORG          |Organization Name                           |O         |
+  |SPACE        |Space Name                       |O         |
   |ROLE         |역할명  <br>  - SpaceManager: 스페이스의 관리자로 스페이스 내의 사용자 계정 관리 및 인스턴스 수, 서비스 바인딩 상태 및 스페이스 내의 리소스 상태를 조회 및 변경 <br> - SpaceDeveloper: 서비스 관리로 App 배포 <br> - SpaceAuditor: 서비스 관리로 App을 배포   |O         |
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf set-space-role cfuser cforg development OrgManager
@@ -2847,7 +2847,7 @@ $cf apps
 
 #### unset-space-role
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2855,7 +2855,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2863,17 +2863,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |USERNAME     |사용자명                         |O         |
-  |ORG          |조직명                           |O         |
-  |SPACE        |스페이스명                       |O         |
+  |USERNAME     |UserName                         |O         |
+  |ORG          |Organization Name                           |O         |
+  |SPACE        |Space Name                       |O         |
   |ROLE         |역할명  <br>  - SpaceManager: 스페이스의 관리자로 스페이스 내의 사용자 계정 관리 및 인스턴스 수, 서비스 바인딩 상태 및 스페이스 내의 리소스 상태를 조회. <br> - SpaceDeveloper: 서비스 관리로 App 배포 <br> - SpaceAuditor: 스페이스 내의 서비스 바인딩, 인스턴스 수, app사용률등을 조회   |O         |
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf unset-space-role cfuser cforg development OrgManager
@@ -2885,7 +2885,7 @@ $cf apps
 
 #### quotas
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2893,7 +2893,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2901,11 +2901,11 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
-    - 없음
+    - none
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf quotas
@@ -2914,7 +2914,7 @@ $cf apps
 
 #### quota
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2922,7 +2922,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2930,16 +2930,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |USERNAME     |QUOTA명                         |O         |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf quota cf-quota
@@ -2947,7 +2947,7 @@ $cf apps
 
 #### set-quota
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2955,7 +2955,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2963,16 +2963,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |ORG          |직명                            |O         |
   |QUOTA        |QUOTA명                         |O         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf set-quota cf-quota
@@ -2981,7 +2981,7 @@ $cf apps
 
 #### create-quota
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -2989,7 +2989,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -2997,10 +2997,10 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |QUOTA                       |QUOTA명                                                       |O         |
   |-m TOTAL_MEMORY             |메모리 할당량  <br> Ex) 1024M, 1G, 10G                         |X         |
@@ -3010,7 +3010,7 @@ $cf apps
   |--allow-paid-service-plans  |과금 서비스 plan 사용가능                                       |X        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf create-quota cf-quota -m 500m -i 256m -r 2000 -s 500
@@ -3019,7 +3019,7 @@ $cf apps
 
 #### delete-quota
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3027,7 +3027,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3035,16 +3035,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |QUOTA        |QUOTA명                                                  |O         |
   |-f           |삭제 확인메시지 없이 QUOTA 정보를 삭제                      |X         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf delete-quota cf-quota
@@ -3053,7 +3053,7 @@ $cf apps
 
 #### update-quota
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3061,7 +3061,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3069,10 +3069,10 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |QUOTA                       |QUOTA명                                                       |O         |
   |-m TOTAL_MEMORY             |메모리 할당량  <br> Ex) 1024M, 1G, 10G                         |X         |
@@ -3083,7 +3083,7 @@ $cf apps
   |--allow-paid-service-plans  |과금 서비스 plan 사용가능                                       |X        |
   |--disallow-paid-service-plans  |과금 서비스 plan 사용 불가                                       |X        |
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf update-quota cf-quota -m 500m -i 256m -r 2000 -s 500
@@ -3092,7 +3092,7 @@ $cf apps
 
 #### shared-private-domain
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3100,7 +3100,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3108,16 +3108,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |QUOTA                 |QUOTA명                        |O         |
   |DOMAIN                |도메인명                        |O         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf shared-private-domain cf-org sharedomain.or.kr
@@ -3126,7 +3126,7 @@ $cf apps
 
 #### unshared-private-domain
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3134,7 +3134,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3142,16 +3142,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |ORG                   |도메인명                        |O         |
   |DOMAIN                |도메인명                        |O         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf unshared-private-domain cf-org sharedomain.or.kr
@@ -3163,7 +3163,7 @@ $cf apps
 
 #### space-quotas
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3171,7 +3171,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3179,13 +3179,13 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-    - 없음
+    - none
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf space-quotas
@@ -3195,7 +3195,7 @@ $cf apps
 
 #### space-quota
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3203,7 +3203,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3211,15 +3211,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SPACE_QUOTA_NAME       |스페이스 QUOTA명       |O         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf space-quota cf-space-quota
@@ -3228,7 +3228,7 @@ $cf apps
 
 #### create-space-quota
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3236,7 +3236,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3244,10 +3244,10 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |QUOTA                       |QUOTA명                                                       |O         |
   |-m TOTAL_MEMORY             |메모리 할당량  <br> Ex) 1024M, 1G, 10G                         |X         |
@@ -3257,7 +3257,7 @@ $cf apps
   |--allow-paid-service-plans  |과금 서비스 plan 사용가능                                       |X        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf create-space-quota cf-space-quota -i 2G -m 10G -r 3000 -s 200
@@ -3266,7 +3266,7 @@ $cf apps
 
 #### update-space-quota
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3274,7 +3274,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3282,10 +3282,10 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SPACE-QUOTA-NAME            |스페이스 QUOTA명                                               |O         |
   |-i MAX-INSTANCE-MEMORY      |App instance가 가질수 있는 최대할당량 (-1은 무한대) <br>  Ex) 1024M, 1G, 10G                        |X         |
@@ -3297,7 +3297,7 @@ $cf apps
   |--disallow-paid-service-plans  |과금 서비스 plan 사용 불가                                   |X        |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf update-space-quota cf-space-quota -i 2G -m 10G -r 3000 -s 200
@@ -3306,7 +3306,7 @@ $cf apps
 
 #### delete-space-quota
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3314,7 +3314,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3322,17 +3322,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SPACE-QUOTA-NAME     |스페이스 QUOTA명                                     |O         |
   |-f           |삭제 확인메시지 없이 SPACE-QUOTA 정보를 삭제               |X         |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf delete-space-quota cf-space-quota
@@ -3341,7 +3341,7 @@ $cf apps
 
 #### set-space-quota
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3349,7 +3349,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3357,17 +3357,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE-NAME            |스페이스명                    |O         |
+  |SPACE-NAME            |Space Name                    |O         |
   |SPACE-QUOTA-NAME      |스페이스 Quota명              |O         |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf set-space-quota development cf-space-quota
@@ -3376,7 +3376,7 @@ $cf apps
 
 #### unset-space-quota
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3384,7 +3384,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3392,17 +3392,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE        |스페이스명                   |O         |
+  |SPACE        |Space Name                   |O         |
   |QUOTA        |스페이스 Quota명             |O         |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf unset-space-quota development cf-space-quota
@@ -3414,7 +3414,7 @@ $cf apps
 
 #### service-auth-tokens
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3422,7 +3422,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3430,13 +3430,13 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
-    - 없음
+    - none
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf service-auth-token
@@ -3445,7 +3445,7 @@ $cf apps
 
 #### create-service-auth-token
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3453,7 +3453,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3462,17 +3462,17 @@ $cf apps
 
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |LABEL        |서비스 토큰 라벨                 |O         |
-  |PROVIDER     |서비스 제공자                    |O         |
+  |PROVIDER     |Service Provider                    |O         |
   |TOKEN        |토큰명                          |O         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf create-service-auth-token token-label mysql token
@@ -3481,7 +3481,7 @@ $cf apps
 
 #### update-service-auth-token
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3489,7 +3489,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3498,17 +3498,17 @@ $cf apps
 
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |LABEL        |서비스 토큰 라벨                 |O         |
-  |PROVIDER     |서비스 제공자                    |O         |
+  |PROVIDER     |Service Provider                    |O         |
   |TOKEN        |토큰명                          |O         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf update-service-auth-token token-label mysql token
@@ -3517,7 +3517,7 @@ $cf apps
 
 #### delete-service-auth-token
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3525,7 +3525,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3534,17 +3534,17 @@ $cf apps
 
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |LABEL        |서비스 토큰 라벨                 |O         |
-  |PROVIDER     |서비스 제공자                    |O         |
+  |PROVIDER     |Service Provider                    |O         |
   |-f           |삭제 확인메시지 없이 SERVICE TOKEN 정보를 삭제      |X         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf delete-service-auth-token token-label mysql
@@ -3553,7 +3553,7 @@ $cf apps
 
 #### service-brokers
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3561,7 +3561,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3570,12 +3570,12 @@ $cf apps
 
 
 
-  - **파라미터**
+  - **Parameter **
 
-    - 없음
+    - none
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf service-brokers
@@ -3584,7 +3584,7 @@ $cf apps
 
 #### create-service-broker
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3592,7 +3592,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3601,19 +3601,19 @@ $cf apps
 
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_BROKERABEL        |서비스 브로커명             |O         |
-  |USERNAME                   |사용자명                   |O         |
+  |SERVICE_BROKERABEL        |Service Broker Name            |O         |
+  |USERNAME                   |UserName                   |O         |
   |PASSWORD                   |패스워드                   |O         |
   |URL                        |서비스 브로커 URL           |O         |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf create-service-broker mysql-service-broker admin password http://p-mysql.10.244.0.34.xip.io
@@ -3622,7 +3622,7 @@ $cf apps
 
 #### update-service-broker
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3630,7 +3630,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3639,19 +3639,19 @@ $cf apps
 
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_BROKERABEL        |서비스 브로커명             |O         |
-  |USERNAME                   |사용자명                   |O         |
+  |SERVICE_BROKERABEL        |Service Broker Name            |O         |
+  |USERNAME                   |UserName                   |O         |
   |PASSWORD                   |패스워드                   |O         |
   |URL                        |서비스 브로커 URL           |O         |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf update-service-broker mysql-service-broker admin password http://p-mysql.10.244.0.34.xip.io
@@ -3660,7 +3660,7 @@ $cf apps
 
 #### delete-service-broker
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3668,7 +3668,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3677,17 +3677,17 @@ $cf apps
 
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_BROKER    |서비스 브로커명                                          |O         |
+  |SERVICE_BROKER    |Service Broker Name                                         |O         |
   |-f                |삭제 확인메시지 없이 SERVICE BROKER 정보를 삭제       |X         |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf delete-service-broker mysql-service-broker
@@ -3696,7 +3696,7 @@ $cf apps
 
 #### rename-service-broker
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3704,7 +3704,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3713,17 +3713,17 @@ $cf apps
 
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_BROKER     |서비스 브로커명             |O         |
-  |NEW_SERVICE_BROKER |변경할 서비스 브로커명       |O         |
+  |SERVICE_BROKER     |Service Broker Name            |O         |
+  |NEW_SERVICE_BROKER |변경할 Service Broker Name      |O         |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf rename-service-broker mysql-service-broker new_mysql-service-broker
@@ -3732,7 +3732,7 @@ $cf apps
 
 #### migrate-service-broker
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3740,7 +3740,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3749,19 +3749,19 @@ $cf apps
 
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |v1_SERVICE     |기존 서비스 명                         |O         |
+  |v1_SERVICE     |기존 Service Name                         |O         |
   |v1_PROVIDER    |기존 서비스를 제공하는 제공자            |O         |
   |v1_PLAN        |기존 서비스 인스턴스에서 사용하는 플랜    |O         |
-  |v2_SERVICE     |신규 서비스 명                         |O         |
+  |v2_SERVICE     |신규 Service Name                         |O         |
   |v2_PLAN        |신규 서비스에서 사용하는 플랜            |O         |  
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf migrate-service-instances p-mysql mysql-provider silver  postgres silver
@@ -3770,7 +3770,7 @@ $cf apps
 
 #### purge-service-offering
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3778,7 +3778,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3787,18 +3787,18 @@ $cf apps
 
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE      |서비스 명                                  |O         |
-  |-p PROVIDER  |서비스 제공자                               |O         |
-  |-f           |삭제 확인메시지 없이 서비스 정보를 삭제한다    |O         |
+  |SERVICE      |Service Name                                  |O         |
+  |-p PROVIDER  |Service Provider                               |O         |
+  |-f           |Delete service information without confirmation message  |O         |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf purge-service-offering mysql
@@ -3807,7 +3807,7 @@ $cf apps
 
 #### service-access
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3815,7 +3815,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3824,13 +3824,13 @@ $cf apps
 
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-     - 없음
+     - none
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf service-access
@@ -3839,7 +3839,7 @@ $cf apps
 
 #### enable-service-access
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3847,7 +3847,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3856,18 +3856,18 @@ $cf apps
 
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE      |서비스 명                        |O          |
+  |SERVICE      |Service Name                        |O          |
   |-p PLAN      |PLAN명                          |O          |
-  |-o ORG       |조직명                           |O          |
+  |-o ORG       |Organization Name                           |O          |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf enable-service-access mysql -p silver -o cf-org
@@ -3876,7 +3876,7 @@ $cf apps
 
 #### disable-service-access
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3884,7 +3884,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3893,18 +3893,18 @@ $cf apps
 
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE      |서비스 명                        |O          |
+  |SERVICE      |Service Name                        |O          |
   |-p PLAN      |PLAN명                          |O          |
-  |-o ORG       |조직명                           |O          |
+  |-o ORG       |Organization Name                           |O          |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf disable-service-access mysql -p silver -o cf-org
@@ -3916,7 +3916,7 @@ $cf apps
 
 #### security-group
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3924,7 +3924,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3933,16 +3933,16 @@ $cf apps
 
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SECURITY_GROUP      |서큐리티 그룹명                        |O          |
+  |SECURITY_GROUP      |Security Group Name                        |O          |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf security-group cf-security-group
@@ -3951,7 +3951,7 @@ $cf apps
 
 #### security-groups
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3959,7 +3959,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3967,14 +3967,14 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-    - 없음
+    - none
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf security-groups
@@ -3983,7 +3983,7 @@ $cf apps
 
 #### create-security-group
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -3991,7 +3991,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -3999,16 +3999,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SECURITY_GROUP      |서큐리티 그룹명                                           |O          |
+  |SECURITY_GROUP      |Security Group Name                                           |O          |
   |PATH_TO_JSON_RULES_FILE      |시큐리티 룰을 명세한 JSON 파일의 경로 및 파일명<br> ex) rule 파일 작성 예제 <br> [ <br> &nbsp;&nbsp;{   <br> &nbsp;&nbsp;&nbsp;&nbsp;"protocol": "tcp",     <br> &nbsp;&nbsp;&nbsp;&nbsp;"destination": "10.244.1.18", <br>     &nbsp;&nbsp;&nbsp;&nbsp;"ports": "3306" <br>&nbsp;&nbsp;} <br> ]     |O          |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf create-security-group cf-security-group ./rule.json
@@ -4017,7 +4017,7 @@ $cf apps
 
 #### update-security-group
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4025,7 +4025,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4033,15 +4033,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SECURITY_GROUP      |서큐리티 그룹명                                           |O          |
+  |SECURITY_GROUP      |Security Group Name                                           |O          |
   |PATH_TO_JSON_RULES_FILE      |시큐리티 룰을 명세한 JSON 파일의 경로 및 파일명<br> ex) rule 파일 작성 예제 <br> [ <br> &nbsp;&nbsp;{   <br> &nbsp;&nbsp;&nbsp;&nbsp;"protocol": "tcp",     <br> &nbsp;&nbsp;&nbsp;&nbsp;"destination": "10.244.1.18", <br>     &nbsp;&nbsp;&nbsp;&nbsp;"ports": "3306" <br>&nbsp;&nbsp;} <br> ]     |O          |
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf update-security-group cf-security-group ./rule.json
@@ -4050,7 +4050,7 @@ $cf apps
 
 #### delete-security-group
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4058,7 +4058,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4066,16 +4066,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SECURITY_GROUP  |서큐리티 그룹명                                    |O          |
+  |SECURITY_GROUP  |Security Group Name                                    |O          |
   |-f              |삭제 확인메시지 없이 시큐리지 그룹 정보를 삭제합니다.    |X          |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf update-security-group cf-security-group ./rule.json
@@ -4084,7 +4084,7 @@ $cf apps
 
 #### bind-security-group
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4092,7 +4092,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4100,17 +4100,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SECURITY_GROUP  |서큐리티 그룹명                |O          |
-  |ORG             |조직명                        |O          |
-  |SPACE           |스페이스명                    |O         |
+  |SECURITY_GROUP  |Security Group Name                |O          |
+  |ORG             |Organization Name                        |O          |
+  |SPACE           |Space Name                    |O         |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf update-security-group cf-security-group ./rule.json
@@ -4119,7 +4119,7 @@ $cf apps
 
 #### unbind-security-group
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4127,7 +4127,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4135,17 +4135,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SECURITY_GROUP  |서큐리티 그룹명                |O          |
-  |ORG             |조직명                        |O          |
-  |SPACE           |스페이스명                     |O          |
+  |SECURITY_GROUP  |Security Group Name                |O          |
+  |ORG             |Organization Name                        |O          |
+  |SPACE           |Space Name                     |O          |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf unbind-security-group cf-security-group cf-group development
@@ -4154,7 +4154,7 @@ $cf apps
 
 #### bind-staging-security-group
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4162,7 +4162,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4170,15 +4170,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SECURITY_GROUP  |서큐리티 그룹명                |O          |
+  |SECURITY_GROUP  |Security Group Name                |O          |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf bind-staging-security-group cf-security-group
@@ -4187,7 +4187,7 @@ $cf apps
 
 #### staging-security-groups
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4195,7 +4195,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4203,12 +4203,12 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
-    - 없음
+    - none
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf staging-security-groups
@@ -4217,7 +4217,7 @@ $cf apps
 
 #### unbind-staging-security-group
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4225,7 +4225,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4233,15 +4233,15 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SECURITY_GROUP  |서큐리티 그룹명                |O          |
+  |SECURITY_GROUP  |Security Group Name                |O          |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf unbind-staging-security-group cf-security-group
@@ -4250,7 +4250,7 @@ $cf apps
 
 #### running-security-groups
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4258,7 +4258,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4266,13 +4266,13 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
-    - 없음
+    - none
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf unbind-staging-security-group cf-security-group
@@ -4285,7 +4285,7 @@ $cf apps
 <div id='running-environment-variable-group-revg'/>
 #### running-environment-variable-group, revg
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4293,7 +4293,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4301,13 +4301,13 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
-    - 없음
+    - none
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf running-environment-variable-group
@@ -4316,7 +4316,7 @@ $cf apps
 <div id='staging-environment-variable-group-sevg'/>
 #### staging-environment-variable-group, sevg
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4324,7 +4324,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4332,13 +4332,13 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
-    - 없음
+    - none
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf staging-environment-variable-group
@@ -4349,7 +4349,7 @@ $cf apps
 <div id='set-staging-environment-variable-group-ssevg'/>
 #### set-staging-environment-variable-group, ssevg
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4357,7 +4357,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4365,17 +4365,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |ENV_VARIABLE  |환경변수 내용으로 KEY/VALUE로 구성              |O          |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf set-staging-environment-variable-group '{"name":"value","name":"value"}'
@@ -4384,7 +4384,7 @@ $cf apps
 <div id='set-running-environment-variable-group-ssevg'/>
 #### set-running-environment-variable-group, ssevg
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4392,7 +4392,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4400,17 +4400,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |ENV_VARIABLE  |환경변수 내용으로 KEY/VALUE로 구성된다.                |O          |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf set-running-environment-variable-group '{"name":"value","name":"value"}'
@@ -4421,7 +4421,7 @@ $cf apps
 
 #### feature-flags
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4429,7 +4429,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4437,13 +4437,13 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
-    - 없음
+    - none
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf feature-flags
@@ -4452,7 +4452,7 @@ $cf apps
 
 #### feature-flag
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4460,7 +4460,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4468,17 +4468,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |FEATURE_NAME  |Feature flag 명. <br> - feature flag에는 6가지가 있다. <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf feature-flag app_bits_upload
@@ -4487,7 +4487,7 @@ $cf apps
 
 #### enable-feature-flag
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4495,7 +4495,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4503,16 +4503,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |FEATURE_NAME  |Feature flag 명. <br> - feature flag에는 6가지가 있다. <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf enable-feature-flag app_bits_upload
@@ -4521,7 +4521,7 @@ $cf apps
 
 #### disable-feature-flag
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4529,7 +4529,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4537,17 +4537,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |FEATURE_NAME  |Feature flag 명. <br> - feature flag에는 6가지가 있다. <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf disable-feature-flag app_bits_upload
@@ -4559,7 +4559,7 @@ $cf apps
 
 #### curl
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4567,7 +4567,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4575,10 +4575,10 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |PATH         |Cf api path <br>  Ex) /v2/spaces/2d94e7ee-9805-408d-a1eb-ceac319e603b/summary             |O          |
   |-i           |Response header포함한 결과                                                                  |X          |
@@ -4589,7 +4589,7 @@ $cf apps
   |--output FILE |Response결과를 stdout대신 FILE로 결과 저장                                                  |X          |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf curl /v2/spaces/2d94e7ee-9805-408d-a1eb-ceac319e603b/summar
@@ -4598,7 +4598,7 @@ $cf apps
 
 #### config
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4606,7 +4606,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4614,10 +4614,10 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |--async-timeout TIMEOUT_IN_MINUTES        |CLI 명령 전송시 async timeout 설정                     |X          |
   |--trace (true / false / path/to/file   )    |CLI 명령 수행시 실행되는 cf api의 내용 출력 설정         |X          |
@@ -4625,7 +4625,7 @@ $cf apps
   |--locale (LOCALE / CLEAR)                 |CLI 명령 수행시 실행되는 cf api의 내용 locale 설정       |X          |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf curl /v2/spaces/2d94e7ee-9805-408d-a1eb-ceac319e603b/summar
@@ -4633,7 +4633,7 @@ $cf apps
 
 #### oauth-token
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4641,7 +4641,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4649,13 +4649,13 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
-    - 없음
+    - none
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $cf oauth-token
@@ -4667,7 +4667,7 @@ $cf apps
 
 #### add-plugin-repo
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4675,7 +4675,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4683,17 +4683,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |REPO_NAME    |Repository 명                   |X          |
   |URL          |Repository URL                 |X          |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   cf add-plugin-repo Diego-SSH http://plugins.cloudfoundry.org
@@ -4702,7 +4702,7 @@ $cf apps
 
 #### remove-plugin-repo
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4710,7 +4710,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4718,17 +4718,17 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |REPO_NAME    |Repository 명                   |O          |
   |URL          |Repository URL                 |O         |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   cf remove-plugin-repo Diego-SSH http://plugins.cloudfoundry.org
@@ -4737,7 +4737,7 @@ $cf apps
 
 #### list-plugin-repos
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4745,7 +4745,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4753,12 +4753,12 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
-    - 없음
+    - none
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $cf list-plugin-repos
@@ -4767,7 +4767,7 @@ $cf apps
 
 #### repo-plugins
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4775,7 +4775,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4783,16 +4783,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |REPO_NAME    |Repository 명                   |X          |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf repo-plugins
@@ -4804,7 +4804,7 @@ $cf apps
 
 #### plugins
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4812,7 +4812,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4820,16 +4820,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |REPO_NAME    |Repository 명                   |X          |
 
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $ cf repo-plugins
@@ -4839,7 +4839,7 @@ $cf apps
 
 #### install-plugin
 
-  - **기본 Syntax**
+  - **Basic Syntax**
 
 
   ```
@@ -4847,7 +4847,7 @@ $cf apps
   ```
 
 
-  - **설명**
+  - **Description**
 
 
   ```
@@ -4855,16 +4855,16 @@ $cf apps
   ```
 
 
-  - **파라미터**
+  - **Parameter **
 
 
-  | 파라미터명   |           설명                 | 필수(O/X) |
+  | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |URL or LOCAL-PATH/TO/PLUGIN   |Plugin URL 또는 로컬경로 또는 repository에 있는 플러그인명                |X          |
   |-r REPO_NAME                  |Plugin repository명                                                   |X          |
 
 
-  - **사용예시**
+  - **Example**
 
   ```
   $cf install-plugin 'Usage Report' -r CF-Community

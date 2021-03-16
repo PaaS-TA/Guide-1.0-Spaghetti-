@@ -239,7 +239,7 @@ $ cf login [-a API_URL] [-u USERNAME] [-p PASSWORD] [-o ORG] [-s SPACE]
 
 
 ```
-OpenPaaS에 로그인 하기 위한 명령어
+Command to log in to OpenPaaS
 ```
 
 
@@ -249,20 +249,20 @@ OpenPaaS에 로그인 하기 위한 명령어
 | Parameter Name   |           Description                 | Required(O/X) |
 |-------------|-----------------------------|-----------|
 |-a API_URL    |CLI가 접속 하려는 OpenPaaS  URL<br>Ex) https://api.10.244.0.34.xip.io    |X        |
-|-u USERNAMEL  |OpenPaaS에 접속하는 사용자 id               |X        |
-|-p PASSWORD   |OpenPaaS에 접속하는 사용자 password         |X        |
-|-o ORG        |OpenPaaS에 접속하는 사용자의 소속조직 명      |X        |
-|-s SPACE      |OpenPaaS에 접속하는 사용자의 소속조직 스페이스직 명      |X        |
+|-u USERNAMEL  |User ID to access OpenPaaS             |X        |
+|-p PASSWORD   |User password to access OpenPaaS         |X        |
+|-o ORG        |The name of the organization of the user who accesses OpenPaaS     |X        |
+|-s SPACE      |Name of the space in the organization of the user who accesses OpenPaaS      |X        |
 
 
 - **Example**
 
 
 ```
-# Parameter  지정한 경우
+# In case of the  parameter is specified
 $ cf login --skip-ssl-validation -a https://api.10.244.0.34.xip.io -u admin -p admin -o crossent -s development
 
-# Parameter  지정하지 않을 경우
+# In case of the  parameter is not specified
 $ cf login
 API endpoint: https://api.10.244.0.34.xip.io
 
@@ -302,7 +302,7 @@ $ cf logout
 
 
 ```
-cf에 logout합니다.
+Logout to cf.
 ```
 
 
@@ -332,7 +332,7 @@ $ cf passwd
 
 
 ```
-OpenPaaS 사용자계정의 패스워드를 변경합니다.
+Change the password of the OpenPaaS user account.
 ```
 
 
@@ -368,7 +368,7 @@ $ cf target [-o ORG] [-s SPACE]
 
 
 ```
-로그인한 사용자가 사용할 Target 조직 및 스페이스 설정합니다.
+Set the target organization and space to be used by the logged-in user.
 ```
 
 
@@ -376,21 +376,21 @@ $ cf target [-o ORG] [-s SPACE]
 
 | Parameter Name   |           Description                 | Required(O/X) |
 |-------------|-----------------------------|-----------|
-|-o ORG      |Target 조직                    |X        |
-|-s SPACE    |Target 스페이스                |X        |
+|-o ORG      |Target organization                    |X        |
+|-s SPACE    |Target space                |X        |
 
 
 
 - **Example**
 
 ```
-# Parameter  지정한 경우
+# In case of the  parameter is specified
 $ cf target -o cf -s development
 API endpoint:   https://api.10.244.0.34.xip.io (API version: 2.29.0)   
 User:           admin   
 Org:            cf   
 Space:          development
-# Parameter  지정하지 않은 경우(현재 Target된 정보가 출력)
+# In case of the  parameter is not specified(Currently targeted information is outputted)
 $ cf target
 API endpoint:   https://api.10.244.0.34.xip.io (API version: 2.29.0)   
 User:           admin   
@@ -411,7 +411,7 @@ $ cf api <URL>
 
 
 ```
-Target api를 조회하거나 target api URL을 설정합니다.
+Lookup the target api or set up the target api URL.
 ```
 
 
@@ -442,7 +442,7 @@ $ cf auth <USERNAME> <PASSWORD>
 
 
 ```
-OpenPaaS login시 로그인만 되며 스페이스, 타겟은 지정되지 않습니다.
+When logging in with OpenPaaS, only login and no space or target are specified.
 ```
 
 
@@ -450,8 +450,8 @@ OpenPaaS login시 로그인만 되며 스페이스, 타겟은 지정되지 않�
 
 | Parameter Name   |           Description                 | Required(O/X) |
 |-------------|--------------------------------|-----------|
-|USERNAME     |로그인 사용자 ID                 |O        |
-|PASSWORD    |로그인 사용자 PASSWORD            |O        |
+|USERNAME     |Login user ID                 |O        |
+|PASSWORD    |Login user PASSWORD            |O        |
 
 
 
@@ -477,7 +477,7 @@ $cf apps
 
 
 ```
-타겟 스페이스에 App 목록을 조회합니다.
+Look up the list of apps in the target space.
 ```
 
 
@@ -505,7 +505,7 @@ $cf apps
 
 
   ```
-  App의 상태를 조회합니다.
+  Inquires the status of the app.
   ```
 
 
@@ -514,7 +514,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP명                          |O        |
+  |APP_NAME     |APP Name                          |O        |
 
 
     - **Example**
@@ -538,7 +538,7 @@ $cf apps
 
 
   ```
-  App을 OpenPaaS에 배포 하고 app을 Start합니다.
+  Deploy the app to OpenPaaS and start the app.
   ```
 
 
@@ -547,23 +547,23 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |push하는 App명(지정하지 않으면 디렉토리명)                         |O        |
-  |-b BUILDPACK |custom빌드팩 URL <br> ex) https://github.com/OpenPaaSRnD/egov-java-buildpack   |X        |
+  |APP_NAME     |App name to push (directory name if not specified)                         |O        |
+  |-b BUILDPACK |custom buildpack URL <br> ex) https://github.com/OpenPaaSRnD/egov-java-buildpack   |X        |
   |-c COMMAND   |App start command              |X        |
-  |-d DOMAIN    |App 도메인                      |X        |
-  |-f MANIFEST_PATH    |Manifest 파일 경로       |X        |
-  |-i NUM_INSTANCES     |App 인스턴스 갯수        |X        |
-  |-m MEMORY     |인스턴스 메모리 용량             |X        |
-  |-k DISK     |디스크 사용 용량                  |X        |
-  |-n HOST     |호스트명 <br> ex) my-subdomain)  |X        |
-  |-p PATH     |App의 디렉토리 경로 또는 App file(zip,war등)경로   |X        |
-  |-s STACK    |App이 실행되는 운영체제 파일시스템(default: cflinuxfs2)       |X        |
-  |-t TIMEOUT  |App이 실행되는동안 CLI가 대기하는 timeout시간                          |X        |
-  |--no-hostname     |App에 root 도메인을 매핑                          |X        |
-  |--no-manifest     |Manifest 파일을 무시합니다.                         |X        |
-  |--no-route     |Push된 앱에 라우트 정보를 삭제하고 App에 라우트 정보를 매핑하지 않음   |X        |
-  |--no-start     |App을 push하고 Start하지 않음                       |X        |
-  |--random-route    |App에게 라우트 정보를 랜덤하게 생성                |X        |
+  |-d DOMAIN    |App domain                      |X        |
+  |-f MANIFEST_PATH    |Manifest file path       |X        |
+  |-i NUM_INSTANCES     |the number of App instance       |X        |
+  |-m MEMORY     |instance memory capacity             |X        |
+  |-k DISK     |disk use capacity                  |X        |
+  |-n HOST     |host name <br> ex) my-subdomain)  |X        |
+  |-p PATH     |directory path of App or App file(zip,war etc.)path   |X        |
+  |-s STACK    |The operating system the app is running on (default: cflinuxfs2)       |X        |
+  |-t TIMEOUT  |The timeout time that the CLI waits while the app is running                     |X        |
+  |--no-hostname     |Mapping root domain to app                          |X        |
+  |--no-manifest     |Ignore manifest file                        |X        |
+  |--no-route     |Delete route information in pushed app and do not map route information to the app|X        |
+  |--no-start     |Push the app and don't start                       |X        |
+  |--random-route    |Randomly generate route information to the app        |X        |
 
   - **Example**
 
@@ -585,7 +585,7 @@ $cf apps
 
 
   ```
-  App의 메모리,디스크 크기 및 인스턴스 갯수를 조정합니다.
+  Adjust the memory, disk size and number of instances of the app.
   ```
 
 
@@ -594,11 +594,11 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP명                           |O        |
-  |-i INSTANCES |인스턴스 갯수                    |X        |
-  |-k DISK      |디스크 용량                      |X        |
-  |-m MEMORY    |메모리 용량                      |X        |
-  |-f           |App 강제 restart                |X        |
+  |APP_NAME     |APP  name                           |O        |
+  |-i INSTANCES |Number of instances                 |X        |
+  |-k DISK      |Disk capacity                      |X        |
+  |-m MEMORY    |Memory capacity                     |X        |
+  |-f           |App restart forcibly         |X        |
 
 
   - **Example**
@@ -622,7 +622,7 @@ $cf apps
 
 
   ```
-  App을 삭제합니다.
+Delete the app.
   ```
 
 
@@ -631,9 +631,9 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP명                           |O        |
-  |--f          |확인 없이 App 삭제               |X        |
-  |--r          |App에 매핑된 라우트 정보 삭제     |X        |
+  |APP_NAME     |APP Name                           |O        |
+  |--f          |Delete the app without confirmation              |X        |
+  |--r          |Delete route information mapped to App  |X        |
 
 
   - **Example**
@@ -657,7 +657,7 @@ $cf apps
 
 
   ```
-  App명을 변경합니다.
+Change the app name.
   ```
 
 
@@ -666,8 +666,8 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP명                           |O        |
-  |NEW_APP_NAME |변경하려는 App명                 |O        |
+  |APP_NAME     |APP Name                           |O        |
+  |NEW_APP_NAME |App Name to  be change                 |O        |
 
 
   - **Example**
@@ -691,7 +691,7 @@ $cf apps
 
 
   ```
-  App을 기동 합니다.
+  Running the App
   ```
 
 
@@ -700,7 +700,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP명                           |O        |
+  |APP_NAME     |APP Name                           |O        |
 
 
   - **Example**
@@ -723,7 +723,7 @@ $cf apps
 
 
   ```
-  App을 중지 합니다.
+  Stop the app.
   ```
 
 
@@ -732,7 +732,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP명                           |O        |
+  |APP_NAME     |APP  name                           |O        |
 
 
   - **Example**
@@ -756,7 +756,7 @@ $cf apps
 
 
   ```
-  App을 재기동 합니다.
+  Restart the app.
   ```
 
 
@@ -765,7 +765,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP명                           |O        |
+  |APP_NAME     |APP  name                           |O        |
 
 
   - **Example**
@@ -788,7 +788,7 @@ $cf apps
 
 
   ```
-  App을 restage합니다.(환경변수 설정 또는 서비스 바인딩시 사용)
+  Restage the app.(Used when setting environment variables or binding services)
   ```
 
 
@@ -797,7 +797,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP명                           |O        |
+  |APP_NAME     |APP  name                           |O        |
 
 
   - **Example**
@@ -820,7 +820,7 @@ $cf apps
 
 
   ```
-  App의 인스턴스중 특정 인스턴스를 재기동 합니다.
+  Restart a specific instance of App.
   ```
 
 
@@ -829,8 +829,8 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP명                           |O        |
-  |INDEX        |인스턴스 인덱스                   |O        |
+  |APP_NAME     |APP  name                           |O        |
+  |INDEX        |Instance index                   |O        |
 
   - **Example**
 
@@ -852,7 +852,7 @@ $cf apps
 
 
   ```
-    App에서 발생한 최근 Event정보를 조회합니다. (start/stop/scale등의 이력)
+    Search the latest event information that occurred in the app. (History of start/stop/scale, etc.)
   ```
 
 
@@ -861,7 +861,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP명                           |O        |
+  |APP_NAME     |APP  name                           |O        |
 
   - **Example**
 
@@ -884,7 +884,7 @@ $cf apps
 
 
   ```
-  App의 file및 디렉토리 목록을 조회합니다.
+  Search the list of files and directories of the app.
   ```
 
 
@@ -893,9 +893,9 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP명                           |O        |
-  |PATH         |APP의 디렉토리                   |X        |
-  |-i INSTANCE  |App인스턴스 인덱스               |X        |
+  |APP_NAME     |APP  name                           |O        |
+  |PATH         |Directory of APP                    |X        |
+  |-i INSTANCE  |App Instance Index                 |X        |
 
   - **Example**
 
@@ -917,7 +917,7 @@ $cf apps
 
 
   ```
-  App에서 발생한 로그를 조회합니다.
+  Search the logs generated by the app
   ```
 
 
@@ -926,9 +926,9 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP명                           |O        |
-  |PATH         |APP의 디렉토리                   |X        |
-  |-i INSTANCE  |App인스턴스 인덱스               |X        |
+  |APP_NAME     |APP  name                           |O        |
+  |PATH         |Directory of APP                  |X        |
+  |-i INSTANCE  |App Instance Index                 |X        |
 
   - **Example**
 
@@ -950,7 +950,7 @@ $cf apps
 
 
   ```
-  App의 환경변수를 조회합니다.
+  Inquiries the environment variable on app.
   ```
 
 
@@ -959,7 +959,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP명                           |O        |
+  |APP_NAME     |APP  name                           |O        |
 
   - **Example**
 
@@ -982,7 +982,7 @@ $cf apps
 
 
   ```
-  App의 환경변수를 설정합니다. (적용시 restage필요)
+  Set environment variables of the app. (Requires restage when applied)
   ```
 
 
@@ -991,9 +991,9 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP명                           |O        |
-  |ENV_VAR_NAME |App의 환경변수 Key               |O        |
-  |ENV_VAR_VALUE|App의 환경변수 Value               |O        |
+  |APP_NAME     |APP  name                           |O        |
+  |ENV_VAR_NAME |App의 environment variables Key               |O        |
+  |ENV_VAR_VALUE|App의 environment variables Value               |O        |
 
 
   - **Example**
@@ -1018,7 +1018,7 @@ $cf apps
 
 
   ```
-  App에 설정된 환경변수를 삭제합니다.(적용시 restage필요)
+  App에 설정된 environment variables를 삭제합니다.(적용시 restage필요)
   ```
 
 
@@ -1027,8 +1027,8 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP명                           |O        |
-  |ENV_VAR_NAME |App의 환경변수 Key               |O        |
+  |APP_NAME     |APP  name                           |O        |
+  |ENV_VAR_NAME |environment variables Key of APP               |O        |
 
 
   - **Example**
@@ -1081,7 +1081,7 @@ $cf apps
 
 
   ```
-  OpenPaaS의 stack목록(운영체제 파일시스템) 목록을 조회합니다.
+  Inquire OpenPaaS stack list (OS file system) 
   ```
 
 
@@ -1090,8 +1090,8 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP명                           |O        |
-  |--guid       |Stack guid를 조회            |X        |
+  |APP_NAME     |APP  name                           |O        |
+  |--guid       |Inquire Stack guid             |X        |
 
 
   - **Example**
@@ -1123,8 +1123,8 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SOURCE-APP   |원본 APP명                        |O        |
-  |TARGET-APP   |소스가 복사될 대상 App명            |X        |
+  |SOURCE-APP   |원본 APP  name                        |O        |
+  |TARGET-APP   |소스가 복사될 대상 App  name            |X        |
   |-o TARGET-ORG |타겟 조직                         |O        |
   |-s TARGET-SPACE|타겟 스페이스                    |X        |
   |--no-restart   |소스 복사 후 restart하지 않음  |X        |
@@ -1158,8 +1158,8 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SOURCE-APP   |원본 APP명                        |O        |
-  |-p /path/<app-name>.yml   |파일이 생성될 위치와 파일명(-p 를 사용하지 않으면 자동생성된다)            |X        |
+  |SOURCE-APP   |원본 APP  name                        |O        |
+  |-p /path/<app-name>.yml   |파일이 생성될 위치와 file name(-p 를 사용하지 않으면 자동생성된다)            |X        |
 
   - **Example**
 
@@ -1217,7 +1217,7 @@ $cf apps
 
 
   ```
-  타겟 스페이스에 서비스 인스턴스 목록을 조회합니다.
+  타겟 스페이스에 Service Instance목록을 조회합니다.
   ```
 
 
@@ -1258,7 +1258,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_INSTANCE   |서비스 인스턴스명           |O        |
+  |SERVICE_INSTANCE   |Service Instance name           |O        |
   |--guid             |서비스 인스턴스의 Guid를 조회합니다.   |X        |
 
   - **Example**
@@ -1290,11 +1290,11 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE      |마켓플레이스에 있는 서비스명                                              |O        |
-  |PLAN         |서비스 플랜명                                                           |O        |
-  |SERVICE_INSTANCE   |만들 서비스 인스턴스명                                             |O        |
+  |SERVICE      |마켓플레이스에 있는 서비스  name                                              |O        |
+  |PLAN         |서비스 플랜  name                                                           |O        |
+  |SERVICE_INSTANCE   |만들 Service Instance name                                             |O        |
   |-c PARAMETERS_AS_JSON |서비스 설정정보를 json 형태로 입력 <br> Ex) -c '{"ram_gb":4}'    |X        |
-  |-t TAGS      |서비스 인스턴스 테그                                                     |X        |
+  |-t TAGS      |Service Instance테그                                                     |X        |
 
   - **Example**
 
@@ -1326,10 +1326,10 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_INSTANCE        |서비스 인스턴스명                                               |O        |
-  |-p NEW_PLAN             |서비스 플랜명                                                  |O        |
+  |SERVICE_INSTANCE        |Service Instance name                                               |O        |
+  |-p NEW_PLAN             |서비스 플랜  name                                                  |O        |
   |-c PARAMETERS_AS_JSON   |서비스 설정정보를 json 형태로 입력 <br> Ex) -c '{"ram_gb":4}'    |O        |
-  |-t TAGS                 |서비스 인스턴스 테그                                            |X        |
+  |-t TAGS                 |Service Instance테그                                            |X        |
 
   - **Example**
 
@@ -1361,8 +1361,8 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_INSTANCE  |서비스 인스턴스명                                        |O        |
-  |-f                |삭제 확인 메시지 없이 서비스 인스턴스 삭제합니다.             |X        |
+  |SERVICE_INSTANCE  |Service Instance name                                        |O        |
+  |-f                |삭제 확인 메시지 없이 Service Instance삭제합니다.             |X        |
 
   - **Example**
 
@@ -1384,7 +1384,7 @@ $cf apps
 
 
   ```
-  서비스 인스턴스명을 수정합니다.
+  Service Instance name을 수정합니다.
   ```
 
 
@@ -1393,8 +1393,8 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_INSTANCE       |서비스 인스턴스명                       |O        |
-  |NEW_SERVICE_INSTANCE   |변경하려는 서비스 인스턴스명             |O        |
+  |SERVICE_INSTANCE       |Service Instance name                       |O        |
+  |NEW_SERVICE_INSTANCE   |변경하려는 Service Instance name             |O        |
 
   - **Example**
 
@@ -1426,9 +1426,9 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_INSTANCE       |서비스 인스턴스명                       |O        |
-  |SERVICE_KEY            |서비스 인스턴스 key명                   |O        |
-  |-c PARAMETERS_AS_JSON  |서비스 인스턴스 설정(JSON Parameter)    |X        |
+  |SERVICE_INSTANCE       |Service Instance name                       |O        |
+  |SERVICE_KEY            |Service Instancekey  name                   |O        |
+  |-c PARAMETERS_AS_JSON  |Service Instance설정(JSON Parameter)    |X        |
 
 
   - **Example**
@@ -1461,7 +1461,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_INSTANCE       |서비스 인스턴스명                       |O        |
+  |SERVICE_INSTANCE       |Service Instance name                       |O        |
 
 
   - **Example**
@@ -1493,9 +1493,9 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_INSTANCE  |서비스 인스턴스명                       |O        |
-  |SERVICE_KEY       |서비스 인스턴스 key명                   |O        |
-  |--guid            |서비스 인스턴스 guid를 조회합니다.         |X        |
+  |SERVICE_INSTANCE  |Service Instance name                       |O        |
+  |SERVICE_KEY       |Service Instancekey  name                   |O        |
+  |--guid            |Service Instanceguid를 조회합니다.         |X        |
 
 
 
@@ -1529,9 +1529,9 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_INSTANCE  |서비스 인스턴스명                       |O        |
-  |SERVICE_KEY       |서비스 인스턴스 key명                   |O        |
-  |--guid            |서비스 인스턴스 guid를 조회합니다.         |X        |
+  |SERVICE_INSTANCE  |Service Instance name                       |O        |
+  |SERVICE_KEY       |Service Instancekey  name                   |O        |
+  |--guid            |Service Instanceguid를 조회합니다.         |X        |
 
 
 
@@ -1565,8 +1565,8 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP명                                            |O        |
-  |SERVICE_INSTANCE  |서비스 인스턴스 명                           |O        |
+  |APP_NAME     |APP  name                                            |O        |
+  |SERVICE_INSTANCE  |Service Instance  name                           |O        |
   |-c PARAMETERS_AS_JSON   |바인딩 설정 Parameter  (json형태)         |X        |
 
 
@@ -1603,8 +1603,8 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME          |서비스 인스턴스명                            |O        |
-  |SERVICE_INSTANCE  |서비스 인스턴스 명                           |O        |
+  |APP_NAME          |Service Instance name                            |O        |
+  |SERVICE_INSTANCE  |Service Instance  name                           |O        |
 
 
 
@@ -1638,9 +1638,9 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_INSTANCE          |서비스 인스턴스명                            |O        |
-  |-p CREDENTIALS            |서비스 인스턴스 명                           |X        |
-  |-l SYSLOG-DRAIN-URL       |서비스 인스턴스 명                           |X        |
+  |SERVICE_INSTANCE          |Service Instance name                            |O        |
+  |-p CREDENTIALS            |Service Instance  name                           |X        |
+  |-l SYSLOG-DRAIN-URL       |Service Instance  name                           |X        |
 
 
   - **Example**
@@ -1673,9 +1673,9 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_INSTANCE          |서비스 인스턴스명                            |O        |
-  |-p CREDENTIALS            |서비스 인스턴스 명                           |X        |
-  |-l SYSLOG-DRAIN-URL       |서비스 인스턴스 명                           |X        |
+  |SERVICE_INSTANCE          |Service Instance name                            |O        |
+  |-p CREDENTIALS            |Service Instance  name                           |X        |
+  |-l SYSLOG-DRAIN-URL       |Service Instance  name                           |X        |
 
 
   - **Example**
@@ -1946,7 +1946,7 @@ $cf apps
   |-------------|--------------------------------|-----------|
   |SPACE_NAME   |Space Name                           |O         |
   |-o ORG_NAME  |스페이스에 매핑될 Organization Name               |X         |
-  |-q SPACE-QUOTA-NAME    |스페이스에 할당될 QUOTA명    |X         |
+  |-q SPACE-QUOTA-NAME    |스페이스에 할당될 QUOTA  name    |X         |
 
   - **Example**
 
@@ -2000,7 +2000,7 @@ $cf apps
 
 
   ```
-  스페이스 명을 변경합니다.
+  스페이스   name을 변경합니다.
   ```
 
 
@@ -2076,7 +2076,7 @@ $cf apps
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |ORG_NAME     |Organization Name                           |O         |
-  |DOMAIN       |도메인명                          |O         |
+  |DOMAIN       |도메인  name                          |O         |
 
 
   - **Example**
@@ -2109,7 +2109,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |DOMAIN       |도메인명                           |O         |
+  |DOMAIN       |도메인  name                           |O         |
   |-f           |삭제 확인메시지 없이 도메인을 삭제합니다. |X         |
 
 
@@ -2242,7 +2242,7 @@ $cf apps
   |-------------|--------------------------------|-----------|
   |SPACE_NAME   |Space Name                           |O         |
   |DOMAIN       |삭제 확인메시지 없이 공유 도메인을 삭제합니다. <br>   - 도메인 정보가 입력되어있어야 합니다.   |O         |
-  |-n HOSTNAME  |호스트 명                          |X         |
+  |-n HOSTNAME  |호스트   name                          |X         |
 
 
   - **Example**
@@ -2277,7 +2277,7 @@ $cf apps
   |-------------|--------------------------------|-----------|
   |SPACE_NAME   |Space Name                           |O         |
   |DOMAIN       |삭제 확인메시지 없이 공유 도메인을 삭제합니다. <br>   - 도메인 정보가 입력되어있어야 합니다.   |O         |
-  |-n HOSTNAME  |호스트 명                          |X         |
+  |-n HOSTNAME  |호스트   name                          |X         |
 
 
   - **Example**
@@ -2311,7 +2311,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |HOST         |호스트 명                                    |O         |
+  |HOST         |호스트   name                                    |O         |
   |DOMAIN       |삭제 확인메시지 없이 공유 도메인을 삭제합니다.    |O         |
 
 
@@ -2345,7 +2345,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |App명                           |O         |
+  |APP_NAME     |App  name                           |O         |
   |DOMAIN       |App에게 할당할 도메인             |O         |
   |-n HOSTNAME  |App에게 할당할 Host              |X         |
 
@@ -2380,7 +2380,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |App명                           |O         |
+  |APP_NAME     |App  name                           |O         |
   |DOMAIN       |App에게 할당할 도메인             |O         |
   |-n HOSTNAME  |App에게 할당할 Host              |X         |
 
@@ -2515,8 +2515,8 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |BUILDPACK     |빌드팩명                           |O         |
-  |-p PATH       |빌드팩 경로                      |O         |
+  |BUILDPACK     |빌드팩  name                           |O         |
+  |-p PATH       |빌드팩 path                      |O         |
   |-i POSITIONE  |빌드팩 auto-detection동안 빌드팩 체크 순서  <br> ex)1.2.3              |O         |
   |--enable      |스테이징시 사용                  |X         |
   |--disable     |스테이징시 미사용                |X         |
@@ -2553,8 +2553,8 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |BUILDPACK     |빌드팩명                           |O         |
-  |-p PATH       |빌드팩 경로                      |O         |
+  |BUILDPACK     |빌드팩  name                           |O         |
+  |-p PATH       |빌드팩 path                      |O         |
   |-i POSITIONE  |빌드팩 auto-detection동안 빌드팩 체크 순서  <br> ex)1.2.3              |O         |
   |--enable      |스테이징시 사용                  |X         |
   |--disable     |스테이징시 미사용                |X         |
@@ -2590,7 +2590,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |BUILDPACK     |빌드팩명                           |O         |
+  |BUILDPACK     |빌드팩  name                           |O         |
   |-f           |삭제 확인메시지 없이 빌드팩 정보를 삭제       |X         |
 
 
@@ -2729,7 +2729,7 @@ $cf apps
   |-------------|--------------------------------|-----------|
   |USERNAME     |UserName                          |O         |
   |ORG          |Organization Name                          |O         |
-  |ROLE        |역할명 <br>  - OrgManager : 사용자 관리 및 plan설정/변경 권한 <br> - BillingManager : 빌링계정 및 과금정보 생성 및 관리 <br>  - OrgAuditor : 조직 quota사용률 및 사용자 role을 조회             |O         |
+  |ROLE        |역할  name <br>  - OrgManager : 사용자 관리 및 plan설정/변경 권한 <br> - BillingManager : 빌링계정 및 과금정보 생성 및 관리 <br>  - OrgAuditor : 조직 quota사용률 및 사용자 role을 조회             |O         |
 
 
 
@@ -2765,7 +2765,7 @@ $cf apps
   |-------------|--------------------------------|-----------|
   |USERNAME     |UserName                          |O         |
   |ORG          |Organization Name                          |O         |
-  |ROLE        |역할명 <br>  - OrgManager : 사용자 관리 및 plan설정/변경 권한 <br> - BillingManager : 빌링계정 및 과금정보 생성 및 관리 <br>  - OrgAuditor : 조직 quota사용률 및 사용자 role을 조회             |O         |
+  |ROLE        |역할  name <br>  - OrgManager : 사용자 관리 및 plan설정/변경 권한 <br> - BillingManager : 빌링계정 및 과금정보 생성 및 관리 <br>  - OrgAuditor : 조직 quota사용률 및 사용자 role을 조회             |O         |
 
 
 
@@ -2836,7 +2836,7 @@ $cf apps
   |USERNAME     |UserName                         |O         |
   |ORG          |Organization Name                           |O         |
   |SPACE        |Space Name                       |O         |
-  |ROLE         |역할명  <br>  - SpaceManager: 스페이스의 관리자로 스페이스 내의 사용자 계정 관리 및 인스턴스 수, 서비스 바인딩 상태 및 스페이스 내의 리소스 상태를 조회 및 변경 <br> - SpaceDeveloper: 서비스 관리로 App 배포 <br> - SpaceAuditor: 서비스 관리로 App을 배포   |O         |
+  |ROLE         |역할  name  <br>  - SpaceManager: 스페이스의 관리자로 스페이스 내의 사용자 계정 관리 및 인스턴스 수, 서비스 바인딩 상태 및 스페이스 내의 리소스 상태를 조회 및 변경 <br> - SpaceDeveloper: 서비스 관리로 App 배포 <br> - SpaceAuditor: 서비스 관리로 App을 배포   |O         |
 
   - **Example**
 
@@ -2871,7 +2871,7 @@ $cf apps
   |USERNAME     |UserName                         |O         |
   |ORG          |Organization Name                           |O         |
   |SPACE        |Space Name                       |O         |
-  |ROLE         |역할명  <br>  - SpaceManager: 스페이스의 관리자로 스페이스 내의 사용자 계정 관리 및 인스턴스 수, 서비스 바인딩 상태 및 스페이스 내의 리소스 상태를 조회. <br> - SpaceDeveloper: 서비스 관리로 App 배포 <br> - SpaceAuditor: 스페이스 내의 서비스 바인딩, 인스턴스 수, app사용률등을 조회   |O         |
+  |ROLE         |역할  name  <br>  - SpaceManager: 스페이스의 관리자로 스페이스 내의 사용자 계정 관리 및 인스턴스 수, 서비스 바인딩 상태 및 스페이스 내의 리소스 상태를 조회. <br> - SpaceDeveloper: 서비스 관리로 App 배포 <br> - SpaceAuditor: 스페이스 내의 서비스 바인딩, 인스턴스 수, app사용률등을 조회   |O         |
 
   - **Example**
 
@@ -2935,7 +2935,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |USERNAME     |QUOTA명                         |O         |
+  |USERNAME     |QUOTA  name                         |O         |
 
 
 
@@ -2968,8 +2968,8 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |ORG          |직명                            |O         |
-  |QUOTA        |QUOTA명                         |O         |
+  |ORG          |직  name                            |O         |
+  |QUOTA        |QUOTA  name                         |O         |
 
 
   - **Example**
@@ -3002,11 +3002,11 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |QUOTA                       |QUOTA명                                                       |O         |
+  |QUOTA                       |QUOTA  name                                                       |O         |
   |-m TOTAL_MEMORY             |메모리 할당량  <br> Ex) 1024M, 1G, 10G                         |X         |
   |-i INSTANCE_MEMORY          |App instance가 가질수 있는 최대할당량 (-1은 무한대) <br>  Ex) 1024M, 1G, 10G                        |X         |
   |-r ROUTES                   |최대 라우트 수                                                 |X         |
-  |-s SERVICE_INSTANCES        |최대 서비스 인스턴스 수                                         |X         |
+  |-s SERVICE_INSTANCES        |최대 Service Instance수                                         |X         |
   |--allow-paid-service-plans  |과금 서비스 plan 사용가능                                       |X        |
 
 
@@ -3040,7 +3040,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |QUOTA        |QUOTA명                                                  |O         |
+  |QUOTA        |QUOTA  name                                                  |O         |
   |-f           |삭제 확인메시지 없이 QUOTA 정보를 삭제                      |X         |
 
 
@@ -3074,12 +3074,12 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |QUOTA                       |QUOTA명                                                       |O         |
+  |QUOTA                       |QUOTA  name                                                       |O         |
   |-m TOTAL_MEMORY             |메모리 할당량  <br> Ex) 1024M, 1G, 10G                         |X         |
   |-i INSTANCE_MEMORY          |App instance가 가질수 있는 최대할당량 (-1은 무한대) <br>  Ex) 1024M, 1G, 10G                        |X         |
-  |-n NEW_NAME                 |QUOTA명 변경시 변경할 이름                                      |X         |
+  |-n NEW_NAME                 |QUOTA  name 변경시 변경할 이름                                      |X         |
   |-r ROUTES                   |최대 라우트 수                                                 |X         |
-  |-s SERVICE_INSTANCES        |최대 서비스 인스턴스 수                                         |X         |
+  |-s SERVICE_INSTANCES        |최대 Service Instance수                                         |X         |
   |--allow-paid-service-plans  |과금 서비스 plan 사용가능                                       |X        |
   |--disallow-paid-service-plans  |과금 서비스 plan 사용 불가                                       |X        |
 
@@ -3113,8 +3113,8 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |QUOTA                 |QUOTA명                        |O         |
-  |DOMAIN                |도메인명                        |O         |
+  |QUOTA                 |QUOTA  name                        |O         |
+  |DOMAIN                |도메인  name                        |O         |
 
 
   - **Example**
@@ -3147,8 +3147,8 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |ORG                   |도메인명                        |O         |
-  |DOMAIN                |도메인명                        |O         |
+  |ORG                   |도메인  name                        |O         |
+  |DOMAIN                |도메인  name                        |O         |
 
 
   - **Example**
@@ -3216,7 +3216,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE_QUOTA_NAME       |스페이스 QUOTA명       |O         |
+  |SPACE_QUOTA_NAME       |스페이스 QUOTA  name       |O         |
 
 
   - **Example**
@@ -3249,11 +3249,11 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |QUOTA                       |QUOTA명                                                       |O         |
+  |QUOTA                       |QUOTA  name                                                       |O         |
   |-m TOTAL_MEMORY             |메모리 할당량  <br> Ex) 1024M, 1G, 10G                         |X         |
   |-i INSTANCE_MEMORY          |App instance가 가질수 있는 최대할당량 (-1은 무한대) <br>  Ex) 1024M, 1G, 10G                        |X         |
   |-r ROUTES                   |최대 라우트 수                                                 |X         |
-  |-s SERVICE_INSTANCES        |최대 서비스 인스턴스 수                                         |X         |
+  |-s SERVICE_INSTANCES        |최대 Service Instance수                                         |X         |
   |--allow-paid-service-plans  |과금 서비스 plan 사용가능                                       |X        |
 
 
@@ -3287,12 +3287,12 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE-QUOTA-NAME            |스페이스 QUOTA명                                               |O         |
+  |SPACE-QUOTA-NAME            |스페이스 QUOTA  name                                               |O         |
   |-i MAX-INSTANCE-MEMORY      |App instance가 가질수 있는 최대할당량 (-1은 무한대) <br>  Ex) 1024M, 1G, 10G                        |X         |
   |-m MEMORY                   |스페이스가 가질수 있는 최대 메모리                               |X         |
-  |-n NEW_NAME                 |변경하려는 SPACE-QUOTA명                                       |X         |
+  |-n NEW_NAME                 |변경하려는 SPACE-QUOTA  name                                       |X         |
   |-r ROUTES                   |스페이스가 가지는 최대 route 갯수                               |X         |
-  |-s SERVICES                 |스페이스가 가지는 최대 서비스 인스턴스 갯수                       |X         |
+  |-s SERVICES                 |스페이스가 가지는 최대 Service Instance갯수                       |X         |
   |--allow-paid-service-plans  |과금 서비스 plan 사용가능                                       |X        |
   |--disallow-paid-service-plans  |과금 서비스 plan 사용 불가                                   |X        |
 
@@ -3327,7 +3327,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE-QUOTA-NAME     |스페이스 QUOTA명                                     |O         |
+  |SPACE-QUOTA-NAME     |스페이스 QUOTA  name                                     |O         |
   |-f           |삭제 확인메시지 없이 SPACE-QUOTA 정보를 삭제               |X         |
 
 
@@ -3363,7 +3363,7 @@ $cf apps
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SPACE-NAME            |Space Name                    |O         |
-  |SPACE-QUOTA-NAME      |스페이스 Quota명              |O         |
+  |SPACE-QUOTA-NAME      |스페이스 Quota  name              |O         |
 
 
 
@@ -3398,7 +3398,7 @@ $cf apps
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SPACE        |Space Name                   |O         |
-  |QUOTA        |스페이스 Quota명             |O         |
+  |QUOTA        |스페이스 Quota  name             |O         |
 
 
 
@@ -3469,7 +3469,7 @@ $cf apps
   |-------------|--------------------------------|-----------|
   |LABEL        |서비스 토큰 라벨                 |O         |
   |PROVIDER     |Service Provider                    |O         |
-  |TOKEN        |토큰명                          |O         |
+  |TOKEN        |토큰  name                          |O         |
 
 
   - **Example**
@@ -3505,7 +3505,7 @@ $cf apps
   |-------------|--------------------------------|-----------|
   |LABEL        |서비스 토큰 라벨                 |O         |
   |PROVIDER     |Service Provider                    |O         |
-  |TOKEN        |토큰명                          |O         |
+  |TOKEN        |토큰  name                          |O         |
 
 
   - **Example**
@@ -3708,7 +3708,7 @@ $cf apps
 
 
   ```
-  Service Broker명을 수정합니다.
+  Service Broker  name을 수정합니다.
   ```
 
 
@@ -3782,7 +3782,7 @@ $cf apps
 
 
   ```
-  cf와 서비스 브로커간의 정보 불일치를 해결할때 사용합니다. <br>   (migrate-service-instances 명령 이후 사용)
+  cf와 서비스 브로커간의 정보 불일치를 해결할때 사용합니다. <br>   (migrate-service-instances   name령 이후 사용)
   ```
 
 
@@ -3862,7 +3862,7 @@ $cf apps
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SERVICE      |Service Name                        |O          |
-  |-p PLAN      |PLAN명                          |O          |
+  |-p PLAN      |PLAN  name                          |O          |
   |-o ORG       |Organization Name                           |O          |
 
 
@@ -3899,7 +3899,7 @@ $cf apps
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SERVICE      |Service Name                        |O          |
-  |-p PLAN      |PLAN명                          |O          |
+  |-p PLAN      |PLAN  name                          |O          |
   |-o ORG       |Organization Name                           |O          |
 
 
@@ -4005,7 +4005,7 @@ $cf apps
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SECURITY_GROUP      |Security Group Name                                           |O          |
-  |PATH_TO_JSON_RULES_FILE      |시큐리티 룰을 명세한 JSON 파일의 경로 및 파일명<br> ex) rule 파일 작성 예제 <br> [ <br> &nbsp;&nbsp;{   <br> &nbsp;&nbsp;&nbsp;&nbsp;"protocol": "tcp",     <br> &nbsp;&nbsp;&nbsp;&nbsp;"destination": "10.244.1.18", <br>     &nbsp;&nbsp;&nbsp;&nbsp;"ports": "3306" <br>&nbsp;&nbsp;} <br> ]     |O          |
+  |PATH_TO_JSON_RULES_FILE      |시큐리티 룰을   name세한 JSON 파일의 path 및 file name<br> ex) rule file작성 예제 <br> [ <br> &nbsp;&nbsp;{   <br> &nbsp;&nbsp;&nbsp;&nbsp;"protocol": "tcp",     <br> &nbsp;&nbsp;&nbsp;&nbsp;"destination": "10.244.1.18", <br>     &nbsp;&nbsp;&nbsp;&nbsp;"ports": "3306" <br>&nbsp;&nbsp;} <br> ]     |O          |
 
 
   - **Example**
@@ -4039,7 +4039,7 @@ $cf apps
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SECURITY_GROUP      |Security Group Name                                           |O          |
-  |PATH_TO_JSON_RULES_FILE      |시큐리티 룰을 명세한 JSON 파일의 경로 및 파일명<br> ex) rule 파일 작성 예제 <br> [ <br> &nbsp;&nbsp;{   <br> &nbsp;&nbsp;&nbsp;&nbsp;"protocol": "tcp",     <br> &nbsp;&nbsp;&nbsp;&nbsp;"destination": "10.244.1.18", <br>     &nbsp;&nbsp;&nbsp;&nbsp;"ports": "3306" <br>&nbsp;&nbsp;} <br> ]     |O          |
+  |PATH_TO_JSON_RULES_FILE      |시큐리티 룰을   name세한 JSON 파일의 Spath 및 file name<br> ex) rule file작성 예제 <br> [ <br> &nbsp;&nbsp;{   <br> &nbsp;&nbsp;&nbsp;&nbsp;"protocol": "tcp",     <br> &nbsp;&nbsp;&nbsp;&nbsp;"destination": "10.244.1.18", <br>     &nbsp;&nbsp;&nbsp;&nbsp;"ports": "3306" <br>&nbsp;&nbsp;} <br> ]     |O          |
 
   - **Example**
 
@@ -4297,7 +4297,7 @@ $cf apps
 
 
   ```
-  실환경변수 내용을 조회합니다.
+  실environment variables 내용을 조회합니다.
   ```
 
 
@@ -4328,7 +4328,7 @@ $cf apps
 
 
   ```
-  스테이징시 사용되는 환경변수 내용을 조회합니다.
+  스테이징시 사용되는 environment variables 내용을 조회합니다.
   ```
 
 
@@ -4361,7 +4361,7 @@ $cf apps
 
 
   ```
-  스테이징시 사용되는 환경변수 내용을 설정한다
+  스테이징시 사용되는 environment variables 내용을 설정한다
   ```
 
 
@@ -4371,7 +4371,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |ENV_VARIABLE  |환경변수 내용으로 KEY/VALUE로 구성              |O          |
+  |ENV_VARIABLE  |environment variables 내용으로 KEY/VALUE로 구성              |O          |
 
 
 
@@ -4396,7 +4396,7 @@ $cf apps
 
 
   ```
-  환경변수 내용을 설정 합니다.
+  environment variables 내용을 설정 합니다.
   ```
 
 
@@ -4406,7 +4406,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |ENV_VARIABLE  |환경변수 내용으로 KEY/VALUE로 구성된다.                |O          |
+  |ENV_VARIABLE  |environment variables 내용으로 KEY/VALUE로 구성된다.                |O          |
 
 
 
@@ -4474,7 +4474,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |FEATURE_NAME  |Feature flag 명. <br> - feature flag에는 6가지가 있다. <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
+  |FEATURE_NAME  |Feature flag   name. <br> - feature flag에는 6가지가 있다. <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
 
 
 
@@ -4508,7 +4508,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |FEATURE_NAME  |Feature flag 명. <br> - feature flag에는 6가지가 있다. <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
+  |FEATURE_NAME  |Feature flag   name. <br> - feature flag에는 6가지가 있다. <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
 
 
 
@@ -4543,7 +4543,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |FEATURE_NAME  |Feature flag 명. <br> - feature flag에는 6가지가 있다. <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
+  |FEATURE_NAME  |Feature flag   name. <br> - feature flag에는 6가지가 있다. <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
 
 
 
@@ -4571,7 +4571,7 @@ $cf apps
 
 
   ```
-  OpenPaaS CLI명령어가 아닌 OpenPaaS API를 호출합니다.
+  OpenPaaS CLI  name령어가 아닌 OpenPaaS API를 호출합니다.
   ```
 
 
@@ -4619,10 +4619,10 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |--async-timeout TIMEOUT_IN_MINUTES        |CLI 명령 전송시 async timeout 설정                     |X          |
-  |--trace (true / false / path/to/file   )    |CLI 명령 수행시 실행되는 cf api의 내용 출력 설정         |X          |
-  |--color true / false                      |CLI 명령 수행시 실행되는 cf api의 내용 color 설정        |X          |
-  |--locale (LOCALE / CLEAR)                 |CLI 명령 수행시 실행되는 cf api의 내용 locale 설정       |X          |
+  |--async-timeout TIMEOUT_IN_MINUTES        |CLI   name령 전송시 async timeout 설정                     |X          |
+  |--trace (true / false / path/to/file   )    |CLI   name령 수행시 실행되는 cf api의 내용 출력 설정         |X          |
+  |--color true / false                      |CLI   name령 수행시 실행되는 cf api의 내용 color 설정        |X          |
+  |--locale (LOCALE / CLEAR)                 |CLI   name령 수행시 실행되는 cf api의 내용 locale 설정       |X          |
 
 
   - **Example**
@@ -4688,7 +4688,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |REPO_NAME    |Repository 명                   |X          |
+  |REPO_NAME    |Repository   name                   |X          |
   |URL          |Repository URL                 |X          |
 
 
@@ -4723,7 +4723,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |REPO_NAME    |Repository 명                   |O          |
+  |REPO_NAME    |Repository   name                   |O          |
   |URL          |Repository URL                 |O         |
 
 
@@ -4788,7 +4788,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |REPO_NAME    |Repository 명                   |X          |
+  |REPO_NAME    |Repository   name                   |X          |
 
 
 
@@ -4816,7 +4816,7 @@ $cf apps
 
 
   ```
-  추가된 plugin의 사용가능한 명령어 목록을 조회합니다.
+  추가된 plugin의 사용가능한   name령어 목록을 조회합니다.
   ```
 
 
@@ -4825,7 +4825,7 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |REPO_NAME    |Repository 명                   |X          |
+  |REPO_NAME    |Repository   name                   |X          |
 
 
 
@@ -4851,7 +4851,7 @@ $cf apps
 
 
   ```
-  추가된 plugin의 사용가능한 명령어 목록을 조회합니다.
+  추가된 plugin의 사용가능한   name령어 목록을 조회합니다.
   ```
 
 
@@ -4860,8 +4860,8 @@ $cf apps
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |URL or LOCAL-PATH/TO/PLUGIN   |Plugin URL 또는 로컬경로 또는 repository에 있는 플러그인명                |X          |
-  |-r REPO_NAME                  |Plugin repository명                                                   |X          |
+  |URL or LOCAL-PATH/TO/PLUGIN   |Plugin URL 또는 로컬path 또는 repository에 있는 플러그인  name                |X          |
+  |-r REPO_NAME                  |Plugin repository  name                                                   |X          |
 
 
   - **Example**

@@ -248,7 +248,7 @@ Command to log in to OpenPaaS
 
 | Parameter Name   |           Description                 | Required(O/X) |
 |-------------|-----------------------------|-----------|
-|-a API_URL    |CLI가 접속 하려는 OpenPaaS  URL<br>Ex) https://api.10.244.0.34.xip.io    |X        |
+|-a API_URL    |OpenPaaS that the CLI attempts to access. URL<br>Ex) https://api.10.244.0.34.xip.io    |X        |
 |-u USERNAMEL  |User ID to access OpenPaaS             |X        |
 |-p PASSWORD   |User password to access OpenPaaS         |X        |
 |-o ORG        |The name of the organization of the user who accesses OpenPaaS     |X        |
@@ -992,8 +992,8 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |APP  name                           |O        |
-  |ENV_VAR_NAME |App의 environment variables Key               |O        |
-  |ENV_VAR_VALUE|App의 environment variables Value               |O        |
+  |ENV_VAR_NAME |environment variables Key of App              |O        |
+  |ENV_VAR_VALUE|environment variables Value of App              |O        |
 
 
   - **Example**
@@ -1018,7 +1018,7 @@ Change the app name.
 
 
   ```
-  App에 설정된 environment variables를 삭제합니다.(적용시 restage필요)
+  Delete the environment variables set in the App. (restage required when applied)
   ```
 
 
@@ -1051,7 +1051,7 @@ Change the app name.
 
 
   ```
-  OpenPaaS의 stack목록(운영체제 파일시스템) 목록을 조회합니다.
+  Check the stack list (operating system file system) of OpenPaaS.
   ```
 
 
@@ -1114,7 +1114,7 @@ Change the app name.
 
 
   ```
-  App의 소스를 다른 App에 복사합니다. 파일이 덥어 쓰이지 않으면 자동 restart합니다.
+  Copy the source of the app to another app. If the file is not overwritten, it will restart automatically.
   ```
 
 
@@ -1123,11 +1123,11 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SOURCE-APP   |원본 APP  name                        |O        |
-  |TARGET-APP   |소스가 복사될 대상 App  name            |X        |
-  |-o TARGET-ORG |타겟 조직                         |O        |
-  |-s TARGET-SPACE|타겟 스페이스                    |X        |
-  |--no-restart   |소스 복사 후 restart하지 않음  |X        |
+  |SOURCE-APP   |Orginall APP  name                        |O        |
+  |TARGET-APP   |The app name to which the source will be copied      |X        |
+  |-o TARGET-ORG |Target Organization              |O        |
+  |-s TARGET-SPACE|Target Space     |X        |
+  |--no-restart   |Do not restart after source copy |X        |
 
   - **Example**
 
@@ -1149,7 +1149,7 @@ Change the app name.
 
 
   ```
-  App의 manifest파일을 생성합니다.
+  Create a manifest file of the app.
   ```
 
 
@@ -1158,8 +1158,8 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SOURCE-APP   |원본 APP  name                        |O        |
-  |-p /path/<app-name>.yml   |파일이 생성될 위치와 file name(-p 를 사용하지 않으면 자동생성된다)            |X        |
+  |SOURCE-APP   |Orginall APP  name                        |O        |
+  |-p /path/<app-name>.yml   |The location where the file will be created and the file name (-p will be auto-generated if not used)     |X        |
 
   - **Example**
 
@@ -1185,7 +1185,7 @@ Change the app name.
 
 
   ```
-  cf 마켓플레이스에서 제공하는 서비스 목록을 조회합니다.
+  Check the list of services provided by the cf marketplace.
   ```
 
 
@@ -1194,7 +1194,7 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |-s SERVICE_NAME   |서비스의 plan이 조회된다.    |X        |
+  |-s SERVICE_NAME   |The service plan is checked  |X        |
 
 
   - **Example**
@@ -1217,7 +1217,7 @@ Change the app name.
 
 
   ```
-  타겟 스페이스에 Service Instance목록을 조회합니다.
+  Check the list of Service Instances in the target space.
   ```
 
 
@@ -1226,7 +1226,7 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |-s SERVICE_NAME   |서비스의 plan이 조회된다.    |X        |
+  |-s SERVICE_NAME   |The service plan is checked   |X        |
 
 
   - **Example**
@@ -1249,7 +1249,7 @@ Change the app name.
 
 
   ```
-  서비스 인스턴스의 정보를 조회합니다.
+  Check the information of the service instance
   ```
 
 
@@ -1259,7 +1259,7 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SERVICE_INSTANCE   |Service Instance name           |O        |
-  |--guid             |서비스 인스턴스의 Guid를 조회합니다.   |X        |
+  |--guid             |Check the Service Instance Guide |X        |
 
   - **Example**
 
@@ -1282,7 +1282,7 @@ Change the app name.
 
 
   ```
-  마켓플레이스에서 제공하는 서비스로 서비스 인스턴스를 만든다.
+  Create a service instance with a service provided by Marketplace.
   ```
 
   - **Parameter **
@@ -1290,11 +1290,11 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE      |마켓플레이스에 있는 서비스  name                                              |O        |
-  |PLAN         |서비스 플랜  name                                                           |O        |
-  |SERVICE_INSTANCE   |만들 Service Instance name                                             |O        |
-  |-c PARAMETERS_AS_JSON |서비스 설정정보를 json 형태로 입력 <br> Ex) -c '{"ram_gb":4}'    |X        |
-  |-t TAGS      |Service Instance테그                                                     |X        |
+  |SERVICE      |Service name in Marketplace                                       |O        |
+  |PLAN         |Service plan  name                                                           |O        |
+  |SERVICE_INSTANCE   |Service Instance name to be created                                      |O        |
+  |-c PARAMETERS_AS_JSON |Input service settings information in json type <br> Ex) -c '{"ram_gb":4}'    |X        |
+  |-t TAGS      |Service Instance tag                                                   |X        |
 
   - **Example**
 

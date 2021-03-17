@@ -4,7 +4,7 @@
 	1.1. [Outline](#11-Outline)  
 	1.2. [Range](#12-Range)  
 	1.3. [Reference Materials](#13-ReferenceMaterials)  
-2. [Preparation before installing the development environment](#2-the development environment-설치-전-준비사항)  
+2. [Preparation before installing the development environment](#2-Preparation before installing the development environment)  
 	2.1. [설치 전 준비사항](#21-설치-전-준비사항)  
 	2.2. [자바 개발 킷 설치](#22-자바-개발-킷-설치)  
 	2.3. [전자정부 표준프레임워크 설치](#23-전자정부-표준프레임워크-설치)  

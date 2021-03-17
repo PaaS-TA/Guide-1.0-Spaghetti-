@@ -81,124 +81,113 @@ The version used in the description below is as follows.
 
 ### 2.2 Java development kit installation
 
-1. 아래 링크에 접속하여 “JavaSE Download” 페이지가 표시되면 중앙의 “JDK Download” 링크를 클릭하여 라이선스 동의 페이지로 이동한다.
+1. When the “JavaSE Download” page is outputted by accessing the link below, click the “JDK Download” link in the center to go to the license agreement page.
 [***http://www.oracle.com/technetwork/java/javase/downloads/index.html***](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-2. 라이선스에 동의한 후 개발환경에 맞는 자바 개발 킷 설치 파일을 다운로드 받는다.
-3. 설치 파일을 실행하여 화면에 표시되는 절차에 따라 설치를 완료한다.  
+2. After agreeing to the license, download the Java development kit installation file suitable for the development environment.
+3. Run the installation file and follow the procedure outputted on the screen to complete the installation.
 	![java install](./../images/openpaas-eclipse/image2.jpeg)
 
-4. 명령 프롬프트에서 자바 명령어 실행을 위해 시스템 속성의 환경
-    변수를 설정한다.
+4. Set environment variables in system properties to run Java commands at the command prompt.
 	![env var1](./../images/openpaas-eclipse/image3.jpeg)
 	![env var2](./../images/openpaas-eclipse/image4.jpeg)
 	![env var3](./../images/openpaas-eclipse/image5.jpeg)
 
-5. 명령 프롬프트에서 “java –version” 명령을 실행하여 설치된 자바 버전이
-    정상적으로 출력되는지 확인한다.
+5. Run the “java –version” command at the command prompt and check whether the installed Java version is outputted normally.
 	![java version](./../images/openpaas-eclipse/image6.jpeg)
 
 ### 2.3 Installation of e-government standard framework
 
-전자정부 표준프레임워크 설치는 전자정부 표준프레임워크의 개발자 개발 환경 설치 가이드의 개발자 개발환경 설치(http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev2:clntinstall)를 참고한다.  
-> **버전은 3.1.1 버전을 사용한다**
+Refer to the developer development environment installation guide of the e-government standard framework developer development environment installation guide for For e-government standard framework installation.
+(http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev2:clntinstall)
+> **Version 3.1.1 is used**
 
 ### 2.4 Install Kepler version of Eclipse integrated development environment
 
-이클립스 통합개발환경 케플러 버전의 설치 절차는 다음과 같다.
+The installation procedure of Kepler version of Eclipse integrated development environment is as follows.
 
-1. 이클립스 홈페이지의 이클립스 통합개발환경 다운로드 페이지(**http://www.eclipse.org/downloads/**)에 접속한다.
+1. Connect to the Eclipse integrated development environment download page (**http://www.eclipse.org/downloads/**) on the Eclipse homepage.
 	![](./../images/openpaas-eclipse/image7.png)
 
-2. 이클립스 통합개발환경 케플러 버전을 설치하기 위해서는 다운로드 페이지의 오른쪽 사이드바에 “MORE DOWNLOADS”에 “Eclipse Kepler(4.3)”을 클릭한다.
+2. To install Kepler version of Eclipse integrated development environment, click “Eclipse Kepler(4.3)” in “MORE DOWNLOADS” on the right sidebar of the download page.
 	![](./../images/openpaas-eclipse/image8.png)
 
-3. 다운로드 화면이 표시되면, “Eclipse IDE for Java EE Developers” 의 우측에 사용하고 있는 운영체제에 적합한 다운로드 링크를 클릭하여 다운로드한다.
+3. When the download screen is displayed, click the download link appropriate for your operating system on the right side of “Eclipse IDE for Java EE Developers” to download.
 	![](./../images/openpaas-eclipse/image11.png)
 
-4. 다운로드 받은 파일의 압축을 해제하고 “eclipse.exe” 파일을 실행하여 별도의 설치 없이 이클립스를 사용할 수 있다.
+4. You can use Eclipse without separate installation by unzipping the downloaded file and running the “eclipse.exe” file.
 
 # 3. Open PaaS development environment installation
 
-본 절에서는 전자정부 표준프레임워크과 이클립스 통합개발환경에 Open PaaS
-개발환경을 설치하는 절차를 기술한다. Open PaaS 개발환경이 포함되어 있는
-전자정부 표준프레임워크 개발환경을 사용하는 경우 별도의 설치 없이
-사용가능하며, 이클립스의 경우 “openpaas\_dev\_env.zip” 파일을 이용하여
-플러그인으로 제공되는 Open PaaS 개발환경을 설치하여 사용한다.
+This section describes the procedure for installing the Open PaaS development environment in the e-government standard framework and Eclipse integrated development environment.
+If you use the e-government standard framework development environment that includes the Open PaaS development environment, it can be used without a separate installation.
+In the case of Eclipse, use the “openpaas\_dev\_env.zip” file to install and use the Open PaaS development environment provided as a plug-in.
 
 ### 3.1 Open PaaS development environment installation in e-government standard framework
 
-전자정부 표준프레임워크 개발환경에 Open PaaS 개발환경을 설치하는 절차는
-다음과 같다.
+The procedure for installing the Open PaaS development environment in the e-government standard framework development environment is as follows.
 
-1. 전자정부 표준프레임워크 개발환경을 실행한 후 “Help” 메뉴의 “Install New Software…” 를 클릭한다.
+1. After running the e-government standard framework development environment, click “Install New Software…” in the “Help” menu. 
 	![](./../images/openpaas-eclipse/image13.png)
 
-2. 설치를 진행하기 위한 “Available Software” 대화창이 표시된다.  
-    Open PaaS 개발환경 파일의 경로를 설정하기 위해, “Add…” 버튼을
-    클릭한다.  
-    “Cancel” 버튼을 클릭하면 진행되던 과정은 취소되고 화면이 종료된다.
+2. The “Available Software” dialog is displayed to proceed with the installation.
+     To set the path of the Open PaaS development environment file, Click “Add"Button
+     Clicking the “Cancel” button cancels the process and closes the screen.
 	![](./../images/openpaas-eclipse/image15.png)
 
-3. “Add Repository” 대화창의 “Name”란에 Open PaaS 개발환경을 입력하고,
-    오른쪽의 “Archive” 버튼을 클릭하여 다운로드 받은
-    “openpaas\_dev\_env.jar” 파일의 위치를 찾아 선택한 후 확인 버튼을
-    누르고, “Add Repository” 대화창의 “OK” 버튼을 클릭한다. “Cancel”
-    버튼을 클릭하면 취소된다.
+3. Input the Open PaaS development environment in the “Name” field of the “Add Repository” dialog,
+     Click the “Archive” button on the right to download
+     Find and select the location of the “openpaas\_dev\_env.jar” file then click the OK button.
+     and click the “OK” button in the “Add Repository” dialog. if you click the “Cancel”, cancled.
 	![](./../images/openpaas-eclipse/image17.png)
 
-4. 대화창에 “Core / Open PaaS” 카테고리가 표시되며,  
-    카테고리 좌측의 체크박스를 클릭하여 선택하고 “Next” 버튼을 클릭하여
-    다음 단계로 넘어간다.  
-    “Cancel” 버튼을 클릭하면 진행되던 과정은 취소되고 화면이 종료된다.
+4. The “Core / Open PaaS” category is displayed in the dialog,
+     Click the checkbox to the left of the category to select it, and click the “Next” button to
+     Move on to the next step.
+     Clicking the “Cancel” button cancels the process and closes the screen.
 	![](./../images/openpaas-eclipse/image18.png)
 
-5. “Install Details” 에서 Open PaaS 개발환경에 대한 정보를 확인할 수
-    있으며, “Next” 버튼을 클릭한다.  
-    “Cancel” 버튼을 클릭하면 진행되던 과정은 취소되고 화면이 종료된다.
+5. You can check information about the Open PaaS development environment in “Install Details”.
+     And click the “Next” button.
+     Clicking the “Cancel” button cancels the process and closes the screen.
 	![](./../images/openpaas-eclipse/image19.png)
 
-6. 다음에서 Open PaaS 개발환경의 라이선스를 확인 할 수 있으며, 이에
-    동의하면 “I accept the terms of the license agreement” 라디오 버튼에
-    체크하고 “Finish” 버튼을 클릭한다.  
-    “Cancel” 버튼을 클릭하면 진행되던 과정은 취소되고 화면이 종료된다.
+6. You can check the license of the Open PaaS development environment from the following.
+     If you agree, check the “I accept the terms of the license agreement” radio button.
+     Check it and click the “Finish” button.
+     Clicking the “Cancel” button cancels the process and closes the screen.
 	![](./../images/openpaas-eclipse/image20.png)
 
-7. “Installing Software” 대화창과 함께 설치가 진행되며, “Security
-    Warning” 경고창이 표시되면 무시하고 “OK” 버튼을 클릭하여 설치를
-    재개한다.  
-    “Cancel” 버튼을 클릭하면 설치 되지 않고 종료된다.
+7. Installation proceeds with the “Installing Software” dialog. If the “Security Warning” alert is displayed, ignore it and click the “OK” button to restart the installation. 
+    Clicking the “Cancel” button cancels the process and closes the screen.
 	![](./../images/openpaas-eclipse/image21.png)
 
-8. 설치가 완료되면 “Software Updates” 대화창이 나타나고, Open PaaS
- 개발환경이 정상적으로 적용되기 위해서는 재시작이 필요하므로, “Yes”
- 버튼을 클릭하여 전자정부 표준프레임워크를 재시작한다.  
- 만약 “No” 버튼을 클릭하면 전자정부 프레임워크는 재시작되지 않고 Open
- PaaS 개발환경을 이용 할 수 없다.
+8. When the installation is complete, the “Software Updates” dialog box appears, and Click the button “Yes” to restart the e-government standard framework. Restart is required for the Open PaaS development environment to be applied normally.
+
+  If you click the “No” button, the e-government framework does not restart and opens PaaS development environment cannot be used.
 	![](./../images/openpaas-eclipse/image25.png)
 
-9. 재시작을 완료하면 설치가 완료된다.
+9. When the restart is complete, the installation is complete.
 
 ### 3.2 Install Open PaaS development environment in Eclipse integrated development environment
 
-이클립스 통합개발환경에 Open PaaS 개발환경을 설치하는 절차는 “3.1 전자정부 표준프레임워크에 Open PaaS 개발환경을 설치”와 같으므로 참고한다.
+The procedure for installing the Open PaaS development environment in the Eclipse integrated development environment is the same as “3.1 Installing the Open PaaS development environment in the e-government standard framework”, so refer to it.
 
 ### 3.3 Use of e-government standard framework development environment including Open PaaS development environment.
-전자정부 표준프레임워크 개발환경에는 Open PaaS 개발환경이 설치되어 있으므로, 추가적으로 설치할 필요없이 본 가이드의 4.개방형 플랫폼 서버 연결관리부터 진행할 수 있다.
+Since the Open PaaS development environment is installed in the e-government standard framework development environment, you can proceed from 4.the open platform server connection management of this guide without additional installation.
 
 # 4. Open platform server connection management
 
-본 절에서는 개방형 플랫폼 서버를 연결하는 방법에 대해 기술한다.
+This section describes how to connect open platform servers.
 
 ### 4.1 Add the server
 
-1. 서버를 추가하기 위해 “Servers” 탭에서 “New” – “Server”을 클릭한다.
+1. To add a server, click "New"-"Server" in the "Servers" tab.
 	![](./../images/openpaas-eclipse/image28.png)
 
-2. “Define a New Server” 대화창이 표시된다. 이 대화창은 서버의 타입을 선택하고 생성하는 화면이다.  
-    리스트에서 “Open PaaS” – “개방형 플랫폼”을 선택한 후,”Server
-    name”란을 작성한다. (만약 작성하지 않으면 기본 값인 “Open PaaS”이다.)  
-    모두 진행되었으면 “Next” 버튼을 클릭하여 다음 페이지로 이동한다.  
-    “Cancel” 버튼을 클릭하면 진행되던 과정은 취소되고 화면이 종료된다.
+2. The “Define a New Server” dialog is displayed. This dialog is a screen for selecting and creating a server type.
+     Select “Open PaaS” – “Open Platform” from the list and fill in the “Server name” blank. (If not written, the default value is “Open PaaS”.)
+     When everything is done, click the “Next” button to move to the next page.
+     Clicking the “Cancel” button cancels the process and closes the screen.
 	![](./../images/openpaas-eclipse/image30.png)
 
 3. “Open PaaS 계정” 대화창이 표시된다. 이 대화창은 조직과 스페이스 접근하기 위해 Open PaaS의 계정으로 로그인을 하기 위한 대화창이다.  
@@ -206,7 +195,7 @@ The version used in the description below is as follows.
     유효성을 체크한다.  
     계정이 정상적으로 확인되면 “Next” 버튼이 활성화된다.  
     “Next” 버튼을 눌러서 다음 화면으로 이동한다.  
-    “Cancel” 버튼을 클릭하면 진행되던 과정은 취소되고 화면이 종료된다.
+    Clicking the “Cancel” button cancels the process and closes the screen.
     ![](./../images/openpaas-eclipse/image32.png)
 
 	> *위 “URL”란에 표시되어 있는 URL 주소는 임의의 주소이며, 아래 절차를 따라 실제 Open PaaS가 배포되어 있는 플랫폼 서버 정보를 등록해야 한다.  
@@ -215,7 +204,7 @@ The version used in the description below is as follows.
 
 4. “조직 및 스페이스” 목록 대화창이 표시된다. 이 대화창은 해당 계정이 가지고 있는 모든 조직과 스페이스를 보여주며, 관리를 원하는 조직과 스페이스를 선택 할 수 있는 대화창이다.  
     관리를 원하는 조직과 스페이스를 선택하고 “Next” 버튼을 눌러 다음 화면으로 이동한다. (만약 조직 또는 스페이스가 없다면 생성을 해야한다. 현재 이클립스 개발환경에서는 조직 또는 스페이스를 생성할 수 없으므로 CLI 를 설치해서 조직과 스페이스를 생성해야한다. CLI의 설치 및 사용법은 [***OpenPaas CLi 가이드.md***](OpenPaas CLi 가이드.md)을 참고한다.)  
-    “Cancel” 버튼을 클릭하면 진행되던 과정은 취소되고 화면이 종료된다.
+    Clicking the “Cancel” button cancels the process and closes the screen.
     ![](./../images/openpaas-eclipse/image35.png)
 
 5. “Add and Remove” 대화창이 표시된다.  
@@ -228,7 +217,7 @@ The version used in the description below is as follows.
     Application 배포가 완료된다.  
     Application 배포가 완료되면서 관리를 하려는 서버의 추가도 완료가
     된다.  
-    “Cancel” 버튼을 클릭하면 진행되던 과정은 취소되고 화면이 종료된다.
+    Clicking the “Cancel” button cancels the process and closes the screen.
     ![](./../images/openpaas-eclipse/image37.png)
 
 ### 4.2 Registering platform server information

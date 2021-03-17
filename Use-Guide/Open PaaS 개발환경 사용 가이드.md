@@ -4,7 +4,7 @@
 	1.1. [Outline](#11-Outline)  
 	1.2. [Range](#12-Range)  
 	1.3. [Reference Materials](#13-Reference-Materials)  
-2. [Preparation before installing the development environment](#2-Preparation-before-installing-the development-environment)  
+2. [Preparation before installing the development environment](#2-Preparation-before-installing-the-development-environment)  
 	2.1. [Preparation before installation](#21-Preparation-before-installation)  
 	2.2. [Java development kit installation](#22-Java-development-kit-installation)  
 	2.3. [Installation of e-government standard framework](#23-Installation-of-e-government-standard-framework)  

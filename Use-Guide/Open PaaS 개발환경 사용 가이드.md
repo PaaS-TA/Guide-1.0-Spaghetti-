@@ -1,10 +1,10 @@
 # Table Of Contents
 
-1. [문서 개요](#1-문서-개요)  
-	1.1. [목적](#11-목적)  
-	1.2. [범위](#12-범위)  
-	1.3. [참고자료](#13-참고자료)  
-2. [개발환경 설치 전 준비사항](#2-개발환경-설치-전-준비사항)  
+1. [Document Outline](#1-Document-Outline)  
+	1.1. [Outline](#11-Outline)  
+	1.2. [Range](#12-Range)  
+	1.3. [Reference Materials](#13-Reference Materials)  
+2. [Preparation before installing the development environment](#2-the development environment-설치-전-준비사항)  
 	2.1. [설치 전 준비사항](#21-설치-전-준비사항)  
 	2.2. [자바 개발 킷 설치](#22-자바-개발-킷-설치)  
 	2.3. [전자정부 표준프레임워크 설치](#23-전자정부-표준프레임워크-설치)  
@@ -46,7 +46,7 @@
 
 본 문서는 개발자들이 Open PaaS 개발환경을 전자정부 프레임워크 개발환경에
 설치하여 Open PaaS 기반의 애플리케이션을개발하기 위해 필요한 환경 구성
-및 사용 방법을 제공하는데 목적이 있다.  
+및 사용 방법을 제공하는데 Outline이 있다.  
 본 가이드의 사용자는 자바 및 자바 웹 애플리케이션 개발에 대한 기본적인
 지식이 있다는 것을 가정하였다.
 
@@ -57,23 +57,23 @@
 
 # 1. 문서 개요
 
-### 1.1 목적
+### 1.1 Outline
 본 문서는 전자정부 표준프레임워크 개발환경 및 이클립스 통합개발환경에서
 Open PaaS 개발환경을 설치하고, Open PaaS 개발환경을 통해 자바 웹
 애플리케이션을 Open PaaS 환경에 배포, 관리 및 서비스팩 관리에 대한
 가이드를 제공한다.
 
-### 1.2 범위
+### 1.2 Range
 본 문서에서 제공하는 가이드는) 전자정부 표준프레임워크 3.2.0 및 이클립스
 케플러 버전(Kepler, 4.3.x 버전을 기준으로 작성하였다.
 
-### 1.3 참고자료
+### 1.3 Reference Materials
 본 문서는 클라우드 파운드리(Cloud Foundry)의 클라우드 파운드리 이클립스
 플러그인 문서를 참조하였다.
 클라우드 파운드리 이클립스 플러그인 문서 :
 http://docs.run.pivotal.io/buildpacks/java/sts.html
 
-# 2. 개발환경 설치 전 준비사항
+# 2. Preparation before installing the development environment
 
 ### 2.1 설치 전 준비사항
 
@@ -602,7 +602,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     버튼을 클릭한다.  
     그럼 오른쪽에 생성할 서비스팩이 추가된 것을 확인 할 수 있다.  
     그리고 생성할 서비스팩의 인스턴스 이름과 플랜을 설정해준다.  
-    플랜은 똑같은 서비스팩을 지원범위나 리소스를 레벨에 따라 다르게
+    플랜은 똑같은 서비스팩을 지원Range나 리소스를 레벨에 따라 다르게
     제공하기 위한 방법을 말한다.  
     이와 같은 과정을 반복하여 여러 개의 서비스팩 인스턴스를 추가 할 수
     있다.  

@@ -44,50 +44,36 @@
 
 # Executive Summary
 
-본 문서는 개발자들이 Open PaaS 개발환경을 전자정부 프레임워크 개발환경에
-설치하여 Open PaaS 기반의 Application을개발하기 위해 필요한 환경 구성
-및 사용 방법을 제공하는데 Outline이 있다.  
-본 가이드의 사용자는 자바 및 자바 웹 Application 개발에 대한 기본적인
-지식이 있다는 것을 가정하였다.
+This document provides an outline of how to configure and use the environment necessary for developers to develop Open PaaS-based applications by installing the Open PaaS development environment in the e-government framework development environment.
 
-아래의 2가지 단계에 따라 가이드가 작성 되어 있다.
-* Open PaaS개발환경 설치
-* Open PaaS개발환경 사용법
+It is assumed that the user of this guide has basic knowledge of Java and Java web application development.
+
+The guide is prepared according to the two steps below.
+* Open PaaS development environment installation
+* How to use Open PaaS development environment
 
 
 # 1. Document Outline
 
 ### 1.1 Outline
-본 문서는 전자정부 표준프레임워크 개발환경 및 이클립스 통합개발환경에서
-Open PaaS 개발환경을 설치하고, Open PaaS 개발환경을 통해 자바 웹
-Application을 Open PaaS 환경에 배포, 관리 및 Service Pack 관리에 대한
-가이드를 제공한다.
+This document installs Open PaaS development environment in e-government standard framework development environment and Eclipse integrated development environment. 
+Then, it provides a guide for deploying and managing Java web applications, managing Service Pack in the Open PaaS environment through the Open PaaS development environment. 
 
 ### 1.2 Range
-본 문서에서 제공하는 가이드는) 전자정부 표준프레임워크 3.2.0 및 이클립스
-케플러 버전(Kepler, 4.3.x 버전을 기준으로 작성하였다.
+The guide provided in this document was written in basis of the e-government standard framework 3.2.0 and Eclipse Kepler version (Kepler, 4.3.x version).
 
 ### 1.3 Reference Materials
-본 문서는 클라우드 파운드리(Cloud Foundry)의 클라우드 파운드리 이클립스
-플러그인 문서를 참조하였다.
-클라우드 파운드리 이클립스 플러그인 문서 :
+This document was referred to as Cloud Foundry's Cloud Foundry Eclipse plug-in document.
+Cloud Foundry Eclipse plugin document:
 http://docs.run.pivotal.io/buildpacks/java/sts.html
 
 # 2. Preparation before installing the development environment
 
 ### 2.1 Preparation before installation
 
-본 문서는 전자정부 프레임워크 3.1.1 버전 개발환경에서 설치하는 것을
-기준으로 작성하였다. 전자정부 프레임워크 개발환경은 자바 언어로 작성되어
-전자정부 프레임워크 개발환경 실행을 위해서는 자바 개발 킷(JDK) 또는 자바
-실행 환경(JRE)가 설치되어 있어야 한다. Open PaaS 개발환경은 전자정부
-프레임워크 개발환경에서 플러그인의 형태로 동작하므로 자바 개발 킷 설치
-후 전자정부 프레임워크 개발환경을 설치한다. (Java의 버전은 7이상의
-버전을 권장한다.) 또한 만약 전자정부 프레임워크 개발환경을 사용하지
-않는다면 이클립스 통합개발환경 케플러(Kepler) 버전과 유사하므로
-이클립스를 설치해도 무관하다
+This document was written in basis of  installation in the e-government framework version 3.1.1 development environment. The e-government framework development environment is written in Java language.  the Java Development Kit (JDK) or Java Execution Environment (JRE) must be installed to run the e-government framework development environment. Since the Open PaaS development environment operates on the form of a plug-in in the e-government framework development environment, install the e-government framework development environment after installing the Java development kit. (Java version 7 or higher is recommended.) Also, if you don't use the e-government framework development environment ,  you could install the eclipse. becuase it is similar to the Eclipse integrated development environment Kepler version, so it was not relevant to install Eclipse.
 
-아래 설명에서 사용된 버전은 아래와 같다.
+The version used in the description below is as follows.
 * jdk-8u60
 * Eclipse-jee-kepler-SR2-win32-x86\_64
 * openpaas\_dev\_env.jar

@@ -757,13 +757,16 @@ src/main/resources/egovframework/spring/context-datasource.xml 파일을
 애플리케이션 구동시 미리 작성한 SQL 스크립트를 실행하여 DB를 자동으로
 초기화 하도록 설정한다.
 
-1. **스크립트 파일 이동**  
+1. 스크립트 파일 이동  
    스크립트 파일에 접근하기 위해 script 폴더를 src/main/resources/egovframework로 이동시킨다.
 
-2. **스크립트 파일 수정**  
+2. 스크립트 파일 수정
 script\_mysql.sql 파일을 수정한다.  
 기존 sql은 실행이 되지 않으므로 일부 수정한다. db생성 구문을 없애고 Drop Table 구문에 IF EXISTS를 추가한다.
-	```sql
+	
+```
+sql
+
 --CREATE DATABASE EASYCOMPANY;
 
 DROP TABLE IF EXISTS `IDS`;
@@ -777,11 +780,14 @@ DROP TABLE IF EXISTS `RTETNCTGRY`;
 DROP TABLE IF EXISTS `RTETNGOODSIMAGE`;
 DROP TABLE IF EXISTS `RTETNMBER`;
 DROP TABLE IF EXISTS `RTETCCODE`;
-	```
+```
 
-3. **jdbc 네임스페이스 추가**  
+3. jdbc 네임스페이스 추가
 src/main/resources/egovframework/spring/context-datasource.xml 파일을 열어 jdbc 네임스페이스를 추가한다.
-	```xml
+
+```
+xml
+
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
@@ -790,15 +796,18 @@ src/main/resources/egovframework/spring/context-datasource.xml 파일을 열어 
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 		http://www.springframework.org/schema/cloud http://www.springframework.org/schema/cloud/spring-cloud.xsd
 		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd">
-	```
+```
 
-4. **데이터베이스 초기화 스크립트 등록**
-	```xml
+4. 데이터베이스 초기화 스크립트 등록
+
+```
+xml
+
 	<jdbc:initialize-database data-source="dataSource">
     	<jdbc:script location="classpath:egovframework/script/script_mysql.sql" />
     	<jdbc:script location="classpath:egovframework/script/data_mysql.sql" />
 	</jdbc:initialize-database>
-	```
+```
  
 
 ### 8.5 배포시 주의사항

@@ -4543,7 +4543,7 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |FEATURE_NAME  |Feature flag   name. <br> - feature flag에는 6가지가 있다. <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
+  |FEATURE_NAME  |Feature flag   name. <br> - There are six ways in feature flags.  <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
 
 
 
@@ -4571,7 +4571,7 @@ Change the app name.
 
 
   ```
-  OpenPaaS CLI  name령어가 아닌 OpenPaaS API를 호출합니다.
+  Call the OpenPaaS API, not the OpenPaaS CLI command.
   ```
 
 

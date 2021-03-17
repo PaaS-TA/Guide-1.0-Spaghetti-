@@ -1336,7 +1336,6 @@ https://username:password@github.com/johndoe/my-buildpack.git\#my-branch-name
 스크립트에 실행속성을 부여하고, git 저장소에 이를 적용하는 추가적인
 작업이 필요할 수 있다.
 
-```
 [^1]: Application Manifests,[***http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html***](http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html)
 
 [^2]: YAML Ain’t Markup Language, [***http://www.yaml.org***](http://www.yaml.org),[***http://ko.wikipedia.org/wiki/YAML***](http://ko.wikipedia.org/wiki/YAML)
@@ -1358,7 +1357,7 @@ https://username:password@github.com/johndoe/my-buildpack.git\#my-branch-name
 [^9]: cf stack, the root file system
 
 [^10]: Rspec, 루비를 위한 BDD(behavior-driven development) 프레임워크[***http://rspec.info/***](http://rspec.info/)
-```
+
 
 [buildpack_develope_guide_01]:/images/openpaas-buildpack-devolpe-guide/buildpack_develope_guide_01.png
 [buildpack_develope_guide_02]:/images/openpaas-buildpack-devolpe-guide/buildpack_develope_guide_02.png

@@ -111,12 +111,12 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     정상적으로 출력되는지 확인한다.
 	![java version](./../images/openpaas-eclipse/image6.jpeg)
 
-### 2.3 전자정부 표준프레임워크 설치
+### 2.3 Installation of e-government standard framework
 
 전자정부 표준프레임워크 설치는 전자정부 표준프레임워크의 개발자 개발 환경 설치 가이드의 개발자 개발환경 설치(http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev2:clntinstall)를 참고한다.  
 > **버전은 3.1.1 버전을 사용한다**
 
-### 2.4 이클립스 통합개발환경 케플러 버전 설치
+### 2.4 Install Kepler version of Eclipse integrated development environment
 
 이클립스 통합개발환경 케플러 버전의 설치 절차는 다음과 같다.
 
@@ -131,7 +131,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 
 4. 다운로드 받은 파일의 압축을 해제하고 “eclipse.exe” 파일을 실행하여 별도의 설치 없이 이클립스를 사용할 수 있다.
 
-# 3. Open PaaS 개발환경 설치
+# 3. Open PaaS development environment installation
 
 본 절에서는 전자정부 표준프레임워크과 이클립스 통합개발환경에 Open PaaS
 개발환경을 설치하는 절차를 기술한다. Open PaaS 개발환경이 포함되어 있는
@@ -139,7 +139,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 사용가능하며, 이클립스의 경우 “openpaas\_dev\_env.zip” 파일을 이용하여
 플러그인으로 제공되는 Open PaaS 개발환경을 설치하여 사용한다.
 
-### 3.1 전자정부 표준프레임워크에 Open PaaS 개발환경 설치
+### 3.1 Open PaaS development environment installation in e-government standard framework
 
 전자정부 표준프레임워크 개발환경에 Open PaaS 개발환경을 설치하는 절차는
 다음과 같다.
@@ -192,18 +192,18 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 
 9. 재시작을 완료하면 설치가 완료된다.
 
-### 3.2 이클립스 통합개발환경에 Open PaaS 개발환경 설치
+### 3.2 Install Open PaaS development environment in Eclipse integrated development environment
 
 이클립스 통합개발환경에 Open PaaS 개발환경을 설치하는 절차는 “3.1 전자정부 표준프레임워크에 Open PaaS 개발환경을 설치”와 같으므로 참고한다.
 
-### 3.3 Open PaaS 개발환경이 포함된 전자정부 표준프레임워크 개발환경 사용
+### 3.3 Use of e-government standard framework development environment including Open PaaS development environment.
 전자정부 표준프레임워크 개발환경에는 Open PaaS 개발환경이 설치되어 있으므로, 추가적으로 설치할 필요없이 본 가이드의 4.개방형 플랫폼 서버 연결관리부터 진행할 수 있다.
 
-# 4. 개방형 플랫폼 서버 연결 관리
+# 4. Open platform server connection management
 
 본 절에서는 개방형 플랫폼 서버를 연결하는 방법에 대해 기술한다.
 
-### 4.1 서버 추가
+### 4.1 Add the server
 
 1. 서버를 추가하기 위해 “Servers” 탭에서 “New” – “Server”을 클릭한다.
 	![](./../images/openpaas-eclipse/image28.png)
@@ -245,7 +245,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     “Cancel” 버튼을 클릭하면 진행되던 과정은 취소되고 화면이 종료된다.
     ![](./../images/openpaas-eclipse/image37.png)
 
-### 4.2 플랫폼 서버 정보 등록
+### 4.2 Registering platform server information
 
 1. “플랫폼 서버 관리…” 버튼을 클릭하여, “플랫폼 서버 URL 관리” 대화창을
   실행한다.  
@@ -263,7 +263,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 	![](./../images/openpaas-eclipse/image33_2.png)
 
 
-### 4.3 서버 복제
+### 4.3 Server replication
 
 개방형 플랫폼 서버 연결 정보에서 목표 스페이스는 수정할 수 없으며,
 동일한 개방형 플랫폼 서버에서 다른 목표 스페이스로 변경하기 위해서는 기존
@@ -283,7 +283,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     리스트에 추가된다.
     ![](./../images/openpaas-eclipse/image42.png)
 
-### 4.4 서버 수정
+### 4.4 Modify Servers
 
 서버 수정은 관리 서버 이름만 수정 가능하다
 
@@ -295,12 +295,12 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
     서버 이름을 클릭하여 수정을 한 뒤, 메뉴의 “File” – “Save”를 누른다.
 	![](./../images/openpaas-eclipse/image45.png)
 
-# 5. Application 및 Service Pack 관리
+# 5. Manage applications and service packs
 
 본 절에서는 Open PaaS 개발환경에서 Application 및 Service Pack을 관리하는
 절차를 기술한다.
 
-### 5.1 Application 배포
+### 5.1 Deploy Applications
 
 #####  “Add and Remove”로 추가하기
 
@@ -388,13 +388,13 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 
 
 
-### 5.2 Application 목록 확인
+### 5.2 Check Application list
 
 Application 목록 조회를 원하는 개방형 플랫폼 서버를 더블 클릭하여 서버 편집기를 실행한다.  
 편집기에서 Application이라는 목록을 찾으면 아래에 리스트로 배포되어 있는 Application 목록을 확인 할 수 있다.
 ![](./../images/openpaas-eclipse/image67.png)
 
-### 5.3 Application 라우트 관리
+### 5.3 Manage Application route
 
 1. Application 라우트 관리를 원하는 개방형 플랫폼 서버를 더블 클릭하여
     서버 편집기를 실행한다.  
@@ -409,7 +409,7 @@ Application 목록 조회를 원하는 개방형 플랫폼 서버를 더블 클�
     “Cancel” 버튼을 클릭하면 삭제될 라우트들이 복구된다.
     ![](./../images/openpaas-eclipse/image70.png)
 
-### 5.4 Application Instance 관리
+### 5.4 Manage Application instance
 
 Application 라우트 관리를 원하는 개방형 플랫폼 서버를 더블 클릭하여
 서버 편집기를 실행한다.  
@@ -561,7 +561,7 @@ Instance 변경이 완료 된다.
       “배포” 버튼을 클릭하면 배포작업을 수행한다.  
 ![](./../images/openpaas-eclipse/image101.png)
 
-### 5.5 Application 삭제
+### 5.5 Delete-Application
 
 1. Application 삭제를 원하는 개방형 플랫폼 서버를 더블 클릭하여 서버
     편집기를 실행한다.  
@@ -588,7 +588,7 @@ Instance 변경이 완료 된다.
     버튼을 클릭하여 Application 삭제를 완료하거나 취소한다.  
 	![](./../images/openpaas-eclipse/image106.png)
 
-### 5.6 Service Pack Instance 추가
+### 5.6 Add Service Pack Instance
 
 1. 서버 편집기의 “Application과 Service Pack” 탭을 클릭한다.  
     Service Pack 섹션 타이틀 오른쪽의 “Service Pack 추가” 아이콘을 클릭한다.
@@ -629,7 +629,7 @@ Instance 변경이 완료 된다.
     클릭하면 Binding이 완료 된다.
 	![](./../images/openpaas-eclipse/image116.png)
 
-### 5.8 Service Pack Instance Binding 해제
+### 5.8 Release the Service Pack Instance Binding
 
 1. 서버 편집기의 Application과 Service Pack 탭을 클릭한다.  
     Application Service Pack 목록에서 Binding을 해제할 Service Pack Instance를
@@ -640,7 +640,7 @@ Instance 변경이 완료 된다.
 리스트에서 Binding을 해제할 Application을 체크해제 한 후, “Finish” 버튼을 클릭하면 Binding 해제가 완료 된다.
 	![](./../images/openpaas-eclipse/image116.png)
 
-### 5.9 Service Pack Instance 삭제
+### 5.9 Delete Service Pack Instance
 
 1. 서버 편집기의 Application과 Service Pack 탭을 클릭한다.  
     Service Pack 목록에서 삭제할 Service Pack Instance를 선택한 뒤, 마우스
@@ -652,9 +652,9 @@ Instance 변경이 완료 된다.
     “Cancel” 버튼을 클릭하면 Service Pack Instance 삭제가 취소된다.
 	![](./../images/openpaas-eclipse/image117.png)
 
-# 6. manifest를 통한 설정
+# 6. Setting by the manifest
 
-### 6.1 manifest 추가
+### 6.1 Add manifest
 
 1. 프로젝트의 루트에 manifest 파일(manifest.yml)을 추가한다.  
 	![](./../images/openpaas-eclipse/image119.png)
@@ -672,7 +672,7 @@ Instance 변경이 완료 된다.
 	![](./../images/openpaas-eclipse/image121.png)
 	![](./../images/openpaas-eclipse/image131.png)
 
-### 6.2 manifest 저장
+### 6.2 Save manifest
 
 배포한 Application의 배포 설정을 manifest 파일(manifest.yml)로 저장할
 수 있다.
@@ -687,7 +687,7 @@ Instance 변경이 완료 된다.
     이미 manifest 파일(manifest.yml)이 있다면 내용이 변경되었는지 확인한다.
 	![](./../images/openpaas-eclipse/image119.png)
 
-# 7. 플러그인 설정(REST API 로그 추적 설정)
+# 7. Plugin settings (Set REST API log tracking)
 
 1. 플러그인의 설정을 위해 이클립스의 메뉴에서 “Window” – “Preferences”
     를 클릭한다.
@@ -704,13 +704,13 @@ Instance 변경이 완료 된다.
 	![](./../images/openpaas-eclipse/image130.png)
 
 
-# 8. 예제 프로젝트 설명
+# 8. Example project description
 
 해당 예제는 표준프레임워크 3.1 통합예제를 기준으로 작성하였다.  
 서비스와 Application이 Binding된 상태에서 서비스에 어떻게 접근하는지
 예제를 통해 설명한다.
 
-### 8.1 의존성 추가
+### 8.1 Add dependency
 
 클라우드 플랫폼에서 서비스에 쉽게 접속할 수 있도록 해주는 Spring Cloud
 Connectors를 사용하기 위해 해당 의존성을 추가한다.
@@ -729,7 +729,7 @@ Connectors를 사용하기 위해 해당 의존성을 추가한다.
 <!-- Spring Cloud Connector End -->
 ```
 
-### 8.2 cloud 네임스페이스 추가
+### 8.2 Add cloud namespace
 
 src/main/resources/egovframework/spring/context-datasource.xml 파일을
 열어 cloud 네임스페이스를 추가한다.
@@ -741,7 +741,7 @@ src/main/resources/egovframework/spring/context-datasource.xml 파일을
 		http://www.springframework.org/schema/cloud http://www.springframework.org/schema/cloud/spring-cloud.xsd">
 ```
   
-### 8.3 dataSource 설정 변경
+### 8.3 Change dataSource settings
 
 기존의 dataSource 설정을 지우고 새로운 설정을 입력한다.
 
@@ -752,7 +752,7 @@ src/main/resources/egovframework/spring/context-datasource.xml 파일을
 </cloud:data-source>
 ```
 
-### 8.4 dataSource 초기화 설정
+### 8.4 Set dataSource initialization
 
 Application 구동시 미리 작성한 SQL 스크립트를 실행하여 DB를 자동으로
 초기화 하도록 설정한다.
@@ -810,7 +810,7 @@ xml
 ```
  
 
-### 8.5 배포시 주의사항
+### 8.5 Notes when Deploying
 
 Application을 배포한다. 배포 방법은 [***Application 배포***](#51-Application-배포)를
 참고한다.

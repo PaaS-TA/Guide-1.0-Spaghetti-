@@ -2968,7 +2968,7 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |ORG          |직  name                            |O         |
+  |ORG          |Organization name                            |O         |
   |QUOTA        |QUOTA  name                         |O         |
 
 

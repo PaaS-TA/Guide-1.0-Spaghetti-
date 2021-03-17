@@ -55,7 +55,7 @@
 * Open PaaS개발환경 사용법
 
 
-# 1. 문서 개요
+# 1. Document Outline
 
 ### 1.1 Outline
 본 문서는 전자정부 표준프레임워크 개발환경 및 이클립스 통합개발환경에서
@@ -75,7 +75,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 
 # 2. Preparation before installing the development environment
 
-### 2.1 설치 전 준비사항
+### 2.1 Preparation before installation
 
 본 문서는 전자정부 프레임워크 3.1.1 버전 개발환경에서 설치하는 것을
 기준으로 작성하였다. 전자정부 프레임워크 개발환경은 자바 언어로 작성되어
@@ -93,7 +93,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 * openpaas\_dev\_env.jar
 * eGovFrameDev-3.1.1
 
-### 2.2 자바 개발 킷 설치
+### 2.2 Java development kit installation
 
 1. 아래 링크에 접속하여 “JavaSE Download” 페이지가 표시되면 중앙의 “JDK Download” 링크를 클릭하여 라이선스 동의 페이지로 이동한다.
 [***http://www.oracle.com/technetwork/java/javase/downloads/index.html***](http://www.oracle.com/technetwork/java/javase/downloads/index.html)

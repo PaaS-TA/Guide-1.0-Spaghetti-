@@ -1317,7 +1317,7 @@ Change the app name.
 
 
   ```
-  서비스 인스턴스를 수정합니다.
+  Modify the service instance.
   ```
 
 
@@ -1327,9 +1327,9 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SERVICE_INSTANCE        |Service Instance name                                               |O        |
-  |-p NEW_PLAN             |서비스 플랜  name                                                  |O        |
-  |-c PARAMETERS_AS_JSON   |서비스 설정정보를 json 형태로 입력 <br> Ex) -c '{"ram_gb":4}'    |O        |
-  |-t TAGS                 |Service Instance테그                                            |X        |
+  |-p NEW_PLAN             |Service Plan  Name                                                  |O        |
+  |-c PARAMETERS_AS_JSON   |Input service settings information in json type <br> Ex) -c '{"ram_gb":4}'    |O        |
+  |-t TAGS                 |Service Instance Tag                                            |X        |
 
   - **Example**
 
@@ -1352,7 +1352,7 @@ Change the app name.
 
 
   ```
-  서비스 인스턴스를 삭제합니다.
+  Delete the service instance.
   ```
 
 
@@ -1362,7 +1362,7 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SERVICE_INSTANCE  |Service Instance name                                        |O        |
-  |-f                |삭제 확인 메시지 없이 Service Instance삭제합니다.             |X        |
+  |-f                |Delete the Service Instance without confirmation message.  |X        |
 
   - **Example**
 
@@ -1384,7 +1384,7 @@ Change the app name.
 
 
   ```
-  Service Instance name을 수정합니다.
+  Modify the Service Instance name.
   ```
 
 
@@ -1394,7 +1394,7 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SERVICE_INSTANCE       |Service Instance name                       |O        |
-  |NEW_SERVICE_INSTANCE   |변경하려는 Service Instance name             |O        |
+  |NEW_SERVICE_INSTANCE   |Service Instance name you want to change     |O        |
 
   - **Example**
 
@@ -1417,7 +1417,7 @@ Change the app name.
 
 
   ```
-  서비스 인스턴스의 key를 생성합니다.
+  Create a key of the service instance.
   ```
 
 
@@ -1428,7 +1428,7 @@ Change the app name.
   |-------------|--------------------------------|-----------|
   |SERVICE_INSTANCE       |Service Instance name                       |O        |
   |SERVICE_KEY            |Service Instancekey  name                   |O        |
-  |-c PARAMETERS_AS_JSON  |Service Instance설정(JSON Parameter)    |X        |
+  |-c PARAMETERS_AS_JSON  |Service Instance setting(JSON Parameter)    |X        |
 
 
   - **Example**
@@ -1452,7 +1452,7 @@ Change the app name.
 
 
   ```
-  서비스 인스턴스의 key 목록을 조회합니다.
+  Check the list of keys of the service instance.
   ```
 
 
@@ -1484,7 +1484,7 @@ Change the app name.
 
 
   ```
-  서비스 인스턴스의 key의 상세정보를 조회합니다.
+  Check detailed information about the key of the service instance.
   ```
 
 
@@ -1495,7 +1495,7 @@ Change the app name.
   |-------------|--------------------------------|-----------|
   |SERVICE_INSTANCE  |Service Instance name                       |O        |
   |SERVICE_KEY       |Service Instancekey  name                   |O        |
-  |--guid            |Service Instanceguid를 조회합니다.         |X        |
+  |--guid            |Check the Service Instanceguid       |X        |
 
 
 
@@ -1520,7 +1520,7 @@ Change the app name.
 
 
   ```
-  서비스 key를 삭제합니다.
+  Delete Service key.
   ```
 
 
@@ -1531,7 +1531,7 @@ Change the app name.
   |-------------|--------------------------------|-----------|
   |SERVICE_INSTANCE  |Service Instance name                       |O        |
   |SERVICE_KEY       |Service Instancekey  name                   |O        |
-  |--guid            |Service Instanceguid를 조회합니다.         |X        |
+  |--guid            |Check Service Instanceguid         |X        |
 
 
 
@@ -1556,7 +1556,7 @@ Change the app name.
 
 
   ```
-  App과 서비스 인스턴스를 바인딩합니다.<br> - 서비스 인스턴스와 APP을 바인딩해야 App에서 서비스 사용가능
+ Bind the app and service instance.<br>-The service can be used in the app only when the service instance and the APP are bound.
   ```
 
 
@@ -1567,7 +1567,7 @@ Change the app name.
   |-------------|--------------------------------|-----------|
   |APP_NAME     |APP  name                                            |O        |
   |SERVICE_INSTANCE  |Service Instance  name                           |O        |
-  |-c PARAMETERS_AS_JSON   |바인딩 설정 Parameter  (json형태)         |X        |
+  |-c PARAMETERS_AS_JSON   |Binding Settings Parameter(json type)         |X        |
 
 
 
@@ -1594,7 +1594,7 @@ Change the app name.
 
 
   ```
-  App과 서비스 인스턴스를 언바인딩합니다.
+  Unbind the app and service instances.
   ```
 
 
@@ -1629,7 +1629,7 @@ Change the app name.
 
 
   ```
-  Market place에서 제공하는 서비스를 사용하지 않고 사용자가 별도의 서비스를 구성하여 APP과 바인딩합니다.
+  Instead of using the service provided by the market place, the user configures a separate service and binds it with the APP.
   ```
 
 
@@ -1664,7 +1664,7 @@ Change the app name.
 
 
   ```
-  user-provided service instance 정보를 수정합니다.
+  Modify user-provided service instance information.
   ```
 
 
@@ -1702,7 +1702,7 @@ Change the app name.
 
 
   ```
-  조직정보 목록을 조회합니다...
+  Check the organization information list...
   ```
 
 
@@ -1733,7 +1733,7 @@ Change the app name.
 
 
   ```
-  조직 상세 정보를 조회합니다.
+  Check the organization deatails
   ```
 
 
@@ -1743,7 +1743,7 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |ORG_NAME      |Organization Name                         |O        |
-  |--guid       |조직의 guid를 조회합니다.           |X        |
+  |--guid       |Check the guid of organization        |X        |
 
 
   - **Example**
@@ -1768,7 +1768,7 @@ Change the app name.
 
 
   ```
-  조직정보를 생성합니다.
+  Create organization information.
   ```
 
 
@@ -1778,7 +1778,7 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |ORG_NAME      |Organization Name                         |O        |
-  |-q QUOTA_NAME |조직에게 할당할 quota           |X        |
+  |-q QUOTA_NAME |Quota to allocate to the organization  |X        |
 
 
   - **Example**
@@ -1803,7 +1803,7 @@ Change the app name.
 
 
   ```
-  조직정보 목록을 조회합니다.
+  Check the organization information list.
   ```
 
 
@@ -1813,7 +1813,7 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |ORG_NAME      |Organization Name                          |O        |
-  |-f           |확인메시지 없이 조직정보 삭제합니다.  |X        |
+  |-f           |Organization information is deleted without confirmation message.|X        |
 
 
   - **Example**
@@ -1837,7 +1837,7 @@ Change the app name.
 
 
   ```
-  Organization Name을 변경합니다.
+  Change the Organization Name.
   ```
 
 
@@ -1847,7 +1847,7 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |ORG_NAME       |Organization Name                          |O        |
-  |NEW_ORG_NAME   |변경할 Organization Name                    |O        |
+  |NEW_ORG_NAME   |Organization Name to be created                    |O        |
 
 
   - **Example**
@@ -1873,7 +1873,7 @@ Change the app name.
 
 
   ```
-  스페이스 목록을 가져온다.
+  Bring a list of spaces.
   ```
 
 
@@ -1903,7 +1903,7 @@ Change the app name.
 
 
   ```
-  스페이스 상세정보를 조회합니다.
+  Check space details.
   ```
 
 
@@ -1935,7 +1935,7 @@ Change the app name.
 
 
   ```
-  스페이스 정보를 생성합니다.
+  Create space information
   ```
 
 
@@ -1945,8 +1945,8 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SPACE_NAME   |Space Name                           |O         |
-  |-o ORG_NAME  |스페이스에 매핑될 Organization Name               |X         |
-  |-q SPACE-QUOTA-NAME    |스페이스에 할당될 QUOTA  name    |X         |
+  |-o ORG_NAME  |Organization Name to be mapped to the space  |X         |
+  |-q SPACE-QUOTA-NAME    |QUOTA name to be allocated to the space|X         |
 
   - **Example**
 
@@ -1968,7 +1968,7 @@ Change the app name.
 
 
   ```
-  스페이스정보를 삭제합니다.
+  Delete the Space informaiton.
   ```
 
 
@@ -1978,7 +1978,7 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SPACE_NAME   |Space Name                           |O         |
-  |-f           |삭제 확인메시지 없이 스페이스 삭제합니다. |X         |
+  |-f           |Delete the space without a confirmation message.|X         |
 
   - **Example**
 
@@ -2000,7 +2000,7 @@ Change the app name.
 
 
   ```
-  스페이스   name을 변경합니다.
+  Change the space name.
   ```
 
 
@@ -2010,7 +2010,7 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SPACE_NAME     |Space Name                           |O         |
-  |NEW_SPACE_NAME |삭제 확인메시지 없이 스페이스 삭제합니다. |O         |
+  |NEW_SPACE_NAME |Delete the space without a confirmation message.|O         |
 
   - **Example**
 
@@ -2035,7 +2035,7 @@ Change the app name.
 
 
   ```
-  도메인 정보 목록을 조회합니다.
+  Check the domain information list.
   ```
 
 
@@ -2066,7 +2066,7 @@ Change the app name.
 
 
   ```
-  도메인 정보 목록을 생성합니다. 생성된 도메인은 설정된 조직에서 사용가능하다.
+  Create a list of domain information. The created domain can be used in the established organization.
   ```
 
 
@@ -2076,7 +2076,7 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |ORG_NAME     |Organization Name                           |O         |
-  |DOMAIN       |도메인  name                          |O         |
+  |DOMAIN       |Domain  name                          |O         |
 
 
   - **Example**
@@ -2100,7 +2100,7 @@ Change the app name.
 
 
   ```
-  도메인 정보를 삭제합니다.
+  Delete domain information.
   ```
 
 
@@ -2109,8 +2109,8 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |DOMAIN       |도메인  name                           |O         |
-  |-f           |삭제 확인메시지 없이 도메인을 삭제합니다. |X         |
+  |DOMAIN       |Domain  name                           |O         |
+  |-f           |Deletes the domain without a confirmation message.|X         |
 
 
   - **Example**
@@ -2134,7 +2134,7 @@ Change the app name.
 
 
   ```
-  공유 도메인정보를 생성한다
+  Create shared domain information
   ```
 
 
@@ -2166,7 +2166,7 @@ Change the app name.
 
 
   ```
-  공유 도메인정보를 삭제합니다.
+  Delete shared domain information.
   ```
 
 
@@ -2176,7 +2176,7 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |DOMAIN       |Organization Name                           |O         |
-  |-f           |삭제 확인메시지 없이 도메인을 삭제합니다.    |X         |
+  |-f           |Delete the domain without a confirmation message.  |X         |
 
   - **Example**
 
@@ -2202,7 +2202,7 @@ Change the app name.
 
 
   ```
-  현재 조직/스페이스에 존재하는 라우트 정보목롤을 조회합니다.
+  Check the route information list that exists in the current organization/space.
   ```
 
 
@@ -2231,7 +2231,7 @@ Change the app name.
 
 
   ```
-  공유 도메인정보를 삭제합니다...
+  Delete shared domain information...
   ```
 
 
@@ -2241,8 +2241,8 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SPACE_NAME   |Space Name                           |O         |
-  |DOMAIN       |삭제 확인메시지 없이 공유 도메인을 삭제합니다. <br>   - 도메인 정보가 입력되어있어야 합니다.   |O         |
-  |-n HOSTNAME  |호스트   name                          |X         |
+  |DOMAIN       |Delete the shared domain without a confirmation message. <br>   - Domain information must be inputted.   |O         |
+  |-n HOSTNAME  |Host Name                          |X         |
 
 
   - **Example**
@@ -2266,7 +2266,7 @@ Change the app name.
 
 
   ```
-  공유 도메인정보를 삭제합니다.
+  Delete shared domain information.
   ```
 
 
@@ -2276,8 +2276,8 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SPACE_NAME   |Space Name                           |O         |
-  |DOMAIN       |삭제 확인메시지 없이 공유 도메인을 삭제합니다. <br>   - 도메인 정보가 입력되어있어야 합니다.   |O         |
-  |-n HOSTNAME  |호스트   name                          |X         |
+  |DOMAIN       |Delete the shared domain without a confirmation message. <br>   - Domain information must be inputted. |O         |
+  |-n HOSTNAME  |Host name                          |X         |
 
 
   - **Example**
@@ -2302,7 +2302,7 @@ Change the app name.
 
 
   ```
-  라우트 정보가 존재하는지 체크합니다.
+  Check if route information exists.
   ```
 
 
@@ -2311,8 +2311,8 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |HOST         |호스트   name                                    |O         |
-  |DOMAIN       |삭제 확인메시지 없이 공유 도메인을 삭제합니다.    |O         |
+  |HOST         |Host name                                    |O         |
+  |DOMAIN       |Delete the shared domain without a confirmation message.|O         |
 
 
   - **Example**
@@ -2336,7 +2336,7 @@ Change the app name.
 
 
   ```
-  App에게 URL route정보를 할당합니다.
+  Allocate URL route information to the app.
   ```
 
 
@@ -2346,8 +2346,8 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |App  name                           |O         |
-  |DOMAIN       |App에게 할당할 도메인             |O         |
-  |-n HOSTNAME  |App에게 할당할 Host              |X         |
+  |DOMAIN       |Domain to allocate to App             |O         |
+  |-n HOSTNAME  |Host to allocate to App             |X         |
 
 
   - **Example**
@@ -2371,7 +2371,7 @@ Change the app name.
 
 
   ```
-  App에게 URL route정보를 삭제합니다.
+  Delete the URL route information to the app.
   ```
 
 
@@ -2381,8 +2381,8 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |APP_NAME     |App  name                           |O         |
-  |DOMAIN       |App에게 할당할 도메인             |O         |
-  |-n HOSTNAME  |App에게 할당할 Host              |X         |
+  |DOMAIN       |Domain to allocate to App              |O         |
+  |-n HOSTNAME  |Host to allocate to App              |X         |
 
 
   - **Example**
@@ -2405,7 +2405,7 @@ Change the app name.
 
 
   ```
-  App에게 URL route정보를 삭제합니다.
+  Delete URL route information to APP.
   ```
 
 
@@ -2414,9 +2414,9 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |DOMAIN       |App에게 할당할 도메인             |O         |
-  |-n HOSTNAME  |App에게 할당할 Host              |X         |
-  |-f           |삭제 확인메시지 없이 라우트 정보를 삭제합니다.              |X         |
+  |DOMAIN       |Domain to allocate to App              |O         |
+  |-n HOSTNAME  |Host to allocate to App              |X         |
+  |-f           |Delete route information without confirmation message. |X         |
 
 
   - **Example**
@@ -2439,7 +2439,7 @@ Change the app name.
 
 
   ```
-  App에 매핑되지 않은 라우트 정보를 모두 삭제한다
+  Delete all route information that is not mapped to the app.
   ```
 
 
@@ -2448,7 +2448,7 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |-f           |삭제 확인메시지 없이 라우트 정보를 삭제합니다.           |X         |
+  |-f           |Delete route information without confirmation message.|X         |
 
 
   - **Example**
@@ -2475,7 +2475,7 @@ Change the app name.
 
 
   ```
-  빌드팩 목록을 조회합니다.
+  Check the list of build packs.
   ```
 
 
@@ -2506,7 +2506,7 @@ Change the app name.
 
 
   ```
-  빌드팩을 생성합니다.
+  Create a build pack.
   ```
 
 
@@ -2515,11 +2515,11 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |BUILDPACK     |빌드팩  name                           |O         |
-  |-p PATH       |빌드팩 path                      |O         |
-  |-i POSITIONE  |빌드팩 auto-detection동안 빌드팩 체크 순서  <br> ex)1.2.3              |O         |
-  |--enable      |스테이징시 사용                  |X         |
-  |--disable     |스테이징시 미사용                |X         |
+  |BUILDPACK     |buildpack name                           |O         |
+  |-p PATH       |buildpack path                      |O         |
+  |-i POSITIONE  |Buildpack check order during buildpack auto-detection<br> ex)1.2.3              |O         |
+  |--enable      |Used when staging                 |X         |
+  |--disable     |Not used when staging            |X         |
 
 
 
@@ -2544,7 +2544,7 @@ Change the app name.
 
 
   ```
-  빌드팩 정보를 수정합니다.
+  Modify buildpack imformation
   ```
 
 
@@ -2553,11 +2553,11 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |BUILDPACK     |빌드팩  name                           |O         |
-  |-p PATH       |빌드팩 path                      |O         |
-  |-i POSITIONE  |빌드팩 auto-detection동안 빌드팩 체크 순서  <br> ex)1.2.3              |O         |
-  |--enable      |스테이징시 사용                  |X         |
-  |--disable     |스테이징시 미사용                |X         |
+  |BUILDPACK     |buildpack  name                           |O         |
+  |-p PATH       |buildpack path                      |O         |
+  |-i POSITIONE  |Buildpack check order during buildpack auto-detection <br> ex)1.2.3              |O         |
+  |--enable      |Used when staging                    |X         |
+  |--disable     |Not used when staging                   |X         |
 
 
 
@@ -2581,7 +2581,7 @@ Change the app name.
 
 
   ```
-  빌드팩을 삭제합니다.
+  Delete buildpack
   ```
 
 
@@ -2590,8 +2590,8 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |BUILDPACK     |빌드팩  name                           |O         |
-  |-f           |삭제 확인메시지 없이 빌드팩 정보를 삭제       |X         |
+  |BUILDPACK     |buildpack  name                           |O         |
+  |-f           |Delete buildpack information without confirmation message|X         |
 
 
   - **Example**
@@ -2618,7 +2618,7 @@ Change the app name.
 
 
   ```
-  새로운 사용자 계정을 생성합니다.
+  Create a new user account.
   ```
 
 
@@ -2627,8 +2627,8 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |USERNAME     |사용자 ID                        |O         |
-  |PASSWORD     |패스워드                         |O         |
+  |USERNAME     |User ID                        |O         |
+  |PASSWORD     |Password                         |O         |
 
 
   - **Example**
@@ -2652,7 +2652,7 @@ Change the app name.
 
 
   ```
-    새로운 사용자 계정을 삭제합니다.
+  Delete a new user account.
   ```
 
 
@@ -2661,8 +2661,8 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |USERNAME     |사용자 ID                       |O         |
-  |-f           |삭제 확인메시지 없이 사용자 정보를 삭제                         |X         |
+  |USERNAME     |User ID                       |O         |
+  |-f           |Delete user information without confirmation message |X         |
 
 
   - **Example**
@@ -2686,7 +2686,7 @@ Change the app name.
 
 
   ```
-  조직에 소속된 사용자를 조회합니다.
+  Check the users belonging to the organization.
   ```
 
 
@@ -2718,7 +2718,7 @@ Change the app name.
 
 
   ```
-  사용자에게 특정조직의 role을 설정합니다.
+  Set the role of a specific organization to the user.
   ```
 
 
@@ -2729,7 +2729,7 @@ Change the app name.
   |-------------|--------------------------------|-----------|
   |USERNAME     |UserName                          |O         |
   |ORG          |Organization Name                          |O         |
-  |ROLE        |역할  name <br>  - OrgManager : 사용자 관리 및 plan설정/변경 권한 <br> - BillingManager : 빌링계정 및 과금정보 생성 및 관리 <br>  - OrgAuditor : 조직 quota사용률 및 사용자 role을 조회             |O         |
+  |ROLE        |Role  name <br>  - OrgManager : User management and plan setting/change authority<br> - BillingManager : Create and manage billing account and billing information <br>  - OrgAuditor : Check organization quota capacity and user role        |O         |
 
 
 
@@ -2754,7 +2754,7 @@ Change the app name.
 
 
   ```
-  사용자에게 특정조직의 role을 설정을 해제합니다..
+  Unset the role of a specific organization to the user..
   ```
 
 
@@ -2765,7 +2765,7 @@ Change the app name.
   |-------------|--------------------------------|-----------|
   |USERNAME     |UserName                          |O         |
   |ORG          |Organization Name                          |O         |
-  |ROLE        |역할  name <br>  - OrgManager : 사용자 관리 및 plan설정/변경 권한 <br> - BillingManager : 빌링계정 및 과금정보 생성 및 관리 <br>  - OrgAuditor : 조직 quota사용률 및 사용자 role을 조회             |O         |
+  |ROLE        |Role  name <br>  - OrgManager :User management and plan setting/change authority<br> - BillingManager : Create and manage billing account and billing information <br>  - OrgAuditor : Check organization quota capacity and user role  |O         |
 
 
 
@@ -2790,7 +2790,7 @@ Change the app name.
 
 
   ```
-  조직의 스페이스에 할당된 사용자 목록정보를 조회합니다.
+  Check User list allocated to space of Organization. 
   ```
 
 
@@ -2824,7 +2824,7 @@ Change the app name.
 
 
   ```
-  사용자에게 조직의 스페이스에 role을 할당합니다.
+  Allocate roles to users for organizational space.
   ```
 
 
@@ -2836,7 +2836,7 @@ Change the app name.
   |USERNAME     |UserName                         |O         |
   |ORG          |Organization Name                           |O         |
   |SPACE        |Space Name                       |O         |
-  |ROLE         |역할  name  <br>  - SpaceManager: 스페이스의 관리자로 스페이스 내의 사용자 계정 관리 및 인스턴스 수, 서비스 바인딩 상태 및 스페이스 내의 리소스 상태를 조회 및 변경 <br> - SpaceDeveloper: 서비스 관리로 App 배포 <br> - SpaceAuditor: 서비스 관리로 App을 배포   |O         |
+  |ROLE         |Role  name  <br>  - SpaceManager: As an administrator of the space, you can manage user accounts in the space. also check and change the number of instances, service binding status, and resource status in the space.<br> - SpaceDeveloper: Deploy the app as service management. <br> - SpaceAuditor: Deploy the app as service management.   |O         |
 
   - **Example**
 
@@ -2859,7 +2859,7 @@ Change the app name.
 
 
   ```
-  사용자에게 조직의 스페이스에 role을 회수합니다.
+  Recalls the role from the user in the organizational  space.
   ```
 
 
@@ -2871,7 +2871,7 @@ Change the app name.
   |USERNAME     |UserName                         |O         |
   |ORG          |Organization Name                           |O         |
   |SPACE        |Space Name                       |O         |
-  |ROLE         |역할  name  <br>  - SpaceManager: 스페이스의 관리자로 스페이스 내의 사용자 계정 관리 및 인스턴스 수, 서비스 바인딩 상태 및 스페이스 내의 리소스 상태를 조회. <br> - SpaceDeveloper: 서비스 관리로 App 배포 <br> - SpaceAuditor: 스페이스 내의 서비스 바인딩, 인스턴스 수, app사용률등을 조회   |O         |
+  |ROLE         |Role name  <br>  - SpaceManager: As an administrator of the space, you can manage user accounts in the space. also check and change the number of instances, service binding status, and resource status in the space. <br> - SpaceDeveloper: Deploy the app as service management. <br> - SpaceAuditor: Check the service binding, number of instances, app use rate, etc in space. |O         |
 
   - **Example**
 
@@ -2897,7 +2897,7 @@ Change the app name.
 
 
   ```
-  Quota 목록을 조회합니다.
+  Check the Quota list.
   ```
 
 
@@ -2926,7 +2926,7 @@ Change the app name.
 
 
   ```
-  Quota의 상세정보를 조회합니다.
+  Check detailed information of Quota.
   ```
 
 
@@ -2959,7 +2959,7 @@ Change the app name.
 
 
   ```
-  조직에게 QUOTA를 할당합니다.
+  Allocate QUOTA to the organization.
   ```
 
 
@@ -2993,7 +2993,7 @@ Change the app name.
 
 
   ```
-  Quota정보를 생성합니다.
+  Create Quota information.
   ```
 
 
@@ -3003,11 +3003,11 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |QUOTA                       |QUOTA  name                                                       |O         |
-  |-m TOTAL_MEMORY             |메모리 할당량  <br> Ex) 1024M, 1G, 10G                         |X         |
-  |-i INSTANCE_MEMORY          |App instance가 가질수 있는 최대할당량 (-1은 무한대) <br>  Ex) 1024M, 1G, 10G                        |X         |
-  |-r ROUTES                   |최대 라우트 수                                                 |X         |
-  |-s SERVICE_INSTANCES        |최대 Service Instance수                                         |X         |
-  |--allow-paid-service-plans  |과금 서비스 plan 사용가능                                       |X        |
+  |-m TOTAL_MEMORY             |Memory quota<br> Ex) 1024M, 1G, 10G                         |X         |
+  |-i INSTANCE_MEMORY          |Maximum quota that an app instance can have (-1 is infinite)<br>  Ex) 1024M, 1G, 10G                        |X         |
+  |-r ROUTES                   |Maximum number of routes                                      |X         |
+  |-s SERVICE_INSTANCES        |Maximum number of Service Instances                |X         |
+  |--allow-paid-service-plans  |Enable billing service plan              |X        |
 
 
   - **Example**
@@ -3041,7 +3041,7 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |QUOTA        |QUOTA  name                                                  |O         |
-  |-f           |삭제 확인메시지 없이 QUOTA 정보를 삭제                      |X         |
+  |-f           |Delete QUOTA information without confirmation message    |X         |
 
 
   - **Example**
@@ -3065,7 +3065,7 @@ Change the app name.
 
 
   ```
-  Quota정보를 수정합니다.
+  Modify the Quota information.
   ```
 
 
@@ -3075,13 +3075,13 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |QUOTA                       |QUOTA  name                                                       |O         |
-  |-m TOTAL_MEMORY             |메모리 할당량  <br> Ex) 1024M, 1G, 10G                         |X         |
-  |-i INSTANCE_MEMORY          |App instance가 가질수 있는 최대할당량 (-1은 무한대) <br>  Ex) 1024M, 1G, 10G                        |X         |
-  |-n NEW_NAME                 |QUOTA  name 변경시 변경할 이름                                      |X         |
-  |-r ROUTES                   |최대 라우트 수                                                 |X         |
-  |-s SERVICE_INSTANCES        |최대 Service Instance수                                         |X         |
-  |--allow-paid-service-plans  |과금 서비스 plan 사용가능                                       |X        |
-  |--disallow-paid-service-plans  |과금 서비스 plan 사용 불가                                       |X        |
+  |-m TOTAL_MEMORY             |Memory quota<br> Ex) 1024M, 1G, 10G                         |X         |
+  |-i INSTANCE_MEMORY          |Maximum quota that an app instance can have (-1 is infinite)<br>  Ex) 1024M, 1G, 10G                        |X         |
+  |-n NEW_NAME                 |The name to be changed when changing the QUOTA name              |X         |
+  |-r ROUTES                   |Maximum number of routes                      |X         |
+  |-s SERVICE_INSTANCES        |Maximum number of Service Instances                                  |X         |
+  |--allow-paid-service-plans  |Enable billing service plan                                 |X        |
+  |--disallow-paid-service-plans  |Disable billing service plan                             |X        |
 
   - **Example**
 
@@ -3104,7 +3104,7 @@ Change the app name.
 
 
   ```
-  private도메인을 다른 조직과 공유합니다.
+  Share your privateDomain with other organizations.
   ```
 
 
@@ -3114,7 +3114,7 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |QUOTA                 |QUOTA  name                        |O         |
-  |DOMAIN                |도메인  name                        |O         |
+  |DOMAIN                |Domain  name                        |O         |
 
 
   - **Example**
@@ -3138,7 +3138,7 @@ Change the app name.
 
 
   ```
-  다른 조직과 share한 도메인 정보를 unshare합니다.
+  Unshare domain information shared with other organizations.
   ```
 
 
@@ -3147,8 +3147,8 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |ORG                   |도메인  name                        |O         |
-  |DOMAIN                |도메인  name                        |O         |
+  |ORG                   |Domain name                        |O         |
+  |DOMAIN                |Domain name                        |O         |
 
 
   - **Example**
@@ -3175,7 +3175,7 @@ Change the app name.
 
 
   ```
-  Space-quota정보 목록을 조회합니다.
+  Check the list of space-quota information.
   ```
 
 
@@ -3207,7 +3207,7 @@ Change the app name.
 
 
   ```
-  Space quota 상세정보를 조회합니다.
+  Check space quota details.
   ```
 
 
@@ -3216,7 +3216,7 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE_QUOTA_NAME       |스페이스 QUOTA  name       |O         |
+  |SPACE_QUOTA_NAME       |Space QUOTA  name       |O         |
 
 
   - **Example**
@@ -3240,7 +3240,7 @@ Change the app name.
 
 
   ```
-  스페이스 Quota정보를 생성합니다.
+  Create space quota information.
   ```
 
 
@@ -3250,11 +3250,11 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |QUOTA                       |QUOTA  name                                                       |O         |
-  |-m TOTAL_MEMORY             |메모리 할당량  <br> Ex) 1024M, 1G, 10G                         |X         |
-  |-i INSTANCE_MEMORY          |App instance가 가질수 있는 최대할당량 (-1은 무한대) <br>  Ex) 1024M, 1G, 10G                        |X         |
-  |-r ROUTES                   |최대 라우트 수                                                 |X         |
-  |-s SERVICE_INSTANCES        |최대 Service Instance수                                         |X         |
-  |--allow-paid-service-plans  |과금 서비스 plan 사용가능                                       |X        |
+  |-m TOTAL_MEMORY             |Memory quota  <br> Ex) 1024M, 1G, 10G                         |X         |
+  |-i INSTANCE_MEMORY          |Maximum quota that an app instance can have (-1 is infinite)<br>  Ex) 1024M, 1G, 10G                        |X         |
+  |-r ROUTES                   |Maximum number of routes                  |X         |
+  |-s SERVICE_INSTANCES        |Maximum number of Service Instances                                 |X         |
+  |--allow-paid-service-plans  |Enable billing service plan                       |X        |
 
 
   - **Example**
@@ -3278,7 +3278,7 @@ Change the app name.
 
 
   ```
-  스페이스 Quota정보를 수정합니다.
+  Modify the space quota information.
   ```
 
 
@@ -3287,14 +3287,14 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE-QUOTA-NAME            |스페이스 QUOTA  name                                               |O         |
-  |-i MAX-INSTANCE-MEMORY      |App instance가 가질수 있는 최대할당량 (-1은 무한대) <br>  Ex) 1024M, 1G, 10G                        |X         |
-  |-m MEMORY                   |스페이스가 가질수 있는 최대 메모리                               |X         |
-  |-n NEW_NAME                 |변경하려는 SPACE-QUOTA  name                                       |X         |
-  |-r ROUTES                   |스페이스가 가지는 최대 route 갯수                               |X         |
-  |-s SERVICES                 |스페이스가 가지는 최대 Service Instance갯수                       |X         |
-  |--allow-paid-service-plans  |과금 서비스 plan 사용가능                                       |X        |
-  |--disallow-paid-service-plans  |과금 서비스 plan 사용 불가                                   |X        |
+  |SPACE-QUOTA-NAME            |Space QUOTA  name                                               |O         |
+  |-i MAX-INSTANCE-MEMORY      |Maximum quota that an app instance can have (-1 is infinite) <br>  Ex) 1024M, 1G, 10G                        |X         |
+  |-m MEMORY                   |Maximum memory a space can have                  |X         |
+  |-n NEW_NAME                 |SPACE-QUOTA name you want to change                     |X         |
+  |-r ROUTES                   |Maximum number of routes a space has                           |X         |
+  |-s SERVICES                 |The maximum number of Service Instances a space has            |X         |
+  |--allow-paid-service-plans  |Enable billing service plan                                     |X        |
+  |--disallow-paid-service-plans  |Disable billing service plan                     |X        |
 
 
   - **Example**
@@ -3318,7 +3318,7 @@ Change the app name.
 
 
   ```
-  스페이스 Quota정보를 삭제합니다.
+  Space Quota정보를 삭제합니다.
   ```
 
 
@@ -3327,8 +3327,8 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE-QUOTA-NAME     |스페이스 QUOTA  name                                     |O         |
-  |-f           |삭제 확인메시지 없이 SPACE-QUOTA 정보를 삭제               |X         |
+  |SPACE-QUOTA-NAME     |Space QUOTA  name                                     |O         |
+  |-f           |Delete SPACE-QUOTA information without confirmation message  |X         |
 
 
 
@@ -3353,7 +3353,7 @@ Change the app name.
 
 
   ```
-  스페이스에 quota를 할당합니다.
+  Allocate quota to space.
   ```
 
 
@@ -3363,7 +3363,7 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SPACE-NAME            |Space Name                    |O         |
-  |SPACE-QUOTA-NAME      |스페이스 Quota  name              |O         |
+  |SPACE-QUOTA-NAME      |Space Quota  name              |O         |
 
 
 
@@ -3388,7 +3388,7 @@ Change the app name.
 
 
   ```
-  스페이스에 할당된 quota를 회수합니다.
+  Recall the quota allocated to the space.
   ```
 
 
@@ -3398,7 +3398,7 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SPACE        |Space Name                   |O         |
-  |QUOTA        |스페이스 Quota  name             |O         |
+  |QUOTA        |Space Quota  name             |O         |
 
 
 
@@ -3426,7 +3426,7 @@ Change the app name.
 
 
   ```
-  서비스 인증 토큰 목록을 조회합니다.
+  Check a list of service authentication tokens.
   ```
 
 
@@ -3457,7 +3457,7 @@ Change the app name.
 
 
   ```
-  스페이스에 할당된 quota를 회수합니다.
+  Recall the quota allocated to the space.
   ```
 
 
@@ -3467,9 +3467,9 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |LABEL        |서비스 토큰 라벨                 |O         |
+  |LABEL        |Service token label       |O         |
   |PROVIDER     |Service Provider                    |O         |
-  |TOKEN        |토큰  name                          |O         |
+  |TOKEN        |token name                          |O         |
 
 
   - **Example**
@@ -3493,7 +3493,7 @@ Change the app name.
 
 
   ```
-  Service auth token 정보를 수정합니다.
+  Modify the service auth token information.
   ```
 
 
@@ -3503,9 +3503,9 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |LABEL        |서비스 토큰 라벨                 |O         |
+  |LABEL        |Service Token Label                 |O         |
   |PROVIDER     |Service Provider                    |O         |
-  |TOKEN        |토큰  name                          |O         |
+  |TOKEN        |Token  name                          |O         |
 
 
   - **Example**
@@ -3529,7 +3529,7 @@ Change the app name.
 
 
   ```
-  Service auth token 정보를 삭제합니다.
+  Delete Service auth token information
   ```
 
 
@@ -3539,9 +3539,9 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |LABEL        |서비스 토큰 라벨                 |O         |
+  |LABEL        |Service Token Label                 |O         |
   |PROVIDER     |Service Provider                    |O         |
-  |-f           |삭제 확인메시지 없이 SERVICE TOKEN 정보를 삭제      |X         |
+  |-f           |Delete SERVICE TOKEN information without confirmation message |X         |
 
 
   - **Example**
@@ -3565,7 +3565,7 @@ Change the app name.
 
 
   ```
-  Service Broker정보 목록을 조회합니다.
+  Check the Service Broker information list.
   ```
 
 
@@ -3596,7 +3596,7 @@ Change the app name.
 
 
   ```
-  Service Broker정보를 등록합니다.
+  Register for Service Broker information.
   ```
 
 
@@ -3608,8 +3608,8 @@ Change the app name.
   |-------------|--------------------------------|-----------|
   |SERVICE_BROKERABEL        |Service Broker Name            |O         |
   |USERNAME                   |UserName                   |O         |
-  |PASSWORD                   |패스워드                   |O         |
-  |URL                        |서비스 브로커 URL           |O         |
+  |PASSWORD                   |Password                  |O         |
+  |URL                        |Service Broker URL           |O         |
 
 
 
@@ -3634,7 +3634,7 @@ Change the app name.
 
 
   ```
-  Service Broker정보를 등록합니다.
+  Register for Service Broker information.
   ```
 
 
@@ -3646,8 +3646,8 @@ Change the app name.
   |-------------|--------------------------------|-----------|
   |SERVICE_BROKERABEL        |Service Broker Name            |O         |
   |USERNAME                   |UserName                   |O         |
-  |PASSWORD                   |패스워드                   |O         |
-  |URL                        |서비스 브로커 URL           |O         |
+  |PASSWORD                   |Password                  |O         |
+  |URL                        |Service Broker URL           |O         |
 
 
 
@@ -3672,7 +3672,7 @@ Change the app name.
 
 
   ```
-  Service Broker정보를 삭제합니다.
+  Delete Service Broker information
   ```
 
 
@@ -3683,7 +3683,7 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SERVICE_BROKER    |Service Broker Name                                         |O         |
-  |-f                |삭제 확인메시지 없이 SERVICE BROKER 정보를 삭제       |X         |
+  |-f                |Delete SERVICE BROKER information without confirmation message  |X         |
 
 
 
@@ -3708,7 +3708,7 @@ Change the app name.
 
 
   ```
-  Service Broker  name을 수정합니다.
+  Modify Service Broker Name
   ```
 
 
@@ -3719,7 +3719,7 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SERVICE_BROKER     |Service Broker Name            |O         |
-  |NEW_SERVICE_BROKER |변경할 Service Broker Name      |O         |
+  |NEW_SERVICE_BROKER |Service Broker Name to change     |O         |
 
 
 
@@ -3744,7 +3744,7 @@ Change the app name.
 
 
   ```
-  서비스 인스턴스에서 사용하는 서비스 및 플랜을 다른 플랜으로 변경합니다. <br> - App이 사용하는 서비스를 다른 서비스로 변경하려 할때 사용합니다.
+  Change the service and plan used by the Service instance to another plan. <br>-It is used to change the service used by the app to another service.
   ```
 
 
@@ -3754,11 +3754,11 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |v1_SERVICE     |기존 Service Name                         |O         |
-  |v1_PROVIDER    |기존 서비스를 제공하는 제공자            |O         |
-  |v1_PLAN        |기존 서비스 인스턴스에서 사용하는 플랜    |O         |
-  |v2_SERVICE     |신규 Service Name                         |O         |
-  |v2_PLAN        |신규 서비스에서 사용하는 플랜            |O         |  
+  |v1_SERVICE     |Existing Service Name                         |O         |
+  |v1_PROVIDER    |Provider that provides Existing Service  |O         |
+  |v1_PLAN        |Plan used by Existing Service instance   |O         |
+  |v2_SERVICE     |New Service Name                         |O         |
+  |v2_PLAN        |Plan used by New Service           |O         |  
 
 
   - **Example**
@@ -3782,7 +3782,7 @@ Change the app name.
 
 
   ```
-  cf와 서비스 브로커간의 정보 불일치를 해결할때 사용합니다. <br>   (migrate-service-instances   name령 이후 사용)
+  cf와 Service Broker간의 정보 불일치를 해결할때 사용합니다. <br>   (migrate-service-instances   name령 이후 사용)
   ```
 
 
@@ -3819,7 +3819,7 @@ Change the app name.
 
 
   ```
-  서비스 access 될 서비스 목록 조회합니다..
+  Service access 될 Service 목록 조회합니다..
   ```
 
 
@@ -3851,7 +3851,7 @@ Change the app name.
 
 
   ```
-  조직 또는 서비스 plan을 서비스에 접근 가능하도록 설정합니다.
+  조직 또는 Service plan을 Service에 접근 가능하도록 설정합니다.
   ```
 
 
@@ -3888,7 +3888,7 @@ Change the app name.
 
 
   ```
-  조직 또는 서비스 plan을 서비스에 접근 불가 하도록 설정합니다.
+  조직 또는 Service plan을 Service에 접근 불가 하도록 설정합니다.
   ```
 
 
@@ -4096,7 +4096,7 @@ Change the app name.
 
 
   ```
-  시큐리티 그룹 정보와 스페이스를 바인드 합니다.
+  시큐리티 그룹 정보와 Space를 바인드 합니다.
   ```
 
 
@@ -4131,7 +4131,7 @@ Change the app name.
 
 
   ```
-  시큐리티 그룹 정보와 스페이스를 언바인드 합니다.
+  시큐리티 그룹 정보와 Space를 언바인드 합니다.
   ```
 
 
@@ -4328,7 +4328,7 @@ Change the app name.
 
 
   ```
-  스테이징시 사용되는 environment variables 내용을 조회합니다.
+  bUsed when staging  되는 environment variables 내용을 조회합니다.
   ```
 
 
@@ -4361,7 +4361,7 @@ Change the app name.
 
 
   ```
-  스테이징시 사용되는 environment variables 내용을 설정한다
+  bUsed when staging  되는 environment variables 내용을 설정한다
   ```
 
 
@@ -4645,7 +4645,7 @@ Change the app name.
 
 
   ```
-  사용자가 cf login후 CF에서 받은 token 값 조회합니다.
+  User가 cf login후 CF에서 받은 token 값 조회합니다.
   ```
 
 

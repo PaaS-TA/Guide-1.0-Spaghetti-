@@ -505,7 +505,7 @@ Look up the list of apps in the target space.
 
 
   ```
-  Inquires the status of the app.
+  Inquires the state of the app.
   ```
 
 
@@ -2836,7 +2836,7 @@ Change the app name.
   |USERNAME     |UserName                         |O         |
   |ORG          |Organization Name                           |O         |
   |SPACE        |Space Name                       |O         |
-  |ROLE         |Role  name  <br>  - SpaceManager: As an administrator of the space, you can manage user accounts in the space. also check and change the number of instances, service binding status, and resource status in the space.<br> - SpaceDeveloper: Deploy the app as service management. <br> - SpaceAuditor: Deploy the app as service management.   |O         |
+  |ROLE         |Role  name  <br>  - SpaceManager: As an administrator of the space, you can manage user accounts in the space. also check and change the number of instances, service binding state, and resource state in the space.<br> - SpaceDeveloper: Deploy the app as service management. <br> - SpaceAuditor: Deploy the app as service management.   |O         |
 
   - **Example**
 
@@ -2871,7 +2871,7 @@ Change the app name.
   |USERNAME     |UserName                         |O         |
   |ORG          |Organization Name                           |O         |
   |SPACE        |Space Name                       |O         |
-  |ROLE         |Role name  <br>  - SpaceManager: As an administrator of the space, you can manage user accounts in the space. also check and change the number of instances, service binding status, and resource status in the space. <br> - SpaceDeveloper: Deploy the app as service management. <br> - SpaceAuditor: Check the service binding, number of instances, app use rate, etc in space. |O         |
+  |ROLE         |Role name  <br>  - SpaceManager: As an administrator of the space, you can manage user accounts in the space. also check and change the number of instances, service binding state, and resource state in the space. <br> - SpaceDeveloper: Deploy the app as service management. <br> - SpaceAuditor: Check the service binding, number of instances, app use rate, etc in space. |O         |
 
   - **Example**
 
@@ -3031,7 +3031,7 @@ Change the app name.
 
 
   ```
-  Quota정보를 삭제합니다.
+  Delete Quota Information.
   ```
 
 
@@ -3318,7 +3318,7 @@ Change the app name.
 
 
   ```
-  Space Quota정보를 삭제합니다.
+  Delete Space Quota Information
   ```
 
 
@@ -3782,7 +3782,7 @@ Change the app name.
 
 
   ```
-  cf와 Service Broker간의 정보 불일치를 해결할때 사용합니다. <br>   (migrate-service-instances   name령 이후 사용)
+  It is used to resolve information inconsistency between cf and Service Broker.<br>   (Used after the migrate-service-instances command.)
   ```
 
 
@@ -3819,7 +3819,7 @@ Change the app name.
 
 
   ```
-  Service access 될 Service 목록 조회합니다..
+  Check the list of services to be accessed to service..
   ```
 
 
@@ -3851,7 +3851,7 @@ Change the app name.
 
 
   ```
-  조직 또는 Service plan을 Service에 접근 가능하도록 설정합니다.
+  Make your organization or service plan accessible to the Service.
   ```
 
 
@@ -3888,7 +3888,7 @@ Change the app name.
 
 
   ```
-  조직 또는 Service plan을 Service에 접근 불가 하도록 설정합니다.
+  Make the organization or service plan inaccessible to the service.
   ```
 
 
@@ -3928,7 +3928,7 @@ Change the app name.
 
 
   ```
-  시큐리티 그룹 상세정보를 조회합니다.
+  Check security group detailed information.
   ```
 
 
@@ -3963,7 +3963,7 @@ Change the app name.
 
 
   ```
-  시큐리티 그룹 목록을 조회합니다.
+  Check the list of security groups.
   ```
 
 
@@ -3995,7 +3995,7 @@ Change the app name.
 
 
   ```
-  시큐리티 그룹정보를 생성합니다.
+  Create the Security Group Information.
   ```
 
 
@@ -4005,7 +4005,7 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SECURITY_GROUP      |Security Group Name                                           |O          |
-  |PATH_TO_JSON_RULES_FILE      |시큐리티 룰을   name세한 JSON 파일의 path 및 file name<br> ex) rule file작성 예제 <br> [ <br> &nbsp;&nbsp;{   <br> &nbsp;&nbsp;&nbsp;&nbsp;"protocol": "tcp",     <br> &nbsp;&nbsp;&nbsp;&nbsp;"destination": "10.244.1.18", <br>     &nbsp;&nbsp;&nbsp;&nbsp;"ports": "3306" <br>&nbsp;&nbsp;} <br> ]     |O          |
+  |PATH_TO_JSON_RULES_FILE      |The path and file name of the JSON file specifying the security rules<br> ex) rule file example <br> [ <br> &nbsp;&nbsp;{   <br> &nbsp;&nbsp;&nbsp;&nbsp;"protocol": "tcp",     <br> &nbsp;&nbsp;&nbsp;&nbsp;"destination": "10.244.1.18", <br>     &nbsp;&nbsp;&nbsp;&nbsp;"ports": "3306" <br>&nbsp;&nbsp;} <br> ]     |O          |
 
 
   - **Example**
@@ -4029,7 +4029,7 @@ Change the app name.
 
 
   ```
-  시큐리티 그룹정보를 수정합니다.
+  Modify the security group information.
   ```
 
 
@@ -4039,7 +4039,7 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SECURITY_GROUP      |Security Group Name                                           |O          |
-  |PATH_TO_JSON_RULES_FILE      |시큐리티 룰을   name세한 JSON 파일의 Spath 및 file name<br> ex) rule file작성 예제 <br> [ <br> &nbsp;&nbsp;{   <br> &nbsp;&nbsp;&nbsp;&nbsp;"protocol": "tcp",     <br> &nbsp;&nbsp;&nbsp;&nbsp;"destination": "10.244.1.18", <br>     &nbsp;&nbsp;&nbsp;&nbsp;"ports": "3306" <br>&nbsp;&nbsp;} <br> ]     |O          |
+  |PATH_TO_JSON_RULES_FILE      |The path and file name of the JSON file specifying the security rules<br> ex) rule file example<br> [ <br> &nbsp;&nbsp;{   <br> &nbsp;&nbsp;&nbsp;&nbsp;"protocol": "tcp",     <br> &nbsp;&nbsp;&nbsp;&nbsp;"destination": "10.244.1.18", <br>     &nbsp;&nbsp;&nbsp;&nbsp;"ports": "3306" <br>&nbsp;&nbsp;} <br> ]     |O          |
 
   - **Example**
 
@@ -4062,7 +4062,7 @@ Change the app name.
 
 
   ```
-  시큐리티 그룹정보를 삭제합니다.
+  Delete the security group information
   ```
 
 
@@ -4072,7 +4072,7 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |SECURITY_GROUP  |Security Group Name                                    |O          |
-  |-f              |삭제 확인메시지 없이 시큐리지 그룹 정보를 삭제합니다.    |X          |
+  |-f              |Deletes security group information without delete confirmation message.  |X          |
 
 
   - **Example**
@@ -4096,7 +4096,7 @@ Change the app name.
 
 
   ```
-  시큐리티 그룹 정보와 Space를 바인드 합니다.
+  Bind security group information and space.
   ```
 
 
@@ -4131,7 +4131,7 @@ Change the app name.
 
 
   ```
-  시큐리티 그룹 정보와 Space를 언바인드 합니다.
+  Unbind security group information and space.
   ```
 
 
@@ -4166,7 +4166,7 @@ Change the app name.
 
 
   ```
-  App staging처리를 하기 위해 시큐리티 그룹을 설정합니다.
+  Set up a security group for app staging processing.
   ```
 
 
@@ -4199,7 +4199,7 @@ Change the app name.
 
 
   ```
-  Staging security group 정보 목록을 조회합니다.
+  Check the list of staging security group information.
   ```
 
 
@@ -4229,7 +4229,7 @@ Change the app name.
 
 
   ```
-  App staging처리를 하기 위한 시큐리티 그룹을 설정을 해제 합니다.
+  Unset the security group for app staging processing.
   ```
 
 
@@ -4262,7 +4262,7 @@ Change the app name.
 
 
   ```
-  실행중인 시큐리트 그룹 목록을 조회합니다.
+  Check the list of running security groups.
   ```
 
 
@@ -4297,7 +4297,7 @@ Change the app name.
 
 
   ```
-  실environment variables 내용을 조회합니다.
+  Check the contents of environment variables.
   ```
 
 
@@ -4328,7 +4328,7 @@ Change the app name.
 
 
   ```
-  bUsed when staging  되는 environment variables 내용을 조회합니다.
+  Check the contents of environment variables that are used when staging.
   ```
 
 
@@ -4361,7 +4361,7 @@ Change the app name.
 
 
   ```
-  bUsed when staging  되는 environment variables 내용을 설정한다
+  Set the contents of environment variables that are used when staging.
   ```
 
 
@@ -4371,7 +4371,7 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |ENV_VARIABLE  |environment variables 내용으로 KEY/VALUE로 구성              |O          |
+  |ENV_VARIABLE  |Consists of KEY/VALUE as contents of environment variables              |O          |
 
 
 
@@ -4396,7 +4396,7 @@ Change the app name.
 
 
   ```
-  environment variables 내용을 설정 합니다.
+  Set the contents of environment variables.
   ```
 
 
@@ -4406,7 +4406,7 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |ENV_VARIABLE  |environment variables 내용으로 KEY/VALUE로 구성된다.                |O          |
+  |ENV_VARIABLE  |It is consist of KEY/VALUE as contents of environment variables.            |O          |
 
 
 
@@ -4433,7 +4433,7 @@ Change the app name.
 
 
   ```
-  feature flags 목록을 조회합니다.
+  Check a list of feature flags.
   ```
 
 
@@ -4464,7 +4464,7 @@ Change the app name.
 
 
   ```
-  특정 Feature flag의 상태를 조회합니다.
+  Check the state of a specific feature flag.
   ```
 
 
@@ -4474,7 +4474,7 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |FEATURE_NAME  |Feature flag   name. <br> - feature flag에는 6가지가 있다. <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
+  |FEATURE_NAME  |Feature flag  name. <br> - There are six ways in feature flags. <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
 
 
 
@@ -4499,7 +4499,7 @@ Change the app name.
 
 
   ```
-  특정 Feature flag의 상태를 enable로 변경합니다.
+  Change the state of a specific feature flag to enable.
   ```
 
 
@@ -4508,7 +4508,7 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |FEATURE_NAME  |Feature flag   name. <br> - feature flag에는 6가지가 있다. <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
+  |FEATURE_NAME  |Feature flag   name. <br> - There are six ways in feature flags. <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
 
 
 
@@ -4533,7 +4533,7 @@ Change the app name.
 
 
   ```
-  특정 Feature flag의 상태를 disable로 변경합니다.
+  Change the state of a specific feature flag to disable.
   ```
 
 
@@ -4581,12 +4581,12 @@ Change the app name.
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
   |PATH         |Cf api path <br>  Ex) /v2/spaces/2d94e7ee-9805-408d-a1eb-ceac319e603b/summary             |O          |
-  |-i           |Response header포함한 결과                                                                  |X          |
-  |-v           |Request/response에 CF_TRACE enable된 내용 포함                                              |X          |
+  |-i           |Response header included result.                                                                |X          |
+  |-v           |Including the contents of CF_TRACE enabled in the request/response.                                     |X          |
   |-X METHOD    |HTTP method((GET,POST,PUT,DELETE,etc)                                                      |X          |
-  |-H HEADER    |Request에 Custom Header를 포함합니다.                                                         |X          |
-  |-d DATA      |Request에 Http data를 포함합니다.                                                             |X          |
-  |--output FILE |Response결과를 stdout대신 FILE로 결과 저장                                                  |X          |
+  |-H HEADER    |Include Custom Header in Request.                                                   |X          |
+  |-d DATA      |Include Http data in Request.                                                       |X          |
+  |--output FILE |Save response result as FILE instead of stdout                                         |X          |
 
 
   - **Example**
@@ -4610,7 +4610,7 @@ Change the app name.
 
 
   ```
-  CF CLI에 대한 설정.
+  Set up the CF CLI.
   ```
 
 
@@ -4619,10 +4619,10 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |--async-timeout TIMEOUT_IN_MINUTES        |CLI   name령 전송시 async timeout 설정                     |X          |
-  |--trace (true / false / path/to/file   )    |CLI   name령 수행시 실행되는 cf api의 내용 출력 설정         |X          |
-  |--color true / false                      |CLI   name령 수행시 실행되는 cf api의 내용 color 설정        |X          |
-  |--locale (LOCALE / CLEAR)                 |CLI   name령 수행시 실행되는 cf api의 내용 locale 설정       |X          |
+  |--async-timeout TIMEOUT_IN_MINUTES        |Set async timeout when sending CLI command                |X          |
+  |--trace (true / false / path/to/file   )    |Setting to output the contents of the cf api executed when executing the CLI command |X          |
+  |--color true / false                      |Setting the color of the contents of the cf api executed when executing the CLI command    |X          |
+  |--locale (LOCALE / CLEAR)                 |Set contents locale localeof the cf api executed when executing the CLI command.    |X          |
 
 
   - **Example**
@@ -4645,7 +4645,7 @@ Change the app name.
 
 
   ```
-  User가 cf login후 CF에서 받은 token 값 조회합니다.
+  User checks the token value received from CF after cf login.
   ```
 
 
@@ -4679,7 +4679,7 @@ Change the app name.
 
 
   ```
-  OpenPaaS CLI plugin repository(저장소)를 추가합니다.
+  Add the OpenPaaS CLI plugin repository.
   ```
 
 
@@ -4714,7 +4714,7 @@ Change the app name.
 
 
   ```
-  CLI plugin repository(저장소)를 삭제합니다.
+  Delete CLI plugin repository
   ```
 
 
@@ -4749,7 +4749,7 @@ Change the app name.
 
 
   ```
-  CLI에 추가된 plugin repository(저장소)목록을 조회합니다.
+  Check the plugin repository list added to CLI
   ```
 
 
@@ -4779,7 +4779,7 @@ Change the app name.
 
 
   ```
-  Repository에 있는 플러그인 목록을 조회합니다.
+  Check the list of plugins in the repository.
   ```
 
 
@@ -4816,7 +4816,7 @@ Change the app name.
 
 
   ```
-  추가된 plugin의 사용가능한   name령어 목록을 조회합니다.
+  Check the list of available commands added plugin.
   ```
 
 
@@ -4851,7 +4851,7 @@ Change the app name.
 
 
   ```
-  추가된 plugin의 사용가능한   name령어 목록을 조회합니다.
+  Check the list of available commands of the added plugin.
   ```
 
 
@@ -4860,7 +4860,7 @@ Change the app name.
 
   | Parameter Name   |           Description                 | Required(O/X) |
   |-------------|--------------------------------|-----------|
-  |URL or LOCAL-PATH/TO/PLUGIN   |Plugin URL 또는 로컬path 또는 repository에 있는 플러그인  name                |X          |
+  |URL or LOCAL-PATH/TO/PLUGIN   |Plugin URL or plugin name in local path or repository  |X          |
   |-r REPO_NAME                  |Plugin repository  name                                                   |X          |
 
 

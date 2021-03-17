@@ -60,7 +60,7 @@ This document installs Open PaaS development environment in e-government standar
 Then, it provides a guide for deploying and managing Java web applications, managing Service Pack in the Open PaaS environment through the Open PaaS development environment. 
 
 ### 1.2 Range
-The guide provided in this document was written in basis of the e-government standard framework 3.2.0 and Eclipse Kepler version (Kepler, 4.3.x version).
+The guide provided in this document was written on the basis of the e-government standard framework 3.2.0 and Eclipse Kepler version (Kepler, 4.3.x version).
 
 ### 1.3 Reference Materials
 This document was referred to as Cloud Foundry's Cloud Foundry Eclipse plug-in document.
@@ -71,7 +71,7 @@ http://docs.run.pivotal.io/buildpacks/java/sts.html
 
 ### 2.1 Preparation before installation
 
-This document was written in basis of  installation in the e-government framework version 3.1.1 development environment. The e-government framework development environment is written in Java language.  the Java Development Kit (JDK) or Java Execution Environment (JRE) must be installed to run the e-government framework development environment. Since the Open PaaS development environment operates on the form of a plug-in in the e-government framework development environment, install the e-government framework development environment after installing the Java development kit. (Java version 7 or higher is recommended.) Also, if you don't use the e-government framework development environment ,  you could install the eclipse. becuase it is similar to the Eclipse integrated development environment Kepler version, so it was not relevant to install Eclipse.
+This document was written on the basis of  installation in the e-government framework version 3.1.1 development environment. The e-government framework development environment is written in Java language.  the Java Development Kit (JDK) or Java Execution Environment (JRE) must be installed to run the e-government framework development environment. Since the Open PaaS development environment operates on the form of a plug-in in the e-government framework development environment, install the e-government framework development environment after installing the Java development kit. (Java version 7 or higher is recommended.) Also, if you don't use the e-government framework development environment ,  you could install the eclipse. becuase it is similar to the Eclipse integrated development environment Kepler version, so it was not relevant to install Eclipse.
 
 The version used in the description below is as follows.
 * jdk-8u60

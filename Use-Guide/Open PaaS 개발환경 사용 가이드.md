@@ -190,51 +190,44 @@ This section describes how to connect open platform servers.
      Clicking the “Cancel” button cancels the process and closes the screen.
 	![](./../images/openpaas-eclipse/image30.png)
 
-3. “Open PaaS 계정” 대화창이 표시된다. 이 대화창은 조직과 스페이스 접근하기 위해 Open PaaS의 계정으로 로그인을 하기 위한 대화창이다.  
-    이메일과 비밀번호란을 작성하고 계정 확인 버튼을 클릭하여 계정의
-    유효성을 체크한다.  
-    계정이 정상적으로 확인되면 “Next” 버튼이 활성화된다.  
-    “Next” 버튼을 눌러서 다음 화면으로 이동한다.  
+3. The “Open PaaS Account” dialog is displayed. This dialog is a dialog for logging in to the Open PaaS account to access the organization and space.
+     Fill in the email and password fields, and click the Confirm Account button to check the validity of the account.
+     When the account is successfully verified, the “Next” button is activated.
+     Click the “Next” button to move to the next steps.
     Clicking the “Cancel” button cancels the process and closes the screen.
     ![](./../images/openpaas-eclipse/image32.png)
 
-	> *위 “URL”란에 표시되어 있는 URL 주소는 임의의 주소이며, 아래 절차를 따라 실제 Open PaaS가 배포되어 있는 플랫폼 서버 정보를 등록해야 한다.  
-	> [***4.2 플랫폼 서버 정보 등록***](#42-플랫폼-서버-정보-등록)을 참고한다.
+	> *The URL address displayed in the “URL” blank is an random address, and the platform server information on which Open PaaS is actually deployed must be registered by following the procedure below.  
+	> Refer to [***4.2 Platform Server Information Registration***] (#42-Platform-Server-Information-Registration).
 	
 
-4. “조직 및 스페이스” 목록 대화창이 표시된다. 이 대화창은 해당 계정이 가지고 있는 모든 조직과 스페이스를 보여주며, 관리를 원하는 조직과 스페이스를 선택 할 수 있는 대화창이다.  
-    관리를 원하는 조직과 스페이스를 선택하고 “Next” 버튼을 눌러 다음 화면으로 이동한다. (만약 조직 또는 스페이스가 없다면 생성을 해야한다. 현재 이클립스 개발환경에서는 조직 또는 스페이스를 생성할 수 없으므로 CLI 를 설치해서 조직과 스페이스를 생성해야한다. CLI의 설치 및 사용법은 [***OpenPaas CLi 가이드.md***](OpenPaas CLi 가이드.md)을 참고한다.)  
+4. The “Organizations and Spaces” list dialog is displayed. This dialog shows all the organizations and spaces that the account has, and is a dialog where you can select the organizations and spaces you want to manage.
+     Select the organization and space you want to manage and click the “Next” button to move to the next screen. (If there is no organization or space, you need to create it. You cannot create an organization or space in the current Eclipse development environment, so you need to install the CLI to create an organization and space. 
+Refer to  [***OpenPaas CLi Guide] .md***] (OpenPaas CLi Guide.md)  for installation and  CLI instructions.
     Clicking the “Cancel” button cancels the process and closes the screen.
     ![](./../images/openpaas-eclipse/image35.png)
 
-5. “Add and Remove” 대화창이 표시된다.  
-    이 대화창은 Open PaaS 환경에 Application을 배포 및 삭제 할 수 있는
-    대화창이다.  
-    “Available”은 배포 가능한 Application 목록이고, “Configured”는 배포
-    되어 있거나 배포 예정인 Application 목록이다.  
-    “Available”에서 배포를 원하는 Application을 선택 한 뒤, “Add”
-    버튼을 클릭하여 “Configured”로 옮기고, “Finish” 버튼을 누르면
-    Application 배포가 완료된다.  
-    Application 배포가 완료되면서 관리를 하려는 서버의 추가도 완료가
-    된다.  
+5. The “Add and Remove” dialog is displayed.
+     This is a dialog that allows you to deploy and delete applications in the Open PaaS environment.
+     “Available” is a list of applications that can be deployed, and “Configured” is a list of applications that are deployed or scheduled to be deployed.
+     After selecting the application you want to deploy from “Available”, click the “Add” button to move it to “Configured”, and click the “Finish” button to complete the application deployment.
+     As application deployment is completed, the addition of the server to be managed is also completed.  
     Clicking the “Cancel” button cancels the process and closes the screen.
     ![](./../images/openpaas-eclipse/image37.png)
 
 ### 4.2 Registering platform server information
 
-1. “플랫폼 서버 관리…” 버튼을 클릭하여, “플랫폼 서버 URL 관리” 대화창을
-  실행한다.  
-  플랫폼 서버 URL을 추가하기 위해 “추가” 버튼을 클릭한다.  
+1. Click the button “Platform server management… " to run the “Platform Server URL Management” dialog.
+   Click the "Add" button to add the platform server URL. 
     ![](./../images/openpaas-eclipse/image33_1.png)
 
-2. 추가 및 플랫폼 URL 유효성 검사 대화창이 표시된다.  
-  해당 플랫폼 서버의 이름과 URL을 작성 후, “Finish” 버튼을 클릭한다.  
-  “Cancel” 버튼을 클릭하면 플랫폼이 추가 되지 않고 화면이 종료된다.  
+2. The Add and Platform URL Validation dialog is displayed.
+   After writing the name and URL of the platform server, click the “Finish” button.
+   If you click the “Cancel” button, the screen is closed without adding the platform.
 	![](./../images/openpaas-eclipse/image34_1.png)
 
-3. 현재 상태에서는 플랫폼 서버 URL 추가 사항이 반영되지 않았으므로
-  “플랫폼 서버 URL 관리” 대화창에서 “Finish” 버튼을 눌러 최종 완료를 한다.
-  만약 “Cancel” 버튼을 클릭하면 지금까지 진행한 모든 작업들이 취소된다.  
+3. In the current state, since the addition of the platform server URL has not been reflected, click the “Finish” button in the “Platform Server URL Management” dialog to complete the final completion.
+   If you click the “Cancel” button, all the work done so far will be canceled. 
 	![](./../images/openpaas-eclipse/image33_2.png)
 
 

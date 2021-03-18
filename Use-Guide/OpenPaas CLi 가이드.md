@@ -1,10 +1,10 @@
 ## Table of Contents
-1. [Outline](#Outline)
-     * [Document Objectivce](#Document-Objectivce)
-     * [Range](#Range)
-     * [References Materials](#References-Materials)
+1. [개요](#개요)
+     * [문서 목적](#문서-목적)
+     * [범위](#범위)
+     * [참고 자료](#참고-자료)
 
-1. [OpenPaaS CLI Basic anual](#ID-OpenPaaS-CLI-USAGE)
+1. [OpenPaaS CLI기본 사용법](#ID-OpenPaaS-CLI-USAGE)
 
 1. [GETTING STARTED](#ID-GETTING-STARTED)
      * [login](#login)
@@ -175,42 +175,42 @@
     * [plugins](#plugins)
     * [install-plugin](#install-plugin)
 
-## Outline
+## 개요
 ---
 
-#### Document Objective
+#### 문서 목적
 
-This document aims to understand OpenPaaS through basic usage and usage examples of OpenPaaS CLI, a tool for installation and operation management of OpenPaaS.
+본 문서는 OpenPaaS에 대한 설치 및 운영 관리를 위한 도구인 OpenPaaS CLI에 대해 기본 사용법 및 사용 예시를 통해 OpenPaaS를 이해하는데 목적이 있습니다.
 
-#### Range
+#### 범위
 
-This document has been written about OpenPaaS CLI classification and basic usage.
+본 문서는 OpenPaaS CLI 분류 및 기본 사용법에 대해서 작성하였습니다.
 
-#### References Materials
+#### 참고 자료
 
- This document was written with reference to CF Document of Cloud Foundry.
+ 본 문서는 Cloud Foundry의 CF Document를 참고로 작성하였습니다.
 
  [***https://docs.cloudfoundry.org/devguide/installcf/***](https://docs.cloudfoundry.org/devguide/installcf/)
 
 <div id='ID-OpenPaaS-CLI-USAGE'/>
-## OpenPaaS CLI Basic Manual
+## OpenPaaS CLI기본 사용법
 
-OpenPaaS CLI : CLI tool for managing OpenPaaS..
+OpenPaaS CLI : OpenPaaS를 관리하기 위한 CLI 도구입니다.
 
-CLI is a command line utility that helps to manage OpenPaaS deployment and release. Its usage is as follows.
+CLI는 OpenPaaS배포와 Release를 관리하기 위해 도움을 주는 커맨드 라인 유틸리티로 사용법은 다음과 같습니다.
 
 
 
- - **basic Syntax**
+ - **기본 Syntax**
 
 
  ```
 cf [global options] command <arguments...> [command options]
  ```
 
-Abbreviations are provided according to the OpenPaaS command. For example, the app start CLI command is start, but st can also be used.
+OpenPaaS command 명령어에 따라 약어를 제공해 줍니다. 예를 들어 App start CLI명령어는 start 이지만 st도 사용가능합니다.
 
-- **Examples of abbreviations**
+- **약어 사용예시**
 
 ```
 $ cf start
@@ -218,7 +218,8 @@ $ cf start
 $ cf st
 ```
 
-[Command options], an argument enclosed in brackets for the OpenPaaS command, is optionally used depending on the command, and the command `<arguments>` argument is a required argument. OpenPaaS CLI, a tool for operating and managing OpenPaaS, provides the following commands.
+OpenPaaS 명령어에 대괄호로 묶인 인자인 [command options]은 명령어에 따라 선택적으로 사용되고, command  `<arguments>` 인자는 필수 인자입니다. OpenPaaS 운영 및 관리하기 위한 도구인 OpenPaaS CLI 아래와 같은 명령어들을 제공하고 있습니다.
+
 
 <div id='ID-GETTING-STARTED'/>
 ## GETTING STARTED
@@ -227,7 +228,7 @@ $ cf st
 #### login
 
 
-- **Basic Syntax**
+- **기본 Syntax**
 
 
 ```
@@ -235,34 +236,34 @@ $ cf login [-a API_URL] [-u USERNAME] [-p PASSWORD] [-o ORG] [-s SPACE]
 ```
 
 
-- **Description**
+- **설명**
 
 
 ```
-Command to log in to OpenPaaS
+OpenPaaS에 로그인 하기 위한 명령어
 ```
 
 
-- **Parameter **
+- **파라미터**
 
 
-| Parameter Name   |           Description                 | Required(O/X) |
+| 파라미터명   |           설명                 | 필수(O/X) |
 |-------------|-----------------------------|-----------|
-|-a API_URL    |OpenPaaS that the CLI attempts to access. URL<br>Ex) https://api.10.244.0.34.xip.io    |X        |
-|-u USERNAMEL  |User ID to access OpenPaaS             |X        |
-|-p PASSWORD   |User password to access OpenPaaS         |X        |
-|-o ORG        |The name of the organization of the user who accesses OpenPaaS     |X        |
-|-s SPACE      |Name of the space in the organization of the user who accesses OpenPaaS      |X        |
+|-a API_URL    |CLI가 접속 하려는 OpenPaaS  URL<br>Ex) https://api.10.244.0.34.xip.io    |X        |
+|-u USERNAMEL  |OpenPaaS에 접속하는 사용자 id               |X        |
+|-p PASSWORD   |OpenPaaS에 접속하는 사용자 password         |X        |
+|-o ORG        |OpenPaaS에 접속하는 사용자의 소속조직 명      |X        |
+|-s SPACE      |OpenPaaS에 접속하는 사용자의 소속조직 스페이스직 명      |X        |
 
 
-- **Example**
+- **사용예시**
 
 
 ```
-# In case of the  parameter is specified
+# 파라미터 지정한 경우
 $ cf login --skip-ssl-validation -a https://api.10.244.0.34.xip.io -u admin -p admin -o crossent -s development
 
-# In case of the  parameter is not specified
+# 파라미터 지정하지 않을 경우
 $ cf login
 API endpoint: https://api.10.244.0.34.xip.io
 
@@ -290,7 +291,7 @@ Space:          development
 ```
 
 #### logout
-- **Basic Syntax**
+- **기본 Syntax**
 
 
 ```
@@ -298,20 +299,20 @@ $ cf logout
 ```
 
 
-- **Description**
+- **설명**
 
 
 ```
-Logout to cf.
+cf에 logout합니다.
 ```
 
 
-- **parameter**
+- **파라미터**
 
-  -none
+  -없음
 
 
-- **Example**
+- **사용예시**
 
 ```
 $ cf logout
@@ -319,7 +320,7 @@ $ cf logout
 ```
 
 #### passwd
-- **Basic Syntax**
+- **기본 Syntax**
 
 
 ```
@@ -328,20 +329,20 @@ $ cf passwd
 
 
 
-- **Description**
+- **설명**
 
 
 ```
-Change the password of the OpenPaaS user account.
+OpenPaaS 사용자계정의 패스워드를 변경합니다.
 ```
 
 
-- **parameter**
+- **파라미터**
 
-  -none
+  -없음
 
 
-- **Example**
+- **사용예시**
 
 
 ```
@@ -357,40 +358,40 @@ Please log in again
 ```
 
 #### target
-- **Basic Syntax**
+- **기본 Syntax**
 
 
 ```
 $ cf target [-o ORG] [-s SPACE]
 ```
 
-- **Description**
+- **설명**
 
 
 ```
-Set the target organization and space to be used by the logged-in user.
+로그인한 사용자가 사용할 Target 조직 및 스페이스 설정합니다.
 ```
 
 
-- **parameter**
+- **파라미터**
 
-| Parameter Name   |           Description                 | Required(O/X) |
+| 파라미터명   |           설명                 | 필수(O/X) |
 |-------------|-----------------------------|-----------|
-|-o ORG      |Target organization                    |X        |
-|-s SPACE    |Target space                |X        |
+|-o ORG      |Target 조직                    |X        |
+|-s SPACE    |Target 스페이스                |X        |
 
 
 
-- **Example**
+- **사용예시**
 
 ```
-# In case of the  parameter is specified
+# 파라미터 지정한 경우
 $ cf target -o cf -s development
 API endpoint:   https://api.10.244.0.34.xip.io (API version: 2.29.0)   
 User:           admin   
 Org:            cf   
 Space:          development
-# In case of the  parameter is not specified(Currently targeted information is outputted)
+# 파라미터 지정하지 않은 경우(현재 Target된 정보가 출력)
 $ cf target
 API endpoint:   https://api.10.244.0.34.xip.io (API version: 2.29.0)   
 User:           admin   
@@ -400,37 +401,37 @@ Space:          development
 
 
 #### api
-- **Basic Syntax**
+- **기본 Syntax**
 
 ```
 $ cf api <URL>
 ```
 
 
-- **Description**
+- **설명**
 
 
 ```
-Lookup the target api or set up the target api URL.
+Target api를 조회하거나 target api URL을 설정합니다.
 ```
 
 
 
-- **Parameter **
+- **파라미터**
 
-| Parameter Name   |           Description                 | Required(O/X) |
+| 파라미터명   |           설명                 | 필수(O/X) |
 |-------------|-----------------------------|-----------|
 |URL         |Api Target URL                   |O        |
 
 
-- **Example**
+- **사용예시**
 
 ```
 $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 ```
 
 #### auth
-- **Basic Syntax**
+- **기본 Syntax**
 
 
 ```
@@ -438,24 +439,24 @@ $ cf auth <USERNAME> <PASSWORD>
 ```
 
 
-- **Description**
+- **설명**
 
 
 ```
-When logging in with OpenPaaS, only login and no space or target are specified.
+OpenPaaS login시 로그인만 되며 스페이스, 타겟은 지정되지 않습니다.
 ```
 
 
-- **Parameter **
+- **파라미터**
 
-| Parameter Name   |           Description                 | Required(O/X) |
+| 파라미터명   |           설명                 | 필수(O/X) |
 |-------------|--------------------------------|-----------|
-|USERNAME     |Login user ID                 |O        |
-|PASSWORD    |Login user PASSWORD            |O        |
+|USERNAME     |로그인 사용자 ID                 |O        |
+|PASSWORD    |로그인 사용자 PASSWORD            |O        |
 
 
 
-- **Example**
+- **사용예시**
 
 ```
 $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
@@ -465,7 +466,7 @@ $ cf api --skip-ssl-validation api.10.244.0.34.xip.io
 
 
 #### apps
-- **Basic Syntax**
+- **기본 Syntax**
 
 
 ```
@@ -473,19 +474,19 @@ $cf apps
 ```
 
 
-- **Description**
+- **설명**
 
 
 ```
-Look up the list of apps in the target space.
+타겟 스페이스에 App 목록을 조회합니다.
 ```
 
 
-- **Parameter **
+- **파라미터**
 
-  -none
+  -없음
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf apps
@@ -493,7 +494,7 @@ Look up the list of apps in the target space.
 
 #### app
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -501,23 +502,23 @@ Look up the list of apps in the target space.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Inquires the state of the app.
+  App의 상태를 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP Name                          |O        |
+  |APP_NAME     |APP명                          |O        |
 
 
-    - **Example**
+    - **사용예시**
 
     ```
     $ cf app spring-music
@@ -526,7 +527,7 @@ Look up the list of apps in the target space.
 <div id='push-p'/>
 #### push,p
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -534,38 +535,38 @@ Look up the list of apps in the target space.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Deploy the app to OpenPaaS and start the app.
+  App을 OpenPaaS에 배포 하고 app을 Start합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |App name to push (directory name if not specified)                         |O        |
-  |-b BUILDPACK |custom buildpack URL <br> ex) https://github.com/OpenPaaSRnD/egov-java-buildpack   |X        |
+  |APP_NAME     |push하는 App명(지정하지 않으면 디렉토리명)                         |O        |
+  |-b BUILDPACK |custom빌드팩 URL <br> ex) https://github.com/OpenPaaSRnD/egov-java-buildpack   |X        |
   |-c COMMAND   |App start command              |X        |
-  |-d DOMAIN    |App domain                      |X        |
-  |-f MANIFEST_PATH    |Manifest file path       |X        |
-  |-i NUM_INSTANCES     |the number of App instance       |X        |
-  |-m MEMORY     |instance memory capacity             |X        |
-  |-k DISK     |disk use capacity                  |X        |
-  |-n HOST     |host name <br> ex) my-subdomain)  |X        |
-  |-p PATH     |directory path of App or App file(zip,war etc.)path   |X        |
-  |-s STACK    |The operating system the app is running on (default: cflinuxfs2)       |X        |
-  |-t TIMEOUT  |The timeout time that the CLI waits while the app is running                     |X        |
-  |--no-hostname     |Mapping root domain to app                          |X        |
-  |--no-manifest     |Ignore manifest file                        |X        |
-  |--no-route     |Delete route information in pushed app and do not map route information to the app|X        |
-  |--no-start     |Push the app and don't start                       |X        |
-  |--random-route    |Randomly generate route information to the app        |X        |
+  |-d DOMAIN    |App 도메인                      |X        |
+  |-f MANIFEST_PATH    |Manifest 파일 경로       |X        |
+  |-i NUM_INSTANCES     |App 인스턴스 갯수        |X        |
+  |-m MEMORY     |인스턴스 메모리 용량             |X        |
+  |-k DISK     |디스크 사용 용량                  |X        |
+  |-n HOST     |호스트명 <br> ex) my-subdomain)  |X        |
+  |-p PATH     |App의 디렉토리 경로 또는 App file(zip,war등)경로   |X        |
+  |-s STACK    |App이 실행되는 운영체제 파일시스템(default: cflinuxfs2)       |X        |
+  |-t TIMEOUT  |App이 실행되는동안 CLI가 대기하는 timeout시간                          |X        |
+  |--no-hostname     |App에 root 도메인을 매핑                          |X        |
+  |--no-manifest     |Manifest 파일을 무시합니다.                         |X        |
+  |--no-route     |Push된 앱에 라우트 정보를 삭제하고 App에 라우트 정보를 매핑하지 않음   |X        |
+  |--no-start     |App을 push하고 Start하지 않음                       |X        |
+  |--random-route    |App에게 라우트 정보를 랜덤하게 생성                |X        |
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf push spring-music
@@ -573,7 +574,7 @@ Look up the list of apps in the target space.
 
 #### scale
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -581,27 +582,27 @@ Look up the list of apps in the target space.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Adjust the memory, disk size and number of instances of the app.
+  App의 메모리,디스크 크기 및 인스턴스 갯수를 조정합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP  name                           |O        |
-  |-i INSTANCES |Number of instances                 |X        |
-  |-k DISK      |Disk capacity                      |X        |
-  |-m MEMORY    |Memory capacity                     |X        |
-  |-f           |App restart forcibly         |X        |
+  |APP_NAME     |APP명                           |O        |
+  |-i INSTANCES |인스턴스 갯수                    |X        |
+  |-k DISK      |디스크 용량                      |X        |
+  |-m MEMORY    |메모리 용량                      |X        |
+  |-f           |App 강제 restart                |X        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf scale spring-music -i 2 -m 512m
@@ -610,7 +611,7 @@ Look up the list of apps in the target space.
 
 #### delete
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -618,25 +619,25 @@ Look up the list of apps in the target space.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-Delete the app.
+  App을 삭제합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP Name                           |O        |
-  |--f          |Delete the app without confirmation              |X        |
-  |--r          |Delete route information mapped to App  |X        |
+  |APP_NAME     |APP명                           |O        |
+  |--f          |확인 없이 App 삭제               |X        |
+  |--r          |App에 매핑된 라우트 정보 삭제     |X        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $  cf delete spring-music
@@ -645,7 +646,7 @@ Delete the app.
 
 #### rename
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -653,24 +654,24 @@ Delete the app.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-Change the app name.
+  App명을 변경합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP Name                           |O        |
-  |NEW_APP_NAME |App Name to  be change                 |O        |
+  |APP_NAME     |APP명                           |O        |
+  |NEW_APP_NAME |변경하려는 App명                 |O        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $  cf rename spring-music new-spring-music
@@ -679,7 +680,7 @@ Change the app name.
 <div id='start-st'/>
 #### start,st
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -687,23 +688,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Running the App
+  App을 기동 합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP Name                           |O        |
+  |APP_NAME     |APP명                           |O        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $  cf start spring-music
@@ -711,7 +712,7 @@ Change the app name.
 <div id='stop-sp'/>
 #### stop,sp
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -719,23 +720,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Stop the app.
+  App을 중지 합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP  name                           |O        |
+  |APP_NAME     |APP명                           |O        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $  cf stop spring-music
@@ -744,7 +745,7 @@ Change the app name.
 <div id='restart-rs'/>
 #### restart, rs
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -752,23 +753,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Restart the app.
+  App을 재기동 합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP  name                           |O        |
+  |APP_NAME     |APP명                           |O        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $cf restart spring-music
@@ -776,7 +777,7 @@ Change the app name.
 <div id='restage-rg'/>
 #### restage, rg
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -784,23 +785,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Restage the app.(Used when setting environment variables or binding services)
+  App을 restage합니다.(환경변수 설정 또는 서비스 바인딩시 사용)
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP  name                           |O        |
+  |APP_NAME     |APP명                           |O        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $cf restage spring-music
@@ -808,7 +809,7 @@ Change the app name.
 
 #### restart-app-instance
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -816,23 +817,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Restart a specific instance of App.
+  App의 인스턴스중 특정 인스턴스를 재기동 합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP  name                           |O        |
-  |INDEX        |Instance index                   |O        |
+  |APP_NAME     |APP명                           |O        |
+  |INDEX        |인스턴스 인덱스                   |O        |
 
-  - **Example**
+  - **사용예시**
 
   ```
   $cf restart-app-instance spring-music 1
@@ -840,7 +841,7 @@ Change the app name.
 
 #### events
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -848,22 +849,22 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-    Search the latest event information that occurred in the app. (History of start/stop/scale, etc.)
+    App에서 발생한 최근 Event정보를 조회합니다. (start/stop/scale등의 이력)
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP  name                           |O        |
+  |APP_NAME     |APP명                           |O        |
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf events spring-music
@@ -872,7 +873,7 @@ Change the app name.
 
 #### files
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -880,24 +881,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Search the list of files and directories of the app.
+  App의 file및 디렉토리 목록을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP  name                           |O        |
-  |PATH         |Directory of APP                    |X        |
-  |-i INSTANCE  |App Instance Index                 |X        |
+  |APP_NAME     |APP명                           |O        |
+  |PATH         |APP의 디렉토리                   |X        |
+  |-i INSTANCE  |App인스턴스 인덱스               |X        |
 
-  - **Example**
+  - **사용예시**
 
   ```
   $  cf files spring-music
@@ -905,7 +906,7 @@ Change the app name.
 
 #### logs
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -913,24 +914,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Search the logs generated by the app
+  App에서 발생한 로그를 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP  name                           |O        |
-  |PATH         |Directory of APP                  |X        |
-  |-i INSTANCE  |App Instance Index                 |X        |
+  |APP_NAME     |APP명                           |O        |
+  |PATH         |APP의 디렉토리                   |X        |
+  |-i INSTANCE  |App인스턴스 인덱스               |X        |
 
-  - **Example**
+  - **사용예시**
 
   ```
   $  cf logs spring-music
@@ -938,7 +939,7 @@ Change the app name.
 <div id='env-e'/>
 #### env,e
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -946,22 +947,22 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Inquiries the environment variable on app.
+  App의 환경변수를 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP  name                           |O        |
+  |APP_NAME     |APP명                           |O        |
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf env spring-music
@@ -970,7 +971,7 @@ Change the app name.
 <div id='set-env-se'/>
 #### set-env,se
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -978,25 +979,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Set environment variables of the app. (Requires restage when applied)
+  App의 환경변수를 설정합니다. (적용시 restage필요)
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP  name                           |O        |
-  |ENV_VAR_NAME |environment variables Key of App              |O        |
-  |ENV_VAR_VALUE|environment variables Value of App              |O        |
+  |APP_NAME     |APP명                           |O        |
+  |ENV_VAR_NAME |App의 환경변수 Key               |O        |
+  |ENV_VAR_VALUE|App의 환경변수 Value               |O        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf se spring-music author Jim
@@ -1006,7 +1007,7 @@ Change the app name.
 
 #### unset-env
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1014,24 +1015,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Delete the environment variables set in the App. (restage required when applied)
+  App에 설정된 환경변수를 삭제합니다.(적용시 restage필요)
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP  name                           |O        |
-  |ENV_VAR_NAME |environment variables Key of APP               |O        |
+  |APP_NAME     |APP명                           |O        |
+  |ENV_VAR_NAME |App의 환경변수 Key               |O        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf unset-env spring-music author
@@ -1039,7 +1040,7 @@ Change the app name.
 
 #### stacks
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1047,21 +1048,21 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the stack list (operating system file system) of OpenPaaS.
+  OpenPaaS의 stack목록(운영체제 파일시스템) 목록을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-    - none
+    - 없음
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $  cf stacks
@@ -1069,7 +1070,7 @@ Change the app name.
 
 #### stack
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1077,24 +1078,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Inquire OpenPaaS stack list (OS file system) 
+  OpenPaaS의 stack목록(운영체제 파일시스템) 목록을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP  name                           |O        |
-  |--guid       |Inquire Stack guid             |X        |
+  |APP_NAME     |APP명                           |O        |
+  |--guid       |Stack guid를 조회            |X        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $  cf stack cflinuxfs2
@@ -1102,7 +1103,7 @@ Change the app name.
 
 #### copy-source
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1110,26 +1111,26 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Copy the source of the app to another app. If the file is not overwritten, it will restart automatically.
+  App의 소스를 다른 App에 복사합니다. 파일이 덥어 쓰이지 않으면 자동 restart합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SOURCE-APP   |Orginall APP  name                        |O        |
-  |TARGET-APP   |The app name to which the source will be copied      |X        |
-  |-o TARGET-ORG |Target Organization              |O        |
-  |-s TARGET-SPACE|Target Space     |X        |
-  |--no-restart   |Do not restart after source copy |X        |
+  |SOURCE-APP   |원본 APP명                        |O        |
+  |TARGET-APP   |소스가 복사될 대상 App명            |X        |
+  |-o TARGET-ORG |타겟 조직                         |O        |
+  |-s TARGET-SPACE|타겟 스페이스                    |X        |
+  |--no-restart   |소스 복사 후 restart하지 않음  |X        |
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf copy-source spring-music another-music
@@ -1137,7 +1138,7 @@ Change the app name.
 
 #### create-app-manifest
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1145,23 +1146,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Create a manifest file of the app.
+  App의 manifest파일을 생성합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SOURCE-APP   |Orginall APP  name                        |O        |
-  |-p /path/<app-name>.yml   |The location where the file will be created and the file name (-p will be auto-generated if not used)     |X        |
+  |SOURCE-APP   |원본 APP명                        |O        |
+  |-p /path/<app-name>.yml   |파일이 생성될 위치와 파일명(-p 를 사용하지 않으면 자동생성된다)            |X        |
 
-  - **Example**
+  - **사용예시**
 
   ```
   $  cf create-app-manifest spring-music -p ./spring-music-manifest.yml
@@ -1173,7 +1174,7 @@ Change the app name.
 <div id='marketplace-m'/>
 #### marketplace,m
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1181,23 +1182,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the list of services provided by the cf marketplace.
+  cf 마켓플레이스에서 제공하는 서비스 목록을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |-s SERVICE_NAME   |The service plan is checked  |X        |
+  |-s SERVICE_NAME   |서비스의 plan이 조회된다.    |X        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $  cf create-app-manifest spring-music -p ./spring-music-manifest.yml
@@ -1205,7 +1206,7 @@ Change the app name.
 <div id='services-s'/>
 #### services,s
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1213,23 +1214,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the list of Service Instances in the target space.
+  타겟 스페이스에 서비스 인스턴스 목록을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |-s SERVICE_NAME   |The service plan is checked   |X        |
+  |-s SERVICE_NAME   |서비스의 plan이 조회된다.    |X        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $  cf create-app-manifest spring-music -p ./spring-music-manifest.yml
@@ -1237,7 +1238,7 @@ Change the app name.
 
 #### service
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1245,23 +1246,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the information of the service instance
+  서비스 인스턴스의 정보를 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_INSTANCE   |Service Instance name           |O        |
-  |--guid             |Check the Service Instance Guide |X        |
+  |SERVICE_INSTANCE   |서비스 인스턴스명           |O        |
+  |--guid             |서비스 인스턴스의 Guid를 조회합니다.   |X        |
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf service spring-music-db
@@ -1270,7 +1271,7 @@ Change the app name.
 
 #### create-service
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1278,25 +1279,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Create a service instance with a service provided by Marketplace.
+  마켓플레이스에서 제공하는 서비스로 서비스 인스턴스를 만든다.
   ```
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE      |Service name in Marketplace                                       |O        |
-  |PLAN         |Service plan  name                                                           |O        |
-  |SERVICE_INSTANCE   |Service Instance name to be created                                      |O        |
-  |-c PARAMETERS_AS_JSON |Input service settings information in json type <br> Ex) -c '{"ram_gb":4}'    |X        |
-  |-t TAGS      |Service Instance tag                                                   |X        |
+  |SERVICE      |마켓플레이스에 있는 서비스명                                              |O        |
+  |PLAN         |서비스 플랜명                                                           |O        |
+  |SERVICE_INSTANCE   |만들 서비스 인스턴스명                                             |O        |
+  |-c PARAMETERS_AS_JSON |서비스 설정정보를 json 형태로 입력 <br> Ex) -c '{"ram_gb":4}'    |X        |
+  |-t TAGS      |서비스 인스턴스 테그                                                     |X        |
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf create-service spring-music-db silver p-mysql
@@ -1305,7 +1306,7 @@ Change the app name.
 
 #### update-service
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1313,25 +1314,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Modify the service instance.
+  서비스 인스턴스를 수정합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_INSTANCE        |Service Instance name                                               |O        |
-  |-p NEW_PLAN             |Service Plan  Name                                                  |O        |
-  |-c PARAMETERS_AS_JSON   |Input service settings information in json type <br> Ex) -c '{"ram_gb":4}'    |O        |
-  |-t TAGS                 |Service Instance Tag                                            |X        |
+  |SERVICE_INSTANCE        |서비스 인스턴스명                                               |O        |
+  |-p NEW_PLAN             |서비스 플랜명                                                  |O        |
+  |-c PARAMETERS_AS_JSON   |서비스 설정정보를 json 형태로 입력 <br> Ex) -c '{"ram_gb":4}'    |O        |
+  |-t TAGS                 |서비스 인스턴스 테그                                            |X        |
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf update-service spring-music-db -p gold_plan
@@ -1340,7 +1341,7 @@ Change the app name.
 
 #### delete-service
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1348,23 +1349,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Delete the service instance.
+  서비스 인스턴스를 삭제합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_INSTANCE  |Service Instance name                                        |O        |
-  |-f                |Delete the Service Instance without confirmation message.  |X        |
+  |SERVICE_INSTANCE  |서비스 인스턴스명                                        |O        |
+  |-f                |삭제 확인 메시지 없이 서비스 인스턴스 삭제합니다.             |X        |
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf delete-service spring-music-db
@@ -1372,7 +1373,7 @@ Change the app name.
 
 #### rename-service
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1380,23 +1381,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Modify the Service Instance name.
+  서비스 인스턴스명을 수정합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_INSTANCE       |Service Instance name                       |O        |
-  |NEW_SERVICE_INSTANCE   |Service Instance name you want to change     |O        |
+  |SERVICE_INSTANCE       |서비스 인스턴스명                       |O        |
+  |NEW_SERVICE_INSTANCE   |변경하려는 서비스 인스턴스명             |O        |
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf rename-service spring-music-db new_spring-music-db
@@ -1405,7 +1406,7 @@ Change the app name.
 <div id='create-service-key-csk'/>
 #### create-service-key,csk
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1413,25 +1414,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Create a key of the service instance.
+  서비스 인스턴스의 key를 생성합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_INSTANCE       |Service Instance name                       |O        |
-  |SERVICE_KEY            |Service Instancekey  name                   |O        |
-  |-c PARAMETERS_AS_JSON  |Service Instance setting(JSON Parameter)    |X        |
+  |SERVICE_INSTANCE       |서비스 인스턴스명                       |O        |
+  |SERVICE_KEY            |서비스 인스턴스 key명                   |O        |
+  |-c PARAMETERS_AS_JSON  |서비스 인스턴스 설정(JSON Parameter)    |X        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf create-service-key spring-music-db mykey -c '{"permissions":"read-only"}'
@@ -1440,7 +1441,7 @@ Change the app name.
 <div id='service-keys-sk'/>
 #### service-keys,sk
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1448,23 +1449,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the list of keys of the service instance.
+  서비스 인스턴스의 key 목록을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_INSTANCE       |Service Instance name                       |O        |
+  |SERVICE_INSTANCE       |서비스 인스턴스명                       |O        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf service-keys spring-music-db
@@ -1472,7 +1473,7 @@ Change the app name.
 
 #### service-key
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1480,26 +1481,26 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check detailed information about the key of the service instance.
+  서비스 인스턴스의 key의 상세정보를 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_INSTANCE  |Service Instance name                       |O        |
-  |SERVICE_KEY       |Service Instancekey  name                   |O        |
-  |--guid            |Check the Service Instanceguid       |X        |
+  |SERVICE_INSTANCE  |서비스 인스턴스명                       |O        |
+  |SERVICE_KEY       |서비스 인스턴스 key명                   |O        |
+  |--guid            |서비스 인스턴스 guid를 조회합니다.         |X        |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf service-key spring-music-db mykey
@@ -1508,7 +1509,7 @@ Change the app name.
 <div id='delete-service-key-dsk'/>
 #### delete-service-key,dsk
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1516,26 +1517,26 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Delete Service key.
+  서비스 key를 삭제합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_INSTANCE  |Service Instance name                       |O        |
-  |SERVICE_KEY       |Service Instancekey  name                   |O        |
-  |--guid            |Check Service Instanceguid         |X        |
+  |SERVICE_INSTANCE  |서비스 인스턴스명                       |O        |
+  |SERVICE_KEY       |서비스 인스턴스 key명                   |O        |
+  |--guid            |서비스 인스턴스 guid를 조회합니다.         |X        |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf delete-service-key spring-music-db mykey
@@ -1544,7 +1545,7 @@ Change the app name.
 <div id='bind-service-bs'/>
 #### bind-service,bs
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1552,26 +1553,26 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
- Bind the app and service instance.<br>-The service can be used in the app only when the service instance and the APP are bound.
+  App과 서비스 인스턴스를 바인딩합니다.<br> - 서비스 인스턴스와 APP을 바인딩해야 App에서 서비스 사용가능
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |APP  name                                            |O        |
-  |SERVICE_INSTANCE  |Service Instance  name                           |O        |
-  |-c PARAMETERS_AS_JSON   |Binding Settings Parameter(json type)         |X        |
+  |APP_NAME     |APP명                                            |O        |
+  |SERVICE_INSTANCE  |서비스 인스턴스 명                           |O        |
+  |-c PARAMETERS_AS_JSON   |바인딩 설정 파라미터 (json형태)         |X        |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf bind-service spring-music spring-music-db -c '{"permissions":"read-only"}'
@@ -1582,7 +1583,7 @@ Change the app name.
 <div id='unbind-service-us'/>
 #### unbind-service,us
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1590,25 +1591,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Unbind the app and service instances.
+  App과 서비스 인스턴스를 언바인딩합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME          |Service Instance name                            |O        |
-  |SERVICE_INSTANCE  |Service Instance  name                           |O        |
+  |APP_NAME          |서비스 인스턴스명                            |O        |
+  |SERVICE_INSTANCE  |서비스 인스턴스 명                           |O        |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf unbind-service spring-music spring-music-db
@@ -1617,7 +1618,7 @@ Change the app name.
 <div id='create-user-provided-service-cups'/>
 #### create-user-provided-service,cups
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1625,25 +1626,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Instead of using the service provided by the market place, the user configures a separate service and binds it with the APP.
+  Market place에서 제공하는 서비스를 사용하지 않고 사용자가 별도의 서비스를 구성하여 APP과 바인딩합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_INSTANCE          |Service Instance name                            |O        |
-  |-p CREDENTIALS            |Service Instance  name                           |X        |
-  |-l SYSLOG-DRAIN-URL       |Service Instance  name                           |X        |
+  |SERVICE_INSTANCE          |서비스 인스턴스명                            |O        |
+  |-p CREDENTIALS            |서비스 인스턴스 명                           |X        |
+  |-l SYSLOG-DRAIN-URL       |서비스 인스턴스 명                           |X        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf create-user-provided-service spring-music-db -p '{"username":"admin","password":"pa55woRD"}'
@@ -1652,7 +1653,7 @@ Change the app name.
 <div id='update-user-provided-service-uups'/>
 #### update-user-provided-service,uups
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1660,25 +1661,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Modify user-provided service instance information.
+  user-provided service instance 정보를 수정합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_INSTANCE          |Service Instance name                            |O        |
-  |-p CREDENTIALS            |Service Instance  name                           |X        |
-  |-l SYSLOG-DRAIN-URL       |Service Instance  name                           |X        |
+  |SERVICE_INSTANCE          |서비스 인스턴스명                            |O        |
+  |-p CREDENTIALS            |서비스 인스턴스 명                           |X        |
+  |-l SYSLOG-DRAIN-URL       |서비스 인스턴스 명                           |X        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $  cf update-user-provided-service spring-music-db -p '{"username":"admin","password":"pa55woRD"}'
@@ -1690,7 +1691,7 @@ Change the app name.
 <div id='orgs-o'/>
 #### orgs,o
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1698,20 +1699,20 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the organization information list...
+  조직정보 목록을 조회합니다...
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
-   - none
+   - 없음
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf orgs
@@ -1721,7 +1722,7 @@ Change the app name.
 
 #### org
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1729,24 +1730,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the organization deatails
+  조직 상세 정보를 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |ORG_NAME      |Organization Name                         |O        |
-  |--guid       |Check the guid of organization        |X        |
+  |ORG_NAME      |조직명                         |O        |
+  |--guid       |조직의 guid를 조회합니다.           |X        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf org cf
@@ -1756,7 +1757,7 @@ Change the app name.
 <div id='create-org-co'/>
 #### create-org,co
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1764,24 +1765,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Create organization information.
+  조직정보를 생성합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |ORG_NAME      |Organization Name                         |O        |
-  |-q QUOTA_NAME |Quota to allocate to the organization  |X        |
+  |ORG_NAME      |조직명                         |O        |
+  |-q QUOTA_NAME |조직에게 할당할 quota           |X        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $cf create-org test -q default
@@ -1791,7 +1792,7 @@ Change the app name.
 
 #### delete-org
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1799,24 +1800,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the organization information list.
+  조직정보 목록을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |ORG_NAME      |Organization Name                          |O        |
-  |-f           |Organization information is deleted without confirmation message.|X        |
+  |ORG_NAME      |조직명                          |O        |
+  |-f           |확인메시지 없이 조직정보 삭제합니다.  |X        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf delete-org cf -f
@@ -1825,7 +1826,7 @@ Change the app name.
 
 #### rename-org
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1833,24 +1834,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Change the Organization Name.
+  조직명을 변경합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |ORG_NAME       |Organization Name                          |O        |
-  |NEW_ORG_NAME   |Organization Name to be created                    |O        |
+  |ORG_NAME       |조직명                          |O        |
+  |NEW_ORG_NAME   |변경할 조직명                    |O        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf rename cf new-cf
@@ -1861,7 +1862,7 @@ Change the app name.
 
 #### spaces
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1869,20 +1870,20 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Bring a list of spaces.
+  스페이스 목록을 가져온다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
-   - none
+   - 없음
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf spaces
@@ -1891,7 +1892,7 @@ Change the app name.
 
 #### space
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1899,23 +1900,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check space details.
+  스페이스 상세정보를 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE_NAME   |Space Name                           |O          |
+  |SPACE_NAME   |스페이스명                           |O          |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf space development
@@ -1923,7 +1924,7 @@ Change the app name.
 
 #### create-space
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1931,24 +1932,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Create space information
+  스페이스 정보를 생성합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE_NAME   |Space Name                           |O         |
-  |-o ORG_NAME  |Organization Name to be mapped to the space  |X         |
-  |-q SPACE-QUOTA-NAME    |QUOTA name to be allocated to the space|X         |
+  |SPACE_NAME   |스페이스명                           |O         |
+  |-o ORG_NAME  |스페이스에 매핑될 조직명               |X         |
+  |-q SPACE-QUOTA-NAME    |스페이스에 할당될 QUOTA명    |X         |
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf create-space -o cf -q cf-space-quota
@@ -1956,7 +1957,7 @@ Change the app name.
 
 #### delete-space
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1964,23 +1965,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Delete the Space informaiton.
+  스페이스정보를 삭제합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE_NAME   |Space Name                           |O         |
-  |-f           |Delete the space without a confirmation message.|X         |
+  |SPACE_NAME   |스페이스명                           |O         |
+  |-f           |삭제 확인메시지 없이 스페이스 삭제합니다. |X         |
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf delete-space development
@@ -1988,7 +1989,7 @@ Change the app name.
 
 #### rename-space
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -1996,23 +1997,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Change the space name.
+  스페이스 명을 변경합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE_NAME     |Space Name                           |O         |
-  |NEW_SPACE_NAME |Delete the space without a confirmation message.|O         |
+  |SPACE_NAME     |스페이스명                           |O         |
+  |NEW_SPACE_NAME |삭제 확인메시지 없이 스페이스 삭제합니다. |O         |
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf rename-space development new_development
@@ -2023,7 +2024,7 @@ Change the app name.
 
 #### domains
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2031,21 +2032,21 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the domain information list.
+  도메인 정보 목록을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-    - none
+    - 없음
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf domains
@@ -2054,7 +2055,7 @@ Change the app name.
 
 #### create-domain
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2062,24 +2063,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Create a list of domain information. The created domain can be used in the established organization.
+  도메인 정보 목록을 생성합니다. 생성된 도메인은 설정된 조직에서 사용가능하다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |ORG_NAME     |Organization Name                           |O         |
-  |DOMAIN       |Domain  name                          |O         |
+  |ORG_NAME     |조직명                           |O         |
+  |DOMAIN       |도메인명                          |O         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf create-domain cf-org cf.or.kr
@@ -2088,7 +2089,7 @@ Change the app name.
 
 #### delete-domain
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2096,24 +2097,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Delete domain information.
+  도메인 정보를 삭제합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |DOMAIN       |Domain  name                           |O         |
-  |-f           |Deletes the domain without a confirmation message.|X         |
+  |DOMAIN       |도메인명                           |O         |
+  |-f           |삭제 확인메시지 없이 도메인을 삭제합니다. |X         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf delete-domain cf.or.kr
@@ -2122,7 +2123,7 @@ Change the app name.
 
 #### create-shared-domain
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2130,23 +2131,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Create shared domain information
+  공유 도메인정보를 생성한다
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |DOMAIN       |Organization Name                           |O         |
+  |DOMAIN       |조직명                           |O         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf create-shared-domain cf.or.kr
@@ -2154,7 +2155,7 @@ Change the app name.
 
 #### delete-shared-domain
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2162,23 +2163,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Delete shared domain information.
+  공유 도메인정보를 삭제합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |DOMAIN       |Organization Name                           |O         |
-  |-f           |Delete the domain without a confirmation message.  |X         |
+  |DOMAIN       |조직명                           |O         |
+  |-f           |삭제 확인메시지 없이 도메인을 삭제합니다.    |X         |
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf delete-shared-domain cf.or.kr
@@ -2190,7 +2191,7 @@ Change the app name.
 <div id='routes-r'/>
 #### routes, r
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2198,19 +2199,19 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the route information list that exists in the current organization/space.
+  현재 조직/스페이스에 존재하는 라우트 정보목롤을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
-    - none
+    - 없음
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf routes
@@ -2219,7 +2220,7 @@ Change the app name.
 
 #### create-route
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2227,25 +2228,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Delete shared domain information...
+  공유 도메인정보를 삭제합니다...
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE_NAME   |Space Name                           |O         |
-  |DOMAIN       |Delete the shared domain without a confirmation message. <br>   - Domain information must be inputted.   |O         |
-  |-n HOSTNAME  |Host Name                          |X         |
+  |SPACE_NAME   |스페이스명                           |O         |
+  |DOMAIN       |삭제 확인메시지 없이 공유 도메인을 삭제합니다. <br>   - 도메인 정보가 입력되어있어야 합니다.   |O         |
+  |-n HOSTNAME  |호스트 명                          |X         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf create-route development cf.or.kr
@@ -2254,7 +2255,7 @@ Change the app name.
 
 #### update-route
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2262,25 +2263,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Delete shared domain information.
+  공유 도메인정보를 삭제합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE_NAME   |Space Name                           |O         |
-  |DOMAIN       |Delete the shared domain without a confirmation message. <br>   - Domain information must be inputted. |O         |
-  |-n HOSTNAME  |Host name                          |X         |
+  |SPACE_NAME   |스페이스명                           |O         |
+  |DOMAIN       |삭제 확인메시지 없이 공유 도메인을 삭제합니다. <br>   - 도메인 정보가 입력되어있어야 합니다.   |O         |
+  |-n HOSTNAME  |호스트 명                          |X         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf update-route development cf.or.kr
@@ -2290,7 +2291,7 @@ Change the app name.
 
 #### check-route
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2298,24 +2299,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check if route information exists.
+  라우트 정보가 존재하는지 체크합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |HOST         |Host name                                    |O         |
-  |DOMAIN       |Delete the shared domain without a confirmation message.|O         |
+  |HOST         |호스트 명                                    |O         |
+  |DOMAIN       |삭제 확인메시지 없이 공유 도메인을 삭제합니다.    |O         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf check-route spring-music cf.or.kr
@@ -2324,7 +2325,7 @@ Change the app name.
 
 #### map-route
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2332,25 +2333,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Allocate URL route information to the app.
+  App에게 URL route정보를 할당합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |App  name                           |O         |
-  |DOMAIN       |Domain to allocate to App             |O         |
-  |-n HOSTNAME  |Host to allocate to App             |X         |
+  |APP_NAME     |App명                           |O         |
+  |DOMAIN       |App에게 할당할 도메인             |O         |
+  |-n HOSTNAME  |App에게 할당할 Host              |X         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf map-route spring-music cf.or.kr -n test
@@ -2359,7 +2360,7 @@ Change the app name.
 
 #### unmap-route
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2367,25 +2368,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Delete the URL route information to the app.
+  App에게 URL route정보를 삭제합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |APP_NAME     |App  name                           |O         |
-  |DOMAIN       |Domain to allocate to App              |O         |
-  |-n HOSTNAME  |Host to allocate to App              |X         |
+  |APP_NAME     |App명                           |O         |
+  |DOMAIN       |App에게 할당할 도메인             |O         |
+  |-n HOSTNAME  |App에게 할당할 Host              |X         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf unmap-route spring-music cf.or.kr -n spring-music
@@ -2393,7 +2394,7 @@ Change the app name.
 
 #### delete-route
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2401,25 +2402,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Delete URL route information to APP.
+  App에게 URL route정보를 삭제합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |DOMAIN       |Domain to allocate to App              |O         |
-  |-n HOSTNAME  |Host to allocate to App              |X         |
-  |-f           |Delete route information without confirmation message. |X         |
+  |DOMAIN       |App에게 할당할 도메인             |O         |
+  |-n HOSTNAME  |App에게 할당할 Host              |X         |
+  |-f           |삭제 확인메시지 없이 라우트 정보를 삭제합니다.              |X         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf delete-route spring-music cf.or.kr -n spring-music
@@ -2427,7 +2428,7 @@ Change the app name.
 
 #### delete-orphaned-routes
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2435,23 +2436,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Delete all route information that is not mapped to the app.
+  App에 매핑되지 않은 라우트 정보를 모두 삭제한다
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |-f           |Delete route information without confirmation message.|X         |
+  |-f           |삭제 확인메시지 없이 라우트 정보를 삭제합니다.           |X         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf delete-orphaned-routes
@@ -2463,7 +2464,7 @@ Change the app name.
 
 #### buildpacks
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2471,21 +2472,21 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the list of build packs.
+  빌드팩 목록을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-    - none
+    - 없음
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf buildpacks
@@ -2494,7 +2495,7 @@ Change the app name.
 
 #### create-buildpack
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2502,28 +2503,28 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Create a build pack.
+  빌드팩을 생성합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |BUILDPACK     |buildpack name                           |O         |
-  |-p PATH       |buildpack path                      |O         |
-  |-i POSITIONE  |Buildpack check order during buildpack auto-detection<br> ex)1.2.3              |O         |
-  |--enable      |Used when staging                 |X         |
-  |--disable     |Not used when staging            |X         |
+  |BUILDPACK     |빌드팩명                           |O         |
+  |-p PATH       |빌드팩 경로                      |O         |
+  |-i POSITIONE  |빌드팩 auto-detection동안 빌드팩 체크 순서  <br> ex)1.2.3              |O         |
+  |--enable      |스테이징시 사용                  |X         |
+  |--disable     |스테이징시 미사용                |X         |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf create-buildpack egov-buildpack ~/workspace/buildpack/egov -i 1
@@ -2532,7 +2533,7 @@ Change the app name.
 
 #### update-buildpack
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2540,28 +2541,28 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Modify buildpack imformation
+  빌드팩 정보를 수정합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |BUILDPACK     |buildpack  name                           |O         |
-  |-p PATH       |buildpack path                      |O         |
-  |-i POSITIONE  |Buildpack check order during buildpack auto-detection <br> ex)1.2.3              |O         |
-  |--enable      |Used when staging                    |X         |
-  |--disable     |Not used when staging                   |X         |
+  |BUILDPACK     |빌드팩명                           |O         |
+  |-p PATH       |빌드팩 경로                      |O         |
+  |-i POSITIONE  |빌드팩 auto-detection동안 빌드팩 체크 순서  <br> ex)1.2.3              |O         |
+  |--enable      |스테이징시 사용                  |X         |
+  |--disable     |스테이징시 미사용                |X         |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf create-buildpack egov-buildpack ~/workspace/buildpack/egov -i 1
@@ -2569,7 +2570,7 @@ Change the app name.
 
 #### delete-buildpack
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2577,24 +2578,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Delete buildpack
+  빌드팩을 삭제합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |BUILDPACK     |buildpack  name                           |O         |
-  |-f           |Delete buildpack information without confirmation message|X         |
+  |BUILDPACK     |빌드팩명                           |O         |
+  |-f           |삭제 확인메시지 없이 빌드팩 정보를 삭제       |X         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf delete-buildpack egov-buildpack
@@ -2606,7 +2607,7 @@ Change the app name.
 
 #### create-user
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2614,24 +2615,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Create a new user account.
+  새로운 사용자 계정을 생성합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |USERNAME     |User ID                        |O         |
-  |PASSWORD     |Password                         |O         |
+  |USERNAME     |사용자 ID                        |O         |
+  |PASSWORD     |패스워드                         |O         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf create-user cfuser userpassword
@@ -2640,7 +2641,7 @@ Change the app name.
 
 #### delete-user
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2648,24 +2649,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Delete a new user account.
+    새로운 사용자 계정을 삭제합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |USERNAME     |User ID                       |O         |
-  |-f           |Delete user information without confirmation message |X         |
+  |USERNAME     |사용자 ID                       |O         |
+  |-f           |삭제 확인메시지 없이 사용자 정보를 삭제                         |X         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf delete-user cfuser
@@ -2674,7 +2675,7 @@ Change the app name.
 
 #### org-users
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2682,23 +2683,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the users belonging to the organization.
+  조직에 소속된 사용자를 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |ORG_NAME     |Organization Name                          |O         |
+  |ORG_NAME     |조직명                          |O         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf org-users cforg
@@ -2706,7 +2707,7 @@ Change the app name.
 
 #### set-org-role
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2714,26 +2715,26 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Set the role of a specific organization to the user.
+  사용자에게 특정조직의 role을 설정합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |USERNAME     |UserName                          |O         |
-  |ORG          |Organization Name                          |O         |
-  |ROLE        |Role  name <br>  - OrgManager : User management and plan setting/change authority<br> - BillingManager : Create and manage billing account and billing information <br>  - OrgAuditor : Check organization quota capacity and user role        |O         |
+  |USERNAME     |사용자명                          |O         |
+  |ORG          |조직명                          |O         |
+  |ROLE        |역할명 <br>  - OrgManager : 사용자 관리 및 plan설정/변경 권한 <br> - BillingManager : 빌링계정 및 과금정보 생성 및 관리 <br>  - OrgAuditor : 조직 quota사용률 및 사용자 role을 조회             |O         |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf set-org-role cfuser cforg OrgManager
@@ -2742,7 +2743,7 @@ Change the app name.
 
 #### unset-org-role
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2750,26 +2751,26 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Unset the role of a specific organization to the user..
+  사용자에게 특정조직의 role을 설정을 해제합니다..
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |USERNAME     |UserName                          |O         |
-  |ORG          |Organization Name                          |O         |
-  |ROLE        |Role  name <br>  - OrgManager :User management and plan setting/change authority<br> - BillingManager : Create and manage billing account and billing information <br>  - OrgAuditor : Check organization quota capacity and user role  |O         |
+  |USERNAME     |사용자명                          |O         |
+  |ORG          |조직명                          |O         |
+  |ROLE        |역할명 <br>  - OrgManager : 사용자 관리 및 plan설정/변경 권한 <br> - BillingManager : 빌링계정 및 과금정보 생성 및 관리 <br>  - OrgAuditor : 조직 quota사용률 및 사용자 role을 조회             |O         |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf unset-org-role cfuser cforg OrgManager
@@ -2778,7 +2779,7 @@ Change the app name.
 
 #### space-users
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2786,24 +2787,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check User list allocated to space of Organization. 
+  조직의 스페이스에 할당된 사용자 목록정보를 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |ORG          |Organization Name                          |O         |
-  |SPACE        |Space Name                       |O         |
+  |ORG          |조직명                          |O         |
+  |SPACE        |스페이스명                       |O         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf space-users development
@@ -2812,7 +2813,7 @@ Change the app name.
 
 #### set-space-role
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2820,25 +2821,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Allocate roles to users for organizational space.
+  사용자에게 조직의 스페이스에 role을 할당합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |USERNAME     |UserName                         |O         |
-  |ORG          |Organization Name                           |O         |
-  |SPACE        |Space Name                       |O         |
-  |ROLE         |Role  name  <br>  - SpaceManager: As an administrator of the space, you can manage user accounts in the space. also check and change the number of instances, service binding state, and resource state in the space.<br> - SpaceDeveloper: Deploy the app as service management. <br> - SpaceAuditor: Deploy the app as service management.   |O         |
+  |USERNAME     |사용자명                         |O         |
+  |ORG          |조직명                           |O         |
+  |SPACE        |스페이스명                       |O         |
+  |ROLE         |역할명  <br>  - SpaceManager: 스페이스의 관리자로 스페이스 내의 사용자 계정 관리 및 인스턴스 수, 서비스 바인딩 상태 및 스페이스 내의 리소스 상태를 조회 및 변경 <br> - SpaceDeveloper: 서비스 관리로 App 배포 <br> - SpaceAuditor: 서비스 관리로 App을 배포   |O         |
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf set-space-role cfuser cforg development OrgManager
@@ -2847,7 +2848,7 @@ Change the app name.
 
 #### unset-space-role
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2855,25 +2856,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Recalls the role from the user in the organizational  space.
+  사용자에게 조직의 스페이스에 role을 회수합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |USERNAME     |UserName                         |O         |
-  |ORG          |Organization Name                           |O         |
-  |SPACE        |Space Name                       |O         |
-  |ROLE         |Role name  <br>  - SpaceManager: As an administrator of the space, you can manage user accounts in the space. also check and change the number of instances, service binding state, and resource state in the space. <br> - SpaceDeveloper: Deploy the app as service management. <br> - SpaceAuditor: Check the service binding, number of instances, app use rate, etc in space. |O         |
+  |USERNAME     |사용자명                         |O         |
+  |ORG          |조직명                           |O         |
+  |SPACE        |스페이스명                       |O         |
+  |ROLE         |역할명  <br>  - SpaceManager: 스페이스의 관리자로 스페이스 내의 사용자 계정 관리 및 인스턴스 수, 서비스 바인딩 상태 및 스페이스 내의 리소스 상태를 조회. <br> - SpaceDeveloper: 서비스 관리로 App 배포 <br> - SpaceAuditor: 스페이스 내의 서비스 바인딩, 인스턴스 수, app사용률등을 조회   |O         |
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf unset-space-role cfuser cforg development OrgManager
@@ -2885,7 +2886,7 @@ Change the app name.
 
 #### quotas
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2893,19 +2894,19 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the Quota list.
+  Quota 목록을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
-    - none
+    - 없음
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf quotas
@@ -2914,7 +2915,7 @@ Change the app name.
 
 #### quota
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2922,24 +2923,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check detailed information of Quota.
+  Quota의 상세정보를 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |USERNAME     |QUOTA  name                         |O         |
+  |USERNAME     |QUOTA명                         |O         |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf quota cf-quota
@@ -2947,7 +2948,7 @@ Change the app name.
 
 #### set-quota
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2955,24 +2956,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Allocate QUOTA to the organization.
+  조직에게 QUOTA를 할당합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |ORG          |Organization name                            |O         |
-  |QUOTA        |QUOTA  name                         |O         |
+  |ORG          |직명                            |O         |
+  |QUOTA        |QUOTA명                         |O         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf set-quota cf-quota
@@ -2981,7 +2982,7 @@ Change the app name.
 
 #### create-quota
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -2989,28 +2990,28 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Create Quota information.
+  Quota정보를 생성합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |QUOTA                       |QUOTA  name                                                       |O         |
-  |-m TOTAL_MEMORY             |Memory quota<br> Ex) 1024M, 1G, 10G                         |X         |
-  |-i INSTANCE_MEMORY          |Maximum quota that an app instance can have (-1 is infinite)<br>  Ex) 1024M, 1G, 10G                        |X         |
-  |-r ROUTES                   |Maximum number of routes                                      |X         |
-  |-s SERVICE_INSTANCES        |Maximum number of Service Instances                |X         |
-  |--allow-paid-service-plans  |Enable billing service plan              |X        |
+  |QUOTA                       |QUOTA명                                                       |O         |
+  |-m TOTAL_MEMORY             |메모리 할당량  <br> Ex) 1024M, 1G, 10G                         |X         |
+  |-i INSTANCE_MEMORY          |App instance가 가질수 있는 최대할당량 (-1은 무한대) <br>  Ex) 1024M, 1G, 10G                        |X         |
+  |-r ROUTES                   |최대 라우트 수                                                 |X         |
+  |-s SERVICE_INSTANCES        |최대 서비스 인스턴스 수                                         |X         |
+  |--allow-paid-service-plans  |과금 서비스 plan 사용가능                                       |X        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf create-quota cf-quota -m 500m -i 256m -r 2000 -s 500
@@ -3019,7 +3020,7 @@ Change the app name.
 
 #### delete-quota
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3027,24 +3028,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Delete Quota Information.
+  Quota정보를 삭제합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |QUOTA        |QUOTA  name                                                  |O         |
-  |-f           |Delete QUOTA information without confirmation message    |X         |
+  |QUOTA        |QUOTA명                                                  |O         |
+  |-f           |삭제 확인메시지 없이 QUOTA 정보를 삭제                      |X         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf delete-quota cf-quota
@@ -3053,7 +3054,7 @@ Change the app name.
 
 #### update-quota
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3061,29 +3062,29 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Modify the Quota information.
+  Quota정보를 수정합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |QUOTA                       |QUOTA  name                                                       |O         |
-  |-m TOTAL_MEMORY             |Memory quota<br> Ex) 1024M, 1G, 10G                         |X         |
-  |-i INSTANCE_MEMORY          |Maximum quota that an app instance can have (-1 is infinite)<br>  Ex) 1024M, 1G, 10G                        |X         |
-  |-n NEW_NAME                 |The name to be changed when changing the QUOTA name              |X         |
-  |-r ROUTES                   |Maximum number of routes                      |X         |
-  |-s SERVICE_INSTANCES        |Maximum number of Service Instances                                  |X         |
-  |--allow-paid-service-plans  |Enable billing service plan                                 |X        |
-  |--disallow-paid-service-plans  |Disable billing service plan                             |X        |
+  |QUOTA                       |QUOTA명                                                       |O         |
+  |-m TOTAL_MEMORY             |메모리 할당량  <br> Ex) 1024M, 1G, 10G                         |X         |
+  |-i INSTANCE_MEMORY          |App instance가 가질수 있는 최대할당량 (-1은 무한대) <br>  Ex) 1024M, 1G, 10G                        |X         |
+  |-n NEW_NAME                 |QUOTA명 변경시 변경할 이름                                      |X         |
+  |-r ROUTES                   |최대 라우트 수                                                 |X         |
+  |-s SERVICE_INSTANCES        |최대 서비스 인스턴스 수                                         |X         |
+  |--allow-paid-service-plans  |과금 서비스 plan 사용가능                                       |X        |
+  |--disallow-paid-service-plans  |과금 서비스 plan 사용 불가                                       |X        |
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf update-quota cf-quota -m 500m -i 256m -r 2000 -s 500
@@ -3092,7 +3093,7 @@ Change the app name.
 
 #### shared-private-domain
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3100,24 +3101,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Share your privateDomain with other organizations.
+  private도메인을 다른 조직과 공유합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |QUOTA                 |QUOTA  name                        |O         |
-  |DOMAIN                |Domain  name                        |O         |
+  |QUOTA                 |QUOTA명                        |O         |
+  |DOMAIN                |도메인명                        |O         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf shared-private-domain cf-org sharedomain.or.kr
@@ -3126,7 +3127,7 @@ Change the app name.
 
 #### unshared-private-domain
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3134,24 +3135,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Unshare domain information shared with other organizations.
+  다른 조직과 share한 도메인 정보를 unshare합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |ORG                   |Domain name                        |O         |
-  |DOMAIN                |Domain name                        |O         |
+  |ORG                   |도메인명                        |O         |
+  |DOMAIN                |도메인명                        |O         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf unshared-private-domain cf-org sharedomain.or.kr
@@ -3163,7 +3164,7 @@ Change the app name.
 
 #### space-quotas
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3171,21 +3172,21 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the list of space-quota information.
+  Space-quota정보 목록을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-    - none
+    - 없음
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf space-quotas
@@ -3195,7 +3196,7 @@ Change the app name.
 
 #### space-quota
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3203,23 +3204,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check space quota details.
+  Space quota 상세정보를 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE_QUOTA_NAME       |Space QUOTA  name       |O         |
+  |SPACE_QUOTA_NAME       |스페이스 QUOTA명       |O         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf space-quota cf-space-quota
@@ -3228,7 +3229,7 @@ Change the app name.
 
 #### create-space-quota
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3236,28 +3237,28 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Create space quota information.
+  스페이스 Quota정보를 생성합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |QUOTA                       |QUOTA  name                                                       |O         |
-  |-m TOTAL_MEMORY             |Memory quota  <br> Ex) 1024M, 1G, 10G                         |X         |
-  |-i INSTANCE_MEMORY          |Maximum quota that an app instance can have (-1 is infinite)<br>  Ex) 1024M, 1G, 10G                        |X         |
-  |-r ROUTES                   |Maximum number of routes                  |X         |
-  |-s SERVICE_INSTANCES        |Maximum number of Service Instances                                 |X         |
-  |--allow-paid-service-plans  |Enable billing service plan                       |X        |
+  |QUOTA                       |QUOTA명                                                       |O         |
+  |-m TOTAL_MEMORY             |메모리 할당량  <br> Ex) 1024M, 1G, 10G                         |X         |
+  |-i INSTANCE_MEMORY          |App instance가 가질수 있는 최대할당량 (-1은 무한대) <br>  Ex) 1024M, 1G, 10G                        |X         |
+  |-r ROUTES                   |최대 라우트 수                                                 |X         |
+  |-s SERVICE_INSTANCES        |최대 서비스 인스턴스 수                                         |X         |
+  |--allow-paid-service-plans  |과금 서비스 plan 사용가능                                       |X        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf create-space-quota cf-space-quota -i 2G -m 10G -r 3000 -s 200
@@ -3266,7 +3267,7 @@ Change the app name.
 
 #### update-space-quota
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3274,30 +3275,30 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Modify the space quota information.
+  스페이스 Quota정보를 수정합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE-QUOTA-NAME            |Space QUOTA  name                                               |O         |
-  |-i MAX-INSTANCE-MEMORY      |Maximum quota that an app instance can have (-1 is infinite) <br>  Ex) 1024M, 1G, 10G                        |X         |
-  |-m MEMORY                   |Maximum memory a space can have                  |X         |
-  |-n NEW_NAME                 |SPACE-QUOTA name you want to change                     |X         |
-  |-r ROUTES                   |Maximum number of routes a space has                           |X         |
-  |-s SERVICES                 |The maximum number of Service Instances a space has            |X         |
-  |--allow-paid-service-plans  |Enable billing service plan                                     |X        |
-  |--disallow-paid-service-plans  |Disable billing service plan                     |X        |
+  |SPACE-QUOTA-NAME            |스페이스 QUOTA명                                               |O         |
+  |-i MAX-INSTANCE-MEMORY      |App instance가 가질수 있는 최대할당량 (-1은 무한대) <br>  Ex) 1024M, 1G, 10G                        |X         |
+  |-m MEMORY                   |스페이스가 가질수 있는 최대 메모리                               |X         |
+  |-n NEW_NAME                 |변경하려는 SPACE-QUOTA명                                       |X         |
+  |-r ROUTES                   |스페이스가 가지는 최대 route 갯수                               |X         |
+  |-s SERVICES                 |스페이스가 가지는 최대 서비스 인스턴스 갯수                       |X         |
+  |--allow-paid-service-plans  |과금 서비스 plan 사용가능                                       |X        |
+  |--disallow-paid-service-plans  |과금 서비스 plan 사용 불가                                   |X        |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf update-space-quota cf-space-quota -i 2G -m 10G -r 3000 -s 200
@@ -3306,7 +3307,7 @@ Change the app name.
 
 #### delete-space-quota
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3314,25 +3315,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Delete Space Quota Information
+  스페이스 Quota정보를 삭제합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE-QUOTA-NAME     |Space QUOTA  name                                     |O         |
-  |-f           |Delete SPACE-QUOTA information without confirmation message  |X         |
+  |SPACE-QUOTA-NAME     |스페이스 QUOTA명                                     |O         |
+  |-f           |삭제 확인메시지 없이 SPACE-QUOTA 정보를 삭제               |X         |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf delete-space-quota cf-space-quota
@@ -3341,7 +3342,7 @@ Change the app name.
 
 #### set-space-quota
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3349,25 +3350,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Allocate quota to space.
+  스페이스에 quota를 할당합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE-NAME            |Space Name                    |O         |
-  |SPACE-QUOTA-NAME      |Space Quota  name              |O         |
+  |SPACE-NAME            |스페이스명                    |O         |
+  |SPACE-QUOTA-NAME      |스페이스 Quota명              |O         |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf set-space-quota development cf-space-quota
@@ -3376,7 +3377,7 @@ Change the app name.
 
 #### unset-space-quota
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3384,25 +3385,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Recall the quota allocated to the space.
+  스페이스에 할당된 quota를 회수합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SPACE        |Space Name                   |O         |
-  |QUOTA        |Space Quota  name             |O         |
+  |SPACE        |스페이스명                   |O         |
+  |QUOTA        |스페이스 Quota명             |O         |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf unset-space-quota development cf-space-quota
@@ -3414,7 +3415,7 @@ Change the app name.
 
 #### service-auth-tokens
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3422,21 +3423,21 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check a list of service authentication tokens.
+  서비스 인증 토큰 목록을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
-    - none
+    - 없음
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf service-auth-token
@@ -3445,7 +3446,7 @@ Change the app name.
 
 #### create-service-auth-token
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3453,26 +3454,26 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Recall the quota allocated to the space.
+  스페이스에 할당된 quota를 회수합니다.
   ```
 
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |LABEL        |Service token label       |O         |
-  |PROVIDER     |Service Provider                    |O         |
-  |TOKEN        |token name                          |O         |
+  |LABEL        |서비스 토큰 라벨                 |O         |
+  |PROVIDER     |서비스 제공자                    |O         |
+  |TOKEN        |토큰명                          |O         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf create-service-auth-token token-label mysql token
@@ -3481,7 +3482,7 @@ Change the app name.
 
 #### update-service-auth-token
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3489,26 +3490,26 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Modify the service auth token information.
+  Service auth token 정보를 수정합니다.
   ```
 
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |LABEL        |Service Token Label                 |O         |
-  |PROVIDER     |Service Provider                    |O         |
-  |TOKEN        |Token  name                          |O         |
+  |LABEL        |서비스 토큰 라벨                 |O         |
+  |PROVIDER     |서비스 제공자                    |O         |
+  |TOKEN        |토큰명                          |O         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf update-service-auth-token token-label mysql token
@@ -3517,7 +3518,7 @@ Change the app name.
 
 #### delete-service-auth-token
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3525,26 +3526,26 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Delete Service auth token information
+  Service auth token 정보를 삭제합니다.
   ```
 
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |LABEL        |Service Token Label                 |O         |
-  |PROVIDER     |Service Provider                    |O         |
-  |-f           |Delete SERVICE TOKEN information without confirmation message |X         |
+  |LABEL        |서비스 토큰 라벨                 |O         |
+  |PROVIDER     |서비스 제공자                    |O         |
+  |-f           |삭제 확인메시지 없이 SERVICE TOKEN 정보를 삭제      |X         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf delete-service-auth-token token-label mysql
@@ -3553,7 +3554,7 @@ Change the app name.
 
 #### service-brokers
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3561,21 +3562,21 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the Service Broker information list.
+  Service Broker정보 목록을 조회합니다.
   ```
 
 
 
-  - **Parameter **
+  - **파라미터**
 
-    - none
+    - 없음
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf service-brokers
@@ -3584,7 +3585,7 @@ Change the app name.
 
 #### create-service-broker
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3592,28 +3593,28 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Register for Service Broker information.
+  Service Broker정보를 등록합니다.
   ```
 
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_BROKERABEL        |Service Broker Name            |O         |
-  |USERNAME                   |UserName                   |O         |
-  |PASSWORD                   |Password                  |O         |
-  |URL                        |Service Broker URL           |O         |
+  |SERVICE_BROKERABEL        |서비스 브로커명             |O         |
+  |USERNAME                   |사용자명                   |O         |
+  |PASSWORD                   |패스워드                   |O         |
+  |URL                        |서비스 브로커 URL           |O         |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf create-service-broker mysql-service-broker admin password http://p-mysql.10.244.0.34.xip.io
@@ -3622,7 +3623,7 @@ Change the app name.
 
 #### update-service-broker
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3630,28 +3631,28 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Register for Service Broker information.
+  Service Broker정보를 등록합니다.
   ```
 
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_BROKERABEL        |Service Broker Name            |O         |
-  |USERNAME                   |UserName                   |O         |
-  |PASSWORD                   |Password                  |O         |
-  |URL                        |Service Broker URL           |O         |
+  |SERVICE_BROKERABEL        |서비스 브로커명             |O         |
+  |USERNAME                   |사용자명                   |O         |
+  |PASSWORD                   |패스워드                   |O         |
+  |URL                        |서비스 브로커 URL           |O         |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf update-service-broker mysql-service-broker admin password http://p-mysql.10.244.0.34.xip.io
@@ -3660,7 +3661,7 @@ Change the app name.
 
 #### delete-service-broker
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3668,26 +3669,26 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Delete Service Broker information
+  Service Broker정보를 삭제합니다.
   ```
 
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_BROKER    |Service Broker Name                                         |O         |
-  |-f                |Delete SERVICE BROKER information without confirmation message  |X         |
+  |SERVICE_BROKER    |서비스 브로커명                                          |O         |
+  |-f                |삭제 확인메시지 없이 SERVICE BROKER 정보를 삭제       |X         |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf delete-service-broker mysql-service-broker
@@ -3696,7 +3697,7 @@ Change the app name.
 
 #### rename-service-broker
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3704,26 +3705,26 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Modify Service Broker Name
+  Service Broker명을 수정합니다.
   ```
 
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE_BROKER     |Service Broker Name            |O         |
-  |NEW_SERVICE_BROKER |Service Broker Name to change     |O         |
+  |SERVICE_BROKER     |서비스 브로커명             |O         |
+  |NEW_SERVICE_BROKER |변경할 서비스 브로커명       |O         |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf rename-service-broker mysql-service-broker new_mysql-service-broker
@@ -3732,7 +3733,7 @@ Change the app name.
 
 #### migrate-service-broker
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3740,28 +3741,28 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Change the service and plan used by the Service instance to another plan. <br>-It is used to change the service used by the app to another service.
+  서비스 인스턴스에서 사용하는 서비스 및 플랜을 다른 플랜으로 변경합니다. <br> - App이 사용하는 서비스를 다른 서비스로 변경하려 할때 사용합니다.
   ```
 
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |v1_SERVICE     |Existing Service Name                         |O         |
-  |v1_PROVIDER    |Provider that provides Existing Service  |O         |
-  |v1_PLAN        |Plan used by Existing Service instance   |O         |
-  |v2_SERVICE     |New Service Name                         |O         |
-  |v2_PLAN        |Plan used by New Service           |O         |  
+  |v1_SERVICE     |기존 서비스 명                         |O         |
+  |v1_PROVIDER    |기존 서비스를 제공하는 제공자            |O         |
+  |v1_PLAN        |기존 서비스 인스턴스에서 사용하는 플랜    |O         |
+  |v2_SERVICE     |신규 서비스 명                         |O         |
+  |v2_PLAN        |신규 서비스에서 사용하는 플랜            |O         |  
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf migrate-service-instances p-mysql mysql-provider silver  postgres silver
@@ -3770,7 +3771,7 @@ Change the app name.
 
 #### purge-service-offering
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3778,27 +3779,27 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  It is used to resolve information inconsistency between cf and Service Broker.<br>   (Used after the migrate-service-instances command.)
+  cf와 서비스 브로커간의 정보 불일치를 해결할때 사용합니다. <br>   (migrate-service-instances 명령 이후 사용)
   ```
 
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE      |Service Name                                  |O         |
-  |-p PROVIDER  |Service Provider                               |O         |
-  |-f           |Delete service information without confirmation message  |O         |
+  |SERVICE      |서비스 명                                  |O         |
+  |-p PROVIDER  |서비스 제공자                               |O         |
+  |-f           |삭제 확인메시지 없이 서비스 정보를 삭제한다    |O         |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf purge-service-offering mysql
@@ -3807,7 +3808,7 @@ Change the app name.
 
 #### service-access
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3815,22 +3816,22 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the list of services to be accessed to service..
+  서비스 access 될 서비스 목록 조회합니다..
   ```
 
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-     - none
+     - 없음
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf service-access
@@ -3839,7 +3840,7 @@ Change the app name.
 
 #### enable-service-access
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3847,27 +3848,27 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Make your organization or service plan accessible to the Service.
+  조직 또는 서비스 plan을 서비스에 접근 가능하도록 설정합니다.
   ```
 
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE      |Service Name                        |O          |
-  |-p PLAN      |PLAN  name                          |O          |
-  |-o ORG       |Organization Name                           |O          |
+  |SERVICE      |서비스 명                        |O          |
+  |-p PLAN      |PLAN명                          |O          |
+  |-o ORG       |조직명                           |O          |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf enable-service-access mysql -p silver -o cf-org
@@ -3876,7 +3877,7 @@ Change the app name.
 
 #### disable-service-access
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3884,27 +3885,27 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Make the organization or service plan inaccessible to the service.
+  조직 또는 서비스 plan을 서비스에 접근 불가 하도록 설정합니다.
   ```
 
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SERVICE      |Service Name                        |O          |
-  |-p PLAN      |PLAN  name                          |O          |
-  |-o ORG       |Organization Name                           |O          |
+  |SERVICE      |서비스 명                        |O          |
+  |-p PLAN      |PLAN명                          |O          |
+  |-o ORG       |조직명                           |O          |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf disable-service-access mysql -p silver -o cf-org
@@ -3916,7 +3917,7 @@ Change the app name.
 
 #### security-group
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3924,25 +3925,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check security group detailed information.
+  시큐리티 그룹 상세정보를 조회합니다.
   ```
 
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SECURITY_GROUP      |Security Group Name                        |O          |
+  |SECURITY_GROUP      |서큐리티 그룹명                        |O          |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf security-group cf-security-group
@@ -3951,7 +3952,7 @@ Change the app name.
 
 #### security-groups
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3959,22 +3960,22 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the list of security groups.
+  시큐리티 그룹 목록을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-    - none
+    - 없음
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf security-groups
@@ -3983,7 +3984,7 @@ Change the app name.
 
 #### create-security-group
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -3991,24 +3992,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Create the Security Group Information.
+  시큐리티 그룹정보를 생성합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SECURITY_GROUP      |Security Group Name                                           |O          |
-  |PATH_TO_JSON_RULES_FILE      |The path and file name of the JSON file specifying the security rules<br> ex) rule file example <br> [ <br> &nbsp;&nbsp;{   <br> &nbsp;&nbsp;&nbsp;&nbsp;"protocol": "tcp",     <br> &nbsp;&nbsp;&nbsp;&nbsp;"destination": "10.244.1.18", <br>     &nbsp;&nbsp;&nbsp;&nbsp;"ports": "3306" <br>&nbsp;&nbsp;} <br> ]     |O          |
+  |SECURITY_GROUP      |서큐리티 그룹명                                           |O          |
+  |PATH_TO_JSON_RULES_FILE      |시큐리티 룰을 명세한 JSON 파일의 경로 및 파일명<br> ex) rule 파일 작성 예제 <br> [ <br> &nbsp;&nbsp;{   <br> &nbsp;&nbsp;&nbsp;&nbsp;"protocol": "tcp",     <br> &nbsp;&nbsp;&nbsp;&nbsp;"destination": "10.244.1.18", <br>     &nbsp;&nbsp;&nbsp;&nbsp;"ports": "3306" <br>&nbsp;&nbsp;} <br> ]     |O          |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf create-security-group cf-security-group ./rule.json
@@ -4017,7 +4018,7 @@ Change the app name.
 
 #### update-security-group
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4025,23 +4026,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Modify the security group information.
+  시큐리티 그룹정보를 수정합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SECURITY_GROUP      |Security Group Name                                           |O          |
-  |PATH_TO_JSON_RULES_FILE      |The path and file name of the JSON file specifying the security rules<br> ex) rule file example<br> [ <br> &nbsp;&nbsp;{   <br> &nbsp;&nbsp;&nbsp;&nbsp;"protocol": "tcp",     <br> &nbsp;&nbsp;&nbsp;&nbsp;"destination": "10.244.1.18", <br>     &nbsp;&nbsp;&nbsp;&nbsp;"ports": "3306" <br>&nbsp;&nbsp;} <br> ]     |O          |
+  |SECURITY_GROUP      |서큐리티 그룹명                                           |O          |
+  |PATH_TO_JSON_RULES_FILE      |시큐리티 룰을 명세한 JSON 파일의 경로 및 파일명<br> ex) rule 파일 작성 예제 <br> [ <br> &nbsp;&nbsp;{   <br> &nbsp;&nbsp;&nbsp;&nbsp;"protocol": "tcp",     <br> &nbsp;&nbsp;&nbsp;&nbsp;"destination": "10.244.1.18", <br>     &nbsp;&nbsp;&nbsp;&nbsp;"ports": "3306" <br>&nbsp;&nbsp;} <br> ]     |O          |
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf update-security-group cf-security-group ./rule.json
@@ -4050,7 +4051,7 @@ Change the app name.
 
 #### delete-security-group
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4058,24 +4059,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Delete the security group information
+  시큐리티 그룹정보를 삭제합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SECURITY_GROUP  |Security Group Name                                    |O          |
-  |-f              |Deletes security group information without delete confirmation message.  |X          |
+  |SECURITY_GROUP  |서큐리티 그룹명                                    |O          |
+  |-f              |삭제 확인메시지 없이 시큐리지 그룹 정보를 삭제합니다.    |X          |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf update-security-group cf-security-group ./rule.json
@@ -4084,7 +4085,7 @@ Change the app name.
 
 #### bind-security-group
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4092,25 +4093,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Bind security group information and space.
+  시큐리티 그룹 정보와 스페이스를 바인드 합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SECURITY_GROUP  |Security Group Name                |O          |
-  |ORG             |Organization Name                        |O          |
-  |SPACE           |Space Name                    |O         |
+  |SECURITY_GROUP  |서큐리티 그룹명                |O          |
+  |ORG             |조직명                        |O          |
+  |SPACE           |스페이스명                    |O         |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf update-security-group cf-security-group ./rule.json
@@ -4119,7 +4120,7 @@ Change the app name.
 
 #### unbind-security-group
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4127,25 +4128,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Unbind security group information and space.
+  시큐리티 그룹 정보와 스페이스를 언바인드 합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SECURITY_GROUP  |Security Group Name                |O          |
-  |ORG             |Organization Name                        |O          |
-  |SPACE           |Space Name                     |O          |
+  |SECURITY_GROUP  |서큐리티 그룹명                |O          |
+  |ORG             |조직명                        |O          |
+  |SPACE           |스페이스명                     |O          |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf unbind-security-group cf-security-group cf-group development
@@ -4154,7 +4155,7 @@ Change the app name.
 
 #### bind-staging-security-group
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4162,23 +4163,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Set up a security group for app staging processing.
+  App staging처리를 하기 위해 시큐리티 그룹을 설정합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SECURITY_GROUP  |Security Group Name                |O          |
+  |SECURITY_GROUP  |서큐리티 그룹명                |O          |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf bind-staging-security-group cf-security-group
@@ -4187,7 +4188,7 @@ Change the app name.
 
 #### staging-security-groups
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4195,20 +4196,20 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the list of staging security group information.
+  Staging security group 정보 목록을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
-    - none
+    - 없음
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf staging-security-groups
@@ -4217,7 +4218,7 @@ Change the app name.
 
 #### unbind-staging-security-group
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4225,23 +4226,23 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Unset the security group for app staging processing.
+  App staging처리를 하기 위한 시큐리티 그룹을 설정을 해제 합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |SECURITY_GROUP  |Security Group Name                |O          |
+  |SECURITY_GROUP  |서큐리티 그룹명                |O          |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf unbind-staging-security-group cf-security-group
@@ -4250,7 +4251,7 @@ Change the app name.
 
 #### running-security-groups
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4258,21 +4259,21 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the list of running security groups.
+  실행중인 시큐리트 그룹 목록을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
-    - none
+    - 없음
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf unbind-staging-security-group cf-security-group
@@ -4285,7 +4286,7 @@ Change the app name.
 <div id='running-environment-variable-group-revg'/>
 #### running-environment-variable-group, revg
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4293,21 +4294,21 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the contents of environment variables.
+  실환경변수 내용을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
-    - none
+    - 없음
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf running-environment-variable-group
@@ -4316,7 +4317,7 @@ Change the app name.
 <div id='staging-environment-variable-group-sevg'/>
 #### staging-environment-variable-group, sevg
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4324,21 +4325,21 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the contents of environment variables that are used when staging.
+  스테이징시 사용되는 환경변수 내용을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
-    - none
+    - 없음
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf staging-environment-variable-group
@@ -4349,7 +4350,7 @@ Change the app name.
 <div id='set-staging-environment-variable-group-ssevg'/>
 #### set-staging-environment-variable-group, ssevg
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4357,25 +4358,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Set the contents of environment variables that are used when staging.
+  스테이징시 사용되는 환경변수 내용을 설정한다
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |ENV_VARIABLE  |Consists of KEY/VALUE as contents of environment variables              |O          |
+  |ENV_VARIABLE  |환경변수 내용으로 KEY/VALUE로 구성              |O          |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf set-staging-environment-variable-group '{"name":"value","name":"value"}'
@@ -4384,7 +4385,7 @@ Change the app name.
 <div id='set-running-environment-variable-group-ssevg'/>
 #### set-running-environment-variable-group, ssevg
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4392,25 +4393,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Set the contents of environment variables.
+  환경변수 내용을 설정 합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |ENV_VARIABLE  |It is consist of KEY/VALUE as contents of environment variables.            |O          |
+  |ENV_VARIABLE  |환경변수 내용으로 KEY/VALUE로 구성된다.                |O          |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf set-running-environment-variable-group '{"name":"value","name":"value"}'
@@ -4421,7 +4422,7 @@ Change the app name.
 
 #### feature-flags
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4429,21 +4430,21 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check a list of feature flags.
+  feature flags 목록을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
-    - none
+    - 없음
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf feature-flags
@@ -4452,7 +4453,7 @@ Change the app name.
 
 #### feature-flag
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4460,25 +4461,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the state of a specific feature flag.
+  특정 Feature flag의 상태를 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |FEATURE_NAME  |Feature flag  name. <br> - There are six ways in feature flags. <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
+  |FEATURE_NAME  |Feature flag 명. <br> - feature flag에는 6가지가 있다. <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf feature-flag app_bits_upload
@@ -4487,7 +4488,7 @@ Change the app name.
 
 #### enable-feature-flag
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4495,24 +4496,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Change the state of a specific feature flag to enable.
+  특정 Feature flag의 상태를 enable로 변경합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |FEATURE_NAME  |Feature flag   name. <br> - There are six ways in feature flags. <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
+  |FEATURE_NAME  |Feature flag 명. <br> - feature flag에는 6가지가 있다. <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf enable-feature-flag app_bits_upload
@@ -4521,7 +4522,7 @@ Change the app name.
 
 #### disable-feature-flag
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4529,25 +4530,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Change the state of a specific feature flag to disable.
+  특정 Feature flag의 상태를 disable로 변경합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |FEATURE_NAME  |Feature flag   name. <br> - There are six ways in feature flags.  <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
+  |FEATURE_NAME  |Feature flag 명. <br> - feature flag에는 6가지가 있다. <br> 1)user_org_creation <br> 2) private_domain_creation <br> 3) app_bits_upload <br> 4) app_scaling <br>  5) route_creation <br> 6) service_instance_creation               |O          |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf disable-feature-flag app_bits_upload
@@ -4559,7 +4560,7 @@ Change the app name.
 
 #### curl
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4567,29 +4568,29 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Call the OpenPaaS API, not the OpenPaaS CLI command.
+  OpenPaaS CLI명령어가 아닌 OpenPaaS API를 호출합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
   |PATH         |Cf api path <br>  Ex) /v2/spaces/2d94e7ee-9805-408d-a1eb-ceac319e603b/summary             |O          |
-  |-i           |Response header included result.                                                                |X          |
-  |-v           |Including the contents of CF_TRACE enabled in the request/response.                                     |X          |
+  |-i           |Response header포함한 결과                                                                  |X          |
+  |-v           |Request/response에 CF_TRACE enable된 내용 포함                                              |X          |
   |-X METHOD    |HTTP method((GET,POST,PUT,DELETE,etc)                                                      |X          |
-  |-H HEADER    |Include Custom Header in Request.                                                   |X          |
-  |-d DATA      |Include Http data in Request.                                                       |X          |
-  |--output FILE |Save response result as FILE instead of stdout                                         |X          |
+  |-H HEADER    |Request에 Custom Header를 포함합니다.                                                         |X          |
+  |-d DATA      |Request에 Http data를 포함합니다.                                                             |X          |
+  |--output FILE |Response결과를 stdout대신 FILE로 결과 저장                                                  |X          |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf curl /v2/spaces/2d94e7ee-9805-408d-a1eb-ceac319e603b/summar
@@ -4598,7 +4599,7 @@ Change the app name.
 
 #### config
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4606,26 +4607,26 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Set up the CF CLI.
+  CF CLI에 대한 설정.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |--async-timeout TIMEOUT_IN_MINUTES        |Set async timeout when sending CLI command                |X          |
-  |--trace (true / false / path/to/file   )    |Setting to output the contents of the cf api executed when executing the CLI command |X          |
-  |--color true / false                      |Setting the color of the contents of the cf api executed when executing the CLI command    |X          |
-  |--locale (LOCALE / CLEAR)                 |Set contents locale localeof the cf api executed when executing the CLI command.    |X          |
+  |--async-timeout TIMEOUT_IN_MINUTES        |CLI 명령 전송시 async timeout 설정                     |X          |
+  |--trace (true / false / path/to/file   )    |CLI 명령 수행시 실행되는 cf api의 내용 출력 설정         |X          |
+  |--color true / false                      |CLI 명령 수행시 실행되는 cf api의 내용 color 설정        |X          |
+  |--locale (LOCALE / CLEAR)                 |CLI 명령 수행시 실행되는 cf api의 내용 locale 설정       |X          |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf curl /v2/spaces/2d94e7ee-9805-408d-a1eb-ceac319e603b/summar
@@ -4633,7 +4634,7 @@ Change the app name.
 
 #### oauth-token
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4641,21 +4642,21 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  User checks the token value received from CF after cf login.
+  사용자가 cf login후 CF에서 받은 token 값 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
-    - none
+    - 없음
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $cf oauth-token
@@ -4667,7 +4668,7 @@ Change the app name.
 
 #### add-plugin-repo
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4675,25 +4676,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Add the OpenPaaS CLI plugin repository.
+  OpenPaaS CLI plugin repository(저장소)를 추가합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |REPO_NAME    |Repository   name                   |X          |
+  |REPO_NAME    |Repository 명                   |X          |
   |URL          |Repository URL                 |X          |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   cf add-plugin-repo Diego-SSH http://plugins.cloudfoundry.org
@@ -4702,7 +4703,7 @@ Change the app name.
 
 #### remove-plugin-repo
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4710,25 +4711,25 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Delete CLI plugin repository
+  CLI plugin repository(저장소)를 삭제합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |REPO_NAME    |Repository   name                   |O          |
+  |REPO_NAME    |Repository 명                   |O          |
   |URL          |Repository URL                 |O         |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   cf remove-plugin-repo Diego-SSH http://plugins.cloudfoundry.org
@@ -4737,7 +4738,7 @@ Change the app name.
 
 #### list-plugin-repos
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4745,20 +4746,20 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the plugin repository list added to CLI
+  CLI에 추가된 plugin repository(저장소)목록을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
-    - none
+    - 없음
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $cf list-plugin-repos
@@ -4767,7 +4768,7 @@ Change the app name.
 
 #### repo-plugins
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4775,24 +4776,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the list of plugins in the repository.
+  Repository에 있는 플러그인 목록을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |REPO_NAME    |Repository   name                   |X          |
+  |REPO_NAME    |Repository 명                   |X          |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf repo-plugins
@@ -4804,7 +4805,7 @@ Change the app name.
 
 #### plugins
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4812,24 +4813,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the list of available commands added plugin.
+  추가된 plugin의 사용가능한 명령어 목록을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |REPO_NAME    |Repository   name                   |X          |
+  |REPO_NAME    |Repository 명                   |X          |
 
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $ cf repo-plugins
@@ -4839,7 +4840,7 @@ Change the app name.
 
 #### install-plugin
 
-  - **Basic Syntax**
+  - **기본 Syntax**
 
 
   ```
@@ -4847,24 +4848,24 @@ Change the app name.
   ```
 
 
-  - **Description**
+  - **설명**
 
 
   ```
-  Check the list of available commands of the added plugin.
+  추가된 plugin의 사용가능한 명령어 목록을 조회합니다.
   ```
 
 
-  - **Parameter **
+  - **파라미터**
 
 
-  | Parameter Name   |           Description                 | Required(O/X) |
+  | 파라미터명   |           설명                 | 필수(O/X) |
   |-------------|--------------------------------|-----------|
-  |URL or LOCAL-PATH/TO/PLUGIN   |Plugin URL or plugin name in local path or repository  |X          |
-  |-r REPO_NAME                  |Plugin repository  name                                                   |X          |
+  |URL or LOCAL-PATH/TO/PLUGIN   |Plugin URL 또는 로컬경로 또는 repository에 있는 플러그인명                |X          |
+  |-r REPO_NAME                  |Plugin repository명                                                   |X          |
 
 
-  - **Example**
+  - **사용예시**
 
   ```
   $cf install-plugin 'Usage Report' -r CF-Community

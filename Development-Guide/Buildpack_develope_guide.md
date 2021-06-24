@@ -1106,7 +1106,7 @@ JAVA기반의 어플리케이션을 위한 개발 및 실행 환경은 다양하
 
 > 새로 추가하는 컴포넌트 클래스는 빌드팩의 필수 기능인 Detect, Compile,
 > Release 메소드를 구현한다. 확장한 기본 클래스에 따라 Detect 기능은
-> support? 메소드로 구현한다.
+> support 메소드로 구현한다.
 
 4)  새로운 클래스의 이름을 config/components.yml 파일에 추가한다.
 

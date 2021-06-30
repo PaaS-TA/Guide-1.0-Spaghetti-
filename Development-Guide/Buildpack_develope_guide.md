@@ -132,7 +132,7 @@
 
     | |-- .java-buildpack
 
-    | | |-- open\_jdk\_jre \        #설치된 런타임
+    | | |-- open_jdk_jre \        #설치된 런타임
 
     | | |-- tomcat \                #설치된 웹 컨테이너
 
@@ -144,9 +144,9 @@
 
   |-- logs
 
-    | |-- staging\_task.log
+    | |-- staging_task.log
 
-  |-- staging\_info.yml
+  |-- staging_info.yml
 
   |-- tmp
   ````

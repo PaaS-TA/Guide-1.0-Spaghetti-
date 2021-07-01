@@ -200,7 +200,7 @@ Spring Framework를 이용하여 개발을 하였으며 사용한 컴포넌트�
   <tr>
     <td>Java</td>
     <td>1.7</td>
-    <td>Java 컴파일러/샐행환경</td>
+    <td>Java 컴파일러/실행환경</td>
   </tr>
   <tr>
     <td>Spring Boot</td>
